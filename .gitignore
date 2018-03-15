@@ -1,4 +1,27 @@
-﻿*.user
+﻿##################################
+# IDEA Rider
+##################################
+.idea
+.idea.*
+
+##################################
+# Build Result
+##################################
+
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+[Pp]ublish/
+
+##################################
+# Other
+##################################
+
+*.user
+*.sln.docstates
 *.aps
 *.pch
 *.vspscc
@@ -10,16 +33,11 @@
 *.cache
 *.ilk
 *.log
-[Bb]in*/
-[Dd]ebug*/
 *.sbr
-obj*/
-[Rr]elease*/
-_ReSharper*/
-packages/
 *.DotSettings
 *.rar
 *.zip
 *.7z
-.vs
-[Pp]ublish
+_ReSharper*/
+.vs/
+packages/
