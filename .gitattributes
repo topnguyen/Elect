@@ -11,6 +11,11 @@
 # Note: This is only used by command line
 ###############################################################################
 #*.cs     diff=csharp
+*.sln    merge=union text eol=crlf
+*.csproj merge=union text eol=crlf
+*.vbproj merge=union text eol=crlf
+*.fsproj merge=union text eol=crlf
+*.dbproj merge=union text eol=crlf
 
 ###############################################################################
 # Set the merge driver for project and solution files
@@ -61,3 +66,29 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+# Source code
+*.cshtml text
+*.css    text
+*.xml    text
+*.bat    text
+*.ps1    text
+*.nuspec text
+*.js     text
+*.json   text
+*.sql    text
+
+# Documentation
+*.md           text
+*.txt          text
+*.manifest     text
+COPYING        text
+COPYING.LESSER text
+
+# Configs
+*.config       text
+.editorconfig  text
+.gitattributes text
+.gitignore     text
+*.yml          text
+*.DotSettings  text

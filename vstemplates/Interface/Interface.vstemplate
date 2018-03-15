@@ -1,0 +1,18 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <Name>Elect Interface</Name>
+    <Description></Description>
+    <ProjectType>CSharp</ProjectType>
+    <ShowByDefault>true</ShowByDefault>
+    <ProvideDefaultName>false</ProvideDefaultName>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectItem TargetFileName="I$fileinputname$.cs" ReplaceParameters="true">Interface.cs</ProjectItem>
+    <CustomParameters>
+      <CustomParameter Name="$author$" Value="Top Nguyen" />
+      <CustomParameter Name="$authorurl$" Value="http://topnguyen.net/" />
+      <CustomParameter Name="$project$" Value="Elect" />
+    </CustomParameters>
+  </TemplateContent>
+</VSTemplate>
