@@ -5,6 +5,7 @@
     <Copyright>http://topnguyen.net</Copyright>
     <LangVersion>7.1</LangVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!-- 3rd Libraries -->
