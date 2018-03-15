@@ -3,15 +3,12 @@
   <PropertyGroup>
     <Authors>Top Nguyen</Authors>
     <Copyright>http://topnguyen.net</Copyright>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.1</LangVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <!-- 3rd Libraries -->
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Constants\" />
   </ItemGroup>
 </Project>
