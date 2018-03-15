@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Core", "Elect.Core\src\Elect.Core.csproj", "{ADDDF884-81A8-48BA-B405-2D451ACCB6BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Core", "src\Elect.Core\Elect.Core.csproj", "{ADDDF884-81A8-48BA-B405-2D451ACCB6BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{DD41F232-E4E3-408F-9687-7AA6D7201F49}"
 EndProject
@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DI", "DI", "{CDC81C63-39E4-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mapper", "Mapper", "{7A077DE1-4A8A-4D47-820A-A9BE4EB908B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Data.EF", "Data\Elect.Data.EF\src\Elect.Data.EF.csproj", "{CBD1A22E-6626-496A-ABE5-5AF066B844B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Data.EF", "src\Data\Elect.Data.EF\Elect.Data.EF.csproj", "{CBD1A22E-6626-496A-ABE5-5AF066B844B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Data.IO", "Data\Elect.Data.IO\src\Elect.Data.IO.csproj", "{04A7B5D4-43D6-4624-8F3F-C44B06BD7C2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Data.IO", "src\Data\Elect.Data.IO\Elect.Data.IO.csproj", "{04A7B5D4-43D6-4624-8F3F-C44B06BD7C2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.DI", "DI\Elect.DI\src\Elect.DI.csproj", "{CB65A310-CCA3-40BB-9EBA-745184234496}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.DI", "src\DI\Elect.DI\Elect.DI.csproj", "{CB65A310-CCA3-40BB-9EBA-745184234496}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Mapper.AutoMapper", "Mapper\Elect.Mapper.AutoMapper\src\Elect.Mapper.AutoMapper.csproj", "{C7936AB3-C8A5-487C-B4C2-01CA2DD11E60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Mapper.AutoMapper", "src\Mapper\Elect.Mapper.AutoMapper\Elect.Mapper.AutoMapper.csproj", "{C7936AB3-C8A5-487C-B4C2-01CA2DD11E60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
