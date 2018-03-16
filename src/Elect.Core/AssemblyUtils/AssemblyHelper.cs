@@ -18,7 +18,9 @@
 #endregion License
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace Elect.Core.AssemblyUtils
@@ -34,6 +36,33 @@ namespace Elect.Core.AssemblyUtils
             var directoryPath = Path.GetDirectoryName(path);
 
             return directoryPath;
+        }
+
+        public static List<Assembly> LoadAssemblies(params string[] dllFileFullPaths)
+        {
+            if (dllFileFullPaths?.Any() != true)
+            {
+                throw new ArgumentException($"{nameof(dllFileFullPaths)} can not be empty.", nameof(dllFileFullPaths));
+            }
+
+            dllFileFullPaths = dllFileFullPaths.Distinct().ToArray();
+
+            AssemblyLoader assemblyLoader = new AssemblyLoader();
+
+            List<Assembly> assemblies = new List<Assembly>();
+
+            foreach (var dllFileFullPath in dllFileFullPaths)
+            {
+                var dllNameWithoutExtension = Path.GetFileNameWithoutExtension(dllFileFullPath);
+
+                var assemblyName = new AssemblyName(dllNameWithoutExtension);
+
+                var assembly = assemblyLoader.LoadFromAssemblyName(assemblyName);
+
+                assemblies.Add(assembly);
+            }
+
+            return assemblies;
         }
     }
 }

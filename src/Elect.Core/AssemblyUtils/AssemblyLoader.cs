@@ -27,7 +27,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 
-namespace Elect.DI
+namespace Elect.Core.AssemblyUtils
 {
     public class AssemblyLoader : AssemblyLoadContext
     {

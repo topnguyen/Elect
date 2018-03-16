@@ -26,7 +26,7 @@ namespace Elect.DI.Options
         /// <summary>
         ///     Assembly name of system to scan and register to services. 
         /// </summary>
-        public string AssemblyName { get; set; } = PlatformServices.Default.Application.ApplicationName;
+        public string RootAssemblyName { get; set; } = PlatformServices.Default.Application.ApplicationName;
 
         /// <summary>
         ///     Print with minimal display format, default is true. 
