@@ -228,9 +228,9 @@ namespace Elect.DI
 
             var scanner = new Scanner();
 
-            scanner.RegisterAssemblies(services, $"{options.AssemblyName}.dll", options.AssemblyFolderPath);
+            scanner.RegisterAssemblies(services, options.AssembliesFolderPath, $"{options.RootAssemblyName}.dll");
 
-            scanner.RegisterAssemblies(services, $"{options.AssemblyName}.*.dll", options.AssemblyFolderPath);
+            scanner.RegisterAssemblies(services, options.AssembliesFolderPath, $"{options.RootAssemblyName}.*.dll");
 
             services.AddSingleton(scanner);
 
@@ -252,7 +252,7 @@ namespace Elect.DI
 
             var listServiceDescriptors = services.ToList();
 
-            listServiceDescriptors = listServiceDescriptors.Where(x => x.ServiceType.FullName.Contains(options.AssemblyName)).ToList();
+            listServiceDescriptors = listServiceDescriptors.Where(x => x.ServiceType.FullName.Contains(options.RootAssemblyName)).ToList();
 
             var consoleTextColor = ConsoleColor.Yellow;
             var consoleDimColor = ConsoleColor.DarkGray;

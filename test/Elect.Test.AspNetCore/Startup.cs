@@ -1,4 +1,5 @@
 ﻿using Elect.DI;
+using Elect.Mapper.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,8 @@ namespace Elect.Test.AspNetCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddElectDI();
+
+            services.AddElectAutoMapper();
 
             services.AddMvc();
 

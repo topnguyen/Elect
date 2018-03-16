@@ -25,13 +25,13 @@ namespace Elect.DI.Options
     public class ElectDIOptions
     {
         /// <summary>
-        ///     Assembly name of system to scan and register to services. 
+        ///     Assemblies folder path, default is application base path. 
         /// </summary>
-        public string AssemblyName { get; set; } = PlatformServices.Default.Application.ApplicationName;
+        public string AssembliesFolderPath { get; set; } = Path.GetFullPath(PlatformServices.Default.Application.ApplicationBasePath);
 
         /// <summary>
-        ///     Assembly folder path, default is application base path. 
+        ///     Root assembly name of system to scan and register to services. 
         /// </summary>
-        public string AssemblyFolderPath { get; set; } = Path.GetFullPath(PlatformServices.Default.Application.ApplicationBasePath);
+        public string RootAssemblyName { get; set; } = PlatformServices.Default.Application.ApplicationName;
     }
 }

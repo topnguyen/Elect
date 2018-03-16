@@ -18,6 +18,8 @@
 #endregion License
 
 using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Elect.Core.TypeUtils
 {
@@ -37,5 +39,9 @@ namespace Elect.Core.TypeUtils
         {
             return TypeHelper.IsNumericType(type);
         }
+
+        public static bool IsGenericType(this Type type, Type genericType) => type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == genericType;
+
+        public static bool IsImplementGenericInterface(this Type type, Type interfaceType) => type.IsGenericType(interfaceType) || type.GetTypeInfo().ImplementedInterfaces.Any(@interface => @interface.IsGenericType(interfaceType));
     }
 }

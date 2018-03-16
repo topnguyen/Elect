@@ -17,10 +17,12 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.AssemblyUtils;
 using Elect.DI.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -29,17 +31,13 @@ namespace Elect.DI
 {
     public class Scanner
     {
-        public AssemblyLoader AssemblyLoader { get; private set; } = new AssemblyLoader();
-
         /// <summary>
         ///     Register Assembly by Name 
         /// </summary>
-        /// <param name="services">    </param>
-        /// <param name="assemblyName"></param>
-        public void RegisterAssembly(IServiceCollection services, AssemblyName assemblyName)
+        /// <param name="services"></param>
+        /// <param name="assembly"></param>
+        public void RegisterAssembly(IServiceCollection services, Assembly assembly)
         {
-            var assembly = AssemblyLoader.LoadFromAssemblyName(assemblyName);
-
             foreach (var typeInfo in assembly.DefinedTypes)
             {
                 foreach (var customAttribute in typeInfo.GetCustomAttributes())
@@ -93,22 +91,24 @@ namespace Elect.DI
         ///     Register all assemblies 
         /// </summary>
         /// <param name="services">          </param>
-        /// <param name="searchPattern">      Search Pattern by Directory.GetFiles </param>
         /// <param name="assemblyFolderPath">
         ///     null or empty will use Application Base Path
         /// </param>
-        public void RegisterAssemblies(IServiceCollection services, string searchPattern = "*.dll", string assemblyFolderPath = null)
+        /// <param name="fileSearchPattern">  Search Pattern by Directory.GetFiles </param>
+        public void RegisterAssemblies(IServiceCollection services, string assemblyFolderPath, string fileSearchPattern)
         {
-            // Update assembly loader with folder path
-            AssemblyLoader = new AssemblyLoader(assemblyFolderPath);
+            var listDllFileFullPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern).ToList();
 
-            var listDllFileFullPath = Directory.GetFiles(assemblyFolderPath, searchPattern).ToList();
-
-            foreach (var dllFileFullPath in listDllFileFullPath)
+            if (listDllFileFullPath?.Any() != true)
             {
-                var dllNameWithoutExtension = Path.GetFileNameWithoutExtension(dllFileFullPath);
+                return;
+            }
 
-                RegisterAssembly(services, new AssemblyName(dllNameWithoutExtension));
+            List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listDllFileFullPath.ToArray());
+
+            foreach (var assembly in assemblies)
+            {
+                RegisterAssembly(services, assembly);
             }
         }
     }
