@@ -28,7 +28,7 @@ namespace Elect.Core.CheckUtils
         {
             if (string.IsNullOrWhiteSpace(propertyValue))
             {
-                throw new ArgumentException($"{propertyName} cannot be null or empty or whitespace", propertyName);
+                throw new ArgumentException($"{propertyName} cannot be null or empty or whitespace.", propertyName);
             }
         }
     }
