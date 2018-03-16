@@ -27,5 +27,10 @@ namespace Elect.DI.Options
         ///     Assembly name of system to scan and register to services. 
         /// </summary>
         public string AssemblyName { get; set; } = PlatformServices.Default.Application.ApplicationName;
+
+        /// <summary>
+        ///     Print with minimal display format, default is true. 
+        /// </summary>
+        public bool IsMinimalDisplay { get; set; } = true;
     }
 }

@@ -254,9 +254,73 @@ namespace Elect.DI
 
             listServiceDescriptors = listServiceDescriptors.Where(x => x.ServiceType.FullName.Contains(options.AssemblyName)).ToList();
 
-            Console.WriteLine($"{Environment.NewLine}{new string('-', 50)}");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"[Total Dependency Injection {listServiceDescriptors.Count}] Services");
+            var consoleTextColor = ConsoleColor.Yellow;
+            var consoleDimColor = ConsoleColor.DarkGray;
+
+            Console.WriteLine();
+            Console.WriteLine($"{new string('-', 100)}");
+            Console.WriteLine();
+
+            Console.ForegroundColor = consoleTextColor;
+            Console.WriteLine($"# Elect DI > Registered: {listServiceDescriptors.Count} Services");
+            Console.WriteLine();
+
+            if (options.IsMinimalDisplay)
+            {
+                PrintRegisteredToConsoleMinimalDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
+            }
+            else
+            {
+                PrintRegisteredToConsoleFullDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
+            }
+
+            Console.WriteLine();
+            Console.ResetColor();
+            Console.WriteLine($"{new string('-', 100)}");
+
+            return services;
+        }
+
+        private static void PrintRegisteredToConsoleMinimalDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
+        {
+            var noMaxLength = listServiceDescriptors.Count + 1;
+            if (noMaxLength < "No.".Length)
+            {
+                noMaxLength = "No.".Length;
+            }
+
+            var serviceNameMaxLength = listServiceDescriptors.Select(x => x.ServiceType.Name.Length).Max();
+            if (serviceNameMaxLength < "Service".Length)
+            {
+                serviceNameMaxLength = "Service".Length;
+            }
+
+            var implementationNameMaxLength = listServiceDescriptors.Select(x => x.ImplementationType.Name.Length).Max();
+            if (implementationNameMaxLength < "Implementation".Length)
+            {
+                implementationNameMaxLength = "Implementation".Length;
+            }
+
+            var lifeTimeMaxLength = listServiceDescriptors.Select(x => x.Lifetime.ToString().Length).Max();
+            if (lifeTimeMaxLength < "Lifetime".Length)
+            {
+                lifeTimeMaxLength = "Lifetime".Length;
+            }
+
+            // Header
+
+            Console.ResetColor();
+            Console.Write("    ");
+            Console.Write("No.".PadRight(noMaxLength));
+            Console.Write("    |    ");
+            Console.Write("Service".PadRight(serviceNameMaxLength));
+            Console.Write("    |    ");
+            Console.Write("Implementation".PadRight(implementationNameMaxLength));
+            Console.Write("    |    ");
+            Console.Write("Lifetime");
+            Console.WriteLine();
+
+            Console.WriteLine($"{new string('-', 4 + noMaxLength + serviceNameMaxLength + implementationNameMaxLength + lifeTimeMaxLength + "    |    ".Length * 3)}");
 
             for (var index = 0; index < listServiceDescriptors.Count; index++)
             {
@@ -264,38 +328,111 @@ namespace Elect.DI
 
                 var no = index + 1;
 
-                var maximumCharacter = new List<int> {
-                        service.ServiceType?.Name?.Length ?? 0,
-                        service.ImplementationType?.Name?.Length ?? 0,
-                        service.Lifetime.ToString().Length
-                    }.Max();
+                // No
 
                 Console.ResetColor();
-                Console.WriteLine($"{no}.");
+                Console.Write("    ");
+                Console.Write($"{no}.".PadRight(noMaxLength));
 
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("    Service         |  ");
                 Console.ResetColor();
-                Console.Write($"{service.ServiceType?.Name?.PadRight(maximumCharacter)}");
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"  |  {service.ServiceType?.FullName}");
+                Console.Write("    |    ");
 
-                Console.Write("    Implementation  |  ");
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.Write($"{service.ImplementationType?.Name?.PadRight(maximumCharacter)}");
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"  |  {service.ImplementationType?.FullName}");
+                // Service
 
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("    Lifetime        |  ");
-                Console.WriteLine($"[{service.Lifetime.ToString()}]");
-                Console.WriteLine();
+                Console.ForegroundColor = consoleTextColor;
+                Console.Write(service.ServiceType?.Name?.PadRight(serviceNameMaxLength));
+
+                Console.ResetColor();
+                Console.Write("    |    ");
+
+                // Implementation
+
+                Console.ForegroundColor = consoleDimColor;
+                Console.Write(service.ImplementationType?.Name?.PadRight(implementationNameMaxLength));
+
+                Console.ResetColor();
+                Console.Write("    |    ");
+
+                // Lifetime
+
+                Console.ForegroundColor = consoleTextColor;
+                Console.WriteLine(service.Lifetime.ToString().PadRight(lifeTimeMaxLength));
             }
+        }
 
-            Console.ResetColor();
-            Console.WriteLine($"{new string('-', 50)}{Environment.NewLine}");
+        private static void PrintRegisteredToConsoleFullDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
+        {
+            var maximumCharacter =
+                new List<int>
+                {
+                    listServiceDescriptors.Select(x => x.ServiceType.Name.Length).Max(),
+                    listServiceDescriptors.Select(x => x.ImplementationType.Name.Length).Max(),
+                    listServiceDescriptors.Select(x => x.Lifetime.ToString().Length).Max()
+                }.Max();
 
-            return services;
+            for (var index = 0; index < listServiceDescriptors.Count; index++)
+            {
+                var service = listServiceDescriptors[index];
+
+                var no = index + 1;
+
+                // No
+
+                Console.ResetColor();
+                Console.Write($"{no}.".PadRight(18));
+                Console.Write("    |    ");
+                Console.Write("".PadRight(maximumCharacter));
+                Console.Write("    |    ");
+                Console.WriteLine();
+
+                // Service
+
+                Console.ForegroundColor = consoleDimColor;
+                Console.Write("    Service       ");
+
+                Console.ResetColor();
+                Console.Write("    |    ");
+
+                Console.ForegroundColor = consoleTextColor;
+                Console.Write(service.ServiceType?.Name?.PadRight(maximumCharacter));
+
+                Console.ResetColor();
+                Console.Write("    |    ");
+
+                Console.ForegroundColor = consoleDimColor;
+                Console.WriteLine(service.ServiceType?.FullName);
+
+                // Implementation
+
+                Console.ForegroundColor = consoleDimColor;
+                Console.Write("    Implementation");
+
+                Console.ResetColor();
+                Console.Write("    |    ");
+
+                Console.ForegroundColor = consoleDimColor;
+                Console.Write(service.ImplementationType?.Name?.PadRight(maximumCharacter));
+
+                Console.ResetColor();
+                Console.Write("    |    ");
+
+                Console.ForegroundColor = consoleDimColor;
+                Console.WriteLine(service.ImplementationType?.FullName);
+
+                // Life Time
+
+                Console.ForegroundColor = consoleDimColor;
+                Console.Write("    Lifetime      ");
+
+                Console.ResetColor();
+                Console.Write("    |    ");
+
+                Console.ForegroundColor = consoleTextColor;
+                Console.Write(service.Lifetime.ToString().PadRight(maximumCharacter));
+
+                Console.ResetColor();
+                Console.WriteLine("    |    ");
+            }
         }
 
         #endregion
