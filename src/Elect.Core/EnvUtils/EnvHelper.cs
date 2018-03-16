@@ -1,8 +1,27 @@
-﻿using System;
+﻿#region	License
+//--------------------------------------------------
+// <License>
+//     <Copyright> 2018 © Top Nguyen </Copyright>
+//     <Url> http://topnguyen.net/ </Url>
+//     <Author> Top </Author>
+//     <Project> Elect </Project>
+//     <File>
+//         <Name> EnvHelper.cs </Name>
+//         <Created> 15/03/2018 4:52:43 PM </Created>
+//         <Key> 0d965c63-3413-4da6-adea-6dec13fe5819 </Key>
+//     </File>
+//     <Summary>
+//         EnvHelper.cs is a part of Elect
+//     </Summary>
+// <License>
+//--------------------------------------------------
+#endregion License
 
-namespace Elect.Core.EnvironmentUtils
+using System;
+
+namespace Elect.Core.EnvUtils
 {
-    public static class EnvironmentHelper
+    public static class EnvHelper
     {
         public const string AspNetCoreEnvironmentVariable = "ASPNETCORE_ENVIRONMENT";
 

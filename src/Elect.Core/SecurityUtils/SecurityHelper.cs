@@ -1,0 +1,199 @@
+﻿#region	License
+//--------------------------------------------------
+// <License>
+//     <Copyright> 2018 © Top Nguyen </Copyright>
+//     <Url> http://topnguyen.net/ </Url>
+//     <Author> Top </Author>
+//     <Project> Elect </Project>
+//     <File>
+//         <Name> SecurityHelper.cs </Name>
+//         <Created> 16/03/2018 11:06:42 AM </Created>
+//         <Key> 338ebe83-04f3-48d1-aed7-881328d57bf9 </Key>
+//     </File>
+//     <Summary>
+//         SecurityHelper.cs is a part of Elect
+//     </Summary>
+// <License>
+//--------------------------------------------------
+#endregion License
+
+using Elect.Core.StringUtils;
+using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace Elect.Core.SecurityUtils
+{
+    public class SecurityHelper
+    {
+        public static string GenerateSalt(int byteLength = 32)
+        {
+            // 32 Bytes will give 256 bits.
+            using (var randomNumberGenerator = RandomNumberGenerator.Create())
+            {
+                var randomNumber = new byte[byteLength];
+
+                randomNumberGenerator.GetBytes(randomNumber);
+
+                return Convert.ToBase64String(randomNumber);
+            }
+        }
+
+        // SHA
+
+        public static string EncryptSha256(string value)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(value));
+
+                var hash = BitConverter.ToString(hashBytes).Replace("-", "");
+
+                return hash;
+            }
+        }
+
+        public static string EncryptSha512(string value)
+        {
+            using (var sha512 = SHA512.Create())
+            {
+                byte[] hashBytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(value));
+
+                var hash = BitConverter.ToString(hashBytes).Replace("-", "");
+
+                return hash;
+            }
+        }
+
+        // HMAC SHA
+
+        public static string EncryptHmacSha256(string value, string key)
+        {
+            var keyBytes = Convert.FromBase64String(key);
+
+            var valueBytes = Encoding.UTF8.GetBytes(value);
+
+            using (var shaAlgorithm = new HMACSHA256(keyBytes))
+            {
+                var hashBytes = shaAlgorithm.ComputeHash(valueBytes);
+
+                var hash = BitConverter.ToString(hashBytes).Replace("-", "");
+                return hash;
+            }
+        }
+
+        public static string EncryptHmacSha512(string value, string key)
+        {
+            var keyBytes = Convert.FromBase64String(key);
+
+            var valueBytes = Encoding.UTF8.GetBytes(value);
+
+            using (var shaAlgorithm = new HMACSHA512(keyBytes))
+            {
+                var hashBytes = shaAlgorithm.ComputeHash(valueBytes);
+
+                var hash = BitConverter.ToString(hashBytes).Replace("-", "");
+
+                return hash;
+            }
+        }
+
+        // Rfc 2898 DeriveBytes - PBKDF2
+
+        /// <summary>
+        ///     Encrypt Password by Rfc 2898 DeriveBytes - PBKDF2 
+        /// </summary>
+        public static string HashPassword(string password, string salt, int iterations = 100000)
+        {
+            byte[] valueBytes = Encoding.UTF8.GetBytes(password);
+
+            byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
+
+            using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(valueBytes, saltBytes, iterations))
+            {
+                var hashBytes = rfc2898DeriveBytes.GetBytes(32);
+
+                var hashString = Convert.ToBase64String(hashBytes);
+
+                return hashString;
+            }
+        }
+
+        /// <summary>
+        ///     Encrypt Password by Rfc 2898 DeriveBytes - PBKDF2 
+        /// </summary>
+        public static string HashPassword(string password, out string salt, int iterations = 100000)
+        {
+            salt = GenerateSalt();
+
+            return HashPassword(password, salt, iterations);
+        }
+
+        public static string EncryptRfc2989DeriveBytes(string value, string key)
+        {
+            byte[] clearBytes = Encoding.ASCII.GetBytes(value);
+
+            using (var encrypt = Aes.Create())
+            {
+                var pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+
+                encrypt.Key = pdb.GetBytes(32);
+
+                encrypt.IV = pdb.GetBytes(16);
+
+                using (var ms = new MemoryStream())
+                {
+                    using (var cs = new CryptoStream(ms, encrypt.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                    }
+
+                    value = Safe64Encoding.EncodeBytes(ms.ToArray());
+                }
+            }
+            return value;
+        }
+
+        public static string DecryptRfc2989DeriveBytes(string value, string key)
+        {
+            byte[] cipherBytes = Safe64Encoding.DecodeBytes(value);
+
+            using (var encrypt = Aes.Create())
+            {
+                var pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+
+                encrypt.Key = pdb.GetBytes(32);
+
+                encrypt.IV = pdb.GetBytes(16);
+
+                using (var ms = new MemoryStream())
+                {
+                    using (var cs = new CryptoStream(ms, encrypt.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                    }
+
+                    value = Encoding.ASCII.GetString(ms.ToArray());
+                }
+            }
+            return value;
+        }
+
+        public static bool TryDecryptRfc2989DeriveBytes(string value, string key, out string result)
+        {
+            try
+            {
+                result = DecryptRfc2989DeriveBytes(value, key);
+
+                return true;
+            }
+            catch
+            {
+                result = null;
+
+                return false;
+            }
+        }
+    }
+}
