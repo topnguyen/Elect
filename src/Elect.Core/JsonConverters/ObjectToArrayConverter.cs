@@ -25,11 +25,11 @@ using System.Linq;
 
 namespace Elect.Core.JsonConverters
 {
-    public class ObjectToArrayConverter<T> : JsonConverter
+    public class ObjectToArrayConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(T) == objectType;
+            return true;
         }
 
         private static bool ShouldSkip(JsonProperty property)
