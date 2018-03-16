@@ -1,0 +1,49 @@
+﻿#region	License
+//--------------------------------------------------
+// <License>
+//     <Copyright> 2018 © Top Nguyen </Copyright>
+//     <Url> http://topnguyen.net/ </Url>
+//     <Author> Top </Author>
+//     <Project> Elect </Project>
+//     <File>
+//         <Name> PathHelper.cs </Name>
+//         <Created> 16/03/2018 6:12:12 PM </Created>
+//         <Key> 5566d213-86bb-4e52-90a2-5d0c466db47c </Key>
+//     </File>
+//     <Summary>
+//         PathHelper.cs is a part of Elect
+//     </Summary>
+// <License>
+//--------------------------------------------------
+#endregion License
+
+using System;
+using System.IO;
+
+namespace Elect.Data.IO
+{
+    public class PathHelper
+    {
+        /// <summary>
+        ///     Return absolute path 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetFullPath(string path)
+        {
+            if (!Uri.TryCreate(path, UriKind.RelativeOrAbsolute, out var pathUri))
+            {
+                throw new ArgumentException($"Invalid path: {path}");
+            }
+
+            if (pathUri.IsAbsoluteUri)
+            {
+                return path;
+            }
+
+            path = Path.Combine(Directory.GetCurrentDirectory(), path);
+
+            return path;
+        }
+    }
+}
