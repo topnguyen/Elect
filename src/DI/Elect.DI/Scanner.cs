@@ -18,6 +18,7 @@
 #endregion License
 
 using Elect.Core.AssemblyUtils;
+using Elect.Core.CheckUtils;
 using Elect.DI.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -31,11 +32,6 @@ namespace Elect.DI
 {
     public class Scanner
     {
-        /// <summary>
-        ///     Register Assembly by Name 
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="assembly"></param>
         public void RegisterAssembly(IServiceCollection services, Assembly assembly)
         {
             foreach (var typeInfo in assembly.DefinedTypes)
@@ -87,16 +83,19 @@ namespace Elect.DI
             }
         }
 
-        /// <summary>
-        ///     Register all assemblies 
-        /// </summary>
         /// <param name="services">          </param>
-        /// <param name="assemblyFolderPath">
-        ///     null or empty will use Application Base Path
-        /// </param>
-        /// <param name="fileSearchPattern">  Search Pattern by Directory.GetFiles </param>
+        /// <param name="assemblyFolderPath"></param>
+        /// <param name="fileSearchPattern">  Search Pattern by <c> Directory.GetFiles </c> </param>
         public void RegisterAssemblies(IServiceCollection services, string assemblyFolderPath, string fileSearchPattern)
         {
+            if (services == null)
+            {
+                throw new ArgumentException($"{nameof(services)} cannot be null.", nameof(services));
+            }
+
+            CheckHelper.CheckNullOrWhiteSpace(assemblyFolderPath, nameof(assemblyFolderPath));
+            CheckHelper.CheckNullOrWhiteSpace(assemblyFolderPath, nameof(fileSearchPattern));
+
             var listDllFileFullPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern).ToList();
 
             if (listDllFileFullPath?.Any() != true)
