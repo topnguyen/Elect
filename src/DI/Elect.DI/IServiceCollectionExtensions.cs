@@ -17,8 +17,10 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ActionUtils;
+using Elect.Core.Attributes;
+using Elect.DI.Options;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -211,24 +213,24 @@ namespace Elect.DI
         ///     Auto scan and register implementation of service follow
         ///     <see cref="Elect.DI.Attributes" /> life time setup.
         /// </summary>
-        /// <param name="services">          </param>
-        /// <param name="assemblyName">      
-        ///     System assembly name or dll file name, default is use application name
-        /// </param>
-        /// <param name="assemblyFolderPath"> Assembly folder path of all system dll </param>
-        /// <returns></returns>
-        public static IServiceCollection AddElectDI(this IServiceCollection services, string assemblyName = null, string assemblyFolderPath = null)
+        public static IServiceCollection AddElectDI(this IServiceCollection services)
         {
+            return services.AddElectDI(_ => { });
+        }
+
+        /// <summary>
+        ///     Auto scan and register implementation of service follow
+        ///     <see cref="Elect.DI.Attributes" /> life time setup.
+        /// </summary>
+        public static IServiceCollection AddElectDI(this IServiceCollection services, [NotNull]Action<ElectDIOptions> configure)
+        {
+            ElectDIOptions options = configure.GetValue();
+
             var scanner = new Scanner();
 
-            if (string.IsNullOrWhiteSpace(assemblyName))
-            {
-                assemblyName = PlatformServices.Default.Application.ApplicationName;
-            }
+            scanner.RegisterAssemblies(services, $"{options.AssemblyName}.dll", options.AssemblyFolderPath);
 
-            scanner.RegisterAssemblies(services, $"{assemblyName}.dll", assemblyFolderPath);
-
-            scanner.RegisterAssemblies(services, $"{assemblyName}.*.dll", assemblyFolderPath);
+            scanner.RegisterAssemblies(services, $"{options.AssemblyName}.*.dll", options.AssemblyFolderPath);
 
             services.AddSingleton(scanner);
 
@@ -239,16 +241,18 @@ namespace Elect.DI
 
         #region Print
 
-        public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services, string assemblyName = null)
+        public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services)
         {
-            if (string.IsNullOrWhiteSpace(assemblyName))
-            {
-                assemblyName = PlatformServices.Default.Application.ApplicationName;
-            }
+            return services.PrintRegisteredToConsole(_ => { });
+        }
+
+        public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services, [NotNull]Action<ElectPrintRegisteredToConsoleOptions> configure)
+        {
+            ElectPrintRegisteredToConsoleOptions options = configure.GetValue();
 
             var listServiceDescriptors = services.ToList();
 
-            listServiceDescriptors = listServiceDescriptors.Where(x => x.ServiceType.FullName.Contains(assemblyName)).ToList();
+            listServiceDescriptors = listServiceDescriptors.Where(x => x.ServiceType.FullName.Contains(options.AssemblyName)).ToList();
 
             Console.WriteLine($"{Environment.NewLine}{new string('-', 50)}");
             Console.ForegroundColor = ConsoleColor.Cyan;
