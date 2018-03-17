@@ -8,5 +8,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <!-- Elect -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
+  </ItemGroup>
+
   <!-- 3rd Libraries -->
+  <ItemGroup>
+  </ItemGroup>
 </Project>
