@@ -17,16 +17,18 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Interfaces;
 using Microsoft.Extensions.PlatformAbstractions;
+using System.Collections.Generic;
 
 namespace Elect.DI.Options
 {
-    public class ElectPrintRegisteredToConsoleOptions
+    public class ElectPrintRegisteredToConsoleOptions : IElectOptions
     {
         /// <summary>
-        ///     Assembly name of system to scan and register to services. 
+        ///     List assembly name to scan, default is application name. 
         /// </summary>
-        public string RootAssemblyName { get; set; } = PlatformServices.Default.Application.ApplicationName;
+        public List<string> ListAssemblyName { get; set; } = new List<string> { PlatformServices.Default.Application.ApplicationName };
 
         /// <summary>
         ///     Print with minimal display format, default is true. 

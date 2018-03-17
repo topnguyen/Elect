@@ -21,7 +21,7 @@ using AutoMapper;
 using System.Linq;
 using System.Reflection;
 
-namespace Elect.Mapper.AutoMapper
+namespace Elect.Mapper.AutoMapper.IMappingExpressionUtils
 {
     public static class IMappingExpressionExtensions
     {

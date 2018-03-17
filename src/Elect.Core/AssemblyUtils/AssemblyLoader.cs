@@ -64,7 +64,6 @@ namespace Elect.Core.AssemblyUtils
             }
         }
 
-        /// <inheritdoc />
         /// <summary>
         ///     Load an assembly, if the assembly already loaded then return null 
         /// </summary>

@@ -94,16 +94,17 @@ namespace Elect.DI
             }
 
             CheckHelper.CheckNullOrWhiteSpace(assemblyFolderPath, nameof(assemblyFolderPath));
+
             CheckHelper.CheckNullOrWhiteSpace(assemblyFolderPath, nameof(fileSearchPattern));
 
-            var listDllFileFullPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern).ToList();
+            var listDllPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern).ToList();
 
-            if (listDllFileFullPath?.Any() != true)
+            if (listDllPath?.Any() != true)
             {
                 return;
             }
 
-            List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listDllFileFullPath.ToArray());
+            List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listDllPath.ToArray());
 
             foreach (var assembly in assemblies)
             {

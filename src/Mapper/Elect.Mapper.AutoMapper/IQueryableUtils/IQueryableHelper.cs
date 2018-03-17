@@ -6,12 +6,12 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> IQueryableExtensions.cs </Name>
-//         <Created> 16/03/2018 10:44:52 PM </Created>
-//         <Key> ddc43c8f-052b-4d98-848b-a51603bb2e4a </Key>
+//         <Name> IQueryableHelper.cs </Name>
+//         <Created> 16/03/2018 10:45:37 PM </Created>
+//         <Key> 6a5fb534-f11d-4116-b8ef-60fba78f75fa </Key>
 //     </File>
 //     <Summary>
-//         IQueryableExtensions.cs is a part of Elect
+//         IQueryableHelper.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
@@ -23,9 +23,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Elect.Mapper.AutoMapper
+namespace Elect.Mapper.AutoMapper.IQueryableUtils
 {
-    public static class IQueryableExtensions
+    public class IQueryableHelper
     {
         /// <summary>
         ///     Extension method to project from a queryable using the provided mapping engine 
@@ -37,9 +37,9 @@ namespace Elect.Mapper.AutoMapper
         /// <returns>
         ///     Queryable result, use queryable extension methods to project and execute result
         /// </returns>
-        public static IQueryable<TDestination> QueryTo<TDestination>(this IQueryable source, params Expression<Func<TDestination, object>>[] membersToExpand)
+        public static IQueryable<TDestination> QueryTo<TDestination>(IQueryable source, params Expression<Func<TDestination, object>>[] membersToExpand)
         {
-            return IQueryableHelper.QueryTo(source, membersToExpand);
+            return source.ProjectTo(global::AutoMapper.Mapper.Configuration, null, membersToExpand);
         }
 
         /// <summary>
@@ -54,9 +54,9 @@ namespace Elect.Mapper.AutoMapper
         /// <returns>
         ///     Queryable result, use queryable extension methods to project and execute result
         /// </returns>
-        public static IQueryable<TDestination> QueryTo<TDestination>(this IQueryable source, IDictionary<string, object> parameters, params string[] membersToExpand)
+        public static IQueryable<TDestination> QueryTo<TDestination>(IQueryable source, IDictionary<string, object> parameters, params string[] membersToExpand)
         {
-            return IQueryableHelper.QueryTo<TDestination>(source, parameters, membersToExpand);
+            return source.ProjectTo<TDestination>(global::AutoMapper.Mapper.Configuration, parameters, membersToExpand);
         }
     }
 }

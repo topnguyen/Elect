@@ -6,20 +6,20 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> ObjHelper.cs </Name>
-//         <Created> 16/03/2018 10:48:24 PM </Created>
-//         <Key> 7fc7721b-d008-4192-aaaa-c8c99a52a9ea </Key>
+//         <Name> ObjExtensions.cs </Name>
+//         <Created> 16/03/2018 10:42:53 PM </Created>
+//         <Key> 1e726af0-9424-4fdb-84ef-9bb321051f55 </Key>
 //     </File>
 //     <Summary>
-//         ObjHelper.cs is a part of Elect
+//         ObjExtensions.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
 #endregion License
 
-namespace Elect.Mapper.AutoMapper
+namespace Elect.Mapper.AutoMapper.ObjUtils
 {
-    public class ObjHelper
+    public static class ObjExtensions
     {
         /// <summary>
         ///     Converts an object to another using AutoMapper library. Creates a new object of
@@ -28,9 +28,9 @@ namespace Elect.Mapper.AutoMapper
         /// </summary>
         /// <typeparam name="TDestination"> Type of the destination object </typeparam>
         /// <param name="source"> Source object </param>
-        public static TDestination MapTo<TDestination>(object source) where TDestination : class, new()
+        public static TDestination MapTo<TDestination>(this object source) where TDestination : class, new()
         {
-            return global::AutoMapper.Mapper.Map<TDestination>(source);
+            return ObjHelper.MapTo<TDestination>(source);
         }
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace Elect.Mapper.AutoMapper
         /// <param name="source">      Source object </param>
         /// <param name="destination"> Destination object </param>
         /// <returns></returns>
-        public static TDestination MapTo<TSource, TDestination>(TSource source, TDestination destination) where TDestination : class, new()
+        public static TDestination MapTo<TSource, TDestination>(this TSource source, TDestination destination) where TDestination : class, new()
         {
-            return global::AutoMapper.Mapper.Map(source, destination);
+            return ObjHelper.MapTo(source, destination);
         }
     }
 }
