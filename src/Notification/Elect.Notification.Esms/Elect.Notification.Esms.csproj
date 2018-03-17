@@ -7,13 +7,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  
+
   <!-- Elect -->
   <ItemGroup>
     <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
   </ItemGroup>
-  
+
   <!-- 3rd Libraries -->
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Flurl.Http" Version="2.2.1" />
   </ItemGroup>
 </Project>
