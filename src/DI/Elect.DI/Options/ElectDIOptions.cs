@@ -17,21 +17,23 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Interfaces;
 using Microsoft.Extensions.PlatformAbstractions;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Elect.DI.Options
 {
-    public class ElectDIOptions
+    public class ElectDIOptions : IElectOptions
     {
         /// <summary>
-        ///     Assemblies folder path, default is application base path. 
+        ///     List assembly folder to scan, default is application base path. 
         /// </summary>
-        public string AssembliesFolderPath { get; set; } = Path.GetFullPath(PlatformServices.Default.Application.ApplicationBasePath);
+        public List<string> ListAssemblyFolderPath { get; set; } = new List<string> { Path.GetFullPath(PlatformServices.Default.Application.ApplicationBasePath) };
 
         /// <summary>
-        ///     Root assembly name of system to scan and register to services. 
+        ///     List assembly name to scan, default is application name. 
         /// </summary>
-        public string RootAssemblyName { get; set; } = PlatformServices.Default.Application.ApplicationName;
+        public List<string> ListAssemblyName { get; set; } = new List<string> { PlatformServices.Default.Application.ApplicationName };
     }
 }

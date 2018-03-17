@@ -22,6 +22,7 @@ using Elect.Core.ActionUtils;
 using Elect.Core.AssemblyUtils;
 using Elect.Core.Attributes;
 using Elect.Core.TypeUtils;
+using Elect.Mapper.AutoMapper.Options;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -53,16 +54,27 @@ namespace Elect.Mapper.AutoMapper
         /// <returns></returns>
         public static IServiceCollection AddElectAutoMapper(this IServiceCollection services, [NotNull]Action<ElectAutoMapperOptions> configure)
         {
+            services.Configure(configure);
+
             ElectAutoMapperOptions options = configure.GetValue();
 
             // Scan Assemblies
-            var listDllFileFullPath =
-                Directory.GetFiles(options.AssembliesFolderPath, $"{options.RootAssemblyName}.dll")
-                .Concat(Directory.GetFiles(options.AssembliesFolderPath, $"{options.RootAssemblyName}.*.dll"))
-                .Distinct()
-                .ToList();
+            var listAllDllPath = new List<string>();
 
-            List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listDllFileFullPath.ToArray());
+            foreach (var assemblyName in options.ListAssemblyName)
+            {
+                foreach (var assemblyFolderPath in options.ListAssemblyFolderPath)
+                {
+                    var listDllPath = 
+                        Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.dll")
+                        .Concat(Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.*.dll"))
+                        .Distinct();
+
+                    listAllDllPath.AddRange(listDllPath);
+                }
+            }
+
+            List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listAllDllPath.ToArray());
 
             var allTypes = assemblies.Where(a => a.GetName().Name != nameof(AutoMapper)).SelectMany(a => a.DefinedTypes).ToArray();
 

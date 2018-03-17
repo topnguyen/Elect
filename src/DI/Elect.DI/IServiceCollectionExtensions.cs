@@ -224,15 +224,23 @@ namespace Elect.DI
         /// </summary>
         public static IServiceCollection AddElectDI(this IServiceCollection services, [NotNull]Action<ElectDIOptions> configure)
         {
+            services.Configure(configure);
+
             ElectDIOptions options = configure.GetValue();
 
             var scanner = new Scanner();
 
-            scanner.RegisterAssemblies(services, options.AssembliesFolderPath, $"{options.RootAssemblyName}.dll");
-
-            scanner.RegisterAssemblies(services, options.AssembliesFolderPath, $"{options.RootAssemblyName}.*.dll");
-
             services.AddSingleton(scanner);
+
+            foreach (var assemblyName in options.ListAssemblyName)
+            {
+                foreach (var assemblyFolderPath in options.ListAssemblyFolderPath)
+                {
+                    scanner.RegisterAssemblies(services, assemblyFolderPath, $"{assemblyName}.dll");
+
+                    scanner.RegisterAssemblies(services, assemblyFolderPath, $"{assemblyName}.*.dll");
+                }
+            }
 
             return services;
         }
@@ -248,11 +256,13 @@ namespace Elect.DI
 
         public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services, [NotNull]Action<ElectPrintRegisteredToConsoleOptions> configure)
         {
+            services.Configure(configure);
+
             ElectPrintRegisteredToConsoleOptions options = configure.GetValue();
 
             var listServiceDescriptors = services.ToList();
 
-            listServiceDescriptors = listServiceDescriptors.Where(x => x.ServiceType.FullName.Contains(options.RootAssemblyName)).ToList();
+            listServiceDescriptors = listServiceDescriptors.Where(x => options.ListAssemblyName.Any(y => x.ServiceType.FullName.Contains(y))).ToList();
 
             var consoleTextColor = ConsoleColor.Yellow;
             var consoleDimColor = ConsoleColor.DarkGray;
