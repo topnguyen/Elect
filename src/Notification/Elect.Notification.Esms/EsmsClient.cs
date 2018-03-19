@@ -17,25 +17,24 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Core.ActionUtils;
 using Elect.Notification.Esms.Models;
 using Elect.Notification.Esms.Options;
 using Flurl;
 using Flurl.Http;
 using Flurl.Http.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System;
 using System.Threading.Tasks;
 
 namespace Elect.Notification.Esms
 {
-    public class EsmsClient
+    public class EsmsClient : IEsmsClient
     {
         public ElectEsmsOptions Options { get; }
 
-        public EsmsClient(Action<ElectEsmsOptions> configuration)
+        public EsmsClient(IOptions<ElectEsmsOptions> configuration)
         {
-            Options = configuration.GetValue();
+            Options = configuration.Value;
 
             FlurlHttp.Configure(config =>
             {

@@ -46,6 +46,27 @@ namespace Elect.Mapper.AutoMapper
         }
 
         /// <summary>
+        ///     Add Auto Mapper auto scan and register profile to Mapper Configuration by current
+        ///     application assembly,
+        /// </summary>
+        /// <param name="services"> </param>
+        /// <param name="configure"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddElectAutoMapper(this IServiceCollection services, [NotNull]ElectAutoMapperOptions configure)
+        {
+            return services.AddElectAutoMapper(_ =>
+            {
+                _.AdditionalInitial = configure.AdditionalInitial;
+                _.IMapperLifeTime = configure.IMapperLifeTime;
+                _.IsAssertConfigurationIsValid = configure.IsAssertConfigurationIsValid;
+                _.IsCompileMappings = configure.IsCompileMappings;
+                _.IsAssertConfigurationIsValid = configure.IsAssertConfigurationIsValid;
+                _.ListAssemblyFolderPath = configure.ListAssemblyFolderPath;
+                _.ListAssemblyName = configure.ListAssemblyName;
+            });
+        }
+
+        /// <summary>
         ///     Add Auto Mapper auto scan and register profile to Mapper Configuration by assembly,
         ///     default is use current runtime application assembly.
         /// </summary>
@@ -65,7 +86,7 @@ namespace Elect.Mapper.AutoMapper
             {
                 foreach (var assemblyFolderPath in options.ListAssemblyFolderPath)
                 {
-                    var listDllPath = 
+                    var listDllPath =
                         Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.dll")
                         .Concat(Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.*.dll"))
                         .Distinct();

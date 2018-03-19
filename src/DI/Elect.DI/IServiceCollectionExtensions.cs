@@ -222,6 +222,19 @@ namespace Elect.DI
         ///     Auto scan and register implementation of service follow
         ///     <see cref="Elect.DI.Attributes" /> life time setup.
         /// </summary>
+        public static IServiceCollection AddElectDI(this IServiceCollection services, [NotNull]ElectDIOptions configure)
+        {
+            return services.AddElectDI(_ =>
+            {
+                _.ListAssemblyFolderPath = configure.ListAssemblyFolderPath;
+                _.ListAssemblyName = configure.ListAssemblyName;
+            });
+        }
+
+        /// <summary>
+        ///     Auto scan and register implementation of service follow
+        ///     <see cref="Elect.DI.Attributes" /> life time setup.
+        /// </summary>
         public static IServiceCollection AddElectDI(this IServiceCollection services, [NotNull]Action<ElectDIOptions> configure)
         {
             services.Configure(configure);
@@ -252,6 +265,15 @@ namespace Elect.DI
         public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services)
         {
             return services.PrintRegisteredToConsole(_ => { });
+        }
+
+        public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services, [NotNull]ElectPrintRegisteredToConsoleOptions configure)
+        {
+            return services.PrintRegisteredToConsole(_ =>
+            {
+                _.ListAssemblyName = configure.ListAssemblyName;
+                _.IsMinimalDisplay = configure.IsMinimalDisplay;
+            });
         }
 
         public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services, [NotNull]Action<ElectPrintRegisteredToConsoleOptions> configure)
