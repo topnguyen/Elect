@@ -86,7 +86,8 @@ namespace Elect.DI
         /// <param name="services">          </param>
         /// <param name="assemblyFolderPath"></param>
         /// <param name="fileSearchPattern">  Search Pattern by <c> Directory.GetFiles </c> </param>
-        public void RegisterAssemblies(IServiceCollection services, string assemblyFolderPath, string fileSearchPattern)
+        /// <returns> List of loaded assembly </returns>
+        public List<Assembly> RegisterAssemblies(IServiceCollection services, string assemblyFolderPath, string fileSearchPattern)
         {
             if (services == null)
             {
@@ -101,7 +102,7 @@ namespace Elect.DI
 
             if (listDllPath?.Any() != true)
             {
-                return;
+                return null;
             }
 
             List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listDllPath.ToArray());
@@ -110,6 +111,8 @@ namespace Elect.DI
             {
                 RegisterAssembly(services, assembly);
             }
+
+            return assemblies;
         }
     }
 }

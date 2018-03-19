@@ -22,7 +22,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Elect.DI.Options
+namespace Elect.DI.Models
 {
     public class ElectDIOptions : IElectOptions
     {

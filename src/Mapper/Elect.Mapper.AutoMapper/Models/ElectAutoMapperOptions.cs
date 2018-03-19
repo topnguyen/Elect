@@ -25,7 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Elect.Mapper.AutoMapper.Options
+namespace Elect.Mapper.AutoMapper.Models
 {
     public class ElectAutoMapperOptions : IElectOptions
     {

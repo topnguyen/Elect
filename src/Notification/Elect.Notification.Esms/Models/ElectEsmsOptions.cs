@@ -19,7 +19,7 @@
 
 using Elect.Core.Interfaces;
 
-namespace Elect.Notification.Esms.Options
+namespace Elect.Notification.Esms.Models
 {
     public class ElectEsmsOptions : IElectOptions
     {
