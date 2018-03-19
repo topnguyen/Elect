@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\src\DI\Elect.DI\Elect.DI.csproj" />
     <ProjectReference Include="..\..\src\Elect.Core\Elect.Core.csproj" />
     <ProjectReference Include="..\..\src\Mapper\Elect.Mapper.AutoMapper\Elect.Mapper.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\src\Notification\Elect.Notification.Esms\Elect.Notification.Esms.csproj" />
   </ItemGroup>
 
 </Project>
