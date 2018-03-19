@@ -21,7 +21,7 @@ using Elect.Core.Interfaces;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.Collections.Generic;
 
-namespace Elect.DI.Options
+namespace Elect.DI.Models
 {
     public class ElectPrintRegisteredToConsoleOptions : IElectOptions
     {

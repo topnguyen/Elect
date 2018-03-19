@@ -19,7 +19,7 @@
 
 using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
-using Elect.DI.Options;
+using Elect.DI.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -242,8 +242,6 @@ namespace Elect.DI
             ElectDIOptions options = configure.GetValue();
 
             var scanner = new Scanner();
-
-            services.AddSingleton(scanner);
 
             foreach (var assemblyName in options.ListAssemblyName)
             {

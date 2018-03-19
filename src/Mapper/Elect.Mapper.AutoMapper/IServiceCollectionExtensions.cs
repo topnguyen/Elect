@@ -22,7 +22,7 @@ using Elect.Core.ActionUtils;
 using Elect.Core.AssemblyUtils;
 using Elect.Core.Attributes;
 using Elect.Core.TypeUtils;
-using Elect.Mapper.AutoMapper.Options;
+using Elect.Mapper.AutoMapper.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
