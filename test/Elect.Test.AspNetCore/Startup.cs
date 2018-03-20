@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Elect.DI;
+﻿using Elect.DI;
+using Elect.Location.Google;
 using Elect.Mapper.AutoMapper;
-using Elect.Notification.OneSignal;
-using Elect.Notification.OneSignal.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +23,8 @@ namespace Elect.Test.AspNetCore
             services.AddElectDI();
 
             services.AddElectAutoMapper();
+
+            services.AddElectLocationGoogle();
 
             services.AddMvc();
 

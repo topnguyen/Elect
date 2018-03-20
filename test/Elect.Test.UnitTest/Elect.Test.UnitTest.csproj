@@ -13,9 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Data\Elect.Data.IO\Elect.Data.IO.csproj" />
     <ProjectReference Include="..\..\src\Elect.Core\Elect.Core.csproj" />
-    <ProjectReference Include="..\..\src\Mapper\Elect.Mapper.AutoMapper\Elect.Mapper.AutoMapper.csproj" />
   </ItemGroup>
 
 </Project>

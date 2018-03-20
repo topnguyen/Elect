@@ -1,0 +1,198 @@
+﻿#region	License
+//--------------------------------------------------
+// <License>
+//     <Copyright> 2018 © Top Nguyen </Copyright>
+//     <Url> http://topnguyen.net/ </Url>
+//     <Author> Top </Author>
+//     <Project> Elect </Project>
+//     <File>
+//         <Name> ElectGoogleClient.cs </Name>
+//         <Created> 20/03/2018 4:00:22 PM </Created>
+//         <Key> d7c00bc3-f53f-4eda-8a09-172b45c1cfab </Key>
+//     </File>
+//     <Summary>
+//         ElectGoogleClient.cs is a part of Elect
+//     </Summary>
+// <License>
+//--------------------------------------------------
+#endregion License
+
+using Elect.Core.ActionUtils;
+using Elect.Location.Google.Interfaces;
+using Elect.Location.Google.Models;
+using Elect.Location.Models;
+using Flurl.Http;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace Elect.Location.Google.Services
+{
+    public class ElectGoogleClient : IElectGoogleClient
+    {
+        public ElectLocationGoogleOptions Options { get; }
+
+        public ElectGoogleClient(IOptions<ElectLocationGoogleOptions> configuration)
+        {
+            Options = configuration.Value;
+        }
+
+        #region Matrix
+
+        public Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync(Action<DistanceDurationMatrixRequestModel> model)
+        {
+            return GetDistanceDurationMatrixAsync(model.GetValue());
+        }
+
+        public async Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync(DistanceDurationMatrixRequestModel model)
+        {
+            var origins = string.Join("|", model.OriginalCoordinates.Select(x => $"{x.Latitude},{x.Longitude}"));
+
+            var destinations = string.Join("|", model.DestinationCoordinates.Select(x => $"{x.Latitude},{x.Longitude}"));
+
+            var requestUrl =
+                ElectLocationGoogleConstants.DefaultGoogleMatrixApiEndpoint
+                    .ConfigureRequest(config =>
+                    {
+                        config.JsonSerializer = ElectLocationGoogleConstants.NewtonsoftJsonSerializer;
+                    })
+                    .SetQueryParam("origins", origins)
+                    .SetQueryParam("destinations", destinations)
+                    .SetQueryParam("key", Options.GoogleApiKey)
+                    .SetQueryParams(model.AdditionalValues);
+
+            try
+            {
+                var result = await requestUrl.GetJsonAsync<DistanceDurationMatrixResultModel>().ConfigureAwait(true);
+
+                return result;
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
+        }
+
+        #endregion
+
+        #region Direction
+
+        public Task<List<DirectionStepsResultModel>> GetDirectionsAsync(Action<DirectionStepsRequestModel> model)
+        {
+            return GetDirectionsAsync(model.GetValue());
+        }
+
+        public async Task<List<DirectionStepsResultModel>> GetDirectionsAsync(DirectionStepsRequestModel model)
+        {
+            string origin = $"{model.OriginalCoordinate.Latitude},{model.OriginalCoordinate.Longitude}";
+
+            string destination = $"{model.DestinationCoordinate.Latitude},{model.DestinationCoordinate.Longitude}";
+
+            string waypoints = string.Join("|", model.WaypointCoodinates.Select(x => $"{x.Latitude},{x.Longitude}"));
+
+            var requestUrl =
+                ElectLocationGoogleConstants.DefaultGoogleDirectionApiEndpoint
+                    .ConfigureRequest(config =>
+                    {
+                        config.JsonSerializer = ElectLocationGoogleConstants.NewtonsoftJsonSerializer;
+                    })
+                    .SetQueryParam("origin", origin)
+                    .SetQueryParam("destination", destination)
+                    .SetQueryParam("waypoints", waypoints)
+                    .SetQueryParam("avoidHighways", model.IsAvoidHighway)
+                    .SetQueryParam("avoidTolls", model.IsAvoidToll)
+                    .SetQueryParam("unitSystem", model.UnitSystem)
+                    .SetQueryParam("travelMode", model.TravelMode)
+                    .SetQueryParam("key", Options.GoogleApiKey)
+                    .SetQueryParams(model.AdditionalValues);
+
+            try
+            {
+                var xmlResult = await requestUrl.GetStringAsync().ConfigureAwait(true);
+
+                var listDirectionStepsResult = new List<DirectionStepsResultModel>();
+
+                var xmlDoc = new XmlDocument { InnerXml = xmlResult };
+
+                if (!xmlDoc.HasChildNodes)
+                {
+                    return listDirectionStepsResult;
+                }
+
+                var directionsResponseNode = xmlDoc.SelectSingleNode("DirectionsResponse");
+
+                var statusNode = directionsResponseNode?.SelectSingleNode("status");
+
+                if (statusNode != null && statusNode.InnerText.Equals("OK"))
+                {
+                    var legs = directionsResponseNode.SelectNodes("route/leg");
+
+                    if (legs == null) return listDirectionStepsResult;
+
+                    foreach (XmlNode leg in legs)
+                    {
+                        int stepCount = 1;
+                        var stepNodes = leg.SelectNodes("step");
+                        var steps = (from XmlNode stepNode in stepNodes
+                                     select new DirectionStepModel
+                                     {
+                                         Index = stepCount++,
+                                         Distance = Convert.ToDouble(stepNode.SelectSingleNode("distance/value").InnerText, System.Globalization.CultureInfo.InvariantCulture),
+                                         DistanceText = stepNode.SelectSingleNode("distance/text").InnerText,
+                                         Duration = Convert.ToDouble(stepNode.SelectSingleNode("duration/value").InnerText, System.Globalization.CultureInfo.InvariantCulture),
+                                         DurationText = stepNode.SelectSingleNode("duration/text").InnerText,
+                                         Description = WebUtility.HtmlDecode(stepNode.SelectSingleNode("html_instructions").InnerText)
+                                     }).ToList();
+
+                        var directionSteps = new DirectionStepsResultModel
+                        {
+                            OriginPoint = new CoordinateModel
+                            {
+                                Latitude = Convert.ToDouble(leg.SelectSingleNode("start_location/lat").InnerText, System.Globalization.CultureInfo.InvariantCulture),
+                                Longitude = Convert.ToDouble(leg.SelectSingleNode("start_location/lng").InnerText, System.Globalization.CultureInfo.InvariantCulture)
+                            },
+                            OriginAddress = leg.SelectSingleNode("start_address").InnerText,
+                            DestinationPoint = new CoordinateModel
+                            {
+                                Latitude = Convert.ToDouble(leg.SelectSingleNode("end_location/lat").InnerText, System.Globalization.CultureInfo.InvariantCulture),
+                                Longitude = Convert.ToDouble(leg.SelectSingleNode("end_location/lng").InnerText, System.Globalization.CultureInfo.InvariantCulture)
+                            },
+                            DestinationAddress = leg.SelectSingleNode("end_address").InnerText,
+                            TotalDistance = Convert.ToDouble(leg.SelectSingleNode("distance/value").InnerText, System.Globalization.CultureInfo.InvariantCulture),
+                            TotalDistanceText = leg.SelectSingleNode("distance/text").InnerText,
+                            TotalDuration = Convert.ToDouble(leg.SelectSingleNode("duration/value").InnerText, System.Globalization.CultureInfo.InvariantCulture),
+                            TotalDurationText = leg.SelectSingleNode("duration/text").InnerText,
+                            Steps = steps
+                        };
+
+                        listDirectionStepsResult.Add(directionSteps);
+                    }
+                }
+                else if (statusNode != null && statusNode.InnerText.Equals("OVER_QUERY_LIMIT"))
+                {
+                    Thread.Sleep(1000);
+
+                    listDirectionStepsResult = await GetDirectionsAsync(model).ConfigureAwait(true);
+                }
+                else
+                {
+                    throw new NotSupportedException(statusNode?.InnerText);
+                }
+
+                return listDirectionStepsResult;
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
+        }
+
+        #endregion
+    }
+}
