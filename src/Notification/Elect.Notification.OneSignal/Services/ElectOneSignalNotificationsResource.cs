@@ -21,9 +21,9 @@ using Elect.Notification.OneSignal.Interfaces;
 using Elect.Notification.OneSignal.Models;
 using Elect.Notification.OneSignal.Models.Notifications;
 using Flurl.Http;
-using Flurl.Http.Configuration;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Elect.Notification.OneSignal.Services
@@ -32,79 +32,89 @@ namespace Elect.Notification.OneSignal.Services
     {
         public ElectOneSignalOptions Options { get; }
 
-        private readonly NewtonsoftJsonSerializer _newtonsoftJsonSerializer = new NewtonsoftJsonSerializer(
-            new JsonSerializerSettings
-            {
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Include
-            }
-        );
-
         public ElectOneSignalNotificationsResource(IOptions<ElectOneSignalOptions> configuration)
         {
             Options = configuration.Value;
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        ///     Creates new notification to be sent by OneSignal system. 
-        /// </summary>
-        /// <param name="options"> Options used for notification create operation. </param>
-        /// <returns></returns>
-        public async Task<NotificationCreateResult> CreateAsync(NotificationCreateOptions options)
+        public async Task<NotificationCreateResult> CreateAsync(NotificationCreateOptions options, string appName = ElectOneSignalConstants.DefaultAppName)
         {
-            var result =
-                await Options.ApiUri
-                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
-                    .AppendPathSegment("notifications")
-                    .WithHeader("Authorization", $"Basic {Options.ApiKey}")
-                    .PostJsonAsync(options)
-                    .ReceiveJson<NotificationCreateResult>()
-                    .ConfigureAwait(true);
+            var appInfo = Options.Apps.Single(x => x.AppName == appName);
 
-            return result;
+            options.AppId = appInfo.AppId;
+
+            try
+            {
+                var result =
+                    await ElectOneSignalConstants.DefaultApiUrl
+                        .ConfigureRequest(config =>
+                        {
+                            config.JsonSerializer = ElectOneSignalConstants.NewtonsoftJsonSerializer;
+                        })
+                        .AppendPathSegment("notifications")
+                        .WithHeader("Authorization", $"Basic {appInfo.ApiKey}")
+                        .PostJsonAsync(options)
+                        .ReceiveJson<NotificationCreateResult>()
+                        .ConfigureAwait(true);
+
+                return result;
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
         }
 
-        /// <inheritdoc />
-        /// <summary>
-        ///     Get delivery and convert report about single notification. 
-        /// </summary>
-        /// <param name="options">
-        ///     Options used for getting delivery and convert report about single notification.
-        /// </param>
-        /// <returns></returns>
-        public async Task<NotificationViewResult> ViewAsync(NotificationViewOptions options)
+        public async Task<NotificationViewResult> ViewAsync(string id, string appName = ElectOneSignalConstants.DefaultAppName)
         {
-            var result =
-                await Options.ApiUri
-                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
-                    .AppendPathSegment($"notifications/{options.Id}?app_id={options.AppId}")
-                    .WithHeader("Authorization", $"Basic {Options.ApiKey}")
-                    .GetAsync()
-                    .ReceiveJson<NotificationViewResult>()
-                    .ConfigureAwait(true);
+            var appInfo = Options.Apps.Single(x => x.AppName == appName);
 
-            return result;
+            try
+            {
+                var result =
+                    await ElectOneSignalConstants.DefaultApiUrl
+                        .ConfigureRequest(config =>
+                        {
+                            config.JsonSerializer = ElectOneSignalConstants.NewtonsoftJsonSerializer;
+                        })
+                        .AppendPathSegment($"notifications/{id}?app_id={appInfo.AppId}")
+                        .WithHeader("Authorization", $"Basic {appInfo.ApiKey}")
+                        .GetAsync()
+                        .ReceiveJson<NotificationViewResult>()
+                        .ConfigureAwait(true);
+
+                return result;
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
         }
 
-        /// <summary>
-        ///     Cancel a notification scheduled by the OneSignal system 
-        /// </summary>
-        /// <param name="options"> Options used for notification cancel operation. </param>
-        /// <returns></returns>
-        public async Task<NotificationCancelResult> CancelAsync(NotificationCancelOptions options)
+        public async Task<NotificationCancelResult> CancelAsync(string id, string appName = ElectOneSignalConstants.DefaultAppName)
         {
-            var result =
-                await Options.ApiUri
-                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
-                    .AppendPathSegment($"notifications/{options.Id}?app_id={options.AppId}")
-                    .WithHeader("Authorization", $"Basic {Options.ApiKey}")
-                    .DeleteAsync()
-                    .ReceiveJson<NotificationCancelResult>()
-                    .ConfigureAwait(true);
+            var appInfo = Options.Apps.Single(x => x.AppName == appName);
 
-            return result;
+            try
+            {
+                var result =
+                    await ElectOneSignalConstants.DefaultApiUrl
+                        .ConfigureRequest(config =>
+                        {
+                            config.JsonSerializer = ElectOneSignalConstants.NewtonsoftJsonSerializer;
+                        })
+                        .AppendPathSegment($"notifications/{id}?app_id={appInfo.AppId}")
+                        .WithHeader("Authorization", $"Basic {appInfo.ApiKey}")
+                        .DeleteAsync()
+                        .ReceiveJson<NotificationCancelResult>()
+                        .ConfigureAwait(true);
+
+                return result;
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
         }
     }
 }

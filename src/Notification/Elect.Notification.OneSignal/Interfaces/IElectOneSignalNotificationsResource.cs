@@ -33,25 +33,30 @@ namespace Elect.Notification.OneSignal.Interfaces
         /// <param name="options">
         ///     This parameter can contain variety of possible options used to create notification.
         /// </param>
+        /// <param name="appName">
+        ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
+        /// </param>
         /// <returns> Returns result of notification create operation. </returns>
-        Task<NotificationCreateResult> CreateAsync(NotificationCreateOptions options);
+        Task<NotificationCreateResult> CreateAsync(NotificationCreateOptions options, string appName = ElectOneSignalConstants.DefaultAppName);
 
         /// <summary>
         ///     Cancel notification Stop a scheduled or currently outgoing notification 
         /// </summary>
-        /// <param name="options">
-        ///     This parameter contains the information required to cancel a scheduled notification
+        /// <param name="id">     </param>
+        /// <param name="appName">
+        ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
         /// </param>
         /// <returns> Returns result of notification cancel operation. </returns>
-        Task<NotificationCancelResult> CancelAsync(NotificationCancelOptions options);
+        Task<NotificationCancelResult> CancelAsync(string id, string appName = ElectOneSignalConstants.DefaultAppName);
 
         /// <summary>
         ///     Get report about notification 
         /// </summary>
-        /// <param name="options">
-        ///     This parameter can contain variety of possible options used to create notification.
+        /// <param name="id">     </param>
+        /// <param name="appName">
+        ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
         /// </param>
         /// <returns> Returns result of notification create operation. </returns>
-        Task<NotificationViewResult> ViewAsync(NotificationViewOptions options);
+        Task<NotificationViewResult> ViewAsync(string id, string appName = ElectOneSignalConstants.DefaultAppName);
     }
 }

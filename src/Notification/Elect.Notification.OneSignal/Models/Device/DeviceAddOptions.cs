@@ -18,7 +18,6 @@
 #endregion License
 
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 
 namespace Elect.Notification.OneSignal.Models.Device
@@ -33,7 +32,7 @@ namespace Elect.Notification.OneSignal.Models.Device
         ///     under App Settings &gt; Keys &amp; IDs. It is a UUID and looks similar to 8250eaf6-1a58-489e-b136-7c74a864b434.
         /// </summary>
         [JsonProperty("app_id")]
-        public Guid AppId { get; set; }
+        internal string AppId { get; set; }
 
         [JsonProperty("device_type")]
         public DeviceTypeEnum DeviceType { get; set; }

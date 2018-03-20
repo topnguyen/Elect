@@ -21,7 +21,7 @@ namespace Elect.Core.ObjUtils
 {
     public static class ObjExtensions
     {
-        public static string ToJsonString(object obj)
+        public static string ToJsonString(this object obj)
         {
             return ObjHelper.ToJsonString(obj);
         }

@@ -47,7 +47,7 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         ///     similar to 8250eaf6-1a58-489e-b136-7c74a864b434. <br />
         /// </summary>
         [JsonProperty("app_id")]
-        public Guid AppId { get; set; }
+        internal string AppId { get; set; }
 
         /// <summary>
         ///     <br /> The notification's content (excluding the title), a map of language codes to
