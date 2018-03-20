@@ -21,10 +21,9 @@ using Elect.Notification.OneSignal.Interfaces;
 using Elect.Notification.OneSignal.Models;
 using Elect.Notification.OneSignal.Models.Device;
 using Flurl.Http;
-using Flurl.Http.Configuration;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Elect.Notification.OneSignal.Services
@@ -33,74 +32,87 @@ namespace Elect.Notification.OneSignal.Services
     {
         public ElectOneSignalOptions Options { get; }
 
-        private readonly NewtonsoftJsonSerializer _newtonsoftJsonSerializer = new NewtonsoftJsonSerializer(
-            new JsonSerializerSettings
-            {
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Include
-            }
-        );
-
         public ElectOneSignalDevicesResource(IOptions<ElectOneSignalOptions> configuration)
         {
             Options = configuration.Value;
         }
 
-        /// <summary>
-        ///     Adds new device into OneSignal App. 
-        /// </summary>
-        /// <param name="options"> Here you can specify options used to add new device. </param>
-        /// <returns> Result of device add operation. </returns>
-        public async Task<DeviceAddResult> AddAsync(DeviceAddOptions options)
+        public async Task<DeviceAddResult> AddAsync(DeviceAddOptions options, string appName = ElectOneSignalConstants.DefaultAppName)
         {
-            var result =
-                await Options.ApiUri
-                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
-                    .AppendPathSegment("players")
-                    .WithHeader("Authorization", $"Basic {Options.ApiKey}")
-                    .PostJsonAsync(options)
-                    .ReceiveJson<DeviceAddResult>()
-                    .ConfigureAwait(true);
+            var appInfo = Options.Apps.Single(x => x.AppName == appName);
 
-            return result;
-        }
+            options.AppId = appInfo.AppId;
 
-        /// <summary>
-        ///     Edits existing device defined in OneSignal App. 
-        /// </summary>
-        /// <param name="id">      Id of the device </param>
-        /// <param name="options"> Options used to modify attributes of the device. </param>
-        /// <exception cref="Exception"></exception>
-        public async Task EditAsync(string id, DeviceEditOptions options)
-        {
-            var result =
-                await Options.ApiUri
-                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
-                    .AppendPathSegment($"players/{id}")
-                    .WithHeader("Authorization", $"Basic {Options.ApiKey}")
-                    .PutJsonAsync(options)
-                    .ConfigureAwait(true);
-        }
-
-        public async Task<DeviceInfo> GetAsync(string playerId, string appId)
-        {
             try
             {
                 var result =
-                    await Options.ApiUri
-                        .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
+                    await ElectOneSignalConstants.DefaultApiUrl
+                        .ConfigureRequest(config =>
+                        {
+                            config.JsonSerializer = ElectOneSignalConstants.NewtonsoftJsonSerializer;
+                        })
+                        .AppendPathSegment("players")
+                        .WithHeader("Authorization", $"Basic {appInfo.ApiKey}")
+                        .PostJsonAsync(options)
+                        .ReceiveJson<DeviceAddResult>()
+                        .ConfigureAwait(true);
+
+                return result;
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
+        }
+
+        public async Task EditAsync(string id, DeviceEditOptions options, string appName = ElectOneSignalConstants.DefaultAppName)
+        {
+            var appInfo = Options.Apps.Single(x => x.AppName == appName);
+
+            options.AppId = appInfo.AppId;
+
+            try
+            {
+                var result =
+                    await ElectOneSignalConstants.DefaultApiUrl
+                        .ConfigureRequest(config =>
+                        {
+                            config.JsonSerializer = ElectOneSignalConstants.NewtonsoftJsonSerializer;
+                        })
+                        .AppendPathSegment($"players/{id}")
+                        .WithHeader("Authorization", $"Basic {appInfo.ApiKey}")
+                        .PutJsonAsync(options)
+                        .ConfigureAwait(true);
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
+        }
+
+        public async Task<DeviceInfo> GetAsync(string playerId, string appName = ElectOneSignalConstants.DefaultAppName)
+        {
+            try
+            {
+                var appInfo = Options.Apps.Single(x => x.AppName == appName);
+
+                var result =
+                    await ElectOneSignalConstants.DefaultApiUrl
+                        .ConfigureRequest(config =>
+                        {
+                            config.JsonSerializer = ElectOneSignalConstants.NewtonsoftJsonSerializer;
+                        })
                         .AppendPathSegment($"players/{playerId}")
-                        .SetQueryParam("app_id", appId)
-                        .WithHeader("Authorization", $"Basic {Options.ApiKey}")
+                        .SetQueryParam("app_id", appInfo.AppId)
+                        .WithHeader("Authorization", $"Basic {appInfo.ApiKey}")
                         .GetJsonAsync<DeviceInfo>()
                         .ConfigureAwait(true);
 
                 return result;
             }
-            catch (Exception)
+            catch (FlurlHttpException e)
             {
-                return null;
+                throw new HttpRequestException(e.GetResponseString());
             }
         }
     }

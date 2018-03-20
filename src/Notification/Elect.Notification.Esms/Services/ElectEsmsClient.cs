@@ -24,6 +24,7 @@ using Flurl.Http;
 using Flurl.Http.Configuration;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System.Net.Http;
 using System.Threading.Tasks;
 using NullValueHandling = Newtonsoft.Json.NullValueHandling;
 
@@ -79,24 +80,38 @@ namespace Elect.Notification.Esms.Services
                 url = url.SetQueryParam("Brandname", model.BrandName);
             }
 
-            var result = await url
-                .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
-                .GetJsonAsync<SendSmsResponseModel>()
-                .ConfigureAwait(true);
+            try
+            {
+                var result = await url
+                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
+                    .GetJsonAsync<SendSmsResponseModel>()
+                    .ConfigureAwait(true);
 
-            return result;
+                return result;
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
         }
 
         public async Task<BalanceModel> GetBalanceAsync()
         {
             var url = $"{Options.ApiUri}/MainService.svc/json/GetBalance/{Options.ApiKey}/{Options.ApiSecret}";
 
-            var result = await url
-                .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
-                .GetJsonAsync<BalanceModel>()
-                .ConfigureAwait(true);
+            try
+            {
+                var result = await url
+                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
+                    .GetJsonAsync<BalanceModel>()
+                    .ConfigureAwait(true);
 
-            return result;
+                return result;
+            }
+            catch (FlurlHttpException e)
+            {
+                throw new HttpRequestException(e.GetResponseString());
+            }
         }
     }
 }

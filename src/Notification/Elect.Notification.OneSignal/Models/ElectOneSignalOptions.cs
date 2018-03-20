@@ -17,15 +17,12 @@
 //--------------------------------------------------
 #endregion License
 
+using System.Collections.Generic;
+
 namespace Elect.Notification.OneSignal.Models
 {
     public class ElectOneSignalOptions
     {
-        public string ApiKey { get; set; }
-
-        /// <summary>
-        ///     Api Endpoint, default is https://onesignal.com/api/v1. 
-        /// </summary>
-        public string ApiUri { get; set; } = "https://onesignal.com/api/v1";
+        public List<ElectOneSignalAppOption> Apps { get; set; } = new List<ElectOneSignalAppOption>();
     }
 }

@@ -31,23 +31,31 @@ namespace Elect.Notification.OneSignal.Interfaces
         ///     Adds new device into OneSignal App. 
         /// </summary>
         /// <param name="options"> Here you can specify options used to add new device. </param>
+        /// <param name="appName">
+        ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
+        /// </param>
         /// <returns> Result of device add operation. </returns>
-        Task<DeviceAddResult> AddAsync(DeviceAddOptions options);
+        Task<DeviceAddResult> AddAsync(DeviceAddOptions options, string appName = ElectOneSignalConstants.DefaultAppName);
 
         /// <summary>
         ///     Edits existing device defined in OneSignal App. 
         /// </summary>
         /// <param name="id">      Id of the device </param>
         /// <param name="options"> Options used to modify attributes of the device. </param>
+        /// <param name="appName">
+        ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
+        /// </param>
         /// <exception cref="System.Exception"></exception>
-        Task EditAsync(string id, DeviceEditOptions options);
+        Task EditAsync(string id, DeviceEditOptions options, string appName = ElectOneSignalConstants.DefaultAppName);
 
         /// <summary>
         ///     Get device info 
         /// </summary>
         /// <param name="playerId"></param>
-        /// <param name="appId">   </param>
+        /// <param name="appName"> 
+        ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
+        /// </param>
         /// <returns></returns>
-        Task<DeviceInfo> GetAsync(string playerId, string appId);
+        Task<DeviceInfo> GetAsync(string playerId, string appName = ElectOneSignalConstants.DefaultAppName);
     }
 }

@@ -1,5 +1,8 @@
-﻿using Elect.DI;
+﻿using System.Collections.Generic;
+using Elect.DI;
 using Elect.Mapper.AutoMapper;
+using Elect.Notification.OneSignal;
+using Elect.Notification.OneSignal.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

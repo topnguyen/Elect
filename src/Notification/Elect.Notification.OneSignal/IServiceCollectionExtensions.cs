@@ -29,18 +29,17 @@ namespace Elect.Notification.OneSignal
 {
     public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection AddElectNotificationOneSignal(this IServiceCollection services, [NotNull]ElectOneSignalOptions configuration)
+        public static IServiceCollection AddElectNotificationOneSignal(this IServiceCollection services, [NotNull]ElectOneSignalOptions configurations)
         {
             return services.AddElectNotificationOneSignal(_ =>
             {
-                _.ApiKey = configuration.ApiKey;
-                _.ApiUri = configuration.ApiUri;
+                _.Apps = configurations.Apps;
             });
         }
 
-        public static IServiceCollection AddElectNotificationOneSignal(this IServiceCollection services, [NotNull]Action<ElectOneSignalOptions> configuration)
+        public static IServiceCollection AddElectNotificationOneSignal(this IServiceCollection services, [NotNull]Action<ElectOneSignalOptions> configurations)
         {
-            services.Configure(configuration);
+            services.Configure(configurations);
 
             services.TryAddScoped<IElectOneSignalDevicesResource, ElectOneSignalDevicesResource>();
 
