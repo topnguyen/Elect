@@ -21,27 +21,15 @@ using Elect.Notification.Esms.Interfaces;
 using Elect.Notification.Esms.Models;
 using Flurl;
 using Flurl.Http;
-using Flurl.Http.Configuration;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
-using NullValueHandling = Newtonsoft.Json.NullValueHandling;
 
 namespace Elect.Notification.Esms.Services
 {
     public class ElectEsmsClient : IElectEsmsClient
     {
         public ElectEsmsOptions Options { get; }
-
-        private readonly NewtonsoftJsonSerializer _newtonsoftJsonSerializer = new NewtonsoftJsonSerializer(
-            new JsonSerializerSettings
-            {
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Include
-            }
-        );
 
         public ElectEsmsClient(IOptions<ElectEsmsOptions> configuration)
         {
@@ -83,7 +71,10 @@ namespace Elect.Notification.Esms.Services
             try
             {
                 var result = await url
-                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
+                    .ConfigureRequest(config =>
+                    {
+                        config.JsonSerializer = ElectEsmsConstants.NewtonsoftJsonSerializer;
+                    })
                     .GetJsonAsync<SendSmsResponseModel>()
                     .ConfigureAwait(true);
 
@@ -102,7 +93,10 @@ namespace Elect.Notification.Esms.Services
             try
             {
                 var result = await url
-                    .ConfigureRequest(config => { config.JsonSerializer = _newtonsoftJsonSerializer; })
+                    .ConfigureRequest(config =>
+                    {
+                        config.JsonSerializer = ElectEsmsConstants.NewtonsoftJsonSerializer;
+                    })
                     .GetJsonAsync<BalanceModel>()
                     .ConfigureAwait(true);
 

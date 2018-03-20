@@ -19,6 +19,7 @@
 
 using Elect.Notification.OneSignal.Models.Device;
 using System.Threading.Tasks;
+using Elect.Notification.OneSignal.Models;
 
 namespace Elect.Notification.OneSignal.Interfaces
 {
