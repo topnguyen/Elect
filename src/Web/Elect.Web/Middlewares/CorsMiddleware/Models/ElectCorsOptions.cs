@@ -17,11 +17,12 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Interfaces;
 using System.Collections.Generic;
 
 namespace Elect.Web.Middlewares.CorsMiddleware.Models
 {
-    public class ElectCorsOptions
+    public class ElectCorsOptions : IElectOptions
     {
         /// <summary>
         ///     Default is "Default". 

@@ -41,9 +41,6 @@ namespace Elect.Web.Middlewares.CorsMiddleware
             return app;
         }
 
-        /// <summary>
-        ///     This middleware for hot fix current issue of AspNetCore Cors 
-        /// </summary>
         public class ElectCorsMiddleware
         {
             private readonly RequestDelegate _next;

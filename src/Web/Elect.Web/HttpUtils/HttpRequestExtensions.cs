@@ -17,7 +17,6 @@
 //--------------------------------------------------
 #endregion License
 
-using System;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
 
@@ -94,6 +93,11 @@ namespace Elect.Web.HttpUtils
         public static T GetBody<T>(this HttpRequest request)
         {
             return HttpRequestHelper.GetBody<T>(request);
+        }
+
+        public static string GetIpAddress(this HttpRequest request)
+        {
+            return HttpRequestHelper.GetIpAddress(request);
         }
     }
 }

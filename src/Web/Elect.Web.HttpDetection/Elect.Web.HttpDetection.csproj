@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Information -->
+  <PropertyGroup>
+    <Authors>Top Nguyen</Authors>
+    <Copyright>http://topnguyen.net</Copyright>
+    <LangVersion>7.1</LangVersion>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <!-- Elect -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj" />
+    <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
+    <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- GEO -->
+    <Content Include="GeoCity.mmdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!-- 3rd Libraries -->
+  <ItemGroup>
+    <!-- AspNetCore -->
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+
+    <!-- GEO -->
+    <PackageReference Include="MaxMind.GeoIP2" Version="2.10.0" />
+  </ItemGroup>
+</Project>
