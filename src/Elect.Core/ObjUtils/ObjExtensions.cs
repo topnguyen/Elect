@@ -26,7 +26,7 @@ namespace Elect.Core.ObjUtils
             return ObjHelper.ToJsonString(obj);
         }
 
-        public static T Clone<T>(T obj)
+        public static T Clone<T>(this T obj)
         {
             return ObjHelper.Clone(obj);
         }

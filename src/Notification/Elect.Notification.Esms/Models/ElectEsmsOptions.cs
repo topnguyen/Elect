@@ -26,10 +26,5 @@ namespace Elect.Notification.Esms.Models
         public string ApiKey { get; set; }
 
         public string ApiSecret { get; set; }
-
-        /// <summary>
-        ///     eSMS Api Endpoint, default is https://restapi.esms.vn. 
-        /// </summary>
-        public string ApiUri { get; set; } = "https://restapi.esms.vn";
     }
 }

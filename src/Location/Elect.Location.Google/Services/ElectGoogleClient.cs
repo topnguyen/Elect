@@ -38,9 +38,21 @@ namespace Elect.Location.Google.Services
     {
         public ElectLocationGoogleOptions Options { get; }
 
-        public ElectGoogleClient(IOptions<ElectLocationGoogleOptions> configuration)
+        public ElectGoogleClient()
         {
-            Options = configuration.Value;
+        }
+
+        public ElectGoogleClient(ElectLocationGoogleOptions configuration) : this()
+        {
+            Options = configuration;
+        }
+
+        public ElectGoogleClient(Action<ElectLocationGoogleOptions> configuration) : this(configuration.GetValue())
+        {
+        }
+
+        public ElectGoogleClient(IOptions<ElectLocationGoogleOptions> configuration) : this(configuration.Value)
+        {
         }
 
         #region Matrix

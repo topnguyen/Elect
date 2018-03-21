@@ -35,7 +35,6 @@ namespace Elect.Notification.Esms
             {
                 _.ApiKey = configuration.ApiKey;
                 _.ApiSecret = configuration.ApiSecret;
-                _.ApiUri = configuration.ApiUri;
             });
         }
 

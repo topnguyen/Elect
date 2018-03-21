@@ -18,26 +18,20 @@
 #endregion License
 
 using Elect.Notification.OneSignal.Interfaces;
-using Elect.Notification.OneSignal.Models;
-using Microsoft.Extensions.Options;
 
 namespace Elect.Notification.OneSignal.Services
 {
     public class ElectOneSignalClient : IElectOneSignalClient
     {
-        public ElectOneSignalOptions Options { get; }
-
         public IElectOneSignalDevicesResource Devices { get; }
 
         public IElectOneSignalNotificationsResource Notifications { get; }
 
-        public ElectOneSignalClient(IElectOneSignalDevicesResource devices, IElectOneSignalNotificationsResource notifications, IOptions<ElectOneSignalOptions> configurations)
+        public ElectOneSignalClient(IElectOneSignalDevicesResource devices, IElectOneSignalNotificationsResource notifications)
         {
             Devices = devices;
 
             Notifications = notifications;
-
-            Options = configurations.Value;
         }
     }
 }
