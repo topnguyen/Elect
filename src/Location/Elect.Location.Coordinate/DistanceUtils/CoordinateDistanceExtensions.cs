@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Attributes;
 using Elect.Location.Models;
 
 namespace Elect.Location.Coordinate.DistanceUtils
@@ -26,7 +27,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         /// <summary>
         ///     By Spherical law of cosines http://en.wikipedia.org/wiki/Spherical_law_of_cosines 
         /// </summary>
-        public static double DistanceTo(this CoordinateModel origin, CoordinateModel destination, UnitOfLengthModel unitOfLength)
+        public static double DistanceTo(this CoordinateModel origin, [NotNull]CoordinateModel destination, [NotNull]UnitOfLengthModel unitOfLength)
         {
             return DistanceHelper.GetDistance(origin, destination, unitOfLength);
         }
@@ -37,7 +38,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         /// <param name="origin">     </param>
         /// <param name="destination"></param>
         /// <returns> Miles </returns>
-        public static double FlatDistanceTo(this CoordinateModel origin, CoordinateModel destination)
+        public static double FlatDistanceTo(this CoordinateModel origin, [NotNull]CoordinateModel destination)
         {
             return DistanceHelper.GetDistanceByFlat(origin, destination);
         }
@@ -46,7 +47,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         ///     By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
         /// </summary>
         /// <returns></returns>
-        public static double HaversineDistanceTo(this CoordinateModel origin, CoordinateModel destination, UnitOfLengthModel unitOfLength)
+        public static double HaversineDistanceTo(this CoordinateModel origin, [NotNull]CoordinateModel destination, [NotNull]UnitOfLengthModel unitOfLength)
         {
             return DistanceHelper.GetDistanceByHaversine(origin, destination, unitOfLength);
         }
@@ -54,7 +55,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         /// <summary>
         ///     By Geographical distance http://en.wikipedia.org/wiki/Geographical_distance 
         /// </summary>
-        public static double GeoDistanceTo(this CoordinateModel origin, CoordinateModel destination, UnitOfLengthModel unitOfLength)
+        public static double GeoDistanceTo(this CoordinateModel origin, [NotNull]CoordinateModel destination, [NotNull]UnitOfLengthModel unitOfLength)
         {
             return DistanceHelper.GetDistanceByGeo(origin, destination, unitOfLength);
         }

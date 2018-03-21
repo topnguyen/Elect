@@ -18,6 +18,7 @@
 #endregion License
 
 using Elect.Core.ActionUtils;
+using Elect.Core.Attributes;
 using Elect.Notification.OneSignal.Interfaces;
 using Elect.Notification.OneSignal.Models;
 using Elect.Notification.OneSignal.Models.Device;
@@ -34,20 +35,20 @@ namespace Elect.Notification.OneSignal.Services
     {
         public ElectOneSignalOptions Options { get; }
 
-        public ElectOneSignalDevicesResource(ElectOneSignalOptions configuration)
+        public ElectOneSignalDevicesResource([NotNull]ElectOneSignalOptions configuration)
         {
             Options = configuration;
         }
 
-        public ElectOneSignalDevicesResource(Action<ElectOneSignalOptions> configuration) : this(configuration.GetValue())
+        public ElectOneSignalDevicesResource([NotNull]Action<ElectOneSignalOptions> configuration) : this(configuration.GetValue())
         {
         }
 
-        public ElectOneSignalDevicesResource(IOptions<ElectOneSignalOptions> configuration) : this(configuration.Value)
+        public ElectOneSignalDevicesResource([NotNull]IOptions<ElectOneSignalOptions> configuration) : this(configuration.Value)
         {
         }
 
-        public async Task<DeviceAddResult> AddAsync(DeviceAddOptions options, string appName = ElectOneSignalConstants.DefaultAppName)
+        public async Task<DeviceAddResult> AddAsync([NotNull]DeviceAddOptions options, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName)
         {
             var appInfo = Options.Apps.Single(x => x.AppName == appName);
 
@@ -75,7 +76,7 @@ namespace Elect.Notification.OneSignal.Services
             }
         }
 
-        public async Task EditAsync(string id, DeviceEditOptions options, string appName = ElectOneSignalConstants.DefaultAppName)
+        public async Task EditAsync([NotNull]string id, [NotNull]DeviceEditOptions options, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName)
         {
             var appInfo = Options.Apps.Single(x => x.AppName == appName);
 
@@ -100,7 +101,7 @@ namespace Elect.Notification.OneSignal.Services
             }
         }
 
-        public async Task<DeviceInfo> GetAsync(string playerId, string appName = ElectOneSignalConstants.DefaultAppName)
+        public async Task<DeviceInfo> GetAsync([NotNull]string playerId, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName)
         {
             try
             {

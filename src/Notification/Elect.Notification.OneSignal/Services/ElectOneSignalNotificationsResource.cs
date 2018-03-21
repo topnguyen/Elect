@@ -18,6 +18,7 @@
 #endregion License
 
 using Elect.Core.ActionUtils;
+using Elect.Core.Attributes;
 using Elect.Notification.OneSignal.Interfaces;
 using Elect.Notification.OneSignal.Models;
 using Elect.Notification.OneSignal.Models.Notifications;
@@ -34,20 +35,20 @@ namespace Elect.Notification.OneSignal.Services
     {
         public ElectOneSignalOptions Options { get; }
 
-        public ElectOneSignalNotificationsResource(ElectOneSignalOptions configuration)
+        public ElectOneSignalNotificationsResource([NotNull]ElectOneSignalOptions configuration)
         {
             Options = configuration;
         }
 
-        public ElectOneSignalNotificationsResource(Action<ElectOneSignalOptions> configuration) : this(configuration.GetValue())
+        public ElectOneSignalNotificationsResource([NotNull]Action<ElectOneSignalOptions> configuration) : this(configuration.GetValue())
         {
         }
 
-        public ElectOneSignalNotificationsResource(IOptions<ElectOneSignalOptions> configuration) : this(configuration.Value)
+        public ElectOneSignalNotificationsResource([NotNull]IOptions<ElectOneSignalOptions> configuration) : this(configuration.Value)
         {
         }
 
-        public async Task<NotificationCreateResult> CreateAsync(NotificationCreateOptions options, string appName = ElectOneSignalConstants.DefaultAppName)
+        public async Task<NotificationCreateResult> CreateAsync([NotNull]NotificationCreateOptions options, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName)
         {
             var appInfo = Options.Apps.Single(x => x.AppName == appName);
 
@@ -75,7 +76,7 @@ namespace Elect.Notification.OneSignal.Services
             }
         }
 
-        public async Task<NotificationViewResult> ViewAsync(string id, string appName = ElectOneSignalConstants.DefaultAppName)
+        public async Task<NotificationViewResult> GetAsync([NotNull]string id, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName)
         {
             var appInfo = Options.Apps.Single(x => x.AppName == appName);
 
@@ -101,7 +102,7 @@ namespace Elect.Notification.OneSignal.Services
             }
         }
 
-        public async Task<NotificationCancelResult> CancelAsync(string id, string appName = ElectOneSignalConstants.DefaultAppName)
+        public async Task<NotificationCancelResult> CancelAsync([NotNull]string id, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName)
         {
             var appInfo = Options.Apps.Single(x => x.AppName == appName);
 

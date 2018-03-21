@@ -17,7 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
-namespace Elect.Location.Coordinate.Models
+namespace Elect.Location.Google.Models
 {
     public enum TripType
     {

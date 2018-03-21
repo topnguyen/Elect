@@ -12,12 +12,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
     <ProjectReference Include="..\Elect.Location.Models\Elect.Location.Models.csproj" />
-    <ProjectReference Include="..\Elect.Location.Google\Elect.Location.Google.csproj" />
-  </ItemGroup>
-
-  <!-- 3rd Libraries -->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.1" />
   </ItemGroup>
 </Project>

@@ -18,6 +18,7 @@
 #endregion License
 
 using Elect.Core.ActionUtils;
+using Elect.Core.Attributes;
 using Elect.Notification.Esms.Interfaces;
 using Elect.Notification.Esms.Models;
 using Flurl;
@@ -33,20 +34,20 @@ namespace Elect.Notification.Esms.Services
     {
         public ElectEsmsOptions Options { get; }
 
-        public ElectEsmsClient(ElectEsmsOptions configuration)
+        public ElectEsmsClient([NotNull]ElectEsmsOptions configuration)
         {
             Options = configuration;
         }
 
-        public ElectEsmsClient(Action<ElectEsmsOptions> configuration) : this(configuration.GetValue())
+        public ElectEsmsClient([NotNull]Action<ElectEsmsOptions> configuration) : this(configuration.GetValue())
         {
         }
 
-        public ElectEsmsClient(IOptions<ElectEsmsOptions> configuration) : this(configuration.Value)
+        public ElectEsmsClient([NotNull]IOptions<ElectEsmsOptions> configuration) : this(configuration.Value)
         {
         }
 
-        public async Task<SendSmsResponseModel> SendAsync(SendSmsModel model)
+        public async Task<SendSmsResponseModel> SendAsync([NotNull]SendSmsModel model)
         {
             var url = $"{ElectEsmsConstants.DefaultApiUrl}/MainService.svc/json/SendMultipleMessage_V4_get";
 

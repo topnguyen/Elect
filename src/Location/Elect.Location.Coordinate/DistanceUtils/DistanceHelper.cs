@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Attributes;
 using Elect.Location.Models;
 using System;
 
@@ -41,7 +42,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         ///     By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
         /// </summary>
         /// <returns></returns>
-        public static double GetDistance(double originLongitude, double originLatitude, double destinationLongitude, double destinationLatitude, UnitOfLengthModel unitOfLength)
+        public static double GetDistance(double originLongitude, double originLatitude, double destinationLongitude, double destinationLatitude, [NotNull]UnitOfLengthModel unitOfLength)
         {
             var origin = new CoordinateModel(originLongitude, originLatitude);
 
@@ -53,7 +54,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         /// <summary>
         ///     By Spherical law of cosines http://en.wikipedia.org/wiki/Spherical_law_of_cosines 
         /// </summary>
-        public static double GetDistance(CoordinateModel origin, CoordinateModel destination, UnitOfLengthModel unitOfLength)
+        public static double GetDistance([NotNull]CoordinateModel origin, [NotNull]CoordinateModel destination, [NotNull]UnitOfLengthModel unitOfLength)
         {
             var theta = origin.Longitude - destination.Longitude;
             var thetaRad = theta * ElectLocationConstants.DegreesToRadians;
@@ -79,7 +80,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         /// <param name="origin">     </param>
         /// <param name="destination"></param>
         /// <returns> Miles </returns>
-        public static double GetDistanceByFlat(CoordinateModel origin, CoordinateModel destination)
+        public static double GetDistanceByFlat([NotNull]CoordinateModel origin, [NotNull]CoordinateModel destination)
         {
             return Math.Abs(origin.Latitude - destination.Latitude) + Math.Abs(origin.Longitude - destination.Longitude);
         }
@@ -88,7 +89,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         ///     By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
         /// </summary>
         /// <returns></returns>
-        public static double GetDistanceByHaversine(CoordinateModel origin, CoordinateModel destination, UnitOfLengthModel unitOfLength)
+        public static double GetDistanceByHaversine([NotNull]CoordinateModel origin, [NotNull]CoordinateModel destination, [NotNull]UnitOfLengthModel unitOfLength)
         {
             var dLat = (destination.Latitude - origin.Latitude) * ElectLocationConstants.DegreesToRadians;
 
@@ -110,7 +111,7 @@ namespace Elect.Location.Coordinate.DistanceUtils
         /// <summary>
         ///     By Geographical distance http://en.wikipedia.org/wiki/Geographical_distance 
         /// </summary>
-        public static double GetDistanceByGeo(CoordinateModel origin, CoordinateModel destination, UnitOfLengthModel unitOfLength)
+        public static double GetDistanceByGeo([NotNull]CoordinateModel origin, [NotNull]CoordinateModel destination, [NotNull]UnitOfLengthModel unitOfLength)
         {
             var radLatOrigin = origin.Latitude * ElectLocationConstants.DegreesToRadians;
 

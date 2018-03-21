@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Attributes;
 using Elect.Location.Models;
 using System;
 
@@ -30,7 +31,7 @@ namespace Elect.Location.Coordinate.PositionUtils
         /// <param name="origin">         </param>
         /// <param name="radiusKilometer"></param>
         /// <returns></returns>
-        public static CoordinateModel GetTopLeftOfSquare(CoordinateModel origin, double radiusKilometer)
+        public static CoordinateModel GetTopLeftOfSquare([NotNull]CoordinateModel origin, double radiusKilometer)
         {
             var hypotenuseLength = GetHypotenuseLength(radiusKilometer);
 
@@ -45,7 +46,7 @@ namespace Elect.Location.Coordinate.PositionUtils
         /// <param name="origin">         </param>
         /// <param name="radiusKilometer"></param>
         /// <returns></returns>
-        public static CoordinateModel GetBotRightOfSquare(CoordinateModel origin, double radiusKilometer)
+        public static CoordinateModel GetBotRightOfSquare([NotNull]CoordinateModel origin, double radiusKilometer)
         {
             var hypotenuseLength = GetHypotenuseLength(radiusKilometer);
 
@@ -62,7 +63,7 @@ namespace Elect.Location.Coordinate.PositionUtils
         /// <param name="radiusKm"> Radius/Range in Kilometers </param>
         /// <param name="bearing">  Bearing in degrees from 0 to 360 </param>
         /// <returns> End-point from the source given the desired range and bearing. </returns>
-        public static CoordinateModel GetDerivedPosition(CoordinateModel origin, double radiusKm, double bearing)
+        public static CoordinateModel GetDerivedPosition([NotNull]CoordinateModel origin, double radiusKm, double bearing)
         {
             var latOrigin = origin.Latitude * ElectLocationConstants.DegreesToRadians;
 

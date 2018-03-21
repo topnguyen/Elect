@@ -17,16 +17,15 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Location.Coordinate.Models;
+using Elect.Core.Attributes;
 using Elect.Location.Google.Interfaces;
 using Elect.Location.Google.Models;
-using Elect.Location.Google.Services;
 using Elect.Location.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Elect.Location.Coordinate.DirectionUtils
+namespace Elect.Location.Google.Services
 {
     /// <summary>
     ///     Combine both A -&gt; Z and Round Trip with optimize by many algorithm and distance,
@@ -74,17 +73,17 @@ namespace Elect.Location.Coordinate.DirectionUtils
         ///     Combine both A -&gt; Z and Round Trip with optimize by many algorithm and distance,
         ///     duration by Google Matrix
         /// </summary>
-        /// <param name="coordinates"> </param>
         /// <param name="type">        </param>
         /// <param name="googleApiKey">
         ///     Use for TripType.RoundTrip - Optional, method still work without key but have
         ///     limitation by Google Policy.
         /// </param>
+        /// <param name="coordinates"> </param>
         /// <remarks>
         ///     Concorde TSP Solver algorithm combine with Ant colony optimization algorithms to find
         ///     wayCoordinate and best path
         /// </remarks>
-        public FastestTrip(IReadOnlyCollection<CoordinateModel> coordinates, TripType type = TripType.AZ, string googleApiKey = null)
+        public FastestTrip(TripType type = TripType.AZ, string googleApiKey = null, [NotNull]params CoordinateModel[] coordinates)
         {
             if (coordinates.Any() != true)
             {

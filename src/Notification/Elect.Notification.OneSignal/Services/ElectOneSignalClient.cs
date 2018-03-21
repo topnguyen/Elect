@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Attributes;
 using Elect.Notification.OneSignal.Interfaces;
 
 namespace Elect.Notification.OneSignal.Services
@@ -27,7 +28,7 @@ namespace Elect.Notification.OneSignal.Services
 
         public IElectOneSignalNotificationsResource Notifications { get; }
 
-        public ElectOneSignalClient(IElectOneSignalDevicesResource devices, IElectOneSignalNotificationsResource notifications)
+        public ElectOneSignalClient([NotNull]IElectOneSignalDevicesResource devices, [NotNull]IElectOneSignalNotificationsResource notifications)
         {
             Devices = devices;
 
