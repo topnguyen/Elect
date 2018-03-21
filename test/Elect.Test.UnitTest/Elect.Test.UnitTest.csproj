@@ -15,6 +15,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Elect.Core\Elect.Core.csproj" />
     <ProjectReference Include="..\..\src\Notification\Elect.Notification.Esms\Elect.Notification.Esms.csproj" />
+    <ProjectReference Include="..\..\src\Web\Elect.Web\Elect.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Elect.Web\" />
   </ItemGroup>
 
 </Project>
