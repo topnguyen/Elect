@@ -24,8 +24,6 @@ namespace Elect.Notification.Esms.Interfaces
 {
     public interface IElectEsmsClient
     {
-        ElectEsmsOptions Options { get; }
-
         Task<SendSmsResponseModel> SendAsync(SendSmsModel model);
 
         Task<BalanceModel> GetBalanceAsync();

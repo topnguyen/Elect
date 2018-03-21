@@ -17,11 +17,13 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ActionUtils;
 using Elect.Notification.Esms.Interfaces;
 using Elect.Notification.Esms.Models;
 using Flurl;
 using Flurl.Http;
 using Microsoft.Extensions.Options;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -31,14 +33,22 @@ namespace Elect.Notification.Esms.Services
     {
         public ElectEsmsOptions Options { get; }
 
-        public ElectEsmsClient(IOptions<ElectEsmsOptions> configuration)
+        public ElectEsmsClient(ElectEsmsOptions configuration)
         {
-            Options = configuration.Value;
+            Options = configuration;
+        }
+
+        public ElectEsmsClient(Action<ElectEsmsOptions> configuration) : this(configuration.GetValue())
+        {
+        }
+
+        public ElectEsmsClient(IOptions<ElectEsmsOptions> configuration) : this(configuration.Value)
+        {
         }
 
         public async Task<SendSmsResponseModel> SendAsync(SendSmsModel model)
         {
-            var url = $"{Options.ApiUri}/MainService.svc/json/SendMultipleMessage_V4_get";
+            var url = $"{ElectEsmsConstants.DefaultApiUrl}/MainService.svc/json/SendMultipleMessage_V4_get";
 
             url = url
                 .SetQueryParam("ApiKey", Options.ApiKey)
@@ -88,7 +98,7 @@ namespace Elect.Notification.Esms.Services
 
         public async Task<BalanceModel> GetBalanceAsync()
         {
-            var url = $"{Options.ApiUri}/MainService.svc/json/GetBalance/{Options.ApiKey}/{Options.ApiSecret}";
+            var url = $"{ElectEsmsConstants.DefaultApiUrl}/MainService.svc/json/GetBalance/{Options.ApiKey}/{Options.ApiSecret}";
 
             try
             {

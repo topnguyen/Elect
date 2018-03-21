@@ -17,11 +17,13 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ActionUtils;
 using Elect.Notification.OneSignal.Interfaces;
 using Elect.Notification.OneSignal.Models;
 using Elect.Notification.OneSignal.Models.Notifications;
 using Flurl.Http;
 using Microsoft.Extensions.Options;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -32,9 +34,17 @@ namespace Elect.Notification.OneSignal.Services
     {
         public ElectOneSignalOptions Options { get; }
 
-        public ElectOneSignalNotificationsResource(IOptions<ElectOneSignalOptions> configuration)
+        public ElectOneSignalNotificationsResource(ElectOneSignalOptions configuration)
         {
-            Options = configuration.Value;
+            Options = configuration;
+        }
+
+        public ElectOneSignalNotificationsResource(Action<ElectOneSignalOptions> configuration) : this(configuration.GetValue())
+        {
+        }
+
+        public ElectOneSignalNotificationsResource(IOptions<ElectOneSignalOptions> configuration) : this(configuration.Value)
+        {
         }
 
         public async Task<NotificationCreateResult> CreateAsync(NotificationCreateOptions options, string appName = ElectOneSignalConstants.DefaultAppName)

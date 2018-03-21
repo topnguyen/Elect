@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Elect.Core\Elect.Core.csproj" />
+    <ProjectReference Include="..\..\src\Notification\Elect.Notification.Esms\Elect.Notification.Esms.csproj" />
   </ItemGroup>
 
 </Project>
