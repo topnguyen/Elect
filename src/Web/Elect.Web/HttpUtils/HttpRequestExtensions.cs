@@ -31,7 +31,7 @@ namespace Elect.Web.HttpUtils
         /// <returns>
         ///     <c> true </c> if the specified HTTP request is an AJAX request; otherwise, <c> false </c>.
         /// </returns>
-        /// <exception cref="ArgumentNullException">
+        /// <exception cref="System.ArgumentNullException">
         ///     The <paramref name="request" /> parameter is <c> null </c>.
         /// </exception>
         public static bool IsAjaxRequest(this HttpRequest request)
@@ -47,7 +47,7 @@ namespace Elect.Web.HttpUtils
         /// <returns>
         ///     <c> true </c> if the specified HTTP request is a local request; otherwise, <c> false </c>.
         /// </returns>
-        /// <exception cref="ArgumentNullException">
+        /// <exception cref="System.ArgumentNullException">
         ///     The <paramref name="request" /> parameter is <c> null </c>.
         /// </exception>
         public static bool IsLocalRequest(this HttpRequest request)

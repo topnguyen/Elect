@@ -15,10 +15,7 @@
 
   <!-- 3rd Libraries -->
   <ItemGroup>
-
-    <!-- AspNetCore -->
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
-
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
     <!-- Markup Min -->
     <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.4.2" />
     <PackageReference Include="WebMarkupMin.NUglify" Version="2.4.2" />
