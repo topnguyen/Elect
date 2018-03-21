@@ -18,6 +18,7 @@
 #endregion License
 
 using Elect.Core.AssemblyUtils;
+using Elect.Core.Attributes;
 using Elect.Core.CheckUtils;
 using Elect.DI.Attributes;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +33,7 @@ namespace Elect.DI
 {
     public class Scanner
     {
-        public void RegisterAssembly(IServiceCollection services, Assembly assembly)
+        public void RegisterAssembly([NotNull]IServiceCollection services, [NotNull]Assembly assembly)
         {
             foreach (var typeInfo in assembly.DefinedTypes)
             {
@@ -87,7 +88,7 @@ namespace Elect.DI
         /// <param name="assemblyFolderPath"></param>
         /// <param name="fileSearchPattern">  Search Pattern by <c> Directory.GetFiles </c> </param>
         /// <returns> List of loaded assembly </returns>
-        public List<Assembly> RegisterAssemblies(IServiceCollection services, string assemblyFolderPath, string fileSearchPattern)
+        public List<Assembly> RegisterAssemblies([NotNull]IServiceCollection services, [NotNull]string assemblyFolderPath, [NotNull]string fileSearchPattern)
         {
             if (services == null)
             {

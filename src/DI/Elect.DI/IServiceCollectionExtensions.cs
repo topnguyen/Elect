@@ -29,7 +29,7 @@ namespace Elect.DI
 {
     public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection Removes(this IServiceCollection services, params Type[] serviceTypes)
+        public static IServiceCollection Removes(this IServiceCollection services, [NotNull]params Type[] serviceTypes)
         {
             foreach (var serviceType in serviceTypes)
             {
@@ -53,7 +53,7 @@ namespace Elect.DI
 
         #region Add If Any
 
-        public static IServiceCollection AddScopedIfAny<TService, TImplementation>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddScopedIfAny<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
         {
             if (services.Any(predicate))
             {
@@ -62,7 +62,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddScopedIfAny<TService>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddScopedIfAny<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.Any(predicate))
             {
@@ -71,7 +71,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddTransientIfAny<TService, TImplementation>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddTransientIfAny<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
         {
             if (services.Any(predicate))
             {
@@ -80,7 +80,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddTransientIfAny<TService>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddTransientIfAny<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.Any(predicate))
             {
@@ -89,7 +89,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfAny<TService, TImplementation>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddSingletonIfAny<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
         {
             if (services.Any(predicate))
             {
@@ -98,7 +98,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfAny<TService>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddSingletonIfAny<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.Any(predicate))
             {
@@ -111,7 +111,7 @@ namespace Elect.DI
 
         #region Add If All
 
-        public static IServiceCollection AddScopedIfAll<TService, TImplementation>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddScopedIfAll<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
         {
             if (services.All(predicate))
             {
@@ -120,7 +120,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddScopedIfAll<TService>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddScopedIfAll<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.All(predicate))
             {
@@ -129,7 +129,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddTransientIfAll<TService, TImplementation>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddTransientIfAll<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
         {
             if (services.All(predicate))
             {
@@ -138,7 +138,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddTransientIfAll<TService>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddTransientIfAll<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.All(predicate))
             {
@@ -147,7 +147,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfAll<TService, TImplementation>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddSingletonIfAll<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
         {
             if (services.All(predicate))
             {
@@ -156,7 +156,7 @@ namespace Elect.DI
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfAll<TService>(this IServiceCollection services, Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddSingletonIfAll<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.All(predicate))
             {

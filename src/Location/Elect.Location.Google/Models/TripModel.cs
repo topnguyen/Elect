@@ -17,11 +17,10 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Location.Google.Models;
-using Elect.Location.Models;
 using System.Collections.Generic;
+using Elect.Location.Models;
 
-namespace Elect.Location.Coordinate.Models
+namespace Elect.Location.Google.Models
 {
     public class TripModel
     {

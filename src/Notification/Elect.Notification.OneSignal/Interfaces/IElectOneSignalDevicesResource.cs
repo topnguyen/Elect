@@ -17,9 +17,10 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Attributes;
+using Elect.Notification.OneSignal.Models;
 using Elect.Notification.OneSignal.Models.Device;
 using System.Threading.Tasks;
-using Elect.Notification.OneSignal.Models;
 
 namespace Elect.Notification.OneSignal.Interfaces
 {
@@ -36,7 +37,7 @@ namespace Elect.Notification.OneSignal.Interfaces
         ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
         /// </param>
         /// <returns> Result of device add operation. </returns>
-        Task<DeviceAddResult> AddAsync(DeviceAddOptions options, string appName = ElectOneSignalConstants.DefaultAppName);
+        Task<DeviceAddResult> AddAsync([NotNull]DeviceAddOptions options, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName);
 
         /// <summary>
         ///     Edits existing device defined in OneSignal App. 
@@ -47,7 +48,7 @@ namespace Elect.Notification.OneSignal.Interfaces
         ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
         /// </param>
         /// <exception cref="System.Exception"></exception>
-        Task EditAsync(string id, DeviceEditOptions options, string appName = ElectOneSignalConstants.DefaultAppName);
+        Task EditAsync([NotNull]string id, [NotNull]DeviceEditOptions options, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName);
 
         /// <summary>
         ///     Get device info 
@@ -57,6 +58,6 @@ namespace Elect.Notification.OneSignal.Interfaces
         ///     App name - optional if you have only 1 app in configuration, default is <see cref="ElectOneSignalConstants.DefaultApiUrl" />.
         /// </param>
         /// <returns></returns>
-        Task<DeviceInfo> GetAsync(string playerId, string appName = ElectOneSignalConstants.DefaultAppName);
+        Task<DeviceInfo> GetAsync([NotNull]string playerId, [NotNull]string appName = ElectOneSignalConstants.DefaultAppName);
     }
 }

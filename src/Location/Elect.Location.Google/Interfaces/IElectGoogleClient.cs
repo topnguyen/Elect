@@ -17,7 +17,9 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Attributes;
 using Elect.Location.Google.Models;
+using Elect.Location.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,12 +28,36 @@ namespace Elect.Location.Google.Interfaces
 {
     public interface IElectGoogleClient
     {
-        Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync(Action<DistanceDurationMatrixRequestModel> model);
+        #region Matrix
 
-        Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync(DistanceDurationMatrixRequestModel model);
+        Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync([NotNull]Action<DistanceDurationMatrixRequestModel> model);
 
-        Task<List<DirectionStepsResultModel>> GetDirectionsAsync(Action<DirectionStepsRequestModel> model);
+        Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync([NotNull]DistanceDurationMatrixRequestModel model);
 
-        Task<List<DirectionStepsResultModel>> GetDirectionsAsync(DirectionStepsRequestModel model);
+        #endregion
+
+        #region Direction
+
+        Task<List<DirectionStepsResultModel>> GetDirectionsAsync([NotNull]Action<DirectionStepsRequestModel> model);
+
+        Task<List<DirectionStepsResultModel>> GetDirectionsAsync([NotNull]DirectionStepsRequestModel model);
+
+        #endregion
+
+        #region Trip
+
+        TripModel GetFastestAzTrip([NotNull]params CoordinateModel[] coordinates);
+
+        TripModel GetFastestAzTrip([CanBeNull]string googleApiKey = null, [NotNull]params CoordinateModel[] coordinates);
+
+        TripModel GetFastestRoundTrip([NotNull]params CoordinateModel[] coordinates);
+
+        TripModel GetFastestRoundTrip([CanBeNull]string googleApiKey = null, [NotNull]params CoordinateModel[] coordinates);
+
+        TripModel GetFastestTrip(TripType type, [NotNull]params CoordinateModel[] coordinates);
+
+        TripModel GetFastestTrip(TripType type, [CanBeNull]string googleApiKey = null, [NotNull]params CoordinateModel[] coordinates);
+
+        #endregion
     }
 }

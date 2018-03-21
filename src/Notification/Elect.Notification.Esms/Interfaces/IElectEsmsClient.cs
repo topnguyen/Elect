@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Attributes;
 using Elect.Notification.Esms.Models;
 using System.Threading.Tasks;
 
@@ -24,7 +25,7 @@ namespace Elect.Notification.Esms.Interfaces
 {
     public interface IElectEsmsClient
     {
-        Task<SendSmsResponseModel> SendAsync(SendSmsModel model);
+        Task<SendSmsResponseModel> SendAsync([NotNull]SendSmsModel model);
 
         Task<BalanceModel> GetBalanceAsync();
     }

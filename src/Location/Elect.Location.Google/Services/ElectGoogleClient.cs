@@ -18,6 +18,7 @@
 #endregion License
 
 using Elect.Core.ActionUtils;
+using Elect.Core.Attributes;
 using Elect.Location.Google.Interfaces;
 using Elect.Location.Google.Models;
 using Elect.Location.Models;
@@ -42,27 +43,27 @@ namespace Elect.Location.Google.Services
         {
         }
 
-        public ElectGoogleClient(ElectLocationGoogleOptions configuration) : this()
+        public ElectGoogleClient([NotNull]ElectLocationGoogleOptions configuration) : this()
         {
             Options = configuration;
         }
 
-        public ElectGoogleClient(Action<ElectLocationGoogleOptions> configuration) : this(configuration.GetValue())
+        public ElectGoogleClient([NotNull]Action<ElectLocationGoogleOptions> configuration) : this(configuration.GetValue())
         {
         }
 
-        public ElectGoogleClient(IOptions<ElectLocationGoogleOptions> configuration) : this(configuration.Value)
+        public ElectGoogleClient([NotNull]IOptions<ElectLocationGoogleOptions> configuration) : this(configuration.Value)
         {
         }
 
         #region Matrix
 
-        public Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync(Action<DistanceDurationMatrixRequestModel> model)
+        public Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync([NotNull]Action<DistanceDurationMatrixRequestModel> model)
         {
             return GetDistanceDurationMatrixAsync(model.GetValue());
         }
 
-        public async Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync(DistanceDurationMatrixRequestModel model)
+        public async Task<DistanceDurationMatrixResultModel> GetDistanceDurationMatrixAsync([NotNull]DistanceDurationMatrixRequestModel model)
         {
             var origins = string.Join("|", model.OriginalCoordinates.Select(x => $"{x.Latitude},{x.Longitude}"));
 
@@ -95,12 +96,12 @@ namespace Elect.Location.Google.Services
 
         #region Direction
 
-        public Task<List<DirectionStepsResultModel>> GetDirectionsAsync(Action<DirectionStepsRequestModel> model)
+        public Task<List<DirectionStepsResultModel>> GetDirectionsAsync([NotNull]Action<DirectionStepsRequestModel> model)
         {
             return GetDirectionsAsync(model.GetValue());
         }
 
-        public async Task<List<DirectionStepsResultModel>> GetDirectionsAsync(DirectionStepsRequestModel model)
+        public async Task<List<DirectionStepsResultModel>> GetDirectionsAsync([NotNull]DirectionStepsRequestModel model)
         {
             string origin = $"{model.OriginalCoordinate.Latitude},{model.OriginalCoordinate.Longitude}";
 
@@ -203,6 +204,50 @@ namespace Elect.Location.Google.Services
             {
                 throw new HttpRequestException(e.GetResponseString());
             }
+        }
+
+        #endregion
+
+        #region Trip
+
+        public TripModel GetFastestAzTrip([NotNull]params CoordinateModel[] coordinates)
+        {
+            return GetFastestTrip(TripType.AZ, null, coordinates);
+        }
+
+        public TripModel GetFastestAzTrip([CanBeNull]string googleApiKey = null, [NotNull]params CoordinateModel[] coordinates)
+        {
+            return GetFastestTrip(TripType.AZ, googleApiKey, coordinates);
+        }
+
+        public TripModel GetFastestRoundTrip([NotNull]params CoordinateModel[] coordinates)
+        {
+            return GetFastestTrip(TripType.RoundTrip, null, coordinates);
+        }
+
+        public TripModel GetFastestRoundTrip([CanBeNull]string googleApiKey = null, [NotNull]params CoordinateModel[] coordinates)
+        {
+            return GetFastestTrip(TripType.RoundTrip, googleApiKey, coordinates);
+        }
+
+        public TripModel GetFastestTrip(TripType type, [NotNull]params CoordinateModel[] coordinates)
+        {
+            return GetFastestTrip(type, null, coordinates);
+        }
+
+        public TripModel GetFastestTrip(TripType type, [CanBeNull]string googleApiKey = null, [NotNull]params CoordinateModel[] coordinates)
+        {
+            FastestTrip fastestTrip = new FastestTrip(type, googleApiKey, coordinates);
+
+            TripModel tripModel = new TripModel
+            {
+                CoordinateSequences = fastestTrip.GetTrip(),
+                TotalDistanceInMeter = fastestTrip.GetTotalDistanceInMeter(),
+                TotalDurationInSecond = fastestTrip.GetTotalDurationInSecond(),
+                DistanceDurationMatrix = fastestTrip.DistanceDurationMatrix
+            };
+
+            return tripModel;
         }
 
         #endregion

@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Attributes;
 using Elect.Core.ObjUtils;
 using Elect.Location.Coordinate.DistanceUtils;
 using Elect.Location.Models;
@@ -28,9 +29,9 @@ namespace Elect.Location.Coordinate.ClusterUtils
 {
     public class ClusterHelper
     {
-        public List<ClusterModel> GetCluster(List<CoordinateModel> coordinates, int totalGroup)
+        public List<ClusterModel> GetCluster(int totalGroup, [NotNull]params CoordinateModel[] coordinates)
         {
-            if (totalGroup <= 1 || totalGroup >= coordinates.Count)
+            if (totalGroup <= 1 || totalGroup >= coordinates.Length)
             {
                 throw new NotSupportedException($"{nameof(totalGroup)} <= 1 || {nameof(totalGroup)} >= total {nameof(coordinates)}");
             }
