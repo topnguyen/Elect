@@ -143,44 +143,50 @@ namespace Elect.Core.StringUtils
 
         public static string ConvertEdgeCases(char c)
         {
-            string swap;
-            switch (c)
-            {
-                case 'ı':
-                    swap = "i";
-                    break;
+            if ("àåáâäãåąā".Contains(c))
+                return "a";
+            if ("èéêěëę".Contains(c))
+                return "e";
+            if ("ìíîïı".Contains(c))
+                return "i";
+            if ("òóôõöøőð".Contains(c))
+                return "o";
+            if ("ùúûüŭů".Contains(c))
+                return "u";
+            if ("çćčĉ".Contains(c))
+                return "c";
+            if ("żźž".Contains(c))
+                return "z";
+            if ("śşšŝ".Contains(c))
+                return "c";
+            if ("ñń".Contains(c))
+                return "n";
+            if ("ýÿ".Contains(c))
+                return "y";
+            if ("ğĝ".Contains(c))
+                return "g";
+            if ("ŕř".Contains(c))
+                return "r";
+            if ("ĺľł".Contains(c))
+                return "l";
+            if ("úů".Contains(c))
+                return "u";
+            if ("đď".Contains(c))
+                return "d";
+            if ('ť' == c)
+                return "t";
+            if ('ž' == c)
+                return "z";
+            if ('ß' == c)
+                return "ss";
+            if ('Þ' == c)
+                return "th";
+            if ('ĥ' == c)
+                return "h";
+            if ('ĵ' == c)
+                return "j";
 
-                case 'ł':
-                case 'Ł':
-                    swap = "l";
-                    break;
-
-                case 'đ':
-                    swap = "d";
-                    break;
-
-                case 'Đ':
-                    swap = "D";
-                    break;
-
-                case 'ß':
-                    swap = "ss";
-                    break;
-
-                case 'ø':
-                    swap = "o";
-                    break;
-
-                case 'Þ':
-                    swap = "th";
-                    break;
-
-                default:
-                    swap = c.ToString();
-                    break;
-            }
-
-            return swap;
+            return c.ToString();
         }
 
         /// <summary>
