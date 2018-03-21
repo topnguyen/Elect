@@ -31,15 +31,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notificatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Notification.Esms", "src\Notification\Elect.Notification.Esms\Elect.Notification.Esms.csproj", "{54A7CA38-82FB-4389-9E30-7341584DE24E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Notification.OneSignal", "src\Notification\Elect.Notification.OneSignal\Elect.Notification.OneSignal.csproj", "{2F238130-AD51-4939-A15D-1E2F60C23871}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Notification.OneSignal", "src\Notification\Elect.Notification.OneSignal\Elect.Notification.OneSignal.csproj", "{2F238130-AD51-4939-A15D-1E2F60C23871}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Location", "Location", "{63AB0898-B0A3-4E25-A3EE-5CCE2F20F6C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Location.Models", "src\Location\Elect.Location.Models\Elect.Location.Models.csproj", "{429E8BDD-F4FF-4AF1-A3F5-0E7367F9B766}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Models", "src\Location\Elect.Location.Models\Elect.Location.Models.csproj", "{429E8BDD-F4FF-4AF1-A3F5-0E7367F9B766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Location.Google", "src\Location\Elect.Location.Google\Elect.Location.Google.csproj", "{63DFC9B3-07F1-4239-A1F8-17C61A2D4619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Google", "src\Location\Elect.Location.Google\Elect.Location.Google.csproj", "{63DFC9B3-07F1-4239-A1F8-17C61A2D4619}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Location.Coordinate", "src\Location\Elect.Location.Coordinate\Elect.Location.Coordinate.csproj", "{04614ED2-1441-4A46-8E12-7A14D3FB1B5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Coordinate", "src\Location\Elect.Location.Coordinate\Elect.Location.Coordinate.csproj", "{04614ED2-1441-4A46-8E12-7A14D3FB1B5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{16FC8D0A-F964-4B45-9E78-8F9D50585B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Web", "src\Web\Elect.Web\Elect.Web.csproj", "{2B2BC6FA-8E3A-4323-87E5-15C1E7077AB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +95,10 @@ Global
 		{04614ED2-1441-4A46-8E12-7A14D3FB1B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04614ED2-1441-4A46-8E12-7A14D3FB1B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04614ED2-1441-4A46-8E12-7A14D3FB1B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B2BC6FA-8E3A-4323-87E5-15C1E7077AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B2BC6FA-8E3A-4323-87E5-15C1E7077AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B2BC6FA-8E3A-4323-87E5-15C1E7077AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B2BC6FA-8E3A-4323-87E5-15C1E7077AB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +120,8 @@ Global
 		{429E8BDD-F4FF-4AF1-A3F5-0E7367F9B766} = {63AB0898-B0A3-4E25-A3EE-5CCE2F20F6C0}
 		{63DFC9B3-07F1-4239-A1F8-17C61A2D4619} = {63AB0898-B0A3-4E25-A3EE-5CCE2F20F6C0}
 		{04614ED2-1441-4A46-8E12-7A14D3FB1B5F} = {63AB0898-B0A3-4E25-A3EE-5CCE2F20F6C0}
+		{16FC8D0A-F964-4B45-9E78-8F9D50585B3C} = {F054EE83-4A80-4553-A0CC-25C46D2A3AC1}
+		{2B2BC6FA-8E3A-4323-87E5-15C1E7077AB2} = {16FC8D0A-F964-4B45-9E78-8F9D50585B3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B699336-21B7-4FD5-8ECC-A8390C034309}

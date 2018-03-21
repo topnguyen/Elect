@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Information -->
+  <PropertyGroup>
+    <Authors>Top Nguyen</Authors>
+    <Copyright>http://topnguyen.net</Copyright>
+    <LangVersion>7.1</LangVersion>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <!-- Elect -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
+  </ItemGroup>
+
+  <!-- 3rd Libraries -->
+  <ItemGroup>
+
+    <!-- AspNetCore -->
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+
+    <!-- Markup Min -->
+    <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.4.2" />
+    <PackageReference Include="WebMarkupMin.NUglify" Version="2.4.2" />
+    
+    <PackageReference Include="Flurl.Http" Version="2.2.1" />
+  </ItemGroup>
+</Project>
