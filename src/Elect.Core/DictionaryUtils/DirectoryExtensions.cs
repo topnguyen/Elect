@@ -23,6 +23,11 @@ namespace Elect.Core.DictionaryUtils
 {
     public static class DirectoryExtensions
     {
+        public static Dictionary<string, object> ToDictionary(this object obj)
+        {
+            return DictionaryHelper.ToDictionary(obj);
+        }
+
         public static Dictionary<string, string> ToDictionary<T>(this T obj)
         {
             return DictionaryHelper.ToDictionary(obj);
