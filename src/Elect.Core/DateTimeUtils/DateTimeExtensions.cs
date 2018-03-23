@@ -23,6 +23,11 @@ namespace Elect.Core.DateTimeUtils
 {
     public static class DateTimeExtensions
     {
+        public static long ToTimestamp(this DateTime dateTime)
+        {
+            return DateTimeHelper.ToTimestamp(dateTime);
+        }
+
         public static DateTime TruncateTo(this DateTime dateTime, TruncateToType truncateTo)
         {
             return DateTimeHelper.TruncateTo(dateTime, truncateTo);
@@ -38,11 +43,6 @@ namespace Elect.Core.DateTimeUtils
         public static DateTimeOffset WithTimeZone(this DateTime dateTime, TimeZoneInfo timeZoneInfo)
         {
             return DateTimeHelper.WithTimeZone(dateTime, timeZoneInfo);
-        }
-
-        public static long ToTimestamp(this DateTime value)
-        {
-            return DateTimeHelper.ToTimestamp(value);
         }
     }
 }

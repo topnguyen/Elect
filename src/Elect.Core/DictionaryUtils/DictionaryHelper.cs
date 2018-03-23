@@ -19,6 +19,7 @@
 
 using Elect.Core.ObjUtils;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,22 @@ namespace Elect.Core.DictionaryUtils
 {
     public class DictionaryHelper
     {
+        public static Dictionary<string, object> ToDictionary(object obj)
+        {
+            JObject json = JObject.FromObject(obj);
+
+            var properties = json.Properties();
+
+            var directory = new Dictionary<string, object>();
+
+            foreach (var property in properties)
+            {
+                directory[property.Name] = property.Value;
+            }
+
+            return directory;
+        }
+
         public static Dictionary<string, string> ToDictionary<T>(T obj)
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();

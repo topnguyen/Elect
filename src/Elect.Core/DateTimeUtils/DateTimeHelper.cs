@@ -27,9 +27,9 @@ namespace Elect.Core.DateTimeUtils
 
         public static DateTime FromTimestamp(long value) => Epoch.AddSeconds(value);
 
-        public static long ToTimestamp(DateTime value)
+        public static long ToTimestamp(DateTime dateTime)
         {
-            TimeSpan elapsedTime = value - Epoch;
+            TimeSpan elapsedTime = dateTime - Epoch;
 
             return (long)elapsedTime.TotalSeconds;
         }
