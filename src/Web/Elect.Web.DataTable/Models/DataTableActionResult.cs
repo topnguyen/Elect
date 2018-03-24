@@ -17,14 +17,10 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Web.DataTable.Models.Constants;
 using Elect.Web.DataTable.Models.Response;
-using Elect.Web.DataTable.Processing.Response;
-using Elect.Web.DataTable.Utils.TypeUtils;
+using Elect.Web.DataTable.Utils.DataTableActionResultUtils;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Elect.Web.DataTable.Models
@@ -43,66 +39,14 @@ namespace Elect.Web.DataTable.Models
         /// </param>
         /// <param name="responseOption"></param>
         /// <returns></returns>
-        public static DataTableActionResult<T> Create<T>(DataTableResponseDataModel<T> responseData, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        protected DataTableActionResult<T> Create<T>(DataTableResponseDataModel<T> responseData, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
-            transform = transform ?? (s => s);
-
-            var result = new DataTableActionResult<T>(responseData);
-
-            result.Data =
-                result
-                    .Data
-                    .Transform<T, Dictionary<string, object>>
-                    (
-                        row => TransformTypeInfoHelper.MergeTransformValuesIntoDictionary(transform, row)
-                    )
-                    .Transform<Dictionary<string, object>, Dictionary<string, object>>(StringTransformers.StringifyValues);
-
-            result.Data = ApplyOutputRules(result.Data, responseOption);
-
-            return result;
+            return DataTableActionResultHelper.Create(responseData, transform, responseOption);
         }
 
-        public static DataTableActionResult<T> Create<T>(DataTableResponseDataModel<T> responseData, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        protected DataTableActionResult<T> Create<T>(DataTableResponseDataModel<T> responseData, ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
-            var result = new DataTableActionResult<T>(responseData);
-
-            var dictionaryTransform = DataTableTypeInfoModel<T>.ToDictionary(responseOption);
-
-            result.Data =
-                result
-                    .Data
-                    .Transform(dictionaryTransform)
-                    .Transform<Dictionary<string, object>, Dictionary<string, object>>(StringTransformers.StringifyValues);
-
-            result.Data = ApplyOutputRules(result.Data, responseOption);
-
-            return result;
-        }
-
-        private static DataTableResponseDataModel<T> ApplyOutputRules<T>(DataTableResponseDataModel<T> responseData, ResponseOptionModel<T> responseOption) where T : class, new()
-        {
-            responseOption = responseOption
-                             ?? new ResponseOptionModel<T>
-                             {
-                                 ArrayOutputType = ArrayOutputType.BiDimensionalArray
-                             };
-
-            DataTableResponseDataModel<T> outputData = responseData;
-
-            switch (responseOption.ArrayOutputType)
-            {
-                case ArrayOutputType.ArrayOfObjects:
-                    {
-                        // Nothing is needed
-                        break;
-                    }
-                default:
-                    outputData = responseData.Transform<Dictionary<string, object>, object[]>(d => d.Values.ToArray());
-                    break;
-            }
-
-            return outputData;
+            return DataTableActionResultHelper.Create(responseData, responseOption);
         }
     }
 }

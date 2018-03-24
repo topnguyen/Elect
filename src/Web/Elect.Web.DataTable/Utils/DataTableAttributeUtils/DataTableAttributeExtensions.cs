@@ -18,15 +18,16 @@
 #endregion License
 
 using Elect.Web.DataTable.Attributes;
+using Elect.Web.DataTable.Models.Options;
 using Elect.Web.DataTable.Utils.TypeUtils;
 
 namespace Elect.Web.DataTable.Utils.DataTableAttributeUtils
 {
-    public static class DataTableAttributeExtensions
+    internal static class DataTableAttributeExtensions
     {
-        public static string ToDisplayName(this DataTableAttribute attribute)
+        internal static string GetDisplayName(this DataTableAttribute attribute)
         {
-            if (string.IsNullOrWhiteSpace(attribute.DisplayName) || (attribute.DisplayNameResourceType == null /*&& DataTableGlobalConfig.SharedResourceType == null*/))
+            if (string.IsNullOrWhiteSpace(attribute.DisplayName) || (attribute.DisplayNameResourceType == null && ElectDataTableOptions.Instance.SharedResourceType == null))
             {
                 return attribute.DisplayName;
             }

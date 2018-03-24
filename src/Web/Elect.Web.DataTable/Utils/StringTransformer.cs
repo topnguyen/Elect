@@ -18,6 +18,7 @@
 #endregion License
 
 using Elect.Core.TypeUtils;
+using Elect.Web.DataTable.Models.Options;
 using Elect.Web.DataTable.Utils.EnumUtils;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace Elect.Web.DataTable.Processing.Response
+namespace Elect.Web.DataTable.Utils
 {
-    public class StringTransformers
+    internal class StringTransformer
     {
         internal static object GetStringedValue(Type type, object value)
         {
@@ -42,7 +43,7 @@ namespace Elect.Web.DataTable.Processing.Response
                 if (type.GetNotNullableType().IsEnum)
                 {
                     var t = type.GetNotNullableType();
-                    Enum enumObj = (Enum)TypeDescriptor.GetConverter(t).ConvertFrom(value);
+                    Enum enumObj = (Enum)TypeDescriptor.GetConverter(t).ConvertFrom(value.ToString());
                     stringedValue = enumObj.GetDisplayName() ?? enumObj.GetDescription() ?? enumObj.GetName();
                 }
                 else
@@ -55,16 +56,16 @@ namespace Elect.Web.DataTable.Processing.Response
             return stringedValue;
         }
 
-        private static readonly Dictionary<Type, StringTransformer> Transformers = new Dictionary<Type, StringTransformer>();
+        private static readonly Dictionary<Type, Transformer> Transformers = new Dictionary<Type, Transformer>();
 
-        public delegate object GuardedValueTransformer<in TVal>(TVal value);
+        internal delegate object GuardedValueTransformer<in TVal>(TVal value);
 
-        public delegate object StringTransformer(Type type, object value);
+        internal delegate object Transformer(Type type, object value);
 
-        static StringTransformers()
+        static StringTransformer()
         {
-            //RegisterFilter<DateTimeOffset>(dateTimeOffset => dateTimeOffset.ToString(DataTableGlobalConfig.DateTimeFormat));
-            //RegisterFilter<DateTime>(dateTime => dateTime.ToString(DataTableGlobalConfig.DateTimeFormat));
+            RegisterFilter<DateTimeOffset>(dateTimeOffset => dateTimeOffset.ToString(ElectDataTableOptions.Instance.DateTimeFormat));
+            RegisterFilter<DateTime>(dateTime => dateTime.ToString(ElectDataTableOptions.Instance.DateTimeFormat));
             RegisterFilter<IEnumerable<string>>(s => s.ToArray());
             RegisterFilter<IEnumerable<int>>(s => s.ToArray());
             RegisterFilter<IEnumerable<long>>(s => s.ToArray());
@@ -76,7 +77,7 @@ namespace Elect.Web.DataTable.Processing.Response
             RegisterFilter<object>(o => (o ?? string.Empty).ToString());
         }
 
-        public static void RegisterFilter<TVal>(GuardedValueTransformer<TVal> filter)
+        internal static void RegisterFilter<TVal>(GuardedValueTransformer<TVal> filter)
         {
             if (Transformers.ContainsKey(typeof(TVal)))
                 Transformers[typeof(TVal)] = Guard(filter);
@@ -84,12 +85,12 @@ namespace Elect.Web.DataTable.Processing.Response
                 Transformers.Add(typeof(TVal), Guard(filter));
         }
 
-        private static StringTransformer Guard<TVal>(GuardedValueTransformer<TVal> transformer)
+        private static Transformer Guard<TVal>(GuardedValueTransformer<TVal> transformer)
         {
             return (t, v) => !typeof(TVal).GetTypeInfo().IsAssignableFrom(t) ? null : transformer((TVal)v);
         }
 
-        public static Dictionary<string, object> StringifyValues(Dictionary<string, object> dict)
+        internal static Dictionary<string, object> StringifyValues(Dictionary<string, object> dict)
         {
             var output = new Dictionary<string, object>();
 

@@ -20,7 +20,7 @@
 using Elect.Core.TypeUtils;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
-using Elect.Web.DataTable.Processing.Request;
+using Elect.Web.DataTable.Processing.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,23 +28,9 @@ using System.Linq.Dynamic.Core;
 
 namespace Elect.Web.DataTable.Utils.DataTableParamModelUtils
 {
-    public class DataTableParamModelHelper
+    internal class DataTableParamModelHelper
     {
-        private static readonly List<ReturnedFilteredQueryForType> Filters = new List<ReturnedFilteredQueryForType>
-        {
-            Guard(IsBoolType, TypeFilter.BoolFilter),
-            Guard(IsDateTimeType, TypeFilter.DateTimeFilter),
-            Guard(IsDateTimeOffsetType, TypeFilter.DateTimeOffsetFilter),
-            Guard(IsNumericType, TypeFilter.NumericFilter),
-            Guard(IsEnumType, TypeFilter.EnumFilter),
-            Guard(arg => arg.Type == typeof (string), TypeFilter.StringFilter),
-        };
-
-        public delegate string GuardedFilter(string query, string columnName, DataTablePropertyInfoModel columnType, List<object> parametersForLinqQuery);
-
-        private delegate string ReturnedFilteredQueryForType(string query, string columnName, DataTablePropertyInfoModel columnType, List<object> parametersForLinqQuery);
-
-        public IQueryable<T> ApplyFiltersAndSort<T>(DataTableParamModel dtParameters, IQueryable<T> data, DataTablePropertyInfoModel[] columns)
+        internal IQueryable<T> ApplyFiltersAndSort<T>(DataTableParamModel dtParameters, IQueryable<T> data, DataTablePropertyInfoModel[] columns)
         {
             if (!string.IsNullOrEmpty(dtParameters.Search))
             {
@@ -117,15 +103,29 @@ namespace Elect.Web.DataTable.Utils.DataTableParamModelUtils
             return columns[i];
         }
 
-        public static void RegisterFilter<T>(GuardedFilter filter)
+        internal static void RegisterFilter<T>(GuardedFilter filter)
         {
             Filters.Add(Guard(arg => arg is T, filter));
         }
+
+        private static readonly List<ReturnedFilteredQueryForType> Filters = new List<ReturnedFilteredQueryForType>
+        {
+            Guard(IsBoolType, Filter.BoolFilter),
+            Guard(IsDateTimeType, Filter.DateTimeFilter),
+            Guard(IsDateTimeOffsetType, Filter.DateTimeOffsetFilter),
+            Guard(IsNumericType, Filter.NumericFilter),
+            Guard(IsEnumType, Filter.EnumFilter),
+            Guard(arg => arg.Type == typeof (string), Filter.StringFilter),
+        };
 
         private static ReturnedFilteredQueryForType Guard(Func<DataTablePropertyInfoModel, bool> guard, GuardedFilter filter)
         {
             return (q, c, t, p) => !guard(t) ? null : filter(q, c, t, p);
         }
+
+        internal delegate string GuardedFilter(string query, string columnName, DataTablePropertyInfoModel columnType, List<object> parametersForLinqQuery);
+
+        private delegate string ReturnedFilteredQueryForType(string query, string columnName, DataTablePropertyInfoModel columnType, List<object> parametersForLinqQuery);
 
         private static string GetFilterClause(string query, DataTablePropertyInfoModel column, List<object> parametersForLinqQuery)
         {

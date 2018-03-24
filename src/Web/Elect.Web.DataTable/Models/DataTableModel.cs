@@ -37,6 +37,9 @@ namespace Elect.Web.DataTable.Models
 
         public bool IsShowPageSize { get; set; } = true;
 
+        /// <summary>
+        ///     Show global search input, default is true. 
+        /// </summary>
         public bool IsShowGlobalSearchInput { get; set; } = true;
 
         public bool IsUseTableTools { get; set; } = true;
@@ -46,10 +49,13 @@ namespace Elect.Web.DataTable.Models
         public bool IsUseColumnFilter { get; set; } = false;
 
         /// <summary>
-        ///     Enable to make the search fast and helpful for UI render 
+        ///     Enable to make the search fast and helpful for UI render, default is true. 
         /// </summary>
         public bool IsDeferRender { get; set; } = true;
 
+        /// <summary>
+        ///     Table class, default is "table table-hover dataTable table-striped". 
+        /// </summary>
         public string TableClass { get; set; } = "table table-hover dataTable table-striped";
 
         public string Id { get; set; }

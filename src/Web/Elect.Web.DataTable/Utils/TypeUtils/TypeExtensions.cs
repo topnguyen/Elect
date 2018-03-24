@@ -24,9 +24,9 @@ using System.Collections.Generic;
 
 namespace Elect.Web.DataTable.Utils.TypeUtils
 {
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
-        public static ColumnModel[] GetColumns(this Type t)
+        internal static ColumnModel[] GetColumns(this Type t)
         {
             var listPropertyInfo = DataTableTypeInfoModelHelper.GetProperties(t);
 
@@ -46,7 +46,7 @@ namespace Elect.Web.DataTable.Utils.TypeUtils
             return columnList.ToArray();
         }
 
-        public static ColumnModel[] GetColumns<TResult>()
+        internal static ColumnModel[] GetColumns<TResult>()
         {
             return GetColumns(typeof(TResult));
         }

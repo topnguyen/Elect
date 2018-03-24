@@ -27,25 +27,19 @@ using System.Linq;
 
 namespace Elect.Web.DataTable.Models
 {
-    public static class DataTableTypeInfoModel<T>
+    public class DataTableTypeInfoModel<T>
     {
-        public static DataTablePropertyInfoModel[] Properties { get; }
+        public DataTablePropertyInfoModel[] Properties => DataTableTypeInfoModelHelper.GetProperties(typeof(T));
 
-        internal static DataTablePropertyInfoModel RowId { get; }
+        public DataTablePropertyInfoModel RowId => Properties.SingleOrDefault(x => x.Attributes.Any(y => y is DataTableRowIdAttribute));
 
-        static DataTableTypeInfoModel()
-        {
-            Properties = DataTableTypeInfoModelHelper.GetProperties(typeof(T));
-
-            RowId = Properties.SingleOrDefault(x => x.Attributes.Any(y => y is DataTableRowIdAttribute));
-        }
-
-        public static Dictionary<string, object> ToDictionary(T row)
+        public Dictionary<string, object> ToDictionary(T value)
         {
             var dictionary = new Dictionary<string, object>();
+
             foreach (var pi in Properties)
             {
-                dictionary[pi.PropertyInfo.Name] = pi.PropertyInfo.GetValue(row, null);
+                dictionary[pi.PropertyInfo.Name] = pi.PropertyInfo.GetValue(value, null);
             }
 
             if (RowId == null)
@@ -53,7 +47,7 @@ namespace Elect.Web.DataTable.Models
                 return dictionary;
             }
 
-            dictionary[PropertyConstants.RowId] = RowId.PropertyInfo.GetValue(row, null);
+            dictionary[PropertyConstants.RowId] = RowId.PropertyInfo.GetValue(value, null);
 
             if (!RowId.Attributes.OfType<DataTableRowIdAttribute>().First().EmitAsColumnName)
             {
@@ -63,7 +57,7 @@ namespace Elect.Web.DataTable.Models
             return dictionary;
         }
 
-        public static Func<T, Dictionary<string, object>> ToDictionary(ResponseOptionModel<T> options = null)
+        public Func<T, Dictionary<string, object>> ToFuncDictionary(ResponseOptionModel<T> options = null)
         {
             if (options?.DtRowId == null)
             {

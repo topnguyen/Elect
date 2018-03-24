@@ -29,36 +29,36 @@ using System.Linq;
 
 namespace Elect.Web.DataTable.Utils.DataTableModelUtils
 {
-    public static class DataTableModelExtensions
+    internal static class DataTableModelExtensions
     {
-        public static string GetColumnsJsonString(this DataTableModel model)
+        internal static string GetColumnsJsonString(this DataTableModel model)
         {
             return ConvertColumnsToJson(model.Columns.ToArray());
         }
 
-        public static string GetColumnSortingString(this DataTableModel model)
+        internal static string GetColumnSortingString(this DataTableModel model)
         {
             return ConvertColumnSortingToJson(model.Columns.ToArray());
         }
 
-        public static JToken GetSearchColumns(this DataTableModel model)
+        internal static JToken GetSearchColumns(this DataTableModel model)
         {
             var initialSearches = model.Columns.Select(c => c.IsSearchable & c.SearchColumns != null ? c.SearchColumns : null as object).ToArray();
             return new JArray(initialSearches);
         }
 
-        public static ColumnFilterModel<DataTableModel> FilterOn(this DataTableModel model, string columnName, object jsOptions)
+        internal static ColumnFilterModel<DataTableModel> FilterOn(this DataTableModel model, string columnName, object jsOptions)
         {
             IDictionary<string, object> optionsDict = jsOptions.ToDictionary();
             return model.FilterOn(columnName, optionsDict);
         }
 
-        public static ColumnFilterModel<DataTableModel> FilterOn(this DataTableModel model, string columnName, IDictionary<string, object> filterOptions)
+        internal static ColumnFilterModel<DataTableModel> FilterOn(this DataTableModel model, string columnName, IDictionary<string, object> filterOptions)
         {
             return model.FilterOn(columnName, filterOptions, null);
         }
 
-        public static ColumnFilterModel<DataTableModel> FilterOn(this DataTableModel model, string columnName, object jsOptions, object jsInitialSearchColumns)
+        internal static ColumnFilterModel<DataTableModel> FilterOn(this DataTableModel model, string columnName, object jsOptions, object jsInitialSearchColumns)
         {
             IDictionary<string, object> optionsDict = jsOptions.ToDictionary();
 
@@ -67,7 +67,7 @@ namespace Elect.Web.DataTable.Utils.DataTableModelUtils
             return model.FilterOn(columnName, optionsDict, initialSearchColsDict);
         }
 
-        public static ColumnFilterModel<DataTableModel> FilterOn(this DataTableModel model, string columnName, IDictionary<string, object> filterOptions, IDictionary<string, object> jsInitialSearchColumns)
+        internal static ColumnFilterModel<DataTableModel> FilterOn(this DataTableModel model, string columnName, IDictionary<string, object> filterOptions, IDictionary<string, object> jsInitialSearchColumns)
         {
             var columns = model.Columns.Single(c => c.Name == columnName);
 

@@ -23,9 +23,9 @@ using System.Reflection;
 
 namespace Elect.Web.DataTable.Utils.ExpressionUtils
 {
-    public static class ExpressionExtensions
+    internal static class ExpressionExtensions
     {
-        public static MethodInfo MethodInfo(this Expression method)
+        internal static MethodInfo MethodInfo(this Expression method)
         {
             if (!(method is LambdaExpression lambda)) throw new ArgumentNullException(nameof(method));
 

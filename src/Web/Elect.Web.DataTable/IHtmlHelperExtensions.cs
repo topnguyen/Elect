@@ -29,7 +29,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Elect.Web.DataTable.Utils.IHtmlHelperUtils
+namespace Elect.Web.DataTable
 {
     public static class IHtmlHelperExtensions
     {

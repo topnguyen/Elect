@@ -20,8 +20,10 @@
 using Elect.Web.DataTable.Attributes;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Constants;
+using Elect.Web.DataTable.Models.Response;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -35,13 +37,24 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
         {
             return PropertiesCache.GetOrAdd(type, t =>
             {
-                var info = from propertyInfo in t.GetProperties()
-                           where propertyInfo.GetCustomAttribute<DataTableIgnoreAttribute>() == null
-                           let attributes = propertyInfo.GetCustomAttributes().OfType<DataTableBaseAttribute>().ToArray()
-                           orderby attributes.OfType<DataTableAttribute>().Select(a => a.Order as int?).SingleOrDefault() ?? ConfigConstants.DefaultOrder
-                           select new DataTablePropertyInfoModel(propertyInfo, attributes);
+                var listDataTablePropertyInfo = new List<DataTablePropertyInfoModel>();
 
-                return info.ToArray();
+                foreach (var propertyInfo in t.GetProperties())
+                {
+                    if (propertyInfo.GetCustomAttribute<DataTableIgnoreAttribute>() != null)
+                    {
+                        // Ignore Property have DataTableIgnoreAttribute
+                        continue;
+                    }
+
+                    var attributes = propertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
+
+                    var dataTablePropertyInfo = new DataTablePropertyInfoModel(propertyInfo, attributes);
+
+                    listDataTablePropertyInfo.Add(dataTablePropertyInfo);
+                }
+
+                return listDataTablePropertyInfo.ToArray();
             });
         }
     }

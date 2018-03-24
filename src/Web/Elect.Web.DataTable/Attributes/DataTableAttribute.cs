@@ -58,7 +58,7 @@ namespace Elect.Web.DataTable.Attributes
 
         public override void ApplyTo(ColumnModel columnModel, PropertyInfo propertyInfo)
         {
-            columnModel.DisplayName = this.ToDisplayName() ?? columnModel.Name;
+            columnModel.DisplayName = this.GetDisplayName() ?? columnModel.Name;
             columnModel.IsSortable = IsSortable;
             columnModel.IsVisible = IsVisible;
             columnModel.IsSearchable = IsSearchable;
