@@ -17,9 +17,10 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Web.DataTable.DataTableParamModelUtils;
+using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
+using Elect.Web.DataTable.Utils.DataTableParamModelUtils;
 using System;
 using System.Linq;
 
@@ -33,7 +34,7 @@ namespace Elect.Web.DataTable.Processing.Response
 
             var filters = new DataTableParamModelHelper();
 
-            var outputProperties = DataTableTypeInfo<T>.Properties;
+            var outputProperties = DataTableTypeInfoModel<T>.Properties;
 
             var filteredData = filters.ApplyFiltersAndSort(dataTableParamModel, data, outputProperties);
 

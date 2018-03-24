@@ -17,25 +17,21 @@
 //--------------------------------------------------
 #endregion License
 
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using System;
-using System.Linq;
 using Elect.Web.DataTable.Attributes;
+using Elect.Web.DataTable.Utils.TypeUtils;
 
-namespace Elect.Web.DataTable.DataTableAttributeUtils
+namespace Elect.Web.DataTable.Utils.DataTableAttributeUtils
 {
     public static class DataTableAttributeExtensions
     {
         public static string ToDisplayName(this DataTableAttribute attribute)
         {
-            if (string.IsNullOrWhiteSpace(attribute.DisplayName) || (attribute.DisplayNameResourceType == null && DataTableGlobalConfig.SharedResourceType == null))
+            if (string.IsNullOrWhiteSpace(attribute.DisplayName) || (attribute.DisplayNameResourceType == null /*&& DataTableGlobalConfig.SharedResourceType == null*/))
             {
                 return attribute.DisplayName;
             }
 
-            var value = ResourceHelper.GetResourceLookup<string>(attribute.DisplayNameResourceType, attribute.DisplayName);
+            var value = TypeHelper.GetResourceLookup<string>(attribute.DisplayNameResourceType, attribute.DisplayName);
 
             if (string.IsNullOrWhiteSpace(value))
             {

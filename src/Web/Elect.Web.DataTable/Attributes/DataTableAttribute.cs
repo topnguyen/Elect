@@ -19,6 +19,7 @@
 
 using Elect.Web.DataTable.Models.Column;
 using Elect.Web.DataTable.Models.Constants;
+using Elect.Web.DataTable.Utils.DataTableAttributeUtils;
 using System;
 using System.Linq;
 using System.Reflection;

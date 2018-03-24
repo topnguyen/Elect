@@ -18,9 +18,9 @@
 #endregion License
 
 using Elect.Web.DataTable.Attributes;
-using Elect.Web.DataTable.DataTableTypeInfoModelUtils;
 using Elect.Web.DataTable.Models.Constants;
 using Elect.Web.DataTable.Models.Response;
+using Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;

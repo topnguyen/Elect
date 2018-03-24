@@ -17,9 +17,9 @@
 //--------------------------------------------------
 #endregion License
 
-using System.Collections.Generic;
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Elect.Web.DataTable.Models.Request
 {

@@ -18,13 +18,14 @@
 #endregion License
 
 using Elect.Web.DataTable.Attributes;
+using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Constants;
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 
-namespace Elect.Web.DataTable.DataTableTypeInfoModelUtils
+namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
 {
     internal class DataTableTypeInfoModelHelper
     {

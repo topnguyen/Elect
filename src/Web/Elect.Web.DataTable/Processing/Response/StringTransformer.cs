@@ -18,7 +18,7 @@
 #endregion License
 
 using Elect.Core.TypeUtils;
-using Elect.Web.DataTable.EnumUtils;
+using Elect.Web.DataTable.Utils.EnumUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,8 +63,8 @@ namespace Elect.Web.DataTable.Processing.Response
 
         static StringTransformers()
         {
-            RegisterFilter<DateTimeOffset>(dateTimeOffset => dateTimeOffset.ToString(DataTableGlobalConfig.DateTimeFormat));
-            RegisterFilter<DateTime>(dateTime => dateTime.ToString(DataTableGlobalConfig.DateTimeFormat));
+            //RegisterFilter<DateTimeOffset>(dateTimeOffset => dateTimeOffset.ToString(DataTableGlobalConfig.DateTimeFormat));
+            //RegisterFilter<DateTime>(dateTime => dateTime.ToString(DataTableGlobalConfig.DateTimeFormat));
             RegisterFilter<IEnumerable<string>>(s => s.ToArray());
             RegisterFilter<IEnumerable<int>>(s => s.ToArray());
             RegisterFilter<IEnumerable<long>>(s => s.ToArray());

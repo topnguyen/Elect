@@ -52,3 +52,4 @@ namespace Elect.Web.DataTable.Models.Response
             return data;
         }
     }
+}

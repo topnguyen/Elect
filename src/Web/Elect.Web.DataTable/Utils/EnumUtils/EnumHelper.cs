@@ -17,15 +17,15 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.TypeUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using Elect.Core.TypeUtils;
 
-namespace Elect.Web.DataTable.EnumUtils
+namespace Elect.Web.DataTable.Utils.EnumUtils
 {
     public static class EnumHelper
     {
