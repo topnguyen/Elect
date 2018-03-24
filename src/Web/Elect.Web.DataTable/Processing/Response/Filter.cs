@@ -6,28 +6,31 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> TypeFilter.cs </Name>
+//         <Name> Filter.cs </Name>
 //         <Created> 23/03/2018 4:39:52 PM </Created>
 //         <Key> 5b8c7128-8c70-43fd-b09f-7301ea6a1191 </Key>
 //     </File>
 //     <Summary>
-//         TypeFilter.cs is a part of Elect
+//         Filter.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.DateTimeUtils;
 using Elect.Core.TypeUtils;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Constants;
+using Elect.Web.DataTable.Models.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Reflection;
 
-namespace Elect.Web.DataTable.Processing.Request
+namespace Elect.Web.DataTable.Processing.Response
 {
-    internal static class TypeFilter
+    internal static class Filter
     {
         public static string NumericFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
         {
@@ -374,29 +377,27 @@ namespace Elect.Web.DataTable.Processing.Request
         {
             value = string.IsNullOrWhiteSpace(value) ? string.Empty : value;
 
-            //if (DataTableGlobalConfig.RequestDateTimeFormatMode == DateTimeFormatType.Auto && DateTimeOffset.TryParse(value, out var result))
-            //{
-            //    result = result.DateTime.WithTimeZone(DataTableGlobalConfig.DateTimeTimeZone);
+            if (ElectDataTableOptions.Instance.RequestDateTimeFormatType == DateTimeFormatType.Auto && DateTimeOffset.TryParse(value, out var result))
+            {
+                result = result.DateTime.WithTimeZone(ElectDataTableOptions.Instance.DateTimeTimeZone);
 
-            //    return result;
-            //}
+                return result;
+            }
 
-            //if (DateTime.TryParseExact(value, DataTableGlobalConfig.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
-            //{
-            //    result = dateTime;
-            //}
-            //else if (DateTime.TryParseExact(value, DataTableGlobalConfig.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
-            //{
-            //    result = date;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
+            if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
+            {
+                result = dateTime;
+            }
+            else if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+            {
+                result = date;
+            }
+            else
+            {
+                return null;
+            }
 
-            //result = result.WithTimeZone(DataTableGlobalConfig.DateTimeTimeZone);
-
-            DateTimeOffset.TryParse(value, out var result); // TODO temp
+            result = result.DateTime.WithTimeZone(ElectDataTableOptions.Instance.DateTimeTimeZone);
 
             return result;
         }

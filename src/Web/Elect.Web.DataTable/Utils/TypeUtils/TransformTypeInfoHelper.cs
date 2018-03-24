@@ -24,12 +24,12 @@ using System.Reflection;
 
 namespace Elect.Web.DataTable.Utils.TypeUtils
 {
-    public class TransformTypeInfoHelper
+    internal class TransformTypeInfoHelper
     {
-        public static Dictionary<string, object> MergeTransformValuesIntoDictionary<TInput, TTransform>(Func<TInput, TTransform> transformInput, TInput input)
+        internal static Dictionary<string, object> MergeTransformValuesIntoDictionary<T, TTransform>(Func<T, TTransform> transformInput, T input)
         {
             // Get the the properties from the input as a dictionary
-            var dict = DataTableTypeInfoModel<TInput>.ToDictionary(input);
+            var dict = new DataTableTypeInfoModel<T>().ToDictionary(input);
 
             // Get the transform object
             var transform = transformInput(input);

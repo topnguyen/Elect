@@ -1,0 +1,57 @@
+﻿@using Elect.Web.DataTable
+@using Elect.Web.DataTable.Models.Column
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+<div class="page-header">
+    <h1 class="page-title">DataTables</h1>
+</div>
+<div class="page-content">
+    <div class="panel">
+        <div class="panel-body">
+
+            @{
+                // Get model
+                var model = Html.DataTableModel(Guid.NewGuid().ToString("N"), (TestApiController controller) => controller.GetDataTable(null));
+
+                // Global Configuration
+                model.IsDevelopMode = true;
+                model.IsUseColumnFilter = true;
+                model.PageSize = 10;
+                model.BeforeSendFunctionName = "beforeSendHandle";
+
+                // Additional Columns
+                model.Columns.Add(new ColumnModel("Action", typeof(string))
+                {
+                    DisplayName = "Action Col",
+                    IsSearchable = false,
+                    IsSortable = false,
+                    MRenderFunction = "actionColRender"
+                });
+
+                // Render Functions
+                model.Columns.Single(x => x.Name == nameof(TestModel.Property)).MRenderFunction = "<js function name, param same with actionColRender>";
+            }
+
+            @await Html.PartialAsync("_DataTableHtml.cshtml", model).ConfigureAwait(true)
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @await Html.PartialAsync("_DataTableScript.cshtml", model).ConfigureAwait(true)
+
+    <script type="text/javascript">
+        function beforeSendHandle(data) {
+            data.push({
+                name: "newData",
+                value: "test modify data before send"
+            });
+
+            console.log("before send handle: ", data);
+        }
+
+        function actionColRender(data, type, row) {
+            return "<button class='btn btn-primary'>" + row[2] + "</button>";
+        }
+    </script>s
+}

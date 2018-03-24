@@ -20,7 +20,7 @@
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
 
-namespace Elect.Web.DataTable.Models.Language
+namespace Elect.Web.DataTable.Models.Menu
 {
     public class PaginateModel
     {

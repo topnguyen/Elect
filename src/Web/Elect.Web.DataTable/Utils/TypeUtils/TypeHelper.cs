@@ -17,16 +17,17 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Web.DataTable.Models.Options;
 using System;
 using System.Reflection;
 
 namespace Elect.Web.DataTable.Utils.TypeUtils
 {
-    public class TypeHelper
+    internal class TypeHelper
     {
-        public static T GetResourceLookup<T>(Type resourceType, string resourceName)
+        internal static T GetResourceLookup<T>(Type resourceType, string resourceName)
         {
-            //resourceType = resourceType ?? DataTableGlobalConfig.SharedResourceType;
+            resourceType = resourceType ?? ElectDataTableOptions.Instance.SharedResourceType;
 
             if (resourceType == null || resourceName == null)
             {

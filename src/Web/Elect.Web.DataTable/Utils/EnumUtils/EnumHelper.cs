@@ -27,9 +27,9 @@ using System.Reflection;
 
 namespace Elect.Web.DataTable.Utils.EnumUtils
 {
-    public static class EnumHelper
+    internal static class EnumHelper
     {
-        public static string GetDisplayName(this Enum value)
+        internal static string GetDisplayName(this Enum value)
         {
             Type enumType = value.GetType();
 
@@ -47,7 +47,7 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
             return !string.IsNullOrWhiteSpace(displayName) ? displayName : null;
         }
 
-        public static string GetDescription(this Enum value)
+        internal static string GetDescription(this Enum value)
         {
             Type enumType = value.GetType();
 
@@ -70,7 +70,7 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
             return !string.IsNullOrWhiteSpace(description) ? description : null;
         }
 
-        public static string GetName(this Enum value)
+        internal static string GetName(this Enum value)
         {
             Type enumType = value.GetType();
 
@@ -86,12 +86,12 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string GetLabel(this Enum value)
+        internal static string GetLabel(this Enum value)
         {
             return value.GetDisplayName() ?? value.GetDescription() ?? value.GetName();
         }
 
-        public static List<string> GetListLabel(this Type type)
+        internal static List<string> GetListLabel(this Type type)
         {
             var t = type.GetNotNullableType();
 
@@ -116,7 +116,7 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
         /// <param name="type"></param>
         /// <returns></returns>
         /// <remarks> The method support both: Enum and Nullable Enum Type. </remarks>
-        public static EnumValueLabelModel[] GetEnumValueLabelPair(this Type type)
+        internal static EnumValueLabelModel[] GetEnumValueLabelPair(this Type type)
         {
             var t = type.GetNotNullableType();
 
@@ -147,17 +147,17 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
             return result.ToArray();
         }
 
-        public static T ToEnum<T>(this string value)
+        internal static T ToEnum<T>(this string value)
         {
             return (T)Enum.Parse(typeof(T), value, true);
         }
     }
 
     // ReSharper disable InconsistentNaming
-    public class EnumValueLabelModel
+    internal class EnumValueLabelModel
     {
-        public string Value { get; set; }
+        internal string Value { get; set; }
 
-        public string Label { get; set; }
+        internal string Label { get; set; }
     }
 }

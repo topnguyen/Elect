@@ -27,7 +27,5 @@ namespace Elect.Web.DataTable.Models.Constants
         public const string TrueLower = "true";
         public const string False = "False";
         public const string FalseLower = "false";
-        public const string Yes = "Yes";
-        public const string No = "No";
     }
 }

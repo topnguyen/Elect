@@ -19,13 +19,14 @@
 
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
-using Elect.Web.DataTable.Processing.Response;
+using Elect.Web.DataTable.Processing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Elect.Web.DataTable.Processing.Response;
 
 namespace Elect.Web.DataTable.Models
 {
@@ -46,7 +47,9 @@ namespace Elect.Web.DataTable.Models
         public override Task ExecuteResultAsync(ActionContext context)
         {
             if (context == null)
+            {
                 throw new ArgumentNullException(nameof(context));
+            }
 
             HttpResponse response = context.HttpContext.Response;
 

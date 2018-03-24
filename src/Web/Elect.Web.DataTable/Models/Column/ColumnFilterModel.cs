@@ -58,12 +58,12 @@ namespace Elect.Web.DataTable.Models.Column
                     new
                     {
                         value = DataConstants.True,
-                        label = DataConstants.Yes
+                        label = "Yes" // TODO need support localize
                     },
                     new
                     {
                         value = DataConstants.False,
-                        label = DataConstants.No
+                        label = "No" // TODO need support localize
                     }
                 };
             }

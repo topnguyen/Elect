@@ -21,7 +21,6 @@ using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Utils.DataTableParamModelUtils;
-using System;
 using System.Linq;
 
 namespace Elect.Web.DataTable.Processing.Response
@@ -30,11 +29,13 @@ namespace Elect.Web.DataTable.Processing.Response
     {
         public static DataTableResponseDataModel<T> GetDataTableResponse<T>(this IQueryable<T> data, DataTableParamModel dataTableParamModel) where T : class, new()
         {
-            var totalRecords = data.Count(); // annoying this, as it causes an extra evaluation..
+            // Count or LongCount is very annoying cause an extra evaluation.
+
+            var totalRecords = data.Count();
 
             var filters = new DataTableParamModelHelper();
 
-            var outputProperties = DataTableTypeInfoModel<T>.Properties;
+            var outputProperties = new DataTableTypeInfoModel<T>().Properties;
 
             var filteredData = filters.ApplyFiltersAndSort(dataTableParamModel, data, outputProperties);
 
@@ -53,16 +54,6 @@ namespace Elect.Web.DataTable.Processing.Response
             };
 
             return result;
-        }
-
-        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseDataModel<T> responseData, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
-        {
-            return DataTableActionResult.Create(responseData, transform, responseOption);
-        }
-
-        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseDataModel<T> responseData, ResponseOptionModel<T> responseOption = null) where T : class, new()
-        {
-            return DataTableActionResult.Create(responseData, responseOption);
         }
     }
 }
