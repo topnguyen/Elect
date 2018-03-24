@@ -27,7 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Elect.Web.DataTable.DataTableModelUtils
+namespace Elect.Web.DataTable.Utils.DataTableModelUtils
 {
     public static class DataTableModelExtensions
     {

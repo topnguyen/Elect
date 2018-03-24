@@ -21,7 +21,7 @@ using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Elect.Web.DataTable.ExpressionUtils
+namespace Elect.Web.DataTable.Utils.ExpressionUtils
 {
     public static class ExpressionExtensions
     {

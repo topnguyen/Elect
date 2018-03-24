@@ -19,11 +19,11 @@
 
 using Elect.Core.TypeUtils;
 using Elect.Web.DataTable.Models.Constants;
+using Elect.Web.DataTable.Utils.EnumUtils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Elect.Web.DataTable.EnumUtils;
 
 namespace Elect.Web.DataTable.Models.Column
 {

@@ -17,12 +17,12 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Web.DataTable.DataTableTypeInfoModelUtils;
 using Elect.Web.DataTable.Models.Column;
+using Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils;
 using System;
 using System.Collections.Generic;
 
-namespace Elect.Web.DataTable.TypeUtils
+namespace Elect.Web.DataTable.Utils.TypeUtils
 {
     public static class TypeExtensions
     {

@@ -18,11 +18,11 @@
 #endregion License
 
 using Elect.Core.TypeUtils;
+using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Constants;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.Reflection;
 
 namespace Elect.Web.DataTable.Processing.Request
@@ -374,27 +374,29 @@ namespace Elect.Web.DataTable.Processing.Request
         {
             value = string.IsNullOrWhiteSpace(value) ? string.Empty : value;
 
-            if (DataTableGlobalConfig.RequestDateTimeFormatMode == DateTimeFormatType.Auto && DateTimeOffset.TryParse(value, out var result))
-            {
-                result = result.DateTime.WithTimeZone(DataTableGlobalConfig.DateTimeTimeZone);
+            //if (DataTableGlobalConfig.RequestDateTimeFormatMode == DateTimeFormatType.Auto && DateTimeOffset.TryParse(value, out var result))
+            //{
+            //    result = result.DateTime.WithTimeZone(DataTableGlobalConfig.DateTimeTimeZone);
 
-                return result;
-            }
+            //    return result;
+            //}
 
-            if (DateTime.TryParseExact(value, DataTableGlobalConfig.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
-            {
-                result = dateTime;
-            }
-            else if (DateTime.TryParseExact(value, DataTableGlobalConfig.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
-            {
-                result = date;
-            }
-            else
-            {
-                return null;
-            }
+            //if (DateTime.TryParseExact(value, DataTableGlobalConfig.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
+            //{
+            //    result = dateTime;
+            //}
+            //else if (DateTime.TryParseExact(value, DataTableGlobalConfig.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+            //{
+            //    result = date;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
 
-            result = result.WithTimeZone(DataTableGlobalConfig.DateTimeTimeZone);
+            //result = result.WithTimeZone(DataTableGlobalConfig.DateTimeTimeZone);
+
+            DateTimeOffset.TryParse(value, out var result); // TODO temp
 
             return result;
         }

@@ -20,7 +20,7 @@
 using Elect.Web.DataTable.Attributes;
 using System;
 
-namespace Elect.Web.DataTable
+namespace Elect.Web.DataTable.Models
 {
     public class DataTablePropertyInfoModel
     {
