@@ -140,5 +140,22 @@ namespace Elect.Core.ObjUtils
 
             return result;
         }
+
+        public static T ReplaceNullOrDefault<T>(T value, T newValue)
+        {
+            if (value == null)
+            {
+                value = newValue;
+            }
+            else
+            {
+                if (value.Equals(default(T)))
+                {
+                    value = newValue;
+                }
+            }
+
+            return value;
+        }
     }
 }
