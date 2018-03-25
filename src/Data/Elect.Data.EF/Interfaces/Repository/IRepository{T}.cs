@@ -18,11 +18,8 @@
 #endregion License
 
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Elect.Data.EF.Interfaces.Repository
 {
@@ -65,22 +62,6 @@ namespace Elect.Data.EF.Interfaces.Repository
         void Delete(T entity);
 
         void DeleteWhere(Expression<Func<T, bool>> predicate);
-
-        #endregion
-
-        #region Save
-
-        [DebuggerStepThrough]
-        int SaveChanges();
-
-        [DebuggerStepThrough]
-        int SaveChanges(bool acceptAllChangesOnSuccess);
-
-        [DebuggerStepThrough]
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-
-        [DebuggerStepThrough]
-        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
 
         #endregion
     }
