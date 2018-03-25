@@ -22,8 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Elect.Data.EF.Interfaces.Repository
 {
@@ -68,18 +66,6 @@ namespace Elect.Data.EF.Interfaces.Repository
         void Delete(TEntity entity, bool isPhysicalDelete = false);
 
         void DeleteWhere(Expression<Func<TEntity, bool>> predicate, bool isPhysicalDelete = false);
-
-        #endregion
-
-        #region Save
-
-        int SaveChanges();
-
-        int SaveChanges(bool acceptAllChangesOnSuccess);
-
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-
-        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
 
         #endregion
     }

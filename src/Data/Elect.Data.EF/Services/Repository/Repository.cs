@@ -25,8 +25,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Elect.Data.EF.Services.Repository
 {
@@ -175,30 +173,6 @@ namespace Elect.Data.EF.Services.Repository
 
             foreach (var entity in entities)
                 Delete(entity);
-        }
-
-        #endregion
-
-        #region Save
-
-        public virtual int SaveChanges()
-        {
-            return DbContext.SaveChanges();
-        }
-
-        public virtual int SaveChanges(bool acceptAllChangesOnSuccess)
-        {
-            return DbContext.SaveChanges(acceptAllChangesOnSuccess);
-        }
-
-        public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-        {
-            return DbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        public virtual Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
-        {
-            return DbContext.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
         #endregion

@@ -1,4 +1,7 @@
-﻿using Elect.Test.AspNetCore.Data;
+﻿using Elect.Data.EF.Interfaces.DbContext;
+using Elect.Data.EF.Interfaces.Repository;
+using Elect.Data.EF.Interfaces.UnitOfWork;
+using Elect.Test.AspNetCore.Data;
 using Elect.Test.AspNetCore.Models;
 using Elect.Test.AspNetCore.Services;
 using Elect.Web.Middlewares.CorsMiddleware;
@@ -23,17 +26,17 @@ namespace Elect.Test.AspNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddElectCors();
+            // Elect Unit of Work
+            services.AddScoped<IDbContext, ApplicationDbContext>();
+            services.AddScoped<IUnitOfWork, Data.UnitOfWork>();
+            services.AddScoped(typeof(IRepository<>), typeof(Data.Repository<>));
 
             services.AddMvc();
         }

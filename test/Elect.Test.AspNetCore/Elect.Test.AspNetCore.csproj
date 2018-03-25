@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Data\Elect.Data.EF\Elect.Data.EF.csproj" />
     <ProjectReference Include="..\..\src\Web\Elect.Web\Elect.Web.csproj" />
   </ItemGroup>
 
