@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web.HttpDetection", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web.DataTable", "src\Web\Elect.Web.DataTable\Elect.Web.DataTable.csproj", "{E4E82F9E-E75B-4C06-9338-9D19D0771802}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Web.Swagger", "src\Web\Elect.Web.Swagger\Elect.Web.Swagger.csproj", "{B92DFFA1-6B56-44A4-90C1-33AB23B3A0A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web.Swagger", "src\Web\Elect.Web.Swagger\Elect.Web.Swagger.csproj", "{B92DFFA1-6B56-44A4-90C1-33AB23B3A0A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
