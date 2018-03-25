@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Elect.Data.EF</id>
+    <title>Elect Entity Framework Core</title>
+    <description>Entity Framework Core support Unit of Work</description>
+    <summary>Entity Framework Core support Unit of Work.</summary>
+    <authors>Top Nguyen</authors>
+    <owners>topnguyen</owners>
+    <copyright>http://topnguyen.net</copyright>
+    <projectUrl>https://github.com/topnguyen/Elect</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+    <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>aspnetcore efcore elect topnguyen</tags>
+    <version>1.0.0</version>
+    <releaseNotes></releaseNotes>
+
+    <dependencies>
+        <dependency id="EF.Core" version="1.0.2" />
+        <dependency id="Microsoft.EntityFrameworkCore" version="2.0.2" />
+        <dependency id="Microsoft.EntityFrameworkCore.Relational" version="2.0.2" />
+    </dependencies>
+  </metadata>
+</package>
