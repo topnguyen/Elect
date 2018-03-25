@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>Elect.Core</id>
     <title>Elect Core</title>
@@ -13,7 +13,7 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore elect topnguyen</tags>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
@@ -26,4 +26,9 @@
         <dependency id="Newtonsoft.Json" version="11.0.2" />
     </dependencies>
   </metadata>
+
+  <files>
+    <file src="..\src\Elect.Core\bin\Debug\netstandard2.0\Elect.Core.dll" target="lib\netstandard2.0" />
+    <file src="..\src\Elect.Core\bin\Debug\netstandard2.0\Elect.Core.pdb" target="lib\netstandard2.0" />
+  </files>
 </package>
