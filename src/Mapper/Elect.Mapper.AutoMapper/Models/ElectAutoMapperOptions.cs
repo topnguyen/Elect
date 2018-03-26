@@ -23,7 +23,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Elect.Mapper.AutoMapper.Models
 {
@@ -32,7 +31,7 @@ namespace Elect.Mapper.AutoMapper.Models
         /// <summary>
         ///     List assembly folder to scan, default is application base path. 
         /// </summary>
-        public List<string> ListAssemblyFolderPath { get; set; } = new List<string> { Path.GetFullPath(PlatformServices.Default.Application.ApplicationBasePath) };
+        public List<string> ListAssemblyFolderPath { get; set; } = new List<string> { PlatformServices.Default.Application.ApplicationBasePath };
 
         /// <summary>
         ///     List assembly name to scan, default is application name. 
