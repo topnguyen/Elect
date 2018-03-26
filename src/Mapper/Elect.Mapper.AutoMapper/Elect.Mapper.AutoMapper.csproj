@@ -1,11 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!-- Information -->
   <PropertyGroup>
-    <Authors>Top Nguyen</Authors>
-    <Copyright>http://topnguyen.net</Copyright>
     <LangVersion>7.1</LangVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Nuget -->
+  <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>..\..\..\build\Mapper</PackageOutputPath>
+    <NuspecFile>..\..\..\nuspecs\Mapper\Elect.Mapper.AutoMapper.nuspec</NuspecFile>
   </PropertyGroup>
 
   <!-- Elect -->

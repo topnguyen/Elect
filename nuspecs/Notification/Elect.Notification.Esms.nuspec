@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Elect.Notification.Esms</id>
+    <title>Elect Esms Client Service</title>
+    <description>eSMS.vn client service.</description>
+    <summary>eSMS.vn client service.</summary>
+    <authors>Top Nguyen</authors>
+    <owners>topnguyen</owners>
+    <copyright>http://topnguyen.net</copyright>
+    <projectUrl>https://github.com/topnguyen/Elect</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+    <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>aspnetcore esms elect topnguyen</tags>
+    <version>1.0.1</version>
+    <releaseNotes></releaseNotes>
+
+    <dependencies>
+        <dependency id="Elect.Core" version="1.0.3" />
+        <dependency id="Newtonsoft.Json" version="11.0.2" />
+        <dependency id="Flurl.Http" version="2.2.1" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
+        <dependency id="Microsoft.Extensions.Options" version="2.0.1" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="..\..\src\Notification\Elect.Notification.Esms\bin\Debug\netstandard2.0\Elect.Notification.Esms.dll" target="lib\netstandard2.0" />
+    <file src="..\..\src\Notification\Elect.Notification.Esms\bin\Debug\netstandard2.0\Elect.Notification.Esms.pdb" target="lib\netstandard2.0" />
+  </files>
+</package>
