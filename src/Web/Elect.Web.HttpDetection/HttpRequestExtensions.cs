@@ -24,9 +24,9 @@ namespace Elect.Web.HttpDetection
 {
     public static class HttpRequestExtensions
     {
-        public static DeviceModel GetDeviceInformation(this HttpRequest request, DeviceModel device)
+        public static DeviceModel GetDeviceInformation(this HttpRequest request)
         {
-            return HttpRequestHelper.GetDeviceInformation(request, device);
+            return new DeviceModel(request);
         }
     }
 }

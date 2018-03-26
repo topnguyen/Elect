@@ -18,14 +18,11 @@
 #endregion License
 
 using Elect.Core.LinqUtils;
-using Elect.Data.IO;
 using Elect.Web.HttpDetection.Models;
-using Elect.Web.HttpUtils;
 using Elect.Web.Models;
-using MaxMind.GeoIP2;
 using Microsoft.AspNetCore.Http;
-using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Elect.Web.HttpDetection
 {
@@ -244,65 +241,21 @@ namespace Elect.Web.HttpDetection
             return agent;
         }
 
-        public static DeviceModel GetDeviceInformation(HttpRequest request, DeviceModel device)
+        public static bool IsCrawlerRequest(HttpRequest request)
         {
-            string geoDbRelativePath = Path.Combine(nameof(HttpUtils), nameof(HttpDetection), "GeoCity.mmdb");
+            var agent = GetUserAgent(request)?.ToLowerInvariant();
 
-            string geoDbAbsolutePath = PathHelper.GetFullPath(geoDbRelativePath);
-
-            if (!File.Exists(geoDbAbsolutePath))
+            if (string.IsNullOrWhiteSpace(agent))
             {
-                // Try to get folder in executed assembly
-                geoDbAbsolutePath = PathHelper.GetFullPath(geoDbRelativePath);
+                return false;
             }
 
-            if (!File.Exists(geoDbAbsolutePath))
+            if (Regex.IsMatch(agent, ElectHttpDetectionConstants.CrawlerAgentsRegex, RegexOptions.IgnoreCase))
             {
-                return null;
+                return true;
             }
 
-            using (var reader = new DatabaseReader(geoDbAbsolutePath))
-            {
-                var ipAddress = request.GetIpAddress();
-
-                if (!reader.TryCity(ipAddress, out var city))
-                {
-                    return device;
-                }
-
-                if (city == null)
-                {
-                    return device;
-                }
-
-                device.IpAddress = city.Traits.IPAddress;
-
-                // City
-                device.CityName = city.City.Names.TryGetValue("en", out var cityName) ? cityName : city.City.Name;
-                device.CityGeoNameId = city.City.GeoNameId;
-
-                // Country
-                device.CountryName = city.Country.Names.TryGetValue("en", out var countryName) ? countryName : city.Country.Name;
-                device.CountryGeoNameId = city.Country.GeoNameId;
-                device.CountryIsoCode = city.Country.IsoCode;
-
-                // Continent
-                device.ContinentName = city.Continent.Names.TryGetValue("en", out var continentName) ? continentName : city.Continent.Name;
-                device.ContinentGeoNameId = city.Continent.GeoNameId;
-                device.ContinentCode = city.Continent.Code;
-
-                // Location
-                device.Latitude = city.Location.Latitude;
-                device.Longitude = city.Location.Longitude;
-                device.AccuracyRadius = city.Location.AccuracyRadius;
-
-                device.PostalCode = city.Postal.Code;
-
-                // Time Zone
-                device.TimeZone = city.Location.TimeZone;
-
-                return device;
-            }
+            return false;
         }
     }
 }
