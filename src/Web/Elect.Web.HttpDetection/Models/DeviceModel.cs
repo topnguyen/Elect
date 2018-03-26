@@ -6,12 +6,12 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> DeviceModel.cs </Name>
+//         <Name> cs </Name>
 //         <Created> 21/03/2018 8:33:26 PM </Created>
 //         <Key> 39cdce2c-fb72-49f8-bc2f-1b2236866f93 </Key>
 //     </File>
 //     <Summary>
-//         DeviceModel.cs is a part of Elect
+//         cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
@@ -19,10 +19,14 @@
 
 using Elect.Core.SecurityUtils;
 using Elect.Core.StringUtils;
+using Elect.Data.IO;
+using Elect.Web.HttpUtils;
 using Elect.Web.Models;
+using MaxMind.GeoIP2;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -106,7 +110,8 @@ namespace Elect.Web.HttpDetection.Models
         public DeviceModel(HttpRequest request)
         {
             Type = GetDeviceType(request);
-            IsCrawler = GetIsCrawlerRequest(request);
+
+            IsCrawler = HttpRequestHelper.IsCrawlerRequest(request);
 
             // Marker
             MarkerFullInfo = HttpRequestHelper.GetMarkerFullInfo(request);
@@ -128,12 +133,13 @@ namespace Elect.Web.HttpDetection.Models
             BrowserName = HttpRequestHelper.GetBrowserName(request);
             BrowserVersion = HttpRequestHelper.GetBrowserVersion(request);
 
-            // Location
-            HttpRequestHelper.GetDeviceInformation(request, this);
+            // Location by GeoCity Database
+            UpdateLocation(request);
 
             // Others
             UserAgent = HttpRequestHelper.GetUserAgent(request);
-            DeviceHash = GetDeviceHash(this);
+
+            DeviceHash = GetDeviceHash();
         }
 
         private static DeviceType GetDeviceType(HttpRequest request)
@@ -166,30 +172,74 @@ namespace Elect.Web.HttpDetection.Models
             return DeviceType.Desktop;
         }
 
-        private static bool GetIsCrawlerRequest(HttpRequest request)
+        private string GetDeviceHash()
         {
-            var agent = HttpRequestHelper.GetUserAgent(request)?.ToLowerInvariant();
+            string ipAddress = string.IsNullOrWhiteSpace(IpAddress) ? StringHelper.Generate(16) : IpAddress;
 
-            if (string.IsNullOrWhiteSpace(agent))
-            {
-                return false;
-            }
-
-            if (Regex.IsMatch(agent, ElectHttpDetectionConstants.CrawlerAgentsRegex, RegexOptions.IgnoreCase))
-                return true;
-
-            return false;
-        }
-
-        private static string GetDeviceHash(DeviceModel deviceModel)
-        {
-            string ipAddress = string.IsNullOrWhiteSpace(deviceModel.IpAddress) ? StringHelper.Generate(16) : deviceModel.IpAddress;
-
-            string identityDevice = $"{deviceModel.OsName}|{deviceModel.OsVersion}_{deviceModel.EngineName}|{deviceModel.EngineVersion}_{deviceModel.BrowserName}|{deviceModel.BrowserVersion}_{ipAddress}";
+            string identityDevice = $"{OsName}|{OsVersion}_{EngineName}|{EngineVersion}_{BrowserName}|{BrowserVersion}_{ipAddress}";
 
             var deviceHash = SecurityHelper.EncryptSha256(identityDevice);
 
             return deviceHash;
+        }
+
+        private void UpdateLocation(HttpRequest request)
+        {
+            string geoDbRelativePath = Path.Combine(nameof(HttpUtils), nameof(HttpDetection), "GeoCity.mmdb");
+
+            string geoDbAbsolutePath = PathHelper.GetFullPath(geoDbRelativePath);
+
+            if (!File.Exists(geoDbAbsolutePath))
+            {
+                // Try to get folder in executed assembly
+                geoDbAbsolutePath = PathHelper.GetFullPath(geoDbRelativePath);
+            }
+
+            if (!File.Exists(geoDbAbsolutePath))
+            {
+                return;
+            }
+
+            using (var reader = new DatabaseReader(geoDbAbsolutePath))
+            {
+                var ipAddress = request.GetIpAddress();
+
+                if (!reader.TryCity(ipAddress, out var city))
+                {
+                    return;
+                }
+
+                if (city == null)
+                {
+                    return;
+                }
+
+                IpAddress = city.Traits.IPAddress;
+
+                // City
+                CityName = city.City.Names.TryGetValue("en", out var cityName) ? cityName : city.City.Name;
+                CityGeoNameId = city.City.GeoNameId;
+
+                // Country
+                CountryName = city.Country.Names.TryGetValue("en", out var countryName) ? countryName : city.Country.Name;
+                CountryGeoNameId = city.Country.GeoNameId;
+                CountryIsoCode = city.Country.IsoCode;
+
+                // Continent
+                ContinentName = city.Continent.Names.TryGetValue("en", out var continentName) ? continentName : city.Continent.Name;
+                ContinentGeoNameId = city.Continent.GeoNameId;
+                ContinentCode = city.Continent.Code;
+
+                // Location
+                Latitude = city.Location.Latitude;
+                Longitude = city.Location.Longitude;
+                AccuracyRadius = city.Location.AccuracyRadius;
+
+                PostalCode = city.Postal.Code;
+
+                // Time Zone
+                TimeZone = city.Location.TimeZone;
+            }
         }
     }
 }
