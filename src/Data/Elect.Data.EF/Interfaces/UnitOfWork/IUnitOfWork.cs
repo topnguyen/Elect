@@ -7,8 +7,8 @@
 //     <Project> Elect </Project>
 //     <File>
 //         <Name> IUnitOfWork.cs </Name>
-//         <Created> 25/03/2018 9:59:34 PM </Created>
-//         <Key> d77ac0c3-38cf-4da4-9b65-f2f9c6de37b6 </Key>
+//         <Created> 25/03/2018 10:10:03 PM </Created>
+//         <Key> d4db1752-097e-408f-adc6-04b5229f0c98 </Key>
 //     </File>
 //     <Summary>
 //         IUnitOfWork.cs is a part of Elect
@@ -17,12 +17,41 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.EF.Interfaces.Repository;
+using System.Data;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Elect.Data.EF.Interfaces.UnitOfWork
 {
-    public interface IUnitOfWork : IBaseUnitOfWork
+    public interface IUnitOfWork
     {
-        IRepository<T> GetRepository<T>() where T : class;
+        #region Transaction
+
+        IUnitOfWorkTransaction BeginTransaction(IsolationLevel isolationLevel);
+
+        IUnitOfWorkTransaction BeginTransaction();
+
+        Task<IUnitOfWorkTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
+
+        Task<IUnitOfWorkTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default);
+
+        #endregion
+
+        #region Save
+
+        [DebuggerStepThrough]
+        int SaveChanges();
+
+        [DebuggerStepThrough]
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+
+        [DebuggerStepThrough]
+        int SaveChanges(bool acceptAllChangesOnSuccess);
+
+        [DebuggerStepThrough]
+        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
+
+        #endregion
     }
 }

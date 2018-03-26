@@ -7,8 +7,8 @@
 //     <Project> Elect </Project>
 //     <File>
 //         <Name> UnitOfWork.cs </Name>
-//         <Created> 25/03/2018 10:38:56 PM </Created>
-//         <Key> a2068b0d-1061-4cf2-a363-60be1a7aeae5 </Key>
+//         <Created> 25/03/2018 10:14:25 PM </Created>
+//         <Key> 40b48b5c-6fe3-4783-b280-d2a915cc9431 </Key>
 //     </File>
 //     <Summary>
 //         UnitOfWork.cs is a part of Elect
@@ -18,33 +18,65 @@
 #endregion License
 
 using Elect.Data.EF.Interfaces.DbContext;
-using Elect.Data.EF.Interfaces.Repository;
 using Elect.Data.EF.Interfaces.UnitOfWork;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Concurrent;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Elect.Data.EF.Services.UnitOfWork
 {
-    public class UnitOfWork : BaseUnitOfWork, IUnitOfWork
+    public abstract class UnitOfWork : IUnitOfWork
     {
-        protected readonly IServiceProvider ServiceProvider;
+        protected readonly IDbContext DbContext;
 
-        protected ConcurrentDictionary<Type, object> Repositories = new ConcurrentDictionary<Type, object>();
-
-        public UnitOfWork(IDbContext dbContext, IServiceProvider serviceProvider) : base(dbContext)
+        protected UnitOfWork(IDbContext dbContext)
         {
-            ServiceProvider = serviceProvider;
+            DbContext = dbContext;
         }
 
-        public IRepository<T> GetRepository<T>() where T : class
+        public virtual IUnitOfWorkTransaction BeginTransaction(IsolationLevel isolationLevel)
         {
-            if (!Repositories.TryGetValue(typeof(IRepository<T>), out var repository))
-            {
-                Repositories[typeof(IRepository<T>)] = repository = ServiceProvider.GetRequiredService<IRepository<T>>();
-            }
-
-            return repository as IRepository<T>;
+            return new UnitOfWorkTransaction(DbContext.Database.BeginTransaction(isolationLevel));
         }
+
+        public virtual IUnitOfWorkTransaction BeginTransaction()
+        {
+            return new UnitOfWorkTransaction(DbContext.Database.BeginTransaction());
+        }
+
+        public virtual async Task<IUnitOfWorkTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            return new UnitOfWorkTransaction(await DbContext.Database.BeginTransactionAsync(cancellationToken).ConfigureAwait(true));
+        }
+
+        public virtual async Task<IUnitOfWorkTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
+        {
+            return new UnitOfWorkTransaction(await DbContext.Database.BeginTransactionAsync(isolationLevel, cancellationToken).ConfigureAwait(true));
+        }
+
+        #region Save
+
+        public virtual int SaveChanges()
+        {
+            return DbContext.SaveChanges();
+        }
+
+        public virtual int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            return DbContext.SaveChanges(acceptAllChangesOnSuccess);
+        }
+
+        public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            return DbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public virtual Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
+        {
+            return DbContext.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        #endregion
     }
 }
