@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 
 namespace Elect.Data.EF.Services.UnitOfWork
 {
-    public abstract class BaseEntityUnitOfWork : BaseUnitOfWork
+    public abstract class BaseEntityUnitOfWork : UnitOfWork
     {
         protected BaseEntityUnitOfWork(IDbContext dbContext) : base(dbContext)
         {
