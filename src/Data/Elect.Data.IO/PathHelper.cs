@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Microsoft.Extensions.PlatformAbstractions;
 using System;
 using System.IO;
 
@@ -41,7 +42,7 @@ namespace Elect.Data.IO
                 return path;
             }
 
-            path = Path.Combine(Directory.GetCurrentDirectory(), path);
+            path = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, path);
 
             return path;
         }
