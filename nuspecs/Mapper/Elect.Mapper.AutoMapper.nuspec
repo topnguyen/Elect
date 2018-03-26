@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Elect.Mapper.AutoMapper</id>
+    <title>Elect AutoMapper Extension</title>
+    <description>AutoMapper extension and utitlies.</description>
+    <summary>AutoMapper extension and utitlies.</summary>
+    <authors>Top Nguyen</authors>
+    <owners>topnguyen</owners>
+    <copyright>http://topnguyen.net</copyright>
+    <projectUrl>https://github.com/topnguyen/Elect</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+    <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>aspnetcore automapper elect topnguyen</tags>
+    <version>1.0.1</version>
+    <releaseNotes></releaseNotes>
+
+    <dependencies>
+        <dependency id="Elect.Core" version="1.0.3" />
+        <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
+        <dependency id="Microsoft.Extensions.DependencyModel" version="2.0.4" />
+        <dependency id="Microsoft.Extensions.Options" version="2.0.1" />
+        <dependency id="AutoMapper" version="6.2.2" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="..\..\src\Mapper\Elect.Mapper.AutoMapper\bin\Debug\netstandard2.0\Elect.Mapper.AutoMapper.dll" target="lib\netstandard2.0" />
+    <file src="..\..\src\Mapper\Elect.Mapper.AutoMapper\bin\Debug\netstandard2.0\Elect.Mapper.AutoMapper.pdb" target="lib\netstandard2.0" />
+  </files>
+</package>
