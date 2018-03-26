@@ -11,19 +11,20 @@
     <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.HttpDetection.nuspec</NuspecFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="GeoCity.mmdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GeoCity.mmdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <!-- Elect -->
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj" />
     <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
     <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- GEO -->
-    <Content Include="GeoCity.mmdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <!-- 3rd Libraries -->

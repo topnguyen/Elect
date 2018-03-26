@@ -1,4 +1,6 @@
 ﻿using Elect.Test.AspNetCore.Models;
+using Elect.Web.HttpDetection;
+using Elect.Web.HttpUtils;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,6 +10,12 @@ namespace Elect.Test.AspNetCore.Controllers
     {
         public IActionResult Index()
         {
+            var deviceInfo = HttpContext.Request.GetDeviceInformation();
+
+            var ip = HttpContext.Request.GetIpAddress();
+
+            var boolSameIpAddress = ip == deviceInfo.IpAddress;
+
             return View();
         }
 

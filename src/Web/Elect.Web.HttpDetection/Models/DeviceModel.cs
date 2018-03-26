@@ -185,26 +185,18 @@ namespace Elect.Web.HttpDetection.Models
 
         private void UpdateLocation(HttpRequest request)
         {
-            string geoDbRelativePath = Path.Combine(nameof(HttpUtils), nameof(HttpDetection), "GeoCity.mmdb");
-
-            string geoDbAbsolutePath = PathHelper.GetFullPath(geoDbRelativePath);
+            string geoDbAbsolutePath = PathHelper.GetFullPath("GeoCity.mmdb");
 
             if (!File.Exists(geoDbAbsolutePath))
             {
-                // Try to get folder in executed assembly
-                geoDbAbsolutePath = PathHelper.GetFullPath(geoDbRelativePath);
-            }
-
-            if (!File.Exists(geoDbAbsolutePath))
-            {
-                return;
+                throw new FileNotFoundException(geoDbAbsolutePath, "GeoCity.mmdb");
             }
 
             using (var reader = new DatabaseReader(geoDbAbsolutePath))
             {
-                var ipAddress = request.GetIpAddress();
+                IpAddress = request.GetIpAddress();
 
-                if (!reader.TryCity(ipAddress, out var city))
+                if (!reader.TryCity(IpAddress, out var city))
                 {
                     return;
                 }
