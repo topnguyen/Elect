@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web.DataTable", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web.Swagger", "src\Web\Elect.Web.Swagger\Elect.Web.Swagger.csproj", "{B92DFFA1-6B56-44A4-90C1-33AB23B3A0A7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web.Middlewares", "src\Web\Elect.Web.Middlewares\Elect.Web.Middlewares.csproj", "{0DC598F3-8231-4514-9590-90A85F2802E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{B92DFFA1-6B56-44A4-90C1-33AB23B3A0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B92DFFA1-6B56-44A4-90C1-33AB23B3A0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B92DFFA1-6B56-44A4-90C1-33AB23B3A0A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DC598F3-8231-4514-9590-90A85F2802E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DC598F3-8231-4514-9590-90A85F2802E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DC598F3-8231-4514-9590-90A85F2802E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DC598F3-8231-4514-9590-90A85F2802E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,6 +156,7 @@ Global
 		{DBF5C42C-A839-44BA-AA41-FD24C79FB382} = {16FC8D0A-F964-4B45-9E78-8F9D50585B3C}
 		{E4E82F9E-E75B-4C06-9338-9D19D0771802} = {16FC8D0A-F964-4B45-9E78-8F9D50585B3C}
 		{B92DFFA1-6B56-44A4-90C1-33AB23B3A0A7} = {16FC8D0A-F964-4B45-9E78-8F9D50585B3C}
+		{0DC598F3-8231-4514-9590-90A85F2802E0} = {16FC8D0A-F964-4B45-9E78-8F9D50585B3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B699336-21B7-4FD5-8ECC-A8390C034309}

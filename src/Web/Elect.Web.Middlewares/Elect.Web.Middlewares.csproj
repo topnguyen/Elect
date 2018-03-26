@@ -9,16 +9,20 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
-    <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.nuspec</NuspecFile>
+    <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.Middlewares.nuspec</NuspecFile>
   </PropertyGroup>
 
   <!-- Elect -->
   <ItemGroup>
+    <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
     <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
   </ItemGroup>
-
+  
   <!-- 3rd Libraries -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
+    <!-- Markup Min -->
+    <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.4.2" />
+    <PackageReference Include="WebMarkupMin.NUglify" Version="2.4.2" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,6 @@ using Elect.Data.EF.Interfaces.UnitOfWork;
 using Elect.Test.AspNetCore.Data;
 using Elect.Test.AspNetCore.Models;
 using Elect.Test.AspNetCore.Services;
-using Elect.Web.Middlewares.CorsMiddleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -54,8 +53,6 @@ namespace Elect.Test.AspNetCore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseElectCors();
 
             app.UseStaticFiles();
 
