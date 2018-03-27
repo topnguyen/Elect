@@ -24,5 +24,6 @@ namespace Elect.Core.Constants
         public const string AppSettings = "appsettings.json";
         public const string BundleConfig = "bundleconfig.json";
         public const string CompilerConfig = "compilerconfig.json";
+        public const string ConnectionConfig = "connectionconfig.json";
     }
 }

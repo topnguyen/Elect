@@ -57,7 +57,9 @@ namespace Elect.Core.ConfigUtils
                 return value;
             }
 
-            value = configuration.GetValue<T>($"{key}:{EnvHelper.CurrentEnvironment}");
+            var environmentName = !string.IsNullOrWhiteSpace(EnvHelper.CurrentEnvironment) ? EnvHelper.CurrentEnvironment : EnvHelper.EnvDevelopmentName;
+
+            value = configuration.GetValue<T>($"{key}:{environmentName}");
 
             if (value != null)
             {

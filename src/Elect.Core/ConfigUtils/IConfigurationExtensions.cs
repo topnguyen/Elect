@@ -35,7 +35,7 @@ namespace Elect.Core.ConfigUtils
         /// <param name="configuration"></param>
         /// <param name="key">          </param>
         /// <returns></returns>
-        public static T GetValueByEnvironment<T>(this IConfiguration configuration, string key)
+        public static T GetValueByEnv<T>(this IConfiguration configuration, string key)
         {
             return IConfigurationHelper.GetValueByEnv<T>(configuration, key);
         }
