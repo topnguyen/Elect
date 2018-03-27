@@ -295,6 +295,14 @@ namespace Elect.DI
             Console.WriteLine($"# Elect DI > Registered: {listServiceDescriptors.Count} Services");
             Console.WriteLine();
 
+            if (!listServiceDescriptors.Any())
+            {
+                Console.ResetColor();
+                Console.WriteLine($"{new string('-', 100)}");
+
+                return services;
+            }
+
             if (options.IsMinimalDisplay)
             {
                 PrintRegisteredToConsoleMinimalDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
@@ -313,7 +321,8 @@ namespace Elect.DI
 
         private static void PrintRegisteredToConsoleMinimalDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
         {
-            var noMaxLength = listServiceDescriptors.Count + 1;
+            var noMaxLength = listServiceDescriptors.Count;
+
             if (noMaxLength < "No.".Length)
             {
                 noMaxLength = "No.".Length;

@@ -13,11 +13,11 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore io elect topnguyen</tags>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Core" version="1.0.3" />
+        <dependency id="Elect.Core" version="1.0.4" />
     </dependencies>
   </metadata>
 

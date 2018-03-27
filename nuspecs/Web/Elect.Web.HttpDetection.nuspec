@@ -13,14 +13,14 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore httpdetection elect topnguyen</tags>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
         <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
-        <dependency id="Elect.Core" version="1.0.3" />
-        <dependency id="Elect.Web" version="1.0.1" />
-        <dependency id="Elect.Data.IO" version="1.0.1" />
+        <dependency id="Elect.Core" version="1.0.4" />
+        <dependency id="Elect.Web" version="1.0.2" />
+        <dependency id="Elect.Data.IO" version="1.0.2" />
         <dependency id="MaxMind.GeoIP2" version="2.10.0" />
     </dependencies>
   </metadata>

@@ -13,11 +13,11 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore OneSignal elect topnguyen</tags>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Core" version="1.0.3" />
+        <dependency id="Elect.Core" version="1.0.4" />
         <dependency id="Newtonsoft.Json" version="11.0.2" />
         <dependency id="Flurl.Http" version="2.2.1" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />

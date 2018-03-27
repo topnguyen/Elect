@@ -92,14 +92,14 @@ namespace Elect.DI
         {
             if (services == null)
             {
-                throw new ArgumentException($"{nameof(services)} cannot be null.", nameof(services));
+                throw new ArgumentNullException($"{nameof(services)} cannot be null.", nameof(services));
             }
 
             CheckHelper.CheckNullOrWhiteSpace(assemblyFolderPath, nameof(assemblyFolderPath));
 
             CheckHelper.CheckNullOrWhiteSpace(assemblyFolderPath, nameof(fileSearchPattern));
 
-            var listDllPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern).ToList();
+            var listDllPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern, SearchOption.AllDirectories).ToList();
 
             if (listDllPath?.Any() != true)
             {
