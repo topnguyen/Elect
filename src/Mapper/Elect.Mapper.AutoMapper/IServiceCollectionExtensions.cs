@@ -87,8 +87,8 @@ namespace Elect.Mapper.AutoMapper
                 foreach (var assemblyFolderPath in options.ListAssemblyFolderPath)
                 {
                     var listDllPath =
-                        Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.dll")
-                        .Concat(Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.*.dll"))
+                        Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.dll", SearchOption.AllDirectories)
+                        .Concat(Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.*.dll", SearchOption.AllDirectories))
                         .Distinct();
 
                     listAllDllPath.AddRange(listDllPath);
