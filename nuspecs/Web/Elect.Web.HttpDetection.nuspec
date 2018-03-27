@@ -13,13 +13,11 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore httpdetection elect topnguyen</tags>
-    <version>1.0.12</version>
+    <version>1.0.13</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
-        <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
-        <dependency id="Elect.Web" version="1.0.4" />
+        <dependency id="Elect.Web" version="1.0.5" />
         <dependency id="Elect.Data.IO" version="1.0.4" />
         <dependency id="MaxMind.GeoIP2" version="2.10.0" />
     </dependencies>
@@ -29,6 +27,5 @@
     <file src="..\..\src\Web\Elect.Web.HttpDetection\bin\Debug\netstandard2.0\Elect.Web.HttpDetection.dll" target="lib\netstandard2.0" />
     <file src="..\..\src\Web\Elect.Web.HttpDetection\bin\Debug\netstandard2.0\Elect.Web.HttpDetection.pdb" target="lib\netstandard2.0" />
     <file src="..\..\src\Web\Elect.Web.HttpDetection\GeoCity.mmdb" target="output\GeoCity.mmdb" />
-    <file src="..\..\src\Web\Elect.Web.HttpDetection\bin\Debug\netstandard2.0\Elect.Web.HttpDetection.dll" target="output\Elect.Web.HttpDetection.dll" />
   </files>
 </package>

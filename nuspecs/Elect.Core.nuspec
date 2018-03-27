@@ -13,11 +13,10 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore elect topnguyen</tags>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
         <dependency id="System.Runtime.Loader" version="4.3.0" />
         <dependency id="System.Xml.XmlSerializer" version="4.3.0" />
         <dependency id="Microsoft.DotNet.PlatformAbstractions" version="2.0.4" />
@@ -31,6 +30,5 @@
   <files>
     <file src="..\src\Elect.Core\bin\Debug\netstandard2.0\Elect.Core.dll" target="lib\netstandard2.0" />
     <file src="..\src\Elect.Core\bin\Debug\netstandard2.0\Elect.Core.pdb" target="lib\netstandard2.0" />
-    <file src="..\src\Elect.Core\bin\Debug\netstandard2.0\Elect.Core.dll" target="output\Elect.Core.dll" />
   </files>
 </package>
