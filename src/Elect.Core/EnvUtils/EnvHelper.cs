@@ -29,19 +29,23 @@ namespace Elect.Core.EnvUtils
 
         public static readonly string MachineName = Environment.MachineName;
 
+        public const string EnvDevelopmentName = "Development";
+        public const string EnvStagingName = "Staging";
+        public const string EnvProductionName = "Production";
+
         public static bool IsDevelopment()
         {
-            return Is("Development");
+            return Is(EnvDevelopmentName);
         }
 
         public static bool IsStaging()
         {
-            return Is("Staging");
+            return Is(EnvStagingName);
         }
 
         public static bool IsProduction()
         {
-            return Is("Production");
+            return Is(EnvProductionName);
         }
 
         public static bool Is(string environment)
