@@ -17,84 +17,65 @@
 //--------------------------------------------------
 #endregion License
 
-using Microsoft.DotNet.PlatformAbstractions;
-using Microsoft.Extensions.DependencyModel;
-using Microsoft.Extensions.PlatformAbstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
+using Microsoft.DotNet.PlatformAbstractions;
+using Microsoft.Extensions.DependencyModel;
 
 namespace Elect.Core.AssemblyUtils
 {
-    public class AssemblyLoader : AssemblyLoadContext
+    internal class AssemblyLoader : AssemblyLoadContext
     {
-        public readonly string AssemblyFolderPath;
+        internal List<AssemblyName> ListLoadedAssemblyName { get; } = new List<AssemblyName>();
 
-        public List<AssemblyName> ListLoadedAssemblyName { get; } = new List<AssemblyName>();
+        internal readonly string AssemblyDirectoryPath;
 
-        /// <summary>
-        ///     Assembly Loader 
-        /// </summary>
-        /// <param name="assemblyFolderPath"> null or empty will use Application Base Path </param>
-        public AssemblyLoader(string assemblyFolderPath = null)
+        internal AssemblyLoader(string assemblyDirectoryPath)
         {
-            if (string.IsNullOrWhiteSpace(assemblyFolderPath))
-            {
-                assemblyFolderPath = Path.GetFullPath(PlatformServices.Default.Application.ApplicationBasePath);
-            }
-
-            if (!Directory.Exists(assemblyFolderPath))
-            {
-                throw new ArgumentException($"'{assemblyFolderPath}' is not exist", nameof(assemblyFolderPath));
-            }
-
-            AssemblyFolderPath = assemblyFolderPath;
+            AssemblyDirectoryPath = assemblyDirectoryPath;
 
             // Update List Loaded Assembly
             var runtimeId = RuntimeEnvironment.GetRuntimeIdentifier();
 
-            var listLoadedAssemblyName = DependencyContext.Default.GetRuntimeAssemblyNames(runtimeId);
+            var listLoadedAssemblyName = DependencyContext.Default.GetRuntimeAssemblyNames(runtimeId).ToList();
 
             foreach (var assemblyName in listLoadedAssemblyName)
             {
-                ListLoadedAssemblyName.Add(assemblyName);
+                if (!ListLoadedAssemblyName.Contains(assemblyName))
+                {
+                    ListLoadedAssemblyName.Add(assemblyName);
+                }
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
-        ///     Load an assembly, if the assembly already loaded then return null 
+        ///     Load an assembly, if the assembly already loaded then return 
         /// </summary>
         /// <param name="assemblyName"></param>
         /// <returns></returns>
         protected override Assembly Load(AssemblyName assemblyName)
         {
-            Assembly assembly;
-
             // Check if assembly already added by Dependency (Reference)
-            if (ListLoadedAssemblyName.Any(x => x.Name.ToLower() == assemblyName.Name.ToLower()))
+
+            if (ListLoadedAssemblyName.Any(x => string.Equals(x.Name, assemblyName.Name, StringComparison.OrdinalIgnoreCase)))
             {
                 return null;
             }
 
             // Load Assembly not yet load
-            var assemblyFileInfo = new FileInfo($"{AssemblyFolderPath}{Path.DirectorySeparatorChar}{assemblyName.Name}.dll");
 
-            if (File.Exists(assemblyFileInfo.FullName))
-            {
-                var assemblyLoader = new AssemblyLoader(assemblyFileInfo.DirectoryName);
+            var assemblyFilePath = Path.Combine(AssemblyDirectoryPath, assemblyName.Name) + ".dll";
 
-                assembly = assemblyLoader.LoadFromAssemblyPath(assemblyFileInfo.FullName);
-            }
-            else
-            {
-                assembly = Assembly.Load(assemblyName);
-            }
+            var assembly = File.Exists(assemblyFilePath) ? LoadFromAssemblyPath(assemblyFilePath) : Assembly.Load(assemblyName);
 
             // Add to loaded
-            ListLoadedAssemblyName.Add(assembly.GetName());
+
+            ListLoadedAssemblyName.Add(assemblyName);
 
             return assembly;
         }

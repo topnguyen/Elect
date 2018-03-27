@@ -51,13 +51,17 @@ namespace Elect.Core.AssemblyUtils
 
             foreach (var dllFileFullPath in dllFileFullPaths)
             {
+                // Assembly Directory to load
+
+                var assemblyDirectoryPath = Path.GetDirectoryName(dllFileFullPath);
+
+                AssemblyLoader assemblyLoader = new AssemblyLoader(assemblyDirectoryPath);
+
+                // Assembly Name to load
+
                 var dllNameWithoutExtension = Path.GetFileNameWithoutExtension(dllFileFullPath);
 
                 var assemblyName = new AssemblyName(dllNameWithoutExtension);
-
-                var assemblyDirectory = Path.GetDirectoryName(dllFileFullPath);
-
-                AssemblyLoader assemblyLoader = new AssemblyLoader(assemblyDirectory);
 
                 var assembly = assemblyLoader.LoadFromAssemblyName(assemblyName);
 
