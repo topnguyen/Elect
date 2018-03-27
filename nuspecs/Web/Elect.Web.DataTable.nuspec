@@ -13,11 +13,12 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore datatable elect topnguyen</tags>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Web" version="1.0.3" />
+        <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
+        <dependency id="Elect.Web" version="1.0.4" />
         <dependency id="Microsoft.AspNetCore.Mvc" version="2.0.3" />
         <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
@@ -32,5 +33,6 @@
   <files>
     <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.dll" target="lib\netstandard2.0" />
     <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.pdb" target="lib\netstandard2.0" />
+    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.dll" target="output\Elect.Web.DataTable.dll" />
   </files>
 </package>
