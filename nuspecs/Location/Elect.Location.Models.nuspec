@@ -13,11 +13,16 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore location elect topnguyen</tags>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <releaseNotes></releaseNotes>
+
+    <dependencies>
+        <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
+    </dependencies>
   </metadata>
   <files>
     <file src="..\..\src\Location\Elect.Location.Models\bin\Debug\netstandard2.0\Elect.Location.Models.dll" target="lib\netstandard2.0" />
     <file src="..\..\src\Location\Elect.Location.Models\bin\Debug\netstandard2.0\Elect.Location.Models.pdb" target="lib\netstandard2.0" />
+    <file src="..\..\src\Location\Elect.Location.Models\bin\Debug\netstandard2.0\Elect.Location.Models.dll" target="output\Elect.Location.Models.dll" />
   </files>
 </package>
