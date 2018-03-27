@@ -13,12 +13,11 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore OneSignal elect topnguyen</tags>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
-        <dependency id="Elect.Core" version="1.0.6" />
+        <dependency id="Elect.Core" version="1.0.7" />
         <dependency id="Newtonsoft.Json" version="11.0.2" />
         <dependency id="Flurl.Http" version="2.2.1" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
@@ -29,6 +28,5 @@
   <files>
     <file src="..\..\src\Notification\Elect.Notification.OneSignal\bin\Debug\netstandard2.0\Elect.Notification.OneSignal.dll" target="lib\netstandard2.0" />
     <file src="..\..\src\Notification\Elect.Notification.OneSignal\bin\Debug\netstandard2.0\Elect.Notification.OneSignal.pdb" target="lib\netstandard2.0" />
-    <file src="..\..\src\Notification\Elect.Notification.OneSignal\bin\Debug\netstandard2.0\Elect.Notification.OneSignal.dll" target="output\Elect.Notification.OneSignal.dll" />
   </files>
 </package>
