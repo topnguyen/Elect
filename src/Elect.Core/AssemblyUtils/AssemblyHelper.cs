@@ -47,8 +47,6 @@ namespace Elect.Core.AssemblyUtils
 
             dllFileFullPaths = dllFileFullPaths.Distinct().ToArray();
 
-            AssemblyLoader assemblyLoader = new AssemblyLoader();
-
             List<Assembly> assemblies = new List<Assembly>();
 
             foreach (var dllFileFullPath in dllFileFullPaths)
@@ -56,6 +54,10 @@ namespace Elect.Core.AssemblyUtils
                 var dllNameWithoutExtension = Path.GetFileNameWithoutExtension(dllFileFullPath);
 
                 var assemblyName = new AssemblyName(dllNameWithoutExtension);
+
+                var assemblyDirectory = Path.GetDirectoryName(dllFileFullPath);
+
+                AssemblyLoader assemblyLoader = new AssemblyLoader(assemblyDirectory);
 
                 var assembly = assemblyLoader.LoadFromAssemblyName(assemblyName);
 
