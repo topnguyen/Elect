@@ -23,7 +23,6 @@
   <!-- Elect -->
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj" />
-    <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
     <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
   </ItemGroup>
 
