@@ -13,13 +13,13 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore location elect topnguyen</tags>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
         <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
         <dependency id="Elect.Core" version="1.0.6" />
-        <dependency id="Elect.Location.Models" version="1.0.0" />
+        <dependency id="Elect.Location.Models" version="1.0.1" />
     </dependencies>
   </metadata>
 

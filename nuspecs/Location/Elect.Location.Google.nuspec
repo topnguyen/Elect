@@ -19,7 +19,7 @@
     <dependencies>
         <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
         <dependency id="Elect.Core" version="1.0.6" />
-        <dependency id="Elect.Location.Models" version="1.0.0" />
+        <dependency id="Elect.Location.Models" version="1.0.1" />
         <dependency id="Newtonsoft.Json" version="11.0.2" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
         <dependency id="Microsoft.Extensions.Options" version="2.0.1" />
