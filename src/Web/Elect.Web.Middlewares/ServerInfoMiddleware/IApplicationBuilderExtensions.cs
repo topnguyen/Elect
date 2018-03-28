@@ -29,7 +29,7 @@ namespace Elect.Web.Middlewares.ServerInfoMiddleware
 {
     public static class IApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseElectCors(this IApplicationBuilder app)
+        public static IApplicationBuilder UseElectServerInfo(this IApplicationBuilder app)
         {
             app.UseMiddleware<ElectServerInfoMiddleware>();
 

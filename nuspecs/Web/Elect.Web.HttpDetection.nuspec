@@ -13,7 +13,7 @@
     <iconUrl>http://topnguyen.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore httpdetection elect topnguyen</tags>
-    <version>1.0.14</version>
+    <version>1.0.15</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
