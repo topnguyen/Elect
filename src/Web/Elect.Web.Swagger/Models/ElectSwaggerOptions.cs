@@ -17,6 +17,8 @@
 //--------------------------------------------------
 #endregion License
 
+using System.Reflection;
+
 namespace Elect.Web.Swagger.Models
 {
     public class ElectSwaggerOptions
