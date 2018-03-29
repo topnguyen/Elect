@@ -22,57 +22,73 @@ namespace Elect.Web.Swagger.Models
     public class ElectSwaggerOptions
     {
         /// <summary>
-        ///     Swagger Endpoint, default is "/developers/api-docs/all.json". 
+        ///     Swagger Endpoint, default is "/developers/api-docs". 
         /// </summary>
-        /// <remarks> Must start with "/" and end with ".json" </remarks>
-        public static string SwaggerUrl { get; set; } = "/developers/api-docs/all.json";
+        /// <remarks> Must start with "/" </remarks>
+        public string SwaggerRoutePrefix { get; set; } = "/developers/api-docs";
+
+        /// <summary>
+        ///     Swagger name, default is "all" 
+        /// </summary>
+        public string SwaggerName { get; set; } = "all";
 
         /// <summary>
         ///     Api Document Endpoint, default is "/developers". 
         /// </summary>
         /// <remarks> Must start with "/" </remarks>
-        public static string Url { get; set; } = "/developers";
+        public string Url { get; set; } = "/developers";
 
         /// <summary>
         ///     Json Viewer Endpoint, Default is "/developers/json-viewer". 
         /// </summary>
         /// <remarks> Must start with "/" </remarks>
-        public static string JsonViewerUrl { get; set; } = "/developers/json-viewer";
+        public string JsonViewerUrl { get; set; } = "/developers/json-viewer";
 
         /// <summary>
         ///     Api Document Title. Default is "API Document" 
         /// </summary>
-        public static string Title { get; set; } = "API Document";
+        public string Title { get; set; } = "API Document";
 
         /// <summary>
         ///     Api Document Version. Ex: latest, v1, v2 and so on. Default is "latest" 
         /// </summary>
-        public static string Version { get; set; } = "latest";
+        public string Version { get; set; } = "latest";
 
         /// <summary>
         ///     Access Key via uri param "key", default is "" - allow anonymous. 
         /// </summary>
-        public static string AccessKey { get; set; } = string.Empty;
+        public string AccessKey { get; set; } = string.Empty;
 
         /// <summary>
         ///     Un-authorize message when user access api document with not correct key. Default is
         ///     "You don't have permission to view API Document, please contact your administrator."
         /// </summary>
-        public static string UnAuthorizeMessage { get; set; } = "You don't have permission to view API Document, please contact your administrator.";
+        public string UnAuthorizeMessage { get; set; } = "You don't have permission to view API Document, please contact your administrator.";
 
         /// <summary>
         ///     Authenticate Token Type, default is "Bearer". 
         /// </summary>
-        public static string AuthTokenType { get; set; } = "Bearer";
+        public string AuthTokenType { get; set; } = "Bearer";
+
+        /// <summary>
+        ///     Show full schema for each type in Document 
+        /// </summary>
+        public bool IsFullSchemaForType { get; set; } = true;
 
         /// <summary>
         ///     Default is true. 
         /// </summary>
-        public static bool IsDescribeAllEnumsAsString { get; set; } = true;
+        public bool IsDescribeAllEnumsAsString { get; set; } = true;
 
         /// <summary>
         ///     Default is true. 
         /// </summary>
-        public static bool IsDescribeAllParametersInCamelCase { get; set; } = true;
+        public bool IsDescribeAllParametersInCamelCase { get; set; } = true;
+
+        public string AuthorName { get; set; }
+
+        public string AuthorEmail { get; set; }
+
+        public string AuthorWebsite { get; set; }
     }
 }

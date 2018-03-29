@@ -4,6 +4,7 @@ using Elect.Data.EF.Interfaces.UnitOfWork;
 using Elect.Test.AspNetCore.Data;
 using Elect.Test.AspNetCore.Models;
 using Elect.Test.AspNetCore.Services;
+using Elect.Web.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -37,6 +38,8 @@ namespace Elect.Test.AspNetCore
             services.AddScoped<IUnitOfWork, Data.UnitOfWork>();
             services.AddScoped(typeof(IRepository<>), typeof(Data.Repository<>));
 
+            services.AddElectSwagger();
+
             services.AddMvc();
         }
 
@@ -57,6 +60,8 @@ namespace Elect.Test.AspNetCore
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseElectSwagger();
 
             app.UseMvc(routes =>
             {

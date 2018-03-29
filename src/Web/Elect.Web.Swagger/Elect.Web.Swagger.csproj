@@ -12,14 +12,23 @@
     <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.Swagger.nuspec</NuspecFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="apidoc\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <!-- Elect -->
   <ItemGroup>
     <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
+    <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj" />
   </ItemGroup>
 
   <!-- 3rd Libraries -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="2.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.3.0" />
   </ItemGroup>
+
 </Project>
