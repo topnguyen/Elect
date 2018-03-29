@@ -21,7 +21,7 @@ namespace Elect.Web.Swagger
 
             app.UseSwagger(c =>
             {
-                c.RouteTemplate = options.SwaggerRoutePrefix.Trim('~').Trim('/') + "/{documentName}/" + options.SwaggerName;
+                c.RouteTemplate = options.SwaggerRoutePrefix + "/{documentName}/" + options.SwaggerName;
 
                 c.PreSerializeFilters.Add((swaggerDoc, httpReq) => swaggerDoc.Host = httpReq.Host.Value);
             });
@@ -30,7 +30,7 @@ namespace Elect.Web.Swagger
             {
                 // RoutePrefix of Swagger UI must not start by / or ~
 
-                c.RoutePrefix = options.SwaggerRoutePrefix.Trim('~').Trim('/');
+                c.RoutePrefix = options.SwaggerRoutePrefix;
 
                 c.SwaggerEndpoint(SwaggerHelper.GetSwaggerEndpoint(options), options.AccessKey);
             });
@@ -120,7 +120,8 @@ namespace Elect.Web.Swagger
                     return;
                 }
 
-                // Return next middleware for swagger generate document
+                // Next middleware is swagger endpoint => generate document by swagger
+
                 await _next.Invoke(context).ConfigureAwait(true);
             }
         }
