@@ -74,10 +74,10 @@ namespace Elect.Web.Swagger
                 });
 
                 // XML
-                swaggerGenOptions.IncludeXmlCommentsIfExists(Assembly.GetCallingAssembly());
+                swaggerGenOptions.IncludeXmlCommentsIfExists(Assembly.GetEntryAssembly());
 
                 // Filers
-                swaggerGenOptions.DocumentFilter<HideInApiDocDocumentFilter>();
+                swaggerGenOptions.DocumentFilter<ShowHideInApiDocDocumentFilter>();
 
                 swaggerGenOptions.IgnoreObsoleteProperties();
 
