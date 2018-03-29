@@ -48,7 +48,7 @@ namespace Elect.Web.Swagger
 
             // Update File Content base on Configuration
 
-            SwaggerHelper.UpdateApiDocFileContent(options.Title, options.SwaggerRoutePrefix, options.AuthTokenType, options.JsonViewerUrl);
+            SwaggerHelper.UpdateApiDocFileContent(options.Title, SwaggerHelper.GetSwaggerEndpoint(options), options.AuthTokenType, options.JsonViewerUrl);
 
             SwaggerHelper.UpdateApiJsonViewerFileContent(options.Title);
 

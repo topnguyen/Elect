@@ -70,13 +70,13 @@ namespace Elect.Web.Swagger.Utils
 
         #region File Content
 
-        internal static void UpdateApiDocFileContent(string title, string swaggerUrl, string authTokenKeyPrefix, string jsonViewerUrl)
+        internal static void UpdateApiDocFileContent(string title, string swaggerEndpoint, string authTokenKeyPrefix, string jsonViewerUrl)
         {
             UpdateFileContent(new Dictionary<string, string>
             {
                 {"@AssetPath", AssetsUrl},
                 {"@ApiDocumentHtmlTitle", title},
-                {"@SwaggerEndpoint", swaggerUrl},
+                {"@SwaggerEndpoint", swaggerEndpoint},
                 {"@AuthTokenKeyPrefix", authTokenKeyPrefix},
                 {"@JsonViewerUrl", jsonViewerUrl }
             }, IndexFileFullPath);
@@ -139,7 +139,7 @@ namespace Elect.Web.Swagger.Utils
         /// <returns></returns>
         internal static bool IsAccessSwagger(HttpContext httpContext, ElectSwaggerOptions options)
         {
-            return IsAccessUI(httpContext, options) || IsAccessJsonViewer(httpContext, options);
+            return IsAccessUI(httpContext, options) || IsAccessJsonViewer(httpContext, options) || IsAccessSwaggerEndpoint(httpContext, options);
         }
 
         internal static bool IsAccessUI(HttpContext httpContext, ElectSwaggerOptions options)
@@ -154,7 +154,7 @@ namespace Elect.Web.Swagger.Utils
 
             var isSwaggerUi = pathQuery == documentApiBaseUrl || pathQuery == $"{documentApiBaseUrl}/index.html";
 
-            return isSwaggerUi || httpContext.Request.IsRequestFor(options.Url) || httpContext.Request.IsRequestFor(GetSwaggerEndpoint(options, false));
+            return isSwaggerUi || httpContext.Request.IsRequestFor(options.Url);
         }
 
         internal static bool IsAccessJsonViewer(HttpContext httpContext, ElectSwaggerOptions options)
@@ -162,9 +162,14 @@ namespace Elect.Web.Swagger.Utils
             return httpContext.Request.IsRequestFor(options.JsonViewerUrl);
         }
 
+        internal static bool IsAccessSwaggerEndpoint(HttpContext httpContext, ElectSwaggerOptions options)
+        {
+            return httpContext.Request.IsRequestFor(GetSwaggerEndpoint(options, false));
+        }
+
         internal static string GetSwaggerEndpoint(ElectSwaggerOptions options, bool isIncludeAccessKey = true)
         {
-            string swaggerEndpoint = $"{options.SwaggerRoutePrefix}/{options.Version}/{options.SwaggerName}";
+            string swaggerEndpoint = $"/{options.SwaggerRoutePrefix}/{options.Version}/{options.SwaggerName}";
 
             if (isIncludeAccessKey && !string.IsNullOrWhiteSpace(options.AccessKey))
             {

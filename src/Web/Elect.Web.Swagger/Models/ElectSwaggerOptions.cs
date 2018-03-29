@@ -21,11 +21,18 @@ namespace Elect.Web.Swagger.Models
 {
     public class ElectSwaggerOptions
     {
+        private string _swaggerRoutePrefix = "developers/api-docs";
+
         /// <summary>
         ///     Swagger Endpoint, default is "/developers/api-docs". 
         /// </summary>
         /// <remarks> Must start with "/" </remarks>
-        public string SwaggerRoutePrefix { get; set; } = "/developers/api-docs";
+        public string SwaggerRoutePrefix
+        {
+            get => _swaggerRoutePrefix.Trim('~').Trim('/');
+
+            set => _swaggerRoutePrefix = value;
+        }
 
         /// <summary>
         ///     Swagger name, default is "all" 
