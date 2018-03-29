@@ -11,9 +11,7 @@
     <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.HttpDetection.nuspec</NuspecFile>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="GeoCity.mmdb" />
-  </ItemGroup>
+  
   <ItemGroup>
     <Content Include="GeoCity.mmdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -28,6 +26,6 @@
 
   <!-- 3rd Libraries -->
   <ItemGroup>
-    <PackageReference Include="MaxMind.GeoIP2" Version="2.10.0"  PrivateAssets="All" />
+    <PackageReference Include="MaxMind.GeoIP2" Version="2.10.0" />
   </ItemGroup>
 </Project>
