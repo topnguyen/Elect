@@ -10,15 +10,15 @@
     <copyright>http://topnguyen.net</copyright>
     <projectUrl>https://github.com/topnguyen/Elect</projectUrl>
     <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/logo.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore location elect topnguyen</tags>
     <version>1.0.8</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Core" version="1.0.10" />
-        <dependency id="Elect.Location.Models" version="1.0.2" />
+        <dependency id="Elect.Core" version="1.0.11" />
+        <dependency id="Elect.Location.Models" version="1.0.3" />
     </dependencies>
   </metadata>
 
