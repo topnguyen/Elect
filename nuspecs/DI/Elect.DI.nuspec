@@ -10,14 +10,14 @@
     <copyright>http://topnguyen.net</copyright>
     <projectUrl>https://github.com/topnguyen/Elect</projectUrl>
     <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/logo.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore dependencyinjection elect topnguyen</tags>
     <version>1.0.8</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-    <dependency id="Elect.Core" version="1.0.10" />
+    <dependency id="Elect.Core" version="1.0.11" />
 		<dependency id="System.Runtime.Loader" version="4.3.0" />
 		<dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0" />
 		<dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />

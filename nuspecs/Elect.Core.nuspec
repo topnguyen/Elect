@@ -10,10 +10,10 @@
     <copyright>http://topnguyen.net</copyright>
     <projectUrl>https://github.com/topnguyen/Elect</projectUrl>
     <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/logo.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore elect topnguyen</tags>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
