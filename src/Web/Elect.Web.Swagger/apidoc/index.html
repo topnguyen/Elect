@@ -1,1 +1,222 @@
-<!DOCTYPE html><html><head><title>@ApiDocumentHtmlTitle</title><meta name=viewport content="width=device-width, initial-scale=1.0"><link href=@AssetPath/images/logo.png rel="shortcut icon"><link href=@AssetPath/css/master.min.css rel=stylesheet><script>var apiDocumentPath="@SwaggerEndpoint",apiTokenKeyName="@AuthTokenKeyPrefix"</script><script src=@AssetPath/lib/jquery-1.8.0.min.js></script><script src=@AssetPath/lib/jquery.slideto.min.js></script><script src=@AssetPath/lib/jquery.wiggle.min.js></script><script src=@AssetPath/lib/jquery.ba-bbq.min.js></script><script src=@AssetPath/lib/handlebars-2.0.0.min.js></script><script src=@AssetPath/lib/underscore-min.js></script><script src=@AssetPath/lib/backbone-min.js></script><script src=@AssetPath/lib/swagger-ui.min.js></script><script src=@AssetPath/lib/highlight.7.3.pack.min.js></script><script src=@AssetPath/lib/marked.min.js></script><script src=@AssetPath/lib/swagger-oauth.min.js></script><script src=@AssetPath/lib/bootstrap.min.js></script><script src=@AssetPath/lib/clipboard.min.js></script><script>jQuery.browser=jQuery.browser||{},function(){jQuery.browser.msie=jQuery.browser.msie||!1;jQuery.browser.version=jQuery.browser.version||0;navigator.userAgent.match(/MSIE ([0-9]+)\./)&&(jQuery.browser.msie=!0,jQuery.browser.version=RegExp.$1)}()</script><script>$(function(){function r(){var n=sessionStorage.getItem(apiTokenKeyName);$("#input_apiKey").val(n);t("loaded access token:"+n)}function i(){var n=$("#input_apiKey")[0].value,i;n&&n.trim()!=""?(i=new SwaggerClient.ApiKeyAuthorization("Authorization",apiTokenKeyName+" "+n,"header"),sessionStorage.setItem(apiTokenKeyName,n),window.swaggerUi.api.clientAuthorizations.add("key",i),t("added "+apiTokenKeyName+" token: "+n)):(sessionStorage.removeItem(apiTokenKeyName),window.swaggerUi.api.clientAuthorizations.remove("key"),t("remove "+apiTokenKeyName+" token"))}function t(){"console"in window&&console.log.apply(console,arguments)}var n=window.location.search.match(/url=([^&]+)/);n=n&&n.length>1?decodeURIComponent(n[1]):"@SwaggerEndpoint";window.swaggerUi=new SwaggerUi({url:n,dom_id:"swagger-ui-container",supportedSubmitMethods:["get","post","put","delete","option"],onComplete:function(n,t){$("pre code").each(function(n,t){hljs.highlightBlock(t)});t.options.url&&$("#input_baseUrl").val(t.options.url);t.options.apiKey?$("#input_apiKey").val(t.options.apiKey):r();$("[data-toggle='tooltip']").tooltip();i();$("#input_apiKey").on("change, keyup",function(){i()})},onFailure:function(){t("Unable to Load API UI")},docExpansion:"none",sorter:"alpha"});$("#input_apiKey").change(i);window.swaggerUi.load()})</script><script>$(function(){$(window).scroll(function(){function t(){return window.matchMedia("(min-width: 992px)").matches}function r(){t()?n.parents(".sticky-nav-placeholder").removeAttr("style"):n.parents(".sticky-nav-placeholder").css("min-height",n.outerHeight())}function f(n){n.hasClass("fixed")||n.offset()&&(navOffset=n.offset().top);r();$(window).scrollTop()>navOffset?$(".modal.in").length||n.addClass("fixed"):n.removeClass("fixed")}function e(n){function s(){var i=$(window).scrollTop(),r=n.parents(".sticky-nav");return r.hasClass("fixed")&&!t()&&(i=i+r.outerHeight()+40),i}function h(n){var t=r.next("[data-endpoint]"),i=r.prev("[data-endpoint]");return"next"===n?t.length?t:r.parent().next().find("[data-endpoint]").first():"prev"===n?i.length?i:r.parent().prev().find("[data-endpoint]").last():[]}var c=n.find("[data-navigator]"),e,o,y,p;if(c.find("[data-endpoint][data-selected]").length){var r=c.find("[data-endpoint][data-selected]"),l=$("#"+r.attr("data-endpoint")),a=l.offset().top,f=(a+l.outerHeight(),h("next")),u=h("prev");f.length&&(e=$("#"+f.attr("data-endpoint")),o=e.offset().top,o+e.outerHeight(),s()>=o&&i(f));u.length&&(y=$("#"+u.attr("data-endpoint")),p=u.offset().top,v=(p+y.outerHeight(),100),s()<a-v&&i(u))}}function i(t){var i=$(".sticky-nav [data-navigator]");$("#"+t.attr("data-endpoint"));i.find("[data-resource]").removeClass("active");i.find("[data-selected]").removeAttr("data-selected");t.closest("[data-resource]").addClass("active");t.attr("data-selected","");n.find("[data-selected-value]").html(t.text())}var n=$(".sticky-nav");f(n);e(n)})})</script><script>function gotoJsonViewer(){sessionStorage.setItem("JsonViewer",window.lastServerResponse);window.open("@JsonViewerUrl","jsonViewer")}$(function(){$("[data-toggle='tooltip']").tooltip();var n=new Clipboard("#copyToClipBoard",{text:function(){return window.lastServerResponse}})})</script></head><body class=page-docs style="zoom: 1;"><header class=site-header><nav role=navigation class="navbar navbar-default"><div class=container><div class=navbar-header><button type=button data-toggle=collapse data-target=#navbar-collapse class=navbar-toggle><span class=sr-only>Toggle navigation</span><span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button> <h1 class=navbar-brand><a href=http://topnguyen.net><span>@ApiDocumentHtmlTitle</span></a></h1></div><div id=navbar-collapse class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-left"><li class=li-why><a href=http://topnguyen.net style="font-size: 25px; padding-left: 0">@ApiDocumentHtmlTitle</a></li></ul></div></div></nav></header><section class=content><div id=api2-explorer><div class="swagger-section page-docs" style="zoom: 1"><div class=main-section><div id=swagger-ui-container class=swagger-ui-wrap></div></div></div></div></section></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ApiDocumentHtmlTitle</title>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <link href="@AssetPath/images/logo.png" rel="shortcut icon">
+    <link href="@AssetPath/css/index.css" rel="stylesheet" />
+    <link href="@AssetPath/css/standalone.css" rel="stylesheet" />
+    <link href="@AssetPath/css/api-explorer.css" rel="stylesheet" type="text/css" />
+    <script>var apiDocumentPath = "@SwaggerEndpoint", apiTokenKeyName = "@AuthTokenKeyPrefix"</script>
+    <script src="@AssetPath/lib/jquery-1.8.0.min.js"></script>
+    <script src="@AssetPath/lib/jquery.slideto.min.js"></script>
+    <script src="@AssetPath/lib/jquery.wiggle.min.js"></script>
+    <script src="@AssetPath/lib/jquery.ba-bbq.min.js"></script>
+    <script src="@AssetPath/lib/handlebars-2.0.0.min.js"></script>
+    <script src="@AssetPath/lib/underscore-min.js"></script>
+    <script src="@AssetPath/lib/backbone-min.js"></script>
+    <script src="@AssetPath/lib/swagger-ui.js"></script>
+    <script src="@AssetPath/lib/highlight.7.3.pack.min.js"></script>
+    <script src="@AssetPath/lib/marked.min.js"></script>
+    <script src="@AssetPath/lib/swagger-oauth.min.js"></script>
+    <script src="@AssetPath/lib/bootstrap.min.js"></script>
+    <script src="@AssetPath/lib/clipboard.min.js"></script>
+    <script>
+        jQuery.browser = jQuery.browser || {}, function () {
+            jQuery.browser.msie = jQuery.browser.msie || !1; jQuery.browser.version = jQuery.browser.version || 0;
+            navigator.userAgent.match(/MSIE ([0-9]+)\./) && (jQuery.browser.msie = !0, jQuery.browser.version = RegExp.$1);
+        }()
+    </script>
+    <script>
+        $(function () {
+            function r() {
+                var n = sessionStorage.getItem(apiTokenKeyName);
+
+                $("#input_apiKey").val(n);
+
+                t("loaded access token:" + n);
+            }
+
+            function i() {
+                var n = $("#input_apiKey")[0].value, i;
+                n && n.trim() != ""
+                    ? (i = new SwaggerClient.ApiKeyAuthorization("Authorization", apiTokenKeyName + " " + n, "header"), sessionStorage.setItem(apiTokenKeyName, n), window.swaggerUi.api.clientAuthorizations.add("key", i), t("added " + apiTokenKeyName + " token: " + n))
+                    : (sessionStorage.removeItem(apiTokenKeyName), window.swaggerUi.api.clientAuthorizations.remove("key"), t("remove " + apiTokenKeyName + " token"));
+            }
+
+            function t() {
+                "console" in window && console.log.apply(console, arguments);
+            }
+
+            var n = window.location.search.match(/url=([^&]+)/);
+
+            n = n && n.length > 1 ? decodeURIComponent(n[1]) : "@SwaggerEndpoint";
+
+            window.swaggerUi = new SwaggerUi({
+                url: n,
+
+                dom_id: "swagger-ui-container",
+
+                supportedSubmitMethods: [
+                    "get", "post", "put", "delete", "option"
+                ],
+
+                onComplete: function (n, t) {
+                    $("pre code").each(function (n, t) { hljs.highlightBlock(t) });
+
+                    t.options.url && $("#input_baseUrl").val(t.options.url);
+                    t.options.apiKey
+                        ? $("#input_apiKey").val(t.options.apiKey)
+                        : r();
+                    $("[data-toggle='tooltip']").tooltip();
+
+                    i();
+
+                    $("#input_apiKey").on("change, keyup", function () { i() });
+
+                },
+
+                onFailure: function () {
+                    t("Unable to Load API UI");
+                },
+
+                docExpansion: "none",
+
+                sorter: "alpha"
+            });
+
+            $("#input_apiKey").change(i);
+
+            window.swaggerUi.load();
+        })
+    </script>
+    <script>
+        $(function () {
+            $(window).scroll(function() {
+                function t() {
+                    return window.matchMedia("(min-width: 992px)").matches;
+                }
+
+                function r() {
+                    t()
+                        ? n.parents(".sticky-nav-placeholder").removeAttr("style")
+                        : n.parents(".sticky-nav-placeholder").css("min-height", n.outerHeight());
+                }
+
+                function f(n) {
+                    n.hasClass("fixed") || n.offset() && (navOffset = n.offset().top);
+
+                    r();
+
+                    $(window).scrollTop() > navOffset
+                        ? $(".modal.in").length || n.addClass("fixed")
+                        : n.removeClass("fixed");
+                }
+
+                function e(n) {
+                    function s() {
+                        var i = $(window).scrollTop(), r = n.parents(".sticky-nav");
+                        return r.hasClass("fixed") && !t() && (i = i + r.outerHeight() + 40), i
+                    }
+
+                    function h(n) {
+                        var t = r.next("[data-endpoint]"), i = r.prev("[data-endpoint]");
+                        return "next" === n
+                            ? t.length
+                            ? t
+                            : r.parent().next().find("[data-endpoint]").first()
+                            : "prev" === n
+                            ? i.length
+                            ? i
+                            : r.parent().prev().find("[data-endpoint]").last()
+                            : []
+                    }
+
+                    var c = n.find("[data-navigator]"), e, o, y, p;
+                    if (c.find("[data-endpoint][data-selected]").length) {
+                        var r = c.find("[data-endpoint][data-selected]"),
+                            l = $("#" + r.attr("data-endpoint")),
+                            a = l.offset().top,
+                            f = (a + l.outerHeight(), h("next")),
+                            u = h("prev");
+                        f.length &&
+                        (e = $("#" + f.attr("data-endpoint")), o =
+                            e.offset().top, o + e.outerHeight(), s() >= o && i(f));
+                        u.length &&
+                        (y = $("#" + u.attr("data-endpoint")), p = u.offset().top, v =
+                            (p + y.outerHeight(), 100), s() < a - v && i(u));
+                    }
+                }
+
+                function i(t) {
+                    var i = $(".sticky-nav [data-navigator]");
+                    $("#" + t.attr("data-endpoint"));
+                    i.find("[data-resource]").removeClass("active");
+                    i.find("[data-selected]").removeAttr("data-selected");
+                    t.closest("[data-resource]").addClass("active");
+                    t.attr("data-selected", "");
+                    n.find("[data-selected-value]").html(t.text());
+                }
+
+                var n = $(".sticky-nav");
+
+                f(n);
+
+                e(n);
+            });
+        })
+    </script>
+    <script>
+        function gotoJsonViewer() {
+            sessionStorage.setItem("JsonViewer", window.lastServerResponse);
+
+            window.open("@JsonViewerUrl", "jsonViewer");
+        }
+
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+
+            var n = new Clipboard("#copyToClipBoard",
+                {
+                    text: function () {
+                        return window.lastServerResponse;
+                    }
+                });
+        });
+    </script>
+</head>
+
+<body class="page-docs" style="zoom: 1;">
+    <header class="site-header">
+        <nav role="navigation" class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <h1 class="navbar-brand">
+                        <a class="author-website-href" href=""><span>@ApiDocumentHtmlTitle</span></a>
+                    </h1>
+                </div>
+                <div id="navbar-collapse" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="li-why">
+                            <a class="author-website-href" href="" style="font-size: 25px; padding-left: 0">@ApiDocumentHtmlTitle</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="content">
+        <div id="api2-explorer">
+            <div class="swagger-section page-docs" style="zoom: 1">
+                <div class="main-section">
+                    <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

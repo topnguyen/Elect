@@ -38,7 +38,12 @@ namespace Elect.Test.AspNetCore
             services.AddScoped<IUnitOfWork, Data.UnitOfWork>();
             services.AddScoped(typeof(IRepository<>), typeof(Data.Repository<>));
 
-            services.AddElectSwagger();
+            services.AddElectSwagger(_ =>
+            {
+                _.AuthorName = "Top Nguyen";
+                _.AuthorEmail = "topnguyen92@gmail.com";
+                _.AuthorWebsite = "http://topnguyen.net";
+            });
 
             services.AddMvc();
         }

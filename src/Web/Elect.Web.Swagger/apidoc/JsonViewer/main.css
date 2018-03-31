@@ -95,10 +95,10 @@ body {
                 text-decoration: none;
                 color: #fff;
                 width: auto;
-                border: 1px solid #2f2442;
+                border: 1px solid #f46c93;
                 border-right: none;
                 font-size: 14px;
-                background-color: #2f2442;
+                background-color: #2d2d2d;
                 font-weight: 700
             }
 
@@ -175,7 +175,7 @@ ul.json-dict li {
     height: 500px;
     background-color: #17202a;
     border: none;
-    border-bottom: 2px solid #2f2442;
+    border-bottom: 1px solid #f46c93;
     color: #ccc;
     padding: 20px
 }
@@ -185,7 +185,8 @@ ul.json-dict li {
     padding: 10px;
     font-size: 14px;
     text-align: center;
-    border: none
+    cursor: pointer;
+    border: solid 1px #f46c93!important;
 }
 
 .btn-white {

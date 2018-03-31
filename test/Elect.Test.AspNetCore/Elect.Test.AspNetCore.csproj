@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-Elect.Test.AspNetCore-7C1A3CD9-D7C1-4AB7-B809-A60D1A2694D3</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\Elect.Test.AspNetCore.xml</DocumentationFile>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />

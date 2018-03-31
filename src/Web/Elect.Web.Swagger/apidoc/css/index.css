@@ -18857,17 +18857,17 @@ header.site-header.site-header nav {
         color: #000;
         padding: 0 15px 0 15px;
         margin: 0;
-        width: 120px;
+        width: 80px;
     }
 
         header.site-header.site-header nav .navbar-brand a {
             background: url("../images/logo.png") center left no-repeat;
             /*background-size: 76%;*/
-            width: 110px;
+            width: 50px;
             height: 50px;
             display: block;
             margin-top: 0px;
-            background-size: 48%;
+            background-size: 100%;
         }
 
         header.site-header.site-header nav .navbar-brand img {

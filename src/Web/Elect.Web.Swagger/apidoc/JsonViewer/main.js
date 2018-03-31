@@ -1,5 +1,46 @@
 var jsonViewerSessionStorageKey = "JsonViewer";
-var defaultData = '{"message": "Welcome to Json Viewer","author": "Top Nguyen", "website": "http://topnguyen.net"}'
+var defaultData = '{"message": "Welcome to Elect JSON Viewer","author": "Top Nguyen", "website": "http://topnguyen.net"}'
+
+var globalStyle = {
+    node:
+        {
+            colors: {
+                collapsed: "#e2777a",
+                parent: "#00fcd4",
+                default: "#44c7f4"
+            },
+            stroke: "white"
+        },
+    text:
+        {
+            colors: {
+                default: "#ccc",
+                hover: "#f08d49"
+            },
+            "font-size": "12px"
+        },
+    link: {
+        stroke: "#188E3F",
+        fill: "none"
+    }
+};
+
+var tooltipStyle = {
+    offset: {
+        left: 50,
+        top: 10
+    },
+    indentationSize: 2,
+    style: {
+        background: "#222",
+        padding: "8px",
+        color: "#f46c93",
+        "border-radius": "2px",
+        "box-shadow": "0 7px 7px 0 #111",
+        "font-size": "13px",
+        "line-height": "1.3"
+    }
+};
 
 function trim(s, c) {
     if (c === "]") c = "\\]";
@@ -31,7 +72,7 @@ function trim(s, c) {
         var jsonData = { "data": sessionStorageData };
         sessionStorageData = JSON.stringify(jsonData, null, 4);
         sessionStorage.setItem(jsonViewerSessionStorageKey, sessionStorageData);
-        console.log('The data is wrong json string format, Json Viewer try parse to new data.');
+        console.log('The data is wrong json string format, JSON Viewer try parse to new data.');
         console.log('JsonViewerData', jsonData);
     } finally {
         var sessionStorageData = sessionStorage.getItem(jsonViewerSessionStorageKey);
@@ -3103,8 +3144,8 @@ function (t, e, n) {
                             margin: { top: 50, left: 100 },
                             widthBetweenNodesCoeff: 1.5,
                             heightBetweenNodesCoeff: 2,
-                            style: { node: { colors: { collapsed: "#e2777a", parent: "#00fcd4", default: "#44c7f4" }, stroke: "white" }, text: { colors: { default: "#ccc", hover: "#f08d49" }, "font-size": "12px" }, link: { stroke: "#188E3F", fill: "none" } },
-                            tooltipOptions: { offset: { left: 50, top: 10 }, indentationSize: 2, style: { background: "#222", padding: "8px", color: "#2f2442", "border-radius": "2px", "box-shadow": "0 7px 7px 0 #111", "font-size": "13px", "line-height": "1.3" } }
+                            style: globalStyle,
+                            tooltipOptions: tooltipStyle
                         };
                     this.renderChart = (0, p.tree)((0, f.findDOMNode)(this), e), this.renderChart()
                 }
@@ -3157,7 +3198,7 @@ function (t, e, n) {
                 }
             }, { key: "resetErrors", value: function () { this.setState({ errors: Object.assign({}, this.state.errors, Object.assign({}, this.state.errors, { jsonParseFailed: Object.assign({}, this.state.errors.jsonParseFailed, { status: !1 }), rawJSON: Object.assign({}, this.state.errors.rawJSON, { status: !1 }) })) }) } }, {
                 key: "render", value: function () {
-                    return c.default.createElement("div", { className: "json-input-section" }, c.default.createElement("div", { className: "json-logo" }, c.default.createElement("img", { src: faviconUrl, style: { marginTop: "8px", width: "60px" } }, null)), c.default.createElement("h1", null, "Json Viewer"), this.state.errors.jsonParseFailed.status && c.default.createElement("div", { className: "json-input-error-msg" }, this.state.errors.jsonParseFailed.message), this.state.errors.rawJSON.status && c.default.createElement("div", { className: "json-input-error-msg" }, this.state.errors.rawJSON.message), c.default.createElement("div", { className: "form-input" }, c.default.createElement("textarea", { ref: "rawJSON", defaultValue: this.state.json, className: "json-input" })), c.default.createElement("div", { className: "form-input save-btn-area" }, c.default.createElement("button", {
+                    return c.default.createElement("div", { className: "json-input-section" }, c.default.createElement("div", { className: "json-logo" }, c.default.createElement("img", { src: faviconUrl, style: { marginTop: "8px", width: "60px" } }, null)), c.default.createElement("h1", null, "JSON Viewer"), this.state.errors.jsonParseFailed.status && c.default.createElement("div", { className: "json-input-error-msg" }, this.state.errors.jsonParseFailed.message), this.state.errors.rawJSON.status && c.default.createElement("div", { className: "json-input-error-msg" }, this.state.errors.rawJSON.message), c.default.createElement("div", { className: "form-input" }, c.default.createElement("textarea", { ref: "rawJSON", defaultValue: this.state.json, className: "json-input" })), c.default.createElement("div", { className: "form-input save-btn-area" }, c.default.createElement("button", {
                         type: "button", className: "btn btn-big btn-white", onClick: this.parseJSON
                             .bind(this)
                     }, "Parse JSON")))
