@@ -1,6 +1,8 @@
 ﻿using Elect.Test.AspNetCore.Models;
 using Elect.Test.AspNetCore.Models.ManageViewModels;
 using Elect.Test.AspNetCore.Services;
+using Elect.Web.HttpDetection;
+using Elect.Web.Swagger.Attributes;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -63,6 +65,20 @@ namespace Elect.Test.AspNetCore.Controllers
             };
 
             return View(model);
+        }
+
+        /// <summary>
+        ///     Get device info 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ShowInApiDoc]
+        [AllowAnonymous]
+        public IActionResult Device()
+        {
+            var device = HttpContext.Request.GetDeviceInformation();
+
+            return Ok(device);
         }
 
         [HttpPost]

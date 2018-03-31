@@ -2161,3 +2161,15 @@ body {
     text-align: center;
     padding-top: 10px
 }
+
+.changes-disclaimer > .info {
+    display: block
+}
+
+.display-block {
+    display: block !important;
+}
+
+.info_email,  .info_name, .info_url {
+    display: block !important;
+}
