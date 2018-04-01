@@ -1,4 +1,23 @@
-﻿using Elect.Data.IO;
+﻿#region	License
+//--------------------------------------------------
+// <License>
+//     <Copyright> 2018 © Top Nguyen </Copyright>
+//     <Url> http://topnguyen.net/ </Url>
+//     <Author> Top </Author>
+//     <Project> Elect </Project>
+//     <File>
+//         <Name> SwaggerHelper.cs </Name>
+//         <Created> 01/04/2018 11:36:49 PM </Created>
+//         <Key> edf63670-33e9-4fa8-8b45-74610d05f4ca </Key>
+//     </File>
+//     <Summary>
+//         SwaggerHelper.cs is a part of Elect
+//     </Summary>
+// <License>
+//--------------------------------------------------
+#endregion License
+
+using Elect.Data.IO;
 using Elect.Web.HttpUtils;
 using Elect.Web.Models;
 using Elect.Web.Swagger.Models;
