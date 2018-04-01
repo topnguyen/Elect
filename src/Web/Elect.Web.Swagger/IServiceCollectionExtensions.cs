@@ -1,4 +1,23 @@
-﻿using Elect.Core.ActionUtils;
+﻿#region	License
+//--------------------------------------------------
+// <License>
+//     <Copyright> 2018 © Top Nguyen </Copyright>
+//     <Url> http://topnguyen.net/ </Url>
+//     <Author> Top </Author>
+//     <Project> Elect </Project>
+//     <File>
+//         <Name> IServiceCollectionExtensions.cs </Name>
+//         <Created> 01/04/2018 11:37:27 PM </Created>
+//         <Key> 222a77d7-acb5-4190-961e-4eb51d20b734 </Key>
+//     </File>
+//     <Summary>
+//         IServiceCollectionExtensions.cs is a part of Elect
+//     </Summary>
+// <License>
+//--------------------------------------------------
+#endregion License
+
+using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
 using Elect.Web.Swagger.IDocumentFilters;
 using Elect.Web.Swagger.Models;

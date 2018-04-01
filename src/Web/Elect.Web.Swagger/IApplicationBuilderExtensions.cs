@@ -1,4 +1,23 @@
-﻿using Elect.Data.IO;
+﻿#region	License
+//--------------------------------------------------
+// <License>
+//     <Copyright> 2018 © Top Nguyen </Copyright>
+//     <Url> http://topnguyen.net/ </Url>
+//     <Author> Top </Author>
+//     <Project> Elect </Project>
+//     <File>
+//         <Name> IApplicationBuilderExtensions.cs </Name>
+//         <Created> 01/04/2018 11:37:54 PM </Created>
+//         <Key> c5b6fb31-1b9e-41b0-92e7-c0748ff94744 </Key>
+//     </File>
+//     <Summary>
+//         IApplicationBuilderExtensions.cs is a part of Elect
+//     </Summary>
+// <License>
+//--------------------------------------------------
+#endregion License
+
+using Elect.Data.IO;
 using Elect.Web.Swagger.Models;
 using Elect.Web.Swagger.Utils;
 using Microsoft.AspNetCore.Builder;
