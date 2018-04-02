@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Information -->
+  <PropertyGroup>
+    <LangVersion>7.1</LangVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Nuget -->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>..\..\..\build\Job</PackageOutputPath>
+    <NuspecFile>..\..\..\nuspecs\Job\Elect.Job.Hangfire.nuspec</NuspecFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Web\Elect.Web\Elect.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HangFire" Version="1.6.17" />
+    <PackageReference Include="Hangfire.MemoryStorage" Version="1.5.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.1" />
+  </ItemGroup>
+</Project>

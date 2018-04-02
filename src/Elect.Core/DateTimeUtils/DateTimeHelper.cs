@@ -27,9 +27,16 @@ namespace Elect.Core.DateTimeUtils
 
         public static DateTime FromTimestamp(long value) => Epoch.AddSeconds(value);
 
-        public static long ToTimestamp(DateTime dateTime)
+        public static long GetTimestamp(DateTime dateTime)
         {
             TimeSpan elapsedTime = dateTime - Epoch;
+
+            return (long)elapsedTime.TotalSeconds;
+        }
+
+        public static long GetTimestamp(DateTimeOffset dateTimeOffset)
+        {
+            TimeSpan elapsedTime = dateTimeOffset - Epoch;
 
             return (long)elapsedTime.TotalSeconds;
         }
@@ -55,6 +62,30 @@ namespace Elect.Core.DateTimeUtils
 
                 default:
                     return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second, 0);
+            }
+        }
+
+        public static DateTimeOffset TruncateTo(DateTimeOffset dateTimeOffset, TruncateToType truncateTo)
+        {
+            switch (truncateTo)
+            {
+                case TruncateToType.Year:
+                    return new DateTimeOffset(dateTimeOffset.Year, 0, 0, 0, 0, 0, dateTimeOffset.Offset);
+
+                case TruncateToType.Month:
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, 0, 0, 0, 0, dateTimeOffset.Offset);
+
+                case TruncateToType.Day:
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, 0, 0, 0, dateTimeOffset.Offset);
+
+                case TruncateToType.Hour:
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, dateTimeOffset.Hour, 0, 0, dateTimeOffset.Offset);
+
+                case TruncateToType.Minute:
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, dateTimeOffset.Hour, dateTimeOffset.Minute, 0, dateTimeOffset.Offset);
+
+                default:
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, dateTimeOffset.Hour, dateTimeOffset.Minute, dateTimeOffset.Second, 0, dateTimeOffset.Offset);
             }
         }
 
