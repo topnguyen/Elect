@@ -6,12 +6,12 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> DataTableResponseDataModel.cs </Name>
+//         <Name> DataTableResponseModel.cs </Name>
 //         <Created> 23/03/2018 5:44:23 PM </Created>
 //         <Key> c971bcc4-c79b-4ea0-a2a4-3f399c9b6962 </Key>
 //     </File>
 //     <Summary>
-//         DataTableResponseDataModel.cs is a part of Elect
+//         DataTableResponseModel.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace Elect.Web.DataTable.Models.Response
 {
-    public class DataTableResponseDataModel<T> where T : class, new()
+    public class DataTableResponseModel<T> where T : class, new()
     {
         [JsonProperty(PropertyName = PropertyConstants.TotalRecords)]
         public int TotalRecord { get; set; }
@@ -40,9 +40,9 @@ namespace Elect.Web.DataTable.Models.Response
 
         public Type DataType { get; } = typeof(T);
 
-        public DataTableResponseDataModel<T> Transform<TData, TTransform>(Func<TData, TTransform> transformRow, ResponseOptionModel responseOptions = null)
+        public DataTableResponseModel<T> Transform<TData, TTransform>(Func<TData, TTransform> transformRow, ResponseOptionModel responseOptions = null)
         {
-            var data = new DataTableResponseDataModel<T>
+            var data = new DataTableResponseModel<T>
             {
                 Data = Data.Cast<TData>().Select(transformRow).Cast<object>().ToArray(),
                 TotalDisplayRecord = TotalDisplayRecord,

@@ -30,7 +30,7 @@ namespace Elect.Web.DataTable.Utils.DataTableParamModelUtils
 {
     internal class DataTableParamModelHelper
     {
-        internal IQueryable<T> ApplyFiltersAndSort<T>(DataTableParamModel dtParameters, IQueryable<T> data, DataTablePropertyInfoModel[] columns)
+        internal IQueryable<T> ApplyFiltersAndSort<T>(DataTableRequestModel dtParameters, IQueryable<T> data, DataTablePropertyInfoModel[] columns)
         {
             if (!string.IsNullOrEmpty(dtParameters.Search))
             {
@@ -93,7 +93,7 @@ namespace Elect.Web.DataTable.Utils.DataTableParamModelUtils
             return data;
         }
 
-        private static DataTablePropertyInfoModel FindColumn(DataTableParamModel dtParameters, DataTablePropertyInfoModel[] columns, int i)
+        private static DataTablePropertyInfoModel FindColumn(DataTableRequestModel dtParameters, DataTablePropertyInfoModel[] columns, int i)
         {
             if (dtParameters.ColumnNames.Any())
             {

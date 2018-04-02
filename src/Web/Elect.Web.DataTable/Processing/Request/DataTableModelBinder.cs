@@ -41,20 +41,20 @@ namespace Elect.Web.DataTable.Processing.Request
 
             int columns = GetValue<int>(valueProvider, PropertyConstants.Columns);
 
-            DataTableParamModel dataTableParam = columns <= 0 ? BindModel(valueProvider) : BindLegacyModel(valueProvider, columns);
+            DataTableRequestModel dataTableRequestModel = columns <= 0 ? BindModel(valueProvider) : BindLegacyModel(valueProvider, columns);
 
             // Keep all data to Data Property
-            dataTableParam.Data = GetDataDictionary(bindingContext);
+            dataTableRequestModel.Data = GetDataDictionary(bindingContext);
 
             // Bind data to result
-            bindingContext.Result = ModelBindingResult.Success(dataTableParam);
+            bindingContext.Result = ModelBindingResult.Success(dataTableRequestModel);
 
             return Task.CompletedTask;
         }
 
-        private static DataTableParamModel BindModel(IValueProvider valueProvider)
+        private static DataTableRequestModel BindModel(IValueProvider valueProvider)
         {
-            DataTableParamModel obj = new DataTableParamModel
+            DataTableRequestModel obj = new DataTableRequestModel
             {
                 DisplayStart = GetValue<int>(valueProvider, "start"),
                 DisplayLength = GetValue<int>(valueProvider, "length"),
@@ -104,9 +104,9 @@ namespace Elect.Web.DataTable.Processing.Request
             return obj;
         }
 
-        private static DataTableParamModel BindLegacyModel(IValueProvider valueProvider, int columns)
+        private static DataTableRequestModel BindLegacyModel(IValueProvider valueProvider, int columns)
         {
-            DataTableParamModel obj = new DataTableParamModel(columns)
+            DataTableRequestModel obj = new DataTableRequestModel(columns)
             {
                 DisplayStart = GetValue<int>(valueProvider, PropertyConstants.DisplayStart),
                 DisplayLength = GetValue<int>(valueProvider, PropertyConstants.DisplayLength),
@@ -180,7 +180,7 @@ namespace Elect.Web.DataTable.Processing.Request
                 throw new ArgumentNullException(nameof(context));
             }
 
-            return context.Metadata.ModelType == typeof(DataTableParamModel) ? new DataTableModelBinder() : null;
+            return context.Metadata.ModelType == typeof(DataTableRequestModel) ? new DataTableModelBinder() : null;
         }
     }
 }

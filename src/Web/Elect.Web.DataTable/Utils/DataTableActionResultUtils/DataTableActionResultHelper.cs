@@ -30,7 +30,7 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
     internal class DataTableActionResultHelper
     {
         /// <typeparam name="T"></typeparam>
-        /// <param name="responseData">  
+        /// <param name="response">  
         ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
         /// </param>
         /// <param name="transform">     
@@ -39,11 +39,11 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
         /// </param>
         /// <param name="responseOption"></param>
         /// <returns></returns>
-        internal static DataTableActionResult<T> Create<T>(DataTableResponseDataModel<T> responseData, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        internal static DataTableActionResult<T> Create<T>(DataTableResponseModel<T> response, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
             transform = transform ?? (s => s);
 
-            var result = new DataTableActionResult<T>(responseData);
+            var result = new DataTableActionResult<T>(response);
 
             result.Data =
                 result
@@ -59,9 +59,9 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
             return result;
         }
 
-        internal static DataTableActionResult<T> Create<T>(DataTableResponseDataModel<T> responseData, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        internal static DataTableActionResult<T> Create<T>(DataTableResponseModel<T> response, ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
-            var result = new DataTableActionResult<T>(responseData);
+            var result = new DataTableActionResult<T>(response);
 
             var dictionaryTransformFunc = new DataTableTypeInfoModel<T>().ToFuncDictionary(responseOption);
 
@@ -76,11 +76,11 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
             return result;
         }
 
-        private static DataTableResponseDataModel<T> ApplyOutputRules<T>(DataTableResponseDataModel<T> responseData, ResponseOptionModel<T> responseOption) where T : class, new()
+        private static DataTableResponseModel<T> ApplyOutputRules<T>(DataTableResponseModel<T> response, ResponseOptionModel<T> responseOption) where T : class, new()
         {
             responseOption = responseOption ?? new ResponseOptionModel<T> { ArrayOutputType = ArrayOutputType.BiDimensionalArray };
 
-            DataTableResponseDataModel<T> outputData = responseData;
+            DataTableResponseModel<T> outputData = response;
 
             switch (responseOption.ArrayOutputType)
             {
@@ -91,7 +91,7 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
                     }
                 default:
                     {
-                        outputData = responseData.Transform<Dictionary<string, object>, object[]>(d => d.Values.ToArray());
+                        outputData = response.Transform<Dictionary<string, object>, object[]>(d => d.Values.ToArray());
                         break;
                     }
             }
