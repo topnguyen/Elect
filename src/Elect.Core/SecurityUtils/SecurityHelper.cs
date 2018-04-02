@@ -130,7 +130,13 @@ namespace Elect.Core.SecurityUtils
             return HashPassword(password, salt, iterations);
         }
 
-        public static string EncryptRfc2989DeriveBytes(string value, string key)
+        /// <summary>
+        ///     Encrypt by Rfc 2898 DeriveBytes - PBKDF2 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="key">  </param>
+        /// <returns></returns>
+        public static string Encrypt(string value, string key)
         {
             byte[] clearBytes = Encoding.ASCII.GetBytes(value);
 
@@ -155,7 +161,13 @@ namespace Elect.Core.SecurityUtils
             return value;
         }
 
-        public static string DecryptRfc2989DeriveBytes(string value, string key)
+        /// <summary>
+        ///     Decrypt by Rfc 2898 DeriveBytes - PBKDF2 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="key">  </param>
+        /// <returns></returns>
+        public static string Decrypt(string value, string key)
         {
             byte[] cipherBytes = Safe64Encoding.DecodeBytes(value);
 
@@ -180,11 +192,18 @@ namespace Elect.Core.SecurityUtils
             return value;
         }
 
-        public static bool TryDecryptRfc2989DeriveBytes(string value, string key, out string result)
+        /// <summary>
+        ///     Try to Decrypt by Rfc 2898 DeriveBytes - PBKDF2 
+        /// </summary>
+        /// <param name="value"> </param>
+        /// <param name="key">   </param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static bool TryDecrypt(string value, string key, out string result)
         {
             try
             {
-                result = DecryptRfc2989DeriveBytes(value, key);
+                result = Decrypt(value, key);
 
                 return true;
             }
