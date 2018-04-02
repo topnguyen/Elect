@@ -6,12 +6,12 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> ElectHttpContext.cs </Name>
+//         <Name> HttpContext.cs </Name>
 //         <Created> 01/04/2018 11:31:22 PM </Created>
 //         <Key> 15b18c28-0c1b-461f-9032-8d33d87ae0cb </Key>
 //     </File>
 //     <Summary>
-//         ElectHttpContext.cs is a part of Elect
+//         HttpContext.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
@@ -19,7 +19,7 @@
 
 namespace Elect.Web.Middlewares.HttpContextMiddleware
 {
-    public static class ElectHttpContext
+    public static class HttpContext
     {
         private static Microsoft.AspNetCore.Http.IHttpContextAccessor _contextAccessor;
 
