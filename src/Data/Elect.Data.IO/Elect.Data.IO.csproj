@@ -11,6 +11,19 @@
     <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.IO.nuspec</NuspecFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="ImageUtils\Compress\Tools\libjpeg-62.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ImageUtils\Compress\Tools\Elect_ImageCompressor_GIF.exe" />
+    <EmbeddedResource Include="ImageUtils\Compress\Tools\Elect_ImageCompressor_JPEG.exe" />
+    <EmbeddedResource Include="ImageUtils\Compress\Tools\Elect_ImageCompressor_JPEG_Optimize.exe" />
+    <EmbeddedResource Include="ImageUtils\Compress\Tools\Elect_ImageCompressor_PNG_Optimize.exe" />
+    <EmbeddedResource Include="ImageUtils\Compress\Tools\Elect_ImageCompressor_PNG_Primary.exe" />
+    <EmbeddedResource Include="ImageUtils\Compress\Tools\Elect_ImageCompressor_PNG_Secondary.exe" />
+    <EmbeddedResource Include="ImageUtils\Compress\Tools\libjpeg-62.dll" />
+  </ItemGroup>
 
   <!-- Elect -->
   <ItemGroup>
@@ -19,6 +32,8 @@
 
   <!-- 3rd Libraries -->
   <ItemGroup>
+    <PackageReference Include="Enums.NET" Version="2.3.1" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
   </ItemGroup>
 </Project>
