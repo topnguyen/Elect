@@ -21,7 +21,6 @@ using Elect.Web.IUrlHelperUtils;
 using Elect.Web.SiteMap.Attributes;
 using Elect.Web.SiteMap.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -30,6 +29,43 @@ namespace Elect.Web.SiteMap.Services
 {
     public class SiteMapHelper
     {
+        /// <summary>
+        ///     Generate SiteMap content result for assembly project, use execute assembly as web
+        ///     project assembly.
+        /// </summary>
+        /// <param name="iUrlHelper"></param>
+        /// <returns></returns>
+        public static ContentResult GetSiteMapContentResult(IUrlHelper iUrlHelper)
+        {
+            var siteMapContentResult = GetSiteMapContentResult(Assembly.GetEntryAssembly(), iUrlHelper);
+
+            return siteMapContentResult;
+        }
+
+        /// <summary>
+        ///     Generate SiteMap content result for assembly project. 
+        /// </summary>
+        /// <param name="asm">        assembly of web project you want to generate SiteMap </param>
+        /// <param name="iUrlHelper"></param>
+        /// <returns></returns>
+        public static ContentResult GetSiteMapContentResult(Assembly asm, IUrlHelper iUrlHelper)
+        {
+            var actionList = GetListSiteMapItemAction(Assembly.GetEntryAssembly());
+
+            var siteMapItems = actionList
+                .Select(
+                    x => new SiteMapItem(iUrlHelper.AbsoluteAction(x.Action.Name, x.Controller.Name.Replace("Controller", string.Empty)),
+                        null,
+                        x.Frequency,
+                        x.Priority)
+                )
+                .ToArray();
+
+            var siteMapContentResult = new SiteMapGenerator().GenerateContentResult(siteMapItems);
+
+            return siteMapContentResult;
+        }
+
         public static List<SiteMapItemActionModel> GetListSiteMapItemAction(Assembly asm)
         {
             var listAction = asm.GetTypes()
@@ -45,26 +81,6 @@ namespace Elect.Web.SiteMap.Services
                 })
                 .ToList();
             return listAction;
-        }
-
-        public static ContentResult GetContentResult(Type startup, IUrlHelper iUrlHelper)
-        {
-            var asm = startup.GetTypeInfo().Assembly;
-
-            var actionList = GetListSiteMapItemAction(asm);
-
-            var siteMapItems = actionList
-                .Select(
-                    x => new SiteMapItem(iUrlHelper.AbsoluteAction(x.Action.Name, x.Controller.Name.Replace("Controller", string.Empty)),
-                    null,
-                    x.Frequency,
-                    x.Priority)
-                )
-                .ToArray();
-
-            var siteMapContentResult = new SiteMapGenerator().GenerateContentResult(siteMapItems);
-
-            return siteMapContentResult;
         }
     }
 }
