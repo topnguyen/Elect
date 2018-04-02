@@ -29,7 +29,7 @@ namespace Elect.Web.Middlewares.HttpContextMiddleware
         {
             var httpContextAccessor = app.ApplicationServices.GetService<IHttpContextAccessor>();
 
-            ElectHttpContext.Configure(httpContextAccessor);
+            HttpContext.Configure(httpContextAccessor);
 
             return app;
         }
