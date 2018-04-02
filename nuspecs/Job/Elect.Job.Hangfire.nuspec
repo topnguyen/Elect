@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Elect.Job.Hangfire</id>
+    <title>Elect Hangfire Extensions</title>
+    <description>Hangfire extensions.</description>
+    <summary>Hangfire extensions.</summary>
+    <authors>Top Nguyen</authors>
+    <owners>topnguyen</owners>
+    <copyright>http://topnguyen.net</copyright>
+    <projectUrl>https://github.com/topnguyen/Elect</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>aspnetcore hangfire elect topnguyen</tags>
+    <version>1.0.0</version>
+    <releaseNotes></releaseNotes>
+
+    <dependencies>
+      <dependency id="Elect.Web" version="1.0.8" />
+      <dependency id="HangFire" version="1.6.17" />
+      <dependency id="Hangfire.MemoryStorage" version="1.5.2" />
+      <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
+      <dependency id="Microsoft.Extensions.DependencyModel" version="2.0.4" />
+      <dependency id="Microsoft.Extensions.Options" version="2.0.1" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Debug\netstandard2.0\Elect.Job.Hangfire.dll" target="lib\netstandard2.0" />
+    <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Debug\netstandard2.0\Elect.Job.Hangfire.pdb" target="lib\netstandard2.0" />
+  </files>
+</package>

@@ -25,12 +25,22 @@ namespace Elect.Core.DateTimeUtils
     {
         public static long ToTimestamp(this DateTime dateTime)
         {
-            return DateTimeHelper.ToTimestamp(dateTime);
+            return DateTimeHelper.GetTimestamp(dateTime);
+        }
+
+        public static long ToTimestamp(this DateTimeOffset dateTimeOffset)
+        {
+            return DateTimeHelper.GetTimestamp(dateTimeOffset);
         }
 
         public static DateTime TruncateTo(this DateTime dateTime, TruncateToType truncateTo)
         {
             return DateTimeHelper.TruncateTo(dateTime, truncateTo);
+        }
+
+        public static DateTimeOffset TruncateTo(this DateTimeOffset dateTimeOffset, TruncateToType truncateTo)
+        {
+            return DateTimeHelper.TruncateTo(dateTimeOffset, truncateTo);
         }
 
         /// <param name="dateTime">  </param>
