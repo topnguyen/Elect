@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -241,6 +242,24 @@ namespace Elect.Core.StringUtils
             {
                 return false;
             }
+        }
+
+        public static string EncodeBase64Url(string value)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(value);
+
+            string base64Encode = WebEncoders.Base64UrlEncode(bytes);
+
+            return base64Encode;
+        }
+
+        public static string DecodeBase64Url(string value)
+        {
+            byte[] bytes = WebEncoders.Base64UrlDecode(value);
+
+            string base64Decode = Encoding.UTF8.GetString(bytes);
+
+            return base64Decode;
         }
 
         #endregion
