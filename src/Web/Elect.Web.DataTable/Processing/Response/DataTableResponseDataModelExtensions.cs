@@ -26,14 +26,14 @@ namespace Elect.Web.DataTable.Processing.Response
 {
     public static class DataTableResponseDataModelExtensions
     {
-        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseDataModel<T> responseData, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseModel<T> response, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
-            return DataTableActionResultHelper.Create(responseData, transform, responseOption);
+            return DataTableActionResultHelper.Create(response, transform, responseOption);
         }
 
-        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseDataModel<T> responseData, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseModel<T> response, ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
-            return DataTableActionResultHelper.Create(responseData, responseOption);
+            return DataTableActionResultHelper.Create(response, responseOption);
         }
     }
 }

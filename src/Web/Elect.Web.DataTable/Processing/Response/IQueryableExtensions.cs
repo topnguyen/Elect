@@ -27,7 +27,7 @@ namespace Elect.Web.DataTable.Processing.Response
 {
     public static class IQueryableExtensions
     {
-        public static DataTableResponseDataModel<T> GetDataTableResponse<T>(this IQueryable<T> data, DataTableParamModel dataTableParamModel) where T : class, new()
+        public static DataTableResponseModel<T> GetDataTableResponse<T>(this IQueryable<T> data, DataTableRequestModel dataTableRequestModel) where T : class, new()
         {
             // Count or LongCount is very annoying cause an extra evaluation.
 
@@ -37,19 +37,19 @@ namespace Elect.Web.DataTable.Processing.Response
 
             var outputProperties = new DataTableTypeInfoModel<T>().Properties;
 
-            var filteredData = filters.ApplyFiltersAndSort(dataTableParamModel, data, outputProperties);
+            var filteredData = filters.ApplyFiltersAndSort(dataTableRequestModel, data, outputProperties);
 
             var totalDisplayRecords = filteredData.Count();
 
-            var skipped = filteredData.Skip(dataTableParamModel.DisplayStart);
+            var skipped = filteredData.Skip(dataTableRequestModel.DisplayStart);
 
-            var page = (dataTableParamModel.DisplayLength <= 0 ? skipped : skipped.Take(dataTableParamModel.DisplayLength)).ToArray();
+            var page = (dataTableRequestModel.DisplayLength <= 0 ? skipped : skipped.Take(dataTableRequestModel.DisplayLength)).ToArray();
 
-            var result = new DataTableResponseDataModel<T>
+            var result = new DataTableResponseModel<T>
             {
                 TotalRecord = totalRecords,
                 TotalDisplayRecord = totalDisplayRecords,
-                Echo = dataTableParamModel.Echo,
+                Echo = dataTableRequestModel.Echo,
                 Data = page.Cast<object>().ToArray()
             };
 

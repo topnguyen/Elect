@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace Elect.Web.DataTable.Models.Request
 {
-    public class DataTableParamModel
+    public class DataTableRequestModel
     {
         [JsonProperty(PropertyName = PropertyConstants.DisplayStart)]
         public int DisplayStart { get; set; }
@@ -73,7 +73,7 @@ namespace Elect.Web.DataTable.Models.Request
         [JsonIgnore]
         public Dictionary<string, object> Data { get; set; }
 
-        public DataTableParamModel()
+        public DataTableRequestModel()
         {
             ColumnNames = new List<string>();
             ListIsSortable = new List<bool>();
@@ -84,7 +84,7 @@ namespace Elect.Web.DataTable.Models.Request
             ListIsEscapeRegexColumn = new List<bool>();
         }
 
-        public DataTableParamModel(int columns)
+        public DataTableRequestModel(int columns)
         {
             Columns = columns;
             ColumnNames = new List<string>(columns);
