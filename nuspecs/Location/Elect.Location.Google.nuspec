@@ -17,8 +17,8 @@
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Core" version="1.0.11" />
-        <dependency id="Elect.Location.Models" version="1.0.3" />
+        <dependency id="Elect.Core" version="1.0.20" />
+        <dependency id="Elect.Location.Models" version="1.0.20" />
         <dependency id="Newtonsoft.Json" version="11.0.2" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
         <dependency id="Microsoft.Extensions.Options" version="2.0.1" />

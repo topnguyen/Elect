@@ -17,7 +17,7 @@
     <releaseNotes></releaseNotes>
 
     <dependencies>
-      <dependency id="Elect.Web" version="1.0.8" />
+      <dependency id="Elect.Web" version="1.0.20" />
       <dependency id="HangFire" version="1.6.17" />
       <dependency id="Hangfire.MemoryStorage" version="1.5.2" />
       <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />

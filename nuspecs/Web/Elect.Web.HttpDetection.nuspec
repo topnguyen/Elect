@@ -18,8 +18,8 @@
 
     <dependencies>
         <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
-        <dependency id="Elect.Web" version="1.0.8" />
-        <dependency id="Elect.Data.IO" version="1.0.7" />
+        <dependency id="Elect.Web" version="1.0.20" />
+        <dependency id="Elect.Data.IO" version="1.0.20" />
         <dependency id="MaxMind.GeoIP2" version="2.10.0" />
     </dependencies>
   </metadata>
