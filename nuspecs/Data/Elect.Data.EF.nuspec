@@ -18,7 +18,7 @@
 
     <dependencies>
         <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
-        <dependency id="Elect.Core" version="1.0.11" />
+        <dependency id="Elect.Core" version="1.0.20" />
         <dependency id="Microsoft.EntityFrameworkCore" version="2.0.2" />
         <dependency id="Microsoft.EntityFrameworkCore.Relational" version="2.0.2" />
     </dependencies>
