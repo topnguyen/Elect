@@ -41,7 +41,7 @@ namespace Elect.Data.IO.ImageUtils
         ///     <para> Invalid image will be return <c> NULL </c> </para>
         /// </summary>
         /// <param name="base64"></param>
-        public static ImageInfoModel GetImageInfo(string base64)
+        public static ImageModel GetImageInfo(string base64)
         {
             byte[] bytes = Convert.FromBase64String(base64);
 
@@ -54,7 +54,7 @@ namespace Elect.Data.IO.ImageUtils
         ///     <para> Invalid image will be return <c> NULL </c> </para>
         /// </summary>
         /// <param name="bytes"></param>
-        public static ImageInfoModel GetImageInfo(byte[] bytes)
+        public static ImageModel GetImageInfo(byte[] bytes)
         {
             using (var stream = new MemoryStream(bytes))
             {
@@ -68,16 +68,16 @@ namespace Elect.Data.IO.ImageUtils
         ///     <para> Invalid image will be return <c> NULL </c> </para>
         /// </summary>
         /// <param name="imageStream"></param>
-        public static ImageInfoModel GetImageInfo(MemoryStream imageStream)
+        public static ImageModel GetImageInfo(MemoryStream imageStream)
         {
             try
             {
-                ImageInfoModel imageInfo = new ImageInfoModel();
+                ImageModel imageModel = new ImageModel();
 
                 // Check Vector image first, if image is vector then no info for width and height
                 if (IsSvgImage(imageStream))
                 {
-                    imageInfo.MimeType = "image/svg+xml";
+                    imageModel.MimeType = "image/svg+xml";
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace Elect.Data.IO.ImageUtils
                         {
                             if (imageCodecInfo.FormatID == image.RawFormat.Guid)
                             {
-                                imageInfo.MimeType = imageCodecInfo.MimeType;
+                                imageModel.MimeType = imageCodecInfo.MimeType;
                                 isUnknownMimeType = false;
                                 break;
                             }
@@ -99,25 +99,25 @@ namespace Elect.Data.IO.ImageUtils
 
                         if (isUnknownMimeType)
                         {
-                            imageInfo.MimeType = ImageConstants.ImageMimeTypeUnknown;
+                            imageModel.MimeType = ImageConstants.ImageMimeTypeUnknown;
                         }
 
                         // Get width and height in pixel info
-                        imageInfo.WidthPx = image.Width;
-                        imageInfo.HeightPx = image.Height;
+                        imageModel.WidthPx = image.Width;
+                        imageModel.HeightPx = image.Height;
                     }
                 }
 
                 // Get others info
-                imageInfo.Extension = MimeTypeHelper.GetExtension(imageInfo.MimeType);
+                imageModel.Extension = MimeTypeHelper.GetExtension(imageModel.MimeType);
 
                 // Get image dominant color
                 using (var bitmap = new Bitmap(imageStream))
                 {
-                    imageInfo.DominantHexColor = ImageDominantColorHelper.GetHexCode(bitmap);
+                    imageModel.DominantHexColor = ImageDominantColorHelper.GetHexCode(bitmap);
                 }
 
-                return imageInfo;
+                return imageModel;
             }
             catch
             {
