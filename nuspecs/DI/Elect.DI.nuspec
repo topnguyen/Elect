@@ -13,7 +13,7 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore dependencyinjection elect topnguyen</tags>
-    <version>1.0.8</version>
+    <version>1.0.20</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>

@@ -35,7 +35,7 @@ namespace Elect.Web.Swagger.Utils
 
         internal const string AccessKeyName = "key";
 
-        internal const string AssetFolderName = "apidoc";
+        internal const string AssetFolderName = "Elect_Swagger";
 
         internal static readonly string IndexFileFullPath = $"{AssetFolderName}/index.html";
 
