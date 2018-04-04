@@ -17,7 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.IO.ImageUtils.Compress;
+using Elect.Data.IO.ImageUtils.CompressUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Elect.Test.UnitTest

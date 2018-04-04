@@ -17,7 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
-namespace Elect.Data.IO.ImageUtils.Compress.Models
+namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
 {
     internal class CompressConstants
     {

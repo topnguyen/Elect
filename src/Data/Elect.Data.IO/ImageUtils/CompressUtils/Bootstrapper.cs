@@ -17,13 +17,13 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.IO.ImageUtils.Compress.Models;
+using Elect.Data.IO.ImageUtils.CompressUtils.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace Elect.Data.IO.ImageUtils.Compress
+namespace Elect.Data.IO.ImageUtils.CompressUtils
 {
     internal sealed class Bootstrapper
     {
@@ -83,7 +83,7 @@ namespace Elect.Data.IO.ImageUtils.Compress
             directoryInfo.Create();
 
             // Load tools
-            var librariesNameSpace = $"{nameof(Elect)}.{nameof(Data)}.{nameof(IO)}.{nameof(ImageUtils)}.{nameof(Compress)}.Tools";
+            var librariesNameSpace = $"{nameof(Elect)}.{nameof(Data)}.{nameof(IO)}.{nameof(ImageUtils)}.{nameof(CompressUtils)}.Tools";
 
             // Get the resources and copy them across.
             Dictionary<string, string> resources = new Dictionary<string, string>
