@@ -17,9 +17,11 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.Interfaces;
+
 namespace Elect.Job.Hangfire.Models
 {
-    public class ElectHangfireOptions
+    public class ElectHangfireOptions : IElectOptions
     {
         /// <summary>
         ///     Job Dashboard url, default is "/developers/job". Set to <see langword="null" /> to

@@ -70,7 +70,7 @@ namespace Elect.Data.IO.ImageUtils.Compress
 
             // Create the folder for storing temporary images and tools.
 
-            WorkingPath = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, "..\\Elect_ImageCompressorTools." + AssemblyVersion + "\\"));
+            WorkingPath = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, "..\\Elect_ImageCompressor\\"));
 
             DirectoryInfo directoryInfo = new DirectoryInfo(Path.GetDirectoryName(WorkingPath));
 
