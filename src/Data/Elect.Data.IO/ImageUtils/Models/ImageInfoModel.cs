@@ -6,12 +6,12 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> ImageModel.cs </Name>
-//         <Created> 02/04/2018 8:29:00 PM </Created>
-//         <Key> 07fda2b0-1a44-4252-a038-f7737cd6640b </Key>
+//         <Name> ImageInfoModel.cs </Name>
+//         <Created> 04/04/2018 5:56:33 PM </Created>
+//         <Key> ded6dace-9cee-493f-80b8-4c8e23f7a0d4 </Key>
 //     </File>
 //     <Summary>
-//         ImageModel.cs is a part of Elect
+//         ImageInfoModel.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
@@ -19,7 +19,7 @@
 
 namespace Elect.Data.IO.ImageUtils.Models
 {
-    public class ImageModel
+    public class ImageInfoModel
     {
         public string MimeType { get; set; }
 

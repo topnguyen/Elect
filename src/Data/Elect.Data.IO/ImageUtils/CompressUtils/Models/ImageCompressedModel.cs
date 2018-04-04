@@ -21,7 +21,7 @@ using EnumsNET;
 using System;
 using System.IO;
 
-namespace Elect.Data.IO.ImageUtils.Compress.Models
+namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
 {
     public class ImageCompressedModel : EventArgs
     {

@@ -18,7 +18,7 @@
 #endregion License
 
 using Elect.Data.IO.FileUtils;
-using Elect.Data.IO.ImageUtils.Compress.Models;
+using Elect.Data.IO.ImageUtils.CompressUtils.Models;
 using Elect.Data.IO.StreamUtils;
 using EnumsNET;
 using System;
@@ -26,7 +26,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-namespace Elect.Data.IO.ImageUtils.Compress
+namespace Elect.Data.IO.ImageUtils.CompressUtils
 {
     public class ImageCompressor
     {
