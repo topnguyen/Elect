@@ -29,6 +29,11 @@ namespace Elect.Job.Hangfire
 {
     public static class IServiceCollectionExtensions
     {
+        public static IServiceCollection AddElectHangfire(this IServiceCollection services)
+        {
+            return services.AddElectHangfire(_ => { });
+        }
+
         public static IServiceCollection AddElectHangfire(this IServiceCollection services, [NotNull] Action<ElectHangfireOptions> configuration)
         {
             services.Configure(configuration);

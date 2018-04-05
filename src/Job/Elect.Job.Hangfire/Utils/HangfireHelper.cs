@@ -25,6 +25,7 @@ namespace Elect.Job.Hangfire.Utils
     public class HangfireHelper
     {
         internal const string AccessKeyName = "key";
+        internal const string CookieAccessKeyName = "Elect_Hangfire_AccessKey";
 
         public static bool IsCanAccessHangfireDashboard(HttpContext httpContext, ElectHangfireOptions options)
         {
@@ -35,7 +36,15 @@ namespace Elect.Job.Hangfire.Utils
 
             string requestKey = httpContext.Request.Query[AccessKeyName];
 
-            var isCanAccess = string.IsNullOrWhiteSpace(options.AccessKey) || options.AccessKey == requestKey;
+            if (string.IsNullOrWhiteSpace(requestKey))
+            {
+                if (httpContext.Request.Cookies.TryGetValue(CookieAccessKeyName, out var cookieRequestKey))
+                {
+                    requestKey = cookieRequestKey;
+                }
+            }
+
+            var isCanAccess = options.AccessKey == requestKey;
 
             return isCanAccess;
         }

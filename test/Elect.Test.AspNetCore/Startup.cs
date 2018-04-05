@@ -1,10 +1,7 @@
-﻿using Elect.Data.EF.Interfaces.DbContext;
-using Elect.Data.EF.Interfaces.Repository;
-using Elect.Data.EF.Interfaces.UnitOfWork;
-using Elect.DI;
+﻿using Elect.DI;
+using Elect.Job.Hangfire;
 using Elect.Test.AspNetCore.Data;
 using Elect.Test.AspNetCore.Models;
-using Elect.Test.AspNetCore.Services;
 using Elect.Web.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +40,11 @@ namespace Elect.Test.AspNetCore
                 _.AuthorWebsite = "http://topnguyen.net";
             });
 
+            services.AddElectHangfire(_ =>
+            {
+                _.AccessKey = "topnguyen";
+            });
+
             services.AddMvc();
         }
 
@@ -59,6 +61,9 @@ namespace Elect.Test.AspNetCore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+
+            app.UseElectHangfire();
 
             app.UseStaticFiles();
 
