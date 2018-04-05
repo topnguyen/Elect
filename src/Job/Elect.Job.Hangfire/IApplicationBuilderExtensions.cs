@@ -22,6 +22,7 @@ using Elect.Job.Hangfire.Models;
 using Elect.Job.Hangfire.Utils;
 using Elect.Web.HttpUtils;
 using Hangfire;
+using Hangfire.Dashboard;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +39,7 @@ namespace Elect.Job.Hangfire
 
             if (!string.IsNullOrWhiteSpace(options.Url))
             {
-                app.UseMiddleware<HangfireDashboardAccessMiddleware>();
+                app.UseMiddleware<ElectHangfireMiddleware>();
 
                 app.UseHangfireDashboard(options.Url, new DashboardOptions
                 {
@@ -46,7 +47,7 @@ namespace Elect.Job.Hangfire
 
                     AppPath = options.BackToUrl,
 
-                    StatsPollingInterval = options.StatsPollingInterval
+                    StatsPollingInterval = 3000
                 });
             }
 
@@ -55,24 +56,47 @@ namespace Elect.Job.Hangfire
             return app;
         }
 
-        public class HangfireDashboardAccessMiddleware
+        public class ElectHangfireMiddleware
         {
             private readonly RequestDelegate _next;
             private readonly ElectHangfireOptions _options;
+            private readonly RouteCollection _routeCollection;
 
-            public HangfireDashboardAccessMiddleware(RequestDelegate next, IOptions<ElectHangfireOptions> configuration)
+            public ElectHangfireMiddleware(RequestDelegate next, IOptions<ElectHangfireOptions> configuration, RouteCollection routeCollection)
             {
                 _next = next;
                 _options = configuration.Value;
+                _routeCollection = routeCollection;
             }
 
             public async Task Invoke(HttpContext context)
             {
-                if (context.Request.IsRequestFor(_options.Url) && !HangfireHelper.IsCanAccessHangfireDashboard(context, _options))
-                {
-                    context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                var route = _routeCollection.FindDispatcher(context.Request.Path.Value.Replace(_options.Url, string.Empty));
 
-                    context.Response.Headers.Clear();
+                var dashboardRequestUrl = route == null ? _options.Url : $@"{_options.Url}/{route.Item2.Value.Trim('/')}";
+
+                var isRequestToHangfireDashboard = context.Request.IsRequestFor(dashboardRequestUrl);
+
+                if (route == null || !isRequestToHangfireDashboard)
+                {
+                    await _next.Invoke(context).ConfigureAwait(true);
+
+                    return;
+                }
+
+                bool isCanAccess = HangfireHelper.IsCanAccessHangfireDashboard(context, _options);
+
+                // Set cookie if need serve for check access in ElectDashboardAuthorizationFilter.cs
+                string accessKey = context.Request.Query[HangfireHelper.AccessKeyName];
+
+                if (!string.IsNullOrWhiteSpace(accessKey) && context.Request.Cookies[HangfireHelper.AccessKeyName] != accessKey)
+                {
+                    SetCookie(context, HangfireHelper.CookieAccessKeyName, accessKey);
+                }
+
+                if (!isCanAccess)
+                {
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
 
                     await context.Response.WriteAsync(_options.UnAuthorizeMessage).ConfigureAwait(true);
 
@@ -80,6 +104,15 @@ namespace Elect.Job.Hangfire
                 }
 
                 await _next.Invoke(context).ConfigureAwait(true);
+            }
+
+            private static void SetCookie(HttpContext context, string key, string value)
+            {
+                context.Response.Cookies.Append(key, value, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = false // allow transmit via http and https
+                });
             }
         }
     }
