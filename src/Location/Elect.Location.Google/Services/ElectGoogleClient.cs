@@ -88,7 +88,9 @@ namespace Elect.Location.Google.Services
             }
             catch (FlurlHttpException e)
             {
-                throw new HttpRequestException(e.GetResponseString());
+                var response = await e.GetResponseStringAsync().ConfigureAwait(true);
+
+                throw new HttpRequestException(response);
             }
         }
 
@@ -202,7 +204,9 @@ namespace Elect.Location.Google.Services
             }
             catch (FlurlHttpException e)
             {
-                throw new HttpRequestException(e.GetResponseString());
+                var response = await e.GetResponseStringAsync().ConfigureAwait(true);
+
+                throw new HttpRequestException(response);
             }
         }
 

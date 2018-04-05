@@ -13,15 +13,16 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore googleapi elect topnguyen</tags>
-    <version>1.0.20</version>
+    <version>1.0.21</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Core" version="1.0.20" />
+        <dependency id="Elect.Core" version="1.0.21" />
         <dependency id="Elect.Location.Models" version="1.0.20" />
         <dependency id="Newtonsoft.Json" version="11.0.2" />
-        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
-        <dependency id="Microsoft.Extensions.Options" version="2.0.1" />
+        <dependency id="Flurl.Http" version="2.3.0" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.0-preview1-final" />
+        <dependency id="Microsoft.Extensions.Options" version="2.1.0-preview1-final" />
     </dependencies>
   </metadata>
 

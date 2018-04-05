@@ -4,30 +4,10 @@
         <name>Elect.Test.AspNetCore</name>
     </assembly>
     <members>
-        <member name="M:Elect.Test.AspNetCore.Controllers.HomeController.Index">
+        <member name="M:Elect.Test.AspNetCore.Controllers.ManageController.Device">
             <summary>
-                Index 
+                Get device info 
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Elect.Test.AspNetCore.Controllers.HomeController.Index(System.String)">
-            <summary>
-                Index Submit 
-            </summary>
-            <param name="a"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Elect.Test.AspNetCore.Controllers.ManageController.ChangePassword">
-            <summary>
-                Change Password GET 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Elect.Test.AspNetCore.Controllers.ManageController.ChangePassword(Elect.Test.AspNetCore.Models.ManageViewModels.ChangePasswordViewModel)">
-            <summary>
-                Change Password POST 
-            </summary>
-            <param name="model"></param>
             <returns></returns>
         </member>
     </members>

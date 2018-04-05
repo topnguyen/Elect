@@ -93,7 +93,9 @@ namespace Elect.Notification.Esms.Services
             }
             catch (FlurlHttpException e)
             {
-                throw new HttpRequestException(e.GetResponseString());
+                var response = await e.GetResponseStringAsync().ConfigureAwait(true);
+
+                throw new HttpRequestException(response);
             }
         }
 
@@ -115,7 +117,9 @@ namespace Elect.Notification.Esms.Services
             }
             catch (FlurlHttpException e)
             {
-                throw new HttpRequestException(e.GetResponseString());
+                var response = await e.GetResponseStringAsync().ConfigureAwait(true);
+
+                throw new HttpRequestException(response);
             }
         }
     }

@@ -24,6 +24,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Elect.DI
 {
@@ -260,21 +261,21 @@ namespace Elect.DI
 
         #region Print
 
-        public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services)
+        public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services)
         {
-            return services.PrintRegisteredToConsole(_ => { });
+            return services.PrintServiceAddedToConsole(_ => { });
         }
 
-        public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services, [NotNull]ElectPrintRegisteredToConsoleOptions configure)
+        public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services, [NotNull]ElectPrintRegisteredToConsoleOptions configure)
         {
-            return services.PrintRegisteredToConsole(_ =>
+            return services.PrintServiceAddedToConsole(_ =>
             {
                 _.ListAssemblyName = configure.ListAssemblyName;
                 _.IsMinimalDisplay = configure.IsMinimalDisplay;
             });
         }
 
-        public static IServiceCollection PrintRegisteredToConsole(this IServiceCollection services, [NotNull]Action<ElectPrintRegisteredToConsoleOptions> configure)
+        public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services, [NotNull]Action<ElectPrintRegisteredToConsoleOptions> configure)
         {
             services.Configure(configure);
 
@@ -288,53 +289,53 @@ namespace Elect.DI
             var consoleDimColor = ConsoleColor.DarkGray;
 
             Console.WriteLine();
-            Console.WriteLine($"{new string('-', 100)}");
+            Console.WriteLine($"{new string('-', 110)}");
             Console.WriteLine();
 
             Console.ForegroundColor = consoleTextColor;
-            Console.WriteLine($"# Elect DI > Registered: {listServiceDescriptors.Count} Services");
+            Console.WriteLine($"Elect DI > Registered {listServiceDescriptors.Count} Services.");
             Console.WriteLine();
 
             if (!listServiceDescriptors.Any())
             {
                 Console.ResetColor();
-                Console.WriteLine($"{new string('-', 100)}");
+                Console.WriteLine($"{new string('-', 110)}");
 
                 return services;
             }
 
             if (options.IsMinimalDisplay)
             {
-                PrintRegisteredToConsoleMinimalDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
+                PrintServiceAddedToConsoleMinimalDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
             }
             else
             {
-                PrintRegisteredToConsoleFullDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
+                PrintServiceAddedToConsoleFullDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
             }
 
             Console.WriteLine();
             Console.ResetColor();
-            Console.WriteLine($"{new string('-', 100)}");
+            Console.WriteLine($"{new string('-', 110)}");
 
             return services;
         }
 
-        private static void PrintRegisteredToConsoleMinimalDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
+        private static void PrintServiceAddedToConsoleMinimalDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
         {
-            var noMaxLength = listServiceDescriptors.Count;
+            var noMaxLength = listServiceDescriptors.Count.ToString().Length;
 
             if (noMaxLength < "No.".Length)
             {
                 noMaxLength = "No.".Length;
             }
 
-            var serviceNameMaxLength = listServiceDescriptors.Select(x => x.ServiceType.Name.Length).Max();
+            var serviceNameMaxLength = listServiceDescriptors.Select(x => GetNormForServiceAdded(x.ServiceType.Name).Length).Max();
             if (serviceNameMaxLength < "Service".Length)
             {
                 serviceNameMaxLength = "Service".Length;
             }
 
-            var implementationNameMaxLength = listServiceDescriptors.Select(x => x.ImplementationType.Name.Length).Max();
+            var implementationNameMaxLength = listServiceDescriptors.Select(x => GetNormForServiceAdded(x.ImplementationType?.Name).Length).Max();
             if (implementationNameMaxLength < "Implementation".Length)
             {
                 implementationNameMaxLength = "Implementation".Length;
@@ -371,7 +372,7 @@ namespace Elect.DI
 
                 Console.ResetColor();
                 Console.Write("    ");
-                Console.Write($"{no}.".PadRight(noMaxLength));
+                Console.Write($"{no}".PadRight(noMaxLength));
 
                 Console.ResetColor();
                 Console.Write("    |    ");
@@ -379,7 +380,7 @@ namespace Elect.DI
                 // Service
 
                 Console.ForegroundColor = consoleTextColor;
-                Console.Write(service.ServiceType?.Name?.PadRight(serviceNameMaxLength));
+                Console.Write(GetNormForServiceAdded(service.ServiceType?.Name).PadRight(serviceNameMaxLength));
 
                 Console.ResetColor();
                 Console.Write("    |    ");
@@ -387,7 +388,7 @@ namespace Elect.DI
                 // Implementation
 
                 Console.ForegroundColor = consoleDimColor;
-                Console.Write(service.ImplementationType?.Name?.PadRight(implementationNameMaxLength));
+                Console.Write(GetNormForServiceAdded(service.ImplementationType?.Name).PadRight(implementationNameMaxLength));
 
                 Console.ResetColor();
                 Console.Write("    |    ");
@@ -399,13 +400,13 @@ namespace Elect.DI
             }
         }
 
-        private static void PrintRegisteredToConsoleFullDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
+        private static void PrintServiceAddedToConsoleFullDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
         {
             var maximumCharacter =
                 new List<int>
                 {
-                    listServiceDescriptors.Select(x => x.ServiceType.Name.Length).Max(),
-                    listServiceDescriptors.Select(x => x.ImplementationType.Name.Length).Max(),
+                    listServiceDescriptors.Select(x => GetNormForServiceAdded(x.ServiceType.Name).Length).Max(),
+                    listServiceDescriptors.Select(x => GetNormForServiceAdded(x.ImplementationType?.Name).Length).Max(),
                     listServiceDescriptors.Select(x => x.Lifetime.ToString().Length).Max()
                 }.Max();
 
@@ -433,13 +434,13 @@ namespace Elect.DI
                 Console.Write("    |    ");
 
                 Console.ForegroundColor = consoleTextColor;
-                Console.Write(service.ServiceType?.Name?.PadRight(maximumCharacter));
+                Console.Write(GetNormForServiceAdded(service.ServiceType?.Name).PadRight(maximumCharacter));
 
                 Console.ResetColor();
                 Console.Write("    |    ");
 
                 Console.ForegroundColor = consoleDimColor;
-                Console.WriteLine(service.ServiceType?.FullName);
+                Console.WriteLine(GetNormForServiceAdded(service.ServiceType?.FullName).PadRight(maximumCharacter));
 
                 // Implementation
 
@@ -450,13 +451,13 @@ namespace Elect.DI
                 Console.Write("    |    ");
 
                 Console.ForegroundColor = consoleDimColor;
-                Console.Write(service.ImplementationType?.Name?.PadRight(maximumCharacter));
+                Console.Write(GetNormForServiceAdded(service.ImplementationType?.Name).PadRight(maximumCharacter)?.PadRight(maximumCharacter));
 
                 Console.ResetColor();
                 Console.Write("    |    ");
 
                 Console.ForegroundColor = consoleDimColor;
-                Console.WriteLine(service.ImplementationType?.FullName);
+                Console.WriteLine(GetNormForServiceAdded(service.ImplementationType?.FullName).PadRight(maximumCharacter));
 
                 // Life Time
 
@@ -472,6 +473,18 @@ namespace Elect.DI
                 Console.ResetColor();
                 Console.WriteLine("    |    ");
             }
+        }
+
+        [NotNull]
+        private static string GetNormForServiceAdded(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return "-";
+            }
+
+            // Replace To Readable Generic if can
+            return Regex.Replace(value, @"`\d", "<T>");
         }
 
         #endregion

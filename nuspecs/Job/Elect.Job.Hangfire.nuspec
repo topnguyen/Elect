@@ -13,16 +13,16 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore hangfire elect topnguyen</tags>
-    <version>1.0.20</version>
+    <version>1.0.21</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-      <dependency id="Elect.Web" version="1.0.20" />
-      <dependency id="HangFire" version="1.6.17" />
+      <dependency id="Elect.Web" version="1.0.21" />
+      <dependency id="HangFire" version="1.7.0-beta1" />
       <dependency id="Hangfire.MemoryStorage" version="1.5.2" />
-      <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
-      <dependency id="Microsoft.Extensions.DependencyModel" version="2.0.4" />
-      <dependency id="Microsoft.Extensions.Options" version="2.0.1" />
+      <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.0-preview1-final" />
+      <dependency id="Microsoft.Extensions.DependencyModel" version="2.1.0-preview1-26216-03" />
+      <dependency id="Microsoft.Extensions.Options" version="2.1.0-preview1-final" />
     </dependencies>
   </metadata>
 

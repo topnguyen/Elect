@@ -1,6 +1,7 @@
 ﻿using Elect.Data.EF.Interfaces.DbContext;
 using Elect.Data.EF.Interfaces.Repository;
 using Elect.Data.EF.Interfaces.UnitOfWork;
+using Elect.DI;
 using Elect.Test.AspNetCore.Data;
 using Elect.Test.AspNetCore.Models;
 using Elect.Test.AspNetCore.Services;
@@ -30,13 +31,10 @@ namespace Elect.Test.AspNetCore
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
-
             // Elect Unit of Work
-            services.AddScoped<IDbContext, ApplicationDbContext>();
-            services.AddScoped<IUnitOfWork, Data.UnitOfWork>();
-            services.AddScoped(typeof(IRepository<>), typeof(Data.Repository<>));
+            services.AddElectDI();
+
+            services.PrintServiceAddedToConsole();
 
             services.AddElectSwagger(_ =>
             {
