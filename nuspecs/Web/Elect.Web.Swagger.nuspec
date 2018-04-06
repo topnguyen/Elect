@@ -13,13 +13,13 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore swagger elect topnguyen</tags>
-    <version>1.0.23</version>
+    <version>1.0.30</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
         <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
-        <dependency id="Elect.Web" version="1.0.21" />
-        <dependency id="Elect.Data.IO" version="1.0.22" />
+        <dependency id="Elect.Web" version="1.0.30" />
+        <dependency id="Elect.Data.IO" version="1.0.30" />
         <dependency id="Microsoft.AspNetCore.Mvc" version="2.1.0-preview1-final" />
         <dependency id="Microsoft.Extensions.FileProviders.Physical" version="2.1.0-preview1-final" />
         <dependency id="Swashbuckle.AspNetCore" version="2.3.0" />
