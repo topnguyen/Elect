@@ -35,6 +35,8 @@ namespace Elect.Web.Swagger.Utils
 
         internal const string AccessKeyName = "key";
 
+        internal const string CookieAccessKeyName = "Elect_Swagger_AccessKey";
+
         internal const string AssetFolderName = "Elect_Swagger";
 
         internal static readonly string IndexFileFullPath = $"{AssetFolderName}/index.html";
@@ -142,10 +144,18 @@ namespace Elect.Web.Swagger.Utils
                 return true;
             }
 
-            string paramKeyValue = httpContext.Request.Query[AccessKeyName];
+            string requestKey = httpContext.Request.Query[AccessKeyName];
+
+            if (string.IsNullOrWhiteSpace(requestKey))
+            {
+                if (httpContext.Request.Cookies.TryGetValue(CookieAccessKeyName, out var cookieRequestKey))
+                {
+                    requestKey = cookieRequestKey;
+                }
+            }
 
             // Case sensitive compare
-            var isCanAccess = accessKey == paramKeyValue;
+            var isCanAccess = accessKey == requestKey;
 
             return isCanAccess;
         }

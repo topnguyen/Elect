@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.CheckUtils;
 using Elect.Job.Hangfire.IDashboardAuthorizationFilters;
 using Elect.Job.Hangfire.Models;
 using Elect.Job.Hangfire.Utils;
@@ -37,8 +38,10 @@ namespace Elect.Job.Hangfire
         {
             var options = app.ApplicationServices.GetService<IOptions<ElectHangfireOptions>>().Value;
 
-            if (!string.IsNullOrWhiteSpace(options.Url))
+            if (!options.IsDisableJobDashboard)
             {
+                CheckHelper.CheckNullOrWhiteSpace(options.Url, nameof(options.Url));
+
                 app.UseMiddleware<ElectHangfireMiddleware>();
 
                 app.UseHangfireDashboard(options.Url, new DashboardOptions
@@ -71,6 +74,7 @@ namespace Elect.Job.Hangfire
 
             public async Task Invoke(HttpContext context)
             {
+                // Check is request to Job Dashboard
                 var route = _routeCollection.FindDispatcher(context.Request.Path.Value.Replace(_options.Url, string.Empty));
 
                 var dashboardRequestUrl = route == null ? _options.Url : $@"{_options.Url}/{route.Item2.Value.Trim('/')}";
@@ -84,15 +88,16 @@ namespace Elect.Job.Hangfire
                     return;
                 }
 
-                bool isCanAccess = HangfireHelper.IsCanAccessHangfireDashboard(context, _options);
+                // Set cookie if need
+                string requestAccessKey = context.Request.Query[HangfireHelper.AccessKeyName];
 
-                // Set cookie if need serve for check access in ElectDashboardAuthorizationFilter.cs
-                string accessKey = context.Request.Query[HangfireHelper.AccessKeyName];
-
-                if (!string.IsNullOrWhiteSpace(accessKey) && context.Request.Cookies[HangfireHelper.AccessKeyName] != accessKey)
+                if (!string.IsNullOrWhiteSpace(requestAccessKey) && context.Request.Cookies[HangfireHelper.AccessKeyName] != requestAccessKey)
                 {
-                    SetCookie(context, HangfireHelper.CookieAccessKeyName, accessKey);
+                    SetCookie(context, HangfireHelper.CookieAccessKeyName, requestAccessKey);
                 }
+
+                // Check Permission
+                bool isCanAccess = HangfireHelper.IsCanAccessHangfireDashboard(context, _options);
 
                 if (!isCanAccess)
                 {

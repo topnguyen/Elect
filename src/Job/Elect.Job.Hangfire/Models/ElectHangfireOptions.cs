@@ -24,8 +24,12 @@ namespace Elect.Job.Hangfire.Models
     public class ElectHangfireOptions : IElectOptions
     {
         /// <summary>
-        ///     Job Dashboard url, default is "/developers/job". Set to <see langword="null" /> to
-        ///     not disable Job Dashboard.
+        ///     Disable or Enable Job Dashboard, default is false. 
+        /// </summary>
+        public bool IsDisableJobDashboard { get; set; }
+
+        /// <summary>
+        ///     Job Dashboard url, default is "/developers/job". 
         /// </summary>
         /// <remarks> Must start with "/" </remarks>
         public string Url { get; set; } = "/developers/job";
