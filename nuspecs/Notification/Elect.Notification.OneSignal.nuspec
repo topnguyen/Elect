@@ -13,11 +13,11 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore OneSignal elect topnguyen</tags>
-    <version>1.0.21</version>
+    <version>1.0.30</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Core" version="1.0.21" />
+        <dependency id="Elect.Core" version="1.0.30" />
         <dependency id="Newtonsoft.Json" version="11.0.2" />
         <dependency id="Flurl.Http" version="2.3.0" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.0-preview1-final" />
