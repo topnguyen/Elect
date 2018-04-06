@@ -47,7 +47,7 @@ namespace Elect.Job.Hangfire
 
                     AppPath = options.BackToUrl,
 
-                    StatsPollingInterval = 3000
+                    StatsPollingInterval = options.StatsPollingInterval
                 });
             }
 

@@ -104,20 +104,29 @@ namespace Elect.Web.HttpUtils
             // get path query with out query param string
             var pathQuery = request.Path.Value?.Trim('/').ToLower() ?? string.Empty;
 
+            // ?
             var iPathQueryWithoutParam = pathQuery.IndexOf('?');
 
             pathQuery = iPathQueryWithoutParam > 0 ? pathQuery.Substring(iPathQueryWithoutParam) : pathQuery;
+
+            // #
+            var iPathQueryWithoutTag = pathQuery.IndexOf('#');
+
+            pathQuery = iPathQueryWithoutTag > 0 ? pathQuery.Substring(iPathQueryWithoutTag) : pathQuery;
 
             pathQuery = pathQuery.ToLowerInvariant();
 
             // get endpoint without query param string
             endpoint = endpoint.Trim('/');
 
+            // ?
             var iEndpointWithoutParam = endpoint.IndexOf('?');
 
             endpoint = iEndpointWithoutParam > 0 ? endpoint.Substring(0, iEndpointWithoutParam) : endpoint;
 
             endpoint = endpoint.ToLowerInvariant();
+
+            // Compare
 
             var isRequestTheEndpoint = pathQuery == endpoint;
 
