@@ -60,6 +60,6 @@ namespace Elect.Job.Hangfire.Models
         /// <summary>
         ///     The interval the /stats endpoint should be polled with (milliseconds), default is 2000.
         /// </summary>
-        public int StatsPollingInterval { get; set; } = 2000;
+        public int StatsPollingInterval { get; set; } = 3000;
     }
 }
