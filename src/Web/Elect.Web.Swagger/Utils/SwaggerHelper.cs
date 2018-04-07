@@ -35,7 +35,7 @@ namespace Elect.Web.Swagger.Utils
 
         internal const string AccessKeyName = "key";
 
-        internal const string CookieAccessKeyName = "Elect_Swagger_AccessKey";
+        internal const string CookieAccessKeyName = "Elect_Swagger_AccessKey_Test";
 
         internal const string AssetFolderName = "Elect_Swagger";
 
@@ -146,13 +146,7 @@ namespace Elect.Web.Swagger.Utils
 
             string requestKey = httpContext.Request.Query[AccessKeyName];
 
-            if (string.IsNullOrWhiteSpace(requestKey))
-            {
-                if (httpContext.Request.Cookies.TryGetValue(CookieAccessKeyName, out var cookieRequestKey))
-                {
-                    requestKey = cookieRequestKey;
-                }
-            }
+            requestKey = string.IsNullOrWhiteSpace(requestKey) ? httpContext.Request.Cookies[CookieAccessKeyName] : requestKey;
 
             // Case sensitive compare
             var isCanAccess = accessKey == requestKey;

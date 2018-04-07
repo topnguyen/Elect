@@ -36,13 +36,7 @@ namespace Elect.Job.Hangfire.Utils
 
             string requestKey = httpContext.Request.Query[AccessKeyName];
 
-            if (string.IsNullOrWhiteSpace(requestKey))
-            {
-                if (httpContext.Request.Cookies.TryGetValue(CookieAccessKeyName, out var cookieRequestKey))
-                {
-                    requestKey = cookieRequestKey;
-                }
-            }
+            requestKey = string.IsNullOrWhiteSpace(requestKey) ? httpContext.Request.Cookies[CookieAccessKeyName] : requestKey;
 
             var isCanAccess = options.AccessKey == requestKey;
 
