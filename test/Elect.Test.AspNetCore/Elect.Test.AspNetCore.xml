@@ -4,9 +4,20 @@
         <name>Elect.Test.AspNetCore</name>
     </assembly>
     <members>
-        <member name="M:Elect.Test.AspNetCore.Controllers.ManageController.Device">
+        <member name="T:Elect.Test.AspNetCore.Controllers.TestManageApiController">
             <summary>
-                Get device info 
+                Manage Controller 
+            </summary>
+        </member>
+        <member name="M:Elect.Test.AspNetCore.Controllers.TestManageApiController.Device2">
+            <summary>
+                Get device info 2 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Test.AspNetCore.Controllers.TestManageApiController.Device1">
+            <summary>
+                Get device info 1 
             </summary>
             <returns></returns>
         </member>
