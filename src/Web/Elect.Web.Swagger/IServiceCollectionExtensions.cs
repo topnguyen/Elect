@@ -19,14 +19,11 @@
 
 using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
-using Elect.Web.Swagger.IDocumentFilters;
 using Elect.Web.Swagger.Models;
 using Elect.Web.Swagger.Utils;
 using Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
-using System.Reflection;
 
 namespace Elect.Web.Swagger
 {
@@ -72,59 +69,9 @@ namespace Elect.Web.Swagger
             SwaggerHelper.UpdateApiJsonViewerFileContent(options.Title);
 
             // Config Swagger
-
             services.AddSwaggerGen(swaggerGenOptions =>
             {
-                // Doc Info
-                swaggerGenOptions.SwaggerDoc(options.Version, new Info
-                {
-                    Title = options.Title,
-                    Version = options.Version,
-                    Contact = !string.IsNullOrWhiteSpace(options.AuthorName)
-                              && !string.IsNullOrWhiteSpace(options.AuthorWebsite)
-                              && !string.IsNullOrWhiteSpace(options.AuthorEmail)
-                        ? new Contact
-                        {
-                            Name = options.AuthorName,
-                            Url = options.AuthorWebsite,
-                            Email = options.AuthorEmail
-                        }
-                        : null
-                });
-
-                // XML
-                swaggerGenOptions.IncludeXmlCommentsIfExists(Assembly.GetEntryAssembly());
-
-                // Filers
-                swaggerGenOptions.DocumentFilter<ShowHideInApiDocDocumentFilter>();
-
-                swaggerGenOptions.IgnoreObsoleteProperties();
-
-                swaggerGenOptions.IgnoreObsoleteActions();
-
-                // Type / Properties
-                if (options.IsFullSchemaForType)
-                {
-                    swaggerGenOptions.CustomSchemaIds(type => type.FullName);
-                }
-
-                if (options.IsDescribeAllParametersInCamelCase)
-                {
-                    swaggerGenOptions.DescribeAllParametersInCamelCase();
-                }
-
-                if (options.IsDescribeAllEnumsAsString)
-                {
-                    swaggerGenOptions.DescribeAllEnumsAsStrings();
-
-                    if (options.IsDescribeAllParametersInCamelCase)
-                    {
-                        swaggerGenOptions.DescribeStringEnumsInCamelCase();
-                    }
-                }
-
-                // Order
-                swaggerGenOptions.OrderActionsBy(apiDesc => $"[{apiDesc.HttpMethod}]{apiDesc.RelativePath}");
+                swaggerGenOptions.AddElectSwaggerGenOptions(configuration);
             });
 
             return services;
