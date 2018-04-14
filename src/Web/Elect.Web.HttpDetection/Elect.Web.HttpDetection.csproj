@@ -26,6 +26,6 @@
 
   <!-- 3rd Libraries -->
   <ItemGroup>
-    <PackageReference Include="MaxMind.GeoIP2" Version="2.10.0" />
+    <PackageReference Include="MaxMind.GeoIP2" Version="3.0.0" />
   </ItemGroup>
 </Project>
