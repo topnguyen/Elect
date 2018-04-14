@@ -13,12 +13,12 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore elect topnguyen</tags>
-    <version>1.0.30</version>
+    <version>1.0.40</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Core" version="1.0.30" />
-        <dependency id="Microsoft.AspNetCore.Mvc" version="2.1.0-preview1-final" />
+        <dependency id="Elect.Core" version="1.0.40" />
+        <dependency id="Microsoft.AspNetCore.Mvc" version="2.0.3" />
     </dependencies>
   </metadata>
 
