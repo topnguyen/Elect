@@ -17,21 +17,18 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.EF.Interfaces.Entity;
 using Elect.Data.EF.Interfaces.Entity.Auditable;
 using Elect.Data.EF.Interfaces.Entity.SoftDelete;
 using System;
 
 namespace Elect.Data.EF.Models
 {
-    public abstract class BaseEntity : IGlobalIdentityEntity, ISoftDeletableEntity, IAuditableEntity
+    public abstract class BaseEntity : ISoftDeletableEntity, IAuditableEntity
     {
         protected BaseEntity()
         {
             CreatedTime = LastUpdatedTime = DateTimeOffset.UtcNow;
         }
-
-        public Guid GlobalId { get; set; } = Guid.NewGuid();
 
         public DateTimeOffset CreatedTime { get; set; }
 

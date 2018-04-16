@@ -17,11 +17,26 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Data.EF.Interfaces.Map;
 using Elect.Data.EF.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Elect.Data.EF.Services.Map
 {
-    public abstract class EntityTypeConfiguration<T> : EntityTypeConfiguration<T, int> where T : Entity
+    public abstract class EntityTypeConfiguration<T> : ITypeConfiguration<T> where T : Entity
     {
+        public virtual void Map(EntityTypeBuilder<T> builder)
+        {
+            // Key
+            builder.HasKey(x => x.Id);
+
+            // Index
+            builder.HasIndex(x => x.Id);
+            builder.HasIndex(x => x.GlobalId);
+            builder.HasIndex(x => x.DeletedTime);
+
+            // Contract
+            builder.Property(x => x.GlobalId).IsRequired();
+        }
     }
 }
