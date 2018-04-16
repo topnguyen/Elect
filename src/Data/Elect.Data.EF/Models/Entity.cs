@@ -17,9 +17,13 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Data.EF.Interfaces.Entity;
+using System;
+
 namespace Elect.Data.EF.Models
 {
-    public abstract class Entity : Entity<int>
+    public abstract class Entity : Entity<int>, IGlobalIdentityEntity
     {
+        public Guid GlobalId { get; set; }
     }
 }

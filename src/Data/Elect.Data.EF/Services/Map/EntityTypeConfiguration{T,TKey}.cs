@@ -32,11 +32,7 @@ namespace Elect.Data.EF.Services.Map
 
             // Index
             builder.HasIndex(x => x.Id);
-            builder.HasIndex(x => x.GlobalId);
             builder.HasIndex(x => x.DeletedTime);
-
-            // Contract
-            builder.Property(x => x.GlobalId).IsRequired();
         }
     }
 }
