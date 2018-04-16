@@ -13,11 +13,10 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore swagger elect topnguyen</tags>
-    <version>1.0.40</version>
+    <version>1.0.41</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Baseclass.Contrib.Nuget.Output" version="2.4.3" />
         <dependency id="Elect.Web" version="1.0.40" />
         <dependency id="Elect.Data.IO" version="1.0.40" />
         <dependency id="Microsoft.AspNetCore.Mvc" version="2.0.3" />
@@ -30,6 +29,5 @@
   <files>
     <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect.Web.Swagger.dll" target="lib\netstandard2.0" />
     <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect.Web.Swagger.pdb" target="lib\netstandard2.0" />
-    <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect_Swagger\" target="output\Elect_Swagger\" />
   </files>
 </package>
