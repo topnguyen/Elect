@@ -18,6 +18,7 @@
 #endregion License
 
 using Elect.Core.CheckUtils;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -74,6 +75,21 @@ namespace Elect.Data.IO.DirectoryUtils
         public static bool IsEmpty(string path)
         {
             return !Directory.EnumerateFileSystemEntries(path).Any();
+        }
+
+        public class SpecialFolder
+        {
+            public static string GetCurrentWindowUserFolder()
+            {
+                string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+
+                if (Environment.OSVersion.Version.Major >= 6)
+                {
+                    path = Directory.GetParent(path).ToString();
+                }
+
+                return path;
+            }
         }
     }
 }
