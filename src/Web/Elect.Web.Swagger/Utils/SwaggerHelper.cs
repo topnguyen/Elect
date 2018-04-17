@@ -17,7 +17,6 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.IO;
 using Elect.Web.HttpUtils;
 using Elect.Web.Models;
 using Elect.Web.Swagger.Models;
@@ -41,7 +40,7 @@ namespace Elect.Web.Swagger.Utils
         {
             if (string.IsNullOrWhiteSpace(IndexFileContent))
             {
-                string indexFilePath = PathHelper.GetFullPath(ElectSwaggerConstants.IndexFileFullPath);
+                string indexFilePath = Path.Combine(Bootstrapper.Instance.WorkingFolder, ElectSwaggerConstants.IndexFileName);
 
                 IndexFileContent = File.ReadAllText(indexFilePath);
             }
@@ -60,7 +59,7 @@ namespace Elect.Web.Swagger.Utils
         {
             if (string.IsNullOrWhiteSpace(JsonViewerFileContent))
             {
-                var jsonViewerFilePath = PathHelper.GetFullPath(ElectSwaggerConstants.JsonViewerFileFullPath);
+                var jsonViewerFilePath = Path.Combine(Bootstrapper.Instance.WorkingFolder, ElectSwaggerConstants.JsonViewerFileName);
 
                 JsonViewerFileContent = File.ReadAllText(jsonViewerFilePath);
             }
@@ -88,7 +87,7 @@ namespace Elect.Web.Swagger.Utils
                 {"@SwaggerEndpoint", swaggerEndpoint},
                 {"@AuthTokenKeyPrefix", authTokenKeyPrefix},
                 {"@JsonViewerUrl", jsonViewerUrl }
-            }, ElectSwaggerConstants.IndexFileFullPath);
+            }, ElectSwaggerConstants.IndexFileName);
         }
 
         internal static void UpdateApiJsonViewerFileContent(string title)
@@ -97,12 +96,12 @@ namespace Elect.Web.Swagger.Utils
             {
                 {"@AssetPath", ElectSwaggerConstants.AssetsUrl},
                 {"@ApiDocumentHtmlTitle", title}
-            }, ElectSwaggerConstants.JsonViewerFileFullPath);
+            }, ElectSwaggerConstants.JsonViewerFileName);
         }
 
         internal static void UpdateFileContent(Dictionary<string, string> replaceDictionary, string filePath)
         {
-            string fileFullPath = PathHelper.GetFullPath(filePath);
+            string fileFullPath = Path.Combine(Bootstrapper.Instance.WorkingFolder, filePath);
 
             var viewerFileContent = File.ReadAllText(fileFullPath);
 

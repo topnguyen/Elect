@@ -27,10 +27,8 @@ namespace Elect.Web.Swagger.Models
 
         internal const string CookieAccessKeyName = "Elect_Swagger_AccessKey";
 
-        internal const string AssetFolderName = "Elect_Swagger";
+        internal static readonly string IndexFileName = "index.html";
 
-        internal static readonly string IndexFileFullPath = $"{AssetFolderName}/index.html";
-
-        internal static readonly string JsonViewerFileFullPath = $"{AssetFolderName}/json-viewer.html";
+        internal static readonly string JsonViewerFileName = "json-viewer.html";
     }
 }
