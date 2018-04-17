@@ -17,7 +17,6 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.IO;
 using Elect.Web.Swagger.Models;
 using Elect.Web.Swagger.Utils;
 using Microsoft.AspNetCore.Builder;
@@ -57,7 +56,7 @@ namespace Elect.Web.Swagger
             // Path and GZip for Statics Content
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(PathHelper.GetFullPath(ElectSwaggerConstants.AssetFolderName)),
+                FileProvider = new PhysicalFileProvider(Bootstrapper.Instance.WorkingFolder),
 
                 RequestPath = ElectSwaggerConstants.AssetsUrl,
 

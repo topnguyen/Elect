@@ -38,7 +38,6 @@ namespace Elect.Test.AspNetCore
                 _.AuthorName = "Top Nguyen";
                 _.AuthorEmail = "topnguyen92@gmail.com";
                 _.AuthorWebsite = "http://topnguyen.net";
-                _.AccessKey = "topnguyen";
             });
 
             services.AddElectHangfire(_ =>

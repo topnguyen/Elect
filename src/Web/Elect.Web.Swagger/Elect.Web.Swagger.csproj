@@ -13,9 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Elect_Swagger\**\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="Elect_Swagger\**\*" />
   </ItemGroup>
 
   <!-- Elect -->
