@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <None Include="Elect_Swagger\**\*">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

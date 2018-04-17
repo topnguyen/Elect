@@ -13,9 +13,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Content Include="GeoCity.mmdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="GeoCity.mmdb" />
   </ItemGroup>
 
   <!-- Elect -->

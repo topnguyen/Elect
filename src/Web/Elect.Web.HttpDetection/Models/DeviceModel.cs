@@ -19,7 +19,6 @@
 
 using Elect.Core.SecurityUtils;
 using Elect.Core.StringUtils;
-using Elect.Data.IO;
 using Elect.Web.HttpUtils;
 using Elect.Web.Models;
 using MaxMind.GeoIP2;
@@ -40,29 +39,21 @@ namespace Elect.Web.HttpDetection.Models
         public bool IsCrawler { get; set; }
 
         // Marker
-        public string MarkerFullInfo { get; set; }
-
         public string MarkerName { get; set; }
 
         public string MarkerVersion { get; set; }
 
         // OS
-        public string OsFullInfo { get; set; }
-
         public string OsName { get; set; }
 
         public string OsVersion { get; set; }
 
         // Engine
-        public string EngineFullInfo { get; set; }
-
         public string EngineName { get; set; }
 
         public string EngineVersion { get; set; }
 
         // Browser
-        public string BrowserFullInfo { get; set; }
-
         public string BrowserName { get; set; }
 
         public string BrowserVersion { get; set; }
@@ -71,31 +62,33 @@ namespace Elect.Web.HttpDetection.Models
 
         public string IpAddress { get; set; }
 
+        // City
+
         public string CityName { get; set; }
 
-        public int? CityGeoNameId { get; set; }
+        // Country
 
         public string CountryName { get; set; }
 
-        public int? CountryGeoNameId { get; set; }
-
         public string CountryIsoCode { get; set; }
+
+        // Continent
 
         public string ContinentName { get; set; }
 
-        public int? ContinentGeoNameId { get; set; }
-
         public string ContinentCode { get; set; }
 
+        // Time Zone
+
         public string TimeZone { get; set; }
+
+        public string PostalCode { get; set; }
 
         public double? Latitude { get; set; }
 
         public double? Longitude { get; set; }
 
         public int? AccuracyRadius { get; set; }
-
-        public string PostalCode { get; set; }
 
         // Others
 
@@ -114,22 +107,18 @@ namespace Elect.Web.HttpDetection.Models
             IsCrawler = HttpRequestHelper.IsCrawlerRequest(request);
 
             // Marker
-            MarkerFullInfo = HttpRequestHelper.GetMarkerFullInfo(request);
             MarkerName = HttpRequestHelper.GetMarkerName(request);
             MarkerVersion = HttpRequestHelper.GetMarkerVersion(request);
 
             // OS
-            OsFullInfo = HttpRequestHelper.GetOsFullInfo(request);
             OsName = HttpRequestHelper.GetOsName(request);
             OsVersion = HttpRequestHelper.GetOsVersion(request);
 
             // Engine
-            EngineFullInfo = HttpRequestHelper.GetEngineFullInfo(request);
             EngineName = HttpRequestHelper.GetEngineName(request);
             EngineVersion = HttpRequestHelper.GetEngineVersion(request);
 
             // Browser
-            BrowserFullInfo = HttpRequestHelper.GetBrowserFullInfo(request);
             BrowserName = HttpRequestHelper.GetBrowserName(request);
             BrowserVersion = HttpRequestHelper.GetBrowserVersion(request);
 
@@ -185,20 +174,11 @@ namespace Elect.Web.HttpDetection.Models
 
         private void UpdateLocation(HttpRequest request)
         {
-            string geoCityDatabasePath = "GeoCity.mmdb";
-
-            string geoDbAbsolutePath = PathHelper.GetFullPath(geoCityDatabasePath);
+            string geoDbAbsolutePath = Path.Combine(Bootstrapper.Instance.WorkingFolder, ElectHttpDetectionConstants.DbName);
 
             if (!File.Exists(geoDbAbsolutePath))
             {
-                // Get from Nuget Package folder if not exist in executing folder
-
-                geoDbAbsolutePath = Path.Combine(ElectHttpDetectionConstants.NugetPackageFolderPath, geoCityDatabasePath);
-
-                if (!File.Exists(geoDbAbsolutePath))
-                {
-                    throw new FileNotFoundException(geoDbAbsolutePath, geoCityDatabasePath);
-                }
+                throw new FileNotFoundException($"{geoDbAbsolutePath} not found", geoDbAbsolutePath);
             }
 
             using (var reader = new DatabaseReader(geoDbAbsolutePath))
@@ -219,16 +199,13 @@ namespace Elect.Web.HttpDetection.Models
 
                 // City
                 CityName = city.City.Names.TryGetValue("en", out var cityName) ? cityName : city.City.Name;
-                CityGeoNameId = city.City.GeoNameId;
 
                 // Country
                 CountryName = city.Country.Names.TryGetValue("en", out var countryName) ? countryName : city.Country.Name;
-                CountryGeoNameId = city.Country.GeoNameId;
                 CountryIsoCode = city.Country.IsoCode;
 
                 // Continent
                 ContinentName = city.Continent.Names.TryGetValue("en", out var continentName) ? continentName : city.Continent.Name;
-                ContinentGeoNameId = city.Continent.GeoNameId;
                 ContinentCode = city.Continent.Code;
 
                 // Location

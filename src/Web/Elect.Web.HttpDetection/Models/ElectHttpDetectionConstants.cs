@@ -17,10 +17,6 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.IO.DirectoryUtils;
-using System.IO;
-using System.Reflection;
-
 namespace Elect.Web.HttpDetection.Models
 {
     public class ElectHttpDetectionConstants
@@ -29,16 +25,6 @@ namespace Elect.Web.HttpDetection.Models
         public static readonly string CrawlerAgentsRegex = "/bot|slurp|spider/";
         public static readonly string MobileAgentsRegex = "/Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/";
 
-        public static string NugetPackageFolderPath
-        {
-            get
-            {
-                var currentWindowUser = DirectoryHelper.SpecialFolder.GetCurrentWindowUserFolder();
-
-                string nugetPackage = Path.Combine(currentWindowUser, $@".nuget\packages\{Assembly.GetExecutingAssembly().GetName()}");
-
-                return nugetPackage;
-            }
-        }
+        public const string DbName = "GeoCity.mmdb";
     }
 }

@@ -6,24 +6,24 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> ImageCompressorBootstrapper.cs </Name>
-//         <Created> 02/04/2018 8:33:28 PM </Created>
-//         <Key> 7769f3ba-641c-4cdc-8795-bd9ed380047c </Key>
+//         <Name> Bootstrapper.cs </Name>
+//         <Created> 17/04/2018 10:56:07 PM </Created>
+//         <Key> 224f02d8-7e58-4dab-87cb-53be4ef5bba8 </Key>
 //     </File>
 //     <Summary>
-//         ImageCompressorBootstrapper.cs is a part of Elect
+//         Bootstrapper.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.IO.ImageUtils.CompressUtils.Models;
+using Elect.Web.HttpDetection.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace Elect.Data.IO.ImageUtils.CompressUtils
+namespace Elect.Web.HttpDetection
 {
     internal sealed class Bootstrapper
     {
@@ -65,31 +65,15 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             // Create the folder for storing temporary images and tools.
 
-            WorkingFolder = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, "..\\Elect_ImageCompressor\\"));
-
-            DirectoryInfo directoryInfo = new DirectoryInfo(Path.GetDirectoryName(WorkingFolder));
-
-            if (directoryInfo.Exists)
-            {
-                // Already have folder mean already copied tools before => return
-                return;
-            }
-
-            directoryInfo.Create();
+            WorkingFolder = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, "..\\"));
 
             // Load tools
-            var librariesNameSpace = $"{nameof(Elect)}.{nameof(Data)}.{nameof(IO)}.{nameof(ImageUtils)}.{nameof(CompressUtils)}.Tools";
+            var librariesNameSpace = $"{nameof(Elect)}.{nameof(Web)}.{nameof(HttpDetection)}";
 
             // Get the resources and copy them across.
             Dictionary<string, string> resources = new Dictionary<string, string>
             {
-                { CompressConstants.GifWorkerFileName, $"{librariesNameSpace}.{CompressConstants.GifWorkerFileName}" },
-                { CompressConstants.JpegLibFileName, $"{librariesNameSpace}.{CompressConstants.JpegLibFileName}" },
-                { CompressConstants.JpegWorkerFileName, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileName}" },
-                { CompressConstants.JpegOptimizeWorkerFileName, $"{librariesNameSpace}.{CompressConstants.JpegOptimizeWorkerFileName}" },
-                { CompressConstants.PngPrimaryWorkerFileName, $"{librariesNameSpace}.{CompressConstants.PngPrimaryWorkerFileName}" },
-                { CompressConstants.PngSecondaryWorkerFileName, $"{librariesNameSpace}.{CompressConstants.PngSecondaryWorkerFileName}" },
-                { CompressConstants.PngOptimizeWorkerFileName, $"{librariesNameSpace}.{CompressConstants.PngOptimizeWorkerFileName}" }
+                { ElectHttpDetectionConstants.DbName, $"{librariesNameSpace}.{ElectHttpDetectionConstants.DbName}" },
             };
 
             // Write the files out to the bin folder.

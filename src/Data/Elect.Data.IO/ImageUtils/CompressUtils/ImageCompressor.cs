@@ -286,7 +286,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             var processInfo = new ProcessStartInfo("cmd")
             {
-                WorkingDirectory = Bootstrapper.Instance.WorkingPath,
+                WorkingDirectory = Bootstrapper.Instance.WorkingFolder,
 
                 Arguments = GetArguments(filePath, out var fileTempPath, algorithm, qualityPercent),
 

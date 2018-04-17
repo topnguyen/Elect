@@ -17,10 +17,6 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.IO.DirectoryUtils;
-using System.IO;
-using System.Reflection;
-
 namespace Elect.Web.Swagger.Models
 {
     public class ElectSwaggerConstants
@@ -36,17 +32,5 @@ namespace Elect.Web.Swagger.Models
         internal static readonly string IndexFileFullPath = $"{AssetFolderName}/index.html";
 
         internal static readonly string JsonViewerFileFullPath = $"{AssetFolderName}/json-viewer.html";
-
-        public static string NugetPackageFolderPath
-        {
-            get
-            {
-                var currentWindowUser = DirectoryHelper.SpecialFolder.GetCurrentWindowUserFolder();
-
-                string nugetPackage = Path.Combine(currentWindowUser, $@".nuget\packages\{Assembly.GetExecutingAssembly().GetName()}");
-
-                return nugetPackage;
-            }
-        }
     }
 }
