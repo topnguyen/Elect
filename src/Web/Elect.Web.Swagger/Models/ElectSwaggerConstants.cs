@@ -6,12 +6,12 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> ElectHttpDetectionConstants.cs </Name>
-//         <Created> 21/03/2018 8:48:05 PM </Created>
-//         <Key> 84547ce5-be02-45c5-b13e-8484d16fcf74 </Key>
+//         <Name> ElectSwaggerConstants.cs </Name>
+//         <Created> 17/04/2018 2:54:54 PM </Created>
+//         <Key> 76e79d84-e09b-454d-976a-cad297fbf9b9 </Key>
 //     </File>
 //     <Summary>
-//         ElectHttpDetectionConstants.cs is a part of Elect
+//         ElectSwaggerConstants.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
@@ -21,13 +21,21 @@ using Elect.Data.IO.DirectoryUtils;
 using System.IO;
 using System.Reflection;
 
-namespace Elect.Web.HttpDetection.Models
+namespace Elect.Web.Swagger.Models
 {
-    public class ElectHttpDetectionConstants
+    public class ElectSwaggerConstants
     {
-        public static readonly string TabletAgentsRegex = "/(tablet|ipad|playbook|hp-tablet|kindle|silk)|(android(?!.*mobile))/";
-        public static readonly string CrawlerAgentsRegex = "/bot|slurp|spider/";
-        public static readonly string MobileAgentsRegex = "/Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/";
+        internal const string AssetsUrl = "/developers/assets";
+
+        internal const string AccessKeyName = "key";
+
+        internal const string CookieAccessKeyName = "Elect_Swagger_AccessKey";
+
+        internal const string AssetFolderName = "Elect_Swagger";
+
+        internal static readonly string IndexFileFullPath = $"{AssetFolderName}/index.html";
+
+        internal static readonly string JsonViewerFileFullPath = $"{AssetFolderName}/json-viewer.html";
 
         public static string NugetPackageFolderPath
         {

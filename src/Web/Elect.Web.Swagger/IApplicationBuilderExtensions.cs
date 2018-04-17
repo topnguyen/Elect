@@ -57,9 +57,9 @@ namespace Elect.Web.Swagger
             // Path and GZip for Statics Content
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(PathHelper.GetFullPath(SwaggerHelper.AssetFolderName)),
+                FileProvider = new PhysicalFileProvider(PathHelper.GetFullPath(ElectSwaggerConstants.AssetFolderName)),
 
-                RequestPath = SwaggerHelper.AssetsUrl,
+                RequestPath = ElectSwaggerConstants.AssetsUrl,
 
                 OnPrepareResponse = (context) =>
                 {
@@ -104,11 +104,11 @@ namespace Elect.Web.Swagger
                 }
 
                 // Set cookie if need
-                string requestAccessKey = context.Request.Query[SwaggerHelper.AccessKeyName];
+                string requestAccessKey = context.Request.Query[ElectSwaggerConstants.AccessKeyName];
 
-                if (!string.IsNullOrWhiteSpace(requestAccessKey) && context.Request.Cookies[SwaggerHelper.AccessKeyName] != requestAccessKey)
+                if (!string.IsNullOrWhiteSpace(requestAccessKey) && context.Request.Cookies[ElectSwaggerConstants.AccessKeyName] != requestAccessKey)
                 {
-                    SetCookie(context, SwaggerHelper.CookieAccessKeyName, requestAccessKey);
+                    SetCookie(context, ElectSwaggerConstants.CookieAccessKeyName, requestAccessKey);
                 }
 
                 // Check Permission

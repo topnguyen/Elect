@@ -31,18 +31,6 @@ namespace Elect.Web.Swagger.Utils
 {
     internal class SwaggerHelper
     {
-        internal const string AssetsUrl = "/developers/assets";
-
-        internal const string AccessKeyName = "key";
-
-        internal const string CookieAccessKeyName = "Elect_Swagger_AccessKey_Test";
-
-        internal const string AssetFolderName = "Elect_Swagger";
-
-        internal static readonly string IndexFileFullPath = $"{AssetFolderName}/index.html";
-
-        internal static readonly string JsonViewerFileFullPath = $"{AssetFolderName}/json-viewer.html";
-
         private static string IndexFileContent { get; set; }
 
         private static string JsonViewerFileContent { get; set; }
@@ -53,7 +41,7 @@ namespace Elect.Web.Swagger.Utils
         {
             if (string.IsNullOrWhiteSpace(IndexFileContent))
             {
-                string indexFilePath = PathHelper.GetFullPath(IndexFileFullPath);
+                string indexFilePath = PathHelper.GetFullPath(ElectSwaggerConstants.IndexFileFullPath);
 
                 IndexFileContent = File.ReadAllText(indexFilePath);
             }
@@ -72,7 +60,7 @@ namespace Elect.Web.Swagger.Utils
         {
             if (string.IsNullOrWhiteSpace(JsonViewerFileContent))
             {
-                var jsonViewerFilePath = PathHelper.GetFullPath(JsonViewerFileFullPath);
+                var jsonViewerFilePath = PathHelper.GetFullPath(ElectSwaggerConstants.JsonViewerFileFullPath);
 
                 JsonViewerFileContent = File.ReadAllText(jsonViewerFilePath);
             }
@@ -95,26 +83,31 @@ namespace Elect.Web.Swagger.Utils
         {
             UpdateFileContent(new Dictionary<string, string>
             {
-                {"@AssetPath", AssetsUrl},
+                {"@AssetPath", ElectSwaggerConstants.AssetsUrl},
                 {"@ApiDocumentHtmlTitle", title},
                 {"@SwaggerEndpoint", swaggerEndpoint},
                 {"@AuthTokenKeyPrefix", authTokenKeyPrefix},
                 {"@JsonViewerUrl", jsonViewerUrl }
-            }, IndexFileFullPath);
+            }, ElectSwaggerConstants.IndexFileFullPath);
         }
 
         internal static void UpdateApiJsonViewerFileContent(string title)
         {
             UpdateFileContent(new Dictionary<string, string>
             {
-                {"@AssetPath", AssetsUrl},
+                {"@AssetPath", ElectSwaggerConstants.AssetsUrl},
                 {"@ApiDocumentHtmlTitle", title}
-            }, JsonViewerFileFullPath);
+            }, ElectSwaggerConstants.JsonViewerFileFullPath);
         }
 
         internal static void UpdateFileContent(Dictionary<string, string> replaceDictionary, string filePath)
         {
             string fileFullPath = PathHelper.GetFullPath(filePath);
+
+            if (!File.Exists(fileFullPath))
+            {
+                fileFullPath = Path.Combine(ElectSwaggerConstants.NugetPackageFolderPath, filePath);
+            }
 
             var viewerFileContent = File.ReadAllText(fileFullPath);
 
@@ -144,9 +137,9 @@ namespace Elect.Web.Swagger.Utils
                 return true;
             }
 
-            string requestKey = httpContext.Request.Query[AccessKeyName];
+            string requestKey = httpContext.Request.Query[ElectSwaggerConstants.AccessKeyName];
 
-            requestKey = string.IsNullOrWhiteSpace(requestKey) ? httpContext.Request.Cookies[CookieAccessKeyName] : requestKey;
+            requestKey = string.IsNullOrWhiteSpace(requestKey) ? httpContext.Request.Cookies[ElectSwaggerConstants.CookieAccessKeyName] : requestKey;
 
             // Case sensitive compare
             var isCanAccess = accessKey == requestKey;
@@ -196,7 +189,7 @@ namespace Elect.Web.Swagger.Utils
 
             if (isIncludeAccessKey && !string.IsNullOrWhiteSpace(options.AccessKey))
             {
-                swaggerEndpoint += $"?{AccessKeyName}={options.AccessKey}";
+                swaggerEndpoint += $"?{ElectSwaggerConstants.AccessKeyName}={options.AccessKey}";
             }
 
             return swaggerEndpoint;

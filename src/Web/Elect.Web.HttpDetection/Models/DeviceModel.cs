@@ -185,11 +185,20 @@ namespace Elect.Web.HttpDetection.Models
 
         private void UpdateLocation(HttpRequest request)
         {
-            string geoDbAbsolutePath = PathHelper.GetFullPath("GeoCity.mmdb");
+            string geoCityDatabasePath = "GeoCity.mmdb";
+
+            string geoDbAbsolutePath = PathHelper.GetFullPath(geoCityDatabasePath);
 
             if (!File.Exists(geoDbAbsolutePath))
             {
-                throw new FileNotFoundException(geoDbAbsolutePath, "GeoCity.mmdb");
+                // Get from Nuget Package folder if not exist in executing folder
+
+                geoDbAbsolutePath = Path.Combine(ElectHttpDetectionConstants.NugetPackageFolderPath, geoCityDatabasePath);
+
+                if (!File.Exists(geoDbAbsolutePath))
+                {
+                    throw new FileNotFoundException(geoDbAbsolutePath, geoCityDatabasePath);
+                }
             }
 
             using (var reader = new DatabaseReader(geoDbAbsolutePath))
