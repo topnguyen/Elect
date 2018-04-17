@@ -104,11 +104,6 @@ namespace Elect.Web.Swagger.Utils
         {
             string fileFullPath = PathHelper.GetFullPath(filePath);
 
-            if (!File.Exists(fileFullPath))
-            {
-                fileFullPath = Path.Combine(ElectSwaggerConstants.NugetPackageFolderPath, filePath);
-            }
-
             var viewerFileContent = File.ReadAllText(fileFullPath);
 
             foreach (var key in replaceDictionary.Keys)
