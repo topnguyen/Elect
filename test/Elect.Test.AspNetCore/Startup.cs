@@ -3,12 +3,15 @@ using Elect.Job.Hangfire;
 using Elect.Test.AspNetCore.Data;
 using Elect.Test.AspNetCore.Models;
 using Elect.Web.Swagger;
+using Elect.Web.Swagger.IOperationFilter;
+using Elect.Web.Swagger.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Elect.Test.AspNetCore
 {
@@ -33,12 +36,7 @@ namespace Elect.Test.AspNetCore
 
             services.PrintServiceAddedToConsole();
 
-            services.AddElectSwagger(_ =>
-            {
-                _.AuthorName = "Top Nguyen";
-                _.AuthorEmail = "topnguyen92@gmail.com";
-                _.AuthorWebsite = "http://topnguyen.net";
-            });
+            services.AddElectSwagger();
 
             services.AddElectHangfire(_ =>
             {
@@ -61,7 +59,6 @@ namespace Elect.Test.AspNetCore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
 
             app.UseElectHangfire();
 
