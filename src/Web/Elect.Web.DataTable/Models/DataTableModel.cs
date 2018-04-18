@@ -117,6 +117,12 @@ namespace Elect.Web.DataTable.Models
         public string DrawCallbackFunctionName { get; set; }
 
         /// <summary>
+        ///     Function name of Footer Call Back. DataTable will pass "row, data, start, end,
+        ///     display" to the function. Ex: footerCallbackHandle(row, data, start, end, display).
+        /// </summary>
+        public string FooterCallbackFunctionName { get; set; }
+
+        /// <summary>
         ///     Function name of Responsive Resize Call Back. DataTable will pass "e, datatable,
         ///     columns" to the function. Ex: responsiveResizeCallBackHandle(e, datatable, columns).
         /// </summary>

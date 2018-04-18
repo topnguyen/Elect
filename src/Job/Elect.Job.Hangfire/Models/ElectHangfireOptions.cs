@@ -18,6 +18,8 @@
 #endregion License
 
 using Elect.Core.Interfaces;
+using Hangfire;
+using System;
 
 namespace Elect.Job.Hangfire.Models
 {
@@ -65,5 +67,10 @@ namespace Elect.Job.Hangfire.Models
         ///     The interval the /stats endpoint should be polled with (milliseconds), default is 2000.
         /// </summary>
         public int StatsPollingInterval { get; set; } = 3000;
+
+        /// <summary>
+        ///     Additional Options if you want to add your customize after Elect add Hangfire Global Config.
+        /// </summary>
+        public Action<IGlobalConfiguration, ElectHangfireOptions> ExtendOptions { get; set; }
     }
 }
