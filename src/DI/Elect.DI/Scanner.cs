@@ -37,18 +37,27 @@ namespace Elect.DI
         {
             foreach (var typeInfo in assembly.DefinedTypes)
             {
-                foreach (var customAttribute in typeInfo.GetCustomAttributes())
-                {
-                    var customAttributeType = customAttribute.GetType();
+                var attributes = typeInfo?.GetCustomAttributes()?.ToList();
 
-                    var isDependencyAttribute = typeof(DependencyAttribute).IsAssignableFrom(customAttributeType);
+                if (attributes?.Any() != true)
+                {
+                    continue;
+                }
+
+                foreach (var attribute in attributes)
+                {
+                    var attributeType = attribute.GetType();
+
+                    var isDependencyAttribute = typeof(DependencyAttribute).IsAssignableFrom(attributeType);
 
                     if (!isDependencyAttribute)
                     {
                         continue;
                     }
 
-                    var serviceDescriptor = ((DependencyAttribute)customAttribute).BuildServiceDescriptor(typeInfo);
+                    var dependencyAttribute = (DependencyAttribute)attribute;
+
+                    var serviceDescriptor = dependencyAttribute.BuildServiceDescriptor(typeInfo);
 
                     // Check is service already register from difference implementation => throw exception
 
