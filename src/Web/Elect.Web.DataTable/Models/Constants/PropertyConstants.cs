@@ -44,6 +44,7 @@ namespace Elect.Web.DataTable.Models.Constants
         public const string SearchCols = "aoSearchCols";
         public const string LengthMenuDefine = "aLengthMenu";
         public const string FnDrawCallback = "fnDrawCallback";
+        public const string FnFooterCallback = "footerCallback";
         public const string FnServerData = "fnServerData";
         public const string TableTools = "oTableTools";
         public const string Buttons = "buttons";

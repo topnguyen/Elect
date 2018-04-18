@@ -48,6 +48,12 @@
                 options[PropertyConstants.FnDrawCallback] = new JRaw(Model.DrawCallbackFunctionName);
             }
 
+            // Footer Call back function
+            if (!string.IsNullOrWhiteSpace(Model.FooterCallbackFunctionName))
+            {
+                options[PropertyConstants.FnFooterCallback] = new JRaw(Model.FooterCallbackFunctionName);
+            }
+
             // Server Request
             options[PropertyConstants.FnServerData] = new JRaw(
                 "function(sSource, aoData, fnCallback) { "
