@@ -17,6 +17,10 @@
 //--------------------------------------------------
 #endregion License
 
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.Collections.Generic;
+
 namespace Elect.Web.Swagger.Models
 {
     public class ElectSwaggerOptions
@@ -97,5 +101,13 @@ namespace Elect.Web.Swagger.Models
         public string AuthorEmail { get; set; }
 
         public string AuthorWebsite { get; set; }
+
+        public List<ApiGlobalParameterModel> GlobalParameters { get; set; } = new List<ApiGlobalParameterModel>();
+
+        /// <summary>
+        ///     Additional Options if you want to add your customize (Operation Filter, Document
+        ///     Filter and so on) after Elect add Swagger Options.
+        /// </summary>
+        public Action<SwaggerGenOptions, ElectSwaggerOptions> ExtendOptions { get; set; }
     }
 }

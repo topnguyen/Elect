@@ -32,13 +32,6 @@ namespace Elect.Web.Swagger.IOperationFilter
     {
         public void Apply(Operation operation, OperationFilterContext context)
         {
-            var parameters = operation.Parameters;
-
-            if (parameters == null)
-            {
-                return;
-            }
-
             if (!(context.ApiDescription.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor))
             {
                 return;
