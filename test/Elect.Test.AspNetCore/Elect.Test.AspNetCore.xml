@@ -4,11 +4,6 @@
         <name>Elect.Test.AspNetCore</name>
     </assembly>
     <members>
-        <member name="T:Elect.Test.AspNetCore.Controllers.TestApiController">
-            <summary>
-                Test Controller 
-            </summary>
-        </member>
         <member name="M:Elect.Test.AspNetCore.Controllers.TestApiController.Device">
             <summary>
                 Get device info 
