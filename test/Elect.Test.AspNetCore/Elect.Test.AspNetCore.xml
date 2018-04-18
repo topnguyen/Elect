@@ -9,7 +9,7 @@
                 Manage Controller 
             </summary>
         </member>
-        <member name="M:Elect.Test.AspNetCore.Controllers.TestManageApiController.Device2">
+        <member name="M:Elect.Test.AspNetCore.Controllers.TestManageApiController.Device2(Elect.Test.AspNetCore.Controllers.TestManageApiController.TestModel)">
             <summary>
                 Get device info 2 
             </summary>

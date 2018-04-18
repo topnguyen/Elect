@@ -81,6 +81,8 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             // Filers
             swaggerGenOptions.OperationFilter<ApiDocGroupOperationFilter>();
 
+            swaggerGenOptions.OperationFilter<ParameterOperationFilter>();
+
             swaggerGenOptions.DocumentFilter<ShowHideInApiDocDocumentFilter>();
 
             swaggerGenOptions.IgnoreObsoleteProperties();
