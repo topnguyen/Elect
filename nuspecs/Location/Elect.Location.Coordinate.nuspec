@@ -13,11 +13,11 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore location elect topnguyen</tags>
-    <version>1.0.40</version>
+    <version>1.0.50</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Core" version="1.0.40" />
+        <dependency id="Elect.Core" version="1.0.50" />
         <dependency id="Elect.Location.Models" version="1.0.40" />
     </dependencies>
   </metadata>

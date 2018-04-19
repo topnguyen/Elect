@@ -46,13 +46,13 @@ namespace Elect.Core.DateTimeUtils
             switch (truncateTo)
             {
                 case TruncateToType.Year:
-                    return new DateTime(dateTime.Year, 0, 0, 0, 0, 0);
+                    return new DateTime(dateTime.Year);
 
                 case TruncateToType.Month:
-                    return new DateTime(dateTime.Year, dateTime.Month, 0, 0, 0, 0);
+                    return new DateTime(dateTime.Year, dateTime.Month, 1);
 
                 case TruncateToType.Day:
-                    return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
+                    return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
 
                 case TruncateToType.Hour:
                     return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, 0, 0);
@@ -70,10 +70,10 @@ namespace Elect.Core.DateTimeUtils
             switch (truncateTo)
             {
                 case TruncateToType.Year:
-                    return new DateTimeOffset(dateTimeOffset.Year, 0, 0, 0, 0, 0, dateTimeOffset.Offset);
+                    return new DateTimeOffset(dateTimeOffset.Year, 1, 1, 0, 0, 0, dateTimeOffset.Offset);
 
                 case TruncateToType.Month:
-                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, 0, 0, 0, 0, dateTimeOffset.Offset);
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, 1, 0, 0, 0, dateTimeOffset.Offset);
 
                 case TruncateToType.Day:
                     return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, 0, 0, 0, dateTimeOffset.Offset);
