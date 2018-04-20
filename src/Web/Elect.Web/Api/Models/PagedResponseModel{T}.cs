@@ -30,6 +30,9 @@ namespace Elect.Web.Api.Models
         [JsonProperty(Order = 7)]
         public IEnumerable<T> Items { get; set; }
 
+        /// <summary>
+        ///     Will be de-serialize as list property 
+        /// </summary>
         [JsonProperty(Order = 8)]
         [JsonExtensionData]
         public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();

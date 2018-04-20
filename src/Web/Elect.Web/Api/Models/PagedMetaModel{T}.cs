@@ -27,11 +27,11 @@ using System;
 
 namespace Elect.Web.Api.Models
 {
-    public class PagedMetaModel<T> : PagedResponseModel<T> where T : class, new()
+    public class PagedMetaModel<TRequest, TResponse> : PagedResponseModel<TResponse> where TResponse : class, new() where TRequest : PagedRequestModel
     {
-        private readonly PagedRequestModel _pagedRequestModel;
+        private readonly TRequest _pagedRequestModel;
 
-        private readonly PagedResponseModel<T> _pagedResponseModel;
+        private readonly PagedResponseModel<TResponse> _pagedResponseModel;
 
         private readonly HttpMethod _method;
 
@@ -56,7 +56,7 @@ namespace Elect.Web.Api.Models
         {
         }
 
-        public PagedMetaModel(PagedResponseModel<T> pagedResponseModel) : this()
+        public PagedMetaModel(PagedResponseModel<TResponse> pagedResponseModel) : this()
         {
             _pagedResponseModel = pagedResponseModel;
 
@@ -67,7 +67,7 @@ namespace Elect.Web.Api.Models
             AdditionalData = pagedResponseModel.AdditionalData;
         }
 
-        public PagedMetaModel(IUrlHelper urlHelper, PagedRequestModel pagedRequestModel, PagedResponseModel<T> pagedResponseModel, HttpMethod method = HttpMethod.GET) : this(pagedResponseModel)
+        public PagedMetaModel(IUrlHelper urlHelper, TRequest pagedRequestModel, PagedResponseModel<TResponse> pagedResponseModel, HttpMethod method = HttpMethod.GET) : this(pagedResponseModel)
         {
             _pagedRequestModel = pagedRequestModel;
 
@@ -96,7 +96,9 @@ namespace Elect.Web.Api.Models
             {
                 Method = _method,
 
-                Href = GetUrlWithQueries(_endpoint, routeValueDictionary)
+                Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
+
+                Data = new RouteValueDictionary(_pagedRequestModel)
             };
 
             return link;
@@ -114,7 +116,9 @@ namespace Elect.Web.Api.Models
             {
                 Method = _method,
 
-                Href = GetUrlWithQueries(_endpoint, routeValueDictionary)
+                Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
+
+                Data = new RouteValueDictionary(pagedRequestModel)
             };
 
             return link;
@@ -144,7 +148,9 @@ namespace Elect.Web.Api.Models
             {
                 Method = _method,
 
-                Href = GetUrlWithQueries(_endpoint, routeValueDictionary)
+                Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
+
+                Data = new RouteValueDictionary(pagedRequestModel)
             };
 
             return link;
@@ -169,7 +175,9 @@ namespace Elect.Web.Api.Models
             {
                 Method = _method,
 
-                Href = GetUrlWithQueries(_endpoint, routeValueDictionary)
+                Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
+
+                Data = new RouteValueDictionary(pagedRequestModel)
             };
 
             return link;
@@ -201,7 +209,9 @@ namespace Elect.Web.Api.Models
             {
                 Method = _method,
 
-                Href = GetUrlWithQueries(_endpoint, routeValueDictionary)
+                Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
+
+                Data = new RouteValueDictionary(pagedRequestModel),
             };
 
             return link;

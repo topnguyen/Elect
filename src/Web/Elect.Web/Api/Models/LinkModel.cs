@@ -21,13 +21,12 @@ using Elect.Web.Models;
 using Microsoft.AspNetCore.Routing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Collections.Generic;
 
 namespace Elect.Web.Api.Models
 {
     public class LinkModel
     {
-        public string Href { get; set; }
+        public string Url { get; set; }
 
         /// <summary>
         ///     Http method, default is "GET". 
@@ -35,10 +34,6 @@ namespace Elect.Web.Api.Models
         [JsonConverter(typeof(StringEnumConverter))]
         public HttpMethod Method { get; set; } = HttpMethod.GET;
 
-        public RouteValueDictionary Values { get; set; } = new RouteValueDictionary();
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        [JsonExtensionData]
-        public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
+        public RouteValueDictionary Data { get; set; } = new RouteValueDictionary();
     }
 }
