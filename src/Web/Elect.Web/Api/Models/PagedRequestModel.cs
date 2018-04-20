@@ -19,7 +19,7 @@
 
 namespace Elect.Web.Api.Models
 {
-    public abstract class PagedRequestModel
+    public class PagedRequestModel
     {
         public int Skip { get; set; }
 

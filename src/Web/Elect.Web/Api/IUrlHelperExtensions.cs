@@ -25,9 +25,15 @@ namespace Elect.Web.Api
 {
     public static class IUrlHelperExtensions
     {
-        public static PagedMetaModel<T> GetPagedMeta<T>(this IUrlHelper urlHelper, PagedRequestModel pagedRequestModel, PagedResponseModel<T> pagedResponseModel, HttpMethod method = HttpMethod.GET) where T : class, new()
+        public static PagedMetaModel<TRequest, TResponse> GetPagedMeta<TRequest, TResponse>(
+            this IUrlHelper urlHelper,
+            TRequest pagedRequestModel,
+            PagedResponseModel<TResponse> pagedResponseModel,
+            HttpMethod method = HttpMethod.GET)
+            where TRequest : PagedRequestModel
+            where TResponse : class, new()
         {
-            PagedMetaModel<T> pagedMetaModel = new PagedMetaModel<T>(urlHelper, pagedRequestModel, pagedResponseModel, method);
+            PagedMetaModel<TRequest, TResponse> pagedMetaModel = new PagedMetaModel<TRequest, TResponse>(urlHelper, pagedRequestModel, pagedResponseModel, method);
 
             return pagedMetaModel;
         }
