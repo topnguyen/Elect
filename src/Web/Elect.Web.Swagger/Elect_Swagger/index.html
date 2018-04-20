@@ -167,10 +167,12 @@
         })
     </script>
     <script>
+        window.jsonViewerUrl = "@JsonViewerUrl";
+
         function gotoJsonViewer() {
             sessionStorage.setItem("JsonViewer", window.lastServerResponse);
 
-            window.open("@JsonViewerUrl", "jsonViewer");
+            window.open(jsonViewerUrl, "jsonViewer");
         }
 
         $(function () {

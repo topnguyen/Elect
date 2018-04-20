@@ -196,16 +196,19 @@
         "3": function (depth0, helpers, partials, data) {
             var stack1, lambda = this.lambda, escapeExpression = this.escapeExpression;
             var result =
-            "                        <span class='info_name'>\n                            Name: " + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.name : stack1), depth0)) + "</span>" 
-          + "                        <span class='info_email'>\n                           Email: <a target=\"_blank\" href=\"mailto:" + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.email : stack1), depth0)) + "?subject=" + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.title : stack1), depth0)) + "\">" + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.email : stack1), depth0)) + "</a>\n                        </span>" 
-          + "                        <span class='info_url'>\n                             Website: <a target=\"_blank\" href=\"" + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.url : stack1), depth0)) + "\">" + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.url : stack1), depth0)) + "</a>\n                        </span>"
-          +"<br>\n";
+                "                        <span class='info_name'>\n                            Name: " + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.name : stack1), depth0)) + "</span>"
+                + "                        <span class='info_email'>\n                           Email: <a target=\"_blank\" href=\"mailto:" + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.email : stack1), depth0)) + "?subject=" + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.title : stack1), depth0)) + "\">" + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.email : stack1), depth0)) + "</a>\n                        </span>"
+                + "                        <span class='info_url'>\n                             Website: <a target=\"_blank\" href=\"" + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.url : stack1), depth0)) + "\">" + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.url : stack1), depth0)) + "</a>\n                        </span>"
+                + "<br>\n";
 
             return result;
         },
         "5": function (depth0, helpers, partials, data) {
             var stack1, lambda = this.lambda, escapeExpression = this.escapeExpression;
-            return "                    <span class='display-block' style=\"font-variant: small-caps\">api version: " + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.version : stack1), depth0)) + "</span>\n";
+            var result = "";
+            result += "                    <a href='" + window.jsonViewerUrl + "' target='jsonViewer' class='display-block'>Json Viewer: Supported</a>\n";
+            result += "                    <span class='display-block' style=\"font-variant: small-caps\">api version: " + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.version : stack1), depth0)) + "</span>\n";
+            return result;
         },
         "compiler": [6, ">= 2.0.0-beta.1"],
         "main": function (depth0, helpers, partials, data) {
