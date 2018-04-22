@@ -13,6 +13,8 @@ namespace Elect.Test.AspNetCore.Controllers
         [Route("device-info")]
         public IActionResult Device()
         {
+            var httpContext = Elect.Web.Middlewares.HttpContextMiddleware.HttpContext.Current;
+
             var device = HttpContext.Request.GetDeviceInformation();
 
             return Ok(device);

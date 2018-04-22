@@ -2,6 +2,7 @@
 using Elect.Job.Hangfire;
 using Elect.Test.AspNetCore.Data;
 using Elect.Test.AspNetCore.Models;
+using Elect.Web.Middlewares.HttpContextMiddleware;
 using Elect.Web.Swagger;
 using Elect.Web.Swagger.IOperationFilter;
 using Elect.Web.Swagger.Models;
@@ -38,6 +39,8 @@ namespace Elect.Test.AspNetCore
 
             services.AddElectSwagger();
 
+            services.AddElectHttpContext();
+
             services.AddElectHangfire(_ =>
             {
                 _.AccessKey = "topnguyen";
@@ -61,6 +64,8 @@ namespace Elect.Test.AspNetCore
             }
 
             app.UseElectHangfire();
+
+            app.UseElectHttpContext();
 
             app.UseStaticFiles();
 
