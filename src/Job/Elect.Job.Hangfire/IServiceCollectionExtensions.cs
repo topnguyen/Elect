@@ -34,6 +34,22 @@ namespace Elect.Job.Hangfire
             return services.AddElectHangfire(_ => { });
         }
 
+        public static IServiceCollection AddElectHangfire(this IServiceCollection services, [NotNull] ElectHangfireOptions options)
+        {
+            return services.AddElectHangfire(_ =>
+            {
+                _.Url = options.Url;
+                _.AccessKey = options.AccessKey;
+                _.BackToUrl = options.BackToUrl;
+                _.HangfireDatabaseConnectionString = options.HangfireDatabaseConnectionString;
+                _.IsDisableJobDashboard = options.IsDisableJobDashboard;
+                _.Provider = options.Provider;
+                _.StatsPollingInterval = options.StatsPollingInterval;
+                _.UnAuthorizeMessage = options.UnAuthorizeMessage;
+                _.ExtendOptions = options.ExtendOptions;
+            });
+        }
+
         public static IServiceCollection AddElectHangfire(this IServiceCollection services, [NotNull] Action<ElectHangfireOptions> configuration)
         {
             services.Configure(configuration);
