@@ -33,6 +33,7 @@
     <ProjectReference Include="..\..\src\DI\Elect.DI\Elect.DI.csproj" />
     <ProjectReference Include="..\..\src\Job\Elect.Job.Hangfire\Elect.Job.Hangfire.csproj" />
     <ProjectReference Include="..\..\src\Web\Elect.Web.HttpDetection\Elect.Web.HttpDetection.csproj" />
+    <ProjectReference Include="..\..\src\Web\Elect.Web.Middlewares\Elect.Web.Middlewares.csproj" />
     <ProjectReference Include="..\..\src\Web\Elect.Web.Swagger\Elect.Web.Swagger.csproj" />
     <ProjectReference Include="..\..\src\Web\Elect.Web\Elect.Web.csproj" />
   </ItemGroup>
