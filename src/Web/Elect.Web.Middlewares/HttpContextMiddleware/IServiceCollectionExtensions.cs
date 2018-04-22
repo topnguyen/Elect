@@ -29,7 +29,7 @@ namespace Elect.Web.Middlewares.HttpContextMiddleware
         {
             if (services.All(x => x.ServiceType != typeof(IHttpContextAccessor)))
             {
-                services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+                services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             }
 
             return services;
