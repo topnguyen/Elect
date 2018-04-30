@@ -19,6 +19,7 @@
 
 using Elect.Core.Interfaces;
 using Microsoft.Extensions.PlatformAbstractions;
+using System;
 using System.Collections.Generic;
 
 namespace Elect.DI.Models
@@ -34,5 +35,20 @@ namespace Elect.DI.Models
         ///     Print with minimal display format, default is true. 
         /// </summary>
         public bool IsMinimalDisplay { get; set; } = true;
+
+        /// <summary>
+        ///     Primary Text Color 
+        /// </summary>
+        public ConsoleColor PrimaryColor { get; set; } = ConsoleColor.Cyan;
+
+        /// <summary>
+        ///     Secondary Text Color 
+        /// </summary>
+        public ConsoleColor SecondaryColor { get; set; } = ConsoleColor.DarkGray;
+
+        /// <summary>
+        ///     Sort Ascending By 
+        /// </summary>
+        public ElectDIPrintSortBy SortAscBy { get; set; } = ElectDIPrintSortBy.Service;
     }
 }
