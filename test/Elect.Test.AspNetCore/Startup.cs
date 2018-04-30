@@ -1,18 +1,16 @@
 ﻿using Elect.DI;
+using Elect.DI.Models;
 using Elect.Job.Hangfire;
 using Elect.Test.AspNetCore.Data;
 using Elect.Test.AspNetCore.Models;
 using Elect.Web.Middlewares.HttpContextMiddleware;
 using Elect.Web.Swagger;
-using Elect.Web.Swagger.IOperationFilter;
-using Elect.Web.Swagger.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Elect.Test.AspNetCore
 {
@@ -35,7 +33,10 @@ namespace Elect.Test.AspNetCore
             // Elect Unit of Work
             services.AddElectDI();
 
-            services.PrintServiceAddedToConsole();
+            services.PrintServiceAddedToConsole(x =>
+            {
+                x.SortAscBy = ElectDIPrintSortBy.LifeTime;
+            });
 
             services.AddElectSwagger();
 

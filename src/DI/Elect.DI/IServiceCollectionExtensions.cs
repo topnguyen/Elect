@@ -272,6 +272,9 @@ namespace Elect.DI
             {
                 _.ListAssemblyName = configure.ListAssemblyName;
                 _.IsMinimalDisplay = configure.IsMinimalDisplay;
+                _.PrimaryColor = configure.PrimaryColor;
+                _.SecondaryColor = configure.SecondaryColor;
+                _.SortAscBy = configure.SortAscBy;
             });
         }
 
@@ -285,37 +288,41 @@ namespace Elect.DI
 
             listServiceDescriptors = listServiceDescriptors.Where(x => options.ListAssemblyName.Any(y => x.ServiceType.FullName.Contains(y))).ToList();
 
-            var consoleTextColor = ConsoleColor.Yellow;
-            var consoleDimColor = ConsoleColor.DarkGray;
+            if (options.SortAscBy == ElectDIPrintSortBy.Service)
+            {
+                listServiceDescriptors = listServiceDescriptors.OrderBy(x => GetNormForServiceAdded(x.ServiceType.Name)).ToList();
+            }
+            else if (options.SortAscBy == ElectDIPrintSortBy.Implementation)
+            {
+                listServiceDescriptors = listServiceDescriptors.OrderBy(x => GetNormForServiceAdded(x.ImplementationType?.Name)).ToList();
+            }
+            else
+            {
+                listServiceDescriptors = listServiceDescriptors.OrderBy(x => GetNormForServiceAdded(x.Lifetime.ToString())).ToList();
+            }
 
+            Console.ResetColor();
             Console.WriteLine();
-            Console.WriteLine($"{new string('-', 110)}");
-            Console.WriteLine();
-
-            Console.ForegroundColor = consoleTextColor;
+            Console.ForegroundColor = options.PrimaryColor;
             Console.WriteLine($"Elect DI > Registered {listServiceDescriptors.Count} Services.");
             Console.WriteLine();
 
             if (!listServiceDescriptors.Any())
             {
-                Console.ResetColor();
-                Console.WriteLine($"{new string('-', 110)}");
-
                 return services;
             }
 
             if (options.IsMinimalDisplay)
             {
-                PrintServiceAddedToConsoleMinimalDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
+                PrintServiceAddedToConsoleMinimalDisplayFormat(listServiceDescriptors, options.SecondaryColor, options.PrimaryColor);
             }
             else
             {
-                PrintServiceAddedToConsoleFullDisplayFormat(listServiceDescriptors, consoleDimColor, consoleTextColor);
+                PrintServiceAddedToConsoleFullDisplayFormat(listServiceDescriptors, options.SecondaryColor, options.PrimaryColor);
             }
 
-            Console.WriteLine();
             Console.ResetColor();
-            Console.WriteLine($"{new string('-', 110)}");
+            Console.WriteLine();
 
             return services;
         }
