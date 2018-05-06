@@ -134,5 +134,7 @@ using(var transaction = _unitOfWork.BeginTransaction())
 }
 ```
 
+## [View Sample](../../../samples/Data/Elect.Sample.Data.EF/README.md)
+
 ## License
 Elect.Data.EF is licensed under the [MIT License](../../../LICENSE).

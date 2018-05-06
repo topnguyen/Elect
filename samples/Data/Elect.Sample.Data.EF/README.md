@@ -24,7 +24,7 @@ AspNetCore version 2 Web Application - Sample using [Elect.Data.EF](../../../src
 </ItemGroup>
 ```
 
-## Installation
+## Instruction
 1. Create database "Elect.Sample" in your SQL Server and update "Development" connection string in [`connectionconfig.json`](connectionconfig.json).
 2. Open [`Program`](Program.cs) set breakpoint then start project with debug to understand how the [Elect.Data.EF](../../../src/Data/Elect.Data.EF/README.md) work.
 
