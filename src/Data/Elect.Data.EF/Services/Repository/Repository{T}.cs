@@ -6,12 +6,12 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> Repository.cs </Name>
+//         <Name> Repository_T_.cs </Name>
 //         <Created> 24/03/2018 10:20:57 PM </Created>
 //         <Key> d231f2d2-688f-4b84-bd11-cfdbc0d1b88f </Key>
 //     </File>
 //     <Summary>
-//         Repository.cs is a part of Elect
+//         Repository_T_.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
