@@ -8,7 +8,7 @@
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
     <copyright>http://topnguyen.net</copyright>
-    <projectUrl>https://github.com/topnguyen/Elect</projectUrl>
+    <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Middlewares</projectUrl>
     <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
