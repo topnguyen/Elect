@@ -14,7 +14,7 @@ AspNetCore version 2 Web Application - Sample using [Elect.Data.EF](../../../src
 - Services: Implement of Unit of Work, Repository and DbContext (Partial Class, DbSet content all property of DbContext).
 - [`add-migration.cmd`](add-migration.cmd): script to add new migration.
 - [`Startup`](Startup.cs): Register dependency for `IUnitOfWork`, `IRepository` and `IDbContext`.
-- [`Program`](Program.cs): Contain all usecase, add/update/remove/get database and transaction usecase.
+- [`Program`](Program.cs): Contain all usecases - add/update/remove/get database and transaction rollback/comit.
 - `connectionconfig.json`: Database connection string base on Environment. Remember to setup it as copy always to output dictionary to make sure add migration and database connect work well.
 ```xml
 <ItemGroup>
