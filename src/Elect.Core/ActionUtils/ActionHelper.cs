@@ -6,12 +6,12 @@
 //     <Author> Top </Author>
 //     <Project> Elect </Project>
 //     <File>
-//         <Name> ActionExtensions.cs </Name>
-//         <Created> 16/03/2018 2:15:17 PM </Created>
-//         <Key> 53a0f116-01f0-46f8-9fa7-828eb22c12ad </Key>
+//         <Name> ActionHelper.cs </Name>
+//         <Created> 06/05/2018 12:35:24 PM </Created>
+//         <Key> 8ef82399-0ad3-4be2-a2b2-d80cabd85b52 </Key>
 //     </File>
 //     <Summary>
-//         ActionExtensions.cs is a part of Elect
+//         ActionHelper.cs is a part of Elect
 //     </Summary>
 // <License>
 //--------------------------------------------------
@@ -21,7 +21,7 @@ using System;
 
 namespace Elect.Core.ActionUtils
 {
-    public static class ActionExtensions
+    public class ActionHelper
     {
         /// <summary>
         ///     Get instance of T from Action 
@@ -29,9 +29,13 @@ namespace Elect.Core.ActionUtils
         /// <typeparam name="T"></typeparam>
         /// <param name="action"></param>
         /// <returns></returns>
-        public static T GetValue<T>(this Action<T> action) where T : class, new()
+        public static T GetValue<T>(Action<T> action) where T : class, new()
         {
-            return ActionHelper.GetValue(action);
+            T obj = (T)Activator.CreateInstance(typeof(T));
+
+            action.DynamicInvoke(obj);
+
+            return obj;
         }
     }
 }
