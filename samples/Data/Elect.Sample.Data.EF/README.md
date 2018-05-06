@@ -1,5 +1,5 @@
 ﻿![Logo](../../../Logo.png)
-# Elect.Sample.Data.EF
+# Sample using Elect.Data.EF
 > Author [**Top Nguyen**](http://topnguyen.net)
 
 ## Overview
