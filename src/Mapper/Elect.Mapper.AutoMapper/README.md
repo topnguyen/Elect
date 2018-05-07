@@ -42,7 +42,7 @@ public class UserProfile : Profile
     {
         CreateMap<UserEntity, UserModel>()
             .IgnoreAllNonExisting()
-            .ForMember(d => d.FullName, o => o.MapFrom(s => s.Profile.Select(x => x.FullName)));
+            .ForMember(d => d.FullName, o => o.MapFrom(s => s.Profile.FullName));
     }
 }
 ```
