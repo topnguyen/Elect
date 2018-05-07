@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore;
+﻿using Elect.Mapper.AutoMapper.IQueryableUtils;
+using Elect.Mapper.AutoMapper.ObjUtils;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Elect.Sample.Mapper.AutoMapper
 {
@@ -28,10 +31,34 @@ namespace Elect.Sample.Mapper.AutoMapper
 
         private static void OnAppStart(IWebHost webHost)
         {
-            using (var scope = webHost.Services.CreateScope())
+            // Map from UserEntity to UserModel
+            var userEntity = new UserEntity
             {
-                var serviceProvider = scope.ServiceProvider;
-            }
+                Id = 1,
+                UserName = "User 1",
+                Password = "Password",
+                Profile = new ProfileEntity { FullName = "User 1 Full Name" }
+            };
+
+            // Create new instance of UserModel with data from UserEntity.
+            var userModel = userEntity.MapTo<UserModel>();
+
+            var userEntity2 = new UserEntity
+            {
+                Id = 2,
+                UserName = "User 2",
+                Password = "Password",
+                Profile = new ProfileEntity { FullName = "User 2 Full Name" }
+            };
+
+            // Update userModel by userEntity data.
+            userEntity2.MapTo(userModel);
+
+            // IQueryable
+
+            IQueryable<UserEntity> userEntities = new List<UserEntity> {userEntity, userEntity2}.AsQueryable();
+
+            List<UserModel> userModels = userEntities.QueryTo<UserModel>().ToList();
         }
     }
 }
