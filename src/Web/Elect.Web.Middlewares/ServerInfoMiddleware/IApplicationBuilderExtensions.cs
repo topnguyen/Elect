@@ -59,6 +59,7 @@ namespace Elect.Web.Middlewares.ServerInfoMiddleware
                     httpContext.Response.Headers.AddOrUpdate(HeaderKey.XAuthorName, _options.AuthorName);
                     httpContext.Response.Headers.AddOrUpdate(HeaderKey.XAuthorWebsite, _options.AuthorWebsite);
                     httpContext.Response.Headers.AddOrUpdate(HeaderKey.XAuthorEmail, _options.AuthorEmail);
+                    httpContext.Response.Headers.AddOrUpdate(HeaderKey.XAuthorEmail, _options.Version);
 
                     return Task.CompletedTask;
                 }, context);
