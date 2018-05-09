@@ -10,6 +10,10 @@ I have seen some situations where a web project has a `Startup.cs` that is hundr
 
 With Elect.DI, you can register dependency injection by Attributes - lifetime define in the Implementaion class and just 1 line of code in `Startup.cs` to enable `Scanner` and auto register follow attribute setup.
 
+Elect.DI support to auto register Service and Implementation by
+- Projects reference.
+- Scan assemblies in difference folders.
+
 ## Installation
 - Package Manager
 ```

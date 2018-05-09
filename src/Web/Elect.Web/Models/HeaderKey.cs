@@ -74,8 +74,8 @@ namespace Elect.Web.Models
 
         // Cloudfare
         // Seemore: https://support.cloudflare.com/hc/en-us/articles/200170986-How-does-Cloudflare-handle-HTTP-Request-headers-
-        public const string CFIPCountry = "CF-IPCountry";
 
+        public const string CFIPCountry = "CF-IPCountry";
         public const string CFConnectingIP = "CF-Connecting-IP";
         public const string CFTrueClientIP = "True-Client-IP";
         public const string CFVisitor = "CF-Visitor";
@@ -122,8 +122,8 @@ namespace Elect.Web.Models
         public const string XxssProtection = "X-XSS-Protection";
 
         // Author
-        public const string XAuthorWebsite = "X-Author-Website";
 
+        public const string XAuthorWebsite = "X-Author-Website";
         public const string XAuthorEmail = "X-Author-Email";
         public const string XAuthorName = "X-Author-Name";
 
