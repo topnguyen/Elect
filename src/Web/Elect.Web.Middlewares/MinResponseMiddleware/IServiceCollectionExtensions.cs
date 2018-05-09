@@ -42,7 +42,7 @@ namespace Elect.Web.Middlewares.MinResponseMiddleware
                     options.MaxResponseSize = -1; // Allow min all size
                     options.AllowMinificationInDevelopmentEnvironment = true;
                     options.AllowCompressionInDevelopmentEnvironment = true;
-                    options.DisablePoweredByHttpHeaders = false;
+                    options.DisablePoweredByHttpHeaders = true;
                     options.DisableCompression = false;
                     options.DisableMinification = false;
                 })

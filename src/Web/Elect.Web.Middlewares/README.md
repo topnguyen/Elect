@@ -69,5 +69,7 @@ using (var ms = new MemoryStream(2048))
     + Use Middleware: `app.UseElectServerInfo()`.
     + Use: This middleware auto append Headers for `HttpResponse` about Server Info.
 
+## [View Sample](../../../samples/Web/Elect.Sample.Web.Middlewares/README.md)
+
 ## License
 Elect.Web.Middlewares is licensed under the [MIT License](../../../LICENSE).
