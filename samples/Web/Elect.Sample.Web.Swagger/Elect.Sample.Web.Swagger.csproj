@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    
     <!-- Generate XML file -->
     <DocumentationFile>Elect.Sample.Web.Swagger.xml</DocumentationFile>
     <!-- Disable warning for Controller/Action/Method not have block comment -->
@@ -19,4 +20,5 @@
     <PackageReference Include="Elect.Web.Swagger" Version="1.0.62" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
   </ItemGroup>
+  
 </Project>

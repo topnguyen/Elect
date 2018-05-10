@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- Information -->
   <PropertyGroup>
     <LangVersion>7.1</LangVersion>
@@ -11,18 +11,9 @@
     <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.IO.nuspec</NuspecFile>
   </PropertyGroup>
+  
   <ItemGroup>
-    <None Remove="ImageUtils\CompressUtils\Tools\libjpeg-62.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\Elect_ImageCompressor_GIF.exe" />
-    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\Elect_ImageCompressor_JPEG.exe" />
-    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\Elect_ImageCompressor_JPEG_Optimize.exe" />
-    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\Elect_ImageCompressor_PNG_Optimize.exe" />
-    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\Elect_ImageCompressor_PNG_Primary.exe" />
-    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\Elect_ImageCompressor_PNG_Secondary.exe" />
-    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\libjpeg-62.dll" />
+    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\**\*" />
   </ItemGroup>
 
   <!-- Elect -->

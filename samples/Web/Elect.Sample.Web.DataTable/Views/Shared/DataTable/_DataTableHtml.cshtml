@@ -1,0 +1,40 @@
+﻿@model Elect.Web.DataTable.Models.DataTableModel
+
+<table id="@Model.Id" class="@(Model.TableClass ?? string.Empty)">
+    <thead>
+        @if (Model.IsUseColumnFilter)
+        {
+            <tr>
+                @for (int i = 0; i < Model.Columns.Count; i++)
+                {
+                    <th></th>
+                }
+            </tr>
+        }
+        @if (!Model.IsHideHeader)
+        {
+            <tr>
+                @foreach (var column in Model.Columns)
+                {
+                    <th class="@column.CssClassHeader" @Html.Raw(string.IsNullOrWhiteSpace(column.AdditionalAttributeHeader) ? string.Empty : column.AdditionalAttributeHeader)>@column.DisplayName</th>
+                }
+            </tr>
+        }
+    </thead>
+    <tfoot>
+        <tr>
+            @for (int i = 0; i < Model.Columns.Count; i++)
+            {
+                <th></th>
+
+            }
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td colspan="@Model.Columns.Count" class="dataTables_empty">
+                Loading...
+            </td>
+        </tr>
+    </tbody>
+</table>

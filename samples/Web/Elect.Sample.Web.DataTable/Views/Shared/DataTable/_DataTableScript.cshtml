@@ -1,0 +1,134 @@
+﻿@using Elect.Web.DataTable.Models.Constants
+@using Elect.Web.DataTable.Utils.DataTableModelUtils
+@using Elect.Web.IUrlHelperUtils
+@using Newtonsoft.Json.Linq
+@model Elect.Web.DataTable.Models.DataTableModel
+
+<script type="text/javascript">
+    $(function() {
+        var $table = $('#@Model.Id');
+        @{
+            var options = new JObject
+            {
+                [PropertyConstants.Sorting] = new JRaw(Model.GetColumnSortingString()),
+                [PropertyConstants.IsProcessing] = true,
+                [PropertyConstants.IsServerSide] = true,
+                [PropertyConstants.IsFilter] = Model.IsShowGlobalSearchInput,
+                [PropertyConstants.Dom] = Model.Dom,
+                [PropertyConstants.IsResponsive] = Model.IsResponsive,
+                [PropertyConstants.IsAutoWidth] = Model.IsAutoWidthColumn,
+                [PropertyConstants.AjaxSource] = Model.AjaxUrl,
+                [PropertyConstants.ColumnDefine] = new JRaw(Model.GetColumnsJsonString()),
+                [PropertyConstants.SearchCols] = Model.GetSearchColumns(),
+                [PropertyConstants.DeferRender] = Model.IsDeferRender,
+                [PropertyConstants.LengthMenuDefine] = Model.LengthMenu != null ? new JRaw(Model.LengthMenu) : new JRaw(string.Empty),
+                [PropertyConstants.Language] = new JObject
+                {
+                    [PropertyConstants.SearchSelector] = "_INPUT_",
+                    [PropertyConstants.LengthMenuSelector] = "_MENU_",
+                    [PropertyConstants.SearchPlaceholder] = "Search...",
+                }
+            };
+
+            // Default Size
+            if (Model.PageSize.HasValue)
+            {
+                options[PropertyConstants.DisplayLength] = Model.PageSize;
+            }
+
+            // Language Code
+            if (!string.IsNullOrWhiteSpace(Model.LanguageCode))
+            {
+                options[PropertyConstants.LanguageCode] = new JRaw(Model.LanguageCode);
+            }
+
+            // Draw Call back function
+            if (!string.IsNullOrWhiteSpace(Model.DrawCallbackFunctionName))
+            {
+                options[PropertyConstants.FnDrawCallback] = new JRaw(Model.DrawCallbackFunctionName);
+            }
+
+            // Footer Call back function
+            if (!string.IsNullOrWhiteSpace(Model.FooterCallbackFunctionName))
+            {
+                options[PropertyConstants.FnFooterCallback] = new JRaw(Model.FooterCallbackFunctionName);
+            }
+
+            // Server Request
+            options[PropertyConstants.FnServerData] = new JRaw(
+                "function(sSource, aoData, fnCallback) { "
+                + (Model.IsDevelopMode ? $"    console.log('[DataTable {Model.Id}] URL: ', sSource);" : string.Empty)
+                + (Model.IsDevelopMode ? $"    console.log('[DataTable {Model.Id}] Request: ', aoData);" : string.Empty)
+                + "    var ajaxOptions = { 'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback};"
+                + (Model.IsDevelopMode ? "ajaxOptions['success'] = function(data){"
+                                              + $"    console.log('[DataTable {Model.Id}] Response', data);"
+                                              + "    if(fnCallback && typeof fnCallback === 'function'){"
+                                              + "        fnCallback(data)"
+                                              + "    }"
+                                              + "};"
+                                       : string.Empty)
+                + (string.IsNullOrWhiteSpace(Model.BeforeSendFunctionName) ? string.Empty : $"{Model.BeforeSendFunctionName}(aoData);")
+                + (string.IsNullOrWhiteSpace(Model.AjaxErrorHandler) ? string.Empty : "ajaxOptions['error'] = " + Model.AjaxErrorHandler + "; ")
+                + "    $.ajax(ajaxOptions);" +
+                "}");
+
+            // Tools
+            if (Model.IsUseTableTools)
+            {
+                options[PropertyConstants.TableTools] = new JRaw("{ 'sSwfPath': '" + Url.AbsoluteContent("~/portal/vendor/datatables-tabletools/swf/copy_csv_xls_pdf.swf") + "' }");
+
+                var tools = Model.IsEnableColVis ? "{extend: 'colvis', text: 'Columns'}," : string.Empty;
+
+                //tools += "'copy', 'excel', 'csv', 'pdf', 'print'";
+
+                options[PropertyConstants.Buttons] = new JRaw($"[{tools}]");
+            }
+
+            // Additional Option
+            if (Model.AdditionalOptions.Any())
+            {
+                foreach (var jsOption in Model.AdditionalOptions)
+                {
+                    options[jsOption.Key] = new JRaw(jsOption.Value);
+                }
+            }
+        }
+
+        var dataTableOptions = @Html.Raw(options.ToString(Newtonsoft.Json.Formatting.Indented));
+
+        @if (Model.IsDevelopMode)
+        {
+            <text>
+                console.log('[DataTable @Model.Id] Configuration', dataTableOptions);
+            </text>
+        }
+
+        var $dataTable = $table.dataTable(dataTableOptions);
+
+        // Col filters
+        @if (Model.IsUseColumnFilter)
+        {
+            <text>
+                $dataTable.columnFilter(@Html.Raw(Model.ColumnFilterGlobalConfig));
+            </text>
+        }
+
+        // Responsive Resize Callback
+        @if (Model.IsResponsive && !string.IsNullOrWhiteSpace(Model.ResponsiveResizeCallbackFunctionName))
+        {
+            <text>
+                $dataTable.api().on('responsive-resize', function(e, datatable, columns) {
+                        @Html.Raw($"{Model.ResponsiveResizeCallbackFunctionName}(e, datatable, columns);")
+                    });
+            </text>
+        }
+
+        // Global Variable
+        @if (!string.IsNullOrWhiteSpace(Model.GlobalJsVariableName))
+        {
+            <text>
+                window['@Model.GlobalJsVariableName'] = $dataTable;
+            </text>
+        }
+    });
+</script>
