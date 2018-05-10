@@ -26,6 +26,9 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Job
 services.AddElectHangfire();
 ```
 
+- Advance Configuration
+  + If you want to add more config for `IGlobalConfiguration` after Elect.Web.Swagger config it. Just add your config in `ExtendOptions` Property of [`ExtendOptions`](Models/ElectHangfireOptions.cs).
+
 - Use Middleware
 ```csharp
 app.UseElectHangfire();

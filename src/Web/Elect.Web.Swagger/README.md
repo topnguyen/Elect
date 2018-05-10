@@ -56,10 +56,20 @@ app.UseElectSwagger();
   + In your API `Action` need add comment `///` to display title for API in Document
 
 - Group Configuration
-  + Group Name will use the `Controller` Name by default. 
+  + Group Name will use the `Controller` Name by default. If you want to change it, use  [`ApiDocGroup`](Attributes/ApiDocGroupAttribute.cs) to config the group name.
+  + You can config multiple Group Name for `Action`. So the `Action` will appear in multiple groups.
 
-- Additional Fields for API Document
-    + 
+- Additional Parameters for API Document
+    + You can add additional parameter by [`ApiParameter`](Attributes/ApiParameterAttribute.cs)
+    + View more in [swagger document](https://swagger.io/docs/specification/describing-parameters/).
+
+- Access API Document
+    + By defaul, API Document URL is "/developers".
+
+- Advance Configuration
+  + If you want to add more config for `SwaggerGenOptions` after Elect.Web.Swagger config it. Just add your config in `ExtendOptions` Property of [`ElectSwaggerOptions`](Models/ElectSwaggerOptions.cs).
+
+## [View Sample](../../../samples/Web/Elect.Sample.Web.Swagger/README.md)
 
 ## License
 Elect.Web.Swagger is licensed under the [MIT License](../../../LICENSE).
