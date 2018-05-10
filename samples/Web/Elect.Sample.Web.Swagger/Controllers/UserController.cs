@@ -1,6 +1,7 @@
 ﻿using Elect.Web.Swagger.Attributes;
 using Elect.Web.Swagger.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Elect.Sample.Web.Swagger.Controllers
 {
@@ -9,7 +10,7 @@ namespace Elect.Sample.Web.Swagger.Controllers
     public class UserController : Controller
     {
         /// <summary>
-        ///     Get User
+        ///     Get User 
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
@@ -20,24 +21,25 @@ namespace Elect.Sample.Web.Swagger.Controllers
         {
             return Ok(new
             {
-                userId = HttpContext.Request.Query["id"],
+                userId = HttpContext.Request.Query["id"].FirstOrDefault(),
                 userName
             });
         }
 
         /// <summary>
-        ///     Get Profile
+        ///     Get Profile 
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("profiles")]
         [ApiParameter("id", Description = "User Id", In = ParameterInType.Query, Type = "string", IsRequire = true)]
         [ApiDocGroup("Profile API")]
+        [ApiDocGroup("User API")]
         public IActionResult GetProfile()
         {
             return Ok(new
             {
-                userId = HttpContext.Request.Query["id"]
+                userId = HttpContext.Request.Query["id"].FirstOrDefault()
             });
         }
     }
