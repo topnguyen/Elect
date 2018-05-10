@@ -54,7 +54,7 @@ namespace Elect.Web.SiteMap.Services
 
         public virtual string GenerateXmlString(params SiteMapItem[] items)
         {
-            if (!items.Any() != true)
+            if (items.Any() != true)
             {
                 throw new ArgumentNullException($"{nameof(items)} is empty.");
             }
