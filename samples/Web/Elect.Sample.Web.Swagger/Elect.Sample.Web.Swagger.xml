@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Sample.Web.Swagger</name>
+    </assembly>
+    <members>
+        <member name="M:Elect.Sample.Web.Swagger.Controllers.UserController.GetUser(System.String)">
+            <summary>
+                Get User
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Sample.Web.Swagger.Controllers.UserController.GetProfile">
+            <summary>
+                Get Profile
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

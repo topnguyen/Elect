@@ -23,6 +23,7 @@ using EnumsNET;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -54,6 +55,11 @@ namespace Elect.Web.Swagger.IOperationFilter
                     Type = parameter.Type,
                     Description = parameter.Description
                 };
+
+                if (operation.Parameters?.Any() != true)
+                {
+                    operation.Parameters = new List<IParameter>();
+                }
 
                 operation.Parameters = operation.Parameters.RemoveWhere(x => x.Name == parameterInfo.Name).ToList();
 

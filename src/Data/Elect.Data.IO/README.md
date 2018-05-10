@@ -2,6 +2,18 @@
 # Elect.Data.IO
 > Author [**Top Nguyen**](http://topnguyen.net)
 
+## Overview
+Elect.Data.IO is utitlies for handle IO like file, image, path.
+
+Featured Methods:
+
+- [Compress Image](ImageUtils/CompressUtils/ImageCompressor.cs).
+- [Resize Image](ImageUtils/ResizeUtils/ImageResizeHelper.cs).
+- [Generate Text Image](ImageUtils/ImageHelper.cs).
+- [Get Image Dominant/Main Color](ImageUtils/ColorUtils/ImageDominantColorHelper.cs).
+- [File Watcher](FileUtils/FileWatcher.cs).
+- [Get File MimeType](FileUtils/MimeTypeHelper.cs).
+
 ## Installation
 - Package Manager
 ```

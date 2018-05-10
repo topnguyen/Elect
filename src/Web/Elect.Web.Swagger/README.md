@@ -23,7 +23,10 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web
 <!-- {namespace} is your root system namespace, eg: Elect.Web -->
 
 <PropertyGroup>
+    <!-- Generate XML file -->
     <DocumentationFile>{namespace}.xml</DocumentationFile>
+    <!-- Disable warning for Controller/Action/Method not have block comment -->
+    <NoWarn>1701;1702;1705;1591</NoWarn>
 </PropertyGroup>
 
 <ItemGroup>
@@ -51,6 +54,8 @@ app.UseElectSwagger();
   + Use Attribute [`ShowInApiDoc`](Attributes/ShowInApiDocAttribute.cs) in `Controller` or `Action` to Enable `Action` show in API Document.
 
   + Use Attribute [`HideInApiDoc`](Attributes/HideInApiDocAttribute.cs) in `Controller` or `Action` to Override [`ShowInApiDoc`](Attributes/ShowInApiDocAttribute.cs) attribute => make `Action` not show in API Document.
+
+   + Note: Use specific for each `Action` about Http Method such as `[HttpGet]`, `[HttpPost]`, `[HttpPut]`, `[HttpDelete]` and Specific about request path by `[Route()]` attribute too.
 
 - Title for API Document
   + In your API `Action` need add comment `///` to display title for API in Document
