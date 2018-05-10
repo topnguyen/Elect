@@ -2,8 +2,6 @@
 # Elect.Data.IO
 > Author [**Top Nguyen**](http://topnguyen.net)
 
-## Overview
-
 ## Installation
 - Package Manager
 ```
@@ -15,8 +13,6 @@ dotnet add package Elect.Data.IO
 ```
 
 See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Data.IO/).
-
-## Usage
 
 ## License
 Elect.Data.IO is licensed under the [MIT License](../../../LICENSE).
