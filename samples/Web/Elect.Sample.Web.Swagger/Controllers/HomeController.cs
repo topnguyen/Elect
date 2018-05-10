@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Elect.Web.HttpUtils;
+using Elect.Web.Swagger.Attributes;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Elect.Sample.Web.Swagger.Controllers
 {
-    [ShowInApiDoc]
+    [HideInApiDoc]
     public class HomeController : Controller
     {
-        public IActionResult GetUser()
+        public IActionResult Index()
         {
-            return Ok();
+            return Redirect($"{HttpContext.Request.GetDomain()}/developers");
         }
     }
 }
