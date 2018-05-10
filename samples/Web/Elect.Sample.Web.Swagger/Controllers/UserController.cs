@@ -33,8 +33,8 @@ namespace Elect.Sample.Web.Swagger.Controllers
         [HttpGet]
         [Route("profiles")]
         [ApiParameter("id", Description = "User Id", In = ParameterInType.Query, Type = "string", IsRequire = true)]
-        [ApiDocGroup("Profile API")]
-        [ApiDocGroup("User API")]
+        [ApiDocGroup("Profile API")] // Make this Action appear in "Profile API" group
+        [ApiDocGroup("User API")] // Make this Action appear in "User API" group
         public IActionResult GetProfile()
         {
             return Ok(new
