@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Sample.Web.Middleware
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Sample.Web", "samples\Web\Elect.Sample.Web\Elect.Sample.Web.csproj", "{39FB9BB2-7EB8-4358-B828-F8C9F29074E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Sample.Web.Swagger", "samples\Web\Elect.Sample.Web.Swagger\Elect.Sample.Web.Swagger.csproj", "{0DE1CFAC-C42F-4DB9-8A30-ECED300425A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +163,10 @@ Global
 		{39FB9BB2-7EB8-4358-B828-F8C9F29074E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39FB9BB2-7EB8-4358-B828-F8C9F29074E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39FB9BB2-7EB8-4358-B828-F8C9F29074E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DE1CFAC-C42F-4DB9-8A30-ECED300425A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DE1CFAC-C42F-4DB9-8A30-ECED300425A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DE1CFAC-C42F-4DB9-8A30-ECED300425A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DE1CFAC-C42F-4DB9-8A30-ECED300425A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -198,6 +204,7 @@ Global
 		{BB062F30-D2B6-4D0A-9D3D-84B2AF006D25} = {5E828BCD-A912-417F-9A51-708859BA56F5}
 		{DB4527B6-BE1D-4089-A329-ACE154CDAD52} = {BB062F30-D2B6-4D0A-9D3D-84B2AF006D25}
 		{39FB9BB2-7EB8-4358-B828-F8C9F29074E7} = {BB062F30-D2B6-4D0A-9D3D-84B2AF006D25}
+		{0DE1CFAC-C42F-4DB9-8A30-ECED300425A8} = {BB062F30-D2B6-4D0A-9D3D-84B2AF006D25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B699336-21B7-4FD5-8ECC-A8390C034309}
