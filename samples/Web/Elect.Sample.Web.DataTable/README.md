@@ -13,5 +13,8 @@ AspNetCore version 2 Web Application - Sample using [Elect.Web.DataTable](../../
 3. Go to [View > Home > Index.cshtml](Views/Home/Index.cshtml) to see the configuration of DataTable.
 4. Run the project to see how it work.
 
+## Result
+![Sample.png](Sample.png)
+
 ## License
 Elect.Data.EF is licensed under the [MIT License](../../../LICENSE).

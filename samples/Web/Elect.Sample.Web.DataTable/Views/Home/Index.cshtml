@@ -1,5 +1,30 @@
-﻿@{
+﻿@using Elect.Web.DataTable
+@using Elect.Web.DataTable.Models.Column
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
     Layout = null;
+
+    // Get model
+    var model = Html.DataTableModel(Guid.NewGuid().ToString("N"), (HomeController controller) => controller.GetDataTable(null));
+
+    // Global Configuration
+    model.IsDevelopMode = true;
+    model.IsUseColumnFilter = true;
+    model.PageSize = 10;
+    model.BeforeSendFunctionName = "beforeSendHandle";
+
+    // Additional Columns
+    model.Columns.Add(new ColumnModel("Action", typeof(string))
+    {
+        DisplayName = "Action Col",
+        IsSearchable = false,
+        IsSortable = false,
+        MRenderFunction = "actionColRender"
+    });
+
+    // Render Functions
+    model.Columns.Single(x => x.Name == nameof(UserModel.IsActive)).MRenderFunction = "isActiveRender";
 }
 
 <!DOCTYPE html>
@@ -7,8 +32,56 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Elect.Web.DataTable</title>
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- DataTable -->
+    <style src="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></style>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTable - Column Filter -->
+    <script src="~/jquery.dataTables.columnFilter.js"></script>
+
+    <!-- DataTable - ColVis -->
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
+
+    <!-- DataTable - Buttons -->
+    <style src="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css"></style>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+
+    <!-- Explore more DataTable Plugin in https://datatables.net/download/release -->
 </head>
 <body>
-    Welcome to Elect.Web.DataTable!
+    <h1>DataTables</h1>
+
+    <div>
+        @await Html.PartialAsync("~/Views/Shared/DataTable/_DataTableHtml.cshtml", model).ConfigureAwait(true)
+    </div>
+
+    @await Html.PartialAsync("~/Views/Shared/DataTable/_DataTableScript.cshtml", model).ConfigureAwait(true)
+
+    <script type="text/javascript">
+        function beforeSendHandle(data) {
+            data.push({
+                name: "newData",
+                value: "test modify data before send"
+            });
+            console.log("before send handle: ", data);
+        }
+
+        function actionColRender(data, type, row) {
+            return "<button>Acion for " + row[0] + "</button>";
+        }
+
+        function isActiveRender(data, type, row) {
+
+            if (data === "Yes") {
+                return data;
+            }
+
+            return "<span style='color:red'>" + data+"</span>";
+        }
+    </script>
 </body>
 </html>
