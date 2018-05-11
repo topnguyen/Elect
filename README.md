@@ -47,5 +47,10 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
 - Localization
     + ***[On Plan]** Elect.Localization.Json: Localization with resource in separate Json files.*
     + ***[On Plan]** Elect.Localization.Dashboard: Support manage Elect.Localization.Json via a Dashboard with securiry check support.*
+
+## Samples
+
+Please access "samples" folder in this repo to explore example for each library.
+
 ## License
 Elect.Core is licensed under the [MIT License](LICENSE).
