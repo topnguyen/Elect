@@ -65,7 +65,7 @@ namespace Elect.Web.HttpDetection
 
             // Create the folder for storing temporary images and tools.
 
-            WorkingFolder = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, "..\\"));
+            WorkingFolder = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, $"..{Path.DirectorySeparatorChar.ToString()}"));
 
             // Load tools
             var librariesNameSpace = $"{nameof(Elect)}.{nameof(Web)}.{nameof(HttpDetection)}";

@@ -65,7 +65,7 @@ namespace Elect.Web.Swagger.Utils
 
             // Create the folder for storing temporary images and tools.
 
-            WorkingFolder = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, "..\\Elect_Swagger\\"));
+            WorkingFolder = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, $"..{Path.DirectorySeparatorChar.ToString()}Elect_Swagger{Path.DirectorySeparatorChar.ToString()}"));
 
             DirectoryInfo directoryInfo = new DirectoryInfo(Path.GetDirectoryName(WorkingFolder));
 
@@ -93,53 +93,53 @@ namespace Elect.Web.Swagger.Utils
 
                 // css
 
-                { @"css\api-explorer.css", $@"{librariesNameSpace}.css.api-explorer.css" },
-                { @"css\index.css", $@"{librariesNameSpace}.css.index.css" },
-                { @"css\standalone.css", $@"{librariesNameSpace}.css.standalone.css" },
+                { $@"css{Path.DirectorySeparatorChar.ToString()}api-explorer.css", $@"{librariesNameSpace}.css.api-explorer.css" },
+                { $@"css{Path.DirectorySeparatorChar.ToString()}index.css", $@"{librariesNameSpace}.css.index.css" },
+                { $@"css{Path.DirectorySeparatorChar.ToString()}standalone.css", $@"{librariesNameSpace}.css.standalone.css" },
 
                 // fonts
 
-                { @"fonts\droid-sans-v6-latin-700.eot", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.eot" },
-                { @"fonts\droid-sans-v6-latin-700.svg", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.svg" },
-                { @"fonts\droid-sans-v6-latin-700.ttf", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.ttf" },
-                { @"fonts\droid-sans-v6-latin-700.woff", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.woff" },
-                { @"fonts\droid-sans-v6-latin-700.woff2", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.woff2" },
-                { @"fonts\droid-sans-v6-latin-regular.eot", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.eot" },
-                { @"fonts\droid-sans-v6-latin-regular.svg", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.svg" },
-                { @"fonts\droid-sans-v6-latin-regular.ttf", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.ttf" },
-                { @"fonts\droid-sans-v6-latin-regular.woff", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.woff" },
-                { @"fonts\droid-sans-v6-latin-regular.woff2", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.woff2" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-700.eot", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.eot" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-700.svg", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.svg" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-700.ttf", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.ttf" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-700.woff", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.woff" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-700.woff2", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-700.woff2" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-regular.eot", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.eot" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-regular.svg", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.svg" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-regular.ttf", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.ttf" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-regular.woff", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.woff" },
+                { $@"fonts{Path.DirectorySeparatorChar.ToString()}droid-sans-v6-latin-regular.woff2", $@"{librariesNameSpace}.fonts.droid-sans-v6-latin-regular.woff2" },
 
                 // images
 
-                { @"images\explorer_icons.png", $@"{librariesNameSpace}.images.explorer_icons.png" },
-                { @"images\favicon.ico", $@"{librariesNameSpace}.images.favicon.ico" },
-                { @"images\logo.png", $@"{librariesNameSpace}.images.logo.png" },
-                { @"images\throbber.gif", $@"{librariesNameSpace}.images.throbber.gif" },
+                { $@"images{Path.DirectorySeparatorChar.ToString()}explorer_icons.png", $@"{librariesNameSpace}.images.explorer_icons.png" },
+                { $@"images{Path.DirectorySeparatorChar.ToString()}favicon.ico", $@"{librariesNameSpace}.images.favicon.ico" },
+                { $@"images{Path.DirectorySeparatorChar.ToString()}logo.png", $@"{librariesNameSpace}.images.logo.png" },
+                { $@"images{Path.DirectorySeparatorChar.ToString()}throbber.gif", $@"{librariesNameSpace}.images.throbber.gif" },
 
                 // JsonViewer
 
-                { @"JsonViewer\index.html", $@"{librariesNameSpace}.JsonViewer.index.html" },
-                { @"JsonViewer\logo.png", $@"{librariesNameSpace}.JsonViewer.logo.png" },
-                { @"JsonViewer\main.css", $@"{librariesNameSpace}.JsonViewer.main.css" },
-                { @"JsonViewer\main.js", $@"{librariesNameSpace}.JsonViewer.main.js" },
+                { $@"JsonViewer{Path.DirectorySeparatorChar.ToString()}index.html", $@"{librariesNameSpace}.JsonViewer.index.html" },
+                { $@"JsonViewer{Path.DirectorySeparatorChar.ToString()}logo.png", $@"{librariesNameSpace}.JsonViewer.logo.png" },
+                { $@"JsonViewer{Path.DirectorySeparatorChar.ToString()}main.css", $@"{librariesNameSpace}.JsonViewer.main.css" },
+                { $@"JsonViewer{Path.DirectorySeparatorChar.ToString()}main.js", $@"{librariesNameSpace}.JsonViewer.main.js" },
 
                 // lib
 
-                { @"lib\backbone-min.js", $@"{librariesNameSpace}.lib.backbone-min.js" },
-                { @"lib\bootstrap.min.js", $@"{librariesNameSpace}.lib.bootstrap.min.js" },
-                { @"lib\clipboard.min.js", $@"{librariesNameSpace}.lib.clipboard.min.js" },
-                { @"lib\handlebars-2.0.0.min.js", $@"{librariesNameSpace}.lib.handlebars-2.0.0.min.js" },
-                { @"lib\highlight.7.3.pack.min.js", $@"{librariesNameSpace}.lib.highlight.7.3.pack.min.js" },
-                { @"lib\jquery.ba-bbq.min.js", $@"{librariesNameSpace}.lib.jquery.ba-bbq.min.js" },
-                { @"lib\jquery.slideto.min.js", $@"{librariesNameSpace}.lib.jquery.slideto.min.js" },
-                { @"lib\jquery.wiggle.min.js", $@"{librariesNameSpace}.lib.jquery.wiggle.min.js" },
-                { @"lib\jquery-1.8.0.min.js", $@"{librariesNameSpace}.lib.jquery-1.8.0.min.js" },
-                { @"lib\marked.min.js", $@"{librariesNameSpace}.lib.marked.min.js" },
-                { @"lib\o2c.html", $@"{librariesNameSpace}.lib.o2c.html" },
-                { @"lib\swagger-oauth.min.js", $@"{librariesNameSpace}.lib.swagger-oauth.min.js" },
-                { @"lib\swagger-ui.js", $@"{librariesNameSpace}.lib.swagger-ui.js" },
-                { @"lib\underscore-min.js", $@"{librariesNameSpace}.lib.underscore-min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}backbone-min.js", $@"{librariesNameSpace}.lib.backbone-min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}bootstrap.min.js", $@"{librariesNameSpace}.lib.bootstrap.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}clipboard.min.js", $@"{librariesNameSpace}.lib.clipboard.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}handlebars-2.0.0.min.js", $@"{librariesNameSpace}.lib.handlebars-2.0.0.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}highlight.7.3.pack.min.js", $@"{librariesNameSpace}.lib.highlight.7.3.pack.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}jquery.ba-bbq.min.js", $@"{librariesNameSpace}.lib.jquery.ba-bbq.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}jquery.slideto.min.js", $@"{librariesNameSpace}.lib.jquery.slideto.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}jquery.wiggle.min.js", $@"{librariesNameSpace}.lib.jquery.wiggle.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}jquery-1.8.0.min.js", $@"{librariesNameSpace}.lib.jquery-1.8.0.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}marked.min.js", $@"{librariesNameSpace}.lib.marked.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}o2c.html", $@"{librariesNameSpace}.lib.o2c.html" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}swagger-oauth.min.js", $@"{librariesNameSpace}.lib.swagger-oauth.min.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}swagger-ui.js", $@"{librariesNameSpace}.lib.swagger-ui.js" },
+                { $@"lib{Path.DirectorySeparatorChar.ToString()}underscore-min.js", $@"{librariesNameSpace}.lib.underscore-min.js" },
             };
 
             // Write the files out to the bin folder.
