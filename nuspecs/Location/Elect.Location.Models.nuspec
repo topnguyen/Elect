@@ -13,11 +13,12 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore location elect topnguyen</tags>
-    <version>1.0.70</version>
+    <version>1.0.71</version>
     <releaseNotes></releaseNotes>
   </metadata>
   <files>
     <file src="..\..\src\Location\Elect.Location.Models\bin\Debug\netstandard2.0\Elect.Location.Models.dll" target="lib\netstandard2.0" />
     <file src="..\..\src\Location\Elect.Location.Models\bin\Debug\netstandard2.0\Elect.Location.Models.pdb" target="lib\netstandard2.0" />
+    <file src="..\..\src\Location\Elect.Location.Models\bin\Debug\netstandard2.0\Elect.Location.Models.xml" target="lib\netstandard2.0" />
   </files>
 </package>
