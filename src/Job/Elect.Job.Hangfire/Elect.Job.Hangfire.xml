@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Job.Hangfire</name>
+    </assembly>
+    <members>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.IsDisableJobDashboard">
+            <summary>
+                Disable or Enable Job Dashboard, default is false. 
+            </summary>
+        </member>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.Url">
+            <summary>
+                Job Dashboard url, default is "/developers/job". 
+            </summary>
+            <remarks> Must start with "/" </remarks>
+        </member>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.BackToUrl">
+            <summary>
+                URL for back button in Job Dashboard. Set to <see langword="null" /> to hide the Back
+                To Site link, default is "/".
+            </summary>
+        </member>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.AccessKey">
+            <summary>
+                Access Key via uri param "key", default is "" - allow anonymous. 
+            </summary>
+        </member>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.UnAuthorizeMessage">
+            <summary>
+                Un-authorize message when user access Job Dashboard with not correct key. Default is
+                "You don't have permission to view API Document, please contact your administrator."
+            </summary>
+        </member>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.Provider">
+            <summary>
+                Storage provider, default is Memory. 
+            </summary>
+        </member>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.HangfireDatabaseConnectionString">
+            <summary>
+                Database Connection if <see cref="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.Provider" /> is <see cref="F:Elect.Job.Hangfire.Models.HangfireProvider.SqlServer" /> 
+            </summary>
+        </member>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.StatsPollingInterval">
+            <summary>
+                The interval the /stats endpoint should be polled with (milliseconds), default is 2000.
+            </summary>
+        </member>
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.ExtendOptions">
+            <summary>
+                Additional Options if you want to add your customize after Elect add Hangfire Global Config.
+            </summary>
+        </member>
+    </members>
+</doc>

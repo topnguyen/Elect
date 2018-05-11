@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Web</name>
+    </assembly>
+    <members>
+        <member name="P:Elect.Web.Api.Models.LinkModel.Method">
+            <summary>
+                Http method, default is "GET". 
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Api.Models.PagedRequestModel.Take">
+            <summary>
+                Default is 10 item
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Api.Models.PagedResponseModel`1.AdditionalData">
+            <summary>
+                Will be de-serialize as list property 
+            </summary>
+        </member>
+        <member name="M:Elect.Web.HttpUtils.HttpRequestExtensions.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+                Determines whether the specified HTTP request is an AJAX request. 
+            </summary>
+            <param name="request"> The HTTP request. </param>
+            <returns>
+                <c> true </c> if the specified HTTP request is an AJAX request; otherwise, <c> false </c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="request" /> parameter is <c> null </c>.
+            </exception>
+        </member>
+        <member name="M:Elect.Web.HttpUtils.HttpRequestExtensions.IsLocalRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+                Determines whether the specified HTTP request is a local request where the IP address
+                of the request originator was 127.0.0.1.
+            </summary>
+            <param name="request"> The HTTP request. </param>
+            <returns>
+                <c> true </c> if the specified HTTP request is a local request; otherwise, <c> false </c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="request" /> parameter is <c> null </c>.
+            </exception>
+        </member>
+        <member name="M:Elect.Web.HttpUtils.HttpRequestExtensions.GetEndpoint(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+                Endpoint of current request combine schema://host with port/path 
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.HttpUtils.HttpRequestExtensions.GetDomain(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+                Endpoint of current request domain schema://host with port 
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.HttpUtils.HttpRequestHelper.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+                Determines whether the specified HTTP request is an AJAX request. 
+            </summary>
+            <param name="request"> The HTTP request. </param>
+            <returns>
+                <c> true </c> if the specified HTTP request is an AJAX request; otherwise, <c> false </c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="request" /> parameter is <c> null </c>.
+            </exception>
+        </member>
+        <member name="M:Elect.Web.HttpUtils.HttpRequestHelper.IsLocalRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+                Determines whether the specified HTTP request is a local request where the IP address
+                of the request originator was 127.0.0.1.
+            </summary>
+            <param name="request"> The HTTP request. </param>
+            <returns>
+                <c> true </c> if the specified HTTP request is a local request; otherwise, <c> false </c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+                The <paramref name="request" /> parameter is <c> null </c>.
+            </exception>
+        </member>
+        <member name="M:Elect.Web.HttpUtils.HttpRequestHelper.GetEndpoint(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+                Endpoint of current request combine schema://host with port/path 
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.HttpUtils.HttpRequestHelper.GetDomain(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+                Endpoint of current request domain schema://host with port 
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Elect.Web.IUrlHelperUtils.IUrlHelperExtensions">
+            <summary>
+                <see cref="T:Microsoft.AspNetCore.Mvc.IUrlHelper" /> extension methods. 
+            </summary>
+        </member>
+        <member name="M:Elect.Web.IUrlHelperUtils.IUrlHelperExtensions.AbsoluteAction(Microsoft.AspNetCore.Mvc.IUrlHelper,System.String,System.String,System.Object)">
+            <summary>
+                Generates a fully qualified URL to an action method by using the specified action
+                name, controller name and route values.
+            </summary>
+            <param name="url">            The URL helper. </param>
+            <param name="actionName">     The name of the action method. </param>
+            <param name="controllerName"> The name of the controller. </param>
+            <param name="routeValues">    The route values. </param>
+            <returns> The absolute URL. </returns>
+        </member>
+        <member name="M:Elect.Web.IUrlHelperUtils.IUrlHelperExtensions.AbsoluteContent(Microsoft.AspNetCore.Mvc.IUrlHelper,System.String)">
+            <summary>
+                Generates a fully qualified URL to the specified content by using the specified
+                content path. Converts a virtual (relative) path to an application absolute path.
+            </summary>
+            <param name="url">         The URL helper. </param>
+            <param name="contentPath"> The content path. </param>
+            <returns> The absolute URL. </returns>
+        </member>
+        <member name="M:Elect.Web.IUrlHelperUtils.IUrlHelperExtensions.AbsoluteRouteUrl(Microsoft.AspNetCore.Mvc.IUrlHelper,System.String,System.Object)">
+            <summary>
+                Generates a fully qualified URL to the specified route by using the route name and
+                route values.
+            </summary>
+            <param name="url">         The URL helper. </param>
+            <param name="routeName">   Name of the route. </param>
+            <param name="routeValues"> The route values. </param>
+            <returns> The absolute URL. </returns>
+        </member>
+        <member name="T:Elect.Web.Models.ContentType">
+            <summary>
+                A list of internet media types, which are a standard identifier used on the Internet to
+                indicate the type of data that a file contains. Web browsers use them to determine how to
+                display, output or handle files and search engines use them to classify data files on the web.
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Atom">
+            <summary>
+                Atom feeds. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Html">
+            <summary>
+                HTML; Defined in RFC 2854. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.FormUrlEncoded">
+            <summary>
+                Form URL Encoded. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Gif">
+            <summary>
+                GIF image; Defined in RFC 2045 and RFC 2046. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Jpg">
+            <summary>
+                JPEG JFIF image; Defined in RFC 2045 and RFC 2046. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Bson">
+            <summary>
+                Binary JavaScript Object Notation BSON. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Json">
+            <summary>
+                JavaScript Object Notation JSON; Defined in RFC 4627. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.MultipartFormData">
+            <summary>
+                Multi-part form data; Defined in RFC 2388. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Png">
+            <summary>
+                Portable Network Graphics; Registered,[8] Defined in RFC 2083. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Text">
+            <summary>
+                Textual data; Defined in RFC 2046 and RFC 3676. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Xml">
+            <summary>
+                Extensible Markup Language; Defined in RFC 3023 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.ContentType.Zip">
+            <summary>
+                Compressed ZIP. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.Models.HeaderKey.XAntiforgeryToken">
+            <summary>
+                Rename the Anti-Forgery HTTP header from RequestVerificationToken to X-XSRF-TOKEN.
+                X-XSRF-TOKEN is not a standard but a common name given to this HTTP header
+                popularized by Angular.
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Models.HttpContextModel.RequestBody">
+            <summary>
+                Need to <c> EnableRewind </c> for Request in middleware to get Request Body. 
+            </summary>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.Caption">
+            <summary>
+                Caption/description of image. 
+            </summary>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.GeoLocation">
+            <summary>
+                Geo location of image. 
+            </summary>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.ImagePath">
+            <summary>
+                URL of image. 
+            </summary>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.License">
+            <summary>
+                Url to License of image 
+            </summary>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.Title">
+            <summary>
+                Title of image. 
+            </summary>
+        </member>
+        <member name="M:Elect.Web.SiteMap.Models.SiteMapImageItemModel.#ctor(System.String,Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel[])">
+            <summary>
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel" /> 
+            </summary>
+            <param name="url">    URL of the page. </param>
+            <param name="images"> List image </param>
+            <exception cref="T:System.ArgumentNullException">
+                If the <paramref name="url" /> is null or empty.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+                If the <paramref name="images" /> is null or empty.
+            </exception>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemModel.Url">
+            <summary>
+                URL of the page. 
+            </summary>
+        </member>
+        <member name="T:Elect.Web.SiteMap.Models.SiteMapIndexItemModel">
+            <summary>
+                Represents a site map index item. 
+            </summary>
+        </member>
+        <member name="M:Elect.Web.SiteMap.Models.SiteMapIndexItemModel.#ctor(System.String,System.Nullable{System.DateTime})">
+            <summary>
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapIndexItemModel" /> 
+            </summary>
+            <param name="url">          URL of the page. Optional. </param>
+            <param name="lastModified"> The date of last modification of the file. Optional. </param>
+            <exception cref="T:System.ArgumentNullException">
+                If the <paramref name="url" /> is null or empty.
+            </exception>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapIndexItemModel.LastModified">
+            <summary>
+                The date of last modification of the file. 
+            </summary>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapIndexItemModel.Url">
+            <summary>
+                URL of the page. 
+            </summary>
+        </member>
+        <member name="T:Elect.Web.SiteMap.Models.SiteMapItemFrequency">
+            <summary>
+                How frequently the page is likely to change. This value provides general information to
+                search engines and may not correlate exactly to how often they crawl the page.
+            </summary>
+            <remarks>
+                The value "always" should be used to describe documents that change each time they are
+                accessed. The value "never" should be used to describe archived URLs.
+            </remarks>
+        </member>
+        <member name="T:Elect.Web.SiteMap.Models.SiteMapItem">
+            <summary>
+                Represents a page or URL in your site map. 
+            </summary>
+        </member>
+        <member name="M:Elect.Web.SiteMap.Models.SiteMapItem.#ctor(System.String,System.Nullable{System.DateTime},System.Nullable{Elect.Web.SiteMap.Models.SiteMapItemFrequency},System.Nullable{System.Double})">
+            <summary>
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapItem" /> 
+            </summary>
+            <param name="url">          URL of the page. </param>
+            <param name="lastModified"> The date of last modification of the file. Optional. </param>
+            <param name="frequency">    How frequently the page is likely to change. Optional. </param>
+            <param name="priority">    
+                The priority of this URL relative to other URLs on your site. Valid values range from
+                0.0 to 1.0. Optional.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+                If the <paramref name="url" /> is null or empty.
+            </exception>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapItem.Frequency">
+            <summary>
+                Gets or sets how frequently the page is likely to change. This value provides general
+                information to search engines and may not correlate exactly to how often they crawl
+                the page. Please note that this value is considered a hint and not a command. Even
+                though search engine crawlers may consider this information when making decisions,
+                they may crawl pages marked "hourly" less frequently than that, and they may crawl
+                pages marked "yearly" more frequently than that. Crawlers may periodically crawl
+                pages marked "never" so that they can handle unexpected changes to those pages.
+            </summary>
+            <value> The frequency the page is likely to change. </value>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapItem.LastModified">
+            <summary>
+                Gets or sets the date of last modification of the file. This is an optional field.
+                You may omit the time portion if desired. Note that this is separate from the
+                If-Modified-Since (304) HTTP header the server can return, and search engines may use
+                the information from both sources differently.
+            </summary>
+            <value> The date of last modification of the file. </value>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapItem.Priority">
+            <summary>
+                Gets or sets the priority of this URL relative to other URLs on your site. Valid
+                values range from 0.0 to 1.0. This field is optional, if it is <c> null </c> the
+                default priority of a page is 0.5. This value does not affect how your pages are
+                compared to pages on other sites, it only lets the search engines know which pages
+                you deem most important for the crawlers. Please note that the priority you assign to
+                a page is not likely to influence the position of your URLs in a search engine's
+                result pages. Search engines may use this information when selecting between URLs on
+                the same site, so you can use this tag to increase the likelihood that your most
+                important pages are present in a search index. Also, please note that assigning a
+                high priority to all of the URLs on your site is not likely to help you. Since the
+                priority is relative, it is only used to select between URLs on your site.
+            </summary>
+            <value> The priority. </value>
+        </member>
+        <member name="P:Elect.Web.SiteMap.Models.SiteMapItem.Url">
+            <summary>
+                Gets the URL of the page. This URL must begin with the protocol (such as http) and
+                end with a trailing slash, if your web server requires it. This value must be less
+                than 2,048 characters.
+            </summary>
+            <value> The URL of the page. </value>
+        </member>
+        <member name="T:Elect.Web.SiteMap.Services.SiteMapGenerator">
+            <summary>
+                Generates site map XML. 
+            </summary>
+        </member>
+        <member name="M:Elect.Web.SiteMap.Services.SiteMapHelper.GetSiteMapContentResult(Microsoft.AspNetCore.Mvc.IUrlHelper)">
+            <summary>
+                Generate SiteMap content result for assembly project, use execute assembly as web
+                project assembly.
+            </summary>
+            <param name="iUrlHelper"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.SiteMap.Services.SiteMapHelper.GetSiteMapContentResult(System.Reflection.Assembly,Microsoft.AspNetCore.Mvc.IUrlHelper)">
+            <summary>
+                Generate SiteMap content result for assembly project. 
+            </summary>
+            <param name="asm">        assembly of web project you want to generate SiteMap </param>
+            <param name="iUrlHelper"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Elect.Web.SiteMap.Services.SiteMapImageGenerator">
+            <summary>
+                Generate Image site map (see more
+                https://support.google.com/webmasters/answer/178636?hl=en) List up to 1,000 images for
+                each page
+            </summary>
+        </member>
+        <member name="T:Elect.Web.SiteMap.Services.SiteMapIndexGenerator">
+            <summary>
+                Generate Site map index (see more http://www.sitemaps.org/protocol.html) 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.SiteMap.Services.SiteMapValidator.MaximumSiteMapCount">
+            <summary>
+                The maximum number of site map a site map index file can contain. 
+            </summary>
+        </member>
+        <member name="F:Elect.Web.SiteMap.Services.SiteMapValidator.MaximumSiteMapIndexCount">
+            <summary>
+                The maximum number of site maps nodes allowed in a site maps file. The absolute
+                maximum allowed is 50,000 according to the specification. See
+                http://www.sitemaps.org/protocol.html but the file size must also be less than 10MB.
+                After some experimentation, a maximum of 25,000 nodes keeps the file size below 10MB.
+            </summary>
+        </member>
+        <member name="F:Elect.Web.SiteMap.Services.SiteMapValidator.MaximumSiteMapSizeInBytes">
+            <summary>
+                The maximum size of a site maps file in bytes (10MB). 
+            </summary>
+        </member>
+        <member name="M:Elect.Web.SiteMap.Services.SiteMapValidator.CheckDocumentSize(System.String)">
+            <summary>
+                Checks the size of the XML site maps document. If it is over 10MB, logs an error. 
+            </summary>
+            <param name="siteMapXml"> The site maps XML document. </param>
+        </member>
+        <member name="M:Elect.Web.SiteMap.Services.SiteMapValidator.CheckSiteMapCount(System.Int32)">
+            <summary>
+                Checks the count of the number of site maps. If it is over 50,000, logs an error. 
+            </summary>
+            <param name="siteMapCount"> The site maps count. </param>
+        </member>
+    </members>
+</doc>

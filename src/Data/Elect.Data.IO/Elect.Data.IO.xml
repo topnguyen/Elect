@@ -1,0 +1,428 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Data.IO</name>
+    </assembly>
+    <members>
+        <member name="M:Elect.Data.IO.DirectoryUtils.DirectoryHelper.Empty(System.String[])">
+            <summary>
+                Clear all content in the directory 
+            </summary>
+            <param name="paths"></param>
+        </member>
+        <member name="M:Elect.Data.IO.DirectoryUtils.DirectoryHelper.IsEmpty(System.String)">
+            <summary>
+                Check directory is empty or not 
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileHelper.CreateTempFile(System.String)">
+            <summary>
+                Create an empty temp file with extension. 
+            </summary>
+            <param name="extension"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileHelper.CreateTempFile(System.IO.Stream,System.String)">
+            <summary>
+                Create an temp file from stream with extension 
+            </summary>
+            <param name="stream">   </param>
+            <param name="extension"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileHelper.SafeDelete(System.String)">
+            <summary>
+                Delete file if exist and can delete 
+            </summary>
+            <param name="path"></param>
+            <returns> return true if success delete file, else is fail </returns>
+        </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileHelper.MakeValidFileName(System.String,System.Nullable{System.Char},System.Boolean,System.Boolean)">
+            <summary>
+                Replaces characters in <c> fileName </c> that are not allowed in file names with the
+                specified replacement character.
+            </summary>
+            <param name="fileName">      
+                Text to make into a valid filename. The same string is returned if it is valid already.
+            </param>
+            <param name="replacement">   
+                Replacement character, or null to simply remove bad characters.
+            </param>
+            <param name="isFancy">       
+                Whether to replace quotes and slashes with the non-ASCII characters ” and ⁄.
+            </param>
+            <param name="isRemoveAccent"> Remove all diacritics (accents) in string </param>
+            <returns>
+                A string that can be used as a filename. If the output string would otherwise be
+                empty, returns <see cref="!:replacement" /> as string.
+            </returns>
+            <remarks>
+                Valid file name also follow maximum length is 260 characters rule (split from right
+                to left if length &gt; 260)
+            </remarks>
+        </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileWatcher.#ctor(System.String)">
+            <summary>
+                Create new instance of file system watcher 
+            </summary>
+            <exception cref="T:System.ArgumentException">
+                The <paramref name="path" /> parameter contains invalid characters, is empty, or
+                contains only white spaces.
+            </exception>
+            <exception cref="T:System.IO.PathTooLongException">
+                NoteIn the .NET for Windows Store apps or the Portable Class Library, catch the base
+                class exception, <see cref="T:System.IO.IOException" />, instead.The
+                <paramref name="path" /> parameter is longer than the system-defined maximum length.
+            </exception>
+        </member>
+        <member name="T:Elect.Data.IO.FileUtils.FileWatcher.OnChangedEvent">
+            <summary>
+                Delegate for event on change 
+            </summary>
+            <param name="source"></param>
+            <param name="e">     </param>
+        </member>
+        <member name="P:Elect.Data.IO.FileUtils.FileWatcher.OnChanged">
+            <summary>
+                On file changed event 
+            </summary>
+        </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileWatcher.Start">
+            <summary>
+                Start watcher 
+            </summary>
+            <exception cref="T:System.IO.FileNotFoundException">
+                The directory specified in <see cref="P:System.IO.FileSystemWatcher.Path" /> could
+                not be found.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+                The <see cref="T:System.IO.FileSystemWatcher" /> object has been disposed.
+            </exception>
+            <exception cref="T:System.PlatformNotSupportedException">
+                The current operating system is not Microsoft Windows NT or later.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                <see cref="P:System.IO.FileSystemWatcher.Path" /> has not been set or is invalid.
+            </exception>
+        </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileWatcher.Stop">
+            <summary>
+                Stop watcher 
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+                The <see cref="T:System.IO.FileSystemWatcher" /> object has been disposed.
+            </exception>
+            <exception cref="T:System.IO.FileNotFoundException">
+                The directory specified in <see cref="P:System.IO.FileSystemWatcher.Path" /> could
+                not be found.
+            </exception>
+            <exception cref="T:System.PlatformNotSupportedException">
+                The current operating system is not Microsoft Windows NT or later.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+                <see cref="P:System.IO.FileSystemWatcher.Path" /> has not been set or is invalid.
+            </exception>
+        </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileWatcher.OnFileChanged(System.Object,System.IO.FileSystemEventArgs)">
+            <summary>
+                On file changed event 
+            </summary>
+            <param name="source"></param>
+            <param name="e">     </param>
+        </member>
+        <member name="T:Elect.Data.IO.FileUtils.MimeTypeHelper">
+            <summary>
+                Provides a huge two-way mapping of file extensions to mime types and mime types to file extensions
+            </summary>
+        </member>
+        <member name="F:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Lazy">
+            <summary>
+                A new instance of the <see cref="T:.Web.Config.Config" /> class. with lazy initialization. 
+            </summary>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.#ctor">
+            <summary>
+                Prevents a default instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class from being created. 
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Instance">
+            <summary>
+                Gets the current instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class. 
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.WorkingFolder">
+            <summary>
+                Gets the working directory path. 
+            </summary>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.RegisterExecutable">
+            <summary>
+                Registers the embedded executable. 
+            </summary>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.CheckFilePath(System.String)">
+            <summary>
+                Throw argument exception if path not valid 
+            </summary>
+            <param name="filePath"></param>
+            <example cref="T:System.ArgumentException"></example>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetQualityPercent(System.Int32,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm)">
+            <summary>
+                Min 0 - max 99 
+            </summary>
+            <param name="qualityPercent"></param>
+            <param name="algorithm">     </param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetQualityPercent(System.Int32,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressImageType)">
+            <summary>
+                Min 0 - max 99 
+            </summary>
+            <param name="qualityPercent">   </param>
+            <param name="compressImageType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+                Runs the process to optimize the image. 
+            </summary>
+            <param name="inputPath">     </param>
+            <param name="outputPath">    </param>
+            <param name="qualityPercent">
+                Quality of image after compress, 0 is auto quality by image type
+            </param>
+            <param name="timeout">        timeout of process in millisecond </param>
+            <returns> The Task containing processing information. </returns>
+            <exception cref="T:System.ArgumentException"> input path is invalid image format </exception>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.IO.MemoryStream,System.Int32,System.Int32)">
+            <summary>
+                Runs the process to optimize the image. 
+            </summary>
+            <param name="stream">         The source image stream. </param>
+            <param name="qualityPercent">
+                Quality of image after compress, 0 is auto quality by image type
+            </param>
+            <param name="timeout">        timeout of process in millisecond </param>
+            <returns> The Task containing processing information. </returns>
+            <exception cref="T:System.ArgumentException"> stream is invalid image format </exception>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Process(System.IO.MemoryStream,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32,System.Int32)">
+            <summary>
+                Runs the process to optimize the image. 
+            </summary>
+            <param name="stream">        </param>
+            <param name="algorithm">     
+                Default is auto depend on file extension, others is force algorithm
+            </param>
+            <param name="qualityPercent">
+                Quality of image after compress, 0 is default it mean auto quality by image type
+            </param>
+            <param name="timeout">        TimeoutMillisecond of process in millisecond </param>
+            <returns> The Task containing processing information. </returns>
+            <exception cref="T:System.ArgumentException"> stream is invalid image format </exception>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Process(System.String,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32,System.Int32)">
+            <summary>
+                Runs the process to optimize the image. 
+            </summary>
+            <param name="filePath">       The source file. </param>
+            <param name="algorithm">     
+                Default is auto depend on file extension, others is force algorithm
+            </param>
+            <param name="qualityPercent">
+                Quality of image after compress, 0 is default it mean auto quality by image type
+            </param>
+            <param name="timeout">        TimeoutMillisecond of process in millisecond </param>
+            <returns> The Task containing processing information. </returns>
+            <exception cref="T:System.ArgumentException">
+                file path is invalid, argument of command is invalid
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+                Some security policies don't allow execution of programs in this way
+            </exception>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.GetArguments(System.String,System.String@,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32)">
+            <summary>
+                Gets the correct arguments to pass to the compressor 
+            </summary>
+            <param name="filePath">       The source file. </param>
+            <param name="fileTempPath">  </param>
+            <param name="algorithm">     
+                Default is auto depend on file extension, others is force algorithm
+            </param>
+            <param name="qualityPercent"> Quality PercentSaving - Process </param>
+            <returns> The <see cref="T:System.String" /> containing the correct command arguments. </returns>
+            <exception cref="T:System.ArgumentException"> file path is invalid </exception>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.GetGifCommand(System.String,System.Int32)">
+            <summary>
+                GIF Command 
+            </summary>
+            <param name="filePath">      </param>
+            <param name="qualityPercent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.#ctor(System.String,System.Int64)">
+            <inheritdoc />
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Puppy.Core.ImageUtils.ImageCompressor.ImageCompressedModel" /> class.
+            </summary>
+            <param name="filePath">               The result file name. </param>
+            <param name="fileSizeBeforeCompress">
+                The original file fileSizeBeforeCompress in bytes.
+            </param>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.FileType">
+            <summary>
+                Gets or sets the original file size in bytes. 
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.OriginalFileSize">
+            <summary>
+                Gets or sets the original file size in bytes. 
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.CompressedFileSize">
+            <summary>
+                Gets or sets the result file size in bytes. 
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.TotalMillisecondsTook">
+            <summary>
+                Gets or sets the total time took. 
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.BytesSaving">
+            <summary>
+                Gets the difference in file size in bytes. 
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.PercentSaving">
+            <summary>
+                Gets the difference in file size as a percentage. 
+            </summary>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.ToString">
+            <summary>
+                Returns a string that represents the current object. 
+            </summary>
+            <returns> A string that represents the current object. </returns>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetImageInfo(System.String)">
+            <summary>
+                <para> Get image info. </para>
+                <para> If not know mime type but valid image then return <see cref="F:Elect.Data.IO.ImageUtils.Models.ImageConstants.ImageMimeTypeUnknown" /> </para>
+                <para> Invalid image will be return <c> NULL </c> </para>
+            </summary>
+            <param name="base64"></param>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetImageInfo(System.Byte[])">
+            <summary>
+                <para> Get image info. </para>
+                <para> If not know mime type but valid image then return <see cref="F:Elect.Data.IO.ImageUtils.Models.ImageConstants.ImageMimeTypeUnknown" /> </para>
+                <para> Invalid image will be return <c> NULL </c> </para>
+            </summary>
+            <param name="bytes"></param>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetImageInfo(System.IO.MemoryStream)">
+            <summary>
+                <para> Get image info. </para>
+                <para> If not know mime type but valid image then return <see cref="F:Elect.Data.IO.ImageUtils.Models.ImageConstants.ImageMimeTypeUnknown" /> </para>
+                <para> Invalid image will be return <c> NULL </c> </para>
+            </summary>
+            <param name="imageStream"></param>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GenerateTextImageBase64(System.String,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Drawing.Font)">
+            <summary>
+                Generate image from text (at center of the image) 
+            </summary>
+            <param name="text">            Will be StringHelper.Normalize(text).First().ToString() </param>
+            <param name="width">           Default is 50 px </param>
+            <param name="height">          Default is 50 px </param>
+            <param name="textColor">       Default is random color </param>
+            <param name="backgroundColor"> Default is random color </param>
+            <param name="font">           
+                Default is new Font(FontFamily.GenericSansSerif, 10.0F, FontStyle.Bold)
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GenerateTextImage(System.String,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Drawing.Font)">
+            <summary>
+                Generate image from text (at center of the image) 
+            </summary>
+            <param name="text">           </param>
+            <param name="width">          </param>
+            <param name="height">         </param>
+            <param name="textColor">      </param>
+            <param name="backgroundColor"></param>
+            <param name="font">           </param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetImageBase64Format(System.String,System.String)">
+            <summary>
+                Get image base64 for "src" of "img" element in HTML. 
+            </summary>
+            <param name="base64">        </param>
+            <param name="imageExtension"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetBase64Format(System.String)">
+            <summary>
+                Get string base64 data from "src" of "img" element in HTML. 
+            </summary>
+            <param name="imageBase64"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType">
+            <summary>
+                Enumerated resize modes to apply to resized images. 
+            </summary>
+        </member>
+        <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Crop">
+            <summary>
+                Crops the resized image to fit the bounds of its container. 
+            </summary>
+        </member>
+        <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Pad">
+            <summary>
+                Pads the resized image to fit the bounds of its container. If only one dimension is
+                passed, will maintain the original aspect ratio.
+            </summary>
+        </member>
+        <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.BoxPad">
+            <summary>
+                Pads the image to fit the bound of the container without resizing the original
+                source. When downscaling, performs the same functionality as <see cref="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Pad" />
+            </summary>
+        </member>
+        <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Max">
+            <summary>
+                Constrains the resized image to fit the bounds of its container maintaining the
+                original aspect ratio.
+            </summary>
+        </member>
+        <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Min">
+            <summary>
+                Resizes the image until the shortest side reaches the set given dimension. Upscaling
+                is disabled in this mode and the original image will be returned if attempted.
+            </summary>
+        </member>
+        <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Stretch">
+            <summary>
+                Stretches the resized image to fit the bounds of its container. 
+            </summary>
+        </member>
+        <member name="M:Elect.Data.IO.PathHelper.GetFullPath(System.String)">
+            <summary>
+                Return absolute path 
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

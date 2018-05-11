@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Location.Models</name>
+    </assembly>
+    <members>
+        <member name="P:Elect.Location.Models.CoordinateModel.GroupNo">
+            <summary>
+                Cluster Purpose 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Models.CoordinateModel.SequenceNo">
+            <summary>
+                Route Sequence Purpose 
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.DI</name>
+    </assembly>
+    <members>
+        <member name="M:Elect.DI.IServiceCollectionExtensions.AddElectDI(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Auto scan and register implementation of service follow
+                <see cref="N:Elect.DI.Attributes" /> life time setup.
+            </summary>
+        </member>
+        <member name="M:Elect.DI.IServiceCollectionExtensions.AddElectDI(Microsoft.Extensions.DependencyInjection.IServiceCollection,Elect.DI.Models.ElectDIOptions)">
+            <summary>
+                Auto scan and register implementation of service follow
+                <see cref="N:Elect.DI.Attributes" /> life time setup.
+            </summary>
+        </member>
+        <member name="M:Elect.DI.IServiceCollectionExtensions.AddElectDI(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Elect.DI.Models.ElectDIOptions})">
+            <summary>
+                Auto scan and register implementation of service follow
+                <see cref="N:Elect.DI.Attributes" /> life time setup.
+            </summary>
+        </member>
+        <member name="P:Elect.DI.Models.ElectDIOptions.ListAssemblyFolderPath">
+            <summary>
+                List assembly folder to scan, default is application base path. 
+            </summary>
+        </member>
+        <member name="P:Elect.DI.Models.ElectDIOptions.ListAssemblyName">
+            <summary>
+                List assembly name to scan, default is application name. 
+            </summary>
+        </member>
+        <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.ListAssemblyName">
+            <summary>
+                List assembly name to scan, default is application name. 
+            </summary>
+        </member>
+        <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.IsMinimalDisplay">
+            <summary>
+                Print with minimal display format, default is true. 
+            </summary>
+        </member>
+        <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.PrimaryColor">
+            <summary>
+                Primary Text Color 
+            </summary>
+        </member>
+        <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.SecondaryColor">
+            <summary>
+                Secondary Text Color 
+            </summary>
+        </member>
+        <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.SortAscBy">
+            <summary>
+                Sort Ascending By 
+            </summary>
+        </member>
+        <member name="M:Elect.DI.Scanner.RegisterAssemblies(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String)">
+            <param name="services">          </param>
+            <param name="assemblyFolderPath"></param>
+            <param name="fileSearchPattern">  Search Pattern by <c> Directory.GetFiles </c> </param>
+            <returns> List of loaded assembly </returns>
+        </member>
+    </members>
+</doc>
