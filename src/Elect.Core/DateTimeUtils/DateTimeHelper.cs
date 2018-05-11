@@ -18,6 +18,7 @@
 #endregion License
 
 using System;
+using TimeZoneConverter;
 
 namespace Elect.Core.DateTimeUtils
 {
@@ -93,7 +94,7 @@ namespace Elect.Core.DateTimeUtils
         /// <param name="timeZoneId"> Time Zone ID, See more: https://msdn.microsoft.com/en-us/library/gg154758.aspx </param>
         public static DateTimeOffset WithTimeZone(DateTime dateTime, string timeZoneId)
         {
-            var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+            var timeZoneInfo = GetTimeZoneInfo(timeZoneId);
 
             return WithTimeZone(dateTime, timeZoneInfo);
         }
@@ -103,6 +104,29 @@ namespace Elect.Core.DateTimeUtils
             var dateTimeWithTimeZone = new DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond, timeZoneInfo.BaseUtcOffset);
 
             return dateTimeWithTimeZone;
+        }
+
+        /// <summary>
+        ///     Support find time zone id by difference platform: Windows, Mac, Linux.
+        /// </summary>
+        /// <param name="timeZoneId"></param>
+        /// <returns></returns>
+        public static TimeZoneInfo GetTimeZoneInfo(string timeZoneId)
+        {
+            var timeZoneInfo = TZConvert.GetTimeZoneInfo(timeZoneId);
+            
+            return timeZoneInfo;
+        }
+
+        /// <summary>
+        ///     Support find time zone id by difference platform: Windows, Mac, Linux.
+        /// </summary>
+        /// <param name="timeZoneId"></param>
+        /// <param name="timeZoneInfo"></param>
+        /// <returns></returns>
+        public static bool TryGetTimeZoneInfo(string timeZoneId, out TimeZoneInfo timeZoneInfo)
+        {
+            return TZConvert.TryGetTimeZoneInfo(timeZoneId, out timeZoneInfo);
         }
     }
 }
