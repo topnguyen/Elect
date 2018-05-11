@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Location.Coordinate</name>
+    </assembly>
+    <members>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.CoordinateDistanceExtensions.DistanceTo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
+            <summary>
+                By Spherical law of cosines http://en.wikipedia.org/wiki/Spherical_law_of_cosines 
+            </summary>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.CoordinateDistanceExtensions.FlatDistanceTo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel)">
+            <summary>
+                Distance to Destination Coordinate in Flat (2D) Map 
+            </summary>
+            <param name="origin">     </param>
+            <param name="destination"></param>
+            <returns> Miles </returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.CoordinateDistanceExtensions.HaversineDistanceTo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
+            <summary>
+                By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.CoordinateDistanceExtensions.GeoDistanceTo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
+            <summary>
+                By Geographical distance http://en.wikipedia.org/wiki/Geographical_distance 
+            </summary>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistance(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistance(System.Double,System.Double,System.Double,System.Double,Elect.Location.Models.UnitOfLengthModel)">
+            <summary>
+                By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistance(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
+            <summary>
+                By Spherical law of cosines http://en.wikipedia.org/wiki/Spherical_law_of_cosines 
+            </summary>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistanceByFlat(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel)">
+            <summary>
+                Distance to Destination Coordinate in Flat (2D) Map 
+            </summary>
+            <param name="origin">     </param>
+            <param name="destination"></param>
+            <returns> Miles </returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistanceByHaversine(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
+            <summary>
+                By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistanceByGeo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
+            <summary>
+                By Geographical distance http://en.wikipedia.org/wiki/Geographical_distance 
+            </summary>
+        </member>
+        <member name="M:Elect.Location.Coordinate.PositionUtils.PositionHelper.GetTopLeftOfSquare(Elect.Location.Models.CoordinateModel,System.Double)">
+            <summary>
+                Get Top Left Coordinate of square (out bound of circle) corner 
+            </summary>
+            <param name="origin">         </param>
+            <param name="radiusKilometer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.PositionUtils.PositionHelper.GetBotRightOfSquare(Elect.Location.Models.CoordinateModel,System.Double)">
+            <summary>
+                Get Bot Right Coordinate of square (out bound of circle) corner 
+            </summary>
+            <param name="origin">         </param>
+            <param name="radiusKilometer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.PositionUtils.PositionHelper.GetDerivedPosition(Elect.Location.Models.CoordinateModel,System.Double,System.Double)">
+            <summary>
+                Calculates the end-point from a given source at a given range (kilometers) and
+                bearing (degrees). methods uses simple geometry equations to calculate the end-point.
+            </summary>
+            <param name="origin">   Point of origin </param>
+            <param name="radiusKm"> Radius/Range in Kilometers </param>
+            <param name="bearing">  Bearing in degrees from 0 to 360 </param>
+            <returns> End-point from the source given the desired range and bearing. </returns>
+        </member>
+        <member name="M:Elect.Location.Coordinate.PositionUtils.PositionHelper.GetHypotenuseLength(System.Double)">
+            <summary>
+                Get Hypotenuse Edge of the right isosceles triangle 
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

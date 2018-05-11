@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Data.EF</name>
+    </assembly>
+    <members>
+        <member name="T:Elect.Data.EF.Interfaces.Entity.IVersionEntity">
+            <summary>
+                Resolve concurrency issue. 
+            </summary>
+        </member>
+        <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.AddConfigFromAssembly(Microsoft.EntityFrameworkCore.ModelBuilder,System.Reflection.Assembly)">
+            <summary>
+                Scan and apply Config/Mapping for Tables/Entities 
+            </summary>
+            <param name="builder"> </param>
+            <param name="assembly"></param>
+        </member>
+        <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.AddConfigFromAssembly``1(Microsoft.EntityFrameworkCore.ModelBuilder,System.Reflection.Assembly)">
+            <summary>
+                Scan and apply Config/Mapping for Tables/Entities (into <see cref="!:TDbContext" />) 
+            </summary>
+            <param name="builder"> </param>
+            <param name="assembly"></param>
+        </member>
+        <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.DisableCascadingDelete(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+                Set Delete Behavior as Restrict in Relationship for disable cascading delete 
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.RemovePluralizingTableNameConvention(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+                Remove plural table name 
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.ReplaceTableNameConvention(Microsoft.EntityFrameworkCore.ModelBuilder,System.String,System.String)">
+            <summary>
+                Replace table name by new value 
+            </summary>
+            <param name="modelBuilder"></param>
+            <param name="oldValue">    </param>
+            <param name="newValue">    </param>
+        </member>
+        <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.ReplaceColumnNameConvention(Microsoft.EntityFrameworkCore.ModelBuilder,System.String,System.String)">
+            <summary>
+                Replace table name by new value 
+            </summary>
+            <param name="modelBuilder"></param>
+            <param name="oldValue">    </param>
+            <param name="newValue">    </param>
+        </member>
+    </members>
+</doc>

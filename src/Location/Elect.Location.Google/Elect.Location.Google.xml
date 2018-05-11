@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Location.Google</name>
+    </assembly>
+    <members>
+        <member name="P:Elect.Location.Google.Models.DirectionStepsRequestModel.AdditionalValues">
+            <summary>
+                Extra query params, ex: "mode=driving", "language=en-US" 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Google.Models.DistanceDurationMatrixRequestModel.AdditionalValues">
+            <summary>
+                Extra query params, ex: "mode=driving", "language=en-US" 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DistanceMatrix">
+            <summary>
+                Get distance in meters from <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses" />[i] to <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses" />[j] 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DurationMatrix">
+            <summary>
+                Get duration int second from <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses" />[i] to <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses" />[j] 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDistanceDataModel.Text">
+            <summary>
+                Displace text depend on "units" and "language" params 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDistanceDataModel.Value">
+            <summary>
+                Value always in Meters Unit 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDurationDataModel.Text">
+            <summary>
+                Displace text depend on "language" params 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDurationDataModel.Value">
+            <summary>
+                Value always in Second Unit 
+            </summary>
+        </member>
+        <member name="P:Elect.Location.Google.Models.ElectLocationGoogleOptions.GoogleApiKey">
+            <summary>
+                Google API Key, get it from https://console.developers.google.com - optional. 
+            </summary>
+        </member>
+        <member name="T:Elect.Location.Google.Services.FastestTrip">
+            <summary>
+                Combine both A -&gt; Z and Round Trip with optimize by many algorithm and distance,
+                duration by Google Matrix
+            </summary>
+        </member>
+        <member name="M:Elect.Location.Google.Services.FastestTrip.#ctor(Elect.Location.Google.Models.TripType,System.String,Elect.Location.Models.CoordinateModel[])">
+            <summary>
+                Combine both A -&gt; Z and Round Trip with optimize by many algorithm and distance,
+                duration by Google Matrix
+            </summary>
+            <param name="type">        </param>
+            <param name="googleApiKey">
+                Use for TripType.RoundTrip - Optional, method still work without key but have
+                limitation by Google Policy.
+            </param>
+            <param name="coordinates"> </param>
+            <remarks>
+                Concorde TSP Solver algorithm combine with Ant colony optimization algorithms to find
+                wayCoordinate and best path
+            </remarks>
+        </member>
+        <member name="M:Elect.Location.Google.Services.FastestTrip.TspAntColonyK2(Elect.Location.Google.Models.TripType)">
+            <summary>
+                Computes a near-optimal solution to the TSP problem, using Ant Colony Optimization
+                and local optimization in the form of k2-opting each candidate route. Run time is
+                O(numWaves * numAnts * numActive ^ 2) for ACO and O(numWaves * numAnts * numActive ^
+                3) for rewiring? if type is 1, we start at node 0 and end at node numActive-1.
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:Elect.Location.Google.Services.FastestTrip.TspK3">
+            <summary>
+                Uses the 3-opt algorithm to find a good solution to the TSP. 
+            </summary>
+        </member>
+        <member name="M:Elect.Location.Google.Services.FastestTrip.CostPerm(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Returns the cost of the given 3-opt variation of the current solution. 
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="c"></param>
+            <param name="d"></param>
+            <param name="e"></param>
+            <param name="f"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Location.Google.Services.FastestTrip.Cost(System.Int32,System.Int32)">
+            <summary>
+                Returns the cost of moving along the current solution path offset given by a to
+                b.Handles moving both forward and backward.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Location.Google.Services.FastestTrip.UpdateCosts">
+            <summary>
+                Update the data structure necessary for cost(a,b) and costPerm to work efficiently. 
+            </summary>
+        </member>
+        <member name="M:Elect.Location.Google.Services.FastestTrip.TspDynamic(Elect.Location.Google.Models.TripType)">
+            <summary>
+                Ant colony optimization algorithms and Solves the TSP problem to optimality. Memory
+                requirement is O(numActive * 2^numActive)
+            </summary>
+        </member>
+    </members>
+</doc>

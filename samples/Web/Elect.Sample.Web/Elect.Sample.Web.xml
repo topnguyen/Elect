@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Sample.Web</name>
+    </assembly>
+    <members>
+        <member name="M:Elect.Sample.Web.Controllers.SiteMapController.Index">
+            <summary>
+                Get all site map index 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Sample.Web.Controllers.SiteMapController.Main">
+            <summary>
+                Get all site map item by attributes 
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
