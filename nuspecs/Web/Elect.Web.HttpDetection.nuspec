@@ -13,12 +13,12 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore httpdetection elect topnguyen</tags>
-    <version>1.0.71</version>
+    <version>1.0.72</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
-        <dependency id="Elect.Web" version="1.0.71" />
-        <dependency id="Elect.Data.IO" version="1.0.71" />
+        <dependency id="Elect.Web" version="1.*" />
+        <dependency id="Elect.Data.IO" version="1.*" />
         <dependency id="MaxMind.GeoIP2" version="3.0.0" />
     </dependencies>
   </metadata>
