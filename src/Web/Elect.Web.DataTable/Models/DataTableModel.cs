@@ -27,31 +27,39 @@ namespace Elect.Web.DataTable.Models
 {
     public class DataTableModel
     {
-        public bool IsDevelopMode { get; set; } = false;
+        public bool? IsDevelopMode { get; set; }
 
-        public bool IsAutoWidthColumn { get; set; } = false;
+        public bool? IsAutoWidthColumn { get; set; }
 
-        public bool IsResponsive { get; set; } = true;
+        public bool? IsResponsive { get; set; }
 
-        public bool IsEnableColVis { get; set; } = true;
+        public bool? IsEnableColVis { get; set; }
+        
+        public bool? IsSaveState { get; set; }
+        
+        public bool? IsScrollX { get; set; }
+        
+        public bool? IsEnableColReorder { get; set; } 
+        
+        public bool? IsShowFooter { get; set; }
 
-        public bool IsShowPageSize { get; set; } = true;
+        public bool? IsShowPageSize { get; set; } = true;
 
         /// <summary>
         ///     Show global search input, default is true. 
         /// </summary>
-        public bool IsShowGlobalSearchInput { get; set; } = true;
+        public bool? IsShowGlobalSearchInput { get; set; } = true;
 
-        public bool IsUseTableTools { get; set; } = true;
+        public bool? IsUseTableTools { get; set; }
 
-        public bool IsHideHeader { get; set; } = false;
+        public bool? IsHideHeader { get; set; }
 
-        public bool IsUseColumnFilter { get; set; } = false;
+        public bool? IsUseColumnFilter { get; set; }
 
         /// <summary>
         ///     Enable to make the search fast and helpful for UI render, default is true. 
         /// </summary>
-        public bool IsDeferRender { get; set; } = true;
+        public bool? IsDeferRender { get; set; } = true;
 
         /// <summary>
         ///     Table class, default is "table table-hover dataTable table-striped". 
@@ -78,11 +86,11 @@ namespace Elect.Web.DataTable.Models
                     return _dom;
 
                 string str = "<\"dt-panelmenu clearfix\"";
-                if (IsShowPageSize)
+                if (IsShowPageSize == true)
                     str += "l";
-                if (IsShowGlobalSearchInput)
+                if (IsShowGlobalSearchInput == true)
                     str += "f";
-                if (IsUseTableTools)
+                if (IsUseTableTools == true)
                     str += "B";
                 return str + ">t<\"dt-panelfooter clearfix\"rip>";
             }
@@ -112,18 +120,23 @@ namespace Elect.Web.DataTable.Models
         public string AjaxErrorHandler { get; set; }
 
         /// <summary>
-        ///     Function name of Draw Call Back. DataTable will pass "setting" to the function. Ex: drawCallBackHandle(oSettings).
+        ///     Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function. Ex: initCompleteHandle(settings, json).
+        /// </summary>
+        public string InitCompleteFunctionName { get; set; }
+        
+        /// <summary>
+        ///     Function name of Draw callback. DataTable will pass "settings" to the function. Ex: drawCallBackHandle(oSettings).
         /// </summary>
         public string DrawCallbackFunctionName { get; set; }
 
         /// <summary>
-        ///     Function name of Footer Call Back. DataTable will pass "row, data, start, end,
+        ///     Function name of Footercallback. DataTable will pass "row, data, start, end,
         ///     display" to the function. Ex: footerCallbackHandle(row, data, start, end, display).
         /// </summary>
         public string FooterCallbackFunctionName { get; set; }
 
         /// <summary>
-        ///     Function name of Responsive Resize Call Back. DataTable will pass "e, datatable,
+        ///     Function name of Responsive Resize callback. DataTable will pass "e, datatable,
         ///     columns" to the function. Ex: responsiveResizeCallBackHandle(e, datatable, columns).
         /// </summary>
         /// <remarks> see more: https://datatables.net/reference/event/responsive-resize </remarks>

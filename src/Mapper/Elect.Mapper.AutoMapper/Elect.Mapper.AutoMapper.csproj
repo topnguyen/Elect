@@ -8,26 +8,22 @@
     <!-- Disable warning for Controller/Action/Method not have block comment -->
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
     <!-- Copy to Ouput -->
     <Content Include="Elect.Mapper.AutoMapper.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <!-- Nuget -->
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\..\build\Mapper</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Mapper\Elect.Mapper.AutoMapper.nuspec</NuspecFile>
   </PropertyGroup>
-
   <!-- Elect -->
   <ItemGroup>
     <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
   </ItemGroup>
-  
   <!-- 3rd Libraries -->
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />

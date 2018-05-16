@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <!-- Information -->
   <PropertyGroup>
     <LangVersion>7.1</LangVersion>
@@ -9,25 +8,21 @@
     <!-- Disable warning for Controller/Action/Method not have block comment -->
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
     <!-- Copy to Ouput -->
     <Content Include="Elect.Job.Hangfire.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <!-- Nuget -->
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\..\build\Job</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Job\Elect.Job.Hangfire.nuspec</NuspecFile>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\Web\Elect.Web\Elect.Web.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="HangFire" Version="1.6.19" />
     <PackageReference Include="Hangfire.MemoryStorage" Version="1.5.2" />

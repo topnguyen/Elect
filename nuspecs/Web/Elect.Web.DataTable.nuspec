@@ -13,7 +13,7 @@
     <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore datatable elect topnguyen</tags>
-    <version>1.0.73</version>
+    <version>1.0.74</version>
     <releaseNotes></releaseNotes>
 
     <dependencies>
