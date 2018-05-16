@@ -173,7 +173,10 @@
             <text>
                 $dataTable.api().on('responsive-resize',
                     function(e, datatable, columns) {
-                        @Html.Raw($"{Model.ResponsiveResizeCallbackFunctionName}(e, datatable, columns);")
+                        var fn = window['@Model.ResponsiveResizeCallbackFunctionName'];
+                        if (typeof fn === 'function') {
+                            fn(e, datatable, columns);
+                        }
                     });
             </text>
         }
