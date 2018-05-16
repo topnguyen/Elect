@@ -93,6 +93,11 @@ namespace Elect.Web.DataTable.Models.Constants
         public const string InfoPostFix = "sInfoPostFix";
         public const string Url = "sUrl";
         public const string Paginate = "oPaginate";
+        
+        public const string ScrollX = "scrollX";
+        public const string ScrollY = "scrollY";
+        public const string StateSave = "bStateSave";
+        public const string ColReorder = "colReorder";
 
         #endregion Language
 

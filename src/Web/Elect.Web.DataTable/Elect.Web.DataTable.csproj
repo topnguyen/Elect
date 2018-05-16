@@ -8,26 +8,22 @@
     <!-- Disable warning for Controller/Action/Method not have block comment -->
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
     <!-- Copy to Ouput -->
     <Content Include="Elect.Web.DataTable.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <!-- Nuget -->
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.DataTable.nuspec</NuspecFile>
   </PropertyGroup>
-
   <!-- Elect -->
   <ItemGroup>
     <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
   </ItemGroup>
-
   <!-- 3rd Libraries -->
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />

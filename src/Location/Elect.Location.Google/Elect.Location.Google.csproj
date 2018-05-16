@@ -8,27 +8,23 @@
     <!-- Disable warning for Controller/Action/Method not have block comment -->
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
     <!-- Copy to Ouput -->
     <Content Include="Elect.Location.Google.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <!-- Nuget -->
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\..\build\Location</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Location\Elect.Location.Google.nuspec</NuspecFile>
   </PropertyGroup>
-
   <!-- Elect -->
   <ItemGroup>
     <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
     <ProjectReference Include="..\Elect.Location.Models\Elect.Location.Models.csproj" />
   </ItemGroup>
-
   <!-- 3rd Libraries -->
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />

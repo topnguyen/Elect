@@ -8,10 +8,26 @@
     $(function() {
         var $table = $('#@Model.Id');
         @{
+            // Handle Default Values for Options
+            Model.IsDevelopMode = Model.IsDevelopMode ?? false;
+            Model.IsAutoWidthColumn = Model.IsAutoWidthColumn ?? false;
+            Model.IsResponsive = Model.IsResponsive ?? false;
+            Model.IsEnableColVis = Model.IsEnableColVis ?? false;
+            Model.IsSaveState = Model.IsSaveState ?? false;
+            Model.IsScrollX = Model.IsScrollX ?? true;
+            Model.IsEnableColReorder = Model.IsEnableColReorder ?? false;
+            Model.IsShowFooter = Model.IsShowFooter ?? false;
+            Model.IsShowPageSize = Model.IsShowPageSize ?? true;
+            Model.IsShowGlobalSearchInput = Model.IsShowGlobalSearchInput ?? true;
+            Model.IsUseTableTools = Model.IsUseTableTools ?? false;
+            Model.IsHideHeader = Model.IsHideHeader ?? false;
+            Model.IsUseColumnFilter = Model.IsUseColumnFilter ?? true;
+            Model.IsDeferRender = Model.IsDeferRender ?? true;
+
             var options = new JObject
             {
                 [PropertyConstants.Sorting] = new JRaw(Model.GetColumnSortingString()),
-                [PropertyConstants.IsProcessing] = true,
+                [PropertyConstants.IsProcessing] = false,
                 [PropertyConstants.IsServerSide] = true,
                 [PropertyConstants.IsFilter] = Model.IsShowGlobalSearchInput,
                 [PropertyConstants.Dom] = Model.Dom,
@@ -27,7 +43,21 @@
                     [PropertyConstants.SearchSelector] = "_INPUT_",
                     [PropertyConstants.LengthMenuSelector] = "_MENU_",
                     [PropertyConstants.SearchPlaceholder] = "Search...",
-                }
+                    [PropertyConstants.LengthMenu] = "Display _MENU_ records",
+                    [PropertyConstants.Info] = "Displaying _START_ - _END_ of _TOTAL_ records",
+                    [PropertyConstants.InfoEmpty] = "Empty",
+                    [PropertyConstants.InfoFiltered] = "(filtered from _MAX_ records)",
+                    [PropertyConstants.Paginate] = new JObject
+                    {
+                        [PropertyConstants.First] = "<<",
+                        [PropertyConstants.Previous] = "<",
+                        [PropertyConstants.Next] = ">",
+                        [PropertyConstants.Last] = ">>",
+                    },
+                },
+                [PropertyConstants.ScrollX] = Model.IsScrollX == true, // Scroll X when witdh not enough
+                [PropertyConstants.StateSave] = Model.IsSaveState == true, // Save last state
+                [PropertyConstants.ColReorder] = Model.IsEnableColReorder == true, // Enable re-order col
             };
 
             // Default Size
@@ -57,28 +87,28 @@
             // Server Request
             options[PropertyConstants.FnServerData] = new JRaw(
                 "function(sSource, aoData, fnCallback) { "
-                + (Model.IsDevelopMode ? $"    console.log('[DataTable {Model.Id}] URL: ', sSource);" : string.Empty)
-                + (Model.IsDevelopMode ? $"    console.log('[DataTable {Model.Id}] Request: ', aoData);" : string.Empty)
+                + (Model.IsDevelopMode == true ? $"    console.log('[DataTable {Model.Id}] URL: ', sSource);" : string.Empty)
+                + (Model.IsDevelopMode == true ? $"    console.log('[DataTable {Model.Id}] Request: ', aoData);" : string.Empty)
                 + "    var ajaxOptions = { 'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback};"
-                + (Model.IsDevelopMode ? "ajaxOptions['success'] = function(data){"
-                                              + $"    console.log('[DataTable {Model.Id}] Response', data);"
-                                              + "    if(fnCallback && typeof fnCallback === 'function'){"
-                                              + "        fnCallback(data)"
-                                              + "    }"
-                                              + "};"
-                                       : string.Empty)
+                + (Model.IsDevelopMode == true ? "ajaxOptions['success'] = function(data){"
+                                                 + $"    console.log('[DataTable {Model.Id}] Response', data);"
+                                                 + "    if(fnCallback && typeof fnCallback === 'function'){"
+                                                 + "        fnCallback(data)"
+                                                 + "    }"
+                                                 + "};"
+                    : string.Empty)
                 + (string.IsNullOrWhiteSpace(Model.BeforeSendFunctionName) ? string.Empty : $"{Model.BeforeSendFunctionName}(aoData);")
                 + (string.IsNullOrWhiteSpace(Model.AjaxErrorHandler) ? string.Empty : "ajaxOptions['error'] = " + Model.AjaxErrorHandler + "; ")
                 + "    $.ajax(ajaxOptions);" +
                 "}");
 
             // Tools
-            if (Model.IsUseTableTools)
+            if (Model.IsUseTableTools == true)
             {
-                options[PropertyConstants.TableTools] = new JRaw("{ 'sSwfPath': '" + Url.AbsoluteContent("~/portal/vendor/datatables-tabletools/swf/copy_csv_xls_pdf.swf") + "' }");
+                options[PropertyConstants.TableTools] = new JRaw("{ 'sSwfPath': '" + Url.AbsoluteContent("https://cdnjs.cloudflare.com/ajax/libs/datatables-tabletools/2.1.5/swf/copy_csv_xls_pdf.swf") + "' }");
 
-                var tools = Model.IsEnableColVis ? "{extend: 'colvis', text: 'Columns'}," : string.Empty;
-                
+                var tools = Model.IsEnableColVis == true ? "{extend: 'colvis', text: 'Columns'}," : string.Empty;
+
                 //tools += "'copy', 'excel', 'csv', 'pdf', 'print'";
 
                 options[PropertyConstants.Buttons] = new JRaw($"[{tools}]");
@@ -96,17 +126,41 @@
 
         var dataTableOptions = @Html.Raw(options.ToString(Newtonsoft.Json.Formatting.Indented));
 
-        @if (Model.IsDevelopMode)
-        {
-            <text>
-                console.log('[DataTable @Model.Id] Configuration', dataTableOptions);
-            </text>
+        // Draw Call back function
+        dataTableOptions.fnDrawCallback = function(oSettings) {
+            // Logic before run custom method
+            
+            @if (!string.IsNullOrWhiteSpace(Model.DrawCallbackFunctionName))
+            {
+                <text>
+                    var fn = window['@Model.DrawCallbackFunctionName'];
+                    if (typeof fn === 'function') {
+                        fn(oSettings);
+                    }
+                </text>
+            }
         }
 
+        // Init Complete
+        dataTableOptions.initComplete = function(settings, json) {
+            // Logic before run custom method
+
+            @if (!string.IsNullOrWhiteSpace(Model.InitCompleteFunctionName))
+            {
+                <text>
+                    var fn = window['@Model.InitCompleteFunctionName'];
+                    if (typeof fn === 'function') {
+                        fn(settings, json);
+                    }
+                </text>
+            }
+        };
+
+        // Init DataTable
         var $dataTable = $table.dataTable(dataTableOptions);
 
         // Col filters
-        @if (Model.IsUseColumnFilter)
+        @if (Model.IsUseColumnFilter == true)
         {
             <text>
                 $dataTable.columnFilter(@Html.Raw(Model.ColumnFilterGlobalConfig));
@@ -114,15 +168,38 @@
         }
 
         // Responsive Resize Callback
-        @if (Model.IsResponsive && !string.IsNullOrWhiteSpace(Model.ResponsiveResizeCallbackFunctionName))
+        @if (Model.IsResponsive == true && !string.IsNullOrWhiteSpace(Model.ResponsiveResizeCallbackFunctionName))
         {
             <text>
-                $dataTable.api().on('responsive-resize', function(e, datatable, columns) {
+                $dataTable.api().on('responsive-resize',
+                    function(e, datatable, columns) {
                         @Html.Raw($"{Model.ResponsiveResizeCallbackFunctionName}(e, datatable, columns);")
                     });
             </text>
         }
 
+        // Clear State Button Support
+        @if (Model.IsSaveState == true)
+        {
+            <text>
+                $dataTable.api().button().add(0,
+                    {
+                        action: function(e, dt, button, config) {
+                            dt.state.clear();
+                            window.location.reload();
+                        },
+                        text: '<i class="flaticon-refresh font-size-1em"></i> Setting',
+                        className: 'btn btn-outline-brand'
+                    });
+            </text>
+        }
+
+        // Window Resize Callback
+        window.addEventListener('resize',
+            function(event) {
+                $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+            });
+        
         // Global Variable
         @if (!string.IsNullOrWhiteSpace(Model.GlobalJsVariableName))
         {
@@ -130,5 +207,13 @@
                 window['@Model.GlobalJsVariableName'] = $dataTable;
             </text>
         }
+        
+        @if (Model.IsDevelopMode == true)
+        {
+            <text>
+                console.log('[DataTable @Model.Id] Configuration', dataTableOptions);
+            </text>
+        }
+
     });
 </script>

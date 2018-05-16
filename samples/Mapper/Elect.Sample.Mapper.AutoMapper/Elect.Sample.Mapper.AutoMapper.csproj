@@ -6,18 +6,15 @@
     <!-- Disable warning for Controller/Action/Method not have block comment -->
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
     <!-- Copy to Ouput -->
     <Content Include="Elect.Sample.Mapper.AutoMapper.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
   </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Mapper\Elect.Mapper.AutoMapper\Elect.Mapper.AutoMapper.csproj" />
   </ItemGroup>
