@@ -10,16 +10,16 @@
         @{
             // Handle Default Values for Options
             Model.IsDevelopMode = Model.IsDevelopMode ?? false;
-            Model.IsAutoWidthColumn = Model.IsAutoWidthColumn ?? false;
+            Model.IsAutoWidthColumn = Model.IsAutoWidthColumn ?? true;
             Model.IsResponsive = Model.IsResponsive ?? false;
-            Model.IsEnableColVis = Model.IsEnableColVis ?? false;
+            Model.IsEnableColVis = Model.IsEnableColVis ?? true;
             Model.IsSaveState = Model.IsSaveState ?? false;
             Model.IsScrollX = Model.IsScrollX ?? true;
             Model.IsEnableColReorder = Model.IsEnableColReorder ?? false;
             Model.IsShowFooter = Model.IsShowFooter ?? false;
             Model.IsShowPageSize = Model.IsShowPageSize ?? true;
             Model.IsShowGlobalSearchInput = Model.IsShowGlobalSearchInput ?? true;
-            Model.IsUseTableTools = Model.IsUseTableTools ?? false;
+            Model.IsUseTableTools = Model.IsUseTableTools ?? true;
             Model.IsHideHeader = Model.IsHideHeader ?? false;
             Model.IsUseColumnFilter = Model.IsUseColumnFilter ?? true;
             Model.IsDeferRender = Model.IsDeferRender ?? true;
@@ -107,7 +107,7 @@
             {
                 options[PropertyConstants.TableTools] = new JRaw("{ 'sSwfPath': '" + Url.AbsoluteContent("https://cdnjs.cloudflare.com/ajax/libs/datatables-tabletools/2.1.5/swf/copy_csv_xls_pdf.swf") + "' }");
 
-                var tools = Model.IsEnableColVis == true ? "{extend: 'colvis', text: 'Columns'}," : string.Empty;
+                var tools = Model.IsEnableColVis == true ? "{extend: 'colvis', text: 'Columns', clasName: ''}," : string.Empty;
 
                 //tools += "'copy', 'excel', 'csv', 'pdf', 'print'";
 
@@ -188,8 +188,8 @@
                             dt.state.clear();
                             window.location.reload();
                         },
-                        text: '<i class="flaticon-refresh font-size-1em"></i> Setting',
-                        className: 'btn btn-outline-brand'
+                        text: 'Reset Setting',
+                        className: ''
                     });
             </text>
         }
@@ -199,7 +199,7 @@
             function(event) {
                 $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
             });
-        
+
         // Global Variable
         @if (!string.IsNullOrWhiteSpace(Model.GlobalJsVariableName))
         {

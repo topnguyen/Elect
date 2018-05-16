@@ -1,40 +1,48 @@
 ﻿@model Elect.Web.DataTable.Models.DataTableModel
 
+@{
+    // Handle Default Values for Options
+    Model.IsShowFooter = Model.IsShowFooter ?? false;
+    Model.IsHideHeader = Model.IsHideHeader ?? false;
+    Model.IsUseColumnFilter = Model.IsUseColumnFilter ?? true;
+}
 <table id="@Model.Id" class="@(Model.TableClass ?? string.Empty)">
     <thead>
-        @if (Model.IsUseColumnFilter)
-        {
-            <tr>
-                @for (int i = 0; i < Model.Columns.Count; i++)
-                {
-                    <th></th>
-                }
-            </tr>
-        }
-        @if (!Model.IsHideHeader)
-        {
-            <tr>
-                @foreach (var column in Model.Columns)
-                {
-                    <th class="@column.CssClassHeader" @Html.Raw(string.IsNullOrWhiteSpace(column.AdditionalAttributeHeader) ? string.Empty : column.AdditionalAttributeHeader)>@column.DisplayName</th>
-                }
-            </tr>
-        }
-    </thead>
-    <tfoot>
+    @if (Model.IsUseColumnFilter == true)
+    {
         <tr>
             @for (int i = 0; i < Model.Columns.Count; i++)
             {
                 <th></th>
-
             }
         </tr>
-    </tfoot>
-    <tbody>
+    }
+    @if (Model.IsHideHeader != true)
+    {
         <tr>
-            <td colspan="@Model.Columns.Count" class="dataTables_empty">
-                Loading...
-            </td>
+            @foreach (var column in Model.Columns)
+            {
+                <th class="@column.CssClassHeader" @Html.Raw(string.IsNullOrWhiteSpace(column.AdditionalAttributeHeader) ? string.Empty : column.AdditionalAttributeHeader)>@column.DisplayName</th>
+            }
         </tr>
+    }
+    </thead>
+    @if (Model.IsShowFooter == true)
+    {
+        <tfoot>
+        <tr>
+            @for (int i = 0; i < Model.Columns.Count; i++)
+            {
+                <th></th>
+            }
+        </tr>
+        </tfoot>
+    }
+    <tbody>
+    <tr>
+        <td colspan="@Model.Columns.Count" class="dataTables_empty">
+            Loading...
+        </td>
+    </tr>
     </tbody>
 </table>
