@@ -98,20 +98,25 @@
                 "function(jqXHR, textStatus, errorThrown){console.log(textStatus)}"
             </summary>
         </member>
+        <member name="P:Elect.Web.DataTable.Models.DataTableModel.InitCompleteFunctionName">
+            <summary>
+                Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function. Ex: initCompleteHandle(settings, json).
+            </summary>
+        </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.DrawCallbackFunctionName">
             <summary>
-                Function name of Draw Call Back. DataTable will pass "setting" to the function. Ex: drawCallBackHandle(oSettings).
+                Function name of Draw callback. DataTable will pass "settings" to the function. Ex: drawCallBackHandle(oSettings).
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.FooterCallbackFunctionName">
             <summary>
-                Function name of Footer Call Back. DataTable will pass "row, data, start, end,
+                Function name of Footercallback. DataTable will pass "row, data, start, end,
                 display" to the function. Ex: footerCallbackHandle(row, data, start, end, display).
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.ResponsiveResizeCallbackFunctionName">
             <summary>
-                Function name of Responsive Resize Call Back. DataTable will pass "e, datatable,
+                Function name of Responsive Resize callback. DataTable will pass "e, datatable,
                 columns" to the function. Ex: responsiveResizeCallBackHandle(e, datatable, columns).
             </summary>
             <remarks> see more: https://datatables.net/reference/event/responsive-resize </remarks>
