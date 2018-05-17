@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,24 +16,26 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Core.DateTimeUtils;
-using Elect.Core.TypeUtils;
-using Elect.Web.DataTable.Models;
-using Elect.Web.DataTable.Models.Constants;
-using Elect.Web.DataTable.Models.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
+using Elect.Core.DateTimeUtils;
+using Elect.Core.TypeUtils;
+using Elect.Web.DataTable.Models;
+using Elect.Web.DataTable.Models.Constants;
+using Elect.Web.DataTable.Models.Options;
 
 namespace Elect.Web.DataTable.Processing.Response
 {
     internal static class Filter
     {
-        public static string NumericFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
+        public static string NumericFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo,
+            List<object> parametersForLinqQuery)
         {
             if (terms.StartsWith("^")) terms = terms.TrimStart('^');
 
@@ -53,6 +56,7 @@ namespace Elect.Web.DataTable.Processing.Response
                 catch (FormatException)
                 {
                 }
+
                 try
                 {
                     parametersForLinqQuery.Add(ChangeType(parts[1], propertyInfo));
@@ -62,8 +66,10 @@ namespace Elect.Web.DataTable.Processing.Response
                 catch (FormatException)
                 {
                 }
+
                 return clause ?? "true";
             }
+
             try
             {
                 parametersForLinqQuery.Add(ChangeType(terms, propertyInfo));
@@ -72,10 +78,12 @@ namespace Elect.Web.DataTable.Processing.Response
             catch (FormatException)
             {
             }
+
             return null;
         }
 
-        public static string DateTimeOffsetFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
+        public static string DateTimeOffsetFilter(string terms, string columnName,
+            DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
         {
             if (terms == "~") return string.Empty;
 
@@ -87,7 +95,7 @@ namespace Elect.Web.DataTable.Processing.Response
                 var parts = terms.Split('~');
 
                 // FROM DATE TIME
-                DateTimeOffset? fromDateTime = ToDateTime(parts[0]);
+                var fromDateTime = ToDateTime(parts[0]);
 
                 if (fromDateTime != null)
                 {
@@ -97,27 +105,22 @@ namespace Elect.Web.DataTable.Processing.Response
                 }
 
                 // TO DATE TIME
-                DateTimeOffset? toDateTime = ToDateTime(parts[1]);
+                var toDateTime = ToDateTime(parts[1]);
 
-                if (toDateTime == null)
-                {
-                    return filterString ?? string.Empty;
-                }
+                if (toDateTime == null) return filterString ?? string.Empty;
 
                 parametersForLinqQuery.Add(toDateTime.Value);
 
-                filterString = (filterString == null ? null : $"{filterString} and ") + $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
+                filterString = (filterString == null ? null : $"{filterString} and ") +
+                               $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
             }
 
             // Single Case
-            DateTimeOffset? dateTime = ToDateTime(terms);
+            var dateTime = ToDateTime(terms);
 
-            if (dateTime == null)
-            {
-                return null;
-            }
+            if (dateTime == null) return null;
 
             // DateTime only have Date value => search value in same Date
             if (dateTime.Value.Date == dateTime.Value)
@@ -126,7 +129,8 @@ namespace Elect.Web.DataTable.Processing.Response
 
                 parametersForLinqQuery.Add(dateTime.Value.AddDays(1));
 
-                filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
+                filterString =
+                    $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
             }
@@ -144,7 +148,8 @@ namespace Elect.Web.DataTable.Processing.Response
             return filterString;
         }
 
-        public static string DateTimeFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
+        public static string DateTimeFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo,
+            List<object> parametersForLinqQuery)
         {
             if (terms == "~") return string.Empty;
 
@@ -156,7 +161,7 @@ namespace Elect.Web.DataTable.Processing.Response
                 var parts = terms.Split('~');
 
                 // FROM DATE TIME
-                DateTime? fromDateTime = ToDateTime(parts[0])?.DateTime;
+                var fromDateTime = ToDateTime(parts[0])?.DateTime;
 
                 if (fromDateTime != null)
                 {
@@ -166,27 +171,22 @@ namespace Elect.Web.DataTable.Processing.Response
                 }
 
                 // TO DATE TIME
-                DateTime? toDateTime = ToDateTime(parts[1])?.DateTime;
+                var toDateTime = ToDateTime(parts[1])?.DateTime;
 
-                if (toDateTime == null)
-                {
-                    return filterString ?? string.Empty;
-                }
+                if (toDateTime == null) return filterString ?? string.Empty;
 
                 parametersForLinqQuery.Add(toDateTime.Value);
 
-                filterString = (filterString == null ? null : $"{filterString} and ") + $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
+                filterString = (filterString == null ? null : $"{filterString} and ") +
+                               $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
             }
 
             // Single Case
-            DateTime? dateTime = ToDateTime(terms)?.DateTime;
+            var dateTime = ToDateTime(terms)?.DateTime;
 
-            if (dateTime == null)
-            {
-                return null;
-            }
+            if (dateTime == null) return null;
 
             // DateTime only have Date value => search value in same Date
             if (dateTime.Value.Date == dateTime.Value)
@@ -195,7 +195,8 @@ namespace Elect.Web.DataTable.Processing.Response
 
                 parametersForLinqQuery.Add(dateTime.Value.AddDays(1));
 
-                filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
+                filterString =
+                    $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
             }
@@ -212,33 +213,29 @@ namespace Elect.Web.DataTable.Processing.Response
             return filterString;
         }
 
-        public static string BoolFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
+        public static string BoolFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo,
+            List<object> parametersForLinqQuery)
         {
             terms = terms?.TrimStart('^').TrimEnd('$');
 
             var termsLowerCase = terms?.ToLowerInvariant();
 
             if (termsLowerCase == DataConstants.FalseLower || termsLowerCase == DataConstants.TrueLower)
-            {
                 return terms.ToLower() == DataConstants.TrueLower
                     ? $"{columnName} == {DataConstants.TrueLower}"
                     : $"{columnName} == {DataConstants.FalseLower}";
-            }
 
-            if (propertyInfo.Type != typeof(bool?))
-            {
-                return null;
-            }
+            if (propertyInfo.Type != typeof(bool?)) return null;
 
-            return DataConstants.Null.Equals(terms, StringComparison.CurrentCultureIgnoreCase) ? $"{columnName} == {DataConstants.Null}" : null;
+            return DataConstants.Null.Equals(terms, StringComparison.CurrentCultureIgnoreCase)
+                ? $"{columnName} == {DataConstants.Null}"
+                : null;
         }
 
-        public static string StringFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
+        public static string StringFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo,
+            List<object> parametersForLinqQuery)
         {
-            if (terms == ".*")
-            {
-                return string.Empty;
-            }
+            if (terms == ".*") return string.Empty;
 
             string parameterArg;
 
@@ -257,14 +254,16 @@ namespace Elect.Web.DataTable.Processing.Response
 
                 parameterArg = "@" + (parametersForLinqQuery.Count - 1);
 
-                return $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.{ConditionalConstants.StartsWith}({parameterArg})))";
+                return
+                    $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.{ConditionalConstants.StartsWith}({parameterArg})))";
             }
 
             parametersForLinqQuery.Add(terms);
 
             parameterArg = "@" + (parametersForLinqQuery.Count - 1);
 
-            return $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.{ConditionalConstants.StartsWith}({parameterArg}) || {columnName}.{ConditionalConstants.Contain}({parameterArg})))";
+            return
+                $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.{ConditionalConstants.StartsWith}({parameterArg}) || {columnName}.{ConditionalConstants.Contain}({parameterArg})))";
         }
 
         /// <summary>
@@ -279,7 +278,8 @@ namespace Elect.Web.DataTable.Processing.Response
         /// <remarks>
         ///     terms is "null" with Type is Nullable Enum work as search null value
         /// </remarks>
-        public static string EnumFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
+        public static string EnumFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo,
+            List<object> parametersForLinqQuery)
         {
             if (terms.StartsWith("^")) terms = terms.Substring(1);
 
@@ -288,33 +288,29 @@ namespace Elect.Web.DataTable.Processing.Response
             if (propertyInfo.Type.IsNullableType() && propertyInfo.Type.IsEnum)
             {
                 // Enum Nullable type, handle for "null" case ("null" string as null obj)
-                if (DataConstants.Null.Equals(terms, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(terms))
-                {
-                    return $"{columnName} == {DataConstants.Null}";
-                }
+                if (DataConstants.Null.Equals(terms, StringComparison.OrdinalIgnoreCase) ||
+                    string.IsNullOrWhiteSpace(terms)) return $"{columnName} == {DataConstants.Null}";
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(terms))
-                {
-                    return null;
-                }
+                if (string.IsNullOrWhiteSpace(terms)) return null;
             }
 
-            Type type = propertyInfo.Type.GetNotNullableType();
+            var type = propertyInfo.Type.GetNotNullableType();
 
             object enumObject = null;
 
-            string termsLowerCase = terms.ToLowerInvariant();
+            var termsLowerCase = terms.ToLowerInvariant();
 
             // Search condition for Enum: Equals, StartsWith, Contains
-            foreach (string enumName in Enum.GetNames(type))
+            foreach (var enumName in Enum.GetNames(type))
             {
-                Enum enumValue = (Enum)TypeDescriptor.GetConverter(type).ConvertFrom(enumName);
+                var enumValue = (Enum) TypeDescriptor.GetConverter(type).ConvertFrom(enumName);
 
                 var valueLowerCase = enumName.ToLowerInvariant();
 
-                if (valueLowerCase.Equals(termsLowerCase, StringComparison.OrdinalIgnoreCase) || valueLowerCase.StartsWith(termsLowerCase) || valueLowerCase.Contains(termsLowerCase))
+                if (valueLowerCase.Equals(termsLowerCase, StringComparison.OrdinalIgnoreCase) ||
+                    valueLowerCase.StartsWith(termsLowerCase) || valueLowerCase.Contains(termsLowerCase))
                 {
                     enumObject = enumValue;
 
@@ -324,10 +320,7 @@ namespace Elect.Web.DataTable.Processing.Response
             }
 
             // Can't parse string to enum, return null
-            if (enumObject == null)
-            {
-                return null;
-            }
+            if (enumObject == null) return null;
 
             parametersForLinqQuery.Add(enumObject);
             return $"{columnName} == @{parametersForLinqQuery.Count - 1}";
@@ -346,12 +339,10 @@ namespace Elect.Web.DataTable.Processing.Response
 
             if (terms.StartsWith("^"))
             {
-                if (!terms.EndsWith("$"))
-                {
-                    return Clause(ConditionalConstants.StartsWith, terms.Substring(1));
-                }
+                if (!terms.EndsWith("$")) return Clause(ConditionalConstants.StartsWith, terms.Substring(1));
 
-                parametersForLinqQuery.Add(TypeDescriptor.GetConverter(type).ConvertFrom(terms.Substring(1, terms.Length - 2)));
+                parametersForLinqQuery.Add(TypeDescriptor.GetConverter(type)
+                    .ConvertFrom(terms.Substring(1, terms.Length - 2)));
                 var indexOfParameter = parametersForLinqQuery.Count - 1;
                 return $"{ConditionalConstants.Equal}((object)@{indexOfParameter})";
             }
@@ -377,25 +368,22 @@ namespace Elect.Web.DataTable.Processing.Response
         {
             value = string.IsNullOrWhiteSpace(value) ? string.Empty : value;
 
-            if (ElectDataTableOptions.Instance.RequestDateTimeFormatType == DateTimeFormatType.Auto && DateTimeOffset.TryParse(value, out var result))
+            if (ElectDataTableOptions.Instance.RequestDateTimeFormatType == DateTimeFormatType.Auto &&
+                DateTimeOffset.TryParse(value, out var result))
             {
                 result = result.DateTime.WithTimeZone(ElectDataTableOptions.Instance.DateTimeTimeZone);
 
                 return result;
             }
 
-            if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
-            {
+            if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateTimeFormat,
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
                 result = dateTime;
-            }
-            else if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
-            {
+            else if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateFormat,
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
                 result = date;
-            }
             else
-            {
                 return null;
-            }
 
             result = result.DateTime.WithTimeZone(ElectDataTableOptions.Instance.DateTimeTimeZone);
 

@@ -1,38 +1,41 @@
 <?xml version="1.0"?>
 <package>
-  <metadata>
-    <id>Elect.Web.DataTable</id>
-    <title>Elect AspNetCore Mvc jQuery DataTable</title>
-    <description>AspNetCore Mvc jquery datatable generate in backend.</description>
-    <summary>AspNetCore Mvc jquery datatable generate in backend.</summary>
-    <authors>Top Nguyen</authors>
-    <owners>topnguyen</owners>
-    <copyright>http://topnguyen.net</copyright>
-    <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.DataTable</projectUrl>
-    <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore datatable elect topnguyen</tags>
-      <version>1.0.75</version>
-    <releaseNotes></releaseNotes>
+    <metadata>
+        <id>Elect.Web.DataTable</id>
+        <title>Elect AspNetCore Mvc jQuery DataTable</title>
+        <description>AspNetCore Mvc jquery datatable generate in backend.</description>
+        <summary>AspNetCore Mvc jquery datatable generate in backend.</summary>
+        <authors>Top Nguyen</authors>
+        <owners>topnguyen</owners>
+        <copyright>http://topnguyen.net</copyright>
+        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.DataTable</projectUrl>
+        <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>aspnetcore datatable elect topnguyen</tags>
+        <version>1.0.76</version>
+        <releaseNotes></releaseNotes>
 
-    <dependencies>
-        <dependency id="Elect.Web" version="1.0.73" />
-        <dependency id="Microsoft.AspNetCore.Mvc" version="2.0.4" />
-        <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0" />
-        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0" />
-        <dependency id="Microsoft.Extensions.DependencyModel" version="2.0.4" />
-        <dependency id="Microsoft.Extensions.Options" version="2.0.2" />
-        <dependency id="System.ComponentModel.Annotations" version="4.4.1" />
-        <dependency id="System.Linq.Dynamic.Core" version="1.0.8.7" />
-        <dependency id="Enums.NET" version="2.3.1" />
-    </dependencies>
-  </metadata>
+        <dependencies>
+            <dependency id="Elect.Web" version="1.0.73"/>
+            <dependency id="Microsoft.AspNetCore.Mvc" version="2.0.4"/>
+            <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0"/>
+            <dependency id="Microsoft.Extensions.DependencyInjection" version="2.0.0"/>
+            <dependency id="Microsoft.Extensions.DependencyModel" version="2.0.4"/>
+            <dependency id="Microsoft.Extensions.Options" version="2.0.2"/>
+            <dependency id="System.ComponentModel.Annotations" version="4.4.1"/>
+            <dependency id="System.Linq.Dynamic.Core" version="1.0.8.7"/>
+            <dependency id="Enums.NET" version="2.3.1"/>
+        </dependencies>
+    </metadata>
 
-  <files>
-    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.dll" target="lib\netstandard2.0" />
-    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.pdb" target="lib\netstandard2.0" />
-    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.xml" target="lib\netstandard2.0" />
-    <file src="..\..\src\Web\Elect.Web.DataTable\**\*.cs" target="src" exclude="**\obj*\**\*.cs" />
-  </files>
+    <files>
+        <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.dll"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.pdb"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.DataTable\bin\Debug\netstandard2.0\Elect.Web.DataTable.xml"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.DataTable\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+    </files>
 </package>

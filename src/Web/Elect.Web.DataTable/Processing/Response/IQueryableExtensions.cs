@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,19 +16,21 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
+using System.Linq;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Utils.DataTableParamModelUtils;
-using System.Linq;
 
 namespace Elect.Web.DataTable.Processing.Response
 {
     public static class IQueryableExtensions
     {
-        public static DataTableResponseModel<T> GetDataTableResponse<T>(this IQueryable<T> data, DataTableRequestModel dataTableRequestModel) where T : class, new()
+        public static DataTableResponseModel<T> GetDataTableResponse<T>(this IQueryable<T> data,
+            DataTableRequestModel dataTableRequestModel) where T : class, new()
         {
             // Count or LongCount is very annoying cause an extra evaluation.
 
@@ -43,7 +46,9 @@ namespace Elect.Web.DataTable.Processing.Response
 
             var skipped = filteredData.Skip(dataTableRequestModel.DisplayStart);
 
-            var page = (dataTableRequestModel.DisplayLength <= 0 ? skipped : skipped.Take(dataTableRequestModel.DisplayLength)).ToArray();
+            var page = (dataTableRequestModel.DisplayLength <= 0
+                ? skipped
+                : skipped.Take(dataTableRequestModel.DisplayLength)).ToArray();
 
             var result = new DataTableResponseModel<T>
             {

@@ -6,7 +6,6 @@ namespace Elect.Sample.Web.DataTable.Models
     public class UserModel
     {
         [DataTable(IsVisible = false)]
-        [DataTableRowId]
         public int Id { get; set; }
 
         [DataTable(DisplayName = "Name")]

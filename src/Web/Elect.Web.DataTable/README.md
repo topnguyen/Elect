@@ -67,7 +67,6 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web
 public class UserModel
 {
     [DataTable(IsVisible = false)]
-    [DataTableRowId]
     public int Id { get; set; }
 
     [DataTable(DisplayName = "Name")]

@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System;
@@ -31,15 +33,9 @@ namespace Elect.Web.DataTable.Utils.ExpressionUtils
 
             MethodCallExpression methodExpr = null;
 
-            if (lambda.Body.NodeType == ExpressionType.Call)
-            {
-                methodExpr = lambda.Body as MethodCallExpression;
-            }
+            if (lambda.Body.NodeType == ExpressionType.Call) methodExpr = lambda.Body as MethodCallExpression;
 
-            if (methodExpr == null)
-            {
-                throw new ArgumentNullException(nameof(method));
-            }
+            if (methodExpr == null) throw new ArgumentNullException(nameof(method));
 
             return methodExpr.Method;
         }

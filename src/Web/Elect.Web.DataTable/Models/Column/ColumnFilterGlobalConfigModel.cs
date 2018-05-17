@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,19 +16,22 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
+using System.Collections;
+using System.Linq;
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Collections;
-using System.Linq;
 
 namespace Elect.Web.DataTable.Models.Column
 {
     public class ColumnFilterGlobalConfigModel : Hashtable
     {
         private readonly DataTableModel _model;
+
+        public JObject ColumnBuilders = new JObject();
 
         public ColumnFilterGlobalConfigModel(DataTableModel model)
         {
@@ -36,13 +40,12 @@ namespace Elect.Web.DataTable.Models.Column
             this[FilterConstants.PlaceHolder] = "head:after";
         }
 
-        public JObject ColumnBuilders = new JObject();
-
         public override string ToString()
         {
             this[FilterConstants.UseColVis] = _model.IsEnableColVis;
 
-            this[FilterConstants.Columns] = _model.Columns.Select(c => c.IsSearchable && c.ColumnFilter != null ? c.ColumnFilter : null).ToArray();
+            this[FilterConstants.Columns] = _model.Columns
+                .Select(c => c.IsSearchable && c.ColumnFilter != null ? c.ColumnFilter : null).ToArray();
 
             return JsonConvert.SerializeObject(this);
         }

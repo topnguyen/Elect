@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 namespace Elect.Web.DataTable.Models.Constants
@@ -23,7 +25,6 @@ namespace Elect.Web.DataTable.Models.Constants
     {
         #region Config
 
-        public const string RowId = "DT_RowID";
         public const string Selector = "sSelector";
         public const string Sortable = "bSortable";
         public const string Visible = "bVisible";
@@ -94,7 +95,7 @@ namespace Elect.Web.DataTable.Models.Constants
         public const string InfoPostFix = "sInfoPostFix";
         public const string Url = "sUrl";
         public const string Paginate = "oPaginate";
-        
+
         public const string ScrollX = "scrollX";
         public const string ScrollY = "scrollY";
         public const string StateSave = "bStateSave";

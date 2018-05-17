@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,23 +16,25 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Attributes;
 using System;
+using System.Reflection;
+using Elect.Web.DataTable.Attributes;
 
 namespace Elect.Web.DataTable.Models
 {
     public class DataTablePropertyInfoModel
     {
-        public DataTablePropertyInfoModel(System.Reflection.PropertyInfo propertyInfo, DataTableBaseAttribute[] attributes)
+        public DataTablePropertyInfoModel(PropertyInfo propertyInfo, DataTableBaseAttribute[] attributes)
         {
             PropertyInfo = propertyInfo;
 
             Attributes = attributes;
         }
 
-        public System.Reflection.PropertyInfo PropertyInfo { get; }
+        public PropertyInfo PropertyInfo { get; }
 
         public DataTableBaseAttribute[] Attributes { get; }
 

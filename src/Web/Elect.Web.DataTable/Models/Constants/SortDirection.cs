@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,12 +16,13 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 namespace Elect.Web.DataTable.Models.Constants
 {
     /// <summary>
-    ///     Sets the default sort direction for the column 
+    ///     Sets the default sort direction for the column
     /// </summary>
     public enum SortDirection
     {

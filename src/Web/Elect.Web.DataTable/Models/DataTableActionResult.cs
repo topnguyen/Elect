@@ -19,12 +19,12 @@
 
 #endregion License
 
-using Elect.Web.DataTable.Models.Response;
-using Elect.Web.DataTable.Utils.DataTableActionResultUtils;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Elect.Web.DataTable.Models.Request;
+using Elect.Web.DataTable.Models.Response;
+using Elect.Web.DataTable.Utils.DataTableActionResultUtils;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Elect.Web.DataTable.Models
 {
@@ -34,25 +34,30 @@ namespace Elect.Web.DataTable.Models
 
         /// <typeparam name="T"></typeparam>
         /// <param name="request"></param>
-        /// <param name="response">  
+        /// <param name="response">
         ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
         /// </param>
-        /// <param name="transform">     
+        /// <param name="transform">
         ///     // a transform for custom column rendering e.g. to do a custom date row =&gt; new {
         ///     CreatedDate = row.CreatedDate.ToString("dd MM yy") }
         /// </param>
-        /// <param name="responseOption"></param>
         /// <returns></returns>
         protected DataTableActionResult<T> Create<T>(DataTableRequestModel request, DataTableResponseModel<T> response,
-            Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
+            Func<T, object> transform) where T : class, new()
         {
-            return DataTableActionResultHelper.Create(request, response, transform, responseOption);
+            return DataTableActionResultHelper.Create(request, response, transform);
         }
 
-        protected DataTableActionResult<T> Create<T>(DataTableRequestModel request, DataTableResponseModel<T> response,
-            ResponseOptionModel<T> responseOption = null) where T : class, new()
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <param name="response">
+        ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
+        /// </param>
+        /// <returns></returns>
+        protected DataTableActionResult<T> Create<T>(DataTableRequestModel request, DataTableResponseModel<T> response)
+            where T : class, new()
         {
-            return DataTableActionResultHelper.Create(request, response, responseOption);
+            return DataTableActionResultHelper.Create(request, response);
         }
     }
 }

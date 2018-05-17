@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,11 +16,12 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Models.Column;
 using System;
 using System.Reflection;
+using Elect.Web.DataTable.Models.Column;
 
 namespace Elect.Web.DataTable.Attributes
 {

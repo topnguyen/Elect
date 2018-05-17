@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,13 +16,14 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Models.Constants;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Web.DataTable.Models.Constants;
+using Newtonsoft.Json;
 
 namespace Elect.Web.DataTable.Models.Response
 {
@@ -39,14 +41,13 @@ namespace Elect.Web.DataTable.Models.Response
         [JsonProperty(PropertyName = PropertyConstants.Data)]
         public object[] Data { get; set; }
 
-        [JsonIgnore]
-        public Type DataType { get; } = typeof(T);
+        [JsonIgnore] public Type DataType { get; } = typeof(T);
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [JsonExtensionData]
         public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
 
-        public DataTableResponseModel<T> Transform<TData, TTransform>(Func<TData, TTransform> transformRow, ResponseOptionModel responseOptions = null)
+        public DataTableResponseModel<T> Transform<TData, TTransform>(Func<TData, TTransform> transformRow)
         {
             var data = new DataTableResponseModel<T>
             {

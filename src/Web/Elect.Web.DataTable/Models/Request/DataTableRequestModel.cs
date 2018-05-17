@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,16 +16,42 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
+using System.Collections.Generic;
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace Elect.Web.DataTable.Models.Request
 {
     public class DataTableRequestModel
     {
+        public DataTableRequestModel()
+        {
+            ColumnNames = new List<string>();
+            ColReorderIndexs = new List<int>();
+            ListIsSortable = new List<bool>();
+            ListIsSearchable = new List<bool>();
+            SearchValues = new List<string>();
+            SortCol = new List<int>();
+            SortDir = new List<string>();
+            ListIsEscapeRegexColumn = new List<bool>();
+        }
+
+        public DataTableRequestModel(int columns)
+        {
+            Columns = columns;
+            ColumnNames = new List<string>(columns);
+            ColReorderIndexs = new List<int>();
+            ListIsSortable = new List<bool>(columns);
+            ListIsSearchable = new List<bool>(columns);
+            SearchValues = new List<string>(columns);
+            SortCol = new List<int>(columns);
+            SortDir = new List<string>(columns);
+            ListIsEscapeRegexColumn = new List<bool>(columns);
+        }
+
         [JsonProperty(PropertyName = PropertyConstants.DisplayStart)]
         public int DisplayStart { get; set; }
 
@@ -51,7 +78,7 @@ namespace Elect.Web.DataTable.Models.Request
 
         [JsonProperty(PropertyName = PropertyConstants.ColReorderIndexs)]
         public List<int> ColReorderIndexs { get; set; }
-        
+
         [JsonProperty(PropertyName = PropertyConstants.Sortable)]
         public List<bool> ListIsSortable { get; set; }
 
@@ -71,34 +98,9 @@ namespace Elect.Web.DataTable.Models.Request
         public List<bool> ListIsEscapeRegexColumn { get; set; }
 
         /// <summary>
-        ///     Store all information by key/name-value from client side 
+        ///     Store all information by key/name-value from client side
         /// </summary>
         [JsonIgnore]
         public Dictionary<string, object> Data { get; set; }
-
-        public DataTableRequestModel()
-        {
-            ColumnNames = new List<string>();
-            ColReorderIndexs = new List<int>();
-            ListIsSortable = new List<bool>();
-            ListIsSearchable = new List<bool>();
-            SearchValues = new List<string>();
-            SortCol = new List<int>();
-            SortDir = new List<string>();
-            ListIsEscapeRegexColumn = new List<bool>();
-        }
-
-        public DataTableRequestModel(int columns)
-        {
-            Columns = columns;
-            ColumnNames = new List<string>(columns);
-            ColReorderIndexs = new List<int>();
-            ListIsSortable = new List<bool>(columns);
-            ListIsSearchable = new List<bool>(columns);
-            SearchValues = new List<string>(columns);
-            SortCol = new List<int>(columns);
-            SortDir = new List<string>(columns);
-            ListIsEscapeRegexColumn = new List<bool>(columns);
-        }
     }
 }

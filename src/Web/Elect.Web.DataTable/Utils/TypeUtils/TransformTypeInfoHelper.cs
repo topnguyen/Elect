@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,18 +16,20 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Models;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Elect.Web.DataTable.Models;
 
 namespace Elect.Web.DataTable.Utils.TypeUtils
 {
     internal class TransformTypeInfoHelper
     {
-        internal static Dictionary<string, object> MergeTransformValuesIntoDictionary<T, TTransform>(Func<T, TTransform> transformInput, T input)
+        internal static Dictionary<string, object> MergeTransformValuesIntoDictionary<T, TTransform>(
+            Func<T, TTransform> transformInput, T input)
         {
             // Get the the properties from the input as a dictionary
             var dict = new DataTableTypeInfoModel<T>().ToDictionary(input);
@@ -34,15 +37,10 @@ namespace Elect.Web.DataTable.Utils.TypeUtils
             // Get the transform object
             var transform = transformInput(input);
 
-            if (transform == null)
-            {
-                return dict;
-            }
+            if (transform == null) return dict;
 
             foreach (var propertyInfo in transform.GetType().GetTypeInfo().GetProperties())
-            {
                 dict[propertyInfo.Name] = propertyInfo.GetValue(transform, null);
-            }
 
             return dict;
         }

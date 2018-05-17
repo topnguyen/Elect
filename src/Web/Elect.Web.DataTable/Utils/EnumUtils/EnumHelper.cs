@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,15 +16,15 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Core.TypeUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
+using Elect.Core.TypeUtils;
 
 namespace Elect.Web.DataTable.Utils.EnumUtils
 {
@@ -31,39 +32,34 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
     {
         internal static string GetDisplayName(this Enum value)
         {
-            Type enumType = value.GetType();
+            var enumType = value.GetType();
 
             var enumValue = Enum.GetName(enumType, value);
 
-            MemberInfo member = enumType.GetMember(enumValue).FirstOrDefault();
+            var member = enumType.GetMember(enumValue).FirstOrDefault();
 
-            if (!(member?.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() is DisplayAttribute displayAttribute))
-            {
-                return null;
-            }
+            if (!(member?.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() is DisplayAttribute
+                displayAttribute)) return null;
 
-            var displayName = displayAttribute.ResourceType != null ? displayAttribute.GetName() : displayAttribute.Name;
+            var displayName = displayAttribute.ResourceType != null
+                ? displayAttribute.GetName()
+                : displayAttribute.Name;
 
             return !string.IsNullOrWhiteSpace(displayName) ? displayName : null;
         }
 
         internal static string GetDescription(this Enum value)
         {
-            Type enumType = value.GetType();
+            var enumType = value.GetType();
 
             var enumValue = Enum.GetName(enumType, value);
 
-            if (!string.IsNullOrWhiteSpace(enumValue))
-            {
-                return enumValue;
-            }
+            if (!string.IsNullOrWhiteSpace(enumValue)) return enumValue;
 
-            MemberInfo member = enumType.GetMember(enumValue).FirstOrDefault();
+            var member = enumType.GetMember(enumValue).FirstOrDefault();
 
-            if (!(member?.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() is DescriptionAttribute descriptionAttribute))
-            {
-                return null;
-            }
+            if (!(member?.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() is
+                DescriptionAttribute descriptionAttribute)) return null;
 
             var description = descriptionAttribute.Description;
 
@@ -72,17 +68,17 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
 
         internal static string GetName(this Enum value)
         {
-            Type enumType = value.GetType();
+            var enumType = value.GetType();
 
             var enumValue = Enum.GetName(enumType, value);
 
-            MemberInfo member = enumType.GetMember(enumValue).FirstOrDefault();
+            var member = enumType.GetMember(enumValue).FirstOrDefault();
 
             return member?.Name;
         }
 
         /// <summary>
-        ///     Get Enum Label (Display Name ?? Description ?? Name) 
+        ///     Get Enum Label (Display Name ?? Description ?? Name)
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -95,11 +91,11 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
         {
             var t = type.GetNotNullableType();
 
-            List<string> exitList = new List<string>();
+            var exitList = new List<string>();
 
-            foreach (string enumName in Enum.GetNames(t))
+            foreach (var enumName in Enum.GetNames(t))
             {
-                Enum enumValue = (Enum)TypeDescriptor.GetConverter(t).ConvertFrom(enumName);
+                var enumValue = (Enum) TypeDescriptor.GetConverter(t).ConvertFrom(enumName);
 
                 var label = enumValue.GetLabel();
 
@@ -127,29 +123,25 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
             var result = new List<EnumValueLabelModel>();
 
             if (type.IsNullableType())
-            {
                 result.Add(new EnumValueLabelModel
                 {
                     Value = null,
                     Label = string.Empty
                 });
-            }
 
             for (var x = 0; x <= values.Length - 1; x++)
-            {
                 result.Add(new EnumValueLabelModel
                 {
                     Value = values[x].ToString(),
                     Label = labels[x].ToString()
                 });
-            }
 
             return result.ToArray();
         }
 
         internal static T ToEnum<T>(this string value)
         {
-            return (T)Enum.Parse(typeof(T), value, true);
+            return (T) Enum.Parse(typeof(T), value, true);
         }
     }
 

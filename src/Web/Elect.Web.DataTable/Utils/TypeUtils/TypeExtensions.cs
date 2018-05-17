@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,12 +16,13 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Models.Column;
-using Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils;
 using System;
 using System.Collections.Generic;
+using Elect.Web.DataTable.Models.Column;
+using Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils;
 
 namespace Elect.Web.DataTable.Utils.TypeUtils
 {
@@ -36,13 +38,11 @@ namespace Elect.Web.DataTable.Utils.TypeUtils
             {
                 var colDef = new ColumnModel(propertyInfo.PropertyInfo.Name, propertyInfo.PropertyInfo.PropertyType);
 
-                foreach (var att in propertyInfo.Attributes)
-                {
-                    att.ApplyTo(colDef, propertyInfo.PropertyInfo);
-                }
+                foreach (var att in propertyInfo.Attributes) att.ApplyTo(colDef, propertyInfo.PropertyInfo);
 
                 columnList.Add(colDef);
             }
+
             return columnList.ToArray();
         }
 
