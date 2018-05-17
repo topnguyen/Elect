@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Web.DataTable.Models.Response;
@@ -22,6 +24,7 @@ using Elect.Web.DataTable.Utils.DataTableActionResultUtils;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Elect.Web.DataTable.Models.Request;
 
 namespace Elect.Web.DataTable.Models
 {
@@ -30,6 +33,7 @@ namespace Elect.Web.DataTable.Models
         public abstract Task ExecuteResultAsync(ActionContext context);
 
         /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
         /// <param name="response">  
         ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
         /// </param>
@@ -39,14 +43,16 @@ namespace Elect.Web.DataTable.Models
         /// </param>
         /// <param name="responseOption"></param>
         /// <returns></returns>
-        protected DataTableActionResult<T> Create<T>(DataTableResponseModel<T> response, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        protected DataTableActionResult<T> Create<T>(DataTableRequestModel request, DataTableResponseModel<T> response,
+            Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
-            return DataTableActionResultHelper.Create(response, transform, responseOption);
+            return DataTableActionResultHelper.Create(request, response, transform, responseOption);
         }
 
-        protected DataTableActionResult<T> Create<T>(DataTableResponseModel<T> response, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        protected DataTableActionResult<T> Create<T>(DataTableRequestModel request, DataTableResponseModel<T> response,
+            ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
-            return DataTableActionResultHelper.Create(response, responseOption);
+            return DataTableActionResultHelper.Create(request, response, responseOption);
         }
     }
 }

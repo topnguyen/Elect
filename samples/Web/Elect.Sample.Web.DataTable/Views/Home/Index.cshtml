@@ -7,11 +7,10 @@
 
     // Get model
     var model = Html.DataTableModel("datatable_sample", (HomeController controller) => controller.GetDataTable(null));
-
+    model.GlobalJsVariableName = "datatable_sample";
+    
     // Global Configuration
-    model.IsDevelopMode = true;
-    model.IsUseColumnFilter = true;
-    model.PageSize = 10;
+    model.IsDevelopMode = false;
     model.BeforeSendFunctionName = "beforeSendHandle";
 
     // Additional Columns
@@ -71,7 +70,6 @@
                 name: "newData",
                 value: "test modify data before send"
             });
-            console.log("before send handle: ", data);
         }
 
         function actionColRender(data, type, row) {

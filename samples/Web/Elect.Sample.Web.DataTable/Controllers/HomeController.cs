@@ -12,6 +12,8 @@ namespace Elect.Sample.Web.DataTable.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly List<UserModel> DummyUsers = GetDummyUsers();
+
         public IActionResult Index()
         {
             return View();
@@ -29,8 +31,7 @@ namespace Elect.Sample.Web.DataTable.Controllers
             DataTableResponseModel<UserModel> response = GetDataTableResponse(model);
 
             // 2. In Controller
-
-            var result = response.GetDataTableActionResult(x => new
+            var result = response.GetDataTableActionResult(model, x => new
             {
                 IsActive = x.IsActive ? "Yes" : "No" // Transform Data before Response
             });
@@ -38,9 +39,19 @@ namespace Elect.Sample.Web.DataTable.Controllers
             return result;
         }
 
-        private DataTableResponseModel<UserModel> GetDataTableResponse(DataTableRequestModel model)
+        private static DataTableResponseModel<UserModel> GetDataTableResponse(DataTableRequestModel model)
         {
-            // Sample Data
+            // Queryable Data
+            var query = DummyUsers.AsQueryable();
+
+            // Generate DataTable Response
+            var result = query.GetDataTableResponse(model);
+
+            return result;
+        }
+
+        private static List<UserModel> GetDummyUsers()
+        {
             var users = new List<UserModel>();
 
             for (int i = 0; i < 1000; i++)
@@ -50,17 +61,11 @@ namespace Elect.Sample.Web.DataTable.Controllers
                     Id = i + 1,
                     FullName = $"User {i + 1}",
                     CreatedTime = DateTimeOffset.Now,
-                    IsActive = i  % 2 == 0
+                    IsActive = i % 2 == 0
                 });
             }
 
-            // Queryable Data
-            var query = users.AsQueryable();
-
-            // Generate DataTable Response
-            var result = query.GetDataTableResponse(model);
-
-            return result;
+            return users;
         }
     }
 }

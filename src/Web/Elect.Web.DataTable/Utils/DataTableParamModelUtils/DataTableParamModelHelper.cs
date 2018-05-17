@@ -44,7 +44,8 @@ namespace Elect.Web.DataTable.Utils.DataTableParamModelUtils
                     {
                         try
                         {
-                            parts.Add(GetFilterClause(dtParameters.Search, columns[i], parameters));
+                            DataTablePropertyInfoModel column = FindColumn(dtParameters, columns, i);
+                            parts.Add(GetFilterClause(dtParameters.Search, column, parameters));
                         }
                         catch (Exception)
                         {
@@ -77,6 +78,12 @@ namespace Elect.Web.DataTable.Utils.DataTableParamModelUtils
             for (int i = 0; i < dtParameters.SortingCols; i++)
             {
                 int columnNumber = dtParameters.SortCol[i];
+
+                if (dtParameters.ColReorderIndexs?.Any() == true)
+                {
+                    columnNumber = dtParameters.ColReorderIndexs[columnNumber];
+                }
+                
                 DataTablePropertyInfoModel column = FindColumn(dtParameters, columns, columnNumber);
                 string columnName = column.PropertyInfo.Name;
                 string sortDir = dtParameters.SortDir[i];

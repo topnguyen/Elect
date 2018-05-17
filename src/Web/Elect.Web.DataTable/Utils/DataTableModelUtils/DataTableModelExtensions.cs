@@ -31,17 +31,17 @@ namespace Elect.Web.DataTable.Utils.DataTableModelUtils
 {
     public static class DataTableModelExtensions
     {
-        public static string GetColumnsJsonString(this DataTableModel model)
+        public static string GetColumnDefine(this DataTableModel model)
         {
-            return ConvertColumnsToJson(model.Columns.ToArray());
+            return GetColumnDefine(model.Columns.ToArray());
         }
 
-        public static string GetColumnSortingString(this DataTableModel model)
+        public static string GetColumnSortDefine(this DataTableModel model)
         {
-            return ConvertColumnSortingToJson(model.Columns.ToArray());
-        }
-
-        public static JToken GetSearchColumns(this DataTableModel model)
+            return GetColumnSortDefine(model.Columns.ToArray());
+        }  
+        
+        public static JToken GetColumnSearchableDefine(this DataTableModel model)
         {
             var initialSearches = model.Columns.Select(c => c.IsSearchable & c.SearchColumns != null ? c.SearchColumns : null as object).ToArray();
             return new JArray(initialSearches);
@@ -90,7 +90,7 @@ namespace Elect.Web.DataTable.Utils.DataTableModelUtils
             return new ColumnFilterModel<DataTableModel>(model, columns);
         }
 
-        private static string ConvertColumnsToJson(params ColumnModel[] columns)
+        private static string GetColumnDefine(params ColumnModel[] columns)
         {
             bool IsFalse(bool x) => x == false;
 
@@ -109,11 +109,11 @@ namespace Elect.Web.DataTable.Utils.DataTableModelUtils
             columnsJsonObject.AddRange(ConvertColumnToTargetedProperty(PropertyConstants.ClassName, column => column.CssClass, IsNonEmptyString, columns));
 
             columnsJsonObject.AddRange(ConvertColumnToTargetedProperty(PropertyConstants.Width, column => column.Width, IsNonEmptyString, columns));
-
+            
             return columnsJsonObject.Any() ? JsonConvert.SerializeObject(columnsJsonObject) : DataConstants.EmptyArray;
         }
 
-        private static string ConvertColumnSortingToJson(params ColumnModel[] columns)
+        private static string GetColumnSortDefine(params ColumnModel[] columns)
         {
             var sortList = columns
                 .Select((c, idx) => c.SortDirection == SortDirection.None
