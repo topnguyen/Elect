@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System;
@@ -27,7 +29,8 @@ namespace Elect.Web.DataTable.Models.Menu
     {
         public override string ToString()
         {
-            return "[[" + string.Join(", ", this.Select(pair => pair.Item2)) + "],[\"" + string.Join("\", \"", this.Select(pair => pair.Item1.Replace("\"", "\"\""))) + "\"]]";
+            return "[[" + string.Join(", ", this.Select(pair => pair.Item2)) + "],[\"" +
+                   string.Join("\", \"", this.Select(pair => pair.Item1.Replace("\"", "\"\""))) + "\"]]";
         }
     }
 }

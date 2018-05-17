@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,8 +16,10 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
+using System.Reflection;
 using Elect.Web.DataTable.Models.Column;
 using Elect.Web.DataTable.Models.Constants;
 using EnumsNET;
@@ -26,11 +29,6 @@ namespace Elect.Web.DataTable.Attributes
     public class DataTableFilterAttribute : DataTableBaseAttribute
     {
         private readonly string _filterType;
-
-        /// <summary>
-        ///     Sets sSelector on the column (i.e. selector for custom positioning) 
-        /// </summary>
-        public string Selector { get; set; }
 
         public DataTableFilterAttribute()
         {
@@ -45,29 +43,28 @@ namespace Elect.Web.DataTable.Attributes
         {
         }
 
+        /// <summary>
+        ///     Sets sSelector on the column (i.e. selector for custom positioning)
+        /// </summary>
+        public string Selector { get; set; }
+
         private static string GetFilterTypeString(FilterType filterType)
         {
             return filterType.AsString(EnumFormat.DisplayName);
         }
 
-        public override void ApplyTo(ColumnModel columnModel, System.Reflection.PropertyInfo propertyInfo)
+        public override void ApplyTo(ColumnModel columnModel, PropertyInfo propertyInfo)
         {
             columnModel.ColumnFilter = new ColumnFilterModel(propertyInfo.PropertyType);
 
-            if (Selector != null)
-            {
-                columnModel.ColumnFilter[PropertyConstants.Selector] = Selector;
-            }
+            if (Selector != null) columnModel.ColumnFilter[PropertyConstants.Selector] = Selector;
             if (_filterType == FilterConstants.None)
             {
                 columnModel.ColumnFilter = null;
             }
             else
             {
-                if (_filterType != null)
-                {
-                    columnModel.ColumnFilter.FilterType = _filterType;
-                }
+                if (_filterType != null) columnModel.ColumnFilter.FilterType = _filterType;
             }
         }
     }

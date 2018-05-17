@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,30 +16,43 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Core.TypeUtils;
-using Elect.Web.DataTable.Models.Constants;
-using Elect.Web.DataTable.Utils.EnumUtils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Core.TypeUtils;
+using Elect.Web.DataTable.Models.Constants;
+using Elect.Web.DataTable.Utils.EnumUtils;
 
 namespace Elect.Web.DataTable.Models.Column
 {
     public class ColumnFilterModel : Hashtable
     {
-        internal object[] FilterValues { set => this[FilterConstants.Values] = value; }
-
-        internal string FilterType { set => this[FilterConstants.Type] = value; }
+        private static readonly List<Type> DateTypes = new List<Type>
+        {
+            typeof(DateTime),
+            typeof(DateTime?),
+            typeof(DateTimeOffset),
+            typeof(DateTimeOffset?)
+        };
 
         public ColumnFilterModel(Type t)
         {
             SetDefaultValuesAccordingToColumnType(t);
         }
 
-        private static readonly List<Type> DateTypes = new List<Type> { typeof(DateTime), typeof(DateTime?), typeof(DateTimeOffset), typeof(DateTimeOffset?) };
+        internal object[] FilterValues
+        {
+            set => this[FilterConstants.Values] = value;
+        }
+
+        internal string FilterType
+        {
+            set => this[FilterConstants.Type] = value;
+        }
 
         private void SetDefaultValuesAccordingToColumnType(Type type)
         {

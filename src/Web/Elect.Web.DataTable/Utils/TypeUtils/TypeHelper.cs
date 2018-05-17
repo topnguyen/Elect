@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,11 +16,12 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Models.Options;
 using System;
 using System.Reflection;
+using Elect.Web.DataTable.Models.Options;
 
 namespace Elect.Web.DataTable.Utils.TypeUtils
 {
@@ -29,19 +31,14 @@ namespace Elect.Web.DataTable.Utils.TypeUtils
         {
             resourceType = resourceType ?? ElectDataTableOptions.Instance.SharedResourceType;
 
-            if (resourceType == null || resourceName == null)
-            {
-                return default;
-            }
+            if (resourceType == null || resourceName == null) return default;
 
-            var property = resourceType.GetProperty(resourceName, BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
+            var property = resourceType.GetProperty(resourceName,
+                BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
 
-            if (property == null)
-            {
-                return default;
-            }
+            if (property == null) return default;
 
-            return (T)property.GetValue(null, null);
+            return (T) property.GetValue(null, null);
         }
     }
 }

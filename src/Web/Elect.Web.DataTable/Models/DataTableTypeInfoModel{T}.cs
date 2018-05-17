@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,15 +16,12 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Attributes;
-using Elect.Web.DataTable.Models.Constants;
-using Elect.Web.DataTable.Models.Response;
-using Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils;
 
 namespace Elect.Web.DataTable.Models
 {
@@ -31,52 +29,18 @@ namespace Elect.Web.DataTable.Models
     {
         public DataTablePropertyInfoModel[] Properties => DataTableTypeInfoModelHelper.GetProperties(typeof(T));
 
-        public DataTablePropertyInfoModel RowId => Properties.SingleOrDefault(x => x.Attributes.Any(y => y is DataTableRowIdAttribute));
-
         public Dictionary<string, object> ToDictionary(T value)
         {
             var dictionary = new Dictionary<string, object>();
 
-            foreach (var pi in Properties)
-            {
-                dictionary[pi.PropertyInfo.Name] = pi.PropertyInfo.GetValue(value, null);
-            }
-
-            if (RowId == null)
-            {
-                return dictionary;
-            }
-
-            dictionary[PropertyConstants.RowId] = RowId.PropertyInfo.GetValue(value, null);
-
-            if (!RowId.Attributes.OfType<DataTableRowIdAttribute>().First().EmitAsColumnName)
-            {
-                dictionary.Remove(RowId.PropertyInfo.Name);
-            }
+            foreach (var pi in Properties) dictionary[pi.PropertyInfo.Name] = pi.PropertyInfo.GetValue(value, null);
 
             return dictionary;
         }
 
-        public Func<T, Dictionary<string, object>> ToFuncDictionary(ResponseOptionModel<T> options = null)
+        public Func<T, Dictionary<string, object>> ToFuncDictionary()
         {
-            if (options?.DtRowId == null)
-            {
-                return ToDictionary;
-            }
-
-            return row =>
-            {
-                var dictionary = new Dictionary<string, object>
-                {
-                    [PropertyConstants.RowId] = options.DtRowId(row)
-                };
-
-                foreach (var pi in Properties)
-                {
-                    dictionary[pi.PropertyInfo.Name] = pi.PropertyInfo.GetValue(row, null);
-                }
-                return dictionary;
-            };
+            return ToDictionary;
         }
     }
 }

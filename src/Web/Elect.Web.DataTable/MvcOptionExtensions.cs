@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,11 +16,12 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
+using System.Linq;
 using Elect.Web.DataTable.Processing.Request;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace Elect.Web.DataTable
 {
@@ -27,12 +29,10 @@ namespace Elect.Web.DataTable
     {
         public static void AddDataTableModelBinder(this MvcOptions mvcOptions)
         {
-            var isProviderAdded = mvcOptions.ModelBinderProviders.Any(x => x.GetType() == typeof(DataTablesModelBinderProvider));
+            var isProviderAdded =
+                mvcOptions.ModelBinderProviders.Any(x => x.GetType() == typeof(DataTablesModelBinderProvider));
 
-            if (isProviderAdded)
-            {
-                return;
-            }
+            if (isProviderAdded) return;
 
             mvcOptions.ModelBinderProviders.Insert(0, new DataTablesModelBinderProvider());
         }

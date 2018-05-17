@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,25 +16,23 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Models.Request;
-using Elect.Web.DataTable.Models.Response;
-using Elect.Web.DataTable.Processing;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Elect.Web.DataTable.Models.Request;
+using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Processing.Response;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Elect.Web.DataTable.Models
 {
     public class DataTableActionResult<T> : DataTableActionResult where T : class, new()
     {
-        public DataTableResponseModel<T> Data { get; set; }
-
         public DataTableActionResult(IQueryable<T> queryable, DataTableRequestModel requestModel)
         {
             Data = queryable.GetDataTableResponse(requestModel);
@@ -44,14 +43,13 @@ namespace Elect.Web.DataTable.Models
             Data = data;
         }
 
+        public DataTableResponseModel<T> Data { get; set; }
+
         public override Task ExecuteResultAsync(ActionContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
-            HttpResponse response = context.HttpContext.Response;
+            var response = context.HttpContext.Response;
 
             return response.WriteAsync(JsonConvert.SerializeObject(Data));
         }

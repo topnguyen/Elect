@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,18 +16,29 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Models.Column;
-using Elect.Web.DataTable.Models.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Web.DataTable.Models.Column;
+using Elect.Web.DataTable.Models.Menu;
 
 namespace Elect.Web.DataTable.Models
 {
     public class DataTableModel
     {
+        private string _dom;
+
+        public DataTableModel(string id, string ajaxUrl, params ColumnModel[] columns)
+        {
+            AjaxUrl = ajaxUrl;
+            Id = id;
+            Columns = columns.ToList();
+            ColumnFilterGlobalConfig = new ColumnFilterGlobalConfigModel(this);
+        }
+
         public bool? IsDevelopMode { get; set; }
 
         public bool? IsAutoWidthColumn { get; set; }
@@ -34,19 +46,19 @@ namespace Elect.Web.DataTable.Models
         public bool? IsResponsive { get; set; }
 
         public bool? IsEnableColVis { get; set; }
-        
+
         public bool? IsSaveState { get; set; }
-        
+
         public bool? IsScrollX { get; set; }
-        
-        public bool? IsEnableColReorder { get; set; } 
-        
+
+        public bool? IsEnableColReorder { get; set; }
+
         public bool? IsShowFooter { get; set; }
 
         public bool? IsShowPageSize { get; set; } = true;
 
         /// <summary>
-        ///     Show global search input, default is true. 
+        ///     Show global search input, default is true.
         /// </summary>
         public bool? IsShowGlobalSearchInput { get; set; } = true;
 
@@ -57,12 +69,12 @@ namespace Elect.Web.DataTable.Models
         public bool? IsUseColumnFilter { get; set; }
 
         /// <summary>
-        ///     Enable to make the search fast and helpful for UI render, default is true. 
+        ///     Enable to make the search fast and helpful for UI render, default is true.
         /// </summary>
         public bool? IsDeferRender { get; set; } = true;
 
         /// <summary>
-        ///     Table class, default is "table table-hover dataTable table-striped". 
+        ///     Table class, default is "table table-hover dataTable table-striped".
         /// </summary>
         public string TableClass { get; set; } = "table table-hover dataTable table-striped";
 
@@ -76,8 +88,6 @@ namespace Elect.Web.DataTable.Models
 
         public ColumnFilterGlobalConfigModel ColumnFilterGlobalConfig { get; set; }
 
-        private string _dom;
-
         public string Dom
         {
             get
@@ -85,7 +95,7 @@ namespace Elect.Web.DataTable.Models
                 if (!string.IsNullOrWhiteSpace(_dom))
                     return _dom;
 
-                string str = "<\"dt-panelmenu clearfix\"";
+                var str = "<\"dt-panelmenu clearfix\"";
                 if (IsShowPageSize == true)
                     str += "l";
                 if (IsShowGlobalSearchInput == true)
@@ -106,7 +116,10 @@ namespace Elect.Web.DataTable.Models
             Tuple.Create("10", 10),
             Tuple.Create("25", 25),
             Tuple.Create("50", 50),
-            Tuple.Create("All", -1)
+            Tuple.Create("100", 100),
+            Tuple.Create("250", 250),
+            Tuple.Create("500", 500),
+            Tuple.Create("1000", 1000)
         };
 
         public int? PageSize { get; set; }
@@ -120,10 +133,11 @@ namespace Elect.Web.DataTable.Models
         public string AjaxErrorHandler { get; set; }
 
         /// <summary>
-        ///     Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function. Ex: initCompleteHandle(settings, json).
+        ///     Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function. Ex:
+        ///     initCompleteHandle(settings, json).
         /// </summary>
         public string InitCompleteFunctionName { get; set; }
-        
+
         /// <summary>
         ///     Function name of Draw callback. DataTable will pass "settings" to the function. Ex: drawCallBackHandle(oSettings).
         /// </summary>
@@ -148,13 +162,5 @@ namespace Elect.Web.DataTable.Models
         ///     Ex: beforeSendHandle(aoData).
         /// </summary>
         public string BeforeSendFunctionName { get; set; }
-
-        public DataTableModel(string id, string ajaxUrl, params ColumnModel[] columns)
-        {
-            AjaxUrl = ajaxUrl;
-            Id = id;
-            Columns = columns.ToList();
-            ColumnFilterGlobalConfig = new ColumnFilterGlobalConfigModel(this);
-        }
     }
 }

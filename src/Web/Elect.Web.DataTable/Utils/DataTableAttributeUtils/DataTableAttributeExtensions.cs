@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Web.DataTable.Attributes;
@@ -27,17 +29,12 @@ namespace Elect.Web.DataTable.Utils.DataTableAttributeUtils
     {
         internal static string GetDisplayName(this DataTableAttribute attribute)
         {
-            if (string.IsNullOrWhiteSpace(attribute.DisplayName) || (attribute.DisplayNameResourceType == null && ElectDataTableOptions.Instance.SharedResourceType == null))
-            {
-                return attribute.DisplayName;
-            }
+            if (string.IsNullOrWhiteSpace(attribute.DisplayName) || attribute.DisplayNameResourceType == null &&
+                ElectDataTableOptions.Instance.SharedResourceType == null) return attribute.DisplayName;
 
             var value = TypeHelper.GetResourceLookup<string>(attribute.DisplayNameResourceType, attribute.DisplayName);
 
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return attribute.DisplayName;
-            }
+            if (string.IsNullOrWhiteSpace(value)) return attribute.DisplayName;
 
             return value;
         }

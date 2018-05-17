@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System;
@@ -25,22 +27,19 @@ namespace Elect.Web.DataTable.Models.Constants
     public enum FilterType
     {
         /// <summary>
-        ///     Not show any input in Column Filter 
+        ///     Not show any input in Column Filter
         /// </summary>
-        [Description(FilterConstants.None)]
-        None,
+        [Description(FilterConstants.None)] None,
 
         /// <summary>
-        ///     Display as Drop-down list in Column Filter 
+        ///     Display as Drop-down list in Column Filter
         /// </summary>
-        [Description(FilterConstants.Select)]
-        Select,
+        [Description(FilterConstants.Select)] Select,
 
         /// <summary>
-        ///     Display as Free Text input in Column Filter 
+        ///     Display as Free Text input in Column Filter
         /// </summary>
-        [Description(FilterConstants.Text)]
-        Text,
+        [Description(FilterConstants.Text)] Text,
 
         [Obsolete("You need self implement UI for checkbox type in the jquery.dataTables.columnFilter.js")]
         [Description(FilterConstants.Checkbox)]

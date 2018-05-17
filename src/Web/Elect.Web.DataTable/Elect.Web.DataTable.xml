@@ -6,18 +6,18 @@
     <members>
         <member name="P:Elect.Web.DataTable.Attributes.DataTableAttribute.AdditionalAttributeHeader">
             <summary>
-                Additional HTML Element attributes for header column 
+                Additional HTML Element attributes for header column
             </summary>
             <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Attributes.DataTableFilterAttribute.Selector">
             <summary>
-                Sets sSelector on the column (i.e. selector for custom positioning) 
+                Sets sSelector on the column (i.e. selector for custom positioning)
             </summary>
         </member>
         <member name="T:Elect.Web.DataTable.Attributes.DataTableIgnoreAttribute">
             <summary>
-                Prevent a public property from being included as a column in a DataTable row model 
+                Prevent a public property from being included as a column in a DataTable row model
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Column.ColumnModel.MRenderFunction">
@@ -31,66 +31,74 @@
         </member>
         <member name="P:Elect.Web.DataTable.Models.Column.ColumnModel.AdditionalAttributeHeader">
             <summary>
-                Additional HTML Element attributes for header column 
+                Additional HTML Element attributes for header column
             </summary>
             <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
         </member>
         <member name="F:Elect.Web.DataTable.Models.Constants.DateTimeFormatType.Auto">
             <summary>
-                Try parse DateTime from any string format 
+                Try parse DateTime from any string format
             </summary>
         </member>
         <member name="F:Elect.Web.DataTable.Models.Constants.DateTimeFormatType.Specific">
             <summary>
-                Parse DateTime by specific/exactly format. 
+                Parse DateTime by specific/exactly format.
             </summary>
         </member>
         <member name="F:Elect.Web.DataTable.Models.Constants.FilterType.None">
             <summary>
-                Not show any input in Column Filter 
+                Not show any input in Column Filter
             </summary>
         </member>
         <member name="F:Elect.Web.DataTable.Models.Constants.FilterType.Select">
             <summary>
-                Display as Drop-down list in Column Filter 
+                Display as Drop-down list in Column Filter
             </summary>
         </member>
         <member name="F:Elect.Web.DataTable.Models.Constants.FilterType.Text">
             <summary>
-                Display as Free Text input in Column Filter 
+                Display as Free Text input in Column Filter
             </summary>
         </member>
         <member name="T:Elect.Web.DataTable.Models.Constants.SortDirection">
             <summary>
-                Sets the default sort direction for the column 
+                Sets the default sort direction for the column
             </summary>
         </member>
-        <member name="M:Elect.Web.DataTable.Models.DataTableActionResult.Create``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,Elect.Web.DataTable.Models.Response.DataTableResponseModel{``0},System.Func{``0,System.Object},Elect.Web.DataTable.Models.Response.ResponseOptionModel{``0})">
+        <member name="M:Elect.Web.DataTable.Models.DataTableActionResult.Create``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,Elect.Web.DataTable.Models.Response.DataTableResponseModel{``0},System.Func{``0,System.Object})">
             <typeparam name="T"></typeparam>
             <param name="request"></param>
-            <param name="response">  
+            <param name="response">
                 The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
             </param>
-            <param name="transform">     
+            <param name="transform">
                 // a transform for custom column rendering e.g. to do a custom date row =&gt; new {
                 CreatedDate = row.CreatedDate.ToString("dd MM yy") }
             </param>
-            <param name="responseOption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.DataTable.Models.DataTableActionResult.Create``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,Elect.Web.DataTable.Models.Response.DataTableResponseModel{``0})">
+            <typeparam name="T"></typeparam>
+            <param name="request"></param>
+            <param name="response">
+                The properties of this can be marked up with [DataTablesAttribute] to control
+                sorting/searchability/visibility
+            </param>
             <returns></returns>
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.IsShowGlobalSearchInput">
             <summary>
-                Show global search input, default is true. 
+                Show global search input, default is true.
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.IsDeferRender">
             <summary>
-                Enable to make the search fast and helpful for UI render, default is true. 
+                Enable to make the search fast and helpful for UI render, default is true.
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.TableClass">
             <summary>
-                Table class, default is "table table-hover dataTable table-striped". 
+                Table class, default is "table table-hover dataTable table-striped".
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.AjaxErrorHandler">
@@ -101,7 +109,9 @@
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.InitCompleteFunctionName">
             <summary>
-                Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function. Ex: initCompleteHandle(settings, json).
+                Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function.
+                Ex:
+                initCompleteHandle(settings, json).
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.DrawCallbackFunctionName">
@@ -131,7 +141,8 @@
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.DateTimeTimeZone">
             <summary>
-                Config use datetime with TimeZone. Default is "UTC", See more: https://msdn.microsoft.com/en-us/library/gg154758.aspx 
+                Config use datetime with TimeZone. Default is "UTC", See more:
+                https://msdn.microsoft.com/en-us/library/gg154758.aspx
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.DateFormat">
@@ -170,7 +181,7 @@
         </member>
         <member name="P:Elect.Web.DataTable.Models.Request.DataTableRequestModel.Data">
             <summary>
-                Store all information by key/name-value from client side 
+                Store all information by key/name-value from client side
             </summary>
         </member>
         <member name="M:Elect.Web.DataTable.Processing.Response.Filter.EnumFilter(System.String,System.String,Elect.Web.DataTable.Models.DataTablePropertyInfoModel,System.Collections.Generic.List{System.Object})">
@@ -187,22 +198,21 @@
                 terms is "null" with Type is Nullable Enum work as search null value
             </remarks>
         </member>
-        <member name="M:Elect.Web.DataTable.Utils.DataTableActionResultUtils.DataTableActionResultHelper.Create``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,Elect.Web.DataTable.Models.Response.DataTableResponseModel{``0},System.Func{``0,System.Object},Elect.Web.DataTable.Models.Response.ResponseOptionModel{``0})">
+        <member name="M:Elect.Web.DataTable.Utils.DataTableActionResultUtils.DataTableActionResultHelper.Create``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,Elect.Web.DataTable.Models.Response.DataTableResponseModel{``0},System.Func{``0,System.Object})">
             <typeparam name="T"></typeparam>
             <param name="request"></param>
-            <param name="response">  
+            <param name="response">
                 The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
             </param>
-            <param name="transform">     
+            <param name="transform">
                 // a transform for custom column rendering e.g. to do a custom date row =&gt; new {
                 CreatedDate = row.CreatedDate.ToString("dd MM yy") }
             </param>
-            <param name="responseOption"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Web.DataTable.Utils.EnumUtils.EnumHelper.GetLabel(System.Enum)">
             <summary>
-                Get Enum Label (Display Name ?? Description ?? Name) 
+                Get Enum Label (Display Name ?? Description ?? Name)
             </summary>
             <param name="value"></param>
             <returns></returns>

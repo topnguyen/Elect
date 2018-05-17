@@ -19,14 +19,13 @@
 
 #endregion License
 
-using Elect.Web.DataTable.Models;
-using Elect.Web.DataTable.Models.Constants;
-using Elect.Web.DataTable.Models.Response;
-using Elect.Web.DataTable.Utils.TypeUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
+using Elect.Web.DataTable.Models.Response;
+using Elect.Web.DataTable.Utils.TypeUtils;
 
 namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
 {
@@ -34,17 +33,16 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
     {
         /// <typeparam name="T"></typeparam>
         /// <param name="request"></param>
-        /// <param name="response">  
+        /// <param name="response">
         ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
         /// </param>
-        /// <param name="transform">     
+        /// <param name="transform">
         ///     // a transform for custom column rendering e.g. to do a custom date row =&gt; new {
         ///     CreatedDate = row.CreatedDate.ToString("dd MM yy") }
         /// </param>
-        /// <param name="responseOption"></param>
         /// <returns></returns>
         internal static DataTableActionResult<T> Create<T>(DataTableRequestModel request,
-            DataTableResponseModel<T> response, Func<T, object> transform, ResponseOptionModel<T> responseOption = null)
+            DataTableResponseModel<T> response, Func<T, object> transform)
             where T : class, new()
         {
             transform = transform ?? (s => s);
@@ -61,18 +59,17 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
                     .Transform<Dictionary<string, object>, Dictionary<string, object>>(
                         StringTransformer.StringifyValues);
 
-            result.Data = ApplyOutputRules(request, result.Data, responseOption);
+            result.Data = ApplyOutputRules(request, result.Data);
 
             return result;
         }
 
         internal static DataTableActionResult<T> Create<T>(DataTableRequestModel request,
-            DataTableResponseModel<T> response,
-            ResponseOptionModel<T> responseOption = null) where T : class, new()
+            DataTableResponseModel<T> response) where T : class, new()
         {
             var result = new DataTableActionResult<T>(response);
 
-            var dictionaryTransformFunc = new DataTableTypeInfoModel<T>().ToFuncDictionary(responseOption);
+            var dictionaryTransformFunc = new DataTableTypeInfoModel<T>().ToFuncDictionary();
 
             result.Data =
                 result
@@ -81,61 +78,48 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
                     .Transform<Dictionary<string, object>, Dictionary<string, object>>(
                         StringTransformer.StringifyValues);
 
-            result.Data = ApplyOutputRules(request, result.Data, responseOption);
+            result.Data = ApplyOutputRules(request, result.Data);
 
             return result;
         }
 
         private static DataTableResponseModel<T> ApplyOutputRules<T>(DataTableRequestModel request,
-            DataTableResponseModel<T> response,
-            ResponseOptionModel<T> responseOption) where T : class, new()
+            DataTableResponseModel<T> response) where T : class, new()
         {
-            responseOption = responseOption ??
-                             new ResponseOptionModel<T> {ArrayOutputType = ArrayOutputType.BiDimensionalArray};
-
-            DataTableResponseModel<T> outputData = response;
-
-            switch (responseOption.ArrayOutputType)
+            if (request.ColReorderIndexs?.Any() == true)
             {
-                case ArrayOutputType.ArrayOfObjects:
+                var actualData = new List<Dictionary<string, object>>();
+
+                foreach (var row in response.Data)
                 {
-                    // Nothing is needed
-                    break;
-                }
-                default:
-                {
-                    if (request.ColReorderIndexs?.Any() == true)
+                    var correctIndexDictionary = new Dictionary<string, object>();
+
+                    if (!(row is Dictionary<string, object> rowDictionary))
                     {
-                        List<Dictionary<string, object>> actualData = new List<Dictionary<string, object>>();
-                        
-                        foreach (var row in response.Data)
-                        {
-                            Dictionary<string, object> correctIndexDictionary = new Dictionary<string, object>();
-
-                            if (!(row is Dictionary<string, object> rowDictionary))
-                            {
-                                continue;
-                            }
-                            
-                            for (int i = 0; i < rowDictionary.Keys.Count; i++)
-                            {
-                                var acctualIndex = request.ColReorderIndexs[i];
-
-                                var acctualCol = rowDictionary.ElementAt(acctualIndex);
-                                
-                                correctIndexDictionary.Add(acctualCol.Key, acctualCol.Value);
-                            }
-                            
-                            actualData.Add(correctIndexDictionary);
-                        }
-
-                        response.Data = actualData.Cast<object>().ToArray();
+                        continue;
                     }
-                    
-                    outputData = response.Transform<Dictionary<string, object>, object[]>(d => d.Values.ToArray());
-                    break;
+
+                    foreach (var acctualIndex in request.ColReorderIndexs)
+                    {
+                        if (rowDictionary.Count <= acctualIndex)
+                        {
+                            correctIndexDictionary.Add(acctualIndex.ToString(), string.Empty);
+
+                            continue;
+                        }
+                        
+                        var acctualCol = rowDictionary.ElementAt(acctualIndex);
+
+                        correctIndexDictionary.Add(acctualCol.Key, acctualCol.Value);
+                    }
+
+                    actualData.Add(correctIndexDictionary);
                 }
+
+                response.Data = actualData.Cast<object>().ToArray();
             }
+
+            var outputData = response.Transform<Dictionary<string, object>, object[]>(d => d.Values.ToArray());
 
             return outputData;
         }

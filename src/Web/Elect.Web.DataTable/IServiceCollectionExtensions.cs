@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,14 +16,15 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
+using System;
 using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
 using Elect.Web.DataTable.Models.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Elect.Web.DataTable
 {
@@ -33,7 +35,8 @@ namespace Elect.Web.DataTable
             return services.AddElectDataTable(_ => { });
         }
 
-        public static IServiceCollection AddElectDataTable(this IServiceCollection services, [NotNull]ElectDataTableOptions configure)
+        public static IServiceCollection AddElectDataTable(this IServiceCollection services,
+            [NotNull] ElectDataTableOptions configure)
         {
             return services.AddElectDataTable(_ =>
             {
@@ -45,20 +48,15 @@ namespace Elect.Web.DataTable
             });
         }
 
-        public static IServiceCollection AddElectDataTable(this IServiceCollection services, [NotNull] Action<ElectDataTableOptions> configure)
+        public static IServiceCollection AddElectDataTable(this IServiceCollection services,
+            [NotNull] Action<ElectDataTableOptions> configure)
         {
             services.Configure(configure);
 
-            if (ElectDataTableOptions.Instance == null)
-            {
-                ElectDataTableOptions.Instance = configure.GetValue();
-            }
+            if (ElectDataTableOptions.Instance == null) ElectDataTableOptions.Instance = configure.GetValue();
 
             // Add DataTable Model Binder
-            services.Configure<MvcOptions>(mvcOptions =>
-            {
-                mvcOptions.AddDataTableModelBinder();
-            });
+            services.Configure<MvcOptions>(mvcOptions => { mvcOptions.AddDataTableModelBinder(); });
 
             return services;
         }

@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,20 +16,20 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
-using Elect.Web.DataTable.Models.Constants;
-using Elect.Web.DataTable.Utils.EnumUtils;
 using System.Linq;
 using System.Reflection;
+using Elect.Web.DataTable.Models.Constants;
+using Elect.Web.DataTable.Utils.EnumUtils;
 
 namespace Elect.Web.DataTable.Models.Column
 {
     public class ColumnFilterModel<TTarget>
     {
-        private readonly TTarget _target;
-
         private readonly ColumnModel _columnModel;
+        private readonly TTarget _target;
 
         public ColumnFilterModel(TTarget target, ColumnModel columnModel)
         {
@@ -47,13 +48,11 @@ namespace Elect.Web.DataTable.Models.Column
             _columnModel.ColumnFilter.FilterType = FilterConstants.Checkbox;
             _columnModel.ColumnFilter.FilterValues = options.Cast<object>().ToArray();
             if (_columnModel.Type.GetTypeInfo().IsEnum)
-            {
                 _columnModel.ColumnFilter.FilterValues = _columnModel.Type.GetEnumValueLabelPair().Select(x => new
                 {
                     value = string.IsNullOrWhiteSpace(x.Value) ? DataConstants.Null : x.Value,
                     label = x.Label
                 }).ToArray<object>();
-            }
             return _target;
         }
 
@@ -62,13 +61,11 @@ namespace Elect.Web.DataTable.Models.Column
             _columnModel.ColumnFilter.FilterType = FilterConstants.Select;
             _columnModel.ColumnFilter.FilterValues = options.Cast<object>().ToArray();
             if (_columnModel.Type.GetTypeInfo().IsEnum)
-            {
                 _columnModel.ColumnFilter.FilterValues = _columnModel.Type.GetEnumValueLabelPair().Select(x => new
                 {
                     value = string.IsNullOrWhiteSpace(x.Value) ? DataConstants.Null : x.Value,
                     label = x.Label
                 }).ToArray<object>();
-            }
             return _target;
         }
 
