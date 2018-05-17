@@ -26,6 +26,7 @@ using Elect.Web.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Elect.Web.DataTable.Processing.Request
@@ -60,8 +61,10 @@ namespace Elect.Web.DataTable.Processing.Request
                 DisplayLength = GetValue<int>(valueProvider, "length"),
                 Search = GetValue<string>(valueProvider, "search[value]"),
                 EscapeRegex = GetValue<bool>(valueProvider, "search[regex]"),
-                Echo = GetValue<int>(valueProvider, "draw")
+                Echo = GetValue<int>(valueProvider, "draw"),
             };
+            
+            obj.ColReorderIndexs = GetValueArray<int>(valueProvider, PropertyConstants.ColReorderIndexs);
 
             int colIdx = 0;
 
@@ -113,8 +116,10 @@ namespace Elect.Web.DataTable.Processing.Request
                 Search = GetValue<string>(valueProvider, PropertyConstants.Search),
                 EscapeRegex = GetValue<bool>(valueProvider, PropertyConstants.EscapeRegex),
                 SortingCols = GetValue<int>(valueProvider, PropertyConstants.SortingCols),
-                Echo = GetValue<int>(valueProvider, PropertyConstants.Echo)
+                Echo = GetValue<int>(valueProvider, PropertyConstants.Echo),
             };
+
+            obj.ColReorderIndexs = GetValueArray<int>(valueProvider, PropertyConstants.ColReorderIndexs);
 
             for (int i = 0; i < obj.Columns; i++)
             {
@@ -166,6 +171,22 @@ namespace Elect.Web.DataTable.Processing.Request
             ValueProviderResult valueResult = valueProvider.GetValue(key);
 
             var result = valueResult.FirstValue.ConvertTo<T>();
+
+            return result;
+        }
+        
+        private static List<T> GetValueArray<T>(IValueProvider valueProvider, string key)
+        {
+            ValueProviderResult valueResult = valueProvider.GetValue(key);
+
+            var value = valueResult.FirstValue;
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return new List<T>();
+            }
+
+            List<T> result = value.Split(',').Select(x => x.ConvertTo<T>()).ToList();
 
             return result;
         }

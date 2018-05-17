@@ -7,15 +7,18 @@
 <script type="text/javascript">
     $(function() {
         var $table = $('#@Model.Id');
+
+        var $dataTable = null;
+        
         @{
             // Handle Default Values for Options
             Model.IsDevelopMode = Model.IsDevelopMode ?? false;
             Model.IsAutoWidthColumn = Model.IsAutoWidthColumn ?? true;
             Model.IsResponsive = Model.IsResponsive ?? false;
             Model.IsEnableColVis = Model.IsEnableColVis ?? true;
-            Model.IsSaveState = Model.IsSaveState ?? false;
+            Model.IsSaveState = Model.IsSaveState ?? true;
             Model.IsScrollX = Model.IsScrollX ?? true;
-            Model.IsEnableColReorder = Model.IsEnableColReorder ?? false;
+            Model.IsEnableColReorder = Model.IsEnableColReorder ?? true;
             Model.IsShowFooter = Model.IsShowFooter ?? false;
             Model.IsShowPageSize = Model.IsShowPageSize ?? true;
             Model.IsShowGlobalSearchInput = Model.IsShowGlobalSearchInput ?? true;
@@ -26,7 +29,7 @@
 
             var options = new JObject
             {
-                [PropertyConstants.Sorting] = new JRaw(Model.GetColumnSortingString()),
+                [PropertyConstants.Sorting] = new JRaw(Model.GetColumnSortDefine()),
                 [PropertyConstants.IsProcessing] = false,
                 [PropertyConstants.IsServerSide] = true,
                 [PropertyConstants.IsFilter] = Model.IsShowGlobalSearchInput,
@@ -34,8 +37,8 @@
                 [PropertyConstants.IsResponsive] = Model.IsResponsive,
                 [PropertyConstants.IsAutoWidth] = Model.IsAutoWidthColumn,
                 [PropertyConstants.AjaxSource] = Model.AjaxUrl,
-                [PropertyConstants.ColumnDefine] = new JRaw(Model.GetColumnsJsonString()),
-                [PropertyConstants.SearchCols] = Model.GetSearchColumns(),
+                [PropertyConstants.ColumnDefine] = new JRaw(Model.GetColumnDefine()),
+                [PropertyConstants.SearchCols] = Model.GetColumnSearchableDefine(),
                 [PropertyConstants.DeferRender] = Model.IsDeferRender,
                 [PropertyConstants.LengthMenuDefine] = Model.LengthMenu != null ? new JRaw(Model.LengthMenu) : new JRaw(string.Empty),
                 [PropertyConstants.Language] = new JObject
@@ -97,6 +100,10 @@
                                                  + "    }"
                                                  + "};"
                     : string.Empty)
+                + ((Model.IsEnableColReorder != true)
+                    ? string.Empty
+                    : "var currDt = $dataTable || this;"
+                      + "aoData.push({name: '" + PropertyConstants.ColReorderIndexs + "',value: currDt.api().colReorder.order()});")
                 + (string.IsNullOrWhiteSpace(Model.BeforeSendFunctionName) ? string.Empty : $"{Model.BeforeSendFunctionName}(aoData);")
                 + (string.IsNullOrWhiteSpace(Model.AjaxErrorHandler) ? string.Empty : "ajaxOptions['error'] = " + Model.AjaxErrorHandler + "; ")
                 + "    $.ajax(ajaxOptions);" +
@@ -125,6 +132,35 @@
         }
 
         var dataTableOptions = @Html.Raw(options.ToString(Newtonsoft.Json.Formatting.Indented));
+
+        // Save State Handle
+        @if (Model.IsSaveState == true)
+        {
+            <text>
+                dataTableOptions.stateSaveParams = function(settings, data) {
+                   
+                    data.search.search = "";
+
+                    for (var i = 0; i < data.columns.length; i++) {
+                        data.columns[i].search.search = "";
+                    }
+                    return true;
+                }
+                dataTableOptions.stateSaveCallback = function(settings, data) {
+                    var key = 'Elect.Web.DataTable_' + settings.sInstance;
+                    var sData = JSON.stringify(data);
+                    localStorage.setItem(key, sData);
+                }
+
+                dataTableOptions.stateLoadCallback = function(settings) {
+                    var key = 'Elect.Web.DataTable_' + settings.sInstance;
+                    var sData = localStorage.getItem(key);
+                    var data = JSON.parse(sData);
+                    return data;
+                }
+            </text>
+        }
+
 
         // Draw Call back function
         dataTableOptions.fnDrawCallback = function(oSettings) {
@@ -157,7 +193,7 @@
         };
 
         // Init DataTable
-        var $dataTable = $table.dataTable(dataTableOptions);
+        $dataTable = $table.dataTable(dataTableOptions);
 
         // Col filters
         @if (Model.IsUseColumnFilter == true)
@@ -192,7 +228,7 @@
                             window.location.reload();
                         },
                         text: 'Reset Setting',
-                        className: ''
+                        className: 'btn'
                     });
             </text>
         }

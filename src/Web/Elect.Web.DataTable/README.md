@@ -4,12 +4,13 @@
 
 ## Overview
 
-[jQuery DataTable](https://datatables.net/) generate by Asp Net Core Server.
-
-- Support global and column filter.
-- Support sort by column.
-- Support column visible configuration.
-- Support Localization.
+[jQuery DataTable](https://datatables.net/) generate by Asp Net Core Server, support:
+- Global and individual column filter/search.
+- Columns Re-order.
+- Sort by column.
+- Column visible configuration.
+- Sate Save.
+- Localization.
 
 ## Installation
 - Package Manager
@@ -94,8 +95,7 @@ public class UserModel
         DataTableResponseModel<UserModel> response = GetDataTableResponse(model);
 
         // 2. In Controller
-
-        var result = response.GetDataTableActionResult(x => new
+        var result = response.GetDataTableActionResult(model, x => new
         {
             IsActive = x.IsActive ? "Yes" : "No" // Transform Data before Response
         });
@@ -133,13 +133,14 @@ public class UserModel
 
 ```csharp
 @{
-    // Get model
-    var model = Html.DataTableModel(Guid.NewGuid().ToString("N"), (HomeController controller) => controller.GetDataTable(null));
+    Layout = null;
 
+    // Get model
+    var model = Html.DataTableModel("datatable_sample", (HomeController controller) => controller.GetDataTable(null));
+    model.GlobalJsVariableName = "datatable_sample";
+    
     // Global Configuration
-    model.IsDevelopMode = true;
-    model.IsUseColumnFilter = true;
-    model.PageSize = 10;
+    model.IsDevelopMode = false;
     model.BeforeSendFunctionName = "beforeSendHandle";
 
     // Additional Columns

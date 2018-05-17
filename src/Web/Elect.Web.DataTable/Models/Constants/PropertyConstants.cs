@@ -65,6 +65,7 @@ namespace Elect.Web.DataTable.Models.Constants
         public const string SearchValues = "sSearchValues";
         public const string SortCol = "iSortCol";
         public const string SortDir = "sSortDir";
+        public const string ColReorderIndexs = "colReorderIndexs";
         public const string EscapeRegexColumns = "bEscapeRegexColumns";
 
         #endregion

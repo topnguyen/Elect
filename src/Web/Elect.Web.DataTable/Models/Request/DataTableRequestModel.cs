@@ -49,6 +49,9 @@ namespace Elect.Web.DataTable.Models.Request
         [JsonProperty(PropertyName = PropertyConstants.ColumnNames)]
         public List<string> ColumnNames { get; set; }
 
+        [JsonProperty(PropertyName = PropertyConstants.ColReorderIndexs)]
+        public List<int> ColReorderIndexs { get; set; }
+        
         [JsonProperty(PropertyName = PropertyConstants.Sortable)]
         public List<bool> ListIsSortable { get; set; }
 
@@ -76,6 +79,7 @@ namespace Elect.Web.DataTable.Models.Request
         public DataTableRequestModel()
         {
             ColumnNames = new List<string>();
+            ColReorderIndexs = new List<int>();
             ListIsSortable = new List<bool>();
             ListIsSearchable = new List<bool>();
             SearchValues = new List<string>();
@@ -88,6 +92,7 @@ namespace Elect.Web.DataTable.Models.Request
         {
             Columns = columns;
             ColumnNames = new List<string>(columns);
+            ColReorderIndexs = new List<int>();
             ListIsSortable = new List<bool>(columns);
             ListIsSearchable = new List<bool>(columns);
             SearchValues = new List<string>(columns);

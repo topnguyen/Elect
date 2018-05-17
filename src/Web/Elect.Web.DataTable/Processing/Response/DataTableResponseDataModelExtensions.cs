@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,10 +16,12 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System;
 using Elect.Web.DataTable.Models;
+using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Utils.DataTableActionResultUtils;
 
@@ -26,14 +29,17 @@ namespace Elect.Web.DataTable.Processing.Response
 {
     public static class DataTableResponseDataModelExtensions
     {
-        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseModel<T> response, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseModel<T> response,
+            DataTableRequestModel request, Func<T, object> transform, ResponseOptionModel<T> responseOption = null)
+            where T : class, new()
         {
-            return DataTableActionResultHelper.Create(response, transform, responseOption);
+            return DataTableActionResultHelper.Create(request, response, transform, responseOption);
         }
 
-        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseModel<T> response, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        public static DataTableActionResult<T> GetDataTableActionResult<T>(this DataTableResponseModel<T> response,
+            DataTableRequestModel request, ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
-            return DataTableActionResultHelper.Create(response, responseOption);
+            return DataTableActionResultHelper.Create(request, response, responseOption);
         }
     }
 }

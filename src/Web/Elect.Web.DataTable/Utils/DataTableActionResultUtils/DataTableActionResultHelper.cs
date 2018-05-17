@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Web.DataTable.Models;
@@ -24,12 +26,14 @@ using Elect.Web.DataTable.Utils.TypeUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Web.DataTable.Models.Request;
 
 namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
 {
     internal class DataTableActionResultHelper
     {
         /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
         /// <param name="response">  
         ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
         /// </param>
@@ -39,7 +43,9 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
         /// </param>
         /// <param name="responseOption"></param>
         /// <returns></returns>
-        internal static DataTableActionResult<T> Create<T>(DataTableResponseModel<T> response, Func<T, object> transform, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        internal static DataTableActionResult<T> Create<T>(DataTableRequestModel request,
+            DataTableResponseModel<T> response, Func<T, object> transform, ResponseOptionModel<T> responseOption = null)
+            where T : class, new()
         {
             transform = transform ?? (s => s);
 
@@ -52,14 +58,17 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
                     (
                         row => TransformTypeInfoHelper.MergeTransformValuesIntoDictionary(transform, row)
                     )
-                    .Transform<Dictionary<string, object>, Dictionary<string, object>>(StringTransformer.StringifyValues);
+                    .Transform<Dictionary<string, object>, Dictionary<string, object>>(
+                        StringTransformer.StringifyValues);
 
-            result.Data = ApplyOutputRules(result.Data, responseOption);
+            result.Data = ApplyOutputRules(request, result.Data, responseOption);
 
             return result;
         }
 
-        internal static DataTableActionResult<T> Create<T>(DataTableResponseModel<T> response, ResponseOptionModel<T> responseOption = null) where T : class, new()
+        internal static DataTableActionResult<T> Create<T>(DataTableRequestModel request,
+            DataTableResponseModel<T> response,
+            ResponseOptionModel<T> responseOption = null) where T : class, new()
         {
             var result = new DataTableActionResult<T>(response);
 
@@ -69,31 +78,63 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
                 result
                     .Data
                     .Transform(dictionaryTransformFunc)
-                    .Transform<Dictionary<string, object>, Dictionary<string, object>>(StringTransformer.StringifyValues);
+                    .Transform<Dictionary<string, object>, Dictionary<string, object>>(
+                        StringTransformer.StringifyValues);
 
-            result.Data = ApplyOutputRules(result.Data, responseOption);
+            result.Data = ApplyOutputRules(request, result.Data, responseOption);
 
             return result;
         }
 
-        private static DataTableResponseModel<T> ApplyOutputRules<T>(DataTableResponseModel<T> response, ResponseOptionModel<T> responseOption) where T : class, new()
+        private static DataTableResponseModel<T> ApplyOutputRules<T>(DataTableRequestModel request,
+            DataTableResponseModel<T> response,
+            ResponseOptionModel<T> responseOption) where T : class, new()
         {
-            responseOption = responseOption ?? new ResponseOptionModel<T> { ArrayOutputType = ArrayOutputType.BiDimensionalArray };
+            responseOption = responseOption ??
+                             new ResponseOptionModel<T> {ArrayOutputType = ArrayOutputType.BiDimensionalArray};
 
             DataTableResponseModel<T> outputData = response;
 
             switch (responseOption.ArrayOutputType)
             {
                 case ArrayOutputType.ArrayOfObjects:
-                    {
-                        // Nothing is needed
-                        break;
-                    }
+                {
+                    // Nothing is needed
+                    break;
+                }
                 default:
+                {
+                    if (request.ColReorderIndexs?.Any() == true)
                     {
-                        outputData = response.Transform<Dictionary<string, object>, object[]>(d => d.Values.ToArray());
-                        break;
+                        List<Dictionary<string, object>> actualData = new List<Dictionary<string, object>>();
+                        
+                        foreach (var row in response.Data)
+                        {
+                            Dictionary<string, object> correctIndexDictionary = new Dictionary<string, object>();
+
+                            if (!(row is Dictionary<string, object> rowDictionary))
+                            {
+                                continue;
+                            }
+                            
+                            for (int i = 0; i < rowDictionary.Keys.Count; i++)
+                            {
+                                var acctualIndex = request.ColReorderIndexs[i];
+
+                                var acctualCol = rowDictionary.ElementAt(acctualIndex);
+                                
+                                correctIndexDictionary.Add(acctualCol.Key, acctualCol.Value);
+                            }
+                            
+                            actualData.Add(correctIndexDictionary);
+                        }
+
+                        response.Data = actualData.Cast<object>().ToArray();
                     }
+                    
+                    outputData = response.Transform<Dictionary<string, object>, object[]>(d => d.Values.ToArray());
+                    break;
+                }
             }
 
             return outputData;
