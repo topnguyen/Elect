@@ -138,7 +138,7 @@
         {
             <text>
                 dataTableOptions.stateSaveParams = function(settings, data) {
-                   
+
                     data.search.search = "";
 
                     for (var i = 0; i < data.columns.length; i++) {
@@ -238,6 +238,18 @@
             function(event) {
                 $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
             });
+
+        // Get Data
+        $dataTable.getDataAt = function(row, index) {
+            @if (Model.IsEnableColReorder == true)
+            {
+                <text>
+                    var colIndexs = $dataTable.api().colReorder.order();
+                    index = colIndexs.indexOf(index);
+                </text>
+            }
+            return row[index];
+        }
 
         // Global Variable
         @if (!string.IsNullOrWhiteSpace(Model.GlobalJsVariableName))
