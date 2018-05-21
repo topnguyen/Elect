@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.JsonContractResolver;
@@ -32,6 +34,7 @@ namespace Elect.Core.ObjUtils
             {
                 return jObject.ToString(Constants.Formatting.JsonSerializerSettings.Formatting);
             }
+
             return JsonConvert.SerializeObject(obj, Constants.Formatting.JsonSerializerSettings);
         }
 
@@ -54,47 +57,56 @@ namespace Elect.Core.ObjUtils
 
         public static T ConvertTo<T>(object obj)
         {
+            if (obj == null)
+            {
+                return default;
+            }
+
+            if (obj is T variable)
+            {
+                return variable;
+            }
+
+            Type t = typeof(T);
+
+            Type u = Nullable.GetUnderlyingType(t);
+
+            if (u != null)
+            {
+                if (u == typeof(string))
+                {
+                    return (T) (object) obj.ToString();
+                }
+
+                return (T) Convert.ChangeType(obj, u);
+            }
+
+            if (t == typeof(string))
+            {
+                return (T) ((object) obj.ToString());
+            }
+
+            if (t.IsPrimitive)
+            {
+                return (T) Convert.ChangeType(obj.ToString(), t);
+            }
+
+            return (T) Convert.ChangeType(obj, t);
+        }
+
+        public static bool TryConvertTo<T>(object obj, T defaultValue, out T value)
+        {
             try
             {
-                if (obj == null)
-                {
-                    return default;
-                }
+                value = ConvertTo<T>(obj);
 
-                if (obj is T variable)
-                {
-                    return variable;
-                }
-
-                Type t = typeof(T);
-
-                Type u = Nullable.GetUnderlyingType(t);
-
-                if (u != null)
-                {
-                    if (u == typeof(string))
-                    {
-                        return (T)(object)obj.ToString();
-                    }
-
-                    return (T)Convert.ChangeType(obj, u);
-                }
-
-                if (t == typeof(string))
-                {
-                    return (T)((object)obj.ToString());
-                }
-
-                if (t.IsPrimitive)
-                {
-                    return (T)Convert.ChangeType(obj.ToString(), t);
-                }
-
-                return (T)Convert.ChangeType(obj, t);
+                return true;
             }
             catch
             {
-                return default;
+                value = defaultValue == null ? default : defaultValue;
+
+                return false;
             }
         }
 
