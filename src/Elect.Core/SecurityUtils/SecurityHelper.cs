@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.StringUtils;
@@ -22,6 +24,7 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using Elect.Core.SecurityUtils.Algorithms;
 
 namespace Elect.Core.SecurityUtils
 {
@@ -48,7 +51,7 @@ namespace Elect.Core.SecurityUtils
             {
                 byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(value));
 
-                var hash = BitConverter.ToString(hashBytes).Replace("-", "");
+                var hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
 
                 return hash;
             }
@@ -60,7 +63,7 @@ namespace Elect.Core.SecurityUtils
             {
                 byte[] hashBytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(value));
 
-                var hash = BitConverter.ToString(hashBytes).Replace("-", "");
+                var hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
 
                 return hash;
             }
@@ -78,7 +81,7 @@ namespace Elect.Core.SecurityUtils
             {
                 var hashBytes = shaAlgorithm.ComputeHash(valueBytes);
 
-                var hash = BitConverter.ToString(hashBytes).Replace("-", "");
+                var hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
                 return hash;
             }
         }
@@ -93,7 +96,7 @@ namespace Elect.Core.SecurityUtils
             {
                 var hashBytes = shaAlgorithm.ComputeHash(valueBytes);
 
-                var hash = BitConverter.ToString(hashBytes).Replace("-", "");
+                var hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
 
                 return hash;
             }
@@ -142,7 +145,8 @@ namespace Elect.Core.SecurityUtils
 
             using (var encrypt = Aes.Create())
             {
-                var pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                var pdb = new Rfc2898DeriveBytes(key,
+                    new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
 
                 encrypt.Key = pdb.GetBytes(32);
 
@@ -158,6 +162,7 @@ namespace Elect.Core.SecurityUtils
                     value = Safe64Encoding.EncodeBytes(ms.ToArray());
                 }
             }
+
             return value;
         }
 
@@ -173,7 +178,8 @@ namespace Elect.Core.SecurityUtils
 
             using (var encrypt = Aes.Create())
             {
-                var pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                var pdb = new Rfc2898DeriveBytes(key,
+                    new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
 
                 encrypt.Key = pdb.GetBytes(32);
 
@@ -189,6 +195,7 @@ namespace Elect.Core.SecurityUtils
                     value = Encoding.ASCII.GetString(ms.ToArray());
                 }
             }
+
             return value;
         }
 
@@ -213,6 +220,21 @@ namespace Elect.Core.SecurityUtils
 
                 return false;
             }
+        }
+
+        // CRC 32
+
+        public static string HashCrc32(string value)
+        {
+            var bytes = Encoding.UTF8.GetBytes(value);
+
+            Crc32 crc32 = new Crc32();
+
+            var hashBytes = crc32.ComputeHash(bytes);
+
+            var hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
+
+            return hash;
         }
     }
 }

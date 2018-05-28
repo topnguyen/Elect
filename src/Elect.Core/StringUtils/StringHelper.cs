@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Microsoft.AspNetCore.WebUtilities;
@@ -36,7 +38,8 @@ namespace Elect.Core.StringUtils
         public static readonly char[] NumberChars = "0123456789".ToCharArray();
         public static readonly char[] SpecialChars = "!@#$%^*&".ToCharArray();
 
-        public static string Generate(int length, bool isIncludeUpper = true, bool isIncludeLower = true, bool isIncludeNumber = true, bool isIncludeSpecial = false)
+        public static string Generate(int length, bool isIncludeUpper = true, bool isIncludeLower = true,
+            bool isIncludeNumber = true, bool isIncludeSpecial = false)
         {
             var chars = new List<char>();
 
@@ -81,7 +84,7 @@ namespace Elect.Core.StringUtils
 
             if (maxLength < chars.Length)
             {
-                throw new ArgumentException(string.Format("{0} may contain more than {1} chars.", nameof(chars), maxLength), nameof(chars));
+                throw new ArgumentException($"{nameof(chars)} may contain more than {maxLength} chars.", nameof(chars));
             }
 
             var outOfRangeStart = maxLength - (maxLength % chars.Length);
@@ -232,11 +235,12 @@ namespace Elect.Core.StringUtils
             {
                 return false;
             }
+
             try
             {
                 var byteArray = Convert.FromBase64String(value);
 
-                return byteArray != null;
+                return byteArray.Any();
             }
             catch
             {
