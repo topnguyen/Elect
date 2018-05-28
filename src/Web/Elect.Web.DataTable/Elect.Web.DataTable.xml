@@ -81,8 +81,7 @@
             <typeparam name="T"></typeparam>
             <param name="request"></param>
             <param name="response">
-                The properties of this can be marked up with [DataTablesAttribute] to control
-                sorting/searchability/visibility
+                The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
             </param>
             <returns></returns>
         </member>
@@ -109,8 +108,7 @@
         </member>
         <member name="P:Elect.Web.DataTable.Models.DataTableModel.InitCompleteFunctionName">
             <summary>
-                Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function.
-                Ex:
+                Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function. Ex:
                 initCompleteHandle(settings, json).
             </summary>
         </member>
