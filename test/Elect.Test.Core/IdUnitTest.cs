@@ -1,5 +1,13 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using Elect.Core.SecurityUtils;
+using Elect.Core.SecurityUtils.Algorithms;
 using Elect.Core.StringUtils;
 using Elect.Data.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,20 +41,6 @@ namespace Elect.Test.Core
             var idString = IdHelper.ToString(id);
 
             Assert.AreEqual(idString, originalId);
-        }
-
-        [TestMethod]
-        public void GenerateLongIdsCase()
-        {
-            var idFilepath = "Ids.txt";
-            idFilepath = PathHelper.GetFullPath(idFilepath);
-            
-            for (ulong i = 0; i < 100000; i++)
-            {
-                var idString = IdHelper.ToString(i);
-
-                File.AppendAllText(idFilepath, idString + Environment.NewLine);
-            }
         }
     }
 }

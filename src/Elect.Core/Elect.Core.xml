@@ -142,34 +142,34 @@
         </member>
         <member name="T:Elect.Core.StringUtils.Safe32Encoding">
             <summary>
-                Class used for conversion between byte array and Base32 notation
+            Class used for conversion between byte array and Base32 notation
             </summary>
         </member>
         <member name="F:Elect.Core.StringUtils.Safe32Encoding.InByteSize">
             <summary>
-                Size of the regular byte in bits
+            Size of the regular byte in bits
             </summary>
         </member>
         <member name="F:Elect.Core.StringUtils.Safe32Encoding.OutByteSize">
             <summary>
-                Size of converted byte in bits
+            Size of converted byte in bits
             </summary>
         </member>
         <member name="F:Elect.Core.StringUtils.Safe32Encoding.Base32Alphabet">
             <summary>
-                Alphabet
+            Alphabet
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe32Encoding.EncodeBytes(System.Byte[])">
             <summary>
-                Convert byte array to Base32 format
+            Convert byte array to Base32 format
             </summary>
             <param name="bytes">An array of bytes to convert to Base32 format</param>
             <returns>Returns a string representing byte array</returns>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe32Encoding.DecodeBytes(System.String)">
             <summary>
-                Convert base32 string to array of bytes
+            Convert base32 string to array of bytes
             </summary>
             <param name="base32String">Base32 string to convert</param>
             <returns>Returns a byte array converted from the string</returns>
