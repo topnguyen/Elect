@@ -6,13 +6,13 @@
     <members>
         <member name="M:Elect.Sample.Web.Controllers.SiteMapController.Index">
             <summary>
-                Get all site map index
+                Get all site map index 
             </summary>
             <returns></returns>
         </member>
         <member name="M:Elect.Sample.Web.Controllers.SiteMapController.Main">
             <summary>
-                Get all site map item by attributes
+                Get all site map item by attributes 
             </summary>
             <returns></returns>
         </member>

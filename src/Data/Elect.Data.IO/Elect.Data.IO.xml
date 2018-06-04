@@ -6,27 +6,27 @@
     <members>
         <member name="M:Elect.Data.IO.DirectoryUtils.DirectoryHelper.Empty(System.String[])">
             <summary>
-                Clear all content in the directory
+                Clear all content in the directory 
             </summary>
             <param name="paths"></param>
         </member>
         <member name="M:Elect.Data.IO.DirectoryUtils.DirectoryHelper.IsEmpty(System.String)">
             <summary>
-                Check directory is empty or not
+                Check directory is empty or not 
             </summary>
             <param name="path"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Data.IO.FileUtils.FileHelper.CreateTempFile(System.String)">
             <summary>
-                Create an empty temp file with extension.
+                Create an empty temp file with extension. 
             </summary>
             <param name="extension"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Data.IO.FileUtils.FileHelper.CreateTempFile(System.IO.Stream,System.String)">
             <summary>
-                Create an temp file from stream with extension
+                Create an temp file from stream with extension 
             </summary>
             <param name="stream">   </param>
             <param name="extension"></param>
@@ -34,7 +34,7 @@
         </member>
         <member name="M:Elect.Data.IO.FileUtils.FileHelper.SafeDelete(System.String)">
             <summary>
-                Delete file if exist and can delete
+                Delete file if exist and can delete 
             </summary>
             <param name="path"></param>
             <returns> return true if success delete file, else is fail </returns>
@@ -65,7 +65,7 @@
         </member>
         <member name="M:Elect.Data.IO.FileUtils.FileWatcher.#ctor(System.String)">
             <summary>
-                Create new instance of file system watcher
+                Create new instance of file system watcher 
             </summary>
             <exception cref="T:System.ArgumentException">
                 The <paramref name="path" /> parameter contains invalid characters, is empty, or
@@ -79,19 +79,19 @@
         </member>
         <member name="T:Elect.Data.IO.FileUtils.FileWatcher.OnChangedEvent">
             <summary>
-                Delegate for event on change
+                Delegate for event on change 
             </summary>
             <param name="source"></param>
             <param name="e">     </param>
         </member>
         <member name="P:Elect.Data.IO.FileUtils.FileWatcher.OnChanged">
             <summary>
-                On file changed event
+                On file changed event 
             </summary>
         </member>
         <member name="M:Elect.Data.IO.FileUtils.FileWatcher.Start">
             <summary>
-                Start watcher
+                Start watcher 
             </summary>
             <exception cref="T:System.IO.FileNotFoundException">
                 The directory specified in <see cref="P:System.IO.FileSystemWatcher.Path" /> could
@@ -109,7 +109,7 @@
         </member>
         <member name="M:Elect.Data.IO.FileUtils.FileWatcher.Stop">
             <summary>
-                Stop watcher
+                Stop watcher 
             </summary>
             <exception cref="T:System.ObjectDisposedException">
                 The <see cref="T:System.IO.FileSystemWatcher" /> object has been disposed.
@@ -127,7 +127,7 @@
         </member>
         <member name="M:Elect.Data.IO.FileUtils.FileWatcher.OnFileChanged(System.Object,System.IO.FileSystemEventArgs)">
             <summary>
-                On file changed event
+                On file changed event 
             </summary>
             <param name="source"></param>
             <param name="e">     </param>
@@ -139,39 +139,45 @@
         </member>
         <member name="F:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Lazy">
             <summary>
-                A new instance of the <see cref="T:.Web.Config.Config" /> class. with lazy initialization.
+                A new instance of the
+                <see cref="T:.Web.Config.Config"/>
+                class. with lazy initialization. 
             </summary>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.#ctor">
             <summary>
-                Prevents a default instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class from being created.
+                Prevents a default instance of the
+                <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper"/>
+                class from being created. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Instance">
             <summary>
-                Gets the current instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class.
+                Gets the current instance of the
+                <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper"/>
+                class. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.WorkingFolder">
             <summary>
-                Gets the working directory path.
+                Gets the working directory path. 
             </summary>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.RegisterExecutable">
             <summary>
-                Registers the embedded executable.
+                Registers the embedded executable. 
             </summary>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.CheckFilePath(System.String)">
             <summary>
-                Throw argument exception if path not valid
+                Throw argument exception if path not valid 
             </summary>
             <param name="filePath"></param>
             <example cref="T:System.ArgumentException"></example>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetQualityPercent(System.Int32,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm)">
             <summary>
-                Min 0 - max 99
+                Min 0 - max 99 
             </summary>
             <param name="qualityPercent"></param>
             <param name="algorithm">     </param>
@@ -179,7 +185,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetQualityPercent(System.Int32,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressImageType)">
             <summary>
-                Min 0 - max 99
+                Min 0 - max 99 
             </summary>
             <param name="qualityPercent">   </param>
             <param name="compressImageType"></param>
@@ -187,7 +193,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.String,System.String,System.Int32,System.Int32)">
             <summary>
-                Runs the process to optimize the image.
+                Runs the process to optimize the image. 
             </summary>
             <param name="inputPath">     </param>
             <param name="outputPath">    </param>
@@ -200,7 +206,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.IO.MemoryStream,System.Int32,System.Int32)">
             <summary>
-                Runs the process to optimize the image.
+                Runs the process to optimize the image. 
             </summary>
             <param name="stream">         The source image stream. </param>
             <param name="qualityPercent">
@@ -212,7 +218,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Process(System.IO.MemoryStream,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32,System.Int32)">
             <summary>
-                Runs the process to optimize the image.
+                Runs the process to optimize the image. 
             </summary>
             <param name="stream">        </param>
             <param name="algorithm">
@@ -227,7 +233,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Process(System.String,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32,System.Int32)">
             <summary>
-                Runs the process to optimize the image.
+                Runs the process to optimize the image. 
             </summary>
             <param name="filePath">       The source file. </param>
             <param name="algorithm">
@@ -247,7 +253,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.GetArguments(System.String,System.String@,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32)">
             <summary>
-                Gets the correct arguments to pass to the compressor
+                Gets the correct arguments to pass to the compressor 
             </summary>
             <param name="filePath">       The source file. </param>
             <param name="fileTempPath">  </param>
@@ -260,7 +266,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.GetGifCommand(System.String,System.Int32)">
             <summary>
-                GIF Command
+                GIF Command 
             </summary>
             <param name="filePath">      </param>
             <param name="qualityPercent"></param>
@@ -279,37 +285,37 @@
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.FileType">
             <summary>
-                Gets or sets the original file size in bytes.
+                Gets or sets the original file size in bytes. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.OriginalFileSize">
             <summary>
-                Gets or sets the original file size in bytes.
+                Gets or sets the original file size in bytes. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.CompressedFileSize">
             <summary>
-                Gets or sets the result file size in bytes.
+                Gets or sets the result file size in bytes. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.TotalMillisecondsTook">
             <summary>
-                Gets or sets the total time took.
+                Gets or sets the total time took. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.BytesSaving">
             <summary>
-                Gets the difference in file size in bytes.
+                Gets the difference in file size in bytes. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.PercentSaving">
             <summary>
-                Gets the difference in file size as a percentage.
+                Gets the difference in file size as a percentage. 
             </summary>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.ToString">
             <summary>
-                Returns a string that represents the current object.
+                Returns a string that represents the current object. 
             </summary>
             <returns> A string that represents the current object. </returns>
         </member>
@@ -339,7 +345,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GenerateTextImageBase64(System.String,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Drawing.Font)">
             <summary>
-                Generate image from text (at center of the image)
+                Generate image from text (at center of the image) 
             </summary>
             <param name="text">            Will be StringHelper.Normalize(text).First().ToString() </param>
             <param name="width">           Default is 50 px </param>
@@ -353,7 +359,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GenerateTextImage(System.String,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Drawing.Font)">
             <summary>
-                Generate image from text (at center of the image)
+                Generate image from text (at center of the image) 
             </summary>
             <param name="text">           </param>
             <param name="width">          </param>
@@ -365,7 +371,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetImageBase64Format(System.String,System.String)">
             <summary>
-                Get image base64 for "src" of "img" element in HTML.
+                Get image base64 for "src" of "img" element in HTML. 
             </summary>
             <param name="base64">        </param>
             <param name="imageExtension"></param>
@@ -373,19 +379,19 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetBase64Format(System.String)">
             <summary>
-                Get string base64 data from "src" of "img" element in HTML.
+                Get string base64 data from "src" of "img" element in HTML. 
             </summary>
             <param name="imageBase64"></param>
             <returns></returns>
         </member>
         <member name="T:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType">
             <summary>
-                Enumerated resize modes to apply to resized images.
+                Enumerated resize modes to apply to resized images. 
             </summary>
         </member>
         <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Crop">
             <summary>
-                Crops the resized image to fit the bounds of its container.
+                Crops the resized image to fit the bounds of its container. 
             </summary>
         </member>
         <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Pad">
@@ -414,12 +420,12 @@
         </member>
         <member name="F:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType.Stretch">
             <summary>
-                Stretches the resized image to fit the bounds of its container.
+                Stretches the resized image to fit the bounds of its container. 
             </summary>
         </member>
         <member name="M:Elect.Data.IO.PathHelper.GetFullPath(System.String)">
             <summary>
-                Return absolute path
+                Return absolute path 
             </summary>
             <param name="path"></param>
             <returns></returns>

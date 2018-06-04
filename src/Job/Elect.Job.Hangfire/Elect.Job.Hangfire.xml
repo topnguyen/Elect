@@ -6,12 +6,12 @@
     <members>
         <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.IsDisableJobDashboard">
             <summary>
-                Disable or Enable Job Dashboard, default is false.
+                Disable or Enable Job Dashboard, default is false. 
             </summary>
         </member>
         <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.Url">
             <summary>
-                Job Dashboard url, default is "/developers/job".
+                Job Dashboard url, default is "/developers/job". 
             </summary>
             <remarks> Must start with "/" </remarks>
         </member>
@@ -23,7 +23,7 @@
         </member>
         <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.AccessKey">
             <summary>
-                Access Key via uri param "key", default is "" - allow anonymous.
+                Access Key via uri param "key", default is "" - allow anonymous. 
             </summary>
         </member>
         <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.UnAuthorizeMessage">
@@ -34,12 +34,15 @@
         </member>
         <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.Provider">
             <summary>
-                Storage provider, default is Memory.
+                Storage provider, default is Memory. 
             </summary>
         </member>
         <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.HangfireDatabaseConnectionString">
             <summary>
-                Database Connection if <see cref="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.Provider" /> is <see cref="F:Elect.Job.Hangfire.Models.HangfireProvider.SqlServer" />
+                Database Connection if
+                <see cref="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.Provider"/>
+                is
+                <see cref="F:Elect.Job.Hangfire.Models.HangfireProvider.SqlServer"/>
             </summary>
         </member>
         <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.StatsPollingInterval">

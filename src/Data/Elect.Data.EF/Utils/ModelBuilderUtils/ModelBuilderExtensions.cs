@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Data.EF.Interfaces.Map;
@@ -48,7 +50,8 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
         /// </summary>
         /// <param name="builder"> </param>
         /// <param name="assembly"></param>
-        public static void AddConfigFromAssembly<TDbContext>(this ModelBuilder builder, Assembly assembly) where TDbContext : class
+        public static void AddConfigFromAssembly<TDbContext>(this ModelBuilder builder, Assembly assembly)
+            where TDbContext : class
         {
             // Types that do entity mapping
             var mappingTypes = GetMappingTypes(assembly);
@@ -61,7 +64,8 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                     .ToList();
 
             // Filter mapping types by TDbContext dbSetTypes
-            mappingTypes = mappingTypes.Where(x => dbSetTypes.Any(y => y.FullName == x.BaseType.GetGenericArguments().First().FullName)).ToList();
+            mappingTypes = mappingTypes.Where(x =>
+                dbSetTypes.Any(y => y.FullName == x.BaseType.GetGenericArguments().First().FullName)).ToList();
 
             builder.AddConfigFromMappingTypes(mappingTypes);
         }
@@ -99,7 +103,7 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
 
                 // Create the mapping type and do the mapping
                 var mapper = Activator.CreateInstance(mappingType);
-                mapper.GetType().GetMethod("Map").Invoke(mapper, new[] { entityBuilder });
+                mapper.GetType().GetMethod("Map").Invoke(mapper, new[] {entityBuilder});
             }
         }
 
