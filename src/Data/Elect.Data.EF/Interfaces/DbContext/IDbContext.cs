@@ -17,16 +17,6 @@
 //--------------------------------------------------
 #endregion License
 
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace Elect.Data.EF.Interfaces.DbContext
 {
     public interface IDbContext : IDisposable, IInfrastructure<IServiceProvider>

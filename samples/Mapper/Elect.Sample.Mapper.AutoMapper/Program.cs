@@ -56,7 +56,7 @@ namespace Elect.Sample.Mapper.AutoMapper
 
             // IQueryable
 
-            IQueryable<UserEntity> userEntities = new List<UserEntity> {userEntity, userEntity2}.AsQueryable();
+            IQueryable<UserEntity> userEntities = new List<UserEntity> { userEntity, userEntity2 }.AsQueryable();
 
             List<UserModel> userModels = userEntities.QueryTo<UserModel>().ToList();
         }

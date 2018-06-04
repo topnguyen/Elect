@@ -12,7 +12,7 @@ namespace Elect.Core.SecurityUtils.Algorithms
         public const uint DefaultSeed = 0xffffffffu;
         public override int HashSize => 32;
 
-        #endregion
+        #endregion Properties
 
         #region Fields
 
@@ -21,7 +21,7 @@ namespace Elect.Core.SecurityUtils.Algorithms
         private readonly uint[] _table;
         private uint _hash;
 
-        #endregion
+        #endregion Fields
 
         public Crc32() : this(DefaultPolynomial, DefaultSeed)
         {
@@ -55,7 +55,7 @@ namespace Elect.Core.SecurityUtils.Algorithms
             return hashBuffer;
         }
 
-        #endregion
+        #endregion Override
 
         #region Private Helper
 
@@ -70,7 +70,7 @@ namespace Elect.Core.SecurityUtils.Algorithms
 
             for (var i = 0; i < 256; i++)
             {
-                var entry = (uint) i;
+                var entry = (uint)i;
                 for (var j = 0; j < 8; j++)
                     if ((entry & 1) == 1)
                     {
@@ -112,6 +112,6 @@ namespace Elect.Core.SecurityUtils.Algorithms
             return result;
         }
 
-        #endregion
+        #endregion Private Helper
     }
 }

@@ -19,13 +19,13 @@
 
 #endregion License
 
+using Elect.Web.DataTable.Attributes;
+using Elect.Web.DataTable.Models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Elect.Web.DataTable.Attributes;
-using Elect.Web.DataTable.Models;
 
 namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
 {
@@ -47,7 +47,7 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
                         // Ignore Property have DataTableIgnoreAttribute
                         continue;
                     }
-                    
+
                     var attributes = propertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
 
                     var dataTablePropertyInfo = new DataTablePropertyInfoModel(propertyInfo, attributes);

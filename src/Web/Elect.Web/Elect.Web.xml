@@ -6,7 +6,7 @@
     <members>
         <member name="P:Elect.Web.Api.Models.LinkModel.Method">
             <summary>
-                Http method, default is "GET". 
+                Http method, default is "GET".
             </summary>
         </member>
         <member name="P:Elect.Web.Api.Models.PagedRequestModel.Take">
@@ -16,12 +16,12 @@
         </member>
         <member name="P:Elect.Web.Api.Models.PagedResponseModel`1.AdditionalData">
             <summary>
-                Will be de-serialize as list property 
+                Will be de-serialize as list property
             </summary>
         </member>
         <member name="M:Elect.Web.HttpUtils.HttpRequestExtensions.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
-                Determines whether the specified HTTP request is an AJAX request. 
+                Determines whether the specified HTTP request is an AJAX request.
             </summary>
             <param name="request"> The HTTP request. </param>
             <returns>
@@ -46,21 +46,21 @@
         </member>
         <member name="M:Elect.Web.HttpUtils.HttpRequestExtensions.GetEndpoint(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
-                Endpoint of current request combine schema://host with port/path 
+                Endpoint of current request combine schema://host with port/path
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Web.HttpUtils.HttpRequestExtensions.GetDomain(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
-                Endpoint of current request domain schema://host with port 
+                Endpoint of current request domain schema://host with port
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Web.HttpUtils.HttpRequestHelper.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
-                Determines whether the specified HTTP request is an AJAX request. 
+                Determines whether the specified HTTP request is an AJAX request.
             </summary>
             <param name="request"> The HTTP request. </param>
             <returns>
@@ -85,21 +85,21 @@
         </member>
         <member name="M:Elect.Web.HttpUtils.HttpRequestHelper.GetEndpoint(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
-                Endpoint of current request combine schema://host with port/path 
+                Endpoint of current request combine schema://host with port/path
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Web.HttpUtils.HttpRequestHelper.GetDomain(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
-                Endpoint of current request domain schema://host with port 
+                Endpoint of current request domain schema://host with port
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
         <member name="T:Elect.Web.IUrlHelperUtils.IUrlHelperExtensions">
             <summary>
-                <see cref="T:Microsoft.AspNetCore.Mvc.IUrlHelper" /> extension methods. 
+                <see cref="T:Microsoft.AspNetCore.Mvc.IUrlHelper" /> extension methods.
             </summary>
         </member>
         <member name="M:Elect.Web.IUrlHelperUtils.IUrlHelperExtensions.AbsoluteAction(Microsoft.AspNetCore.Mvc.IUrlHelper,System.String,System.String,System.Object)">
@@ -141,62 +141,62 @@
         </member>
         <member name="F:Elect.Web.Models.ContentType.Atom">
             <summary>
-                Atom feeds. 
+                Atom feeds.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Html">
             <summary>
-                HTML; Defined in RFC 2854. 
+                HTML; Defined in RFC 2854.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.FormUrlEncoded">
             <summary>
-                Form URL Encoded. 
+                Form URL Encoded.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Gif">
             <summary>
-                GIF image; Defined in RFC 2045 and RFC 2046. 
+                GIF image; Defined in RFC 2045 and RFC 2046.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Jpg">
             <summary>
-                JPEG JFIF image; Defined in RFC 2045 and RFC 2046. 
+                JPEG JFIF image; Defined in RFC 2045 and RFC 2046.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Bson">
             <summary>
-                Binary JavaScript Object Notation BSON. 
+                Binary JavaScript Object Notation BSON.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Json">
             <summary>
-                JavaScript Object Notation JSON; Defined in RFC 4627. 
+                JavaScript Object Notation JSON; Defined in RFC 4627.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.MultipartFormData">
             <summary>
-                Multi-part form data; Defined in RFC 2388. 
+                Multi-part form data; Defined in RFC 2388.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Png">
             <summary>
-                Portable Network Graphics; Registered,[8] Defined in RFC 2083. 
+                Portable Network Graphics; Registered,[8] Defined in RFC 2083.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Text">
             <summary>
-                Textual data; Defined in RFC 2046 and RFC 3676. 
+                Textual data; Defined in RFC 2046 and RFC 3676.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Xml">
             <summary>
-                Extensible Markup Language; Defined in RFC 3023 
+                Extensible Markup Language; Defined in RFC 3023
             </summary>
         </member>
         <member name="F:Elect.Web.Models.ContentType.Zip">
             <summary>
-                Compressed ZIP. 
+                Compressed ZIP.
             </summary>
         </member>
         <member name="F:Elect.Web.Models.HeaderKey.XAntiforgeryToken">
@@ -208,37 +208,37 @@
         </member>
         <member name="P:Elect.Web.Models.HttpContextModel.RequestBody">
             <summary>
-                Need to <c> EnableRewind </c> for Request in middleware to get Request Body. 
+                Need to <c> EnableRewind </c> for Request in middleware to get Request Body.
             </summary>
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.Caption">
             <summary>
-                Caption/description of image. 
+                Caption/description of image.
             </summary>
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.GeoLocation">
             <summary>
-                Geo location of image. 
+                Geo location of image.
             </summary>
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.ImagePath">
             <summary>
-                URL of image. 
+                URL of image.
             </summary>
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.License">
             <summary>
-                Url to License of image 
+                Url to License of image
             </summary>
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.Title">
             <summary>
-                Title of image. 
+                Title of image.
             </summary>
         </member>
         <member name="M:Elect.Web.SiteMap.Models.SiteMapImageItemModel.#ctor(System.String,Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel[])">
             <summary>
-                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel" /> 
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel" />
             </summary>
             <param name="url">    URL of the page. </param>
             <param name="images"> List image </param>
@@ -251,17 +251,17 @@
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemModel.Url">
             <summary>
-                URL of the page. 
+                URL of the page.
             </summary>
         </member>
         <member name="T:Elect.Web.SiteMap.Models.SiteMapIndexItemModel">
             <summary>
-                Represents a site map index item. 
+                Represents a site map index item.
             </summary>
         </member>
         <member name="M:Elect.Web.SiteMap.Models.SiteMapIndexItemModel.#ctor(System.String,System.Nullable{System.DateTime})">
             <summary>
-                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapIndexItemModel" /> 
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapIndexItemModel" />
             </summary>
             <param name="url">          URL of the page. Optional. </param>
             <param name="lastModified"> The date of last modification of the file. Optional. </param>
@@ -271,12 +271,12 @@
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapIndexItemModel.LastModified">
             <summary>
-                The date of last modification of the file. 
+                The date of last modification of the file.
             </summary>
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapIndexItemModel.Url">
             <summary>
-                URL of the page. 
+                URL of the page.
             </summary>
         </member>
         <member name="T:Elect.Web.SiteMap.Models.SiteMapItemFrequency">
@@ -291,17 +291,17 @@
         </member>
         <member name="T:Elect.Web.SiteMap.Models.SiteMapItem">
             <summary>
-                Represents a page or URL in your site map. 
+                Represents a page or URL in your site map.
             </summary>
         </member>
         <member name="M:Elect.Web.SiteMap.Models.SiteMapItem.#ctor(System.String,System.Nullable{System.DateTime},System.Nullable{Elect.Web.SiteMap.Models.SiteMapItemFrequency},System.Nullable{System.Double})">
             <summary>
-                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapItem" /> 
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapItem" />
             </summary>
             <param name="url">          URL of the page. </param>
             <param name="lastModified"> The date of last modification of the file. Optional. </param>
             <param name="frequency">    How frequently the page is likely to change. Optional. </param>
-            <param name="priority">    
+            <param name="priority">
                 The priority of this URL relative to other URLs on your site. Valid values range from
                 0.0 to 1.0. Optional.
             </param>
@@ -356,7 +356,7 @@
         </member>
         <member name="T:Elect.Web.SiteMap.Services.SiteMapGenerator">
             <summary>
-                Generates site map XML. 
+                Generates site map XML.
             </summary>
         </member>
         <member name="M:Elect.Web.SiteMap.Services.SiteMapHelper.GetSiteMapContentResult(Microsoft.AspNetCore.Mvc.IUrlHelper)">
@@ -369,7 +369,7 @@
         </member>
         <member name="M:Elect.Web.SiteMap.Services.SiteMapHelper.GetSiteMapContentResult(System.Reflection.Assembly,Microsoft.AspNetCore.Mvc.IUrlHelper)">
             <summary>
-                Generate SiteMap content result for assembly project. 
+                Generate SiteMap content result for assembly project.
             </summary>
             <param name="asm">        assembly of web project you want to generate SiteMap </param>
             <param name="iUrlHelper"></param>
@@ -384,12 +384,12 @@
         </member>
         <member name="T:Elect.Web.SiteMap.Services.SiteMapIndexGenerator">
             <summary>
-                Generate Site map index (see more http://www.sitemaps.org/protocol.html) 
+                Generate Site map index (see more http://www.sitemaps.org/protocol.html)
             </summary>
         </member>
         <member name="F:Elect.Web.SiteMap.Services.SiteMapValidator.MaximumSiteMapCount">
             <summary>
-                The maximum number of site map a site map index file can contain. 
+                The maximum number of site map a site map index file can contain.
             </summary>
         </member>
         <member name="F:Elect.Web.SiteMap.Services.SiteMapValidator.MaximumSiteMapIndexCount">
@@ -402,18 +402,18 @@
         </member>
         <member name="F:Elect.Web.SiteMap.Services.SiteMapValidator.MaximumSiteMapSizeInBytes">
             <summary>
-                The maximum size of a site maps file in bytes (10MB). 
+                The maximum size of a site maps file in bytes (10MB).
             </summary>
         </member>
         <member name="M:Elect.Web.SiteMap.Services.SiteMapValidator.CheckDocumentSize(System.String)">
             <summary>
-                Checks the size of the XML site maps document. If it is over 10MB, logs an error. 
+                Checks the size of the XML site maps document. If it is over 10MB, logs an error.
             </summary>
             <param name="siteMapXml"> The site maps XML document. </param>
         </member>
         <member name="M:Elect.Web.SiteMap.Services.SiteMapValidator.CheckSiteMapCount(System.Int32)">
             <summary>
-                Checks the count of the number of site maps. If it is over 50,000, logs an error. 
+                Checks the count of the number of site maps. If it is over 50,000, logs an error.
             </summary>
             <param name="siteMapCount"> The site maps count. </param>
         </member>

@@ -19,9 +19,9 @@
 
 #endregion License
 
-using System.Linq;
 using Elect.Web.DataTable.Processing.Request;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Elect.Web.DataTable
 {

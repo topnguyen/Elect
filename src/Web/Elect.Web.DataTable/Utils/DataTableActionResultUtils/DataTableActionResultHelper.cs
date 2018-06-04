@@ -19,21 +19,21 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Utils.TypeUtils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
 {
     internal class DataTableActionResultHelper
     {
         /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <param name="response">
+        /// <param name="request">  </param>
+        /// <param name="response"> 
         ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
         /// </param>
         /// <param name="transform">
@@ -107,7 +107,7 @@ namespace Elect.Web.DataTable.Utils.DataTableActionResultUtils
 
                             continue;
                         }
-                        
+
                         var acctualCol = rowDictionary.ElementAt(acctualIndex);
 
                         correctIndexDictionary.Add(acctualCol.Key, acctualCol.Value);

@@ -27,17 +27,17 @@ namespace Elect.Web.DataTable.Models.Constants
     public enum FilterType
     {
         /// <summary>
-        ///     Not show any input in Column Filter
+        ///     Not show any input in Column Filter 
         /// </summary>
         [Description(FilterConstants.None)] None,
 
         /// <summary>
-        ///     Display as Drop-down list in Column Filter
+        ///     Display as Drop-down list in Column Filter 
         /// </summary>
         [Description(FilterConstants.Select)] Select,
 
         /// <summary>
-        ///     Display as Free Text input in Column Filter
+        ///     Display as Free Text input in Column Filter 
         /// </summary>
         [Description(FilterConstants.Text)] Text,
 

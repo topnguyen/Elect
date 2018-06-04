@@ -6,7 +6,7 @@
     <members>
         <member name="M:Elect.Sample.Web.DataTable.Controllers.HomeController.GetDataTable(Elect.Web.DataTable.Models.Request.DataTableRequestModel)">
             <summary>
-                Get Users DataTable 
+                Get Users DataTable
             </summary>
             <returns></returns>
         </member>

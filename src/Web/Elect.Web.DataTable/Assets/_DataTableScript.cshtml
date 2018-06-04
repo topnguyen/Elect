@@ -9,7 +9,7 @@
         var $table = $('#@Model.Id');
 
         var $dataTable = null;
-        
+
         @{
             // Handle Default Values for Options
             Model.IsDevelopMode = Model.IsDevelopMode ?? false;
@@ -161,11 +161,10 @@
             </text>
         }
 
-
         // Draw Call back function
         dataTableOptions.fnDrawCallback = function(oSettings) {
             // Logic before run custom method
-            
+
             @if (!string.IsNullOrWhiteSpace(Model.DrawCallbackFunctionName))
             {
                 <text>
@@ -258,7 +257,7 @@
                 window['@Model.GlobalJsVariableName'] = $dataTable;
             </text>
         }
-        
+
         @if (Model.IsDevelopMode == true)
         {
             <text>

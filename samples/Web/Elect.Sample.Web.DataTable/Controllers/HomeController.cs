@@ -1,10 +1,10 @@
-﻿using System;
-using Elect.Sample.Web.DataTable.Models;
+﻿using Elect.Sample.Web.DataTable.Models;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Processing.Response;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

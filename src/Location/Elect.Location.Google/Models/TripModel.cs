@@ -17,8 +17,8 @@
 //--------------------------------------------------
 #endregion License
 
-using System.Collections.Generic;
 using Elect.Location.Models;
+using System.Collections.Generic;
 
 namespace Elect.Location.Google.Models
 {

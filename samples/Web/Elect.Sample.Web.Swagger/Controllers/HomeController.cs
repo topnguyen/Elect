@@ -15,6 +15,7 @@ namespace Elect.Sample.Web.Swagger.Controllers
         {
             _electSwaggerOptions = electSwaggerConfig.Value;
         }
+
         public IActionResult Index()
         {
             return Redirect($"{HttpContext.Request.GetDomain()}{_electSwaggerOptions.Url}");

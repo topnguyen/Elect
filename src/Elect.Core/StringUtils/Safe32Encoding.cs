@@ -4,30 +4,30 @@ using System.Text;
 namespace Elect.Core.StringUtils
 {
     /// <summary>
-    /// Class used for conversion between byte array and Base32 notation
+    ///     Class used for conversion between byte array and Base32 notation 
     /// </summary>
     public static class Safe32Encoding
     {
         /// <summary>
-        /// Size of the regular byte in bits
+        ///     Size of the regular byte in bits 
         /// </summary>
         private const int InByteSize = 8;
 
         /// <summary>
-        /// Size of converted byte in bits
+        ///     Size of converted byte in bits 
         /// </summary>
         private const int OutByteSize = 5;
 
         /// <summary>
-        /// Alphabet
+        ///     Alphabet 
         /// </summary>
         private const string Base32Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
         /// <summary>
-        /// Convert byte array to Base32 format
+        ///     Convert byte array to Base32 format 
         /// </summary>
-        /// <param name="bytes">An array of bytes to convert to Base32 format</param>
-        /// <returns>Returns a string representing byte array</returns>
+        /// <param name="bytes"> An array of bytes to convert to Base32 format </param>
+        /// <returns> Returns a string representing byte array </returns>
         public static string EncodeBytes(byte[] bytes)
         {
             // Check if byte array is null
@@ -47,8 +47,8 @@ namespace Elect.Core.StringUtils
             // Position in the input buffer
             int bytesPosition = 0;
 
-            // Offset inside a single byte that <bytesPosition> points to (from left to right)
-            // 0 - highest bit, 7 - lowest bit
+            // Offset inside a single byte that <bytesPosition> points to (from left to right) 0 -
+            // highest bit, 7 - lowest bit
             int bytesSubPosition = 0;
 
             // Byte to look up in the dictionary
@@ -60,7 +60,8 @@ namespace Elect.Core.StringUtils
             // Iterate through input buffer until we reach past the end of it
             while (bytesPosition < bytes.Length)
             {
-                // Calculate the number of bits we can extract out of current input byte to fill missing bits in the output byte
+                // Calculate the number of bits we can extract out of current input byte to fill
+                // missing bits in the output byte
                 int bitsAvailableInByte =
                     Math.Min(InByteSize - bytesSubPosition, OutByteSize - outputBase32BytePosition);
 
@@ -69,7 +70,7 @@ namespace Elect.Core.StringUtils
 
                 // Extract the part of the input byte and move it to the output byte
                 outputBase32Byte |=
-                    (byte) (bytes[bytesPosition] >> (InByteSize - (bytesSubPosition + bitsAvailableInByte)));
+                    (byte)(bytes[bytesPosition] >> (InByteSize - (bytesSubPosition + bitsAvailableInByte)));
 
                 // Update current sub-byte position
                 bytesSubPosition += bitsAvailableInByte;
@@ -116,10 +117,10 @@ namespace Elect.Core.StringUtils
         }
 
         /// <summary>
-        /// Convert base32 string to array of bytes
+        ///     Convert base32 string to array of bytes 
         /// </summary>
-        /// <param name="base32String">Base32 string to convert</param>
-        /// <returns>Returns a byte array converted from the string</returns>
+        /// <param name="base32String"> Base32 string to convert </param>
+        /// <returns> Returns a byte array converted from the string </returns>
         public static byte[] DecodeBytes(string base32String)
         {
             // Check if string is null
@@ -158,8 +159,9 @@ namespace Elect.Core.StringUtils
             // The number of bits filled in the current output byte
             int outputByteSubPosition = 0;
 
-            // Normally we would iterate on the input array but in this case we actually iterate on the output array
-            // We do it because output array doesn't have overflow bits, while input does and it will cause output array overflow if we don't stop in time
+            // Normally we would iterate on the input array but in this case we actually iterate on
+            // the output array We do it because output array doesn't have overflow bits, while input
+            // does and it will cause output array overflow if we don't stop in time
             while (outputBytePosition < outputBytes.Length)
             {
                 // Look up current character in the dictionary to convert it to byte
@@ -172,7 +174,8 @@ namespace Elect.Core.StringUtils
                         $"Specified string is not valid Base32 format because character \"{base32String[base32Position]}\" does not exist in Base32 alphabet");
                 }
 
-                // Calculate the number of bits we can extract out of current input character to fill missing bits in the output byte
+                // Calculate the number of bits we can extract out of current input character to fill
+                // missing bits in the output byte
                 int bitsAvailableInByte =
                     Math.Min(OutByteSize - base32SubPosition, InByteSize - outputByteSubPosition);
 
@@ -181,7 +184,7 @@ namespace Elect.Core.StringUtils
 
                 // Extract the part of the input character and move it to the output byte
                 outputBytes[outputBytePosition] |=
-                    (byte) (currentBase32Byte >> (OutByteSize - (base32SubPosition + bitsAvailableInByte)));
+                    (byte)(currentBase32Byte >> (OutByteSize - (base32SubPosition + bitsAvailableInByte)));
 
                 // Update current sub-byte position
                 outputByteSubPosition += bitsAvailableInByte;

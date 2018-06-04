@@ -45,7 +45,9 @@ namespace Elect.Web.SiteMap.Services
         /// <summary>
         ///     Generate SiteMap content result for assembly project. 
         /// </summary>
-        /// <param name="asm">        assembly of web project you want to generate SiteMap </param>
+        /// <param name="asm">       
+        ///     assembly of web project you want to generate SiteMap
+        /// </param>
         /// <param name="iUrlHelper"></param>
         /// <returns></returns>
         public static ContentResult GetSiteMapContentResult(Assembly asm, IUrlHelper iUrlHelper)

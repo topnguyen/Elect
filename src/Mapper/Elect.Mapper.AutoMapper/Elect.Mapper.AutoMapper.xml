@@ -6,7 +6,7 @@
     <members>
         <member name="M:Elect.Mapper.AutoMapper.IQueryableUtils.IQueryableExtensions.QueryTo``1(System.Linq.IQueryable,System.Linq.Expressions.Expression{System.Func{``0,System.Object}}[])">
             <summary>
-                Extension method to project from a queryable using the provided mapping engine 
+                Extension method to project from a queryable using the provided mapping engine
             </summary>
             <remarks> Projections are only calculated once and cached </remarks>
             <typeparam name="TDestination"> Destination type </typeparam>
@@ -18,11 +18,11 @@
         </member>
         <member name="M:Elect.Mapper.AutoMapper.IQueryableUtils.IQueryableExtensions.QueryTo``1(System.Linq.IQueryable,System.Collections.Generic.IDictionary{System.String,System.Object},System.String[])">
             <summary>
-                Projects the source type to the destination type given the mapping configuration 
+                Projects the source type to the destination type given the mapping configuration
             </summary>
             <typeparam name="TDestination"> Destination type to map to </typeparam>
             <param name="source">          Queryable source </param>
-            <param name="parameters">     
+            <param name="parameters">
                 Optional parameter object for parameter mapping expressions
             </param>
             <param name="membersToExpand"> Explicit members to expand </param>
@@ -32,7 +32,7 @@
         </member>
         <member name="M:Elect.Mapper.AutoMapper.IQueryableUtils.IQueryableHelper.QueryTo``1(System.Linq.IQueryable,System.Linq.Expressions.Expression{System.Func{``0,System.Object}}[])">
             <summary>
-                Extension method to project from a queryable using the provided mapping engine 
+                Extension method to project from a queryable using the provided mapping engine
             </summary>
             <remarks> Projections are only calculated once and cached </remarks>
             <typeparam name="TDestination"> Destination type </typeparam>
@@ -44,11 +44,11 @@
         </member>
         <member name="M:Elect.Mapper.AutoMapper.IQueryableUtils.IQueryableHelper.QueryTo``1(System.Linq.IQueryable,System.Collections.Generic.IDictionary{System.String,System.Object},System.String[])">
             <summary>
-                Projects the source type to the destination type given the mapping configuration 
+                Projects the source type to the destination type given the mapping configuration
             </summary>
             <typeparam name="TDestination"> Destination type to map to </typeparam>
             <param name="source">          Queryable source </param>
-            <param name="parameters">     
+            <param name="parameters">
                 Optional parameter object for parameter mapping expressions
             </param>
             <param name="membersToExpand"> Explicit members to expand </param>
@@ -84,27 +84,27 @@
         </member>
         <member name="P:Elect.Mapper.AutoMapper.Models.ElectAutoMapperOptions.ListAssemblyFolderPath">
             <summary>
-                List assembly folder to scan, default is application base path. 
+                List assembly folder to scan, default is application base path.
             </summary>
         </member>
         <member name="P:Elect.Mapper.AutoMapper.Models.ElectAutoMapperOptions.ListAssemblyName">
             <summary>
-                List assembly name to scan, default is application name. 
+                List assembly name to scan, default is application name.
             </summary>
         </member>
         <member name="P:Elect.Mapper.AutoMapper.Models.ElectAutoMapperOptions.IMapperLifeTime">
             <summary>
-                Lifetime of IMapper, default is Scoped. 
+                Lifetime of IMapper, default is Scoped.
             </summary>
         </member>
         <member name="P:Elect.Mapper.AutoMapper.Models.ElectAutoMapperOptions.IsAssertConfigurationIsValid">
             <summary>
-                Assert the mapper profile is valid after finish configuration, default is true. 
+                Assert the mapper profile is valid after finish configuration, default is true.
             </summary>
         </member>
         <member name="P:Elect.Mapper.AutoMapper.Models.ElectAutoMapperOptions.IsCompileMappings">
             <summary>
-                Compile mapping after configuration to boost map speed, default is true. 
+                Compile mapping after configuration to boost map speed, default is true.
             </summary>
         </member>
         <member name="M:Elect.Mapper.AutoMapper.ObjUtils.ObjExtensions.MapTo``1(System.Object)">

@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Elect.Core.SecurityUtils;
-using Elect.Core.SecurityUtils.Algorithms;
-using Elect.Core.StringUtils;
-using Elect.Data.IO;
+﻿using Elect.Core.StringUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Elect.Test.Core

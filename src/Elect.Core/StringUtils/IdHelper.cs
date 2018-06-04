@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Elect.Core.StringUtils
 {
@@ -52,7 +49,7 @@ namespace Elect.Core.StringUtils
             }
         }
 
-        #endregion
+        #endregion Short Id Generator
 
         #region Long Id Generator
 
@@ -100,6 +97,6 @@ namespace Elect.Core.StringUtils
             }
         }
 
-        #endregion
+        #endregion Long Id Generator
     }
 }

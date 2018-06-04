@@ -75,23 +75,23 @@ namespace Elect.Core.ObjUtils
             {
                 if (u == typeof(string))
                 {
-                    return (T) (object) obj.ToString();
+                    return (T)(object)obj.ToString();
                 }
 
-                return (T) Convert.ChangeType(obj, u);
+                return (T)Convert.ChangeType(obj, u);
             }
 
             if (t == typeof(string))
             {
-                return (T) ((object) obj.ToString());
+                return (T)((object)obj.ToString());
             }
 
             if (t.IsPrimitive)
             {
-                return (T) Convert.ChangeType(obj.ToString(), t);
+                return (T)Convert.ChangeType(obj.ToString(), t);
             }
 
-            return (T) Convert.ChangeType(obj, t);
+            return (T)Convert.ChangeType(obj, t);
         }
 
         public static bool TryConvertTo<T>(object obj, T defaultValue, out T value)

@@ -19,12 +19,12 @@
 
 #endregion License
 
-using System;
-using System.Linq;
-using System.Reflection;
 using Elect.Web.DataTable.Models.Column;
 using Elect.Web.DataTable.Models.Constants;
 using Elect.Web.DataTable.Utils.DataTableAttributeUtils;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Elect.Web.DataTable.Attributes
 {
@@ -53,7 +53,7 @@ namespace Elect.Web.DataTable.Attributes
         public string Width { get; set; }
 
         /// <summary>
-        ///     Additional HTML Element attributes for header column
+        ///     Additional HTML Element attributes for header column 
         /// </summary>
         /// <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
         public string AdditionalAttributeHeader { get; set; }

@@ -1,5 +1,5 @@
-﻿using System;
-using Elect.Web.DataTable.Attributes;
+﻿using Elect.Web.DataTable.Attributes;
+using System;
 
 namespace Elect.Sample.Web.DataTable.Models
 {

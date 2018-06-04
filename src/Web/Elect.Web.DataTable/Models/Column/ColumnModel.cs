@@ -19,9 +19,9 @@
 
 #endregion License
 
-using System;
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Elect.Web.DataTable.Models.Column
 {
@@ -71,7 +71,7 @@ namespace Elect.Web.DataTable.Models.Column
         public string Width { get; set; }
 
         /// <summary>
-        ///     Additional HTML Element attributes for header column
+        ///     Additional HTML Element attributes for header column 
         /// </summary>
         /// <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
         public string AdditionalAttributeHeader { get; set; }

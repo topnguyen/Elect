@@ -19,11 +19,11 @@
 
 #endregion License
 
-using System.Collections;
-using System.Linq;
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections;
+using System.Linq;
 
 namespace Elect.Web.DataTable.Models.Column
 {

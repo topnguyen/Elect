@@ -6,32 +6,32 @@
     <members>
         <member name="F:Elect.Web.HttpDetection.Bootstrapper.Lazy">
             <summary>
-                A new instance of the <see cref="T:.Web.Config.Config" /> class. with lazy initialization. 
+                A new instance of the <see cref="T:.Web.Config.Config" /> class. with lazy initialization.
             </summary>
         </member>
         <member name="M:Elect.Web.HttpDetection.Bootstrapper.#ctor">
             <summary>
-                Prevents a default instance of the <see cref="T:Elect.Web.HttpDetection.Bootstrapper" /> class from being created. 
+                Prevents a default instance of the <see cref="T:Elect.Web.HttpDetection.Bootstrapper" /> class from being created.
             </summary>
         </member>
         <member name="P:Elect.Web.HttpDetection.Bootstrapper.Instance">
             <summary>
-                Gets the current instance of the <see cref="T:Elect.Web.HttpDetection.Bootstrapper" /> class. 
+                Gets the current instance of the <see cref="T:Elect.Web.HttpDetection.Bootstrapper" /> class.
             </summary>
         </member>
         <member name="P:Elect.Web.HttpDetection.Bootstrapper.WorkingFolder">
             <summary>
-                Gets the working directory path. 
+                Gets the working directory path.
             </summary>
         </member>
         <member name="M:Elect.Web.HttpDetection.Bootstrapper.RegisterExecutable">
             <summary>
-                Registers the embedded executable. 
+                Registers the embedded executable.
             </summary>
         </member>
         <member name="M:Elect.Web.HttpDetection.HttpRequestHelper.GetBrowserFullInfo(Microsoft.AspNetCore.Http.HttpRequest,System.Boolean)">
             <summary>
-                Get browser info in user agent 
+                Get browser info in user agent
             </summary>
             <param name="request">      </param>
             <param name="isStandardize"> will exclude "version", "mobile" from browser info </param>

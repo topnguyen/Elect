@@ -19,10 +19,6 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Elect.Core.DictionaryUtils;
 using Elect.Core.ObjUtils;
 using Elect.Web.DataTable.Models.Constants;
@@ -30,6 +26,10 @@ using Elect.Web.DataTable.Models.Request;
 using Elect.Web.HttpUtils;
 using Elect.Web.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Elect.Web.DataTable.Processing.Request
 {

@@ -19,9 +19,9 @@
 
 #endregion License
 
+using Elect.Web.DataTable.Models.Options;
 using System;
 using System.Reflection;
-using Elect.Web.DataTable.Models.Options;
 
 namespace Elect.Web.DataTable.Utils.TypeUtils
 {
@@ -38,7 +38,7 @@ namespace Elect.Web.DataTable.Utils.TypeUtils
 
             if (property == null) return default;
 
-            return (T) property.GetValue(null, null);
+            return (T)property.GetValue(null, null);
         }
     }
 }

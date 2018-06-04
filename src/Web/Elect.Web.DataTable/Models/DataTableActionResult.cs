@@ -19,12 +19,12 @@
 
 #endregion License
 
-using System;
-using System.Threading.Tasks;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Utils.DataTableActionResultUtils;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace Elect.Web.DataTable.Models
 {
@@ -33,8 +33,8 @@ namespace Elect.Web.DataTable.Models
         public abstract Task ExecuteResultAsync(ActionContext context);
 
         /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <param name="response">
+        /// <param name="request">  </param>
+        /// <param name="response"> 
         ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
         /// </param>
         /// <param name="transform">
@@ -49,7 +49,7 @@ namespace Elect.Web.DataTable.Models
         }
 
         /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
+        /// <param name="request"> </param>
         /// <param name="response">
         ///     The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
         /// </param>

@@ -19,16 +19,16 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Reflection;
 using Elect.Core.DateTimeUtils;
 using Elect.Core.TypeUtils;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Constants;
 using Elect.Web.DataTable.Models.Options;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Reflection;
 
 namespace Elect.Web.DataTable.Processing.Response
 {
@@ -305,7 +305,7 @@ namespace Elect.Web.DataTable.Processing.Response
             // Search condition for Enum: Equals, StartsWith, Contains
             foreach (var enumName in Enum.GetNames(type))
             {
-                var enumValue = (Enum) TypeDescriptor.GetConverter(type).ConvertFrom(enumName);
+                var enumValue = (Enum)TypeDescriptor.GetConverter(type).ConvertFrom(enumName);
 
                 var valueLowerCase = enumName.ToLowerInvariant();
 

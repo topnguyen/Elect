@@ -19,11 +19,11 @@
 
 #endregion License
 
+using Elect.Web.DataTable.Models.Column;
+using Elect.Web.DataTable.Models.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Elect.Web.DataTable.Models.Column;
-using Elect.Web.DataTable.Models.Menu;
 
 namespace Elect.Web.DataTable.Models
 {
@@ -58,7 +58,7 @@ namespace Elect.Web.DataTable.Models
         public bool? IsShowPageSize { get; set; } = true;
 
         /// <summary>
-        ///     Show global search input, default is true.
+        ///     Show global search input, default is true. 
         /// </summary>
         public bool? IsShowGlobalSearchInput { get; set; } = true;
 
@@ -69,12 +69,12 @@ namespace Elect.Web.DataTable.Models
         public bool? IsUseColumnFilter { get; set; }
 
         /// <summary>
-        ///     Enable to make the search fast and helpful for UI render, default is true.
+        ///     Enable to make the search fast and helpful for UI render, default is true. 
         /// </summary>
         public bool? IsDeferRender { get; set; } = true;
 
         /// <summary>
-        ///     Table class, default is "table table-hover dataTable table-striped".
+        ///     Table class, default is "table table-hover dataTable table-striped". 
         /// </summary>
         public string TableClass { get; set; } = "table table-hover dataTable table-striped";
 
@@ -133,8 +133,8 @@ namespace Elect.Web.DataTable.Models
         public string AjaxErrorHandler { get; set; }
 
         /// <summary>
-        ///     Function name of Initial Complete callback. DataTable will pass "settings" and "json" to the function. Ex:
-        ///     initCompleteHandle(settings, json).
+        ///     Function name of Initial Complete callback. DataTable will pass "settings" and "json"
+        ///     to the function. Ex: initCompleteHandle(settings, json).
         /// </summary>
         public string InitCompleteFunctionName { get; set; }
 
@@ -144,8 +144,8 @@ namespace Elect.Web.DataTable.Models
         public string DrawCallbackFunctionName { get; set; }
 
         /// <summary>
-        ///     Function name of Footercallback. DataTable will pass "row, data, start, end,
-        ///     display" to the function. Ex: footerCallbackHandle(row, data, start, end, display).
+        ///     Function name of Footercallback. DataTable will pass "row, data, start, end, display"
+        ///     to the function. Ex: footerCallbackHandle(row, data, start, end, display).
         /// </summary>
         public string FooterCallbackFunctionName { get; set; }
 

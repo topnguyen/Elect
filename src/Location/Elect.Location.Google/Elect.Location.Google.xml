@@ -6,47 +6,47 @@
     <members>
         <member name="P:Elect.Location.Google.Models.DirectionStepsRequestModel.AdditionalValues">
             <summary>
-                Extra query params, ex: "mode=driving", "language=en-US" 
+                Extra query params, ex: "mode=driving", "language=en-US"
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceDurationMatrixRequestModel.AdditionalValues">
             <summary>
-                Extra query params, ex: "mode=driving", "language=en-US" 
+                Extra query params, ex: "mode=driving", "language=en-US"
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DistanceMatrix">
             <summary>
-                Get distance in meters from <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses" />[i] to <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses" />[j] 
+                Get distance in meters from <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses" />[i] to <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses" />[j]
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DurationMatrix">
             <summary>
-                Get duration int second from <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses" />[i] to <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses" />[j] 
+                Get duration int second from <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses" />[i] to <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses" />[j]
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDistanceDataModel.Text">
             <summary>
-                Displace text depend on "units" and "language" params 
+                Displace text depend on "units" and "language" params
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDistanceDataModel.Value">
             <summary>
-                Value always in Meters Unit 
+                Value always in Meters Unit
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDurationDataModel.Text">
             <summary>
-                Displace text depend on "language" params 
+                Displace text depend on "language" params
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDurationDataModel.Value">
             <summary>
-                Value always in Second Unit 
+                Value always in Second Unit
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.ElectLocationGoogleOptions.GoogleApiKey">
             <summary>
-                Google API Key, get it from https://console.developers.google.com - optional. 
+                Google API Key, get it from https://console.developers.google.com - optional.
             </summary>
         </member>
         <member name="T:Elect.Location.Google.Services.FastestTrip">
@@ -82,12 +82,12 @@
         </member>
         <member name="M:Elect.Location.Google.Services.FastestTrip.TspK3">
             <summary>
-                Uses the 3-opt algorithm to find a good solution to the TSP. 
+                Uses the 3-opt algorithm to find a good solution to the TSP.
             </summary>
         </member>
         <member name="M:Elect.Location.Google.Services.FastestTrip.CostPerm(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-                Returns the cost of the given 3-opt variation of the current solution. 
+                Returns the cost of the given 3-opt variation of the current solution.
             </summary>
             <param name="a"></param>
             <param name="b"></param>
@@ -108,7 +108,7 @@
         </member>
         <member name="M:Elect.Location.Google.Services.FastestTrip.UpdateCosts">
             <summary>
-                Update the data structure necessary for cost(a,b) and costPerm to work efficiently. 
+                Update the data structure necessary for cost(a,b) and costPerm to work efficiently.
             </summary>
         </member>
         <member name="M:Elect.Location.Google.Services.FastestTrip.TspDynamic(Elect.Location.Google.Models.TripType)">
