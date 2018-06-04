@@ -19,14 +19,14 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core;
 using Elect.Core.TypeUtils;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Processing.Response;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Dynamic.Core;
 
 namespace Elect.Web.DataTable.Utils.DataTableParamModelUtils
 {

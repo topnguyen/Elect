@@ -15162,7 +15162,7 @@
                                             complete(evt.type === "error" ? 404 : 200, evt.type);
                                         }
                                     }
-                                        );
+                                    );
                                     document.head.appendChild(script[0]);
                                 },
                                 abort: function () {
@@ -15331,7 +15331,7 @@
                             }).complete(callback && function (jqXHR, status) {
                                 self.each(callback, response || [jqXHR.responseText, status, jqXHR]);
                             }
-                                );
+                            );
                         }
 
                         return this;

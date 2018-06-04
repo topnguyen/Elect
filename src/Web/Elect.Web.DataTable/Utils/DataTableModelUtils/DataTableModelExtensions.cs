@@ -19,15 +19,15 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Elect.Core.DictionaryUtils;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Column;
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Elect.Web.DataTable.Utils.DataTableModelUtils
 {
@@ -132,10 +132,10 @@ namespace Elect.Web.DataTable.Utils.DataTableModelUtils
         {
             var sortList = columns
                 .Select((c, idx) => c.SortDirection == SortDirection.None
-                    ? new dynamic[] {-1, string.Empty}
+                    ? new dynamic[] { -1, string.Empty }
                     : (c.SortDirection == SortDirection.Ascending
-                        ? new dynamic[] {idx, SortDirectionConstants.Ascending}
-                        : new dynamic[] {idx, SortDirectionConstants.Descending})).Where(x => x[0] > -1).ToArray();
+                        ? new dynamic[] { idx, SortDirectionConstants.Ascending }
+                        : new dynamic[] { idx, SortDirectionConstants.Descending })).Where(x => x[0] > -1).ToArray();
 
             return sortList.Any() ? JsonConvert.SerializeObject(sortList) : DataConstants.EmptyArray;
         }
@@ -154,7 +154,7 @@ namespace Elect.Web.DataTable.Utils.DataTableModelUtils
         {
             return
                 columns
-                    .Select((x, idx) => new {rawPropertyValue = propertySelector(x), idx})
+                    .Select((x, idx) => new { rawPropertyValue = propertySelector(x), idx })
                     .Where(x => propertyPredicate(x.rawPropertyValue))
                     .GroupBy(
                         x => x.rawPropertyValue,

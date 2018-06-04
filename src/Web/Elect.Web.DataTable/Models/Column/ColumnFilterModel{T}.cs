@@ -19,10 +19,10 @@
 
 #endregion License
 
-using System.Linq;
-using System.Reflection;
 using Elect.Web.DataTable.Models.Constants;
 using Elect.Web.DataTable.Utils.EnumUtils;
+using System.Linq;
+using System.Reflection;
 
 namespace Elect.Web.DataTable.Models.Column
 {

@@ -19,12 +19,12 @@
 
 #endregion License
 
+using Elect.Core.SecurityUtils.Algorithms;
 using Elect.Core.StringUtils;
 using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using Elect.Core.SecurityUtils.Algorithms;
 
 namespace Elect.Core.SecurityUtils
 {
@@ -146,7 +146,7 @@ namespace Elect.Core.SecurityUtils
             using (var encrypt = Aes.Create())
             {
                 var pdb = new Rfc2898DeriveBytes(key,
-                    new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
+                    new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
 
                 encrypt.Key = pdb.GetBytes(32);
 
@@ -179,7 +179,7 @@ namespace Elect.Core.SecurityUtils
             using (var encrypt = Aes.Create())
             {
                 var pdb = new Rfc2898DeriveBytes(key,
-                    new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
+                    new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
 
                 encrypt.Key = pdb.GetBytes(32);
 

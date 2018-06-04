@@ -19,11 +19,11 @@
 
 #endregion License
 
-using System;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Utils.DataTableActionResultUtils;
+using System;
 
 namespace Elect.Web.DataTable.Processing.Response
 {

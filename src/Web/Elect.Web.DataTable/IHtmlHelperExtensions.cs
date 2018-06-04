@@ -19,9 +19,6 @@
 
 #endregion License
 
-using System;
-using System.Linq;
-using System.Linq.Expressions;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Column;
 using Elect.Web.DataTable.Utils.ExpressionUtils;
@@ -30,6 +27,9 @@ using Elect.Web.IUrlHelperUtils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
+using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Elect.Web.DataTable
 {

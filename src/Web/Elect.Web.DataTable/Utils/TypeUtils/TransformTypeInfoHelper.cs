@@ -19,10 +19,10 @@
 
 #endregion License
 
+using Elect.Web.DataTable.Models;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Elect.Web.DataTable.Models;
 
 namespace Elect.Web.DataTable.Utils.TypeUtils
 {

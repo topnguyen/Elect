@@ -19,10 +19,10 @@
 
 #endregion License
 
-using System.Reflection;
 using Elect.Web.DataTable.Models.Column;
 using Elect.Web.DataTable.Models.Constants;
 using EnumsNET;
+using System.Reflection;
 
 namespace Elect.Web.DataTable.Attributes
 {
@@ -44,7 +44,7 @@ namespace Elect.Web.DataTable.Attributes
         }
 
         /// <summary>
-        ///     Sets sSelector on the column (i.e. selector for custom positioning)
+        ///     Sets sSelector on the column (i.e. selector for custom positioning) 
         /// </summary>
         public string Selector { get; set; }
 

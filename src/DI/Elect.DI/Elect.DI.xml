@@ -24,37 +24,37 @@
         </member>
         <member name="P:Elect.DI.Models.ElectDIOptions.ListAssemblyFolderPath">
             <summary>
-                List assembly folder to scan, default is application base path. 
+                List assembly folder to scan, default is application base path.
             </summary>
         </member>
         <member name="P:Elect.DI.Models.ElectDIOptions.ListAssemblyName">
             <summary>
-                List assembly name to scan, default is application name. 
+                List assembly name to scan, default is application name.
             </summary>
         </member>
         <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.ListAssemblyName">
             <summary>
-                List assembly name to scan, default is application name. 
+                List assembly name to scan, default is application name.
             </summary>
         </member>
         <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.IsMinimalDisplay">
             <summary>
-                Print with minimal display format, default is true. 
+                Print with minimal display format, default is true.
             </summary>
         </member>
         <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.PrimaryColor">
             <summary>
-                Primary Text Color 
+                Primary Text Color
             </summary>
         </member>
         <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.SecondaryColor">
             <summary>
-                Secondary Text Color 
+                Secondary Text Color
             </summary>
         </member>
         <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.SortAscBy">
             <summary>
-                Sort Ascending By 
+                Sort Ascending By
             </summary>
         </member>
         <member name="M:Elect.DI.Scanner.RegisterAssemblies(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String)">

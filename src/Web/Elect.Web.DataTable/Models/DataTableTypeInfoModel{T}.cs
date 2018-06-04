@@ -19,9 +19,9 @@
 
 #endregion License
 
+using Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils;
 using System;
 using System.Collections.Generic;
-using Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils;
 
 namespace Elect.Web.DataTable.Models
 {

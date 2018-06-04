@@ -19,9 +19,9 @@
 
 #endregion License
 
-using System.Collections.Generic;
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Elect.Web.DataTable.Models.Request
 {
@@ -98,7 +98,7 @@ namespace Elect.Web.DataTable.Models.Request
         public List<bool> ListIsEscapeRegexColumn { get; set; }
 
         /// <summary>
-        ///     Store all information by key/name-value from client side
+        ///     Store all information by key/name-value from client side 
         /// </summary>
         [JsonIgnore]
         public Dictionary<string, object> Data { get; set; }

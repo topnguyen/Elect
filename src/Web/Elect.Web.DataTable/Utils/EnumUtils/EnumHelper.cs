@@ -19,12 +19,12 @@
 
 #endregion License
 
+using Elect.Core.TypeUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Elect.Core.TypeUtils;
 
 namespace Elect.Web.DataTable.Utils.EnumUtils
 {
@@ -78,7 +78,7 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
         }
 
         /// <summary>
-        ///     Get Enum Label (Display Name ?? Description ?? Name)
+        ///     Get Enum Label (Display Name ?? Description ?? Name) 
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
 
             foreach (var enumName in Enum.GetNames(t))
             {
-                var enumValue = (Enum) TypeDescriptor.GetConverter(t).ConvertFrom(enumName);
+                var enumValue = (Enum)TypeDescriptor.GetConverter(t).ConvertFrom(enumName);
 
                 var label = enumValue.GetLabel();
 
@@ -141,7 +141,7 @@ namespace Elect.Web.DataTable.Utils.EnumUtils
 
         internal static T ToEnum<T>(this string value)
         {
-            return (T) Enum.Parse(typeof(T), value, true);
+            return (T)Enum.Parse(typeof(T), value, true);
         }
     }
 

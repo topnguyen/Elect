@@ -19,11 +19,11 @@
 
 #endregion License
 
-using System;
 using Elect.Core.Interfaces;
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 
 namespace Elect.Web.DataTable.Models.Options
 {
@@ -32,8 +32,7 @@ namespace Elect.Web.DataTable.Models.Options
         public static ElectDataTableOptions Instance { get; set; }
 
         /// <summary>
-        ///     Config use datetime with TimeZone. Default is "UTC", See more:
-        ///     https://msdn.microsoft.com/en-us/library/gg154758.aspx
+        ///     Config use datetime with TimeZone. Default is "UTC", See more: https://msdn.microsoft.com/en-us/library/gg154758.aspx 
         /// </summary>
         public string DateTimeTimeZone { get; set; } = "UTC";
 

@@ -17,14 +17,14 @@
 //--------------------------------------------------
 #endregion License
 
+using Microsoft.DotNet.PlatformAbstractions;
+using Microsoft.Extensions.DependencyModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
-using Microsoft.DotNet.PlatformAbstractions;
-using Microsoft.Extensions.DependencyModel;
 
 namespace Elect.Core.AssemblyUtils
 {

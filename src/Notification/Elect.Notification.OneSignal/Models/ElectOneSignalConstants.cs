@@ -17,9 +17,9 @@
 //--------------------------------------------------
 #endregion License
 
-using System.Collections.Generic;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Elect.Notification.OneSignal.Models
 {

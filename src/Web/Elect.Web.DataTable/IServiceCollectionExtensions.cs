@@ -19,12 +19,12 @@
 
 #endregion License
 
-using System;
 using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
 using Elect.Web.DataTable.Models.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Elect.Web.DataTable
 {

@@ -107,21 +107,21 @@ namespace Elect.Core.DateTimeUtils
         }
 
         /// <summary>
-        ///     Support find time zone id by difference platform: Windows, Mac, Linux.
+        ///     Support find time zone id by difference platform: Windows, Mac, Linux. 
         /// </summary>
         /// <param name="timeZoneId"></param>
         /// <returns></returns>
         public static TimeZoneInfo GetTimeZoneInfo(string timeZoneId)
         {
             var timeZoneInfo = TZConvert.GetTimeZoneInfo(timeZoneId);
-            
+
             return timeZoneInfo;
         }
 
         /// <summary>
-        ///     Support find time zone id by difference platform: Windows, Mac, Linux.
+        ///     Support find time zone id by difference platform: Windows, Mac, Linux. 
         /// </summary>
-        /// <param name="timeZoneId"></param>
+        /// <param name="timeZoneId">  </param>
         /// <param name="timeZoneInfo"></param>
         /// <returns></returns>
         public static bool TryGetTimeZoneInfo(string timeZoneId, out TimeZoneInfo timeZoneInfo)

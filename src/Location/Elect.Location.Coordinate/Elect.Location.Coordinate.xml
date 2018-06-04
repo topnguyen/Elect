@@ -6,12 +6,12 @@
     <members>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.CoordinateDistanceExtensions.DistanceTo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
             <summary>
-                By Spherical law of cosines http://en.wikipedia.org/wiki/Spherical_law_of_cosines 
+                By Spherical law of cosines http://en.wikipedia.org/wiki/Spherical_law_of_cosines
             </summary>
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.CoordinateDistanceExtensions.FlatDistanceTo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel)">
             <summary>
-                Distance to Destination Coordinate in Flat (2D) Map 
+                Distance to Destination Coordinate in Flat (2D) Map
             </summary>
             <param name="origin">     </param>
             <param name="destination"></param>
@@ -19,35 +19,35 @@
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.CoordinateDistanceExtensions.HaversineDistanceTo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
             <summary>
-                By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
+                By Haversine https://en.wikipedia.org/wiki/Haversine_formula
             </summary>
             <returns></returns>
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.CoordinateDistanceExtensions.GeoDistanceTo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
             <summary>
-                By Geographical distance http://en.wikipedia.org/wiki/Geographical_distance 
+                By Geographical distance http://en.wikipedia.org/wiki/Geographical_distance
             </summary>
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistance(System.Double,System.Double,System.Double,System.Double)">
             <summary>
-                By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
+                By Haversine https://en.wikipedia.org/wiki/Haversine_formula
             </summary>
             <returns></returns>
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistance(System.Double,System.Double,System.Double,System.Double,Elect.Location.Models.UnitOfLengthModel)">
             <summary>
-                By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
+                By Haversine https://en.wikipedia.org/wiki/Haversine_formula
             </summary>
             <returns></returns>
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistance(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
             <summary>
-                By Spherical law of cosines http://en.wikipedia.org/wiki/Spherical_law_of_cosines 
+                By Spherical law of cosines http://en.wikipedia.org/wiki/Spherical_law_of_cosines
             </summary>
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistanceByFlat(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel)">
             <summary>
-                Distance to Destination Coordinate in Flat (2D) Map 
+                Distance to Destination Coordinate in Flat (2D) Map
             </summary>
             <param name="origin">     </param>
             <param name="destination"></param>
@@ -55,18 +55,18 @@
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistanceByHaversine(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
             <summary>
-                By Haversine https://en.wikipedia.org/wiki/Haversine_formula 
+                By Haversine https://en.wikipedia.org/wiki/Haversine_formula
             </summary>
             <returns></returns>
         </member>
         <member name="M:Elect.Location.Coordinate.DistanceUtils.DistanceHelper.GetDistanceByGeo(Elect.Location.Models.CoordinateModel,Elect.Location.Models.CoordinateModel,Elect.Location.Models.UnitOfLengthModel)">
             <summary>
-                By Geographical distance http://en.wikipedia.org/wiki/Geographical_distance 
+                By Geographical distance http://en.wikipedia.org/wiki/Geographical_distance
             </summary>
         </member>
         <member name="M:Elect.Location.Coordinate.PositionUtils.PositionHelper.GetTopLeftOfSquare(Elect.Location.Models.CoordinateModel,System.Double)">
             <summary>
-                Get Top Left Coordinate of square (out bound of circle) corner 
+                Get Top Left Coordinate of square (out bound of circle) corner
             </summary>
             <param name="origin">         </param>
             <param name="radiusKilometer"></param>
@@ -74,7 +74,7 @@
         </member>
         <member name="M:Elect.Location.Coordinate.PositionUtils.PositionHelper.GetBotRightOfSquare(Elect.Location.Models.CoordinateModel,System.Double)">
             <summary>
-                Get Bot Right Coordinate of square (out bound of circle) corner 
+                Get Bot Right Coordinate of square (out bound of circle) corner
             </summary>
             <param name="origin">         </param>
             <param name="radiusKilometer"></param>
@@ -92,7 +92,7 @@
         </member>
         <member name="M:Elect.Location.Coordinate.PositionUtils.PositionHelper.GetHypotenuseLength(System.Double)">
             <summary>
-                Get Hypotenuse Edge of the right isosceles triangle 
+                Get Hypotenuse Edge of the right isosceles triangle
             </summary>
             <param name="length"></param>
             <returns></returns>

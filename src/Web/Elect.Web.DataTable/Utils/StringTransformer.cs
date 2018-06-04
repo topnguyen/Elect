@@ -19,14 +19,14 @@
 
 #endregion License
 
+using Elect.Core.TypeUtils;
+using Elect.Web.DataTable.Models.Options;
+using Elect.Web.DataTable.Utils.EnumUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using Elect.Core.TypeUtils;
-using Elect.Web.DataTable.Models.Options;
-using Elect.Web.DataTable.Utils.EnumUtils;
 
 namespace Elect.Web.DataTable.Utils
 {
@@ -63,7 +63,7 @@ namespace Elect.Web.DataTable.Utils
                 if (type.GetNotNullableType().IsEnum)
                 {
                     var t = type.GetNotNullableType();
-                    var enumObj = (Enum) TypeDescriptor.GetConverter(t).ConvertFrom(value.ToString());
+                    var enumObj = (Enum)TypeDescriptor.GetConverter(t).ConvertFrom(value.ToString());
                     stringedValue = enumObj.GetDisplayName() ?? enumObj.GetDescription() ?? enumObj.GetName();
                 }
                 else
@@ -86,7 +86,7 @@ namespace Elect.Web.DataTable.Utils
 
         private static Transformer Guard<TVal>(GuardedValueTransformer<TVal> transformer)
         {
-            return (t, v) => !typeof(TVal).GetTypeInfo().IsAssignableFrom(t) ? null : transformer((TVal) v);
+            return (t, v) => !typeof(TVal).GetTypeInfo().IsAssignableFrom(t) ? null : transformer((TVal)v);
         }
 
         internal static Dictionary<string, object> StringifyValues(Dictionary<string, object> dict)

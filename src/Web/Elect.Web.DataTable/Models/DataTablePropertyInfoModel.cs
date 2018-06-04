@@ -19,9 +19,9 @@
 
 #endregion License
 
+using Elect.Web.DataTable.Attributes;
 using System;
 using System.Reflection;
-using Elect.Web.DataTable.Attributes;
 
 namespace Elect.Web.DataTable.Models
 {

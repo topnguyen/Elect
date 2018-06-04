@@ -19,15 +19,15 @@
 
 #endregion License
 
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
 using Elect.Web.DataTable.Processing.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Elect.Web.DataTable.Models
 {
