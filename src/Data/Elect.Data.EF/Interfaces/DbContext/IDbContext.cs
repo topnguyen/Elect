@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,7 +16,18 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Elect.Data.EF.Interfaces.DbContext
 {
@@ -57,7 +69,8 @@ namespace Elect.Data.EF.Interfaces.DbContext
 
         EntityEntry Add(object entity);
 
-        Task<EntityEntry<TEntity>> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken = default) where TEntity : class;
+        Task<EntityEntry<TEntity>> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken = default)
+            where TEntity : class;
 
         Task<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
 

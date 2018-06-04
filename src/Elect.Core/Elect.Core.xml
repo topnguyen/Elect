@@ -6,7 +6,7 @@
     <members>
         <member name="M:Elect.Core.ActionUtils.ActionExtensions.GetValue``1(System.Action{``0})">
             <summary>
-                Get instance of T from Action
+                Get instance of T from Action 
             </summary>
             <typeparam name="T"></typeparam>
             <param name="action"></param>
@@ -14,7 +14,7 @@
         </member>
         <member name="M:Elect.Core.ActionUtils.ActionHelper.GetValue``1(System.Action{``0})">
             <summary>
-                Get instance of T from Action
+                Get instance of T from Action 
             </summary>
             <typeparam name="T"></typeparam>
             <param name="action"></param>
@@ -23,7 +23,7 @@
         <member name="M:Elect.Core.AssemblyUtils.AssemblyLoader.Load(System.Reflection.AssemblyName)">
             <inheritdoc />
             <summary>
-                Load an assembly, if the assembly already loaded then return
+                Load an assembly, if the assembly already loaded then return 
             </summary>
             <param name="assemblyName"></param>
             <returns></returns>
@@ -36,7 +36,8 @@
         </member>
         <member name="T:Elect.Core.Attributes.NotNullAttribute">
             <summary>
-                Indicates that the value of the marked element could never be <c> null </c>
+                Indicates that the value of the marked element could never be
+                <c>null</c>
             </summary>
         </member>
         <member name="M:Elect.Core.CheckUtils.CheckHelper.CheckNullOrWhiteSpace(System.String,System.String)">
@@ -44,7 +45,7 @@
         </member>
         <member name="M:Elect.Core.ConfigUtils.IConfigurationExtensions.GetValueByEnv``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
-                Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key
+                Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
             </summary>
             <typeparam name="T"></typeparam>
             <param name="configuration"></param>
@@ -53,7 +54,7 @@
         </member>
         <member name="M:Elect.Core.ConfigUtils.IConfigurationHelper.GetValueByEnv``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
-                Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key
+                Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
             </summary>
             <typeparam name="T"></typeparam>
             <param name="configuration"></param>
@@ -62,7 +63,7 @@
         </member>
         <member name="F:Elect.Core.Constants.Formatting.DateTimeOffSetFormat">
             <summary>
-                Isolate Datetime Format
+                Isolate Datetime Format 
             </summary>
         </member>
         <member name="M:Elect.Core.DateTimeUtils.DateTimeExtensions.WithTimeZone(System.DateTime,System.String)">
@@ -75,14 +76,14 @@
         </member>
         <member name="M:Elect.Core.DateTimeUtils.DateTimeHelper.GetTimeZoneInfo(System.String)">
             <summary>
-                Support find time zone id by difference platform: Windows, Mac, Linux.
+                Support find time zone id by difference platform: Windows, Mac, Linux. 
             </summary>
             <param name="timeZoneId"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Core.DateTimeUtils.DateTimeHelper.TryGetTimeZoneInfo(System.String,System.TimeZoneInfo@)">
             <summary>
-                Support find time zone id by difference platform: Windows, Mac, Linux.
+                Support find time zone id by difference platform: Windows, Mac, Linux. 
             </summary>
             <param name="timeZoneId"></param>
             <param name="timeZoneInfo"></param>
@@ -102,22 +103,22 @@
         </member>
         <member name="T:Elect.Core.Interfaces.IElectOptions">
             <summary>
-                Implement this interface to become one of configuration options in Elect Ecosystem
+                Implement this interface to become one of configuration options in Elect Ecosystem 
             </summary>
         </member>
         <member name="M:Elect.Core.SecurityUtils.SecurityHelper.HashPassword(System.String,System.String,System.Int32)">
             <summary>
-                Encrypt Password by Rfc 2898 DeriveBytes - PBKDF2
+                Encrypt Password by Rfc 2898 DeriveBytes - PBKDF2 
             </summary>
         </member>
         <member name="M:Elect.Core.SecurityUtils.SecurityHelper.HashPassword(System.String,System.String@,System.Int32)">
             <summary>
-                Encrypt Password by Rfc 2898 DeriveBytes - PBKDF2
+                Encrypt Password by Rfc 2898 DeriveBytes - PBKDF2 
             </summary>
         </member>
         <member name="M:Elect.Core.SecurityUtils.SecurityHelper.Encrypt(System.String,System.String)">
             <summary>
-                Encrypt by Rfc 2898 DeriveBytes - PBKDF2
+                Encrypt by Rfc 2898 DeriveBytes - PBKDF2 
             </summary>
             <param name="value"></param>
             <param name="key">  </param>
@@ -125,7 +126,7 @@
         </member>
         <member name="M:Elect.Core.SecurityUtils.SecurityHelper.Decrypt(System.String,System.String)">
             <summary>
-                Decrypt by Rfc 2898 DeriveBytes - PBKDF2
+                Decrypt by Rfc 2898 DeriveBytes - PBKDF2 
             </summary>
             <param name="value"></param>
             <param name="key">  </param>
@@ -133,7 +134,7 @@
         </member>
         <member name="M:Elect.Core.SecurityUtils.SecurityHelper.TryDecrypt(System.String,System.String,System.String@)">
             <summary>
-                Try to Decrypt by Rfc 2898 DeriveBytes - PBKDF2
+                Try to Decrypt by Rfc 2898 DeriveBytes - PBKDF2 
             </summary>
             <param name="value"> </param>
             <param name="key">   </param>
@@ -142,34 +143,34 @@
         </member>
         <member name="T:Elect.Core.StringUtils.Safe32Encoding">
             <summary>
-            Class used for conversion between byte array and Base32 notation
+                Class used for conversion between byte array and Base32 notation 
             </summary>
         </member>
         <member name="F:Elect.Core.StringUtils.Safe32Encoding.InByteSize">
             <summary>
-            Size of the regular byte in bits
+                Size of the regular byte in bits 
             </summary>
         </member>
         <member name="F:Elect.Core.StringUtils.Safe32Encoding.OutByteSize">
             <summary>
-            Size of converted byte in bits
+                Size of converted byte in bits 
             </summary>
         </member>
         <member name="F:Elect.Core.StringUtils.Safe32Encoding.Base32Alphabet">
             <summary>
-            Alphabet
+                Alphabet 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe32Encoding.EncodeBytes(System.Byte[])">
             <summary>
-            Convert byte array to Base32 format
+                Convert byte array to Base32 format 
             </summary>
             <param name="bytes">An array of bytes to convert to Base32 format</param>
             <returns>Returns a string representing byte array</returns>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe32Encoding.DecodeBytes(System.String)">
             <summary>
-            Convert base32 string to array of bytes
+                Convert base32 string to array of bytes 
             </summary>
             <param name="base32String">Base32 string to convert</param>
             <returns>Returns a byte array converted from the string</returns>
@@ -182,42 +183,42 @@
         </member>
         <member name="M:Elect.Core.StringUtils.Safe64Encoding.EncodeBytes(System.Byte[])">
             <summary>
-                Returns a encoded string of ascii characters that are URI safe
+                Returns a encoded string of ascii characters that are URI safe 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe64Encoding.EncodeBytes(System.Byte[],System.Int32,System.Int32)">
             <summary>
-                Returns a encoded string of ascii characters that are URI safe
+                Returns a encoded string of ascii characters that are URI safe 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe64Encoding.EncodeBytes(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
             <summary>
-                Returns a encoded string of ascii characters that are URI safe
+                Returns a encoded string of ascii characters that are URI safe 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe64Encoding.DecodeBytes(System.String)">
             <summary>
-                Decodes the ascii text from the bytes provided into the original byte array
+                Decodes the ascii text from the bytes provided into the original byte array 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe64Encoding.DecodeBytes(System.String,System.Int32,System.Int32)">
             <summary>
-                Decodes the ascii text from the bytes provided into the original byte array
+                Decodes the ascii text from the bytes provided into the original byte array 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe64Encoding.DecodeBytes(System.Byte[])">
             <summary>
-                Decodes the ascii text from the bytes provided into the original byte array
+                Decodes the ascii text from the bytes provided into the original byte array 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe64Encoding.DecodeBytes(System.Byte[],System.Int32,System.Int32)">
             <summary>
-                Decodes the ascii text from the bytes provided into the original byte array
+                Decodes the ascii text from the bytes provided into the original byte array 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe64Encoding.DecodeBytes(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
             <summary>
-                Decodes the ascii text from the bytes provided into the original byte array
+                Decodes the ascii text from the bytes provided into the original byte array 
             </summary>
         </member>
         <member name="M:Elect.Core.StringUtils.StringHelper.Normalize(System.String)">
@@ -236,7 +237,7 @@
         </member>
         <member name="M:Elect.Core.StringUtils.StringHelper.RemoveAccents(System.String)">
             <summary>
-                Remove all diacritics (accents) in string
+                Remove all diacritics (accents) in string 
             </summary>
             <param name="value"></param>
             <returns></returns>
@@ -252,7 +253,7 @@
         </member>
         <member name="M:Elect.Core.XmlUtils.XmlHelper.FromXmlString``1(System.String)">
             <summary>
-                To serialize string XML to object
+                To serialize string XML to object 
             </summary>
         </member>
     </members>

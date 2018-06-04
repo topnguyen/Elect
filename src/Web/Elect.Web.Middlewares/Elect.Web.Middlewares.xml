@@ -6,72 +6,72 @@
     <members>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.PolicyName">
             <summary>
-                Default is "Default".
+                Default is "Default". 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AccessControlAllowOrigins">
             <summary>
-                Default is "*".
+                Default is "*". 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AccessControlAllowHeaders">
             <summary>
-                Default is "Authorization, Content-Type".
+                Default is "Authorization, Content-Type". 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AccessControlAllowMethods">
             <summary>
-                Default is "GET, POST, PUT, DELETE, OPTIONS, HEAD".
+                Default is "GET, POST, PUT, DELETE, OPTIONS, HEAD". 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.HttpContextMiddleware.HttpContext.Current">
             <summary>
-                Get current request HttpContext
+                Get current request HttpContext 
             </summary>
         </member>
         <member name="M:Elect.Web.Middlewares.MeasureProcessingTimeMiddleware.IApplicationBuilderExtensions.UseElectMeasureProcessingTime(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
-                Response information about executed time
+                Response information about executed time 
             </summary>
             <param name="app"></param>
         </member>
         <member name="M:Elect.Web.Middlewares.MinResponseMiddleware.IServiceCollectionExtensions.AddElectMinResponse(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-                Mini and compress HTML, XML, CSS, JS
+                Mini and compress HTML, XML, CSS, JS 
             </summary>
             <param name="services"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Web.Middlewares.RequestRewindMiddleware.IApplicationBuilderExtensions.UseElectRequestRewind(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
-                Enable Rewind help to get Request Body content.
+                Enable Rewind help to get Request Body content. 
             </summary>
             <param name="app"></param>
             <returns></returns>
         </member>
         <member name="P:Elect.Web.Middlewares.ServerInfoMiddleware.Models.ElectServerInfoOptions.ServerName">
             <summary>
-                Default is "cloudflare-nginx".
+                Default is "cloudflare-nginx". 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.ServerInfoMiddleware.Models.ElectServerInfoOptions.PoweredBy">
             <summary>
-                Power by a technology, default is "PHP/5.6.30".
+                Power by a technology, default is "PHP/5.6.30". 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.ServerInfoMiddleware.Models.ElectServerInfoOptions.AuthorName">
             <summary>
-                Author Full Name
+                Author Full Name 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.ServerInfoMiddleware.Models.ElectServerInfoOptions.AuthorWebsite">
             <summary>
-                Author of Website URL
+                Author of Website URL 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.ServerInfoMiddleware.Models.ElectServerInfoOptions.AuthorEmail">
             <summary>
-                Author Email
+                Author Email 
             </summary>
         </member>
     </members>

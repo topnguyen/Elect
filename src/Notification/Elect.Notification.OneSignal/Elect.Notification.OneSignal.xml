@@ -6,12 +6,12 @@
     <members>
         <member name="T:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevicesResource">
             <summary>
-                Interface used to unify creation of classes used to help client add or edit device.
+                Interface used to unify creation of classes used to help client add or edit device. 
             </summary>
         </member>
         <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevicesResource.AddAsync(Elect.Notification.OneSignal.Models.Device.DeviceAddOptions,System.String)">
             <summary>
-                Adds new device into OneSignal App.
+                Adds new device into OneSignal App. 
             </summary>
             <param name="options"> Here you can specify options used to add new device. </param>
             <param name="appName">
@@ -21,7 +21,7 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevicesResource.EditAsync(System.String,Elect.Notification.OneSignal.Models.Device.DeviceEditOptions,System.String)">
             <summary>
-                Edits existing device defined in OneSignal App.
+                Edits existing device defined in OneSignal App. 
             </summary>
             <param name="id">      Id of the device </param>
             <param name="options"> Options used to modify attributes of the device. </param>
@@ -32,7 +32,7 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevicesResource.GetAsync(System.String,System.String)">
             <summary>
-                Get device info
+                Get device info 
             </summary>
             <param name="playerId"></param>
             <param name="appName">
@@ -42,12 +42,12 @@
         </member>
         <member name="T:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotificationsResource">
             <summary>
-                Interface used to unify Notification Resource classes.
+                Interface used to unify Notification Resource classes. 
             </summary>
         </member>
         <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotificationsResource.CreateAsync(Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions,System.String)">
             <summary>
-                Creates a new notification.
+                Creates a new notification. 
             </summary>
             <param name="options">
                 This parameter can contain variety of possible options used to create notification.
@@ -59,7 +59,7 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotificationsResource.CancelAsync(System.String,System.String)">
             <summary>
-                Cancel notification Stop a scheduled or currently outgoing notification
+                Cancel notification Stop a scheduled or currently outgoing notification 
             </summary>
             <param name="id">     </param>
             <param name="appName">
@@ -69,7 +69,7 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotificationsResource.GetAsync(System.String,System.String)">
             <summary>
-                Get report about notification
+                Get report about notification 
             </summary>
             <param name="id">     </param>
             <param name="appName">
@@ -79,27 +79,27 @@
         </member>
         <member name="T:Elect.Notification.OneSignal.JsonConverter.CustomDateTimeConverter">
             <summary>
-                Custom DateTime converter used to format date and time in order to comply with API requirement.
+                Custom DateTime converter used to format date and time in order to comply with API requirement. 
             </summary>
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.CustomDateTimeConverter.#ctor">
             <summary>
-                Default constructor.
+                Default constructor. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.JsonConverter.DelayedOptionJsonConverter">
             <summary>
-                Converter used to serialize DelayedOptionEnum as string.
+                Converter used to serialize DelayedOptionEnum as string. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.JsonConverter.DelayedOptionJsonConverter.CanRead">
             <summary>
-                Defines if converter can be used for de-serialization.
+                Defines if converter can be used for de-serialization. 
             </summary>
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.DelayedOptionJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
             <summary>
-                De-serializes object
+                De-serializes object 
             </summary>
             <param name="reader">       </param>
             <param name="objectType">   </param>
@@ -109,7 +109,7 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.DelayedOptionJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
             <summary>
-                Serializes object
+                Serializes object 
             </summary>
             <param name="writer">    </param>
             <param name="value">     </param>
@@ -117,7 +117,7 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.DelayedOptionJsonConverter.CanConvert(System.Type)">
             <summary>
-                Defines if converter can be used for serialization.
+                Defines if converter can be used for serialization. 
             </summary>
             <param name="objectType"></param>
             <returns></returns>
@@ -130,12 +130,12 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.JsonConverter.NotificationFilterFieldTypeConverter.CanRead">
             <summary>
-                Defines if converter can be used for de-serialization.
+                Defines if converter can be used for de-serialization. 
             </summary>
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.NotificationFilterFieldTypeConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
             <summary>
-                De-serializes object
+                De-serializes object 
             </summary>
             <param name="reader">       </param>
             <param name="objectType">   </param>
@@ -145,7 +145,7 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.NotificationFilterFieldTypeConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
             <summary>
-                Serializes object
+                Serializes object 
             </summary>
             <param name="writer">    </param>
             <param name="value">     </param>
@@ -153,24 +153,24 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.NotificationFilterFieldTypeConverter.CanConvert(System.Type)">
             <summary>
-                Defines if converter can be used for serialization.
+                Defines if converter can be used for serialization. 
             </summary>
             <param name="objectType"></param>
             <returns></returns>
         </member>
         <member name="T:Elect.Notification.OneSignal.JsonConverter.UnixDateTimeJsonConverter">
             <summary>
-                Converter used to serialize UnixDateTimeEnum as string.
+                Converter used to serialize UnixDateTimeEnum as string. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.JsonConverter.UnixDateTimeJsonConverter.CanRead">
             <summary>
-                Defines if converter can be used for de-serialization.
+                Defines if converter can be used for de-serialization. 
             </summary>
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.UnixDateTimeJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
             <summary>
-                De-serializes object
+                De-serializes object 
             </summary>
             <param name="reader">       </param>
             <param name="objectType">   </param>
@@ -180,7 +180,7 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.UnixDateTimeJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
             <summary>
-                Serializes object
+                Serializes object 
             </summary>
             <param name="writer">    </param>
             <param name="value">     </param>
@@ -188,14 +188,14 @@
         </member>
         <member name="M:Elect.Notification.OneSignal.JsonConverter.UnixDateTimeJsonConverter.CanConvert(System.Type)">
             <summary>
-                Defines if converter can be used for serialization.
+                Defines if converter can be used for serialization. 
             </summary>
             <param name="objectType"></param>
             <returns></returns>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions">
             <summary>
-                Options for adding new device to OneSignal app.
+                Options for adding new device to OneSignal app. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.AppId">
@@ -219,22 +219,22 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.Timezone">
             <summary>
-                Number of seconds away from UTC. Example: -28800
+                Number of seconds away from UTC. Example: -28800 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.GameVersion">
             <summary>
-                Version of the app.
+                Version of the app. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.DeviceModel">
             <summary>
-                Device make and model. Example: iPhone5,1
+                Device make and model. Example: iPhone5,1 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.DeviceOS">
             <summary>
-                Device operating system version. Example: 7.0.4
+                Device operating system version. Example: 7.0.4 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.AdId">
@@ -245,12 +245,12 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.SDK">
             <summary>
-                Name and version of the plugin that's calling this API method (if any)
+                Name and version of the plugin that's calling this API method (if any) 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.SessionCount">
             <summary>
-                Number of times the user has played the game, defaults to 1
+                Number of times the user has played the game, defaults to 1 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.Tags">
@@ -261,27 +261,27 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.AmountSpent">
             <summary>
-                Amount the user has spent in USD, up to two decimal places
+                Amount the user has spent in USD, up to two decimal places 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.CreatedAt">
             <summary>
-                Unixtime when the player joined the game
+                Unixtime when the player joined the game 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.PlayTime">
             <summary>
-                Seconds player was running your app.
+                Seconds player was running your app. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.BadgeCount">
             <summary>
-                Current iOS badge count displayed on the app icon
+                Current iOS badge count displayed on the app icon 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.LastActive">
             <summary>
-                Unixtime when the player was last active
+                Unixtime when the player was last active 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.TestType">
@@ -294,22 +294,22 @@
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceAddResult">
             <summary>
-                Class used to keep result of device add operation.
+                Class used to keep result of device add operation. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddResult.IsSuccess">
             <summary>
-                Returns true if operation is successful.
+                Returns true if operation is successful. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddResult.Id">
             <summary>
-                Returns id of the result operation.
+                Returns id of the result operation. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions">
             <summary>
-                Options for editing existing device defined in OneSignal app.
+                Options for editing existing device defined in OneSignal app. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.AppId">
@@ -333,22 +333,22 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Timezone">
             <summary>
-                Number of seconds away from UTC. Example: -28800
+                Number of seconds away from UTC. Example: -28800 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.GameVersion">
             <summary>
-                Version of the app.
+                Version of the app. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.DeviceModel">
             <summary>
-                Device make and model. Example: iPhone5,1
+                Device make and model. Example: iPhone5,1 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.DeviceOS">
             <summary>
-                Device operating system version. Example: 7.0.4
+                Device operating system version. Example: 7.0.4 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.AdId">
@@ -359,12 +359,12 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.SDK">
             <summary>
-                Name and version of the plugin that's calling this API method (if any)
+                Name and version of the plugin that's calling this API method (if any) 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.SessionCount">
             <summary>
-                Number of times the user has played the game, defaults to 1
+                Number of times the user has played the game, defaults to 1 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Tags">
@@ -375,17 +375,17 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.AmountSpent">
             <summary>
-                Amount the user has spent in USD, up to two decimal places
+                Amount the user has spent in USD, up to two decimal places 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.CreatedAt">
             <summary>
-                Unixtime when the player joined the game
+                Unixtime when the player joined the game 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.LastActive">
             <summary>
-                Unixtime when the player was last active
+                Unixtime when the player was last active 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.TestType">
@@ -398,17 +398,17 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Longitude">
             <summary>
-                Longitude of the device, used for geotagging to segment on.
+                Longitude of the device, used for geotagging to segment on. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Latitude">
             <summary>
-                Latitude of the device, used for geotagging to segment on.
+                Latitude of the device, used for geotagging to segment on. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceInfo">
             <summary>
-                Device info defined in OneSignal app.
+                Device info defined in OneSignal app. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.Identifier">
@@ -420,7 +420,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.SessionCount">
             <summary>
-                Number of times the user has played the game, defaults to 1
+                Number of times the user has played the game, defaults to 1 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.Language">
@@ -431,17 +431,17 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.Timezone">
             <summary>
-                Number of seconds away from UTC. Example: -28800
+                Number of seconds away from UTC. Example: -28800 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.GameVersion">
             <summary>
-                Version of the app.
+                Version of the app. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.DeviceOS">
             <summary>
-                Device operating system version. Example: 7.0.4
+                Device operating system version. Example: 7.0.4 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.DeviceType">
@@ -452,7 +452,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.DeviceModel">
             <summary>
-                Device make and model. Example: iPhone5,1
+                Device make and model. Example: iPhone5,1 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.AdId">
@@ -469,22 +469,22 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.LastActive">
             <summary>
-                Unixtime when the player was last active
+                Unixtime when the player was last active 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.AmountSpent">
             <summary>
-                Amount the user has spent in USD, up to two decimal places
+                Amount the user has spent in USD, up to two decimal places 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.CreatedAt">
             <summary>
-                Unixtime when the player joined the game
+                Unixtime when the player joined the game 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceTypeEnum">
             <summary>
-                Device types enum.
+                Device types enum. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.DeviceTypeEnum.iOS">
@@ -513,287 +513,288 @@
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.DeviceTypeEnum.ChromeApp">
             <summary>
-                Used for Chrome app.
+                Used for Chrome app. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.DeviceTypeEnum.ChromeWebsite">
             <summary>
-                Used for Chrome web site.
+                Used for Chrome web site. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.DeviceTypeEnum.WindowsPhoneWNS">
             <summary>
-                Windows 8.0 operating system generation used on phones.
+                Windows 8.0 operating system generation used on phones. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.DeviceTypeEnum.Safari">
             <summary>
-                Used for Safari.
+                Used for Safari. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.DeviceTypeEnum.Firefox">
             <summary>
-                Used for Firefox.
+                Used for Firefox. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.DeviceTypeEnum.MacOSX">
             <summary>
-                Mac OS computers.
+                Mac OS computers. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Device.TestTypeEnum">
             <summary>
-                Test type enumeration.
+                Test type enumeration. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.TestTypeEnum.Development">
             <summary>
-                Used during development phase.
+                Used during development phase. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Device.TestTypeEnum.AdHoc">
             <summary>
-                Used in production, when trying to track down undelivered messages for example.
+                Used in production, when trying to track down undelivered messages for example. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.ElectOneSignalAppOption.AppName">
             <summary>
-                App Name to identity between multiple app, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultAppName" />.
+                App Name to identity between multiple app, default is<see
+                    cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultAppName"/>. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.LanguageCodes">
             <summary>
-                Language codes constants for supported languages.
+                Language codes constants for supported languages. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.English">
             <summary>
-                Language code for English language.
+                Language code for English language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Arabic">
             <summary>
-                Language code for Arabic language.
+                Language code for Arabic language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Catalan">
             <summary>
-                Language code for Catalan language.
+                Language code for Catalan language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.ChineseSimplified">
             <summary>
-                Language code for Chinese(Simplified) language.
+                Language code for Chinese(Simplified) language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.ChineseTraditional">
             <summary>
-                Language code for Chinese(Traditional) language.
+                Language code for Chinese(Traditional) language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Croatian">
             <summary>
-                Language code for Croatian language.
+                Language code for Croatian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Czech">
             <summary>
-                Language code for Czech language.
+                Language code for Czech language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Danish">
             <summary>
-                Language code for Danish language.
+                Language code for Danish language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Dutch">
             <summary>
-                Language code for Dutch language.
+                Language code for Dutch language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Estonian">
             <summary>
-                Language code for Estonian language.
+                Language code for Estonian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Finnish">
             <summary>
-                Language code for Finnish language.
+                Language code for Finnish language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.French">
             <summary>
-                Language code for French language.
+                Language code for French language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Georgian">
             <summary>
-                Language code for Georgian language.
+                Language code for Georgian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Bulgarian">
             <summary>
-                Language code for Bulgarian language.
+                Language code for Bulgarian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.German">
             <summary>
-                Language code for German language.
+                Language code for German language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Greek">
             <summary>
-                Language code for Greek language.
+                Language code for Greek language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Hindi">
             <summary>
-                Language code for Hindi language.
+                Language code for Hindi language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Hebrew">
             <summary>
-                Language code for Hebrew language.
+                Language code for Hebrew language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Hungarian">
             <summary>
-                Language code for Hungarian language.
+                Language code for Hungarian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Indonesian">
             <summary>
-                Language code for Indonesian language.
+                Language code for Indonesian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Italian">
             <summary>
-                Language code for Italian language.
+                Language code for Italian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Japanese">
             <summary>
-                Language code for Japanese language.
+                Language code for Japanese language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Korean">
             <summary>
-                Language code for Korean language.
+                Language code for Korean language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Latvian">
             <summary>
-                Language code for Latvian language.
+                Language code for Latvian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Lithuanian">
             <summary>
-                Language code for Lithuanian language.
+                Language code for Lithuanian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Malay">
             <summary>
-                Language code for Malay language.
+                Language code for Malay language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Norwegian">
             <summary>
-                Language code for Norwegian language.
+                Language code for Norwegian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Persian">
             <summary>
-                Language code for Persian language.
+                Language code for Persian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Polish">
             <summary>
-                Language code for Polish language.
+                Language code for Polish language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Portuguese">
             <summary>
-                Language code for Portuguese language.
+                Language code for Portuguese language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Romanian">
             <summary>
-                Language code for Romanian language.
+                Language code for Romanian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Russian">
             <summary>
-                Language code for Russian language.
+                Language code for Russian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Serbian">
             <summary>
-                Language code for Serbian language.
+                Language code for Serbian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Slovak">
             <summary>
-                Language code for Slovak language.
+                Language code for Slovak language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Spanish">
             <summary>
-                Language code for Spanish language.
+                Language code for Spanish language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Swedish">
             <summary>
-                Language code for Swedish language.
+                Language code for Swedish language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Thai">
             <summary>
-                Language code for Thai language.
+                Language code for Thai language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Turkish">
             <summary>
-                Language code for Turkish language.
+                Language code for Turkish language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Ukrainian">
             <summary>
-                Language code for Ukrainian language.
+                Language code for Ukrainian language. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.LanguageCodes.Vietnamese">
             <summary>
-                Language code for Vietnamese language.
+                Language code for Vietnamese language. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonField.Id">
             <summary>
-                Action button ID.
+                Action button ID. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonField.Text">
             <summary>
-                Action button text.
+                Action button text. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonField.Icon">
             <summary>
-                Action button icon.
+                Action button icon. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutField.Image">
             <summary>
-                Background image.
+                Background image. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutField.HeadingsColor">
             <summary>
-                Background heading color.
+                Background heading color. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutField.ContentsColor">
             <summary>
-                Background content color.
+                Background content color. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.AndroidVisibilityEnum">
@@ -816,27 +817,27 @@
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.AndroidVisibilityEnum.Secret">
             <summary>
-                Secret (Notification does not show on the lock screen at all)
+                Secret (Notification does not show on the lock screen at all) 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.DelayedOptionEnum">
             <summary>
-                Possible options for delaying notification.
+                Possible options for delaying notification. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.DelayedOptionEnum.TimeZone">
             <summary>
-                Deliver at a specific time-of-day in each users own timezone
+                Deliver at a specific time-of-day in each users own timezone 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.DelayedOptionEnum.LastActive">
             <summary>
-                Deliver at the same time of day as each user last used your app.
+                Deliver at the same time of day as each user last used your app. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.DelayedOptionEnum.SendAfter">
             <summary>
-                If send_after is used, this takes effect after the send_after time has elapsed.
+                If send_after is used, this takes effect after the send_after time has elapsed. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.IosBadgeTypeEnum">
@@ -847,12 +848,12 @@
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.IosBadgeTypeEnum.None">
             <summary>
-                Leaves the count unaffected.
+                Leaves the count unaffected. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.IosBadgeTypeEnum.SetTo">
             <summary>
-                Directly sets the badge count to the number specified in ios_badgeCount.
+                Directly sets the badge count to the number specified in ios_badgeCount. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.IosBadgeTypeEnum.Increase">
@@ -863,17 +864,17 @@
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCancelResult">
             <summary>
-                Result of notification cancel operation.
+                Result of notification cancel operation. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCancelResult.Success">
             <summary>
-                Returns whether the message was canceled or not {'success': "true"}
+                Returns whether the message was canceled or not {'success': "true"} 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions">
             <summary>
-                API Documentation: https://documentation.onesignal.com/docs/notifications-create-notification
+                API Documentation: https://documentation.onesignal.com/docs/notifications-create-notification 
             </summary>
         </member>
         <member name="M:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.#ctor">
@@ -919,7 +920,9 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Data">
             <summary>
-                <br /> A custom map of data that is passed back to your app. <br />
+                <br/>
+                A custom map of data that is passed back to your app.
+                <br/>
                 <code>
             Example: {"abc": "123", "foo": "bar"}
                 </code>
@@ -936,7 +939,9 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IncludePlayerIds">
             <summary>
-                <br /> Send based on OneSignal PlayerIds <br />
+                <br/>
+                Send based on OneSignal PlayerIds
+                <br/>
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IncludedSegments">
@@ -994,7 +999,9 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Url">
             <summary>
-                <br /> The URL to open in the browser when a user clicks on the notification. <br />
+                <br/>
+                The URL to open in the browser when a user clicks on the notification.
+                <br/>
                 <code>
             Example: http://www.google.com
                 </code>
@@ -1040,7 +1047,9 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.ActionButtons">
             <summary>
-                <br /> Buttons to add to the notification. Icon only works for Android. <br />
+                <br/>
+                Buttons to add to the notification. Icon only works for Android.
+                <br/>
                 <code>
             Example: [{"id": "id1", "text": "button1", "icon": "ic_menu_share"}, {"id": "id2", "text": "button2", "icon": "ic_menu_send"}]
                 </code>
@@ -1050,7 +1059,9 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.WebButtons">
             <summary>
-                <br /> Add action buttons to the notification. The id field is required. <br />
+                <br/>
+                Add action buttons to the notification. The id field is required.
+                <br/>
                 <code>
             Example: [{"id": "like-button", "text": "Like", "icon": "http://i.imgur.com/N8SN8ZS.png", "url": "https://yoursite.com"}, {"id": "read-more-button", "text": "Read more", "icon": "http://i.imgur.com/MIxJp1L.png", "url": "https://yoursite.com"}]
                 </code>
@@ -1081,11 +1092,12 @@
                 <code>
             Example(Blue): "FF0000FF".
                 </code>
-                <br /> contents_color - Body text color ARGB Hex format.
+                <br/>
+                contents_color - Body text color ARGB Hex format. 
                 <code>
             Example(Red): "FFFF0000"
                 </code>
-                <br />
+                <br/>
                 <code>
             Example: {"image": "https://domain.com/background_image.jpg", "headings_color": "FFFF0000", "contents_color": "FF00FF00"}
                 </code>
@@ -1264,7 +1276,9 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliveryTimeOfDay">
             <summary>
-                <br /> Use with delayed_option=timezone. <br />
+                <br/>
+                Use with delayed_option=timezone.
+                <br/>
                 <code>
             Example: "9:00AM"
                 </code>
@@ -1282,7 +1296,8 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Priority">
             <summary>
-                <br /> Delivery priority through the push server (example GCM/FCM).
+                <br/>
+                Delivery priority through the push server (example GCM/FCM). 
                 <code>
             Pass 10 for high priority.
                 </code>
@@ -1419,47 +1434,47 @@
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResult">
             <summary>
-                Result of notification create operation.
+                Result of notification create operation. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResult.Recipients">
             <summary>
-                Returns the number of recipients who received the message.
+                Returns the number of recipients who received the message. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResult.Id">
             <summary>
-                Returns the id of the result.
+                Returns the id of the result. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField">
             <summary>
-                Complex type used to describe filter field.
+                Complex type used to describe filter field. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField.Field">
             <summary>
-                The type of the filter field.
+                The type of the filter field. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField.Key">
             <summary>
-                The key used for comparison.
+                The key used for comparison. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField.Relation">
             <summary>
-                The relation between key and value.
+                The relation between key and value. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField.Value">
             <summary>
-                The value.
+                The value. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum">
             <summary>
-                Class used to describe notification filter field type used in filter operations.
+                Class used to describe notification filter field type used in filter operations. 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.LastSession">
@@ -1476,7 +1491,9 @@
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.SessionCount">
             <summary>
-                relation = "&gt;", "&lt;", "=" or "!=" <br /> value = number sessions. Example: "1"
+                relation = "&gt;", "&lt;", "=" or "!="
+                <br/>
+                value = number sessions. Example: "1" 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.SessionTime">
@@ -1517,27 +1534,34 @@
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.AppVersion">
             <summary>
-                relation = "&gt;", "&lt;", "=" or "!=" <br /> value = app version. Example: "1.0.0"
+                relation = "&gt;", "&lt;", "=" or "!="
+                <br/>
+                value = app version. Example: "1.0.0" 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.Location">
             <summary>
-                radius = in meters <br /> lat = latitude <br /> long = longitude <br />
+                radius = in meters
+                <br/>
+                lat = latitude
+                <br/>
+                long = longitude
+                <br/>
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.Email">
             <summary>
-                value = email address
+                value = email address 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterOperator">
             <summary>
-                Notification filter operator is used to define logical AND, OR
+                Notification filter operator is used to define logical AND, OR 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterOperator.Operator">
             <summary>
-                Can be AND or OR operator
+                Can be AND or OR operator 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult">
@@ -1549,42 +1573,44 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Id">
             <summary>
-                The id of the result.
+                The id of the result. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Successful">
             <summary>
-                The number of devices that received notification.
+                The number of devices that received notification. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Failed">
             <summary>
-                The number of devices that failed to receive notification.
+                The number of devices that failed to receive notification. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Converted">
             <summary>
-                The number of users who clicked notification.
+                The number of users who clicked notification. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Remaining">
             <summary>
-                The number of remaining devices where notification will be delivered
+                The number of remaining devices where notification will be delivered 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.QueuedAt">
             <summary>
-                The number of remaining devices where notification will be delivered
+                The number of remaining devices where notification will be delivered 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.SendAfter">
             <summary>
-                The number of remaining devices where notification will be delivered
+                The number of remaining devices where notification will be delivered 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Url">
             <summary>
-                <br /> The URL to open in the browser when a user clicks on the notification. <br />
+                <br/>
+                The URL to open in the browser when a user clicks on the notification.
+                <br/>
                 <code>
             Example: http://www.google.com
                 </code>
@@ -1624,7 +1650,9 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Data">
             <summary>
-                <br /> A custom map of data that is passed back to your app. <br />
+                <br/>
+                A custom map of data that is passed back to your app.
+                <br/>
                 <code>
             Example: {"abc": "123", "foo": "bar"}
                 </code>
@@ -1635,32 +1663,32 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Canceled">
             <summary>
-                The number of remaining devices where notification will be delivered
+                The number of remaining devices where notification will be delivered 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.Notifications.WebButtonField">
             <summary>
-                Class used to describe web button.
+                Class used to describe web button. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonField.Id">
             <summary>
-                Web button ID. This is required field.
+                Web button ID. This is required field. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonField.Text">
             <summary>
-                Web button text.
+                Web button text. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonField.Icon">
             <summary>
-                Web button icon.
+                Web button icon. 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonField.Url">
             <summary>
-                Web button url.
+                Web button url. 
             </summary>
         </member>
     </members>
