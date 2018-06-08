@@ -16,16 +16,12 @@
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DistanceMatrix">
             <summary>
-                Get distance in meters from<see
-                    cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses"/>[i] to<see
-                    cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses"/>[j] 
+                Get distance in meters from <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses" />[i] to <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses" />[j] 
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DurationMatrix">
             <summary>
-                Get duration int second from<see
-                    cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses"/>[i] to<see
-                    cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses"/>[j] 
+                Get duration int second from <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.OriginAddresses" />[i] to <see cref="P:Elect.Location.Google.Models.DistanceDurationMatrixResultModel.DestinationAddresses" />[j] 
             </summary>
         </member>
         <member name="P:Elect.Location.Google.Models.DistanceMatrixElementDistanceDataModel.Text">

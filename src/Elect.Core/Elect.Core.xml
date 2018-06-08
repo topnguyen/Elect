@@ -36,8 +36,7 @@
         </member>
         <member name="T:Elect.Core.Attributes.NotNullAttribute">
             <summary>
-                Indicates that the value of the marked element could never be
-                <c>null</c>
+                Indicates that the value of the marked element could never be <c> null </c> 
             </summary>
         </member>
         <member name="M:Elect.Core.CheckUtils.CheckHelper.CheckNullOrWhiteSpace(System.String,System.String)">
@@ -85,7 +84,7 @@
             <summary>
                 Support find time zone id by difference platform: Windows, Mac, Linux. 
             </summary>
-            <param name="timeZoneId"></param>
+            <param name="timeZoneId">  </param>
             <param name="timeZoneInfo"></param>
             <returns></returns>
         </member>
@@ -165,15 +164,15 @@
             <summary>
                 Convert byte array to Base32 format 
             </summary>
-            <param name="bytes">An array of bytes to convert to Base32 format</param>
-            <returns>Returns a string representing byte array</returns>
+            <param name="bytes"> An array of bytes to convert to Base32 format </param>
+            <returns> Returns a string representing byte array </returns>
         </member>
         <member name="M:Elect.Core.StringUtils.Safe32Encoding.DecodeBytes(System.String)">
             <summary>
                 Convert base32 string to array of bytes 
             </summary>
-            <param name="base32String">Base32 string to convert</param>
-            <returns>Returns a byte array converted from the string</returns>
+            <param name="base32String"> Base32 string to convert </param>
+            <returns> Returns a byte array converted from the string </returns>
         </member>
         <member name="T:Elect.Core.StringUtils.Safe64Encoding">
             <summary>

@@ -99,8 +99,7 @@
         </member>
         <member name="T:Elect.Web.IUrlHelperUtils.IUrlHelperExtensions">
             <summary>
-                <see cref="T:Microsoft.AspNetCore.Mvc.IUrlHelper"/>
-                extension methods. 
+                <see cref="T:Microsoft.AspNetCore.Mvc.IUrlHelper" /> extension methods. 
             </summary>
         </member>
         <member name="M:Elect.Web.IUrlHelperUtils.IUrlHelperExtensions.AbsoluteAction(Microsoft.AspNetCore.Mvc.IUrlHelper,System.String,System.String,System.Object)">
@@ -209,7 +208,7 @@
         </member>
         <member name="P:Elect.Web.Models.HttpContextModel.RequestBody">
             <summary>
-                Need to <c>EnableRewind</c> for Request in middleware to get Request Body. 
+                Need to <c> EnableRewind </c> for Request in middleware to get Request Body. 
             </summary>
         </member>
         <member name="P:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel.Caption">
@@ -239,8 +238,7 @@
         </member>
         <member name="M:Elect.Web.SiteMap.Models.SiteMapImageItemModel.#ctor(System.String,Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel[])">
             <summary>
-                Creates a new instance of
-                <see cref="T:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel"/>
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapImageItemDetailModel" /> 
             </summary>
             <param name="url">    URL of the page. </param>
             <param name="images"> List image </param>
@@ -263,8 +261,7 @@
         </member>
         <member name="M:Elect.Web.SiteMap.Models.SiteMapIndexItemModel.#ctor(System.String,System.Nullable{System.DateTime})">
             <summary>
-                Creates a new instance of
-                <see cref="T:Elect.Web.SiteMap.Models.SiteMapIndexItemModel"/>
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapIndexItemModel" /> 
             </summary>
             <param name="url">          URL of the page. Optional. </param>
             <param name="lastModified"> The date of last modification of the file. Optional. </param>
@@ -299,13 +296,12 @@
         </member>
         <member name="M:Elect.Web.SiteMap.Models.SiteMapItem.#ctor(System.String,System.Nullable{System.DateTime},System.Nullable{Elect.Web.SiteMap.Models.SiteMapItemFrequency},System.Nullable{System.Double})">
             <summary>
-                Creates a new instance of
-                <see cref="T:Elect.Web.SiteMap.Models.SiteMapItem"/>
+                Creates a new instance of <see cref="T:Elect.Web.SiteMap.Models.SiteMapItem" /> 
             </summary>
             <param name="url">          URL of the page. </param>
             <param name="lastModified"> The date of last modification of the file. Optional. </param>
             <param name="frequency">    How frequently the page is likely to change. Optional. </param>
-            <param name="priority">
+            <param name="priority">    
                 The priority of this URL relative to other URLs on your site. Valid values range from
                 0.0 to 1.0. Optional.
             </param>
@@ -375,7 +371,7 @@
             <summary>
                 Generate SiteMap content result for assembly project. 
             </summary>
-            <param name="asm">
+            <param name="asm">       
                 assembly of web project you want to generate SiteMap
             </param>
             <param name="iUrlHelper"></param>

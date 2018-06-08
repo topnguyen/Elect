@@ -67,8 +67,8 @@
         </member>
         <member name="M:Elect.Web.DataTable.Models.DataTableActionResult.Create``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,Elect.Web.DataTable.Models.Response.DataTableResponseModel{``0},System.Func{``0,System.Object})">
             <typeparam name="T"></typeparam>
-            <param name="request"></param>
-            <param name="response">
+            <param name="request">  </param>
+            <param name="response"> 
                 The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
             </param>
             <param name="transform">
@@ -79,7 +79,7 @@
         </member>
         <member name="M:Elect.Web.DataTable.Models.DataTableActionResult.Create``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,Elect.Web.DataTable.Models.Response.DataTableResponseModel{``0})">
             <typeparam name="T"></typeparam>
-            <param name="request"></param>
+            <param name="request"> </param>
             <param name="response">
                 The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
             </param>
@@ -139,8 +139,7 @@
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.DateTimeTimeZone">
             <summary>
-                Config use datetime with TimeZone. Default is "UTC", See more:
-                https://msdn.microsoft.com/en-us/library/gg154758.aspx 
+                Config use datetime with TimeZone. Default is "UTC", See more: https://msdn.microsoft.com/en-us/library/gg154758.aspx 
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.DateFormat">
@@ -198,8 +197,8 @@
         </member>
         <member name="M:Elect.Web.DataTable.Utils.DataTableActionResultUtils.DataTableActionResultHelper.Create``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,Elect.Web.DataTable.Models.Response.DataTableResponseModel{``0},System.Func{``0,System.Object})">
             <typeparam name="T"></typeparam>
-            <param name="request"></param>
-            <param name="response">
+            <param name="request">  </param>
+            <param name="response"> 
                 The properties of this can be marked up with [DataTablesAttribute] to control sorting/searchability/visibility
             </param>
             <param name="transform">
