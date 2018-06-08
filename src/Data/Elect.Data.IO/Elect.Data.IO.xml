@@ -44,13 +44,13 @@
                 Replaces characters in <c> fileName </c> that are not allowed in file names with the
                 specified replacement character.
             </summary>
-            <param name="fileName">
+            <param name="fileName">      
                 Text to make into a valid filename. The same string is returned if it is valid already.
             </param>
-            <param name="replacement">
+            <param name="replacement">   
                 Replacement character, or null to simply remove bad characters.
             </param>
-            <param name="isFancy">
+            <param name="isFancy">       
                 Whether to replace quotes and slashes with the non-ASCII characters ” and ⁄.
             </param>
             <param name="isRemoveAccent"> Remove all diacritics (accents) in string </param>
@@ -139,23 +139,17 @@
         </member>
         <member name="F:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Lazy">
             <summary>
-                A new instance of the
-                <see cref="T:.Web.Config.Config"/>
-                class. with lazy initialization. 
+                A new instance of the <see cref="T:.Web.Config.Config" /> class. with lazy initialization. 
             </summary>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.#ctor">
             <summary>
-                Prevents a default instance of the
-                <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper"/>
-                class from being created. 
+                Prevents a default instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class from being created. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Instance">
             <summary>
-                Gets the current instance of the
-                <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper"/>
-                class. 
+                Gets the current instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class. 
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.WorkingFolder">
@@ -221,7 +215,7 @@
                 Runs the process to optimize the image. 
             </summary>
             <param name="stream">        </param>
-            <param name="algorithm">
+            <param name="algorithm">     
                 Default is auto depend on file extension, others is force algorithm
             </param>
             <param name="qualityPercent">
@@ -236,7 +230,7 @@
                 Runs the process to optimize the image. 
             </summary>
             <param name="filePath">       The source file. </param>
-            <param name="algorithm">
+            <param name="algorithm">     
                 Default is auto depend on file extension, others is force algorithm
             </param>
             <param name="qualityPercent">
@@ -257,7 +251,7 @@
             </summary>
             <param name="filePath">       The source file. </param>
             <param name="fileTempPath">  </param>
-            <param name="algorithm">
+            <param name="algorithm">     
                 Default is auto depend on file extension, others is force algorithm
             </param>
             <param name="qualityPercent"> Quality PercentSaving - Process </param>
@@ -352,7 +346,7 @@
             <param name="height">          Default is 50 px </param>
             <param name="textColor">       Default is random color </param>
             <param name="backgroundColor"> Default is random color </param>
-            <param name="font">
+            <param name="font">           
                 Default is new Font(FontFamily.GenericSansSerif, 10.0F, FontStyle.Bold)
             </param>
             <returns></returns>

@@ -35,7 +35,7 @@
                 Get device info 
             </summary>
             <param name="playerId"></param>
-            <param name="appName">
+            <param name="appName"> 
                 App name - optional if you have only 1 app in configuration, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultApiUrl" />.
             </param>
             <returns></returns>
@@ -558,8 +558,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.ElectOneSignalAppOption.AppName">
             <summary>
-                App Name to identity between multiple app, default is<see
-                    cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultAppName"/>. 
+                App Name to identity between multiple app, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultAppName" />. 
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.LanguageCodes">
@@ -920,9 +919,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Data">
             <summary>
-                <br/>
-                A custom map of data that is passed back to your app.
-                <br/>
+                <br /> A custom map of data that is passed back to your app. <br /> 
                 <code>
             Example: {"abc": "123", "foo": "bar"}
                 </code>
@@ -939,9 +936,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IncludePlayerIds">
             <summary>
-                <br/>
-                Send based on OneSignal PlayerIds
-                <br/>
+                <br /> Send based on OneSignal PlayerIds <br /> 
             </summary>
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IncludedSegments">
@@ -999,9 +994,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Url">
             <summary>
-                <br/>
-                The URL to open in the browser when a user clicks on the notification.
-                <br/>
+                <br /> The URL to open in the browser when a user clicks on the notification. <br /> 
                 <code>
             Example: http://www.google.com
                 </code>
@@ -1047,9 +1040,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.ActionButtons">
             <summary>
-                <br/>
-                Buttons to add to the notification. Icon only works for Android.
-                <br/>
+                <br /> Buttons to add to the notification. Icon only works for Android. <br /> 
                 <code>
             Example: [{"id": "id1", "text": "button1", "icon": "ic_menu_share"}, {"id": "id2", "text": "button2", "icon": "ic_menu_send"}]
                 </code>
@@ -1059,9 +1050,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.WebButtons">
             <summary>
-                <br/>
-                Add action buttons to the notification. The id field is required.
-                <br/>
+                <br /> Add action buttons to the notification. The id field is required. <br /> 
                 <code>
             Example: [{"id": "like-button", "text": "Like", "icon": "http://i.imgur.com/N8SN8ZS.png", "url": "https://yoursite.com"}, {"id": "read-more-button", "text": "Read more", "icon": "http://i.imgur.com/MIxJp1L.png", "url": "https://yoursite.com"}]
                 </code>
@@ -1092,12 +1081,11 @@
                 <code>
             Example(Blue): "FF0000FF".
                 </code>
-                <br/>
-                contents_color - Body text color ARGB Hex format. 
+                <br /> contents_color - Body text color ARGB Hex format. 
                 <code>
             Example(Red): "FFFF0000"
                 </code>
-                <br/>
+                <br /> 
                 <code>
             Example: {"image": "https://domain.com/background_image.jpg", "headings_color": "FFFF0000", "contents_color": "FF00FF00"}
                 </code>
@@ -1276,9 +1264,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliveryTimeOfDay">
             <summary>
-                <br/>
-                Use with delayed_option=timezone.
-                <br/>
+                <br /> Use with delayed_option=timezone. <br /> 
                 <code>
             Example: "9:00AM"
                 </code>
@@ -1296,8 +1282,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Priority">
             <summary>
-                <br/>
-                Delivery priority through the push server (example GCM/FCM). 
+                <br /> Delivery priority through the push server (example GCM/FCM). 
                 <code>
             Pass 10 for high priority.
                 </code>
@@ -1491,9 +1476,7 @@
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.SessionCount">
             <summary>
-                relation = "&gt;", "&lt;", "=" or "!="
-                <br/>
-                value = number sessions. Example: "1" 
+                relation = "&gt;", "&lt;", "=" or "!=" <br /> value = number sessions. Example: "1" 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.SessionTime">
@@ -1534,19 +1517,12 @@
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.AppVersion">
             <summary>
-                relation = "&gt;", "&lt;", "=" or "!="
-                <br/>
-                value = app version. Example: "1.0.0" 
+                relation = "&gt;", "&lt;", "=" or "!=" <br /> value = app version. Example: "1.0.0" 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.Location">
             <summary>
-                radius = in meters
-                <br/>
-                lat = latitude
-                <br/>
-                long = longitude
-                <br/>
+                radius = in meters <br /> lat = latitude <br /> long = longitude <br /> 
             </summary>
         </member>
         <member name="F:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldTypeEnum.Email">
@@ -1608,9 +1584,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Url">
             <summary>
-                <br/>
-                The URL to open in the browser when a user clicks on the notification.
-                <br/>
+                <br /> The URL to open in the browser when a user clicks on the notification. <br /> 
                 <code>
             Example: http://www.google.com
                 </code>
@@ -1650,9 +1624,7 @@
         </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Data">
             <summary>
-                <br/>
-                A custom map of data that is passed back to your app.
-                <br/>
+                <br /> A custom map of data that is passed back to your app. <br /> 
                 <code>
             Example: {"abc": "123", "foo": "bar"}
                 </code>
