@@ -22,6 +22,7 @@
 using Elect.Web.DataTable.Attributes;
 using System;
 using System.Reflection;
+using Elect.Web.DataTable.Models.Constants;
 
 namespace Elect.Web.DataTable.Models
 {
@@ -39,5 +40,7 @@ namespace Elect.Web.DataTable.Models
         public DataTableBaseAttribute[] Attributes { get; }
 
         public Type Type => PropertyInfo.PropertyType;
+
+        public int Order { get; set; } = ConfigConstants.DefaultOrder;
     }
 }
