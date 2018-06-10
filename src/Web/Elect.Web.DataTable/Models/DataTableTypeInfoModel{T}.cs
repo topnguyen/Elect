@@ -33,7 +33,10 @@ namespace Elect.Web.DataTable.Models
         {
             var dictionary = new Dictionary<string, object>();
 
-            foreach (var pi in Properties) dictionary[pi.PropertyInfo.Name] = pi.PropertyInfo.GetValue(value, null);
+            foreach (var pi in Properties)
+            {
+                dictionary[pi.PropertyInfo.Name] = pi.PropertyInfo.GetValue(value, null);
+            }
 
             return dictionary;
         }

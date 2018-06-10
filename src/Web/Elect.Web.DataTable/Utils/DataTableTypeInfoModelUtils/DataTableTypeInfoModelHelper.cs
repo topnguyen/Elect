@@ -40,7 +40,9 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
             {
                 var listDataTablePropertyInfo = new List<DataTablePropertyInfoModel>();
 
-                foreach (var propertyInfo in t.GetProperties())
+                var listPropertyInfo = t.GetProperties();
+
+                foreach (var propertyInfo in listPropertyInfo)
                 {
                     if (propertyInfo.GetCustomAttribute<DataTableIgnoreAttribute>() != null)
                     {
@@ -50,11 +52,19 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
 
                     var attributes = propertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
 
-                    var dataTablePropertyInfo = new DataTablePropertyInfoModel(propertyInfo, attributes);
+                    // Add to List Property
+                    var dataTablePropertyInfo = new DataTablePropertyInfoModel(propertyInfo, attributes)
+                    {
+                        Order = attributes.OfType<DataTableAttribute>().Select(a => a.Order).SingleOrDefault()
+                    };
 
                     listDataTablePropertyInfo.Add(dataTablePropertyInfo);
                 }
 
+                // Order
+
+                listDataTablePropertyInfo = listDataTablePropertyInfo.OrderBy(x => x.Order).ToList();
+                
                 return listDataTablePropertyInfo.ToArray();
             });
         }
