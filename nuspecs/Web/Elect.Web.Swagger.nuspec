@@ -1,34 +1,36 @@
 <?xml version="1.0"?>
 <package>
-  <metadata>
-    <id>Elect.Web.Swagger</id>
-    <title>Elect Swagger Extensions</title>
-    <description>Swagger extensions.</description>
-    <summary>Swagger extensions.</summary>
-    <authors>Top Nguyen</authors>
-    <owners>topnguyen</owners>
-    <copyright>http://topnguyen.net</copyright>
-    <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Swagger</projectUrl>
-    <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore swagger elect topnguyen</tags>
-      <version>1.1.0</version>
+    <metadata>
+        <id>Elect.Web.Swagger</id>
+        <title>Elect Swagger Extensions</title>
+        <description>Swagger extensions.</description>
+        <summary>Swagger extensions.</summary>
+        <authors>Top Nguyen</authors>
+        <owners>topnguyen</owners>
+        <copyright>http://topnguyen.net</copyright>
+        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Swagger</projectUrl>
+        <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>aspnetcore swagger elect topnguyen</tags>
+        <version>2.1.0</version>
 
-    <dependencies>
-        <dependency id="Elect.Web" version="1.1.0"/>
-        <dependency id="Elect.Data.IO" version="1.1.0"/>
-        <dependency id="Microsoft.AspNetCore.Mvc" version="2.0.4" />
-        <dependency id="Microsoft.Extensions.FileProviders.Physical" version="2.0.1" />
-        <dependency id="Swashbuckle.AspNetCore" version="2.4.0" />
-        <dependency id="Humanizer.Core" version="2.2.0" />
-    </dependencies>
-  </metadata>
+        <dependencies>
+            <dependency id="Elect.Web" version="2.1.0"/>
+            <dependency id="Elect.Data.IO" version="1.1.0"/>
+            <dependency id="Microsoft.Extensions.FileProviders.Physical" version="2.1.0"/>
+            <dependency id="Swashbuckle.AspNetCore" version="2.5.0"/>
+            <dependency id="Humanizer.Core" version="2.3.3"/>
+        </dependencies>
+    </metadata>
 
-  <files>
-    <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect.Web.Swagger.dll" target="lib\netstandard2.0" />
-    <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect.Web.Swagger.pdb" target="lib\netstandard2.0" />
-    <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect.Web.Swagger.xml" target="lib\netstandard2.0" />
-    <file src="..\..\src\Web\Elect.Web.Swagger\**\*.cs" target="src" exclude="**\obj*\**\*.cs" />
-  </files>
+    <files>
+        <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect.Web.Swagger.dll"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect.Web.Swagger.pdb"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.Swagger\bin\Debug\netstandard2.0\Elect.Web.Swagger.xml"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.Swagger\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+    </files>
 </package>

@@ -13,14 +13,14 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore elect topnguyen</tags>
-        <version>1.1.0</version>
+        <version>2.1.0</version>
 
         <dependencies>
-            <dependency id="Microsoft.AspNetCore.WebUtilities" version="2.0.3"/>
+            <dependency id="Microsoft.AspNetCore.WebUtilities" version="2.1.0"/>
             <dependency id="System.Runtime.Loader" version="4.3.0"/>
             <dependency id="System.Xml.XmlSerializer" version="4.3.0"/>
-            <dependency id="Microsoft.DotNet.PlatformAbstractions" version="2.0.4"/>
-            <dependency id="Microsoft.Extensions.Configuration.Binder" version="2.0.2"/>
+            <dependency id="Microsoft.DotNet.PlatformAbstractions" version="2.1.0"/>
+            <dependency id="Microsoft.Extensions.Configuration.Binder" version="2.1.0"/>
             <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0"/>
             <dependency id="Microsoft.Extensions.DependencyModel" version="2.0.4"/>
             <dependency id="Newtonsoft.Json" version="11.0.2"/>

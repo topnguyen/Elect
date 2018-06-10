@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Web.Swagger.Attributes;
@@ -30,102 +32,101 @@ namespace Elect.Web.Swagger.IDocumentFilters
     {
         public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context)
         {
-            foreach (var apiDescriptionGroup in context.ApiDescriptionsGroups.Items)
+            foreach (var apiDescription in context.ApiDescriptions)
             {
-                foreach (var apiDescription in apiDescriptionGroup.Items)
+                if (!(apiDescription.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor))
                 {
-                    var controllerActionDescriptor = apiDescription.ActionDescriptor as ControllerActionDescriptor;
+                    continue;
+                }
 
-                    if (controllerActionDescriptor == null)
+                bool isHideInApiDoc = true;
+
+                // Method / Action level
+                var isHideInApiDocAttributeInMethod = controllerActionDescriptor.MethodInfo
+                    .GetCustomAttributes<HideInApiDocAttribute>(true).Any();
+
+                if (!isHideInApiDocAttributeInMethod)
+                {
+                    var isShowInApiDocAttributeInMethod = controllerActionDescriptor.MethodInfo
+                        .GetCustomAttributes<ShowInApiDocAttribute>(true).Any();
+
+                    if (isShowInApiDocAttributeInMethod)
                     {
-                        continue;
+                        isHideInApiDoc = false;
                     }
-
-                    bool isHideInApiDoc = true;
-
-                    // Method / Action level
-                    var isHideInApiDocAttributeInMethod = controllerActionDescriptor.MethodInfo.GetCustomAttributes<HideInApiDocAttribute>(true).Any();
-
-                    if (!isHideInApiDocAttributeInMethod)
+                    else
                     {
-                        var isShowInApiDocAttributeInMethod = controllerActionDescriptor.MethodInfo.GetCustomAttributes<ShowInApiDocAttribute>(true).Any();
+                        // Type / Controller level
 
-                        if (isShowInApiDocAttributeInMethod)
+                        var isHideInApiDocAttributeInType = controllerActionDescriptor.ControllerTypeInfo
+                            .GetCustomAttributes<HideInApiDocAttribute>(true).Any();
+
+                        if (!isHideInApiDocAttributeInType)
                         {
-                            isHideInApiDoc = false;
-                        }
-                        else
-                        {
-                            // Type / Controller level
+                            var isShowInApiDocAttributeInType = controllerActionDescriptor.ControllerTypeInfo
+                                .GetCustomAttributes<ShowInApiDocAttribute>(true).Any();
 
-                            var isHideInApiDocAttributeInType = controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes<HideInApiDocAttribute>(true).Any();
-
-                            if (!isHideInApiDocAttributeInType)
+                            if (isShowInApiDocAttributeInType)
                             {
-                                var isShowInApiDocAttributeInType = controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes<ShowInApiDocAttribute>(true).Any();
-
-                                if (isShowInApiDocAttributeInType)
-                                {
-                                    isHideInApiDoc = false;
-                                }
+                                isHideInApiDoc = false;
                             }
                         }
                     }
+                }
 
-                    if (!isHideInApiDoc)
+                if (!isHideInApiDoc)
+                {
+                    continue;
+                }
+
+                var route = "/" + controllerActionDescriptor.AttributeRouteInfo.Template.Trim('/');
+
+                var pathItem = swaggerDoc.Paths[route];
+
+                switch (apiDescription.HttpMethod.ToUpperInvariant())
+                {
+                    case "GET":
                     {
-                        continue;
+                        pathItem.Get = null;
+                        break;
                     }
-
-                    var route = "/" + controllerActionDescriptor.AttributeRouteInfo.Template.Trim('/');
-
-                    var pathItem = swaggerDoc.Paths[route];
-
-                    switch (apiDescription.HttpMethod.ToUpperInvariant())
+                    case "POST":
                     {
-                        case "GET":
-                            {
-                                pathItem.Get = null;
-                                break;
-                            }
-                        case "POST":
-                            {
-                                pathItem.Post = null;
-                                break;
-                            }
-                        case "PUT":
-                            {
-                                pathItem.Put = null;
-                                break;
-                            }
-                        case "PATCH":
-                            {
-                                pathItem.Patch = null;
-                                break;
-                            }
-                        case "DELETE":
-                            {
-                                pathItem.Delete = null;
-                                break;
-                            }
-                        case "HEAD":
-                            {
-                                pathItem.Head = null;
-                                break;
-                            }
-                        case "OPTIONS":
-                            {
-                                pathItem.Options = null;
-                                break;
-                            }
+                        pathItem.Post = null;
+                        break;
                     }
-
-                    if (pathItem.Get == null && pathItem.Post == null && pathItem.Put == null &&
-                        pathItem.Patch == null && pathItem.Delete == null && pathItem.Head == null &&
-                        pathItem.Options == null)
+                    case "PUT":
                     {
-                        swaggerDoc.Paths.Remove(route);
+                        pathItem.Put = null;
+                        break;
                     }
+                    case "PATCH":
+                    {
+                        pathItem.Patch = null;
+                        break;
+                    }
+                    case "DELETE":
+                    {
+                        pathItem.Delete = null;
+                        break;
+                    }
+                    case "HEAD":
+                    {
+                        pathItem.Head = null;
+                        break;
+                    }
+                    case "OPTIONS":
+                    {
+                        pathItem.Options = null;
+                        break;
+                    }
+                }
+
+                if (pathItem.Get == null && pathItem.Post == null && pathItem.Put == null &&
+                    pathItem.Patch == null && pathItem.Delete == null && pathItem.Head == null &&
+                    pathItem.Options == null)
+                {
+                    swaggerDoc.Paths.Remove(route);
                 }
             }
         }

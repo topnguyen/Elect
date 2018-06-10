@@ -1,31 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!-- Information -->
-  <PropertyGroup>
-    <LangVersion>7.2</LangVersion>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <!-- Generate XML file -->
-    <DocumentationFile>Elect.Web.xml</DocumentationFile>
-    <!-- Disable warning for Controller/Action/Method not have block comment -->
-    <NoWarn>1701;1702;1705;1591</NoWarn>
-  </PropertyGroup>
-  <ItemGroup>
-    <!-- Copy to Ouput -->
-    <Content Include="Elect.Web.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <!-- Nuget -->
-  <PropertyGroup>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
-    <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.nuspec</NuspecFile>
-  </PropertyGroup>
-  <!-- Elect -->
-  <ItemGroup>
-    <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
-  </ItemGroup>
-  <!-- 3rd Libraries -->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
-  </ItemGroup>
+    <!-- Information -->
+    <PropertyGroup>
+        <LangVersion>7.2</LangVersion>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <!-- Generate XML file -->
+        <DocumentationFile>Elect.Web.xml</DocumentationFile>
+        <!-- Disable warning for Controller/Action/Method not have block comment -->
+        <NoWarn>1701;1702;1705;1591</NoWarn>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- Copy to Ouput -->
+        <Content Include="Elect.Web.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <!-- Nuget -->
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
+        <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.nuspec</NuspecFile>
+    </PropertyGroup>
+    <!-- Elect -->
+    <ItemGroup>
+        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj"/>
+    </ItemGroup>
+    <!-- 3rd Libraries -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0"/>
+    </ItemGroup>
 </Project>

@@ -1,35 +1,37 @@
 <?xml version="1.0"?>
 <package>
-  <metadata>
-    <id>Elect.Data.IO</id>
-    <title>Elect IO</title>
-    <description>IO Utilities.</description>
-    <summary>IO Utilities.</summary>
-    <authors>Top Nguyen</authors>
-    <owners>topnguyen</owners>
-    <copyright>http://topnguyen.net</copyright>
-    <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Data/Elect.Data.IO</projectUrl>
-    <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore io elect topnguyen</tags>
-      <version>1.1.0</version>
-    <releaseNotes></releaseNotes>
+    <metadata>
+        <id>Elect.Data.IO</id>
+        <title>Elect IO</title>
+        <description>IO Utilities.</description>
+        <summary>IO Utilities.</summary>
+        <authors>Top Nguyen</authors>
+        <owners>topnguyen</owners>
+        <copyright>http://topnguyen.net</copyright>
+        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Data/Elect.Data.IO</projectUrl>
+        <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>aspnetcore io elect topnguyen</tags>
+        <version>1.1.0</version>
 
-    <dependencies>
-        <dependency id="Elect.Core" version="1.1.0"/>
-        <dependency id="Enums.NET" version="2.3.1" />
-        <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0" />
-        <dependency id="CoreCompat.System.Drawing.v2" version="5.2.0-preview1-r131" />
-        <dependency id="SixLabors.ImageSharp" version="1.0.0-beta0003" />
-        <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta0003" />
-    </dependencies>
-  </metadata>
+        <dependencies>
+            <dependency id="Elect.Core" version="1.1.0"/>
+            <dependency id="Enums.NET" version="2.3.1"/>
+            <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0"/>
+            <dependency id="CoreCompat.System.Drawing.v2" version="5.2.0-preview1-r131"/>
+            <dependency id="SixLabors.ImageSharp" version="1.0.0-beta0003"/>
+            <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta0003"/>
+        </dependencies>
+    </metadata>
 
-  <files>
-    <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.dll" target="lib\netstandard2.0" />
-    <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.pdb" target="lib\netstandard2.0" />
-    <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.xml" target="lib\netstandard2.0" />
-    <file src="..\..\src\Data\Elect.Data.IO\**\*.cs" target="src" exclude="**\obj*\**\*.cs" />
-  </files>
+    <files>
+        <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.dll"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.pdb"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.xml"
+              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Data\Elect.Data.IO\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+    </files>
 </package>
