@@ -10,7 +10,15 @@ namespace Elect.Test.Logger
         [TestMethod]
         public void ModelTestCase()
         {
-            var model = new LogModel(new Exception("Sample Message"));
+            try
+            {
+                throw new Exception("Sample Message");
+            }
+            catch (Exception e)
+            {
+                var model = new LogModel(e);
+                
+            }
         }
     }
 }

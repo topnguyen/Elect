@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Elect.Logger.Models.Event
 {
@@ -29,7 +30,7 @@ namespace Elect.Logger.Models.Event
         ///     Canbe a Page/Screen/Popup or Element in a Screen
         /// </summary>
         public string Element { get; set; }
-
-        public object AdditionalData { get; set; }
+        
+        public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
     }
 }

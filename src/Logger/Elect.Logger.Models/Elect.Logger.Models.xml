@@ -50,12 +50,54 @@
                 Why is user going there - Compaign or Product name
             </summary>
         </member>
+        <member name="P:Elect.Logger.Models.Logging.ElectExceptionFrame.AbsolutePath">
+            <summary>
+                Gets or sets the absolute path.
+            </summary>
+            <value>
+                The absolute path.
+            </value>
+        </member>
+        <member name="P:Elect.Logger.Models.Logging.ElectExceptionFrame.InApp">
+            <summary>
+                Signifies whether this frame is related to the execution of the relevant code in this
+                stacktrace. For example, the frames that might power the framework’s webserver of your
+                app are probably not relevant, however calls to the framework’s library once you start
+                handling code likely are.
+            </summary>
+            <value>
+                <c>true</c> unless the StackFrame is part of the System namespace.
+            </value>
+        </member>
+        <member name="M:Elect.Logger.Models.Logging.ElectExceptionFrame.DemangleAsyncFunctionName">
+            <summary>
+                Clean up function and module names produced from `async` state machine calls.
+            </summary>
+            <para>
+                When the Microsoft cs.exe compiler compiles some modern C# features,
+                such as async/await calls, it can create synthetic function names that
+                do not match the function names in the original source code. Here we
+                reverse some of these transformations, so that the function and module
+                names that appears in the Sentry UI will match the function and module
+                names in the original source-code.
+            </para>
+        </member>
+        <member name="M:Elect.Logger.Models.Logging.ElectExceptionFrame.DemangleAnonymousFunction">
+            <summary>
+                Clean up function names for anonymous lambda calls.
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Models.Logging.LogModel.ExceptionPlace">
+            <summary>
+                Function call which was the primary perpetrator of this event.
+            </summary>
+        </member>
         <member name="M:Elect.Logger.Models.Logging.LogModel.#ctor(System.Object)">
             <summary>
                 New Instance of Log Model
             </summary>
-            <param name="obj">Canbe an Exception or any object (will be serialize to Json String and store in Message
-                property)
+            <param name="obj">
+                Canbe an Exception or any object (will be serialize to Json String and store in Message property)
             </param>
         </member>
         <member name="M:Elect.Logger.Models.Logging.Utils.EnvironmentHelper.GetOsPlatform">
