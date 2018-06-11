@@ -11,6 +11,8 @@ namespace Elect.Logger.Models.Logging
     {
         public Guid Id { get; } = Guid.NewGuid();
 
+        public DateTimeOffset CreatedTime { get; } = DateTimeOffset.UtcNow;
+
         public LogType Type { get; set; } = LogType.Error;
 
         public string Message { get; set; }
