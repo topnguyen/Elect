@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Elect.Logger.Models.Event
 {
+    [Serializable]
     public class EventModel
     {
         public Guid Id { get; } = Guid.NewGuid();
@@ -30,7 +31,7 @@ namespace Elect.Logger.Models.Event
         ///     Canbe a Page/Screen/Popup or Element in a Screen
         /// </summary>
         public string Element { get; set; }
-        
+
         public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
     }
 }

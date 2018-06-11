@@ -22,7 +22,7 @@
   </PropertyGroup>
   <!-- Elect -->
   <ItemGroup>
-    <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj"/>
+    <ProjectReference Include="..\..\Web\Elect.Web\Elect.Web.csproj"/>
   </ItemGroup>
   <!-- 3rd Libraries -->
   <ItemGroup>

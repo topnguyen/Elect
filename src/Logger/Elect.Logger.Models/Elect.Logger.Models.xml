@@ -87,18 +87,14 @@
                 Clean up function names for anonymous lambda calls.
             </summary>
         </member>
-        <member name="P:Elect.Logger.Models.Logging.LogModel.ExceptionPlace">
-            <summary>
-                Function call which was the primary perpetrator of this event.
-            </summary>
-        </member>
-        <member name="M:Elect.Logger.Models.Logging.LogModel.#ctor(System.Object)">
+        <member name="M:Elect.Logger.Models.Logging.LogModel.#ctor(System.Object,Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
                 New Instance of Log Model
             </summary>
             <param name="obj">
                 Canbe an Exception or any object (will be serialize to Json String and store in Message property)
             </param>
+            <param name="httpContext">HttpContext of current request if have</param>
         </member>
         <member name="M:Elect.Logger.Models.Logging.Utils.EnvironmentHelper.GetOsPlatform">
             <summary>

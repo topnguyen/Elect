@@ -26,7 +26,6 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
     + [Elect.Data.EF](src/Data/Elect.Data.EF/README.md): Entity Framework by Unit of Work and Repository wrap pattern with Transaction support.
     + [Elect.Data.IO](src/Data/Elect.Data.IO/README.md)
       + Physical: Support handle file, folder, image (resize, compress, dominant color).
-      + ***[On Plan]** S3: Utitlies to manage file in [AWS S3](https://aws.amazon.com/s3/)*.
 - Mapper
     + [Elect.Mapper.AutoMapper](src/Mapper/Elect.Mapper.AutoMapper/README.md): Extend of [AutoMapper](https://github.com/AutoMapper/AutoMapper), support auto register Mapper Profile by scan assemblies.
 - Web
@@ -41,8 +40,8 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
     + [Elect.Notification.OneSignal](src/Notification/Elect.Notification.OneSignal/README.md): Client for [OneSignal.com](http://OneSignal.com).
     + [Elect.Notification.Esms](src/Notification/Elect.Notification.Esms/README.md): Client for [eSMS.vn](http://eSMS.vn).
 - Logger
-    + ***[On Plan]** Elect.Logger.Sqlite: Event logger for ASP NET Core project, storage into a Sqlite file - easy to query and statistic.*
-    + ***[On Plan]** Elect.Logger.Dashboard: Visual `Elect.Logger.Sqlite` in Dashboard with securiry check support.*
+    + ***[On Plan]** Elect.Logger: Event logger for ASP NET Core project, storage into a Json Files - easy to query and statistic.*
+    + ***[On Plan]** Elect.Logger.Dashboard: Visual `Elect.Logger` in Dashboard with securiry check support.*
 
 - Localization
     + ***[On Plan]** Elect.Localization.Json: Localization with resource in separate Json files.*
