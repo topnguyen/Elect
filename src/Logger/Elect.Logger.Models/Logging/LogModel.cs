@@ -11,7 +11,7 @@ namespace Elect.Logger.Models.Logging
     {
         public Guid Id { get; } = Guid.NewGuid();
 
-        public DateTimeOffset CreatedTime { get; }
+        public DateTimeOffset CreatedTime { get; set;  }
 
         public LogType Type { get; set; }
 
@@ -25,8 +25,7 @@ namespace Elect.Logger.Models.Logging
 
         public SdkModel Sdk { get; set; }
 
-        [JsonExtensionData]
-        public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
+        public object AdditionalData { get; set; }
 
         public LogModel()
         {
