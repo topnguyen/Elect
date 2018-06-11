@@ -2,11 +2,7 @@
 {
     public enum EventType
     {
-        Access,
-        Leave,
-        Add,
-        Update,
-        Remove,
-        Click,
+        Visit,
+        Click
     }
 }

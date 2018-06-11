@@ -4,6 +4,16 @@
         <name>Elect.Logger.Models</name>
     </assembly>
     <members>
+        <member name="P:Elect.Logger.Models.Event.EventModel.EndedTime">
+            <summary>
+                Only Visit have End Time
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Models.Event.EventModel.Element">
+            <summary>
+                Canbe a Page/Screen/Popup or Element in a Screen
+            </summary>
+        </member>
         <member name="P:Elect.Logger.Models.Event.RefererModel.Domain">
             <summary>
                 Referer root domain
