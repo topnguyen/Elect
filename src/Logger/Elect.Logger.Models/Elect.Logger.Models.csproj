@@ -20,4 +20,13 @@
         <PackageOutputPath>..\..\..\build\Logger</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Logger\Elect.Logger.Models.nuspec</NuspecFile>
     </PropertyGroup>
+    <!-- Elect -->
+    <ItemGroup>
+        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj"/>
+    </ItemGroup>
+    <!-- 3rd Libraries -->
+    <ItemGroup>
+        <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>
+    </ItemGroup>
 </Project>
