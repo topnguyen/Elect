@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using Elect.Core.ObjUtils;
 using Elect.Logger.Models.Logging.Utils;
+using Elect.Web.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Elect.Logger.Models.Logging
 {
+    [Serializable]
     public class LogModel
     {
         public Guid Id { get; } = Guid.NewGuid();
@@ -18,9 +21,6 @@ namespace Elect.Logger.Models.Logging
 
         public List<ElectException> Exceptions { get; set; }
 
-        /// <summary>
-        ///     Function call which was the primary perpetrator of this event.
-        /// </summary>
         public string ExceptionPlace { get; set; }
 
         public RuntimeModel Runtime { get; set; }
@@ -28,6 +28,8 @@ namespace Elect.Logger.Models.Logging
         public EnvironmentModel EnvironmentModel { get; set; }
 
         public SdkModel Sdk { get; set; }
+
+        public HttpContextModel HttpContext { get; set; }
 
         public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
 
@@ -41,7 +43,8 @@ namespace Elect.Logger.Models.Logging
         /// <param name="obj">
         ///     Canbe an Exception or any object (will be serialize to Json String and store in Message property)
         /// </param>
-        public LogModel(object obj)
+        /// <param name="httpContext">HttpContext of current request if have</param>
+        public LogModel(object obj, HttpContext httpContext = null)
         {
             if (obj is Exception exception)
             {
@@ -61,6 +64,11 @@ namespace Elect.Logger.Models.Logging
             EnvironmentModel = EnvironmentHelper.Get();
 
             Sdk = SdkHelper.Get(Assembly.GetCallingAssembly().GetName());
+
+            HttpContext = new HttpContextModel(httpContext)
+            {
+                Id = Id.ToString("N")
+            };
         }
 
         private void Initial(Exception exception)
@@ -100,6 +108,11 @@ namespace Elect.Logger.Models.Logging
                     Exceptions.Add(sentryException);
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return this.ToJsonString();
         }
     }
 }

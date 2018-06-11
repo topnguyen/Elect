@@ -16,6 +16,7 @@
       <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0"/>
   </ItemGroup>
   <ItemGroup>
+      <ProjectReference Include="..\..\..\src\Logger\Elect.Logger.Models\Elect.Logger.Models.csproj"/>
     <ProjectReference Include="..\..\..\src\Web\Elect.Web\Elect.Web.csproj" />
   </ItemGroup>
 </Project>
