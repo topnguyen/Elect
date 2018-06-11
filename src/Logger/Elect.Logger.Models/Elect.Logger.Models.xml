@@ -40,6 +40,14 @@
                 Why is user going there - Compaign or Product name
             </summary>
         </member>
+        <member name="M:Elect.Logger.Models.Logging.LogModel.#ctor(System.Object)">
+            <summary>
+                New Instance of Log Model
+            </summary>
+            <param name="obj">Canbe an Exception or any object (will be serialize to Json String and store in Message
+                property)
+            </param>
+        </member>
         <member name="M:Elect.Logger.Models.Logging.Utils.EnvironmentHelper.GetOsPlatform">
             <summary>
                 Get OS platform

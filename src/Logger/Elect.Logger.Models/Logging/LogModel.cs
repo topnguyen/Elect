@@ -11,22 +11,26 @@ namespace Elect.Logger.Models.Logging
     {
         public Guid Id { get; } = Guid.NewGuid();
 
-        public DateTimeOffset CreatedTime { get; } = DateTimeOffset.UtcNow;
+        public DateTimeOffset CreatedTime { get; }
 
-        public LogType Type { get; set; } = LogType.Error;
+        public LogType Type { get; set; }
 
         public string Message { get; set; }
 
         public Exception Exception { get; set; }
 
-        public RuntimeModel Runtime { get; set; } = RuntimeHelper.Get();
+        public RuntimeModel Runtime { get; set; }
 
-        public EnvironmentModel EnvironmentModel { get; set; } = EnvironmentHelper.Get();
+        public EnvironmentModel EnvironmentModel { get; set; }
 
-        public SdkModel Sdk { get; set; } = SdkHelper.Get(Assembly.GetCallingAssembly().GetName());
+        public SdkModel Sdk { get; set; }
 
         [JsonExtensionData]
         public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
+
+        public LogModel()
+        {
+        }
 
         /// <summary>
         ///     New Instance of Log Model
@@ -42,6 +46,16 @@ namespace Elect.Logger.Models.Logging
             {
                 Message = obj.ToJsonString();
             }
+
+            CreatedTime = DateTimeOffset.UtcNow;
+
+            Type = LogType.Error;
+
+            Runtime = RuntimeHelper.Get();
+
+            EnvironmentModel = EnvironmentHelper.Get();
+
+            Sdk = SdkHelper.Get(Assembly.GetCallingAssembly().GetName());
         }
     }
 }
