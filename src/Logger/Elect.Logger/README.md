@@ -38,6 +38,10 @@ services.AddElectLog();
     + Inject `IElectLog` to your class.
     + Call Capture methods
 ```c#
+    _electLog.BeforeLog = (log) => {
+        // Modify log info or do some logic before Elect write log
+        return log;
+    }
     _electLog.Capture(log);
 ``` 
 
