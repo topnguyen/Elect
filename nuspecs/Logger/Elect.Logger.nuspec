@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package>
     <metadata>
-        <id>Elect.Logger.Models</id>
-        <title>Elect Logger Models</title>
-        <description>Common Models for Logger.</description>
-        <summary>Common Models for Logger.</summary>
+        <id>Elect.Logger</id>
+        <title>Elect Logger</title>
+        <description>Logger support Event and Develop Log.</description>
+        <summary>Logger support Event and Develop Log.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
         <copyright>http://topnguyen.net</copyright>
@@ -16,18 +16,16 @@
         <version>2.1.0</version>
 
         <dependencies>
-            <dependency id="Elect.Web" version="2.1.0"/>
-            <dependency id="System.ComponentModel.Annotations" version="4.5.0"/>
-            <dependency id="Newtonsoft.Json" version="11.0.2"/>
+            <dependency id="Elect.Logger.Models" version="2.1.0"/>
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\src\Logger\Elect.Logger.Models\bin\Debug\netstandard2.0\Elect.Logger.Models.dll"
+        <file src="..\..\src\Logger\Elect.Logger\bin\Debug\netstandard2.0\Elect.Logger.dll"
               target="lib\netstandard2.0"/>
-        <file src="..\..\src\Logger\Elect.Logger.Models\bin\Debug\netstandard2.0\Elect.Logger.Models.pdb"
+        <file src="..\..\src\Logger\Elect.Logger\bin\Debug\netstandard2.0\Elect.Logger.pdb"
               target="lib\netstandard2.0"/>
-        <file src="..\..\src\Logger\Elect.Logger.Models\bin\Debug\netstandard2.0\Elect.Logger.Models.xml"
+        <file src="..\..\src\Logger\Elect.Logger\bin\Debug\netstandard2.0\Elect.Logger.xml"
               target="lib\netstandard2.0"/>
-        <file src="..\..\src\Logger\Elect.Logger.Models\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+        <file src="..\..\src\Logger\Elect.Logger\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>

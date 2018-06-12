@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Logger</name>
+    </assembly>
+    <members>
+        <member name="M:Elect.Logger.Utils.CreditCardHelper.Filter(System.String)">
+            <summary>
+                Filters credit card numbers from the input.
+            </summary>
+            <param name="input">
+                The input.
+            </param>
+            <returns>
+                The
+                <see cref="T:System.String"/>
+                with credit card numbers removed.
+            </returns>
+        </member>
+        <member name="M:Elect.Logger.Utils.CreditCardHelper.IsValidCreditCardNumber(System.String)">
+            <summary>
+                Validates a credit card number using Luhn algorithm.
+                Extremely fast Luhn algorithm implementation, based on
+                pseudo code from Cliff L. Biffle (http://microcoder.livejournal.com/17175.html)
+                Copyleft Thomas @ Orb of Knowledge:
+                http://orb-of-knowledge.blogspot.com/2009/08/extremely-fast-luhn-function-for-c.html
+            </summary>
+            <param name="number">
+                The credit card number.
+            </param>
+            <returns>
+                True if a valid credit card number; otherwise false.
+            </returns>
+        </member>
+    </members>
+</doc>
