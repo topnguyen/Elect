@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Elect.Logger.Logging;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,8 @@ namespace Elect.Sample.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddElectLog();
+            
             services.AddMvc();
         }
 

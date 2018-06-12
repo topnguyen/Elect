@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using Elect.Core.ObjUtils;
+using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
 using Elect.Logger.Utils;
+using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace Elect.Logger.Logging
 {
-    public class ElectLog : ElectMessageQueue<LogModel>
+    public class ElectLog : ElectMessageQueue<LogModel>, IElectLog
     {
-        private static ElectLog _instance;
-
-        public static ElectLog Instance => _instance = _instance ?? new ElectLog();
-
         public Func<LogModel, LogModel> BeforeLog { get; set; }
+
+        private ElectLogOptions _options;
+        
+        public ElectLog(IOptions<ElectLogOptions> configuration)
+        {
+            _options = configuration.Value;
+        }
 
         public LogModel Capture(string message, LogType type = LogType.Error, HttpContext httpContent = null)
         {
@@ -65,10 +71,11 @@ namespace Elect.Logger.Logging
         {
             foreach (var logModel in events)
             {
-                Console.WriteLine("Write Log " + logModel.Id);
+                Console.WriteLine("Write Log " + logModel.Id + " in " + _options.JsonFilePath);
             }
-
-//            throw new NotImplementedException();
+            
+            // TODO write to JSON file
+//            var store = new DataStore("data.json");
         }
     }
 }
