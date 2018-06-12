@@ -43,5 +43,7 @@ services.AddElectLog();
 
 See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Logger/).
 
+## [View Sample](../../../samples/Logger/Elect.Sample.Logger/README.md)
+
 ## License
 Elect.Logger.Models is licensed under the [MIT License](../../../LICENSE).
