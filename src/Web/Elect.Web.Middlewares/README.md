@@ -56,7 +56,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web
 - RequestRewindMiddleware
     + Use Middleware: `app.UseElectRequestRewind()`.
     + Use: This middleware auto enable Request Rewind every `HttpRequest`, you can read raw HttpRequest Body.
-```csharp
+```c#
 using (var ms = new MemoryStream(2048))
 {
     await Request.Body.CopyToAsync(ms);

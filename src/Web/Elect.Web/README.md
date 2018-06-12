@@ -26,7 +26,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web
 
 - SiteMap
     + Set `SiteMapItem` attribute for `Action` in `Controller` to mask the Action is Site Map Item.
-```csharp
+```c#
 public class HomeController : Controller
 {
     [SiteMapItem(SiteMapItemFrequency.Hourly, 0.9)]
@@ -43,7 +43,7 @@ public class HomeController : Controller
 }
 ```
     + Add `SiteMapController` to generate Site Map Index and Site Map Index Detail.
-```csharp
+```c#
 public class SiteMapController : Controller
 {
     /// <summary>
@@ -80,7 +80,7 @@ public class SiteMapController : Controller
 ```
 
 - API meta paged collection
-```csharp
+```c#
 // 1. Service Layers
 
 // Queryable Data

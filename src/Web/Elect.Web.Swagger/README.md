@@ -39,12 +39,12 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web
 
 - Add Service
   + Use can config by parameter [`ElectSwaggerOptions`](Models/ElectSwaggerOptions.cs)
-```csharp
+```c#
 services.AddElectSwagger();
 ```
 
 - Use Middleware
-```csharp
+```c#
 app.UseElectSwagger();
 ```
 

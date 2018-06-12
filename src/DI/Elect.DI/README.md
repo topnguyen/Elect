@@ -29,7 +29,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.DI/
 ## Usage
 
 - `Startup.cs`: add `Scanner` - Auto register dependency injection.
-```csharp
+```c#
  public void ConfigureServices(IServiceCollection services)
 {
     // Auto Register Dependency Injection
@@ -46,7 +46,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.DI/
   + SingletonDependency: Register as Singleton Lifetime.
   + Register for Interface via parameter `ServiceType`, if not set parameter value then the Implementation **injection it self**.
  
-```csharp
+```c#
 public interface ISampleService{
 
 }

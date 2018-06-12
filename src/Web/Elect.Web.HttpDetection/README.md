@@ -24,7 +24,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web
 
 HttpDetection work as `HttpRequest` extensions.
 
-```csharp
+```c#
 var deviceInfo = HttpRequest.GetDeviceInformation();
 ```
 

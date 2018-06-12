@@ -4,9 +4,14 @@
         <name>Elect.Logger</name>
     </assembly>
     <members>
-        <member name="P:Elect.Logger.Logging.ElectLogOptions.JsonFilePath">
+        <member name="P:Elect.Logger.Logging.ElectLog.BeforeLog">
             <summary>
-                Relative Path of Json File
+                Modified log info or do some logic before Elect write log.
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.JsonFilePath">
+            <summary>
+                Relative Path of Json File, default is Logs.json
             </summary>
         </member>
         <member name="M:Elect.Logger.Utils.CreditCardHelper.Filter(System.String)">
