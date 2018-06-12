@@ -18,7 +18,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>..\..\..\build\Logger</PackageOutputPath>
-    <NuspecFile>..\..\..\nuspecs\Logger\Elect.Logger.Models.nuspec</NuspecFile>
+    <NuspecFile>..\..\..\nuspecs\Logger\Elect.Logger.nuspec</NuspecFile>
   </PropertyGroup>
   <!-- Elect -->
   <ItemGroup>
