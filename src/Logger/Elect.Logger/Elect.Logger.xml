@@ -4,6 +4,11 @@
         <name>Elect.Logger</name>
     </assembly>
     <members>
+        <member name="P:Elect.Logger.Logging.ElectLogOptions.JsonFilePath">
+            <summary>
+                Relative Path of Json File
+            </summary>
+        </member>
         <member name="M:Elect.Logger.Utils.CreditCardHelper.Filter(System.String)">
             <summary>
                 Filters credit card numbers from the input.
