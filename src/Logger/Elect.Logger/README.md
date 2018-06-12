@@ -26,6 +26,8 @@ PM> Install-Package Elect.Logger
 dotnet add package Elect.Logger
 ```
 
+See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Logger/).
+
 ## Usage
 
 - Add Service
@@ -44,8 +46,6 @@ services.AddElectLog();
     }
     _electLog.Capture(log);
 ``` 
-
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Logger/).
 
 ## [View Sample](../../../samples/Logger/Elect.Sample.Logger/README.md)
 
