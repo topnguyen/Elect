@@ -13,12 +13,12 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore httpdetection elect topnguyen</tags>
-        <version>2.1.0</version>
+        <version>2.1.0.1</version>
 
         <dependencies>
             <dependency id="Elect.Web" version="2.1.0"/>
             <dependency id="WebMarkupMin.AspNetCore2" version="2.4.2"/>
-            <dependency id="WebMarkupMin.NUglify" version="2.4.2"/>
+            <dependency id="WebMarkupMin.NUglify" version="2.4.3"/>
         </dependencies>
     </metadata>
 
