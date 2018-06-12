@@ -1,5 +1,5 @@
 ﻿![Logo](../../../Logo.png)
-# Elect.Logger.Models
+# Elect.Logger
 > Author [**Top Nguyen**](http://topnguyen.net)
 
 ## Overview
