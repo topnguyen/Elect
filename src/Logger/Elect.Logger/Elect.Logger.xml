@@ -20,7 +20,7 @@
         <member name="M:Elect.Logger.Utils.CreditCardHelper.IsValidCreditCardNumber(System.String)">
             <summary>
                 Validates a credit card number using Luhn algorithm.
-                Extremely fast Luhn algorithm implementation, based on
+                Extremely fast Luhn algorithm implementation, based on 
                 pseudo code from Cliff L. Biffle (http://microcoder.livejournal.com/17175.html)
                 Copyleft Thomas @ Orb of Knowledge:
                 http://orb-of-knowledge.blogspot.com/2009/08/extremely-fast-luhn-function-for-c.html
