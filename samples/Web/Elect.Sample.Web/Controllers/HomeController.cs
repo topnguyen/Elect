@@ -1,4 +1,5 @@
 ﻿using System;
+using Elect.Logger.Models.Event;
 using Elect.Logger.Models.Logging;
 using Elect.Web.SiteMap.Attributes;
 using Elect.Web.SiteMap.Models;
@@ -13,6 +14,8 @@ namespace Elect.Sample.Web.Controllers
         {
             try
             {
+                var model = new EventModel(HttpContext);
+                
                 throw new Exception("Sample Message");
             }
             catch (Exception e)

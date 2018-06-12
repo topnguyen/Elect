@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Elect.Logger.Models.Event.Utils;
+using Microsoft.AspNetCore.Http;
 
 namespace Elect.Logger.Models.Event
 {
@@ -33,5 +35,24 @@ namespace Elect.Logger.Models.Event
         public string Element { get; set; }
 
         public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
+
+        public EventModel()
+        {
+        }
+
+        public EventModel(HttpRequest httpRequest)
+        {
+            if (httpRequest == null)
+            {
+                return;
+            }
+
+            Utm = UtmHelper.Get(httpRequest);
+            Referer = RefererHelper.Get(httpRequest);
+        }
+
+        public EventModel(HttpContext httpContext) : this(httpContext?.Request)
+        {
+        }
     }
 }

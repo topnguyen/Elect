@@ -65,10 +65,13 @@ namespace Elect.Logger.Models.Logging
 
             Sdk = SdkHelper.Get(Assembly.GetCallingAssembly().GetName());
 
-            HttpContext = new HttpContextModel(httpContext)
+            if (httpContext != null)
             {
-                Id = Id.ToString("N")
-            };
+                HttpContext = new HttpContextModel(httpContext)
+                {
+                    Id = Id.ToString("N")
+                };
+            }
         }
 
         private void Initial(Exception exception)
