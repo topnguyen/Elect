@@ -9,9 +9,29 @@
                 Only Visit have End Time
             </summary>
         </member>
-        <member name="P:Elect.Logger.Models.Event.EventModel.Element">
+        <member name="P:Elect.Logger.Models.Event.EventModel.ElementName">
             <summary>
                 Canbe a Page/Screen/Popup or Element in a Screen
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Models.Event.EventModel.ElementDescartLatPx">
+            <summary>
+                Descart Latitude of element in pixel
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Models.Event.EventModel.ElementDescartLngPx">
+            <summary>
+                Descart Longitude of element in pixel
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Models.Event.EventModel.ScreenWidthPx">
+            <summary>
+                Screen width in pixel
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Models.Event.EventModel.ScreenHeightPx">
+            <summary>
+                Screen height in pixel
             </summary>
         </member>
         <member name="P:Elect.Logger.Models.Event.RefererModel.Domain">
