@@ -38,7 +38,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web
 ```
 
 - Add Service
-  + Use can config by parameter [`ElectSwaggerOptions`](Models/ElectSwaggerOptions.cs)
+  + You can config by parameter [`ElectSwaggerOptions`](Models/ElectSwaggerOptions.cs)
 ```c#
 services.AddElectSwagger();
 ```

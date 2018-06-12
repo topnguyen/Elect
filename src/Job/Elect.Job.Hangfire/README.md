@@ -21,7 +21,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Job
 ## Usage
 
 - Add Service
-  + Use can config dashboard, security by parameter [`ElectHangfireOptions`](Models/ElectHangfireOptions.cs)
+  + You can config dashboard, security by parameter [`ElectHangfireOptions`](Models/ElectHangfireOptions.cs)
 ```c#
 services.AddElectHangfire();
 ```
