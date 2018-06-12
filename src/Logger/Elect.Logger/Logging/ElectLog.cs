@@ -16,7 +16,7 @@ namespace Elect.Logger.Logging
     public class ElectLog : ElectMessageQueue<LogModel>, IElectLog
     {
         /// <summary>
-        ///     Modified log info or do some logic before Elect write log.
+        ///     Modify log info or do some logic before Elect write log.
         /// </summary>
         public Func<LogModel, LogModel> BeforeLog { get; set; }
 
