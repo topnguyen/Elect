@@ -29,7 +29,7 @@ dotnet add package Elect.Logger
 ## Usage
 
 - Add Service
-  + Use can config `FilePath` (default is `Logs\{yyyy-MM-dd}.json`) by parameter [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
+  + You can config `FilePath` (default is `Logs\{yyyy-MM-dd}.json`) by parameter [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
 ```c#
 services.AddElectLog();
 ```
