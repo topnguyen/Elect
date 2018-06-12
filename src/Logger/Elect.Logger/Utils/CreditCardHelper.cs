@@ -15,9 +15,14 @@ namespace Elect.Logger.Utils
         /// </returns>
         public static string Filter(string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return input;
+            }
+            
             Regex cardRegex = new Regex(@"\b(?:\d[ -]*?){13,16}\b", RegexOptions.IgnoreCase);
 
-            return cardRegex.Replace(input, m => IsValidCreditCardNumber(m.Value) ? "####-CC-TRUNCATED-####" : m.Value);
+            return cardRegex.Replace(input, m => IsValidCreditCardNumber(m.Value) ? "####-CC-CENSORED-####" : m.Value);
         }
 
         /// <summary>

@@ -1,7 +1,4 @@
-﻿using System;
-using Elect.Logger.Logging;
-using Elect.Logger.Models.Event;
-using Elect.Logger.Models.Logging;
+﻿using Elect.Logger.Logging;
 using Elect.Web.SiteMap.Attributes;
 using Elect.Web.SiteMap.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +10,9 @@ namespace Elect.Sample.Web.Controllers
         [SiteMapItem(SiteMapItemFrequency.Hourly, 0.9)]
         public IActionResult Index()
         {
-            var logger = new ElectLog();
+            var logger = ElectLog.Instance;
 
-            for (int i = 0; i < 10; i++)
-            {
-                var message = "message " + i;
-                logger.Capture(message);
-            }
+            logger.Capture("message credit cart is 378282246310005");
             
             return View();
         }
