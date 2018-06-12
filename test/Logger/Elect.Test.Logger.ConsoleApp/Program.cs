@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using Elect.Logger.Logging;
+using Elect.Logger.Models.Logging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Test.Logger.ConsoleApp
@@ -10,7 +12,13 @@ namespace Elect.Test.Logger.ConsoleApp
         {
             IServiceCollection services = new ServiceCollection();
 
-            services.AddElectLog();
+            services.AddElectLog(_ =>
+            {
+                _.JsonFilePath = 
+                    "Logs" + Path.DirectorySeparatorChar + 
+                        "{Type}" + Path.DirectorySeparatorChar + 
+                            "{Type}_{yyyy-MM-dd}.json";
+            });
 
             var provider = services.BuildServiceProvider();
 
@@ -24,7 +32,7 @@ namespace Elect.Test.Logger.ConsoleApp
                     return logInfo;
                 };
             
-                electLog.Capture("message credit cart is 378282246310005");
+                electLog.Capture("message credit cart is 378282246310005", LogType.Fatal);
             }
 
             Console.ReadKey();

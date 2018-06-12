@@ -53,7 +53,7 @@ Depend on base entity type have difference type configuration
 - [`VersionStringEntityTypeConfiguration<T>`](Services/Map/VersionStringEntityTypeConfiguration{T}.cs)
 
 Then in your `DbContext` enable scan type configuration
-```csharp
+```c#
  protected override void OnModelCreating(ModelBuilder builder)
 {
     base.OnModelCreating(builder);
@@ -91,7 +91,7 @@ You can save your time to implement [`IUnitOfWork`](Interfaces/UnitOfWork/IUnitO
 Then in your service layer, just inject `IUnitOfWork` then you can enable Transaction and Get Repositories you need.
 
 - Normal usecase
-```csharp
+```c#
 var userRepo = _unitOfWork.GetRepository<UserEntity>();
 
 var userEntity = new UserEntity{};
@@ -103,7 +103,7 @@ _unitOfWork.SaveChanges();
 
 - Transaction usecase
 
-```csharp
+```c#
 using(var transaction = _unitOfWork.BeginTransaction())
 {
     // Save User

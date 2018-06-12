@@ -63,7 +63,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web
   - Use [DataTable](Attributes/DataTableAttribute.cs) Attribute to config column in Model Property.
   - You can mask the property not generate to column in DataTable by [DataTableIgnore](Attributes/DataTableIgnoreAttribute.cs) Attribute
   - You can config the row id follow data of a property instead of default increase row id by [DataTableRowId](Attributes/DataTableRowIdAttribute.cs) Attribute.
-```csharp
+```c#
 public class UserModel
 {
     [DataTable(IsVisible = false)]
@@ -81,7 +81,7 @@ public class UserModel
 ```
 
 4. Add `Action` to get Datatable Data in your `Controller`.
-```csharp
+```c#
     /// <summary>
     ///     Get Users DataTable 
     /// </summary>
@@ -130,7 +130,7 @@ public class UserModel
 
 5. View [`Sample.cshtml`](Assets/Sample.cshtml) to known how to use [`_DataTableHtml.cshtml`](Assets/_DataTableHtml.cshtml) and [`_DataTableScript.cshtml`](Assets/_DataTableScript.cshtml) to generate configuration for Jquery Datatbase when response.
 
-```csharp
+```c#
 @{
     Layout = null;
 

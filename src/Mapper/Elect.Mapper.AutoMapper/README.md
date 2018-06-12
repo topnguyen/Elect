@@ -26,7 +26,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Map
 ## Usage
 
 - `Startup.cs`: add `Scanner` - Auto register auto mapper profiles.
-```csharp
+```c#
  public void ConfigureServices(IServiceCollection services)
 {
     // Add Auto Mapper Services and Auto Register Auto Mapper Profiles
@@ -35,7 +35,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Map
 ```
 
 - Auto Mapper Profile: Create class and inherit `AutoMapper.Profile`
-```csharp
+```c#
 public class UserProfile : Profile
 {
     public UserProfile()
@@ -48,7 +48,7 @@ public class UserProfile : Profile
 ```
 
 - `MapTo<T>()` and `MapTo()`
-```csharp
+```c#
 // Map from UserEntity to UserModel
 var userEntity = new UserEntity{Id = 1};
 
@@ -62,7 +62,7 @@ userEntity2.MapTo(userModel);
 ```
 
 - `QueryTo<T>()` to map data from `IQueryable` - useful for query data form Entity Framework Core.
-```csharp
+```c#
 var query = _userRepo.Get(x => x.DeletedTime == null);
 
 // Work same way with ".Select(x => new UserModel{...})" to select alias from Database.
