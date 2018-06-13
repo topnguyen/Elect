@@ -214,7 +214,7 @@ namespace Elect.Web.HttpUtils
             // originating IP address of a client connecting to a web server through an HTTP proxy or
             // load balancer.
             string xff = request.Headers?
-                .Where(x => HeaderKey.XForwardedFor.Equals(x.Value, StringComparison.OrdinalIgnoreCase))
+                .Where(x => HeaderKey.XForwardedFor.Equals(x.Key, StringComparison.OrdinalIgnoreCase))
                 .Select(k => request.Headers[k.Key]).FirstOrDefault();
 
             // If you want to exclude private IP addresses, then see http://stackoverflow.com/questions/2577496/how-can-i-get-the-clients-ip-address-in-asp-net-mvc
