@@ -20,6 +20,11 @@ namespace Elect.Logger.Logging
         /// </summary>
         public Func<LogModel, LogModel> BeforeLog { get; set; }
 
+        /// <summary>
+        ///     Modify log info or do some logic after Elect write log.
+        /// </summary>
+        public Func<LogModel, LogModel> AfterLog { get; set; }
+
         private readonly ElectLogOptions _options;
 
         public ElectLog(IOptions<ElectLogOptions> configuration)
@@ -61,15 +66,7 @@ namespace Elect.Logger.Logging
             // Update log by filtered info
             log = JsonConvert.DeserializeObject<LogModel>(logJsonStr);
 
-            if (BeforeLog != null)
-            {
-                log = BeforeLog(log);
-            }
-
-            if (log != null)
-            {
-                Push(log);
-            }
+            Push(log);
 
             return log;
         }
@@ -78,8 +75,20 @@ namespace Elect.Logger.Logging
 
         protected override void Write(ICollection<LogModel> events)
         {
-            foreach (var log in events)
+            foreach (var @event in events)
             {
+                var log = @event;
+
+                if (BeforeLog != null)
+                {
+                    log = BeforeLog(log);
+                }
+
+                if (log == null)
+                {
+                    continue;
+                }
+
                 var jsonFilePath = GetJsonFilePath(_options, log);
 
                 using (var store = new DataStore(jsonFilePath))
@@ -88,6 +97,8 @@ namespace Elect.Logger.Logging
 
                     WriteLogs(store, log);
                 }
+
+                AfterLog?.Invoke(log);
             }
         }
 
@@ -103,7 +114,7 @@ namespace Elect.Logger.Logging
             // Repalce {<DateTimeFormat>}
             var utcNow = DateTimeOffset.UtcNow;
             jsonFilePath = GetFilePathByDateTime(jsonFilePath, utcNow);
-            
+
             // Directory Handle
             CreateNotExistDirectory(jsonFilePath);
 
@@ -133,7 +144,7 @@ namespace Elect.Logger.Logging
 
                 var param = jsonFilePath.Substring(iStartParam, length);
 
-                var value = dateTime.ToString(param).Trim('{','}');
+                var value = dateTime.ToString(param).Trim('{', '}');
 
                 jsonFilePath = jsonFilePath.Replace(param, value);
             }
