@@ -16,6 +16,9 @@
         
 - Support batch logs by message queue.
 
+- Support filters
+  + Credit card number will filter and repalce to `"####-CC-CENSORED-####"`.
+
 ## Installation
 - Package Manager
 ```

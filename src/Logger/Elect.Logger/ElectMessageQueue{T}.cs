@@ -11,7 +11,11 @@ namespace Elect.Logger
     {
         #region Fields
 
-        private readonly uint _batchSize;
+        private bool _canStop;
+
+        protected uint BatchSize = 100;
+        protected TimeSpan ThresholdTimeSpan = TimeSpan.FromSeconds(5);
+
         private readonly CancellationTokenSource _cancellationToken = new CancellationTokenSource();
         private readonly CancellationTokenSource _eventCancellationToken = new CancellationTokenSource();
 
@@ -20,32 +24,15 @@ namespace Elect.Logger
         private readonly Task _pumpTask;
         private readonly List<Task> _workerTasks = new List<Task>();
 
-        private readonly TimeSpan _thresholdTimeSpan;
-
         private readonly AutoResetEvent _timerResetEvent = new AutoResetEvent(false);
-
-        private readonly BlockingCollection<IList<T>> _batchCollection;
-        private readonly BlockingCollection<T> _eventCollection;
-        private readonly ConcurrentQueue<T> _batch;
-
-        private bool _canStop;
+        private readonly BlockingCollection<IList<T>> _batchCollection = new BlockingCollection<IList<T>>();
+        private readonly BlockingCollection<T> _eventCollection = new BlockingCollection<T>();
+        private readonly ConcurrentQueue<T> _batch = new ConcurrentQueue<T>();
 
         #endregion
 
-        protected ElectMessageQueue(uint batchSize = 100, int thresholdSec = 5)
+        protected ElectMessageQueue()
         {
-            _batchSize = batchSize > 0 ? batchSize : 100;
-
-            _thresholdTimeSpan = thresholdSec > 0
-                ? TimeSpan.FromSeconds(thresholdSec)
-                : TimeSpan.FromSeconds(5);
-
-            _batch = new ConcurrentQueue<T>();
-
-            _batchCollection = new BlockingCollection<IList<T>>();
-
-            _eventCollection = new BlockingCollection<T>();
-
             _batchTask = Task.Factory.StartNew(Pump, TaskCreationOptions.LongRunning);
 
             _timerTask = Task.Factory.StartNew(TimerPump, TaskCreationOptions.LongRunning);
@@ -98,7 +85,7 @@ namespace Elect.Logger
         {
             while (!_canStop)
             {
-                _timerResetEvent.WaitOne(_thresholdTimeSpan);
+                _timerResetEvent.WaitOne(ThresholdTimeSpan);
                 Flush();
             }
         }
@@ -113,7 +100,7 @@ namespace Elect.Logger
 
                     _batch.Enqueue(@event);
 
-                    if (_batch.Count >= _batchSize)
+                    if (_batch.Count >= BatchSize)
                     {
                         Flush();
                     }
@@ -136,7 +123,7 @@ namespace Elect.Logger
                 return;
             }
 
-            var batchSize = _batch.Count >= _batchSize ? (int) _batchSize : _batch.Count;
+            var batchSize = _batch.Count >= BatchSize ? (int) BatchSize : _batch.Count;
 
             var collection = new List<T>();
 
@@ -195,7 +182,7 @@ namespace Elect.Logger
                 {
                     _batch.Enqueue(@event);
 
-                    if (_batch.Count >= _batchSize)
+                    if (_batch.Count >= BatchSize)
                     {
                         Flush();
                     }

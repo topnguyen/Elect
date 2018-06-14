@@ -24,12 +24,10 @@
                 Filters credit card numbers from the input.
             </summary>
             <param name="input">
-                The input.
+            The input.
             </param>
             <returns>
-                The
-                <see cref="T:System.String"/>
-                with credit card numbers removed.
+                The <see cref="T:System.String"/> with credit card numbers removed.
             </returns>
         </member>
         <member name="M:Elect.Logger.Utils.CreditCardHelper.IsValidCreditCardNumber(System.String)">

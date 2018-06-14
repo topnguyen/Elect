@@ -30,6 +30,10 @@ namespace Elect.Logger.Logging
         public ElectLog(IOptions<ElectLogOptions> configuration)
         {
             _options = configuration.Value;
+
+            BatchSize = _options.BatchSize;
+
+            ThresholdTimeSpan = _options.ThresholdTimeSpan;
         }
 
         #region Capture
@@ -79,6 +83,7 @@ namespace Elect.Logger.Logging
             {
                 var log = @event;
 
+                // Before
                 if (BeforeLog != null)
                 {
                     log = BeforeLog(log);
@@ -91,13 +96,24 @@ namespace Elect.Logger.Logging
 
                 var jsonFilePath = GetJsonFilePath(_options, log);
 
-                using (var store = new DataStore(jsonFilePath))
+                // To File
+                if (_options.IsEnableLogToFile)
                 {
-                    WriteMetadata(store);
+                    using (var store = new DataStore(jsonFilePath))
+                    {
+                        WriteMetadata(store);
 
-                    WriteLogs(store, log);
+                        WriteLog(store, log);
+                    }
                 }
 
+                // To Console
+                if (_options.IsEnableLogToConsole)
+                {
+                    WriteConsole(log);
+                }
+
+                // After
                 AfterLog?.Invoke(log);
             }
         }
@@ -186,11 +202,88 @@ namespace Elect.Logger.Logging
             }
         }
 
-        private static void WriteLogs(IDataStore store, LogModel log)
+        private static void WriteLog(IDataStore store, LogModel log)
         {
             var logs = store.GetCollection<LogModel>("logs");
 
             logs.InsertOne(log);
+        }
+
+        private static void WriteConsole(LogModel log)
+        {
+            string prefixText;
+
+            ConsoleColor color = ConsoleColor.Red;
+
+            switch (log.Type)
+            {
+                case LogType.Debug:
+                {
+                    color = ConsoleColor.Yellow;
+                    prefixText = "[D]";
+                    break;
+                }
+                case LogType.Info:
+                {
+                    color = ConsoleColor.Cyan;
+                    prefixText = "[I]";
+                    break;
+                }
+                case LogType.Warning:
+                {
+                    color = ConsoleColor.DarkYellow;
+                    prefixText = "[W]";
+                    break;
+                }
+                case LogType.Error:
+                {
+                    color = ConsoleColor.Red;
+                    prefixText = "[E]";
+                    break;
+                }
+                case LogType.Fatal:
+                {
+                    color = ConsoleColor.Magenta;
+                    prefixText = "[F]";
+                    break;
+                }
+                default:
+                {
+                    var logType = log.Type.ToString();
+
+                    logType = logType.Length > 4 ? logType.Substring(0, 4) : logType;
+
+                    prefixText = $"[{logType}]";
+                    break;
+                }
+            }
+
+            Console.BackgroundColor = color;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(prefixText);
+            Console.ResetColor();
+
+            if (!string.IsNullOrWhiteSpace(log.ExceptionPlace))
+            {
+                Console.WriteLine($" {log.ExceptionPlace}.");
+            }
+
+            string logMessage;
+
+            if (log.Exceptions?.Any() == true)
+            {
+                var jsonSetting = Core.Constants.Formatting.JsonSerializerSettings;
+
+                jsonSetting.Formatting = Formatting.Indented;
+
+                logMessage = JsonConvert.SerializeObject(log.Exceptions, jsonSetting);
+            }
+            else
+            {
+                logMessage = log.Message;
+            }
+
+            Console.WriteLine(logMessage);
         }
 
         #endregion
