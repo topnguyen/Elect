@@ -26,13 +26,24 @@ namespace Elect.Sample.Logger
             {
                 var electLog = scoped.ServiceProvider.GetService<IElectLog>();
 
-                electLog.BeforeLog = (logInfo) =>
-                {
-                    var log = logInfo;
-                    return logInfo;
-                };
+                electLog.Capture("Credit cart is 378282246310005", LogType.Debug);
+                electLog.Capture("Credit cart is 378282246310005", LogType.Info);
+                electLog.Capture("Credit cart is 378282246310005", LogType.Warning);
+                electLog.Capture("Credit cart is 378282246310005", LogType.Error);
+                electLog.Capture("Not credit cart is 123456789", LogType.Fatal);
 
-                electLog.Capture("message credit cart is 378282246310005", LogType.Fatal);
+                try
+                {
+                    throw new Exception("Exception sample");
+                }
+                catch (Exception e)
+                {
+                    electLog.Capture(e, LogType.Debug);
+                    electLog.Capture(e, LogType.Info);
+                    electLog.Capture(e, LogType.Warning);
+                    electLog.Capture(e, LogType.Error);
+                    electLog.Capture(e, LogType.Fatal);
+                }
             }
 
             Console.ReadKey();

@@ -10,5 +10,13 @@ namespace Elect.Logger.Logging.Models
         ///     Relative Path of Json File, default is Logs.json
         /// </summary>
         public string JsonFilePath { get; set; } = "Logs" + Path.DirectorySeparatorChar + "{yyyy-MM-dd}.json";
+
+        public uint BatchSize { get; set; } = 20;
+        
+        public TimeSpan ThresholdTimeSpan { get; set; } = TimeSpan.FromSeconds(2);
+
+        public bool IsEnableLogToConsole { get; set; } = true;
+        
+        public bool IsEnableLogToFile { get; set; } = true;
     }
 }
