@@ -40,7 +40,7 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
     + [Elect.Notification.OneSignal](src/Notification/Elect.Notification.OneSignal/README.md): Client for [OneSignal.com](http://OneSignal.com).
     + [Elect.Notification.Esms](src/Notification/Elect.Notification.Esms/README.md): Client for [eSMS.vn](http://eSMS.vn).
 - Logger
-    + ***[On Plan]** Elect.Logger: Event logger for ASP NET Core project, storage into a Json Files - easy to query and statistic.*
+    + [Elect.Logger](src/Logger/Elect.Logger/README.md): Event logger for ASP NET Core project, storage into a Json Files - easy to query and statistic.
     + ***[On Plan]** Elect.Logger.Dashboard: Visual `Elect.Logger` in Dashboard with securiry check support.*
 
 - Localization
