@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.DI", "src\DI\Elect.DI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Mapper.AutoMapper", "src\Mapper\Elect.Mapper.AutoMapper\Elect.Mapper.AutoMapper.csproj", "{C7936AB3-C8A5-487C-B4C2-01CA2DD11E60}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F054EE83-4A80-4553-A0CC-25C46D2A3AC1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. src", "src", "{F054EE83-4A80-4553-A0CC-25C46D2A3AC1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5E828BCD-A912-417F-9A51-708859BA56F5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. samples", "samples", "{5E828BCD-A912-417F-9A51-708859BA56F5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notification", "{50154748-2B4A-4BFA-BBEB-17E5DF45A1B8}"
 EndProject
@@ -75,7 +75,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Sample.Web.Swagger", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Sample.Web.DataTable", "samples\Web\Elect.Sample.Web.DataTable\Elect.Sample.Web.DataTable.csproj", "{529A13D8-CA49-46DB-80C9-18B8ABD390F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuspecs", "nuspecs", "{55DB6D46-100C-4C74-88B9-6FBB954D64CA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. nuspecs", "nuspecs", "{55DB6D46-100C-4C74-88B9-6FBB954D64CA}"
 	ProjectSection(SolutionItems) = preProject
 		nuspecs\Elect.Core.nuspec = nuspecs\Elect.Core.nuspec
 	EndProjectSection
@@ -123,13 +123,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{12AAB3FD-8B2
 		nuspecs\Web\Elect.Web.Swagger.nuspec = nuspecs\Web\Elect.Web.Swagger.nuspec
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3CB990F-2674-44C6-A3DE-CB288423B749}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Solution Items", "Solution Items", "{D3CB990F-2674-44C6-A3DE-CB288423B749}"
 	ProjectSection(SolutionItems) = preProject
 		NuGet.Config = NuGet.Config
 		README.md = README.md
+		LICENSE = LICENSE
+		Logo.png = Logo.png
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7A62CF0C-B858-4273-8121-00BC279B7005}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. test", "test", "{7A62CF0C-B858-4273-8121-00BC279B7005}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Core", "test\Elect.Test.Core\Elect.Test.Core.csproj", "{7ADD229C-B21A-4E48-8619-0A78B14CB449}"
 EndProject
