@@ -33,6 +33,8 @@ namespace Elect.Web.HttpDetection.Models
 {
     public class DeviceModel
     {
+        private static readonly object Lock = new object();
+        
         [JsonConverter(typeof(StringEnumConverter))]
         public DeviceType Type { get; set; }
 
@@ -163,9 +165,9 @@ namespace Elect.Web.HttpDetection.Models
 
         private string GetDeviceHash()
         {
-            string ipAddress = string.IsNullOrWhiteSpace(IpAddress) ? StringHelper.Generate(16) : IpAddress;
+            var ipAddress = string.IsNullOrWhiteSpace(IpAddress) ? StringHelper.Generate(16) : IpAddress;
 
-            string identityDevice = $"{OsName}|{OsVersion}_{EngineName}|{EngineVersion}_{BrowserName}|{BrowserVersion}_{ipAddress}";
+            var identityDevice = $"{OsName}|{OsVersion}_{EngineName}|{EngineVersion}_{BrowserName}|{BrowserVersion}_{ipAddress}";
 
             var deviceHash = SecurityHelper.EncryptSha256(identityDevice);
 
@@ -174,49 +176,52 @@ namespace Elect.Web.HttpDetection.Models
 
         private void UpdateLocation(HttpRequest request)
         {
-            string geoDbAbsolutePath = Path.Combine(Bootstrapper.Instance.WorkingFolder, ElectHttpDetectionConstants.DbName);
+            var geoDbAbsolutePath = Path.Combine(Bootstrapper.Instance.WorkingFolder, ElectHttpDetectionConstants.DbName);
 
             if (!File.Exists(geoDbAbsolutePath))
             {
                 throw new FileNotFoundException($"{geoDbAbsolutePath} not found", geoDbAbsolutePath);
             }
 
-            using (var reader = new DatabaseReader(geoDbAbsolutePath))
+            lock (Lock)
             {
-                IpAddress = request.GetIpAddress();
-
-                if (!reader.TryCity(IpAddress, out var city))
+                using (var reader = new DatabaseReader(geoDbAbsolutePath))
                 {
-                    return;
+                    IpAddress = request.GetIpAddress();
+
+                    if (!reader.TryCity(IpAddress, out var city))
+                    {
+                        return;
+                    }
+
+                    if (city == null)
+                    {
+                        return;
+                    }
+
+                    IpAddress = city.Traits.IPAddress;
+
+                    // City
+                    CityName = city.City.Names.TryGetValue("en", out var cityName) ? cityName : city.City.Name;
+
+                    // Country
+                    CountryName = city.Country.Names.TryGetValue("en", out var countryName) ? countryName : city.Country.Name;
+                    CountryIsoCode = city.Country.IsoCode;
+
+                    // Continent
+                    ContinentName = city.Continent.Names.TryGetValue("en", out var continentName) ? continentName : city.Continent.Name;
+                    ContinentCode = city.Continent.Code;
+
+                    // Location
+                    Latitude = city.Location.Latitude;
+                    Longitude = city.Location.Longitude;
+                    AccuracyRadius = city.Location.AccuracyRadius;
+
+                    PostalCode = city.Postal.Code;
+
+                    // Time Zone
+                    TimeZone = city.Location.TimeZone;
                 }
-
-                if (city == null)
-                {
-                    return;
-                }
-
-                IpAddress = city.Traits.IPAddress;
-
-                // City
-                CityName = city.City.Names.TryGetValue("en", out var cityName) ? cityName : city.City.Name;
-
-                // Country
-                CountryName = city.Country.Names.TryGetValue("en", out var countryName) ? countryName : city.Country.Name;
-                CountryIsoCode = city.Country.IsoCode;
-
-                // Continent
-                ContinentName = city.Continent.Names.TryGetValue("en", out var continentName) ? continentName : city.Continent.Name;
-                ContinentCode = city.Continent.Code;
-
-                // Location
-                Latitude = city.Location.Latitude;
-                Longitude = city.Location.Longitude;
-                AccuracyRadius = city.Location.AccuracyRadius;
-
-                PostalCode = city.Postal.Code;
-
-                // Time Zone
-                TimeZone = city.Location.TimeZone;
             }
         }
     }
