@@ -20,6 +20,23 @@
             <param name="action"></param>
             <returns></returns>
         </member>
+        <member name="M:Elect.Core.ActionUtils.ActionHelper.IgnoreError(System.Action,System.Action{System.Exception})">
+            <summary>
+                Invoke/Run an operation and ignores any exceptions.
+            </summary>
+            <param name="operation">lambda that performs an operation that may throw exception</param>
+            <param name="onError">Do your logic on error occur</param>
+            <returns>True if don't have any exception, false if occur an error.</returns>
+        </member>
+        <member name="M:Elect.Core.ActionUtils.ActionHelper.IgnoreError``1(System.Func{``0},``0,System.Action{System.Exception})">
+            <summary>
+                Invoke/Run an operation and ignores any exceptions.
+            </summary>
+            <param name="operation">lambda that performs an operation that may throw exception</param>
+            <param name="defaultValue">Default value returned if operation fail</param>
+            <param name="onError">Do your logic on error occur</param>
+            <returns>Actual result if don't have any exception, default value if occur an error.</returns>
+        </member>
         <member name="M:Elect.Core.AssemblyUtils.AssemblyLoader.Load(System.Reflection.AssemblyName)">
             <inheritdoc />
             <summary>
