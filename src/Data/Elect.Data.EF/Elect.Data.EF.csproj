@@ -7,6 +7,9 @@
         <DocumentationFile>Elect.Data.EF.xml</DocumentationFile>
         <!-- Disable warning for Controller/Action/Method not have block comment -->
         <NoWarn>1701;1702;1705;1591</NoWarn>
+        <!-- Output -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>.\bin\</OutputPath>
     </PropertyGroup>
     <ItemGroup>
         <!-- Copy to Ouput -->
@@ -26,7 +29,7 @@
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.1"/>
     </ItemGroup>
 </Project>

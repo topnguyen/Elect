@@ -7,6 +7,9 @@
         <DocumentationFile>Elect.Web.DataTable.xml</DocumentationFile>
         <!-- Disable warning for Controller/Action/Method not have block comment -->
         <NoWarn>1701;1702;1705;1591</NoWarn>
+        <!-- Output -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>.\bin\</OutputPath>
     </PropertyGroup>
     <ItemGroup>
         <!-- Copy to Ouput -->
