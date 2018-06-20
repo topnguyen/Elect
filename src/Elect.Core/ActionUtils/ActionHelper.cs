@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System;
@@ -31,11 +33,63 @@ namespace Elect.Core.ActionUtils
         /// <returns></returns>
         public static T GetValue<T>(Action<T> action) where T : class, new()
         {
-            T obj = (T)Activator.CreateInstance(typeof(T));
+            T obj = (T) Activator.CreateInstance(typeof(T));
 
             action.DynamicInvoke(obj);
 
             return obj;
+        }
+
+        /// <summary>
+        ///     Invoke/Run an operation and ignores any exceptions.
+        /// </summary>
+        /// <param name="operation">lambda that performs an operation that may throw exception</param>
+        /// <param name="onError">Do your logic on error occur</param>
+        /// <returns>True if don't have any exception, false if occur an error.</returns>
+        public static bool IgnoreError(Action operation, Action<Exception> onError = null)
+        {
+            try
+            {
+                operation?.Invoke();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                onError?.Invoke(e);
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        ///     Invoke/Run an operation and ignores any exceptions.
+        /// </summary>
+        /// <param name="operation">lambda that performs an operation that may throw exception</param>
+        /// <param name="defaultValue">Default value returned if operation fail</param>
+        /// <param name="onError">Do your logic on error occur</param>
+        /// <returns>Actual result if don't have any exception, default value if occur an error.</returns>
+        public static T IgnoreError<T>(Func<T> operation, T defaultValue = default, Action<Exception> onError = null)
+        {
+            if (operation == null)
+            {
+                return defaultValue;
+            }
+
+            T result;
+
+            try
+            {
+                result = operation.Invoke();
+            }
+            catch (Exception e)
+            {
+                result = defaultValue;
+
+                onError?.Invoke(e);
+            }
+
+            return result;
         }
     }
 }
