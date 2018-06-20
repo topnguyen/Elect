@@ -13,10 +13,13 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore io elect topnguyen</tags>
-        <version>1.1.0</version>
+        <version>2.1.1</version>
 
         <dependencies>
-            <dependency id="Elect.Core" version="1.1.0"/>
+            <!-- Elect -->
+            <dependency id="Elect.Core" version="2.1.1"/>
+
+            <!-- 3rd Libraries -->
             <dependency id="Enums.NET" version="2.3.1"/>
             <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0"/>
             <dependency id="CoreCompat.System.Drawing.v2" version="5.2.0-preview1-r131"/>
@@ -26,12 +29,9 @@
     </metadata>
 
     <files>
-        <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.dll"
-              target="lib\netstandard2.0"/>
-        <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.pdb"
-              target="lib\netstandard2.0"/>
-        <file src="..\..\src\Data\Elect.Data.IO\bin\Debug\netstandard2.0\Elect.Data.IO.xml"
-              target="lib\netstandard2.0"/>
+        <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.dll" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.pdb" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.xml" target="lib\netstandard2.0"/>
         <file src="..\..\src\Data\Elect.Data.IO\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>
