@@ -32,26 +32,26 @@ namespace Elect.Logger.Logging
         {
             _options = configuration.Value;
         }
-        
+
         #region Capture
 
         public LogModel Capture(string message, LogType type = LogType.Error, HttpContext httpContent = null)
         {
-            var log = new LogModel(message, httpContent) {Type = type};
+            var log = new LogModel(message, httpContent) { Type = type };
 
             return Capture(log);
         }
 
         public LogModel Capture(Exception exception, LogType type = LogType.Error, HttpContext httpContent = null)
         {
-            var log = new LogModel(exception, httpContent) {Type = type};
+            var log = new LogModel(exception, httpContent) { Type = type };
 
             return Capture(log);
         }
 
         public LogModel Capture(object obj, LogType type = LogType.Error, HttpContext httpContent = null)
         {
-            var log = new LogModel(obj, httpContent) {Type = type};
+            var log = new LogModel(obj, httpContent) { Type = type };
 
             return Capture(log);
         }
@@ -211,48 +211,49 @@ namespace Elect.Logger.Logging
             string prefixText;
 
             ConsoleColor color = ConsoleColor.Red;
+            string dateTime = DateTime.Now.ToString("h:m:s.ff tt");
 
             switch (log.Type)
             {
                 case LogType.Debug:
-                {
-                    color = ConsoleColor.Yellow;
-                    prefixText = "[D]";
-                    break;
-                }
+                    {
+                        color = ConsoleColor.Gray;
+                        prefixText = $"[D] [{dateTime}]";
+                        break;
+                    }
                 case LogType.Info:
-                {
-                    color = ConsoleColor.Cyan;
-                    prefixText = "[I]";
-                    break;
-                }
+                    {
+                        color = ConsoleColor.Cyan;
+                        prefixText = $"[I] [{dateTime}]";
+                        break;
+                    }
                 case LogType.Warning:
-                {
-                    color = ConsoleColor.DarkYellow;
-                    prefixText = "[W]";
-                    break;
-                }
+                    {
+                        color = ConsoleColor.DarkYellow;
+                        prefixText = $"[W] [{dateTime}]";
+                        break;
+                    }
                 case LogType.Error:
-                {
-                    color = ConsoleColor.Red;
-                    prefixText = "[E]";
-                    break;
-                }
+                    {
+                        color = ConsoleColor.Red;
+                        prefixText = $"[E] [{dateTime}]";
+                        break;
+                    }
                 case LogType.Fatal:
-                {
-                    color = ConsoleColor.Magenta;
-                    prefixText = "[F]";
-                    break;
-                }
+                    {
+                        color = ConsoleColor.Magenta;
+                        prefixText = $"[F] [{dateTime}]";
+                        break;
+                    }
                 default:
-                {
-                    var logType = log.Type.ToString();
+                    {
+                        var logType = log.Type.ToString();
 
-                    logType = logType.Length > 4 ? logType.Substring(0, 4) : logType;
+                        logType = logType.Length > 4 ? logType.Substring(0, 4) : logType;
 
-                    prefixText = $"[{logType}]";
-                    break;
-                }
+                        prefixText = $"[{logType}] [{dateTime}]";
+                        break;
+                    }
             }
 
             Console.BackgroundColor = color;
@@ -277,7 +278,7 @@ namespace Elect.Logger.Logging
             }
             else
             {
-                logMessage = log.Message;
+                logMessage = $" {log.Message}.";
             }
 
             Console.WriteLine(logMessage);

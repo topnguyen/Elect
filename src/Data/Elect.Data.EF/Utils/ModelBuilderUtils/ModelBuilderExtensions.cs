@@ -46,7 +46,7 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
         }
 
         /// <summary>
-        ///     Scan and apply Config/Mapping for Tables/Entities (into <see cref="TDbContext" />) 
+        ///     Scan and apply Config/Mapping for Tables/Entities (into <see cref="DbContext" />) 
         /// </summary>
         /// <param name="builder"> </param>
         /// <param name="assembly"></param>
@@ -103,7 +103,7 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
 
                 // Create the mapping type and do the mapping
                 var mapper = Activator.CreateInstance(mappingType);
-                mapper.GetType().GetMethod("Map").Invoke(mapper, new[] {entityBuilder});
+                mapper.GetType().GetMethod("Map").Invoke(mapper, new[] { entityBuilder });
             }
         }
 

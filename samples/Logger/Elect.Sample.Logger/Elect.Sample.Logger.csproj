@@ -6,4 +6,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\..\src\Logger\Elect.Logger\Elect.Logger.csproj"/>
     </ItemGroup>
+    <ItemGroup>
+        <None Remove="Logs\Debug\Debug_2018-06-14.json"/>
+    </ItemGroup>
 </Project>
