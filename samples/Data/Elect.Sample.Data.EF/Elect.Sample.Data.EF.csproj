@@ -18,7 +18,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All"/>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.1"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Data\Elect.Data.EF\Elect.Data.EF.csproj" />
