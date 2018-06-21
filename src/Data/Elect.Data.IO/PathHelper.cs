@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Microsoft.Extensions.PlatformAbstractions;
@@ -32,6 +34,14 @@ namespace Elect.Data.IO
         /// <returns></returns>
         public static string GetFullPath(string path)
         {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return path;
+            }
+
+            path = path.Replace('\\', Path.DirectorySeparatorChar);
+            path = path.Replace('/', Path.DirectorySeparatorChar);
+
             if (!Uri.TryCreate(path, UriKind.RelativeOrAbsolute, out var pathUri))
             {
                 throw new ArgumentException($"Invalid path: {path}");
