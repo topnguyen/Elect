@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="2.1.1"/>
+            <dependency id="Elect.Web" version="2.1.1.1"/>
 
             <!-- 3rd Libraries -->
             <dependency id="WebMarkupMin.AspNetCore2" version="2.4.2"/>

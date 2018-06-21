@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Elect.Logger
+namespace Elect.Core.ConcurrentUtils.Models
 {
     public abstract class ElectMessageQueue<T> : IDisposable where T : class, new()
     {
@@ -13,8 +13,8 @@ namespace Elect.Logger
 
         private bool _canStop;
 
-        protected uint BatchSize = 100;
-        protected TimeSpan ThresholdTimeSpan = TimeSpan.FromSeconds(5);
+        protected uint BatchSize = 50;
+        protected TimeSpan Threshold = TimeSpan.FromSeconds(2);
 
         private readonly CancellationTokenSource _cancellationToken = new CancellationTokenSource();
         private readonly CancellationTokenSource _eventCancellationToken = new CancellationTokenSource();
@@ -40,6 +40,19 @@ namespace Elect.Logger
             _pumpTask = Task.Factory.StartNew(EventPump, TaskCreationOptions.LongRunning);
         }
 
+        protected ElectMessageQueue(uint batchSize, TimeSpan threshold)
+        {
+            BatchSize = batchSize;
+
+            Threshold = threshold;
+            
+            _batchTask = Task.Factory.StartNew(Pump, TaskCreationOptions.LongRunning);
+
+            _timerTask = Task.Factory.StartNew(TimerPump, TaskCreationOptions.LongRunning);
+
+            _pumpTask = Task.Factory.StartNew(EventPump, TaskCreationOptions.LongRunning);
+        }
+
         protected void Push(T @event)
         {
             _eventCollection.Add(@event);
@@ -48,7 +61,7 @@ namespace Elect.Logger
         protected abstract void Write(ICollection<T> events);
 
         #region Helper
-
+        
         private void Pump()
         {
             try
@@ -85,7 +98,7 @@ namespace Elect.Logger
         {
             while (!_canStop)
             {
-                _timerResetEvent.WaitOne(ThresholdTimeSpan);
+                _timerResetEvent.WaitOne(Threshold);
                 Flush();
             }
         }
