@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.1.1"/>
+            <dependency id="Elect.Core" version="2.1.1.1"/>
 
             <!-- 3rd Libraries -->
             <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0"/>

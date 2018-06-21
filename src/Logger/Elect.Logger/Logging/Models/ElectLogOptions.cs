@@ -13,7 +13,7 @@ namespace Elect.Logger.Logging.Models
 
         public uint BatchSize { get; set; } = 20;
         
-        public TimeSpan ThresholdTimeSpan { get; set; } = TimeSpan.FromSeconds(2);
+        public TimeSpan Threshold { get; set; } = TimeSpan.FromSeconds(2);
 
         public bool IsEnableLogToConsole { get; set; } = true;
         

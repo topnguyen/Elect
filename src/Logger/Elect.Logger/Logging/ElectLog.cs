@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Elect.Core.ConcurrentUtils.Models;
 using Elect.Core.ObjUtils;
 using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
@@ -27,15 +28,11 @@ namespace Elect.Logger.Logging
 
         private readonly ElectLogOptions _options;
 
-        public ElectLog(IOptions<ElectLogOptions> configuration)
+        public ElectLog(IOptions<ElectLogOptions> configuration) : base(configuration.Value.BatchSize, configuration.Value.Threshold)
         {
             _options = configuration.Value;
-
-            BatchSize = _options.BatchSize;
-
-            ThresholdTimeSpan = _options.ThresholdTimeSpan;
         }
-
+        
         #region Capture
 
         public LogModel Capture(string message, LogType type = LogType.Error, HttpContext httpContent = null)
