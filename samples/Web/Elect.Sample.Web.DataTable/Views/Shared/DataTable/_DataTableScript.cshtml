@@ -184,7 +184,6 @@
                 dataTableOptions.colReorder =
                 {
                     fnReorderCallback: function() {
-                        console.log("fnReorderCallback");
                         var currDt = $dataTable || this;
                         currDt.api().draw();
                     }
