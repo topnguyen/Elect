@@ -424,5 +424,12 @@
             <param name="path"></param>
             <returns></returns>
         </member>
+        <member name="M:Elect.Data.IO.PathHelper.CorrectPathSeparatorChar(System.String)">
+            <summary>
+                Correct path separator char fit with runtime OS.
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

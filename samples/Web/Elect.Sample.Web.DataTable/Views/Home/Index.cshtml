@@ -11,6 +11,7 @@
 
     // Global Configuration
     model.IsDevelopMode = false;
+    model.DrawCallbackFunctionName = "drawCallback";
     model.BeforeSendFunctionName = "beforeSendHandle";
 
     // Additional Columns
@@ -29,11 +30,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>Elect.Web.DataTable</title>
 
     <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js" ></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -56,34 +57,39 @@
     <!-- Explore more DataTable Plugin in https://datatables.net/download/release -->
 </head>
 <body>
-    <h1>DataTables</h1>
+<h1>DataTables</h1>
 
-    <div>
-        @await Html.PartialAsync("~/Views/Shared/DataTable/_DataTableHtml.cshtml", model).ConfigureAwait(true)
-    </div>
+<div>
+    @await Html.PartialAsync("~/Views/Shared/DataTable/_DataTableHtml.cshtml", model).ConfigureAwait(true)
+</div>
 
-    @await Html.PartialAsync("~/Views/Shared/DataTable/_DataTableScript.cshtml", model).ConfigureAwait(true)
+@await Html.PartialAsync("~/Views/Shared/DataTable/_DataTableScript.cshtml", model).ConfigureAwait(true)
 
-    <script type="text/javascript">
-        function beforeSendHandle(data) {
-            data.push({
-                name: "newData",
-                value: "test modify data before send"
+<script type="text/javascript">
+    function beforeSendHandle(data) {
+        data.push({
+            name: "newData",
+            value: "test modify data before send"
+        });
+    }
+
+    function actionColRender(data, type, row) {
+        return "<button class='btnAction'>Acion for " + row[0] + "</button>";
+    }
+
+    function isActiveRender(data, type, row) {
+        if (data === "Yes") {
+            return data;
+        }
+        return "<span style='color:red'>" + data + "</span>";
+    }
+    
+    function drawCallback() {
+        $(".btnAction").on('click',
+            function() {
+                alert('clicked');
             });
-        }
-
-        function actionColRender(data, type, row) {
-            return "<button>Acion for " + row[0] + "</button>";
-        }
-
-        function isActiveRender(data, type, row) {
-
-            if (data === "Yes") {
-                return data;
-            }
-
-            return "<span style='color:red'>" + data+"</span>";
-        }
-    </script>
+    }
+</script>
 </body>
 </html>

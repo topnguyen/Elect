@@ -176,6 +176,21 @@
                 </text>
             }
         }
+        
+        // Re-order
+        @if (Model.IsEnableColReorder == true)
+        {
+            <text>
+                dataTableOptions.colReorder =
+                {
+                    fnReorderCallback: function() {
+                        console.log("fnReorderCallback");
+                        var currDt = $dataTable || this;
+                        currDt.api().draw();
+                    }
+                };
+            </text>
+        }
 
         // Init Complete
         dataTableOptions.initComplete = function(settings, json) {

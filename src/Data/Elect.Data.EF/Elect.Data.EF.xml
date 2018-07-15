@@ -18,8 +18,7 @@
         </member>
         <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.AddConfigFromAssembly``1(Microsoft.EntityFrameworkCore.ModelBuilder,System.Reflection.Assembly)">
             <summary>
-                Scan and apply Config/Mapping for Tables/Entities (into<see
-                    cref="T:Microsoft.EntityFrameworkCore.DbContext"/>) 
+                Scan and apply Config/Mapping for Tables/Entities (into <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />) 
             </summary>
             <param name="builder"> </param>
             <param name="assembly"></param>
