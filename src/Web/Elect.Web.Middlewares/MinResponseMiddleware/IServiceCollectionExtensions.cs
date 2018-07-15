@@ -43,7 +43,7 @@ namespace Elect.Web.Middlewares.MinResponseMiddleware
                     options.AllowMinificationInDevelopmentEnvironment = true;
                     options.AllowCompressionInDevelopmentEnvironment = true;
                     options.DisablePoweredByHttpHeaders = true;
-                    options.DisableCompression = false;
+                    options.DisableCompression = true;
                     options.DisableMinification = false;
                 })
                 // HTML, CSS, JS Mini
