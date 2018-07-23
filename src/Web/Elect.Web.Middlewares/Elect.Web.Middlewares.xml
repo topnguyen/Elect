@@ -29,6 +29,22 @@
                 Get current request HttpContext 
             </summary>
         </member>
+        <member name="M:Elect.Web.Middlewares.InitialMiddleware.IApplicationBuilderExtensions.UseElectInitial(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{System.IServiceProvider})">
+            <summary>
+                Enable Rewind help to get Request Body content. 
+            </summary>
+            <param name="app"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.Middlewares.InitialMiddleware.IApplicationBuilderExtensions.UseElectInitial(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action)">
+            <summary>
+                Enable Rewind help to get Request Body content. 
+            </summary>
+            <param name="app"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
         <member name="M:Elect.Web.Middlewares.MeasureProcessingTimeMiddleware.IApplicationBuilderExtensions.UseElectMeasureProcessingTime(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
                 Response information about executed time 

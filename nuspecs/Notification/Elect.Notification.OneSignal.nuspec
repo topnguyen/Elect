@@ -22,7 +22,7 @@
 
             <!-- 3rd Libraries -->
             <dependency id="Newtonsoft.Json" version="11.0.2"/>
-            <dependency id="Flurl.Http" version="2.3.1"/>
+            <dependency id="Flurl.Http" version="2.3.2"/>
             <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.1"/>
             <dependency id="Microsoft.Extensions.Options" version="2.1.1"/>
         </dependencies>

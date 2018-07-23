@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-      <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <!-- Generate XML file -->
     <DocumentationFile>Elect.Sample.Data.EF.xml</DocumentationFile>
     <!-- Disable warning for Controller/Action/Method not have block comment -->
@@ -18,9 +18,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Data\Elect.Data.EF\Elect.Data.EF.csproj" />
+    <ProjectReference Include="..\..\..\src\Web\Elect.Web.Middlewares\Elect.Web.Middlewares.csproj" />
   </ItemGroup>
 </Project>

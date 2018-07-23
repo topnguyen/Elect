@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Elect.Web.Middlewares.InitialMiddleware;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +17,12 @@ namespace Elect.Sample.Data.EF
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseElectInitial((serviceProvider) =>
+            {
+                var dbContext = serviceProvider.GetService<Elect.Data.EF.Interfaces.DbContext.IDbContext>();
+                
+                Console.WriteLine("Initial Elect");
+            });
         }
     }
 }

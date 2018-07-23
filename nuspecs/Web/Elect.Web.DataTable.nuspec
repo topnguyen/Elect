@@ -22,7 +22,7 @@
             <!-- 3rd Libraries -->
             <dependency id="System.ComponentModel.Annotations" version="4.5.0"/>
             <dependency id="System.Linq.Dynamic.Core" version="1.0.8.11"/>
-            <dependency id="Enums.NET" version="2.3.1"/>
+            <dependency id="Enums.NET" version="2.3.2"/>
         </dependencies>
     </metadata>
 
