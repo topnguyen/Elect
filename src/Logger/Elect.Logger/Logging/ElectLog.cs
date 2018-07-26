@@ -266,22 +266,7 @@ namespace Elect.Logger.Logging
                 Console.WriteLine($" {log.ExceptionPlace}.");
             }
 
-            string logMessage;
-
-            if (log.Exceptions?.Any() == true)
-            {
-                var jsonSetting = Core.Constants.Formatting.JsonSerializerSettings;
-
-                jsonSetting.Formatting = Formatting.Indented;
-
-                logMessage = JsonConvert.SerializeObject(log.Exceptions, jsonSetting);
-            }
-            else
-            {
-                logMessage = $" {log.Message}.";
-            }
-
-            Console.WriteLine(logMessage);
+            Console.WriteLine($" {log.Message}.");
         }
 
         #endregion
