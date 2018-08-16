@@ -30,7 +30,7 @@
   <!-- 3rd Libraries -->
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.8.11" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.8.14" />
     <PackageReference Include="Enums.NET" Version="2.3.2" />
   </ItemGroup>
 </Project>
