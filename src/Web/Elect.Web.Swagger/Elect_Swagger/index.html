@@ -178,10 +178,17 @@
         $(function () {
             $("[data-toggle='tooltip']").tooltip();
 
-            var n = new Clipboard("#copyToClipBoard",
+            var copyLastResponseToClipBoard = new Clipboard(".copyLastResponseToClipBoard",
                 {
                     text: function () {
                         return window.lastServerResponse;
+                    }
+                });
+
+            var copyLinkToClipBoard = new Clipboard(".copyLinkToClipBoard",
+                {
+                    text: function(trigger) {
+                        return $(trigger).find('a').text();
                     }
                 });
         });
