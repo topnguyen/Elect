@@ -20,7 +20,6 @@
 using Elect.Data.IO.ImageUtils.ResizeUtils.Models;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Transforms;
 using System.IO;
 
 namespace Elect.Data.IO.ImageUtils.ResizeUtils
