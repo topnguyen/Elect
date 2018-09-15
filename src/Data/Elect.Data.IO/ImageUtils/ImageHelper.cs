@@ -18,7 +18,6 @@
 #endregion License
 
 using Elect.Core.CheckUtils;
-using Elect.Core.StringUtils;
 using Elect.Data.IO.FileUtils;
 using Elect.Data.IO.ImageUtils.ColorUtils;
 using Elect.Data.IO.ImageUtils.Models;
@@ -163,8 +162,6 @@ namespace Elect.Data.IO.ImageUtils
         /// <returns></returns>
         public static string GenerateTextImageBase64(string text, int width = 50, int height = 50, Color textColor = default, Color backgroundColor = default, Font font = null)
         {
-            text = StringHelper.Normalize(text).First().ToString();
-
             if (font == null)
             {
                 font = new Font(FontFamily.GenericSansSerif, 10.0F, FontStyle.Bold);
@@ -188,7 +185,10 @@ namespace Elect.Data.IO.ImageUtils
 
             var converter = new ImageConverter();
 
-            var imageArray = converter.ConvertTo(img, typeof(byte[])) as byte[];
+            if (!(converter.ConvertTo(img, typeof(byte[])) is byte[] imageArray))
+            {
+                return null;
+            }
 
             var stringBase64 = Convert.ToBase64String(imageArray);
 
