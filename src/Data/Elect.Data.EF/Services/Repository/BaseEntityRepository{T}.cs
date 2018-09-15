@@ -80,7 +80,7 @@ namespace Elect.Data.EF.Services.Repository
             return entity;
         }
 
-        public List<T> AddRange(params T[] lisT)
+        public virtual List<T> AddRange(params T[] lisT)
         {
             var dateTimeUtcNow = DateTimeOffset.UtcNow;
 
