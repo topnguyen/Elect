@@ -13,6 +13,10 @@ namespace Elect.Logger.Models.Event
         public DateTimeOffset CreatedTime { get; set; } = DateTimeOffset.UtcNow;
 
         public EventType Type { get; set; } = EventType.Visit;
+        
+        public string CustomType { get; set; }
+
+        public string JsonData { get; set; }
 
         // Visit
 
