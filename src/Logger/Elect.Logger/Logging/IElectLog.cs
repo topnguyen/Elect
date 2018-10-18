@@ -6,8 +6,6 @@ namespace Elect.Logger.Logging
 {
     public interface IElectLog
     {
-        Func<LogModel, LogModel> BeforeLog { get; set; }
-
         LogModel Capture(string message, LogType type = LogType.Error, HttpContext httpContent = null);
 
         LogModel Capture(Exception exception, LogType type = LogType.Error, HttpContext httpContent = null);
