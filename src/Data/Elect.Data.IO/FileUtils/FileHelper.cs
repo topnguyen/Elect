@@ -165,7 +165,7 @@ namespace Elect.Data.IO.FileUtils
         /// <param name="isRemoveAccent"> Remove all diacritics (accents) in string </param>
         /// <returns>
         ///     A string that can be used as a filename. If the output string would otherwise be
-        ///     empty, returns <see cref="replacement" /> as string.
+        ///     empty, returns <see params="replacement" /> as string.
         /// </returns>
         /// <remarks>
         ///     Valid file name also follow maximum length is 260 characters rule (split from right
