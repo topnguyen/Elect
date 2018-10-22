@@ -31,6 +31,6 @@
   <ItemGroup>
     <!-- Markup Min -->
     <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.5.0" />
-    <PackageReference Include="WebMarkupMin.NUglify" Version="2.5.0" />
+    <PackageReference Include="WebMarkupMin.NUglify" Version="2.5.2" />
   </ItemGroup>
 </Project>

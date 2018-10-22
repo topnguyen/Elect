@@ -24,18 +24,18 @@
         <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.Swagger.nuspec</NuspecFile>
     </PropertyGroup>
     <ItemGroup>
-        <EmbeddedResource Include="Elect_Swagger\**\*"/>
+        <EmbeddedResource Include="Elect_Swagger\**\*" />
     </ItemGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\Elect.Web\Elect.Web.csproj"/>
-        <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj"/>
+        <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
+        <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj" />
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="2.1.1"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="3.0.0"/>
-        <PackageReference Include="Humanizer.Core" Version="2.4.2"/>
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="2.1.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="3.0.0" />
+        <PackageReference Include="Humanizer.Core" Version="2.5.1" />
     </ItemGroup>
 </Project>
