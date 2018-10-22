@@ -17,6 +17,12 @@ namespace Elect.Logger.Logging
     public class ElectLog : ElectMessageQueue<LogModel>, IElectLog
     {
         private readonly ElectLogOptions _options;
+        
+        /// <inheritdoc />
+        public Func<LogModel, LogModel> BeforeLog { get; set; }
+
+        /// <inheritdoc />
+        public Func<LogModel, LogModel> AfterLog { get; set; }
 
         public ElectLog(IOptions<ElectLogOptions> configuration) : base(configuration.Value.BatchSize, configuration.Value.Threshold)
         {
@@ -71,9 +77,9 @@ namespace Elect.Logger.Logging
                 var log = @event;
 
                 // Before
-                if (_options.BeforeLog != null)
+                if (BeforeLog != null)
                 {
-                    log = _options.BeforeLog(log);
+                    log = BeforeLog(log);
                 }
 
                 if (log == null)
@@ -101,7 +107,7 @@ namespace Elect.Logger.Logging
                 }
 
                 // After
-                _options.AfterLog?.Invoke(log);
+                AfterLog?.Invoke(log);
             }
         }
 

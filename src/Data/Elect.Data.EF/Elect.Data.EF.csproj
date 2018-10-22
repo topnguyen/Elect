@@ -25,11 +25,11 @@
     </PropertyGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj"/>
+        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.4" />
     </ItemGroup>
 </Project>

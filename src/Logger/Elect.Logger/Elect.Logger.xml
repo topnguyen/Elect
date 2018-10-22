@@ -4,19 +4,25 @@
         <name>Elect.Logger</name>
     </assembly>
     <members>
-        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.JsonFilePath">
-            <summary>
-                Relative Path of Json File, default is Logs.json
-            </summary>
+        <member name="P:Elect.Logger.Logging.ElectLog.BeforeLog">
+            <inheritdoc />
         </member>
-        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.BeforeLog">
+        <member name="P:Elect.Logger.Logging.ElectLog.AfterLog">
+            <inheritdoc />
+        </member>
+        <member name="P:Elect.Logger.Logging.IElectLog.BeforeLog">
             <summary>
                 Modify log info or do some logic before Elect write log.
             </summary>
         </member>
-        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.AfterLog">
+        <member name="P:Elect.Logger.Logging.IElectLog.AfterLog">
             <summary>
                 Modify log info or do some logic after Elect write log.
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.JsonFilePath">
+            <summary>
+                Relative Path of Json File, default is Logs.json
             </summary>
         </member>
         <member name="M:Elect.Logger.Utils.CreditCardHelper.Filter(System.String)">

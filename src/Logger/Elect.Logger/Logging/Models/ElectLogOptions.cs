@@ -19,15 +19,5 @@ namespace Elect.Logger.Logging.Models
         public bool IsEnableLogToConsole { get; set; } = true;
         
         public bool IsEnableLogToFile { get; set; } = true;
-        
-        /// <summary>
-        ///     Modify log info or do some logic before Elect write log.
-        /// </summary>
-        public Func<LogModel, LogModel> BeforeLog { get; set; }
-
-        /// <summary>
-        ///     Modify log info or do some logic after Elect write log.
-        /// </summary>
-        public Func<LogModel, LogModel> AfterLog { get; set; }
     }
 }
