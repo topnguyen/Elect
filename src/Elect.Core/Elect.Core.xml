@@ -157,6 +157,41 @@
             <param name="result"></param>
             <returns></returns>
         </member>
+        <member name="P:Elect.Core.SimilarityUtils.JaroWinkler.Threshold">
+            <summary>
+            The current value of the threshold used for adding the Winkler bonus. The default value is 0.7.
+            </summary>
+        </member>
+        <member name="M:Elect.Core.SimilarityUtils.JaroWinkler.#ctor">
+            <summary>
+            Creates a new instance with default threshold (0.7)
+            </summary>
+        </member>
+        <member name="M:Elect.Core.SimilarityUtils.JaroWinkler.#ctor(System.Double)">
+            <summary>
+            Creates a new instance with given threshold to determine when Winkler bonus should
+            be used. Set threshold to a negative value to get the Jaro distance.
+            </summary>
+            <param name="threshold"></param>
+        </member>
+        <member name="M:Elect.Core.SimilarityUtils.JaroWinkler.Similarity(System.String,System.String)">
+            <summary>
+            Compute Jaro-Winkler similarity.
+            </summary>
+            <param name="s1">The first string to compare.</param>
+            <param name="s2">The second string to compare.</param>
+            <returns>The Jaro-Winkler similarity in the range [0, 1]</returns>
+            <exception cref="T:System.ArgumentNullException">If s1 or s2 is null.</exception>
+        </member>
+        <member name="M:Elect.Core.SimilarityUtils.JaroWinkler.Distance(System.String,System.String)">
+            <summary>
+            Return 1 - similarity.
+            </summary>
+            <param name="s1">The first string to compare.</param>
+            <param name="s2">The second string to compare.</param>
+            <returns>1 - similarity</returns>
+            <exception cref="T:System.ArgumentNullException">If s1 or s2 is null.</exception>
+        </member>
         <member name="T:Elect.Core.StringUtils.Safe32Encoding">
             <summary>
                 Class used for conversion between byte array and Base32 notation 
