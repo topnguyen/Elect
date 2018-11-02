@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Elect.Core.ObjUtils;
 using Elect.Core.SimilarityUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -60,28 +61,31 @@ namespace Elect.Test.Core
           
             var listBlacklist = new List<string>
             {
-                "Nguyen Quang Williamee"
-//                "Pham Vang Thonga",
-//                "Le Phuop Thaii Nguyen",
-//                "Vietnam Best Enterpriseze Investme Limited",
-//                "Vietnam Developmentzz Enterpri XYZ Company Limited",
-//                "City Investment Pte Ltd",
-//                "Cong Ty Trach Nhiem Huu Han Mot Thanh Vien Bong Hoa Hong ACD",
-//                "Cong Ty Trach Nhiem Huu Han Thuc Pham Tot Nhat TG",
-//                "Cong Ty Co Phan Dau Tu Ngan Sao ABC",
-//                "Cong Ty TNHH Mai Dao Ap",
-//                "Ngan hang Thuong Mai Co Phan WNC"
+                "Nguyen Quang Williamee",
+                "Pham Vang Thonga",
+                "Le Phuop Thaii Nguyen",
+                "Vietnam Best Enterpriseze Investme Limited",
+                "Vietnam Developmentzz Enterpri XYZ",
+                "City Investment Pte Ltd",
+                "Bong Hoa Hong ACD",
+                "Thuc Pham Tot Nhat TG",
+                "Dau Tu Ngan Sao ABC",
+                "Mai Dao Ap",
+                "WNC"
             };
 
             var listScore = new List<ResultScore>();
-            
-            var jw = new JaroWinkler();
             
             foreach (var blacklistItem in listBlacklist)
             {
                 foreach (var inputItem in listInput)
                 {
-                    listScore.Add(new ResultScore(inputItem, blacklistItem, jw.Similarity(inputItem, blacklistItem)));
+                    var score = GetScore(inputItem, blacklistItem);
+
+                    if (score.Score > 0.7)
+                    {
+                        listScore.Add(score);
+                    }
                 }
             }
 
@@ -93,7 +97,11 @@ namespace Elect.Test.Core
         {
             var jw = new JaroWinkler();
 
-            var score = jw.Similarity(item1, item2);
+            var item1Temp = string.Join(" ", item1.Split(" ").OrderBy(x => x).ToList());
+            var item2Temp = string.Join(" ", item2.Split(" ").OrderBy(x => x).ToList());
+            
+            var score = jw.Similarity(item1Temp, item2Temp);
+//            var score = jw.Similarity(item1, item2);
 
             return new ResultScore(item1, item2, score);
         }
