@@ -157,26 +157,36 @@
             <param name="result"></param>
             <returns></returns>
         </member>
+        <member name="T:Elect.Core.SimilarityUtils.JaroWinkler">
+            The Jaro–Winkler distance metric is designed and best suited for short
+            strings such as person names, and to detect typos; it is (roughly) a
+            variation of Damerau-Levenshtein, where the substitution of 2 close
+            characters is considered less important then the substitution of 2 characters
+            that a far from each other.
+            Jaro-Winkler was developed in the area of record linkage (duplicate
+            detection) (Winkler, 1990). It returns a value in the interval [0.0, 1.0].
+            The distance is computed as 1 - Jaro-Winkler similarity.
+        </member>
         <member name="P:Elect.Core.SimilarityUtils.JaroWinkler.Threshold">
             <summary>
-            The current value of the threshold used for adding the Winkler bonus. The default value is 0.7.
+                The current value of the threshold used for adding the Winkler bonus. The default value is 0.7.
             </summary>
         </member>
         <member name="M:Elect.Core.SimilarityUtils.JaroWinkler.#ctor">
             <summary>
-            Creates a new instance with default threshold (0.7)
+                Creates a new instance with default threshold (0.7)
             </summary>
         </member>
         <member name="M:Elect.Core.SimilarityUtils.JaroWinkler.#ctor(System.Double)">
             <summary>
-            Creates a new instance with given threshold to determine when Winkler bonus should
-            be used. Set threshold to a negative value to get the Jaro distance.
+                Creates a new instance with given threshold to determine when Winkler bonus should
+                be used. Set threshold to a negative value to get the Jaro distance.
             </summary>
             <param name="threshold"></param>
         </member>
         <member name="M:Elect.Core.SimilarityUtils.JaroWinkler.Similarity(System.String,System.String)">
             <summary>
-            Compute Jaro-Winkler similarity.
+                Compute Jaro-Winkler similarity.
             </summary>
             <param name="s1">The first string to compare.</param>
             <param name="s2">The second string to compare.</param>
@@ -185,7 +195,7 @@
         </member>
         <member name="M:Elect.Core.SimilarityUtils.JaroWinkler.Distance(System.String,System.String)">
             <summary>
-            Return 1 - similarity.
+                Return 1 - similarity.
             </summary>
             <param name="s1">The first string to compare.</param>
             <param name="s2">The second string to compare.</param>
