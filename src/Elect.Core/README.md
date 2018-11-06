@@ -62,6 +62,8 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Cor
     + [Object Extensions](ObjUtils/ObjExtensions.cs)
   + Security
     + [Security Helper](SecurityUtils/SecurityHelper.cs): Support generate salt, hash, encrypt/descrypt.
+  + Similarity
+    + [Jaro Winkler](SimilarityUtils/JaroWinkler.cs): Support calculate score (0-1 => 0% - 100%) as match percentage between 2 strings. Please read more the algorithm via [wiki](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance).
   + String
     + [String Helper](StringUtils/StringHelper.cs): Support random, normlaize and base 64 format handle.
   + Type
