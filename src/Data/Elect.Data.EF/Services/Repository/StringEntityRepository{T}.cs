@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.ObjUtils;
@@ -29,7 +31,8 @@ using System.Linq.Expressions;
 
 namespace Elect.Data.EF.Services.Repository
 {
-    public abstract class EntityStringRepository<T> : BaseEntityRepository<T>, IStringEntityRepository<T> where T : StringEntity, new()
+    public abstract class EntityStringRepository<T> : BaseEntityRepository<T>, IStringEntityRepository<T>
+        where T : StringEntity, new()
     {
         protected EntityStringRepository(IDbContext dbContext) : base(dbContext)
         {
@@ -87,11 +90,12 @@ namespace Elect.Data.EF.Services.Repository
             }
         }
 
-        public void UpdateWhere(Expression<Func<T, bool>> predicate, T entityNewData, params Expression<Func<T, object>>[] changedProperties)
+        public void UpdateWhere(Expression<Func<T, bool>> predicate, T entityNewData,
+            params Expression<Func<T, object>>[] changedProperties)
         {
             DateTimeOffset utcNow = DateTimeOffset.UtcNow;
 
-            var entities = Get(predicate).Select(x => new T { Id = x.Id }).ToList();
+            var entities = Get(predicate).Select(x => new T {Id = x.Id}).ToList();
 
             foreach (var entity in entities)
             {
@@ -106,7 +110,7 @@ namespace Elect.Data.EF.Services.Repository
         {
             DateTimeOffset utcNow = DateTimeOffset.UtcNow;
 
-            var entities = Get(predicate).Select(x => new T { Id = x.Id }).ToList();
+            var entities = Get(predicate).Select(x => new T {Id = x.Id}).ToList();
 
             foreach (var entity in entities)
             {
@@ -149,21 +153,26 @@ namespace Elect.Data.EF.Services.Repository
 
         public override void DeleteWhere(Expression<Func<T, bool>> predicate, bool isPhysicalDelete = false)
         {
-            DateTimeOffset utcNow = DateTimeOffset.UtcNow;
+            var utcNow = DateTimeOffset.UtcNow;
 
             // When isPhysicalDelete is true, it mean include soft delete record in query
-            var entities = Get(predicate, isPhysicalDelete).Select(x => new T { Id = x.Id }).ToList();
+            var entities = Get(predicate, isPhysicalDelete)
+                .Select(x => new T
+                {
+                    Id = x.Id
+                })
+                .ToList();
 
-            entities.ForEach(x =>
+            foreach (var entity in entities)
             {
-                x.DeletedTime = utcNow;
-                Delete(x, isPhysicalDelete);
-            });
+                entity.DeletedTime = utcNow;
+                Delete(entity, isPhysicalDelete);
+            }
         }
 
         public void DeleteWhere(List<string> listId, bool isPhysicalDelete = false)
         {
-            DateTimeOffset utcNow = DateTimeOffset.UtcNow;
+            var utcNow = DateTimeOffset.UtcNow;
 
             foreach (var id in listId)
             {
