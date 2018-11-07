@@ -151,7 +151,8 @@ namespace Elect.Data.EF.Services.Repository
         {
             DateTimeOffset utcNow = DateTimeOffset.UtcNow;
 
-            var entities = Get(predicate).Select(x => new T { Id = x.Id }).ToList();
+            // When isPhysicalDelete is true, it mean include soft delete record in query
+            var entities = Get(predicate, isPhysicalDelete).Select(x => new T { Id = x.Id }).ToList();
 
             entities.ForEach(x =>
             {

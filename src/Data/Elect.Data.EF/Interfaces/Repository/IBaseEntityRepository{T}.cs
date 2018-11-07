@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Data.EF.Models;
@@ -37,9 +39,11 @@ namespace Elect.Data.EF.Interfaces.Repository
 
         IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties);
 
-        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null, bool isIncludeDeleted = false, params Expression<Func<TEntity, object>>[] includeProperties);
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null, bool isIncludeDeleted = false,
+            params Expression<Func<TEntity, object>>[] includeProperties);
 
-        TEntity GetSingle(Expression<Func<TEntity, bool>> predicate = null, bool isIncludeDeleted = false, params Expression<Func<TEntity, object>>[] includeProperties);
+        TEntity GetSingle(Expression<Func<TEntity, bool>> predicate = null, bool isIncludeDeleted = false,
+            params Expression<Func<TEntity, object>>[] includeProperties);
 
         #endregion
 
@@ -65,6 +69,12 @@ namespace Elect.Data.EF.Interfaces.Repository
 
         void Delete(TEntity entity, bool isPhysicalDelete = false);
 
+        /// <summary>
+        ///     Delete Where by match condition of predicate
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="isPhysicalDelete"></param>
+        /// <remarks>When isPhysicalDelete is <c>true</c>, it's mean auto include soft delete record in query/predicate</remarks>
         void DeleteWhere(Expression<Func<TEntity, bool>> predicate, bool isPhysicalDelete = false);
 
         #endregion
