@@ -9,6 +9,14 @@
                 Resolve concurrency issue. 
             </summary>
         </member>
+        <member name="M:Elect.Data.EF.Interfaces.Repository.IBaseEntityRepository`1.DeleteWhere(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+            <summary>
+                Delete Where by match condition of predicate
+            </summary>
+            <param name="predicate"></param>
+            <param name="isPhysicalDelete"></param>
+            <remarks>When isPhysicalDelete is <c>true</c>, it's mean auto include soft delete record in query/predicate</remarks>
+        </member>
         <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.AddConfigFromAssembly(Microsoft.EntityFrameworkCore.ModelBuilder,System.Reflection.Assembly)">
             <summary>
                 Scan and apply Config/Mapping for Tables/Entities 
