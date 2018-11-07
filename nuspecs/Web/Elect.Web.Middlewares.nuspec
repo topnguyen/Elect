@@ -12,8 +12,8 @@
         <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>aspnetcore httpdetection elect topnguyen</tags>
-        <version>2.1.5</version>
+        <tags>aspnetcore middlewares elect topnguyen</tags>
+        <version>2.1.5.1</version>
 
         <dependencies>
             <!-- Elect -->
