@@ -64,10 +64,13 @@ namespace Elect.Job.Hangfire
                         {
                             config.UseMemoryStorage();
                             
-                            GlobalConfiguration.Configuration.UseMemoryStorage();
-
                             options.ExtendOptions?.Invoke(config, options);
                         });
+                        
+                        GlobalConfiguration.Configuration.UseMemoryStorage();
+                        
+                        options.ExtendOptions?.Invoke(GlobalConfiguration.Configuration, options);
+
                         break;
                     }
                 case HangfireProvider.SqlServer:
@@ -76,10 +79,13 @@ namespace Elect.Job.Hangfire
                         {
                             config.UseSqlServerStorage(options.HangfireDatabaseConnectionString);
                             
-                            GlobalConfiguration.Configuration.UseSqlServerStorage(options.HangfireDatabaseConnectionString);
-
                             options.ExtendOptions?.Invoke(config, options);
                         });
+                        
+                        GlobalConfiguration.Configuration.UseSqlServerStorage(options.HangfireDatabaseConnectionString);
+                        
+                        options.ExtendOptions?.Invoke(GlobalConfiguration.Configuration, options);
+
                         break;
                     }
             }
