@@ -63,6 +63,8 @@ namespace Elect.Job.Hangfire
                         services.AddHangfire(config =>
                         {
                             config.UseMemoryStorage();
+                            
+                            GlobalConfiguration.Configuration.UseMemoryStorage();
 
                             options.ExtendOptions?.Invoke(config, options);
                         });
@@ -73,6 +75,8 @@ namespace Elect.Job.Hangfire
                         services.AddHangfire(config =>
                         {
                             config.UseSqlServerStorage(options.HangfireDatabaseConnectionString);
+                            
+                            GlobalConfiguration.Configuration.UseSqlServerStorage(options.HangfireDatabaseConnectionString);
 
                             options.ExtendOptions?.Invoke(config, options);
                         });
