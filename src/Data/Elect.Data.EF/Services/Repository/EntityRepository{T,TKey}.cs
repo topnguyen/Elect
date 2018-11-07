@@ -150,21 +150,26 @@ namespace Elect.Data.EF.Services.Repository
 
         public override void DeleteWhere(Expression<Func<TEntity, bool>> predicate, bool isPhysicalDelete = false)
         {
-            DateTimeOffset utcNow = DateTimeOffset.UtcNow;
+            var utcNow = DateTimeOffset.UtcNow;
 
             // When isPhysicalDelete is true, it mean include soft delete record in query
-            var entities = Get(predicate, isPhysicalDelete).Select(x => new TEntity { Id = x.Id }).ToList();
+            var entities = Get(predicate, isPhysicalDelete)
+                .Select(x => new TEntity
+                {
+                    Id = x.Id
+                })
+                .ToList();
 
-            entities.ForEach(x =>
+            foreach (var entity in entities)
             {
-                x.DeletedTime = utcNow;
-                Delete(x, isPhysicalDelete);
-            });
+                entity.DeletedTime = utcNow;
+                Delete(entity, isPhysicalDelete);
+            }
         }
 
         public void DeleteWhere(List<TKey> listId, bool isPhysicalDelete = false)
         {
-            DateTimeOffset utcNow = DateTimeOffset.UtcNow;
+            var utcNow = DateTimeOffset.UtcNow;
 
             foreach (var id in listId)
             {

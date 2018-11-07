@@ -187,7 +187,7 @@ namespace Elect.Data.EF.Services.Repository
 
         public virtual void DeleteWhere(Expression<Func<T, bool>> predicate, bool isPhysicalDelete = false)
         {
-            var entities = Get(predicate).AsEnumerable();
+            var entities = Get(predicate, isPhysicalDelete).AsEnumerable();
 
             foreach (var entity in entities)
             {
