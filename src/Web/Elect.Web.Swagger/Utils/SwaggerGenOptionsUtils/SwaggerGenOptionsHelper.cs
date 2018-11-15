@@ -27,6 +27,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
 {
