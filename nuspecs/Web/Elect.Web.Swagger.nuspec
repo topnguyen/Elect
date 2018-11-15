@@ -13,7 +13,7 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore swagger elect topnguyen</tags>
-        <version>2.1.5</version>
+        <version>2.1.5.1</version>
 
         <dependencies>
             <!-- Elect -->
@@ -22,8 +22,8 @@
 
             <!-- 3rd Libraries -->
             <dependency id="Microsoft.Extensions.FileProviders.Physical" version="2.1.1" />
-            <dependency id="Swashbuckle.AspNetCore" version="3.0.0" />
-            <dependency id="Swashbuckle.AspNetCore.Annotations" version="3.0.0" />
+            <dependency id="Swashbuckle.AspNetCore" version="4.0.1" />
+            <dependency id="Swashbuckle.AspNetCore.Annotations" version="4.0.1" />
             <dependency id="Humanizer.Core" version="2.5.1" />
         </dependencies>
     </metadata>
