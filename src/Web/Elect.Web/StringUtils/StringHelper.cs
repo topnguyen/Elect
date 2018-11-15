@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,9 +16,11 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System.Text;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Elect.Web.StringUtils
 {
@@ -81,6 +84,24 @@ namespace Elect.Web.StringUtils
             }
 
             return stringBuilder.ToString();
+        }
+
+        public static string EncodeBase64Url(string value)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(value);
+
+            string base64Encode = WebEncoders.Base64UrlEncode(bytes);
+
+            return base64Encode;
+        }
+
+        public static string DecodeBase64Url(string value)
+        {
+            byte[] bytes = WebEncoders.Base64UrlDecode(value);
+
+            string base64Decode = Encoding.UTF8.GetString(bytes);
+
+            return base64Decode;
         }
     }
 }
