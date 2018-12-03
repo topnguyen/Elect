@@ -17,6 +17,11 @@
             <param name="isPhysicalDelete"></param>
             <remarks>When isPhysicalDelete is <c>true</c>, it's mean auto include soft delete record in query/predicate</remarks>
         </member>
+        <member name="P:Elect.Data.EF.Interfaces.UnitOfWork.IUnitOfWork.BeforeSaveChanges">
+            <summary>
+                Function before save changes execute, return false for cancel save changes.
+            </summary>
+        </member>
         <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.AddConfigFromAssembly(Microsoft.EntityFrameworkCore.ModelBuilder,System.Reflection.Assembly)">
             <summary>
                 Scan and apply Config/Mapping for Tables/Entities 

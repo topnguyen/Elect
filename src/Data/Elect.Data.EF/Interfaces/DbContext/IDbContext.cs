@@ -21,6 +21,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -133,6 +136,16 @@ namespace Elect.Data.EF.Interfaces.DbContext
         Task<object> FindAsync(Type entityType, params object[] keyValues);
 
         Task<object> FindAsync(Type entityType, object[] keyValues, CancellationToken cancellationToken);
+
+        #endregion
+
+        #region SQL Command
+
+        DbCommand CreateCommand(string text, CommandType type = CommandType.Text, params SqlParameter[] parameters);
+        
+        void ExecuteCommand(string text, CommandType type = CommandType.Text, params SqlParameter[] parameters);
+
+        List<T> ExecuteCommand<T>(string text, CommandType type = CommandType.Text, params SqlParameter[] parameters) where T : class, new();
 
         #endregion
     }

@@ -17,12 +17,9 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.EF.Interfaces.Entity.Auditable;
-using Elect.Data.EF.Interfaces.Entity.SoftDelete;
-
 namespace Elect.Data.EF.Models
 {
-    public abstract class Entity<TKey> : BaseEntity, ISoftDeletableEntity<TKey>, IAuditableEntity<TKey> where TKey : struct
+    public abstract class Entity<TKey> : BaseEntity where TKey : struct
     {
         public TKey Id { get; set; }
 

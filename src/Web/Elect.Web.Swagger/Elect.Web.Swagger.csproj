@@ -33,9 +33,7 @@
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="2.1.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="4.0.1" />
-        <PackageReference Include="Humanizer.Core" Version="2.5.1" />
     </ItemGroup>
 </Project>
