@@ -28,8 +28,8 @@
     </ItemGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj"/>
         <ProjectReference Include="..\Elect.Web\Elect.Web.csproj"/>
+        <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj"/>
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>

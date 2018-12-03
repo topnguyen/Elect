@@ -32,8 +32,6 @@
   </ItemGroup>
   <!-- 3rd Libraries -->
   <ItemGroup>
-    <PackageReference Include="Enums.NET" Version="2.3.2" />
-    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0003" />

@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 
 namespace Elect.Data.EF.Services.UnitOfWork
 {
-    public abstract class BaseEntityUnitOfWork : UnitOfWork
+    public abstract class BaseEntityUnitOfWork : UnitOfWork<IDbContext>
     {
         protected BaseEntityUnitOfWork(IDbContext dbContext) : base(dbContext)
         {
@@ -41,28 +41,28 @@ namespace Elect.Data.EF.Services.UnitOfWork
         {
             StandardizeEntities();
 
-            return DbContext.SaveChanges();
+            return base.SaveChanges();
         }
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             StandardizeEntities();
 
-            return DbContext.SaveChanges(acceptAllChangesOnSuccess);
+            return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             StandardizeEntities();
 
-            return DbContext.SaveChangesAsync(cancellationToken);
+            return base.SaveChangesAsync(cancellationToken);
         }
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
         {
             StandardizeEntities();
 
-            return DbContext.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
         #endregion

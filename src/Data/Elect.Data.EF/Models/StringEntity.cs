@@ -17,19 +17,16 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Data.EF.Interfaces.Entity.Auditable;
-using Elect.Data.EF.Interfaces.Entity.SoftDelete;
-
 namespace Elect.Data.EF.Models
 {
-    public abstract class StringEntity : BaseEntity, ISoftDeletableStringEntity, IAuditableStringEntity
+    public abstract class StringEntity : BaseEntity
     {
-        public virtual string Id { get; set; }
+        public string Id { get; set; }
 
-        public virtual string CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
-        public virtual string LastUpdatedBy { get; set; }
+        public string LastUpdatedBy { get; set; }
 
-        public virtual string DeletedBy { get; set; }
+        public string DeletedBy { get; set; }
     }
 }

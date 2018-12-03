@@ -17,15 +17,25 @@
 //--------------------------------------------------
 #endregion License
 
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Elect.Data.EF.Interfaces.UnitOfWork
 {
     public interface IUnitOfWork
-    {
+    { 
+        /// <summary>
+        ///     Function before save changes execute, return false for cancel save changes.
+        /// </summary>
+        Func<IEnumerable<EntityEntry>, bool> BeforeSaveChanges { get; set; }
+        
         #region Transaction
 
         IUnitOfWorkTransaction BeginTransaction(IsolationLevel isolationLevel);
@@ -51,6 +61,16 @@ namespace Elect.Data.EF.Interfaces.UnitOfWork
 
         [DebuggerStepThrough]
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
+        
+        #endregion
+        
+        #region SQL Command
+
+        DbCommand CreateCommand(string text, CommandType type, params SqlParameter[] parameters);
+        
+        void ExecuteCommand(string text, CommandType type, params SqlParameter[] parameters);
+
+        List<T> ExecuteCommand<T>(string text, CommandType type, params SqlParameter[] parameters) where T : class, new();
 
         #endregion
     }

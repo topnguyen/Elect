@@ -27,11 +27,4 @@
     <ItemGroup>
         <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj"/>
     </ItemGroup>
-    <!-- 3rd Libraries -->
-    <ItemGroup>
-        <PackageReference Include="System.Runtime.Loader" Version="4.3.0"/>
-        <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1"/>
-        <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.1"/>
-    </ItemGroup>
 </Project>

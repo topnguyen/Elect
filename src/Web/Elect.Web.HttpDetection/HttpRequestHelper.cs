@@ -45,7 +45,7 @@ namespace Elect.Web.HttpDetection
                 return null;
             }
 
-            string markerFullInfo = agent.Substring(0, iEnd)?.Trim();
+            string markerFullInfo = agent.Substring(0, iEnd).Trim();
 
             return markerFullInfo;
         }
@@ -83,7 +83,7 @@ namespace Elect.Web.HttpDetection
                 return null;
             }
 
-            string osFullInfo = agent.Substring(iStart, iEnd)?.Trim();
+            string osFullInfo = agent.Substring(iStart, iEnd).Trim();
 
             return osFullInfo;
         }
@@ -128,7 +128,7 @@ namespace Elect.Web.HttpDetection
 
             int iStart = agent.IndexOf(')') + 1;
 
-            string engineFullInfo = agent.Substring(iStart)?.Trim();
+            string engineFullInfo = agent.Substring(iStart).Trim();
 
             if (string.IsNullOrWhiteSpace(engineFullInfo))
             {
@@ -185,7 +185,7 @@ namespace Elect.Web.HttpDetection
 
             int iStart = agent.LastIndexOf(')') + 1;
 
-            string browserFullInfo = agent.Substring(iStart)?.Trim();
+            string browserFullInfo = agent.Substring(iStart).Trim();
 
             // Filters
             if (!string.IsNullOrWhiteSpace(browserFullInfo))
@@ -234,13 +234,6 @@ namespace Elect.Web.HttpDetection
             return browserVersion;
         }
 
-        public static string GetUserAgent(HttpRequest request)
-        {
-            var agent = request?.Headers[HeaderKey.UserAgent].ToString();
-
-            return agent;
-        }
-
         public static bool IsCrawlerRequest(HttpRequest request)
         {
             var agent = GetUserAgent(request)?.ToLowerInvariant();
@@ -256,6 +249,11 @@ namespace Elect.Web.HttpDetection
             }
 
             return false;
+        }
+        
+        public static string GetUserAgent(HttpRequest request)
+        {
+            return request?.Headers.TryGetValue(HeaderKey.UserAgent, out var value) == true ? value.ToString() : null;
         }
     }
 }
