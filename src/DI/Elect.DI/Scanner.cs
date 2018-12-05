@@ -37,7 +37,7 @@ namespace Elect.DI
         {
             foreach (var typeInfo in assembly.DefinedTypes)
             {
-                var attributes = typeInfo?.GetCustomAttributes()?.ToList();
+                var attributes = typeInfo?.GetCustomAttributes().ToList();
 
                 if (attributes?.Any() != true)
                 {
@@ -46,9 +46,7 @@ namespace Elect.DI
 
                 foreach (var attribute in attributes)
                 {
-                    var attributeType = attribute.GetType();
-
-                    var isDependencyAttribute = typeof(DependencyAttribute).IsAssignableFrom(attributeType);
+                    var isDependencyAttribute = attribute is DependencyAttribute;
 
                     if (!isDependencyAttribute)
                     {
@@ -110,7 +108,7 @@ namespace Elect.DI
 
             var listDllPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern, SearchOption.AllDirectories).ToList();
 
-            if (listDllPath?.Any() != true)
+            if (listDllPath.Any() != true)
             {
                 return null;
             }
