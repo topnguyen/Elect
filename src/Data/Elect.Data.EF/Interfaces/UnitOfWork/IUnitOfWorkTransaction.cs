@@ -18,11 +18,20 @@
 #endregion License
 
 using System;
+using System.Collections.Generic;
 
 namespace Elect.Data.EF.Interfaces.UnitOfWork
 {
     public interface IUnitOfWorkTransaction : IDisposable
     {
+        List<Action> ActionsBeforeCommit { get; set; } 
+
+        List<Action> ActionsAfterCommit { get; set; }
+
+        List<Action> ActionsBeforeRollback { get; set; }
+
+        List<Action> ActionsAfterRollback { get; set; }
+        
         void Commit();
 
         void Rollback();

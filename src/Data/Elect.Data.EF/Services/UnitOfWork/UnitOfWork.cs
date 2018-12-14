@@ -27,15 +27,27 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Elect.Data.EF.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Elect.Data.EF.Services.UnitOfWork
 {
     public abstract class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : IDbContext
     {
-        public Func<IEnumerable<EntityEntry>, bool> BeforeSaveChanges { get; set; }
+        public List<Func<IEnumerable<EntityEntry>, bool>> FunctionsBeforeSaveChanges { get; set; } = new List<Func<IEnumerable<EntityEntry>, bool>>();
+
+        public List<Action<EntityStatesModel>> ActionsAfterSaveChanges { get; set; } = new List<Action<EntityStatesModel>>();
+
+        public List<Action> ActionsBeforeCommit { get; set; } = new List<Action>();
+
+        public List<Action> ActionsAfterCommit { get; set; } = new List<Action>();
+        
+        public List<Action> ActionsBeforeRollback { get; set; } = new List<Action>();
+        
+        public List<Action> ActionsAfterRollback { get; set; } = new List<Action>();
         
         protected readonly TDbContext DbContext;
 
@@ -48,23 +60,54 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         public virtual IUnitOfWorkTransaction BeginTransaction(IsolationLevel isolationLevel)
         {
-            return new UnitOfWorkTransaction(DbContext.Database.BeginTransaction(isolationLevel));
+            var transaction = new UnitOfWorkTransaction(DbContext.Database.BeginTransaction(isolationLevel))
+            {
+                ActionsBeforeCommit = ActionsBeforeCommit,
+                ActionsAfterCommit = ActionsAfterCommit,
+                ActionsBeforeRollback = ActionsBeforeRollback,
+                ActionsAfterRollback = ActionsAfterRollback
+            };
+
+            return transaction;
         }
 
         public virtual IUnitOfWorkTransaction BeginTransaction()
         {
-            return new UnitOfWorkTransaction(DbContext.Database.BeginTransaction());
+            var transaction = new UnitOfWorkTransaction(DbContext.Database.BeginTransaction())
+            {
+                ActionsBeforeCommit = ActionsBeforeCommit,
+                ActionsAfterCommit = ActionsAfterCommit,
+                ActionsBeforeRollback = ActionsBeforeRollback,
+                ActionsAfterRollback = ActionsAfterRollback
+            };
+
+            return transaction;
         }
 
         public virtual async Task<IUnitOfWorkTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
         {
-            return new UnitOfWorkTransaction(await DbContext.Database.BeginTransactionAsync(cancellationToken)
-                .ConfigureAwait(true));
+            var transaction = new UnitOfWorkTransaction(await DbContext.Database.BeginTransactionAsync(cancellationToken).ConfigureAwait(true))
+            {
+                ActionsBeforeCommit = ActionsBeforeCommit,
+                ActionsAfterCommit = ActionsAfterCommit,
+                ActionsBeforeRollback = ActionsBeforeRollback,
+                ActionsAfterRollback = ActionsAfterRollback
+            };
+
+            return transaction;
         }
 
         public virtual async Task<IUnitOfWorkTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
         {
-            return new UnitOfWorkTransaction(await DbContext.Database.BeginTransactionAsync(isolationLevel, cancellationToken).ConfigureAwait(true));
+            var transaction =  new UnitOfWorkTransaction(await DbContext.Database.BeginTransactionAsync(isolationLevel, cancellationToken).ConfigureAwait(true))
+            {
+                ActionsBeforeCommit = ActionsBeforeCommit,
+                ActionsAfterCommit = ActionsAfterCommit,
+                ActionsBeforeRollback = ActionsBeforeRollback,
+                ActionsAfterRollback = ActionsAfterRollback
+            };
+
+            return transaction;
         }
 
         #endregion
@@ -73,54 +116,156 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         public virtual int SaveChanges()
         {
-            if (BeforeSaveChanges == null)
+            bool isContinue = true;
+                
+            if (FunctionsBeforeSaveChanges?.Any() == true)
             {
-                return DbContext.SaveChanges();
+                foreach (var func in FunctionsBeforeSaveChanges)
+                {
+                    var tempContinue = func?.Invoke(DbContext.ChangeTracker.Entries()) ?? true;
+
+                    if (!tempContinue)
+                    {
+                        isContinue = false;
+                    }
+                }
             }
             
-            var isContinue = BeforeSaveChanges(DbContext.ChangeTracker.Entries());
+            var entityStatesModel =  SplitEntity();
+            
+            var result = isContinue ? DbContext.SaveChanges() : default;
+            
+            if (isContinue && ActionsAfterSaveChanges?.Any() == true)
+            {
+                foreach (var action in ActionsAfterSaveChanges)
+                {
+                    action?.Invoke(entityStatesModel);
+                }
+            }
 
-            return isContinue ? DbContext.SaveChanges() : default;
-
+            return result;
         }
 
         public virtual int SaveChanges(bool acceptAllChangesOnSuccess)
         {
-            if (BeforeSaveChanges == null)
+            bool isContinue = true;
+                
+            if (FunctionsBeforeSaveChanges?.Any() == true)
             {
-                return DbContext.SaveChanges(acceptAllChangesOnSuccess);
+                foreach (var func in FunctionsBeforeSaveChanges)
+                {
+                    var tempContinue = func?.Invoke(DbContext.ChangeTracker.Entries()) ?? true;
+
+                    if (!tempContinue)
+                    {
+                        isContinue = false;
+                    }
+                }
             }
             
-            var isContinue = BeforeSaveChanges(DbContext.ChangeTracker.Entries());
+            var entityStatesModel =  SplitEntity();
 
-            return isContinue ? DbContext.SaveChanges(acceptAllChangesOnSuccess) : default;
+            var result = isContinue ? DbContext.SaveChanges(acceptAllChangesOnSuccess) : default;
+        
+            if (isContinue && ActionsAfterSaveChanges?.Any() == true)
+            {
+                foreach (var action in ActionsAfterSaveChanges)
+                {
+                    action?.Invoke(entityStatesModel);
+                }
+            }
+
+            return result;
         }
 
         public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            if (BeforeSaveChanges == null)
+            bool isContinue = true;
+                
+            if (FunctionsBeforeSaveChanges?.Any() == true)
             {
-                return DbContext.SaveChangesAsync(cancellationToken);
-            }
-            
-            var isContinue = BeforeSaveChanges(DbContext.ChangeTracker.Entries());
+                foreach (var func in FunctionsBeforeSaveChanges)
+                {
+                    var tempContinue = func?.Invoke(DbContext.ChangeTracker.Entries()) ?? true;
 
-            return isContinue ? DbContext.SaveChangesAsync(cancellationToken) : default;
+                    if (!tempContinue)
+                    {
+                        isContinue = false;
+                    }
+                }
+            }
+
+            var entityStatesModel = SplitEntity();
+
+            var result = isContinue ? DbContext.SaveChangesAsync(cancellationToken) : default;
+
+            if (isContinue && ActionsAfterSaveChanges?.Any() == true)
+            {
+                foreach (var action in ActionsAfterSaveChanges)
+                {
+                    action?.Invoke(entityStatesModel);
+                }
+            }
+
+            return result;
         }
 
         public virtual Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
         {
-            if (BeforeSaveChanges == null)
+            bool isContinue = true;
+                
+            if (FunctionsBeforeSaveChanges?.Any() == true)
             {
-                return DbContext.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-            }
-            
-            var isContinue = BeforeSaveChanges(DbContext.ChangeTracker.Entries());
+                foreach (var func in FunctionsBeforeSaveChanges)
+                {
+                    var tempContinue = func?.Invoke(DbContext.ChangeTracker.Entries()) ?? true;
 
-            return isContinue ? DbContext.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken) : default;
+                    if (!tempContinue)
+                    {
+                        isContinue = false;
+                    }
+                }
+            }
+
+            var entityStatesModel = SplitEntity();
+
+            var result = isContinue ? DbContext.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken) : default;
+
+            if (isContinue && ActionsAfterSaveChanges?.Any() == true)
+            {
+                foreach (var action in ActionsAfterSaveChanges)
+                {
+                    action?.Invoke(entityStatesModel);
+                }
+            }
+
+            return result;
         }
 
         #endregion
+        
+        protected virtual EntityStatesModel SplitEntity()
+        {
+            var listState = new List<EntityState>
+            {
+                EntityState.Added,
+                EntityState.Modified,
+                EntityState.Deleted
+            };
+
+            var listEntry = DbContext.ChangeTracker.Entries()
+                .Where(x => listState.Contains(x.State))
+                .ToList();
+
+            EntityStatesModel entityStatesModel = new EntityStatesModel
+            {
+                ListAdded = listEntry.Where(x => x.State == EntityState.Added).Select(x => x.Entity).ToList(),
+                ListModified = listEntry.Where(x => x.State == EntityState.Modified).Select(x => x.Entity).ToList(),
+                ListDeleted = listEntry.Where(x => x.State == EntityState.Deleted).Select(x => x.Entity).ToList()
+            };
+
+            return entityStatesModel;
+        }
 
         #region SQL Command
 

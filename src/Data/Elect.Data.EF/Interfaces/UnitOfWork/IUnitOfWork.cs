@@ -25,6 +25,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Elect.Data.EF.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Elect.Data.EF.Interfaces.UnitOfWork
@@ -34,7 +35,20 @@ namespace Elect.Data.EF.Interfaces.UnitOfWork
         /// <summary>
         ///     Function before save changes execute, return false for cancel save changes.
         /// </summary>
-        Func<IEnumerable<EntityEntry>, bool> BeforeSaveChanges { get; set; }
+        List<Func<IEnumerable<EntityEntry>, bool>> FunctionsBeforeSaveChanges { get; set; }
+        
+        /// <summary>
+        ///     Action after save change executed
+        /// </summary>
+        List<Action<EntityStatesModel>> ActionsAfterSaveChanges { get; set; }
+        
+        List<Action> ActionsBeforeCommit { get; set; } 
+
+        List<Action> ActionsAfterCommit { get; set; }
+
+        List<Action> ActionsBeforeRollback { get; set; }
+
+        List<Action> ActionsAfterRollback { get; set; }
         
         #region Transaction
 
