@@ -108,7 +108,7 @@ namespace Elect.Data.EF.Services.UnitOfWork
                 }
             }
         }
-
+        
         #endregion
     }
 }

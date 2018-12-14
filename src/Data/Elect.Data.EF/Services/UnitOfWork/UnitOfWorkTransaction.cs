@@ -17,6 +17,9 @@
 //--------------------------------------------------
 #endregion License
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Elect.Data.EF.Interfaces.UnitOfWork;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -25,6 +28,14 @@ namespace Elect.Data.EF.Services.UnitOfWork
     public class UnitOfWorkTransaction : IUnitOfWorkTransaction
     {
         private readonly IDbContextTransaction _dbContextTransaction;
+        
+        public List<Action> ActionsBeforeCommit { get; set; } = new List<Action>();
+
+        public List<Action> ActionsAfterCommit { get; set; } = new List<Action>();
+        
+        public List<Action> ActionsBeforeRollback { get; set; } = new List<Action>();
+        
+        public List<Action> ActionsAfterRollback { get; set; } = new List<Action>();
 
         public UnitOfWorkTransaction(IDbContextTransaction dbContextTransaction)
         {
@@ -38,12 +49,44 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         public void Commit()
         {
+            if (ActionsBeforeCommit?.Any() == true)
+            {
+                foreach (var action in ActionsBeforeCommit)
+                {
+                    action?.Invoke();
+                }
+            }
+
             _dbContextTransaction.Commit();
+            
+            if (ActionsAfterCommit?.Any() == true)
+            {
+                foreach (var action in ActionsAfterCommit)
+                {
+                    action?.Invoke();
+                }
+            }
         }
 
         public void Rollback()
         {
+            if (ActionsBeforeRollback?.Any() == true)
+            {
+                foreach (var action in ActionsBeforeRollback)
+                {
+                    action?.Invoke();
+                }
+            }
+            
             _dbContextTransaction.Rollback();
+            
+            if (ActionsAfterRollback?.Any() == true)
+            {
+                foreach (var action in ActionsAfterRollback)
+                {
+                    action?.Invoke();
+                }
+            }
         }
     }
 }
