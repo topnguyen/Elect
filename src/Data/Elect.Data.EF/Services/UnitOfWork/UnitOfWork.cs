@@ -40,8 +40,7 @@ namespace Elect.Data.EF.Services.UnitOfWork
         public FuncCollection<IEnumerable<EntityEntry>, bool> FunctionsBeforeSaveChanges { get; } =
             new FuncCollection<IEnumerable<EntityEntry>, bool>();
 
-        public ActionCollection<EntityStatesModel> ActionsAfterSaveChanges { get; set; } =
-            new ActionCollection<EntityStatesModel>();
+        public ActionCollection<EntityStateCollection> ActionsAfterSaveChanges { get; } = new ActionCollection<EntityStateCollection>();
 
         public ActionCollection ActionsBeforeCommit { get; } = new ActionCollection();
 
@@ -262,7 +261,7 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         #endregion
 
-        protected virtual EntityStatesModel SplitEntity()
+        protected virtual EntityStateCollection SplitEntity()
         {
             var listState = new List<EntityState>
             {
@@ -275,11 +274,14 @@ namespace Elect.Data.EF.Services.UnitOfWork
                 .Where(x => listState.Contains(x.State))
                 .ToList();
 
-            EntityStatesModel entityStatesModel = new EntityStatesModel
+            var entityStatesModel = new EntityStateCollection
             {
-                ListAdded = listEntry.Where(x => x.State == EntityState.Added).Select(x => x.Entity).ToList(),
-                ListModified = listEntry.Where(x => x.State == EntityState.Modified).Select(x => x.Entity).ToList(),
-                ListDeleted = listEntry.Where(x => x.State == EntityState.Deleted).Select(x => x.Entity).ToList()
+                ListAdded = listEntry.Where(x => x.State == EntityState.Added).Select(x => new EntityStateModel(x))
+                    .ToList(),
+                ListModified = listEntry.Where(x => x.State == EntityState.Modified)
+                    .Select(x => new EntityStateModel(x)).ToList(),
+                ListDeleted = listEntry.Where(x => x.State == EntityState.Deleted).Select(x => new EntityStateModel(x))
+                    .ToList()
             };
 
             return entityStatesModel;

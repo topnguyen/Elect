@@ -36,7 +36,7 @@ namespace Elect.Data.EF.Interfaces.UnitOfWork
     {
         FuncCollection<IEnumerable<EntityEntry>, bool> FunctionsBeforeSaveChanges { get; }
 
-        ActionCollection<EntityStatesModel> ActionsAfterSaveChanges { get; }
+        ActionCollection<EntityStateCollection> ActionsAfterSaveChanges { get; }
 
         ActionCollection ActionsBeforeCommit { get; }
 
