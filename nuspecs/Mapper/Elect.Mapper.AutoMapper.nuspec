@@ -3,21 +3,21 @@
     <metadata>
         <id>Elect.Mapper.AutoMapper</id>
         <title>Elect AutoMapper Extension</title>
-        <description>AutoMapper extension and utitlies.</description>
-        <summary>AutoMapper extension and utitlies.</summary>
+        <description>AutoMapper extension and utilities.</description>
+        <summary>AutoMapper extension and utilities.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
         <copyright>http://topnguyen.net</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Mapper/Elect.Mapper.AutoMapper</projectUrl>
-        <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+        <license type="expression">MIT</license>
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore automapper elect topnguyen</tags>
-        <version>2.1.9</version>
+        <version>2.2</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.1.9"/>
+            <dependency id="Elect.Core" version="2.2"/>
 
             <!-- 3rd Libraries -->
             <dependency id="AutoMapper" version="8.0.0"/>

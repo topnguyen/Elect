@@ -1,34 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!-- Information -->
-  <PropertyGroup>
-    <LangVersion>7.2</LangVersion>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <!-- Generate XML file -->
-    <DocumentationFile>Elect.Logger.xml</DocumentationFile>
-    <!-- Disable warning for Controller/Action/Method not have block comment -->
-    <NoWarn>1701;1702;1705;1591</NoWarn>
-    <!-- Output -->
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>.\bin\</OutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <!-- Copy to Ouput -->
-    <Content Include="Elect.Logger.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <!-- Nuget -->
-  <PropertyGroup>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageOutputPath>..\..\..\build\Logger</PackageOutputPath>
-    <NuspecFile>..\..\..\nuspecs\Logger\Elect.Logger.nuspec</NuspecFile>
-  </PropertyGroup>
-  <!-- Elect -->
-  <ItemGroup>
-    <ProjectReference Include="..\Elect.Logger.Models\Elect.Logger.Models.csproj" />
-  </ItemGroup>
-  <!-- 3rd Libraries -->
-  <ItemGroup>
-    <PackageReference Include="JsonFlatFileDataStore" Version="2.0.0" />
-  </ItemGroup>
+    <!-- Information -->
+    <PropertyGroup>
+        <LangVersion>7.2</LangVersion>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <!-- Generate XML file -->
+        <DocumentationFile>Elect.Logger.xml</DocumentationFile>
+        <!-- Disable warning for Controller/Action/Method not have block comment -->
+        <NoWarn>1701;1702;1705;1591</NoWarn>
+        <!-- Output -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>.\bin\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- Copy to Ouput -->
+        <Content Include="Elect.Logger.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <!-- Nuget -->
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>..\..\..\build\Logger</PackageOutputPath>
+        <NuspecFile>..\..\..\nuspecs\Logger\Elect.Logger.nuspec</NuspecFile>
+    </PropertyGroup>
+    <!-- Elect -->
+    <ItemGroup>
+        <ProjectReference Include="..\Elect.Logger.Models\Elect.Logger.Models.csproj"/>
+    </ItemGroup>
+    <!-- 3rd Libraries -->
+    <ItemGroup>
+        <PackageReference Include="JsonFlatFileDataStore" Version="2.0.1"/>
+    </ItemGroup>
 </Project>
