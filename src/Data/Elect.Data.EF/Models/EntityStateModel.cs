@@ -20,7 +20,7 @@ namespace Elect.Data.EF.Models
         public EntityStateModel(EntityEntry entityEntry)
         {
             State = entityEntry.State;
-            Properties = entityEntry.Properties.Clone();
+            Properties = entityEntry.Properties.WithoutRefLoop().Clone();
             Entity = entityEntry.Entity;
         }
     }
