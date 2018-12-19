@@ -66,10 +66,10 @@ namespace Elect.Core.ActionUtils
         ///     Invoke/Run an operation and ignores any exceptions.
         /// </summary>
         /// <param name="operation">lambda that performs an operation that may throw exception</param>
-        /// <param name="defaultValue">Default value returned if operation fail</param>
         /// <param name="onError">Do your logic on error occur</param>
+        /// <param name="defaultValue">Default value returned if operation fail</param>
         /// <returns>Actual result if don't have any exception, default value if occur an error.</returns>
-        public static T IgnoreError<T>(Func<T> operation, T defaultValue = default, Action<Exception> onError = null)
+        public static T IgnoreError<T>(Func<T> operation, Action<Exception> onError = null, T defaultValue = default)
         {
             if (operation == null)
             {

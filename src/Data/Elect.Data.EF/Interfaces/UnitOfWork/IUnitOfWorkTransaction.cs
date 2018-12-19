@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,23 +16,25 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System;
 using System.Collections.Generic;
+using Elect.Data.EF.Models;
 
 namespace Elect.Data.EF.Interfaces.UnitOfWork
 {
     public interface IUnitOfWorkTransaction : IDisposable
     {
-        List<Action> ActionsBeforeCommit { get; set; } 
+        List<ActionModel> ActionsBeforeCommit { get; set; }
 
-        List<Action> ActionsAfterCommit { get; set; }
+        List<ActionModel> ActionsAfterCommit { get; set; }
 
-        List<Action> ActionsBeforeRollback { get; set; }
+        List<ActionModel> ActionsBeforeRollback { get; set; }
 
-        List<Action> ActionsAfterRollback { get; set; }
-        
+        List<ActionModel> ActionsAfterRollback { get; set; }
+
         void Commit();
 
         void Rollback();

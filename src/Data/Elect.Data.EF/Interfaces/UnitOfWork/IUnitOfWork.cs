@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System;
@@ -31,25 +33,96 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace Elect.Data.EF.Interfaces.UnitOfWork
 {
     public interface IUnitOfWork
-    { 
+    {
+        #region Save Changes Callback
+
+        // Before Save Changes
+
         /// <summary>
         ///     Function before save changes execute, return false for cancel save changes.
         /// </summary>
-        List<Func<IEnumerable<EntityEntry>, bool>> FunctionsBeforeSaveChanges { get; set; }
-        
+        /// <returns>Func Id, use to remove from actions list later.</returns>
+        string AddFunctionBeforeSaveChanges(Func<IEnumerable<EntityEntry>, bool> func);
+
+        void RemoveFunctionBeforeSaveChanges(string funcId);
+
+        void EmptyFunctionsBeforeSaveChanges();
+
+        // After Save Changes
+
         /// <summary>
-        ///     Action after save change executed
+        ///     Add Action after save changes
         /// </summary>
-        List<Action<EntityStatesModel>> ActionsAfterSaveChanges { get; set; }
-        
-        List<Action> ActionsBeforeCommit { get; set; } 
+        /// <param name="action"></param>
+        /// <returns>Action Id, use to remove from actions list later.</returns>
+        string AddActionAfterSaveChanges(Action<EntityStatesModel> action);
 
-        List<Action> ActionsAfterCommit { get; set; }
+        void RemoveActionAfterSaveChanges(string actionId);
 
-        List<Action> ActionsBeforeRollback { get; set; }
+        void EmptyActionsAfterSaveChanges();
 
-        List<Action> ActionsAfterRollback { get; set; }
-        
+        #endregion
+
+        #region Commit Callback
+
+        // Before Commit
+
+        /// <summary>
+        ///     Add Action before commit
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns>Action Id, use to remove from actions list later.</returns>
+        string AddActionBeforeCommit(Action action);
+
+        void RemoveActionBeforeCommit(string actionId);
+
+        void EmptyActionsBeforeCommit();
+
+        // After Commit
+
+        /// <summary>
+        ///     Add Action after commit
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns>Action Id, use to remove from actions list later.</returns>
+        string AddActionAfterCommit(Action action);
+
+        void RemoveActionAfterCommit(string actionId);
+
+        void EmptyActionsAfterCommit();
+
+        #endregion
+
+        #region Rollback Callback
+
+        // Before Rollback
+
+        /// <summary>
+        ///     Add Action before rollback
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns>Action Id, use to remove from actions list later.</returns>
+        string AddActionBeforeRollback(Action action);
+
+        void RemoveActionBeforeRollback(string actionId);
+
+        void EmptyActionsBeforeRollback();
+
+        // After Rollback
+
+        /// <summary>
+        ///     Add Action after rollback
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns>Action Id, use to remove from actions list later.</returns>
+        string AddActionAfterRollback(Action action);
+
+        void RemoveActionAfterRollback(string actionId);
+
+        void EmptyActionsAfterRollback();
+
+        #endregion
+
         #region Transaction
 
         IUnitOfWorkTransaction BeginTransaction(IsolationLevel isolationLevel);
@@ -58,7 +131,8 @@ namespace Elect.Data.EF.Interfaces.UnitOfWork
 
         Task<IUnitOfWorkTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
 
-        Task<IUnitOfWorkTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default);
+        Task<IUnitOfWorkTransaction> BeginTransactionAsync(IsolationLevel isolationLevel,
+            CancellationToken cancellationToken = default);
 
         #endregion
 
@@ -75,16 +149,17 @@ namespace Elect.Data.EF.Interfaces.UnitOfWork
 
         [DebuggerStepThrough]
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
-        
+
         #endregion
-        
+
         #region SQL Command
 
         DbCommand CreateCommand(string text, CommandType type, params SqlParameter[] parameters);
-        
+
         void ExecuteCommand(string text, CommandType type, params SqlParameter[] parameters);
 
-        List<T> ExecuteCommand<T>(string text, CommandType type, params SqlParameter[] parameters) where T : class, new();
+        List<T> ExecuteCommand<T>(string text, CommandType type, params SqlParameter[] parameters)
+            where T : class, new();
 
         #endregion
     }
