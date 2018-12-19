@@ -9,15 +9,15 @@
         <owners>topnguyen</owners>
         <copyright>http://topnguyen.net</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/DI/Elect.DI</projectUrl>
-        <licenseUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/LICENSE</licenseUrl>
+        <license type="expression">MIT</license>
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>aspnetcore dependencyinjection elect topnguyen</tags>
-        <version>2.1.9</version>
+        <tags>aspnetcore dependency injection elect topnguyen</tags>
+        <version>2.2</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.1.9"/>
+            <dependency id="Elect.Core" version="2.2"/>
         </dependencies>
     </metadata>
 
