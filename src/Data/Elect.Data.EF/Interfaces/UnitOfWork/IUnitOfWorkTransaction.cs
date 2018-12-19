@@ -20,20 +20,19 @@
 #endregion License
 
 using System;
-using System.Collections.Generic;
-using Elect.Data.EF.Models;
+using Elect.Core.ActionUtils;
 
 namespace Elect.Data.EF.Interfaces.UnitOfWork
 {
     public interface IUnitOfWorkTransaction : IDisposable
     {
-        List<ActionModel> ActionsBeforeCommit { get; set; }
+        ActionCollection ActionsBeforeCommit { get; set; }
 
-        List<ActionModel> ActionsAfterCommit { get; set; }
+        ActionCollection ActionsAfterCommit { get; set; }
 
-        List<ActionModel> ActionsBeforeRollback { get; set; }
+        ActionCollection ActionsBeforeRollback { get; set; }
 
-        List<ActionModel> ActionsAfterRollback { get; set; }
+        ActionCollection ActionsAfterRollback { get; set; }
 
         void Commit();
 

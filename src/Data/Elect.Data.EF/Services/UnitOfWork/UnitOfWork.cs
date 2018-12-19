@@ -19,7 +19,6 @@
 
 #endregion License
 
-using System;
 using System.Collections.Generic;
 using Elect.Data.EF.Interfaces.DbContext;
 using Elect.Data.EF.Interfaces.UnitOfWork;
@@ -30,7 +29,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Elect.Core.LinqUtils;
+using Elect.Core.ActionUtils;
 using Elect.Data.EF.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -38,19 +37,19 @@ namespace Elect.Data.EF.Services.UnitOfWork
 {
     public abstract class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : IDbContext
     {
-        public List<FuncModel<IEnumerable<EntityEntry>, bool>> FunctionsBeforeSaveChanges { get; set; } =
-            new List<FuncModel<IEnumerable<EntityEntry>, bool>>();
+        public FuncCollection<IEnumerable<EntityEntry>, bool> FunctionsBeforeSaveChanges { get; } =
+            new FuncCollection<IEnumerable<EntityEntry>, bool>();
 
-        public List<ActionModel<EntityStatesModel>> ActionsAfterSaveChanges { get; set; } =
-            new List<ActionModel<EntityStatesModel>>();
+        public ActionCollection<EntityStatesModel> ActionsAfterSaveChanges { get; set; } =
+            new ActionCollection<EntityStatesModel>();
 
-        public List<ActionModel> ActionsBeforeCommit { get; set; } = new List<ActionModel>();
+        public ActionCollection ActionsBeforeCommit { get; } = new ActionCollection();
 
-        public List<ActionModel> ActionsAfterCommit { get; set; } = new List<ActionModel>();
+        public ActionCollection ActionsAfterCommit { get; } = new ActionCollection();
 
-        public List<ActionModel> ActionsBeforeRollback { get; set; } = new List<ActionModel>();
+        public ActionCollection ActionsBeforeRollback { get; } = new ActionCollection();
 
-        public List<ActionModel> ActionsAfterRollback { get; set; } = new List<ActionModel>();
+        public ActionCollection ActionsAfterRollback { get; } = new ActionCollection();
 
         protected readonly TDbContext DbContext;
 
@@ -58,174 +57,6 @@ namespace Elect.Data.EF.Services.UnitOfWork
         {
             DbContext = dbContext;
         }
-
-        #region Save Changes Callback
-
-        // Before Save Changes
-
-        public string AddFunctionBeforeSaveChanges(Func<IEnumerable<EntityEntry>, bool> func)
-        {
-            var funcModel = new FuncModel<IEnumerable<EntityEntry>, bool>(func);
-
-            FunctionsBeforeSaveChanges.Add(funcModel);
-
-            return funcModel.Id;
-        }
-
-        public void RemoveFunctionBeforeSaveChanges(string funcId)
-        {
-            FunctionsBeforeSaveChanges = FunctionsBeforeSaveChanges.RemoveWhere(x => x.Id == funcId).ToList();
-        }
-
-        public void EmptyFunctionsBeforeSaveChanges()
-        {
-            if (FunctionsBeforeSaveChanges?.Any() != true)
-            {
-                return;
-            }
-
-            FunctionsBeforeSaveChanges = FunctionsBeforeSaveChanges.RemoveWhere(x => x.Func != null).ToList();
-        }
-
-        // After Save Changes
-
-        public string AddActionAfterSaveChanges(Action<EntityStatesModel> action)
-        {
-            var actionModel = new ActionModel<EntityStatesModel>(action);
-
-            ActionsAfterSaveChanges.Add(actionModel);
-
-            return actionModel.Id;
-        }
-
-        public void RemoveActionAfterSaveChanges(string actionId)
-        {
-            ActionsAfterSaveChanges = ActionsAfterSaveChanges.RemoveWhere(x => x.Id == actionId).ToList();
-        }
-
-        public void EmptyActionsAfterSaveChanges()
-        {
-            if (ActionsAfterSaveChanges?.Any() != true)
-            {
-                return;
-            }
-
-            ActionsAfterSaveChanges = ActionsAfterSaveChanges.RemoveWhere(x => x.Action != null).ToList();
-        }
-
-        #endregion
-
-        #region Commit Callback
-
-        // Before Commit
-
-        public string AddActionBeforeCommit(Action action)
-        {
-            var actionModel = new ActionModel(action);
-
-            ActionsBeforeCommit.Add(actionModel);
-
-            return actionModel.Id;
-        }
-
-        public void RemoveActionBeforeCommit(string actionId)
-        {
-            ActionsBeforeCommit = ActionsBeforeCommit.RemoveWhere(x => x.Id == actionId).ToList();
-        }
-
-        public void EmptyActionsBeforeCommit()
-        {
-            if (ActionsBeforeCommit?.Any() != true)
-            {
-                return;
-            }
-
-            ActionsBeforeCommit = ActionsBeforeCommit.RemoveWhere(x => x.Action != null).ToList();
-        }
-
-        // After Commit
-
-        public string AddActionAfterCommit(Action action)
-        {
-            var actionModel = new ActionModel(action);
-
-            ActionsAfterCommit.Add(actionModel);
-
-            return actionModel.Id;
-        }
-
-        public void RemoveActionAfterCommit(string actionId)
-        {
-            ActionsAfterCommit = ActionsAfterCommit.RemoveWhere(x => x.Id == actionId).ToList();
-        }
-
-        public void EmptyActionsAfterCommit()
-        {
-            if (ActionsAfterCommit?.Any() != true)
-            {
-                return;
-            }
-
-            ActionsAfterCommit = ActionsAfterCommit.RemoveWhere(x => x.Action != null).ToList();
-        }
-
-        #endregion
-
-        #region Rollback Callback
-
-        // Before Rollback
-
-        public string AddActionBeforeRollback(Action action)
-        {
-            var actionModel = new ActionModel(action);
-
-            ActionsBeforeRollback.Add(actionModel);
-
-            return actionModel.Id;
-        }
-
-        public void RemoveActionBeforeRollback(string actionId)
-        {
-            ActionsBeforeRollback = ActionsBeforeRollback.RemoveWhere(x => x.Id == actionId).ToList();
-        }
-
-        public void EmptyActionsBeforeRollback()
-        {
-            if (ActionsBeforeRollback?.Any() != true)
-            {
-                return;
-            }
-
-            ActionsBeforeRollback = ActionsBeforeRollback.RemoveWhere(x => x.Action != null).ToList();
-        }
-
-        // After Rollback
-
-        public string AddActionAfterRollback(Action action)
-        {
-            var actionModel = new ActionModel(action);
-
-            ActionsAfterRollback.Add(actionModel);
-
-            return actionModel.Id;
-        }
-
-        public void RemoveActionAfterRollback(string actionId)
-        {
-            ActionsAfterRollback = ActionsAfterRollback.RemoveWhere(x => x.Id == actionId).ToList();
-        }
-
-        public void EmptyActionsAfterRollback()
-        {
-            if (ActionsAfterRollback?.Any() != true)
-            {
-                return;
-            }
-
-            ActionsAfterRollback = ActionsAfterRollback.RemoveWhere(x => x.Action != null).ToList();
-        }
-
-        #endregion
 
         #region Transaction
 
@@ -292,11 +123,11 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         public virtual int SaveChanges()
         {
-            bool isContinue = true;
+            var isContinue = true;
 
-            if (FunctionsBeforeSaveChanges?.Any() == true)
+            if (FunctionsBeforeSaveChanges?.Get()?.Any() == true)
             {
-                foreach (var funcModel in FunctionsBeforeSaveChanges)
+                foreach (var funcModel in FunctionsBeforeSaveChanges.Get())
                 {
                     var tempContinue = funcModel?.Func?.Invoke(DbContext.ChangeTracker.Entries()) ?? true;
 
@@ -311,12 +142,14 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
             var result = isContinue ? DbContext.SaveChanges() : default;
 
-            if (isContinue && ActionsAfterSaveChanges?.Any() == true)
+            if (!isContinue || ActionsAfterSaveChanges?.Get()?.Any() != true)
             {
-                foreach (var actionModel in ActionsAfterSaveChanges)
-                {
-                    actionModel?.Action?.Invoke(entityStatesModel);
-                }
+                return result;
+            }
+
+            foreach (var actionModel in ActionsAfterSaveChanges.Get())
+            {
+                actionModel?.Action?.Invoke(entityStatesModel);
             }
 
             return result;
@@ -324,11 +157,11 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         public virtual int SaveChanges(bool acceptAllChangesOnSuccess)
         {
-            bool isContinue = true;
+            var isContinue = true;
 
-            if (FunctionsBeforeSaveChanges?.Any() == true)
+            if (FunctionsBeforeSaveChanges?.Get()?.Any() == true)
             {
-                foreach (var funcModel in FunctionsBeforeSaveChanges)
+                foreach (var funcModel in FunctionsBeforeSaveChanges.Get())
                 {
                     var tempContinue = funcModel?.Func?.Invoke(DbContext.ChangeTracker.Entries()) ?? true;
 
@@ -343,12 +176,14 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
             var result = isContinue ? DbContext.SaveChanges(acceptAllChangesOnSuccess) : default;
 
-            if (isContinue && ActionsAfterSaveChanges?.Any() == true)
+            if (!isContinue || ActionsAfterSaveChanges?.Get()?.Any() != true)
             {
-                foreach (var actionModel in ActionsAfterSaveChanges)
-                {
-                    actionModel?.Action?.Invoke(entityStatesModel);
-                }
+                return result;
+            }
+
+            foreach (var actionModel in ActionsAfterSaveChanges.Get())
+            {
+                actionModel?.Action?.Invoke(entityStatesModel);
             }
 
             return result;
@@ -356,11 +191,11 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            bool isContinue = true;
+            var isContinue = true;
 
-            if (FunctionsBeforeSaveChanges?.Any() == true)
+            if (FunctionsBeforeSaveChanges?.Get()?.Any() == true)
             {
-                foreach (var funcModel in FunctionsBeforeSaveChanges)
+                foreach (var funcModel in FunctionsBeforeSaveChanges.Get())
                 {
                     var tempContinue = funcModel?.Func?.Invoke(DbContext.ChangeTracker.Entries()) ?? true;
 
@@ -375,12 +210,14 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
             var result = isContinue ? DbContext.SaveChangesAsync(cancellationToken) : default;
 
-            if (isContinue && ActionsAfterSaveChanges?.Any() == true)
+            if (!isContinue || ActionsAfterSaveChanges?.Get()?.Any() != true)
             {
-                foreach (var actionModel in ActionsAfterSaveChanges)
-                {
-                    actionModel?.Action?.Invoke(entityStatesModel);
-                }
+                return result;
+            }
+
+            foreach (var actionModel in ActionsAfterSaveChanges.Get())
+            {
+                actionModel?.Action?.Invoke(entityStatesModel);
             }
 
             return result;
@@ -391,9 +228,9 @@ namespace Elect.Data.EF.Services.UnitOfWork
         {
             bool isContinue = true;
 
-            if (FunctionsBeforeSaveChanges?.Any() == true)
+            if (FunctionsBeforeSaveChanges?.Get()?.Any() == true)
             {
-                foreach (var funcModel in FunctionsBeforeSaveChanges)
+                foreach (var funcModel in FunctionsBeforeSaveChanges.Get())
                 {
                     var tempContinue = funcModel?.Func?.Invoke(DbContext.ChangeTracker.Entries()) ?? true;
 
@@ -410,12 +247,14 @@ namespace Elect.Data.EF.Services.UnitOfWork
                 ? DbContext.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken)
                 : default;
 
-            if (isContinue && ActionsAfterSaveChanges?.Any() == true)
+            if (!isContinue || ActionsAfterSaveChanges?.Get()?.Any() != true)
             {
-                foreach (var actionModel in ActionsAfterSaveChanges)
-                {
-                    actionModel?.Action?.Invoke(entityStatesModel);
-                }
+                return result;
+            }
+
+            foreach (var actionModel in ActionsAfterSaveChanges.Get())
+            {
+                actionModel?.Action?.Invoke(entityStatesModel);
             }
 
             return result;

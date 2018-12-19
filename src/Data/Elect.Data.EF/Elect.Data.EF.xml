@@ -17,47 +17,6 @@
             <param name="isPhysicalDelete"></param>
             <remarks>When isPhysicalDelete is <c>true</c>, it's mean auto include soft delete record in query/predicate</remarks>
         </member>
-        <member name="M:Elect.Data.EF.Interfaces.UnitOfWork.IUnitOfWork.AddFunctionBeforeSaveChanges(System.Func{System.Collections.Generic.IEnumerable{Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry},System.Boolean})">
-            <summary>
-                Function before save changes execute, return false for cancel save changes.
-            </summary>
-            <returns>Func Id, use to remove from actions list later.</returns>
-        </member>
-        <member name="M:Elect.Data.EF.Interfaces.UnitOfWork.IUnitOfWork.AddActionAfterSaveChanges(System.Action{Elect.Data.EF.Models.EntityStatesModel})">
-            <summary>
-                Add Action after save changes
-            </summary>
-            <param name="action"></param>
-            <returns>Action Id, use to remove from actions list later.</returns>
-        </member>
-        <member name="M:Elect.Data.EF.Interfaces.UnitOfWork.IUnitOfWork.AddActionBeforeCommit(System.Action)">
-            <summary>
-                Add Action before commit
-            </summary>
-            <param name="action"></param>
-            <returns>Action Id, use to remove from actions list later.</returns>
-        </member>
-        <member name="M:Elect.Data.EF.Interfaces.UnitOfWork.IUnitOfWork.AddActionAfterCommit(System.Action)">
-            <summary>
-                Add Action after commit
-            </summary>
-            <param name="action"></param>
-            <returns>Action Id, use to remove from actions list later.</returns>
-        </member>
-        <member name="M:Elect.Data.EF.Interfaces.UnitOfWork.IUnitOfWork.AddActionBeforeRollback(System.Action)">
-            <summary>
-                Add Action before rollback
-            </summary>
-            <param name="action"></param>
-            <returns>Action Id, use to remove from actions list later.</returns>
-        </member>
-        <member name="M:Elect.Data.EF.Interfaces.UnitOfWork.IUnitOfWork.AddActionAfterRollback(System.Action)">
-            <summary>
-                Add Action after rollback
-            </summary>
-            <param name="action"></param>
-            <returns>Action Id, use to remove from actions list later.</returns>
-        </member>
         <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.AddConfigFromAssembly(Microsoft.EntityFrameworkCore.ModelBuilder,System.Reflection.Assembly)">
             <summary>
                 Scan and apply Config/Mapping for Tables/Entities 
