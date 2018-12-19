@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.Attributes;
@@ -24,12 +26,17 @@ namespace Elect.Notification.OneSignal.Services
 {
     public class ElectOneSignalClient : IElectOneSignalClient
     {
-        public IElectOneSignalDevicesResource Devices { get; }
+        public IElectOneSignalApp Apps { get; }
 
-        public IElectOneSignalNotificationsResource Notifications { get; }
+        public IElectOneSignalDevice Devices { get; }
 
-        public ElectOneSignalClient([NotNull]IElectOneSignalDevicesResource devices, [NotNull]IElectOneSignalNotificationsResource notifications)
+        public IElectOneSignalNotification Notifications { get; }
+
+        public ElectOneSignalClient([NotNull] IElectOneSignalApp apps, [NotNull] IElectOneSignalDevice devices,
+            [NotNull] IElectOneSignalNotification notifications)
         {
+            Apps = apps;
+
             Devices = devices;
 
             Notifications = notifications;

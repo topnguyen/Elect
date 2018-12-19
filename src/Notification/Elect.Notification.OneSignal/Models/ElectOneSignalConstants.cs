@@ -30,8 +30,6 @@ namespace Elect.Notification.OneSignal.Models
             "All"
         };
 
-        public const string DefaultAppName = "Default";
-
         public const string DefaultApiUrl = "https://onesignal.com/api/v1";
 
         internal static readonly NewtonsoftJsonSerializer NewtonsoftJsonSerializer =

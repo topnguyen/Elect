@@ -4,77 +4,127 @@
         <name>Elect.Notification.OneSignal</name>
     </assembly>
     <members>
-        <member name="T:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevicesResource">
+        <member name="T:Elect.Notification.OneSignal.Interfaces.IElectOneSignalApp">
+            <summary>
+                Interface used to unify creation of classes used to help client add or edit app. 
+            </summary>
+        </member>
+        <member name="T:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevice">
             <summary>
                 Interface used to unify creation of classes used to help client add or edit device. 
             </summary>
         </member>
-        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevicesResource.AddAsync(Elect.Notification.OneSignal.Models.Device.DeviceAddOptions,System.String)">
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevice.AddAsync(Elect.Notification.OneSignal.Models.Device.DeviceAddModel,System.String)">
             <summary>
                 Adds new device into OneSignal App. 
             </summary>
-            <param name="options"> Here you can specify options used to add new device. </param>
-            <param name="appName">
-                App name - optional if you have only 1 app in configuration, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultApiUrl" />.
-            </param>
+            <param name="model"> Here you can specify options used to add new device. </param>
+            <param name="appId">The app id must exist in ElectOneSignalOptions.Apps</param>
             <returns> Result of device add operation. </returns>
         </member>
-        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevicesResource.EditAsync(System.String,Elect.Notification.OneSignal.Models.Device.DeviceEditOptions,System.String)">
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevice.AddAsync(Elect.Notification.OneSignal.Models.Device.DeviceAddModel,System.String,System.String)">
+            <summary>
+                Adds new device into OneSignal App. 
+            </summary>
+            <param name="model"> Here you can specify options used to add new device. </param>
+            <param name="appId"></param>
+            <param name="appKey"></param>
+            <returns> Result of device add operation. </returns>
+        </member>
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevice.EditAsync(System.String,Elect.Notification.OneSignal.Models.Device.DeviceEditModel,System.String)">
             <summary>
                 Edits existing device defined in OneSignal App. 
             </summary>
             <param name="id">      Id of the device </param>
-            <param name="options"> Options used to modify attributes of the device. </param>
-            <param name="appName">
-                App name - optional if you have only 1 app in configuration, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultApiUrl" />.
-            </param>
+            <param name="model"> Options used to modify attributes of the device. </param>
+            <param name="appId">The app id must exist in ElectOneSignalOptions.Apps</param>
             <exception cref="T:System.Exception"></exception>
         </member>
-        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevicesResource.GetAsync(System.String,System.String)">
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevice.EditAsync(System.String,Elect.Notification.OneSignal.Models.Device.DeviceEditModel,System.String,System.String)">
+            <summary>
+                Edits existing device defined in OneSignal App. 
+            </summary>
+            <param name="id">      Id of the device </param>
+            <param name="model"> Options used to modify attributes of the device. </param>
+            <param name="appId"></param>
+            <param name="appKey"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevice.GetAsync(System.String,System.String)">
             <summary>
                 Get device info 
             </summary>
-            <param name="playerId"></param>
-            <param name="appName"> 
-                App name - optional if you have only 1 app in configuration, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultApiUrl" />.
-            </param>
+            <param name="id"></param>
+            <param name="appId">The app id must exist in ElectOneSignalOptions.Apps</param>
             <returns></returns>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotificationsResource">
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalDevice.GetAsync(System.String,System.String,System.String)">
+            <summary>
+                Get device info 
+            </summary>
+            <param name="id"></param>
+            <param name="appId"></param>
+            <param name="appKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotification">
             <summary>
                 Interface used to unify Notification Resource classes. 
             </summary>
         </member>
-        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotificationsResource.CreateAsync(Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions,System.String)">
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotification.CreateAsync(Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel,System.String)">
             <summary>
                 Creates a new notification. 
             </summary>
-            <param name="options">
+            <param name="model">
                 This parameter can contain variety of possible options used to create notification.
             </param>
-            <param name="appName">
-                App name - optional if you have only 1 app in configuration, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultApiUrl" />.
-            </param>
+            <param name="appId">The app id must exist in ElectOneSignalOptions.Apps</param>
             <returns> Returns result of notification create operation. </returns>
         </member>
-        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotificationsResource.CancelAsync(System.String,System.String)">
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotification.CreateAsync(Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel,System.String,System.String)">
+            <summary>
+                Creates a new notification. 
+            </summary>
+            <param name="model">
+                This parameter can contain variety of possible options used to create notification.
+            </param>
+            <param name="appId"></param>
+            <param name="appKey"></param>
+            <returns> Returns result of notification create operation. </returns>
+        </member>
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotification.CancelAsync(System.String,System.String)">
             <summary>
                 Cancel notification Stop a scheduled or currently outgoing notification 
             </summary>
-            <param name="id">     </param>
-            <param name="appName">
-                App name - optional if you have only 1 app in configuration, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultApiUrl" />.
-            </param>
+            <param name="id"></param>
+            <param name="appId">The app id must exist in ElectOneSignalOptions.Apps</param>
             <returns> Returns result of notification cancel operation. </returns>
         </member>
-        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotificationsResource.GetAsync(System.String,System.String)">
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotification.CancelAsync(System.String,System.String,System.String)">
+            <summary>
+                Cancel notification Stop a scheduled or currently outgoing notification 
+            </summary>
+            <param name="id"></param>
+            <param name="appId"></param>
+            <param name="appKey"></param>
+            <returns> Returns result of notification cancel operation. </returns>
+        </member>
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotification.GetAsync(System.String,System.String)">
             <summary>
                 Get report about notification 
             </summary>
-            <param name="id">     </param>
-            <param name="appName">
-                App name - optional if you have only 1 app in configuration, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultApiUrl" />.
-            </param>
+            <param name="id"></param>
+            <param name="appId">The app id must exist in ElectOneSignalOptions.Apps</param>
+            <returns> Returns result of notification create operation. </returns>
+        </member>
+        <member name="M:Elect.Notification.OneSignal.Interfaces.IElectOneSignalNotification.GetAsync(System.String,System.String,System.String)">
+            <summary>
+                Get report about notification 
+            </summary>
+            <param name="id"></param>
+            <param name="appId"></param>
+            <param name="appKey"></param>
             <returns> Returns result of notification create operation. </returns>
         </member>
         <member name="T:Elect.Notification.OneSignal.JsonConverter.CustomDateTimeConverter">
@@ -193,98 +243,168 @@
             <param name="objectType"></param>
             <returns></returns>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions">
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.Name">
+            <summary>
+                Required The name of your new app, as displayed on your apps list on the dashboard. This can be renamed later.
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.ApnsEnv">
+            <summary>
+                iOS - Either sandbox or production
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.ApnsP12">
+            <summary>
+                iOS - Your apple push notification p12 certificate file, converted to a string and Base64 encoded.
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.ApnsP12Password">
+            <summary>
+                iOS - Password for the apns_p12 file
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.GcmKey">
+            <summary>
+                Android - Your Google Push Messaging Auth Key
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.AndroidGcmSenderId">
+            <summary>
+                Android - Your Google Project number. Also know as Sender ID.
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.ChromeWebOrigin">
+            <summary>
+                Chrome, Firefox - The URL to your website. This field is required if you wish to enable web push and specify other web push parameters.
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.ChromeWebDefaultNotificationIcon">
+            <summary>
+               Chrome - Your default notification icon. Should be 80x80 pixels.
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.ChromeWebSubDomain">
+            <summary>
+                Chrome - A subdomain of your choice in order to support Chrome Web Push on non-HTTPS websites. This field must be set in order for the chrome_web_gcm_sender_id property to be processed.
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.SafariApnsP12">
+            <summary>
+                Safari - Your apple push notification p12 certificate file for Safari Push Notifications, converted to a string and Base64 encoded.
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.SafariApnsP12Password">
+            <summary>
+                Safari - Password for safari_apns_p12 file
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.SiteName">
+            <summary>
+                Safari - The URL to your website
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.SafariSiteOrigin">
+            <summary>
+                Safari - The hostname to your website including http(s)://
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.App.AppAddModel.SafariIcon256256">
+            <summary>
+                Safari - A url for a 256x256 png notification icon. This is the only Safari icon URL you need to provide.
+            </summary>
+        </member>
+        <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceAddModel">
             <summary>
                 Options for adding new device to OneSignal app. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.AppId">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.AppId">
             <summary>
                 Your OneSignal application ID, which can be found on our dashboard at onesignal.com
                 under App Settings &gt; Keys &amp; IDs. It is a UUID and looks similar to 8250eaf6-1a58-489e-b136-7c74a864b434.
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.Identifier">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.Identifier">
             <summary>
                 Push notification identifier from Google or Apple. For Apple push identifiers, you
                 must strip all non alphanumeric characters.
                 Example: ce777617da7f548fe7a9ab6febb56
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.Language">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.Language">
             <summary>
                 Language code. Typically lower case two letters, except for Chinese where it must be
                 one of "zh-Hans" or "zh-Hant". Example: en
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.Timezone">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.Timezone">
             <summary>
                 Number of seconds away from UTC. Example: -28800 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.GameVersion">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.GameVersion">
             <summary>
                 Version of the app. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.DeviceModel">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.DeviceModel">
             <summary>
                 Device make and model. Example: iPhone5,1 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.DeviceOS">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.DeviceOS">
             <summary>
                 Device operating system version. Example: 7.0.4 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.AdId">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.AdId">
             <summary>
                 Android = The Advertising Id iOS = The identifierForVendor WP8.0 = The DeviceUniqueId
                 WP8.1 = The AdvertisingId
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.SDK">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.SDK">
             <summary>
                 Name and version of the plugin that's calling this API method (if any) 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.SessionCount">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.SessionCount">
             <summary>
                 Number of times the user has played the game, defaults to 1 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.Tags">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.Tags">
             <summary>
                 Custom tags for the player.
                 Example: {"foo":"bar","this":"that"}
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.AmountSpent">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.AmountSpent">
             <summary>
                 Amount the user has spent in USD, up to two decimal places 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.CreatedAt">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.CreatedAt">
             <summary>
                 Unixtime when the player joined the game 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.PlayTime">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.PlayTime">
             <summary>
                 Seconds player was running your app. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.BadgeCount">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.BadgeCount">
             <summary>
                 Current iOS badge count displayed on the app icon 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.LastActive">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.LastActive">
             <summary>
                 Unixtime when the player was last active 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddOptions.TestType">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddModel.TestType">
             <summary>
                 This is used in deciding whether to use your iOS Sandbox or Production push
                 certificate when sending a push when both have been uploaded. Set to the iOS
@@ -292,103 +412,103 @@
                 Omit this field for App Store builds.
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceAddResult">
+        <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceAddResultModel">
             <summary>
                 Class used to keep result of device add operation. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddResult.IsSuccess">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddResultModel.IsSuccess">
             <summary>
                 Returns true if operation is successful. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddResult.Id">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceAddResultModel.Id">
             <summary>
                 Returns id of the result operation. 
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions">
+        <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceEditModel">
             <summary>
                 Options for editing existing device defined in OneSignal app. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.AppId">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.AppId">
             <summary>
                 Your OneSignal application ID, which can be found on our dashboard at onesignal.com
                 under App Settings &gt; Keys &amp; IDs. It is a UUID and looks similar to 8250eaf6-1a58-489e-b136-7c74a864b434.
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Identifier">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.Identifier">
             <summary>
                 Push notification identifier from Google or Apple. For Apple push identifiers, you
                 must strip all non alphanumeric characters.
                 Example: ce777617da7f548fe7a9ab6febb56
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Language">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.Language">
             <summary>
                 Language code. Typically lower case two letters, except for Chinese where it must be
                 one of "zh-Hans" or "zh-Hant". Example: en
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Timezone">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.Timezone">
             <summary>
                 Number of seconds away from UTC. Example: -28800 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.GameVersion">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.GameVersion">
             <summary>
                 Version of the app. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.DeviceModel">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.DeviceModel">
             <summary>
                 Device make and model. Example: iPhone5,1 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.DeviceOS">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.DeviceOS">
             <summary>
                 Device operating system version. Example: 7.0.4 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.AdId">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.AdId">
             <summary>
                 Android = The Advertising Id iOS = The identifierForVendor WP8.0 = The DeviceUniqueId
                 WP8.1 = The AdvertisingId
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.SDK">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.SDK">
             <summary>
                 Name and version of the plugin that's calling this API method (if any) 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.SessionCount">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.SessionCount">
             <summary>
                 Number of times the user has played the game, defaults to 1 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Tags">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.Tags">
             <summary>
                 Custom tags for the player.
                 Example: {"foo":"bar","this":"that"}
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.AmountSpent">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.AmountSpent">
             <summary>
                 Amount the user has spent in USD, up to two decimal places 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.CreatedAt">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.CreatedAt">
             <summary>
                 Unixtime when the player joined the game 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.LastActive">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.LastActive">
             <summary>
                 Unixtime when the player was last active 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.TestType">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.TestType">
             <summary>
                 This is used in deciding whether to use your iOS Sandbox or Production push
                 certificate when sending a push when both have been uploaded. Set to the iOS
@@ -396,88 +516,88 @@
                 Omit this field for App Store builds.
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Longitude">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.Longitude">
             <summary>
                 Longitude of the device, used for geotagging to segment on. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditOptions.Latitude">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceEditModel.Latitude">
             <summary>
                 Latitude of the device, used for geotagging to segment on. 
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceInfo">
+        <member name="T:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel">
             <summary>
                 Device info defined in OneSignal app. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.Identifier">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.Identifier">
             <summary>
                 Push notification identifier from Google or Apple. For Apple push identifiers, you
                 must strip all non alphanumeric characters.
                 Example: ce777617da7f548fe7a9ab6febb56
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.SessionCount">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.SessionCount">
             <summary>
                 Number of times the user has played the game, defaults to 1 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.Language">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.Language">
             <summary>
                 Language code. Typically lower case two letters, except for Chinese where it must be
                 one of "zh-Hans" or "zh-Hant". Example: en
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.Timezone">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.Timezone">
             <summary>
                 Number of seconds away from UTC. Example: -28800 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.GameVersion">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.GameVersion">
             <summary>
                 Version of the app. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.DeviceOS">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.DeviceOS">
             <summary>
                 Device operating system version. Example: 7.0.4 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.DeviceType">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.DeviceType">
             <summary>
                 0 = iOS 1 = Android 2 = Amazon 3 = WindowsPhone(MPNS) 4 = ChromeApp 5 = ChromeWebsite
                 6 = WindowsPhone(WNS) 7 = Safari 8 = Firefox 9 = Mac OS X
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.DeviceModel">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.DeviceModel">
             <summary>
                 Device make and model. Example: iPhone5,1 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.AdId">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.AdId">
             <summary>
                 Android = The Advertising Id iOS = The identifierForVendor WP8.0 = The DeviceUniqueId
                 WP8.1 = The AdvertisingId
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.Tags">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.Tags">
             <summary>
                 Custom tags for the player.
                 Example: {"foo":"bar","this":"that"}
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.LastActive">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.LastActive">
             <summary>
                 Unixtime when the player was last active 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.AmountSpent">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.AmountSpent">
             <summary>
                 Amount the user has spent in USD, up to two decimal places 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfo.CreatedAt">
+        <member name="P:Elect.Notification.OneSignal.Models.Device.DeviceInfoModel.CreatedAt">
             <summary>
                 Unixtime when the player joined the game 
             </summary>
@@ -556,9 +676,24 @@
                 Used in production, when trying to track down undelivered messages for example. 
             </summary>
         </member>
+        <member name="P:Elect.Notification.OneSignal.Models.ElectOneSignalAppOption.AppId">
+            <summary>
+                App Id use to identity an app
+            </summary>
+        </member>
         <member name="P:Elect.Notification.OneSignal.Models.ElectOneSignalAppOption.AppName">
             <summary>
-                App Name to identity between multiple app, default is <see cref="F:Elect.Notification.OneSignal.Models.ElectOneSignalConstants.DefaultAppName" />. 
+                App Name to you can look easier
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.ElectOneSignalOptions.AuthKey">
+            <summary>
+                Auth/Account Key use for manage apps
+            </summary>
+        </member>
+        <member name="P:Elect.Notification.OneSignal.Models.ElectOneSignalOptions.Apps">
+            <summary>
+                Pre-define apps used
             </summary>
         </member>
         <member name="T:Elect.Notification.OneSignal.Models.LanguageCodes">
@@ -766,32 +901,32 @@
                 Language code for Vietnamese language. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonField.Id">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonFieldModel.Id">
             <summary>
                 Action button ID. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonField.Text">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonFieldModel.Text">
             <summary>
                 Action button text. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonField.Icon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.ActionButtonFieldModel.Icon">
             <summary>
                 Action button icon. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutField.Image">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutFieldModel.Image">
             <summary>
                 Background image. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutField.HeadingsColor">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutFieldModel.HeadingsColor">
             <summary>
                 Background heading color. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutField.ContentsColor">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.AndroidBackgroundLayoutFieldModel.ContentsColor">
             <summary>
                 Background content color. 
             </summary>
@@ -861,35 +996,35 @@
                 decrease the badge count.
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCancelResult">
+        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCancelResultModel">
             <summary>
                 Result of notification cancel operation. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCancelResult.Success">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCancelResultModel.Success">
             <summary>
                 Returns whether the message was canceled or not {'success': "true"} 
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions">
+        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel">
             <summary>
                 API Documentation: https://documentation.onesignal.com/docs/notifications-create-notification 
             </summary>
         </member>
-        <member name="M:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.#ctor">
+        <member name="M:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.#ctor">
             <summary>
                 Default constructor that initializes empty Contents and Headings. All other
                 collection objects needs to be instantiated in order to be able to be serialized.
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AppId">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AppId">
             <summary>
                 <br /> Your OneSignal application ID, which can be found on our dashboard at
                 onesignal.com under App Settings &gt; Keys &amp; IDs. <br /> It is a UUID and looks
                 similar to 8250eaf6-1a58-489e-b136-7c74a864b434. <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Contents">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.Contents">
             <summary>
                 <br /> The notification's content (excluding the title), a map of language codes to
                 text for each language. <br /> Each hash must have a language code string for a key,
@@ -903,7 +1038,7 @@
                 </see> . <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Headings">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.Headings">
             <summary>
                 <br /> The notification's title, a map of language codes to text for each language.
                 <br /> Each hash must have a language code string for a key, mapped to the localized
@@ -917,7 +1052,7 @@
                 </see> . <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Data">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.Data">
             <summary>
                 <br /> A custom map of data that is passed back to your app. <br /> 
                 <code>
@@ -928,25 +1063,25 @@
                 </see> . <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Filters">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.Filters">
             <summary>
                 <br /> Targets notification recipients with filters. <br /> This is a array of JSON
                 objects containing field conditions to check. <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IncludePlayerIds">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.IncludePlayerIds">
             <summary>
                 <br /> Send based on OneSignal PlayerIds <br /> 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IncludedSegments">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.IncludedSegments">
             <summary>
                 <br /> The segment names you want to target. <br /> Users in these segments will
                 receive a notification. <br /> This targeting parameter is only compatible with
                 excluded_segments. <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.ChromeWebIcon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.ChromeWebIcon">
             <summary>
                 <br /> Sets the web push notification's icon. <br /> An image URL linking to a valid
                 image. <br /> Common image types are supported; GIF will not animate. <br /> We
@@ -954,7 +1089,7 @@
                 Firefox will also use this icon, unless you specify firefox_icon. <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Subtitle">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.Subtitle">
             <summary>
                 <br /> The notification's subtitle, a map of language codes to text for each
                 language. <br /> Each hash must have a language code string for a key, mapped to the
@@ -969,7 +1104,7 @@
                 Platforms: iOS 10+ <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.TemplateId">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.TemplateId">
             <summary>
                 <br /> Use a template you setup on our dashboard. You can override the template
                 values by sending other parameters with the request. <br /> The template_id is the
@@ -977,14 +1112,14 @@
                 Platforms: ALL <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.ContentAvailable">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.ContentAvailable">
             <summary>
                 <br /> Sending true wakes your app to run custom native code (Apple interprets this
                 as content-available=1). <br /> Omit contents field to make notification silent. <br />
                 Platforms: iOS <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.MutableContent">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.MutableContent">
             <summary>
                 <br /> Sending true allows you to change the notification content in your app before
                 it is displayed. <br /> Triggers didReceive(_:withContentHandler:) on your
@@ -992,7 +1127,7 @@
                 Platforms: iOS 10+ <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Url">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.Url">
             <summary>
                 <br /> The URL to open in the browser when a user clicks on the notification. <br /> 
                 <code>
@@ -1004,7 +1139,7 @@
                 Platforms: ALL <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IosAttachments">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.IosAttachments">
             <summary>
                 <br /> Adds media attachments to notifications. Set as JSON object, key as a media id
                 of your choice and the value as a valid local file name or URL. <br /> User must
@@ -1017,28 +1152,28 @@
                 Platforms: iOS 10+ <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.BigPictureForAndroid">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.BigPictureForAndroid">
             <summary>
                 <br /> Picture to display in the expanded view. Can be a drawable resource name or a
                 URL. <br />
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.BigPictureForAmazon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.BigPictureForAmazon">
             <summary>
                 <br /> Picture to display in the expanded view. Can be a drawable resource name or a
                 URL. <br />
                 Platforms: Amazon <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.BigPictureForChrome">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.BigPictureForChrome">
             <summary>
                 <br /> Picture to display in the expanded view. Can be a drawable resource name or a
                 URL. <br />
                 Platforms: Chrome <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.ActionButtons">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.ActionButtons">
             <summary>
                 <br /> Buttons to add to the notification. Icon only works for Android. <br /> 
                 <code>
@@ -1048,7 +1183,7 @@
                 Platforms: iOS 8.0+, Android 4.1+ (and derivatives like Amazon) <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.WebButtons">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.WebButtons">
             <summary>
                 <br /> Add action buttons to the notification. The id field is required. <br /> 
                 <code>
@@ -1058,7 +1193,7 @@
                 Platforms: Chrome 48+ <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IosCategory">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.IosCategory">
             <summary>
                 <br /> Category APS payload, use with registerUserNotificationSettings:categories in
                 your Objective-C / Swift code. <br />
@@ -1070,7 +1205,7 @@
                 Platforms: iOS <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AndroidBackgroundLayout">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AndroidBackgroundLayout">
             <summary>
                 <br /> Allowing setting a background image for the notification. This is a JSON
                 object containing the following keys. <br /> See our Background Image documentation
@@ -1093,14 +1228,14 @@
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.SmallAndroidIcon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.SmallAndroidIcon">
             <summary>
                 <br /> If blank the app icon is used. Must be the drawable resource name. <br /> See
                 how to create small icons: <see cref="!:https://documentation.onesignal.com/docs/android-customizations#section-small-notification-icons" /><br />
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.LargeAndroidIcon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.LargeAndroidIcon">
             <summary>
                 <br /> If blank the small_icon is used. Can be a drawable resource name or a URL.
                 <br /> See how to
@@ -1109,28 +1244,28 @@
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.SmallAmazonIcon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.SmallAmazonIcon">
             <summary>
                 <br /> Specific Amazon icon to use. <br /> If blank the app icon is used. <br /> Must
                 be the drawable resource name. <br />
                 Platforms: Amazon <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.LargeAmazonIcon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.LargeAmazonIcon">
             <summary>
                 <br /> Specific Amazon icon to display to the left of the notification. <br /> If
                 blank the adm_small_icon is used. <br /> Can be a drawable resource name or a URL. <br />
                 Platforms: Amazon <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.ChromeIcon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.ChromeIcon">
             <summary>
                 <br /> This flag is not used for web push For web push, please see chrome_web_icon
                 instead. <br /> The local URL to an icon to use. If blank, the app icon will be used. <br />
                 Platforms: ChromeApp <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IosSound">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.IosSound">
             <summary>
                 <br /> Sound file that is included in your app to play instead of the default device
                 notification sound. <br /> Pass "nil" to disable vibration and sound for the
@@ -1138,7 +1273,7 @@
                 Platforms: iOS <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AndroidSound">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AndroidSound">
             <summary>
                 <br /> Sound file that is included in your app to play instead of the default device
                 notification sound. <br />
@@ -1150,7 +1285,7 @@
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AmazonSound">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AmazonSound">
             <summary>
                 <br /> Sound file that is included in your app to play instead of the default device
                 notification sound. <br />
@@ -1162,7 +1297,7 @@
                 Platforms: Amazon <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.WindowsPhoneSound">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.WindowsPhoneSound">
             <summary>
                 <br /> Sound file that is included in your app to play instead of the default device
                 notification sound. <br />
@@ -1173,7 +1308,7 @@
                 Platforms: Windows 8.0 <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.WindowsRtPhoneSound">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.WindowsRtPhoneSound">
             <summary>
                 <br /> Sound file that is included in your app to play instead of the default device
                 notification sound. <br />
@@ -1184,7 +1319,7 @@
                 Platforms: Windows 8.1+ <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AndroidLedColor">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AndroidLedColor">
             <summary>
                 <br /> Sets the devices LED notification light if the device has one. ARGB Hex
                 format. <br />
@@ -1195,7 +1330,7 @@
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AndroidAccentColor">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AndroidAccentColor">
             <summary>
                 <br /> Sets the background color of the notification circle to the left of the
                 notification text. <br /> Only applies to apps targeting Android API level 21+ on
@@ -1207,7 +1342,7 @@
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AndroidVisibility">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AndroidVisibility">
             <summary>
                 <br /> Sets the lock screen visibility for apps targeting Android API level 21+
                 running on Android 5.0+ devices. <br /> 1 = Public (default) (Shows the full message
@@ -1219,7 +1354,7 @@
                 Platforms: Android 5.0+ <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IosBadgeType">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.IosBadgeType">
             <summary>
                 <br /> Describes whether to set or increase/decrease your app's iOS badge count by
                 the ios_badgeCount specified count. Can specify None, SetTo, or Increase. <br /> None
@@ -1229,7 +1364,7 @@
                 Platforms: iOS <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.IosBadgeCount">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.IosBadgeCount">
             <summary>
                 <br /> Used with ios_badgeType, describes the value to set or amount to
                 increase/decrease your app's iOS badge count by. <br /> You can use a negative number
@@ -1237,7 +1372,7 @@
                 Platforms: iOS <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.CollapseId">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.CollapseId">
             <summary>
                 <br /> Only one notification with the same id will be shown on the device. Use the
                 same id to update an existing notification instead of showing a new one. <br /> his
@@ -1245,7 +1380,7 @@
                 Platforms: iOS 10+, Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.SendAfter">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.SendAfter">
             <summary>
                 <br /> Schedule notification for future delivery. <br /> Eventhough API suggests
                 diffent datetime formats, we are using following format: "2015-09-24 14:00:00
@@ -1253,7 +1388,7 @@
                 Platforms: ALL <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DelayedOption">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DelayedOption">
             <summary>
                 <br /> Possible values are: <br /> timezone (Deliver at a specific time-of-day in
                 each users own timezone) <br /> last-active (Deliver at the same time of day as each
@@ -1262,7 +1397,7 @@
                 Platforms: ALL <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliveryTimeOfDay">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliveryTimeOfDay">
             <summary>
                 <br /> Use with delayed_option=timezone. <br /> 
                 <code>
@@ -1272,7 +1407,7 @@
                 Platforms: ALL <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.TimeToLive">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.TimeToLive">
             <summary>
                 <br /> Time To Live - In seconds. <br /> The notification will be expired if the
                 device does not come back online within this time. <br /> The default is 259,200
@@ -1280,7 +1415,7 @@
                 Platforms: iOS, Android, Chrome, ChromeWeb <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.Priority">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.Priority">
             <summary>
                 <br /> Delivery priority through the push server (example GCM/FCM). 
                 <code>
@@ -1291,7 +1426,7 @@
                 Platforms: iOS, Android, Chrome, ChromeWeb <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AndroidGroup">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AndroidGroup">
             <summary>
                 <br /> All notifications with the same group will be stacked together using Android's
                 Notification Stacking feature. <br /> More info
@@ -1300,7 +1435,7 @@
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AndroidGroupMessage">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AndroidGroupMessage">
             <summary>
                 <br /> Summary message to display when 2+ notifications are stacked together. Default
                 is "# new messages". <br /> Include $[notif_count] in your message and it will be
@@ -1317,7 +1452,7 @@
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AmazonGroup">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AmazonGroup">
             <summary>
                 <br /> All notifications with the same group will be stacked together using Android's
                 Notification Stacking feature. <br /> More info
@@ -1326,7 +1461,7 @@
                 Platforms: Amazon <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.AmazonGroupMessage">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.AmazonGroupMessage">
             <summary>
                 <br /> Summary message to display when 2+ notifications are stacked together. <br />
                 Default is "# new messages". Include $[notif_count] in your message and it will be
@@ -1341,21 +1476,21 @@
                 Platforms: Amazon <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToIos">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToIos">
             <summary>
                 <br /> Indicates whether to send to all devices registered under your app's Apple iOS
                 platform. <br />
                 Platforms: iOS <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToAndroid">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToAndroid">
             <summary>
                 <br /> Indicates whether to send to all devices registered under your app's Google
                 Android platform. <br />
                 Platforms: Android <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToAnyWeb">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToAnyWeb">
             <summary>
                 <br /> Indicates whether to send to all subscribed web browser users, including
                 Chrome, Firefox, and Safari. <br /> You may use this instead as a combined flag
@@ -1364,21 +1499,21 @@
                 Platforms: WEB <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToChromeWeb">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToChromeWeb">
             <summary>
                 <br /> Indicates whether to send to all Google Chrome, Chrome on Android, and Mozilla
                 Firefox users registered under your Chrome &amp; Firefox web push platform. <br />
                 Platforms: WEB <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToFirefox">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToFirefox">
             <summary>
                 <br /> Indicates whether to send to all Mozilla Firefox desktop users registered
                 under your Firefox web push platform. <br />
                 Platforms: WEB <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToSafari">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToSafari">
             <summary>
                 <br /> Does not support iOS Safari Indicates whether to send to all Apple's Safari
                 desktop users registered under your Safari web push platform. <br /> Read more about
@@ -1387,28 +1522,28 @@
                 Platforms: WEB <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToWindowsPhone">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToWindowsPhone">
             <summary>
                 <br /> Indicates whether to send to all devices registered under your app's Windows
                 Phone 8.0 platform. <br />
                 Platforms: Windows Phone 8.0 <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToWindowsRtPhone">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToWindowsRtPhone">
             <summary>
                 <br /> Indicates whether to send to all devices registered under your app's Windows
                 Phone 8.1+ platform. <br />
                 Platforms: Windows Phone 8.1+ <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToAmazon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToAmazon">
             <summary>
                 <br /> Indicates whether to send to all devices registered under your app's Amazon
                 Fire platform. <br />
                 Platforms: Amazon <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateOptions.DeliverToChrome">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.DeliverToChrome">
             <summary>
                 <br /> This flag is not used for web push Please see isChromeWeb for sending to web
                 push users. This flag only applies to Google Chrome Apps &amp; Extensions. <br />
@@ -1417,42 +1552,42 @@
                 Platforms: ChromeApp <br />
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResult">
+        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResultModel">
             <summary>
                 Result of notification create operation. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResult.Recipients">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResultModel.Recipients">
             <summary>
                 Returns the number of recipients who received the message. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResult.Id">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateResultModel.Id">
             <summary>
                 Returns the id of the result. 
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField">
+        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldModel">
             <summary>
                 Complex type used to describe filter field. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField.Field">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldModel.Field">
             <summary>
                 The type of the filter field. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField.Key">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldModel.Key">
             <summary>
                 The key used for comparison. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField.Relation">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldModel.Relation">
             <summary>
                 The relation between key and value. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterField.Value">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterFieldModel.Value">
             <summary>
                 The value. 
             </summary>
@@ -1530,59 +1665,59 @@
                 value = email address 
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterOperator">
+        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterOperatorModel">
             <summary>
                 Notification filter operator is used to define logical AND, OR 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterOperator.Operator">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationFilterOperatorModel.Operator">
             <summary>
                 Can be AND or OR operator 
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult">
+        <member name="T:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel">
             <summary>
                 Delivery and convert report result refered to single notification. View
                 <see cref="!:https://documentation.onesignal.com/reference#view-notification"> API
                 Documentation </see> for more info.
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Id">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Id">
             <summary>
                 The id of the result. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Successful">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Successful">
             <summary>
                 The number of devices that received notification. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Failed">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Failed">
             <summary>
                 The number of devices that failed to receive notification. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Converted">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Converted">
             <summary>
                 The number of users who clicked notification. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Remaining">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Remaining">
             <summary>
                 The number of remaining devices where notification will be delivered 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.QueuedAt">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.QueuedAt">
             <summary>
                 The number of remaining devices where notification will be delivered 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.SendAfter">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.SendAfter">
             <summary>
                 The number of remaining devices where notification will be delivered 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Url">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Url">
             <summary>
                 <br /> The URL to open in the browser when a user clicks on the notification. <br /> 
                 <code>
@@ -1594,7 +1729,7 @@
                 Platforms: ALL <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Contents">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Contents">
             <summary>
                 <br /> The notification's content (excluding the title), a map of language codes to
                 text for each language. <br /> Each hash must have a language code string for a key,
@@ -1608,7 +1743,7 @@
                 </see> . <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Headings">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Headings">
             <summary>
                 <br /> The notification's title, a map of language codes to text for each language.
                 <br /> Each hash must have a language code string for a key, mapped to the localized
@@ -1622,7 +1757,7 @@
                 </see> . <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Data">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Data">
             <summary>
                 <br /> A custom map of data that is passed back to your app. <br /> 
                 <code>
@@ -1633,32 +1768,32 @@
                 </see> . <br />
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResult.Canceled">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationViewResultModel.Canceled">
             <summary>
                 The number of remaining devices where notification will be delivered 
             </summary>
         </member>
-        <member name="T:Elect.Notification.OneSignal.Models.Notifications.WebButtonField">
+        <member name="T:Elect.Notification.OneSignal.Models.Notifications.WebButtonFieldModel">
             <summary>
                 Class used to describe web button. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonField.Id">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonFieldModel.Id">
             <summary>
                 Web button ID. This is required field. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonField.Text">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonFieldModel.Text">
             <summary>
                 Web button text. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonField.Icon">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonFieldModel.Icon">
             <summary>
                 Web button icon. 
             </summary>
         </member>
-        <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonField.Url">
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.WebButtonFieldModel.Url">
             <summary>
                 Web button url. 
             </summary>

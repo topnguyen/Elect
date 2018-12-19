@@ -25,6 +25,6 @@
     </PropertyGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj"/>
+        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
     </ItemGroup>
 </Project>

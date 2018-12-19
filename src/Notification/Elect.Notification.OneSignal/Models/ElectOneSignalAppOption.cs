@@ -38,13 +38,16 @@ namespace Elect.Notification.OneSignal.Models
             AppName = appName;
         }
 
+        /// <summary>
+        ///     App Id use to identity an app
+        /// </summary>
         public string AppId { get; set; }
 
         public string ApiKey { get; set; }
 
         /// <summary>
-        ///     App Name to identity between multiple app, default is <see cref="ElectOneSignalConstants.DefaultAppName" />. 
+        ///     App Name to you can look easier
         /// </summary>
-        public string AppName { get; set; } = ElectOneSignalConstants.DefaultAppName;
+        public string AppName { get; set; }
     }
 }
