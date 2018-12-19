@@ -19,7 +19,6 @@
 
 #endregion License
 
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -27,6 +26,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Elect.Core.ActionUtils;
 using Elect.Data.EF.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -34,94 +34,17 @@ namespace Elect.Data.EF.Interfaces.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        #region Save Changes Callback
+        FuncCollection<IEnumerable<EntityEntry>, bool> FunctionsBeforeSaveChanges { get; }
 
-        // Before Save Changes
+        ActionCollection<EntityStatesModel> ActionsAfterSaveChanges { get; }
 
-        /// <summary>
-        ///     Function before save changes execute, return false for cancel save changes.
-        /// </summary>
-        /// <returns>Func Id, use to remove from actions list later.</returns>
-        string AddFunctionBeforeSaveChanges(Func<IEnumerable<EntityEntry>, bool> func);
+        ActionCollection ActionsBeforeCommit { get; }
 
-        void RemoveFunctionBeforeSaveChanges(string funcId);
+        ActionCollection ActionsAfterCommit { get; }
 
-        void EmptyFunctionsBeforeSaveChanges();
+        ActionCollection ActionsBeforeRollback { get; }
 
-        // After Save Changes
-
-        /// <summary>
-        ///     Add Action after save changes
-        /// </summary>
-        /// <param name="action"></param>
-        /// <returns>Action Id, use to remove from actions list later.</returns>
-        string AddActionAfterSaveChanges(Action<EntityStatesModel> action);
-
-        void RemoveActionAfterSaveChanges(string actionId);
-
-        void EmptyActionsAfterSaveChanges();
-
-        #endregion
-
-        #region Commit Callback
-
-        // Before Commit
-
-        /// <summary>
-        ///     Add Action before commit
-        /// </summary>
-        /// <param name="action"></param>
-        /// <returns>Action Id, use to remove from actions list later.</returns>
-        string AddActionBeforeCommit(Action action);
-
-        void RemoveActionBeforeCommit(string actionId);
-
-        void EmptyActionsBeforeCommit();
-
-        // After Commit
-
-        /// <summary>
-        ///     Add Action after commit
-        /// </summary>
-        /// <param name="action"></param>
-        /// <returns>Action Id, use to remove from actions list later.</returns>
-        string AddActionAfterCommit(Action action);
-
-        void RemoveActionAfterCommit(string actionId);
-
-        void EmptyActionsAfterCommit();
-
-        #endregion
-
-        #region Rollback Callback
-
-        // Before Rollback
-
-        /// <summary>
-        ///     Add Action before rollback
-        /// </summary>
-        /// <param name="action"></param>
-        /// <returns>Action Id, use to remove from actions list later.</returns>
-        string AddActionBeforeRollback(Action action);
-
-        void RemoveActionBeforeRollback(string actionId);
-
-        void EmptyActionsBeforeRollback();
-
-        // After Rollback
-
-        /// <summary>
-        ///     Add Action after rollback
-        /// </summary>
-        /// <param name="action"></param>
-        /// <returns>Action Id, use to remove from actions list later.</returns>
-        string AddActionAfterRollback(Action action);
-
-        void RemoveActionAfterRollback(string actionId);
-
-        void EmptyActionsAfterRollback();
-
-        #endregion
+        ActionCollection ActionsAfterRollback { get; }
 
         #region Transaction
 

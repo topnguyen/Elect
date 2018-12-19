@@ -1,6 +1,6 @@
 using System;
 
-namespace Elect.Data.EF.Models
+namespace Elect.Core.ActionUtils.Models
 {
     public class ActionModel
     {

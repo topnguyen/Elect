@@ -19,10 +19,9 @@
 
 #endregion License
 
-using System.Collections.Generic;
 using System.Linq;
+using Elect.Core.ActionUtils;
 using Elect.Data.EF.Interfaces.UnitOfWork;
-using Elect.Data.EF.Models;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Elect.Data.EF.Services.UnitOfWork
@@ -31,13 +30,13 @@ namespace Elect.Data.EF.Services.UnitOfWork
     {
         private readonly IDbContextTransaction _dbContextTransaction;
 
-        public List<ActionModel> ActionsBeforeCommit { get; set; } = new List<ActionModel>();
+        public ActionCollection ActionsBeforeCommit { get; set; } = new ActionCollection();
 
-        public List<ActionModel> ActionsAfterCommit { get; set; } = new List<ActionModel>();
+        public ActionCollection ActionsAfterCommit { get; set; } = new ActionCollection();
 
-        public List<ActionModel> ActionsBeforeRollback { get; set; } = new List<ActionModel>();
+        public ActionCollection ActionsBeforeRollback { get; set; } = new ActionCollection();
 
-        public List<ActionModel> ActionsAfterRollback { get; set; } = new List<ActionModel>();
+        public ActionCollection ActionsAfterRollback { get; set; } = new ActionCollection();
 
         public UnitOfWorkTransaction(IDbContextTransaction dbContextTransaction)
         {
@@ -51,9 +50,9 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         public void Commit()
         {
-            if (ActionsBeforeCommit?.Any() == true)
+            if (ActionsBeforeCommit?.Get()?.Any() == true)
             {
-                foreach (var actionModel in ActionsBeforeCommit)
+                foreach (var actionModel in ActionsBeforeCommit.Get())
                 {
                     actionModel?.Action?.Invoke();
                 }
@@ -61,9 +60,9 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
             _dbContextTransaction.Commit();
 
-            if (ActionsAfterCommit?.Any() == true)
+            if (ActionsAfterCommit?.Get()?.Any() == true)
             {
-                foreach (var actionModel in ActionsAfterCommit)
+                foreach (var actionModel in ActionsAfterCommit.Get())
                 {
                     actionModel?.Action?.Invoke();
                 }
@@ -72,9 +71,9 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
         public void Rollback()
         {
-            if (ActionsBeforeRollback?.Any() == true)
+            if (ActionsBeforeRollback?.Get()?.Any() == true)
             {
-                foreach (var actionModel in ActionsBeforeRollback)
+                foreach (var actionModel in ActionsBeforeRollback.Get())
                 {
                     actionModel?.Action?.Invoke();
                 }
@@ -82,9 +81,9 @@ namespace Elect.Data.EF.Services.UnitOfWork
 
             _dbContextTransaction.Rollback();
 
-            if (ActionsAfterRollback?.Any() == true)
+            if (ActionsAfterRollback?.Get()?.Any() == true)
             {
-                foreach (var actionModel in ActionsAfterRollback)
+                foreach (var actionModel in ActionsAfterRollback.Get())
                 {
                     actionModel?.Action?.Invoke();
                 }
