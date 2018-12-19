@@ -21,8 +21,10 @@ namespace Elect.Notification.OneSignal.Interfaces
 {
     public interface IElectOneSignalClient
     {
-        IElectOneSignalDevicesResource Devices { get; }
+        IElectOneSignalApp Apps { get; }
+        
+        IElectOneSignalDevice Devices { get; }
 
-        IElectOneSignalNotificationsResource Notifications { get; }
+        IElectOneSignalNotification Notifications { get; }
     }
 }

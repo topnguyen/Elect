@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System.Collections.Generic;
@@ -23,6 +25,14 @@ namespace Elect.Notification.OneSignal.Models
 {
     public class ElectOneSignalOptions
     {
+        /// <summary>
+        ///     Auth/Account Key use for manage apps
+        /// </summary>
+        public string AuthKey { get; set; }
+
+        /// <summary>
+        ///     Pre-define apps used
+        /// </summary>
         public List<ElectOneSignalAppOption> Apps { get; set; } = new List<ElectOneSignalAppOption>();
     }
 }
