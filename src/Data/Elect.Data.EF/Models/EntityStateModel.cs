@@ -31,7 +31,7 @@ namespace Elect.Data.EF.Models
 
             TempFieldNames = entityEntry.Properties.Where(x => x.IsTemporary).Select(x => x.Metadata.Name).ToList();
 
-            var modifiedProperties = entityEntry.Properties.Where(x => x.IsTemporary).ToList();
+            var modifiedProperties = entityEntry.Properties.Where(x => x.IsModified).ToList();
 
             foreach (var modifiedProperty in modifiedProperties)
             {
