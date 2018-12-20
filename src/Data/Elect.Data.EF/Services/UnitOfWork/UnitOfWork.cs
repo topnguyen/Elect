@@ -40,7 +40,8 @@ namespace Elect.Data.EF.Services.UnitOfWork
         public FuncCollection<IEnumerable<EntityEntry>, bool> FunctionsBeforeSaveChanges { get; } =
             new FuncCollection<IEnumerable<EntityEntry>, bool>();
 
-        public ActionCollection<EntityStateCollection> ActionsAfterSaveChanges { get; } = new ActionCollection<EntityStateCollection>();
+        public ActionCollection<EntityStateCollection> ActionsAfterSaveChanges { get; } =
+            new ActionCollection<EntityStateCollection>();
 
         public ActionCollection ActionsBeforeCommit { get; } = new ActionCollection();
 
