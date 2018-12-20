@@ -40,7 +40,7 @@ namespace Elect.Data.EF.Models
                     continue;
                 }
 
-                var property = entityEntry.GetType().GetProperty(modifiedProperty.Metadata.Name);
+                var property = entityEntry.Entity.GetType().GetProperty(modifiedProperty.Metadata.Name);
 
                 if (property == null)
                 {
