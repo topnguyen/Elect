@@ -49,7 +49,7 @@ namespace Elect.Data.EF.Models
 
                 var propertyName = property.Name;
 
-                var propertyValue = property.GetValue(entityEntry, null);
+                var propertyValue = property.GetValue(entityEntry.Entity, null);
 
                 ModifiedFields.Add(propertyName, propertyValue);
             }
