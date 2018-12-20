@@ -17,6 +17,18 @@
             <param name="isPhysicalDelete"></param>
             <remarks>When isPhysicalDelete is <c>true</c>, it's mean auto include soft delete record in query/predicate</remarks>
         </member>
+        <member name="P:Elect.Data.EF.Models.EntityStateModel.ModifiedFields">
+            <summary>
+                Fields have IsModified is true, included Field Name and Field Value
+            </summary>
+        </member>
+        <member name="P:Elect.Data.EF.Models.EntityStateModel.TempFieldNames">
+            <summary>
+                Indicating whether the value of this property is considered a
+                temporary value which will be replaced by a value generated from the store when
+                <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" />is called.
+            </summary>
+        </member>
         <member name="M:Elect.Data.EF.Utils.ModelBuilderUtils.ModelBuilderExtensions.AddConfigFromAssembly(Microsoft.EntityFrameworkCore.ModelBuilder,System.Reflection.Assembly)">
             <summary>
                 Scan and apply Config/Mapping for Tables/Entities 

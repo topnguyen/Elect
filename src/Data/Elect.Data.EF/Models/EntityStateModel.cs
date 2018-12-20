@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Elect.Core.ObjUtils;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -7,21 +7,52 @@ namespace Elect.Data.EF.Models
 {
     public class EntityStateModel
     {
-        public EntityState State { get; set; }
-
-        public IEnumerable<PropertyEntry> Properties { get; set; }
-
         public object Entity { get; set; }
 
-        public EntityStateModel()
-        {
-        }
+        public EntityState State { get; set; }
+
+        /// <summary>
+        ///     Fields have IsModified is true, included Field Name and Field Value
+        /// </summary>
+        public Dictionary<string, object> ModifiedFields { get; set; } = new Dictionary<string, object>();
+
+        /// <summary>
+        ///     Indicating whether the value of this property is considered a
+        ///     temporary value which will be replaced by a value generated from the store when
+        ///     <see cref="M:Microsoft.EntityFrameworkCore.DbContext.SaveChanges" />is called.
+        /// </summary>
+        public List<string> TempFieldNames { get; set; }
 
         public EntityStateModel(EntityEntry entityEntry)
         {
-            State = entityEntry.State;
-            Properties = entityEntry.Properties;
             Entity = entityEntry.Entity;
+
+            State = entityEntry.State;
+
+            TempFieldNames = entityEntry.Properties.Where(x => x.IsTemporary).Select(x => x.Metadata.Name).ToList();
+
+            var modifiedProperties = entityEntry.Properties.Where(x => x.IsTemporary).ToList();
+
+            foreach (var modifiedProperty in modifiedProperties)
+            {
+                if (ModifiedFields.ContainsKey(modifiedProperty.Metadata.Name))
+                {
+                    continue;
+                }
+
+                var property = entityEntry.GetType().GetProperty(modifiedProperty.Metadata.Name);
+
+                if (property == null)
+                {
+                    continue;
+                }
+
+                var propertyName = property.Name;
+
+                var propertyValue = property.GetValue(entityEntry, null);
+
+                ModifiedFields.Add(propertyName, propertyValue);
+            }
         }
     }
 }
