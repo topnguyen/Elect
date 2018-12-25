@@ -4,10 +4,34 @@
         <name>Elect.Web.Swagger</name>
     </assembly>
     <members>
+        <member name="P:Elect.Web.Swagger.Attributes.ApiParameterAttribute.In">
+            <summary>
+                In is a place the parameter will pass to server, in formData by default
+            </summary>
+            <remarks>You can use <see cref="T:Elect.Web.Swagger.Models.ParameterIn"/> to prevent spell issue</remarks>
+        </member>
+        <member name="P:Elect.Web.Swagger.Attributes.ApiParameterAttribute.Type">
+            <summary>
+                Type can be "string", "file", "number" and so on, see more at https://swagger.io/docs/specification/describing-parameters/
+            </summary>
+            <remarks>You can use <see cref="T:Elect.Web.Swagger.Models.ParameterType"/> to prevent spell issue</remarks>
+        </member>
         <member name="T:Elect.Web.Swagger.IApplicationBuilderExtensions.ElectSwaggerMiddleware">
             <summary>
                 Keep swagger access middleware before UseSwagger and UseSwaggerUI to wrap a request 
             </summary>
+        </member>
+        <member name="P:Elect.Web.Swagger.Models.ApiGlobalParameterModel.In">
+            <summary>
+                In is a place the parameter will pass to server, in formData by default
+            </summary>
+            <remarks>You can use <see cref="T:Elect.Web.Swagger.Models.ParameterIn"/> to prevent spell issue</remarks>
+        </member>
+        <member name="P:Elect.Web.Swagger.Models.ApiGlobalParameterModel.Type">
+            <summary>
+                Type can be "string", "file", "number" and so on, see more at https://swagger.io/docs/specification/describing-parameters/
+            </summary>
+            <remarks>You can use <see cref="T:Elect.Web.Swagger.Models.ParameterType"/> to prevent spell issue</remarks>
         </member>
         <member name="P:Elect.Web.Swagger.Models.ElectSwaggerOptions.SwaggerRoutePrefix">
             <summary>

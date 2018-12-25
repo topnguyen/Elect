@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Web.Swagger.Models;
@@ -27,9 +29,17 @@ namespace Elect.Web.Swagger.Attributes
     {
         public string Name { get; }
 
-        public ParameterInType In { get; set; } = ParameterInType.Query;
+        /// <summary>
+        ///     In is a place the parameter will pass to server, in formData by default
+        /// </summary>
+        /// <remarks>You can use <see cref="ParameterIn"/> to prevent spell issue</remarks>
+        public string In { get; set; } = ParameterIn.FormData;
 
-        public string Type { get; set; } = "string";
+        /// <summary>
+        ///     Type can be "string", "file", "number" and so on, see more at https://swagger.io/docs/specification/describing-parameters/
+        /// </summary>
+        /// <remarks>You can use <see cref="ParameterType"/> to prevent spell issue</remarks>
+        public string Type { get; set; } = ParameterType.File;
 
         public bool IsRequire { get; set; }
 

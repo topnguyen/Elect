@@ -49,7 +49,7 @@ namespace Elect.Web.Swagger.IOperationFilter
                 {
                     Name = globalParameter.Name,
                     Required = globalParameter.IsRequire,
-                    In = globalParameter.In.AsString(EnumFormat.DisplayName),
+                    In = globalParameter.In,
                     Type = globalParameter.Type,
                     Description = globalParameter.Description
                 };
