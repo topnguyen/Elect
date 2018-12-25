@@ -66,8 +66,11 @@ app.UseElectSwagger();
 
 - Additional Parameters for API Document
     + You can add additional parameter by [`ApiParameter`](Attributes/ApiParameterAttribute.cs)
+    + Example:
+        + Add Attribute `[ApiParameter("avatar1", Description = "Avatar File", In = ParameterIn.FormData, Type = ParameterType.File, IsRequire = true)]`.
+        + Then Get Data form Form `var avatarFile1 = HttpContext.Request.Form.Files.GetFile("avatar1")`.
     + View more in [swagger document](https://swagger.io/docs/specification/describing-parameters/).
-
+   
 - Access API Document
     + By defaul, API Document URL is "/developers".
 

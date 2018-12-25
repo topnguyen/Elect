@@ -14,15 +14,22 @@ namespace Elect.Sample.Web.Swagger.Controllers
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("users")]
-        [ApiParameter("id", Description = "User Id", In = ParameterInType.Query, Type = "string", IsRequire = true)]
+        [ApiParameter("id", Description = "User Id", In = ParameterIn.Query, Type = ParameterType.String, IsRequire = true)]
+        [ApiParameter("avatar1", Description = "Avatar File", In = ParameterIn.FormData, Type = ParameterType.File, IsRequire = true)]
+        [ApiParameter("avatar2", Description = "Avatar File", In = ParameterIn.FormData, Type = ParameterType.File, IsRequire = true)]
         public IActionResult GetUser([FromQuery] string userName)
         {
+            var avatarFile1 = HttpContext.Request.Form.Files.GetFile("avatar1");
+            var avatarFile2 = HttpContext.Request.Form.Files.GetFile("avatar2");
+
             return Ok(new
             {
                 userId = HttpContext.Request.Query["id"].FirstOrDefault(),
-                userName
+                userName,
+                avatarFile1 = avatarFile1.FileName,
+                avatarFile2 = avatarFile2.FileName
             });
         }
 
@@ -30,16 +37,23 @@ namespace Elect.Sample.Web.Swagger.Controllers
         ///     Get Profile 
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("profiles")]
-        [ApiParameter("id", Description = "User Id", In = ParameterInType.Query, Type = "string", IsRequire = true)]
+        [ApiParameter("id", Description = "User Id", In = ParameterIn.Query, Type = ParameterType.String, IsRequire = true)]
+        [ApiParameter("avatar1", Description = "Avatar File", In = ParameterIn.FormData, Type = ParameterType.File, IsRequire = true)]
+        [ApiParameter("avatar2", Description = "Avatar File", In = ParameterIn.FormData, Type = ParameterType.File, IsRequire = true)]
         [ApiDocGroup("Profile API")] // Make this Action appear in "Profile API" group
         [ApiDocGroup("User API")] // Make this Action appear in "User API" group
         public IActionResult GetProfile()
         {
+            var avatarFile1 = HttpContext.Request.Form.Files.GetFile("avatar1");
+            var avatarFile2 = HttpContext.Request.Form.Files.GetFile("avatar2");
+            
             return Ok(new
             {
-                userId = HttpContext.Request.Query["id"].FirstOrDefault()
+                userId = HttpContext.Request.Query["id"].FirstOrDefault(),
+                avatarFile1 = avatarFile1.FileName,
+                avatarFile2 = avatarFile2.FileName
             });
         }
     }

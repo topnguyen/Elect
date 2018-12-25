@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.LinqUtils;
@@ -38,7 +40,8 @@ namespace Elect.Web.Swagger.IOperationFilter
                 return;
             }
 
-            var listParameters = controllerActionDescriptor.MethodInfo.GetCustomAttributes<ApiParameterAttribute>(true).ToList();
+            var listParameters = controllerActionDescriptor.MethodInfo.GetCustomAttributes<ApiParameterAttribute>(true)
+                .ToList();
 
             if (!listParameters.Any())
             {
@@ -51,7 +54,7 @@ namespace Elect.Web.Swagger.IOperationFilter
                 {
                     Name = parameter.Name,
                     Required = parameter.IsRequire,
-                    In = parameter.In.AsString(EnumFormat.DisplayName),
+                    In = parameter.In,
                     Type = parameter.Type,
                     Description = parameter.Description
                 };

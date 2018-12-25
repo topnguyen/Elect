@@ -24,16 +24,16 @@
         <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.Swagger.nuspec</NuspecFile>
     </PropertyGroup>
     <ItemGroup>
-        <EmbeddedResource Include="Elect_Swagger\**\*"/>
+        <EmbeddedResource Include="Elect_Swagger\**\*" />
     </ItemGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\Elect.Web\Elect.Web.csproj"/>
-        <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj"/>
+        <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
+        <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj" />
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1"/>
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="4.0.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="4.0.1" />
     </ItemGroup>
 </Project>
