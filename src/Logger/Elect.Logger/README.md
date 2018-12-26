@@ -50,7 +50,15 @@ services.AddElectLog();
     _electLog.Capture(log);
 ``` 
 
-## [View Sample](../../../samples/Logger/Elect.Sample.Logger/README.md)
+- Access Log Dashboard
+    + By default, API Document URL is "/developers/logs".
+    + Support filter log detail by query strings "skip" (int), "take" (int), "message" (string), "type" (string).
+    + The limit display by query string "full_info" (bool) - display full log info or not, default is false.</remarks>
+    + You can config access key to control access permission by the [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
+
+## [View Sample Log Web App](../../../samples/Web/Elect.Sample.Web/README.md)
+
+## [View Sample Log Console App](../../../samples/Logger/Elect.Sample.Logger/README.md)
 
 ## Sample Output
 

@@ -72,7 +72,8 @@ app.UseElectSwagger();
     + View more in [swagger document](https://swagger.io/docs/specification/describing-parameters/).
    
 - Access API Document
-    + By defaul, API Document URL is "/developers".
+    + By default, API Document URL is "/developers".
+    + You can config access key to control access permission by the [`ElectSwaggerOptions`](Models/ElectSwaggerOptions.cs).
 
 - Advance Configuration
   + If you want to add more config for `SwaggerGenOptions` after Elect.Web.Swagger config it. Just add your config in `ExtendOptions` Property of [`ElectSwaggerOptions`](Models/ElectSwaggerOptions.cs).
