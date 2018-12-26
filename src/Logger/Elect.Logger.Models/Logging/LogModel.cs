@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Reflection;
 using Elect.Core.ObjUtils;
 using Elect.Logger.Models.Logging.Utils;
 using Elect.Web.Models;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Elect.Logger.Models.Logging
 {
@@ -15,6 +19,7 @@ namespace Elect.Logger.Models.Logging
 
         public DateTimeOffset CreatedTime { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public LogType Type { get; set; }
 
         public string Message { get; set; }
@@ -41,7 +46,7 @@ namespace Elect.Logger.Models.Logging
         ///     New Instance of Log Model
         /// </summary>
         /// <param name="obj">
-        ///     Canbe an Exception or any object (will be serialize to Json String and store in Message property)
+        ///     Can be an Exception or any object (will be serialize to Json String and store in Message property)
         /// </param>
         /// <param name="httpContext">HttpContext of current request if have</param>
         public LogModel(object obj, HttpContext httpContext = null)
@@ -81,7 +86,7 @@ namespace Elect.Logger.Models.Logging
             if (exception.TargetSite != null)
             {
                 ExceptionPlace =
-                    $"{((exception.TargetSite.ReflectedType == null) ? "<dynamic type>" : exception.TargetSite.ReflectedType.FullName)} in {exception.TargetSite.Name}";
+                    $"{(exception.TargetSite.ReflectedType == null ? "<dynamic type>" : exception.TargetSite.ReflectedType.FullName)} in {exception.TargetSite.Name}";
             }
 
             Exceptions = new List<ElectException>();

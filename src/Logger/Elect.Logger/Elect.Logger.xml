@@ -43,6 +43,14 @@
                 "You don't have permission to view API Document, please contact your administrator."
             </summary>
         </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.BeforeLogResponse">
+            <summary>
+               By default when user access Log Dashboard Url. <br />
+               We support filter log by query strings "skip" (int), "take" (int), "message" (string), "type" (string) <br />
+               Then you can handle more by add Func BeforeLogResponse. 
+            </summary>
+            <remarks>The query string "full_info" (bool) auto apply before response after this Func</remarks>
+        </member>
         <member name="M:Elect.Logger.Utils.CreditCardHelper.Filter(System.String)">
             <summary>
                 Filters credit card numbers from the input.
