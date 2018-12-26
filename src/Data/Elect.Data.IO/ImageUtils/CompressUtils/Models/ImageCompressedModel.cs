@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using EnumsNET;
@@ -30,7 +32,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
         /// <inheritdoc />
         /// <summary>
         ///     Initializes a new instance of the
-        ///     <see cref="T:Puppy.Core.ImageUtils.ImageCompressor.ImageCompressedModel" /> class.
+        ///     <see cref="ImageCompressedModel" /> class.
         /// </summary>
         /// <param name="filePath">               The result file name. </param>
         /// <param name="fileSizeBeforeCompress">
@@ -80,7 +82,8 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
         /// <summary>
         ///     Gets the difference in file size as a percentage. 
         /// </summary>
-        public double PercentSaving => BytesSaving == 0 ? 0 : Math.Round(((double)BytesSaving / OriginalFileSize) * 100, 2);
+        public double PercentSaving =>
+            BytesSaving == 0 ? 0 : Math.Round(((double) BytesSaving / OriginalFileSize) * 100, 2);
 
         public int QualityPercent { get; set; }
 

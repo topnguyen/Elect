@@ -60,7 +60,7 @@ namespace Elect.Web.Swagger
 
                 RequestPath = ElectSwaggerConstants.AssetsUrl,
 
-                OnPrepareResponse = (context) =>
+                OnPrepareResponse = context =>
                 {
                     var headers = context.Context.Response.GetTypedHeaders();
 
@@ -103,11 +103,15 @@ namespace Elect.Web.Swagger
                 }
 
                 // Set cookie if need
-                string requestAccessKey = context.Request.Query[ElectSwaggerConstants.AccessKeyName];
+                string accessKey = context.Request.Query[ElectSwaggerConstants.AccessKeyName];
 
-                if (!string.IsNullOrWhiteSpace(requestAccessKey) && context.Request.Cookies[ElectSwaggerConstants.AccessKeyName] != requestAccessKey)
+                if (!string.IsNullOrWhiteSpace(accessKey) && context.Request.Cookies[ElectSwaggerConstants.AccessKeyName] != accessKey)
                 {
-                    SetCookie(context, ElectSwaggerConstants.CookieAccessKeyName, requestAccessKey);
+                    context.Response.Cookies.Append(ElectSwaggerConstants.CookieAccessKeyName, accessKey, new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = false // allow transmit via http and https
+                    });
                 }
 
                 // Check Permission
@@ -150,15 +154,6 @@ namespace Elect.Web.Swagger
                 // Next middleware is swagger endpoint => generate document by swagger
 
                 await _next.Invoke(context).ConfigureAwait(true);
-            }
-
-            private static void SetCookie(HttpContext context, string key, string value)
-            {
-                context.Response.Cookies.Append(key, value, new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = false // allow transmit via http and https
-                });
             }
         }
     }

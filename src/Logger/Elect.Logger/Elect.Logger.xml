@@ -22,7 +22,25 @@
         </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.JsonFilePath">
             <summary>
-                Relative Path of Json File, default is Logs.json
+                Relative Path of Json File, default is Logs/{yyyy-MM-dd}.json
+            </summary>
+            <remarks>Path.GetFullPath(JsonFilePath) to get full path of json files</remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.Url">
+            <summary>
+                Api Document Endpoint, default is "/developers/logs". 
+            </summary>
+            <remarks> Must start with "/" </remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.AccessKey">
+            <summary>
+                Access Key via uri param "key", default is "" - allow anonymous. 
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.UnAuthorizeMessage">
+            <summary>
+                Un-authorize message when user access api document with not correct key. Default is
+                "You don't have permission to view API Document, please contact your administrator."
             </summary>
         </member>
         <member name="M:Elect.Logger.Utils.CreditCardHelper.Filter(System.String)">
