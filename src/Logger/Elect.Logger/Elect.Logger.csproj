@@ -25,10 +25,10 @@
     </PropertyGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\Elect.Logger.Models\Elect.Logger.Models.csproj"/>
+        <ProjectReference Include="..\Elect.Logger.Models\Elect.Logger.Models.csproj" />
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="JsonFlatFileDataStore" Version="2.0.1"/>
+        <PackageReference Include="JsonFlatFileDataStore" Version="2.0.1" />
     </ItemGroup>
 </Project>

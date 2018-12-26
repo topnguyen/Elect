@@ -270,7 +270,7 @@
             <inheritdoc />
             <summary>
                 Initializes a new instance of the
-                <see cref="T:Puppy.Core.ImageUtils.ImageCompressor.ImageCompressedModel" /> class.
+                <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel" /> class.
             </summary>
             <param name="filePath">               The result file name. </param>
             <param name="fileSizeBeforeCompress">

@@ -10,13 +10,15 @@ namespace Elect.Sample.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddElectLog();
-            
+
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
+
+            app.UseElectLog();
 
             app.UseMvcWithDefaultRoute();
         }

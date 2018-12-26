@@ -11,12 +11,6 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <OutputPath>.\bin\</OutputPath>
     </PropertyGroup>
-    <ItemGroup>
-        <!-- Copy to Ouput -->
-        <Content Include="Elect.Data.IO.xml">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
     <!-- Nuget -->
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -24,16 +18,16 @@
         <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.IO.nuspec</NuspecFile>
     </PropertyGroup>
     <ItemGroup>
-        <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\**\*"/>
+        <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\**\*" />
     </ItemGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj"/>
+        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131"/>
-        <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005"/>
-        <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0003"/>
+        <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
+        <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0003" />
     </ItemGroup>
 </Project>
