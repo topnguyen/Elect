@@ -43,10 +43,10 @@ namespace Elect.Logger.Logging.Models
 
         /// <summary>
         ///    By default when user access Log Dashboard Url. <br />
-        ///    We support filter log by query strings "skip" (int), "take" (int), "message" (string), "type" (string) <br />
+        ///    Support filter log detail by query strings "skip" (int), "take" (int), "message" (string), "type" (string) <br />
         ///    Then you can handle more by add Func BeforeLogResponse. 
         /// </summary>
         /// <remarks>The query string "full_info" (bool) auto apply before response after this Func</remarks>
-        public Func<HttpContext, IEnumerable<LogModel>, List<LogModel>> BeforeLogResponse { get; set; }
+        public Func<HttpContext, IEnumerable<LogModel>, IEnumerable<LogModel>> BeforeLogResponse { get; set; }
     }
 }
