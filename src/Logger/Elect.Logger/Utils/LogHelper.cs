@@ -151,9 +151,6 @@ namespace Elect.Logger.Utils
                 }
             }
 
-            // Message Filter
-            context.Request.Query.TryGetValue("message", out var message);
-
             // Log Type Filter
             LogType? logType = null;
             if (context.Request.Query.TryGetValue("type", out var type))
@@ -163,7 +160,13 @@ namespace Elect.Logger.Utils
                     logType = logTypeEnum;
                 }
             }
+            
+            // Exception Exception Place Filter
+            context.Request.Query.TryGetValue("exception_place", out var exceptionPlace);
 
+            // Message Filter
+            context.Request.Query.TryGetValue("message", out var message);
+          
             using (var file = new DataStore(logFilePath))
             {
                 var meta = file.GetCollection<ElectLogMetadataModel>("metadata").AsQueryable().FirstOrDefault();
@@ -178,7 +181,7 @@ namespace Elect.Logger.Utils
                     };
                 }
 
-                var logs = file.GetCollection<LogModel>("logs").AsQueryable().Skip(skip).Take(take);
+                var logs = file.GetCollection<LogModel>("logs").AsQueryable().OrderByDescending(x => x.CreatedTime).Skip(skip).Take(take);
 
                 // Filter by Type
 
@@ -186,14 +189,19 @@ namespace Elect.Logger.Utils
                 {
                     logs = logs.Where(x => x.Type == logType);
                 }
+                
+                // Filter by Place
+
+                if (!string.IsNullOrWhiteSpace(message))
+                {
+                    logs = logs.Where(x => !string.IsNullOrWhiteSpace(x.ExceptionPlace) && (x.Message.Contains(exceptionPlace) || exceptionPlace.Contains(x.ExceptionPlace)));
+                }
 
                 // Filter by Message
 
                 if (!string.IsNullOrWhiteSpace(message))
                 {
-                    logs = logs.Where(x =>
-                        !string.IsNullOrWhiteSpace(x.Message) && x.Message.Contains(message) ||
-                        message.Contains(x.Message));
+                    logs = logs.Where(x => !string.IsNullOrWhiteSpace(x.Message) && (x.Message.Contains(message) || message.Contains(x.Message)));
                 }
 
                 if (options.BeforeLogResponse != null)

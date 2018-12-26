@@ -52,7 +52,12 @@ services.AddElectLog();
 
 - Access Log Dashboard
     + By default, API Document URL is "/developers/logs".
-    + Support filter log detail by query strings "skip" (int), "take" (int), "message" (string), "type" (string).
+    + Support filter log detail by query strings 
+        + "skip" (int): default 0
+        + "take" (int): default 1000
+        + "type" (string)
+        + "exception_place" (string)
+        + "message" (string)
     + The limit display by query string "full_info" (bool) - display full log info or not, default is false.</remarks>
     + You can config access key to control access permission by the [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
 
