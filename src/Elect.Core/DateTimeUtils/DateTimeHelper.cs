@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using System;
@@ -32,14 +34,14 @@ namespace Elect.Core.DateTimeUtils
         {
             TimeSpan elapsedTime = dateTime - Epoch;
 
-            return (long)elapsedTime.TotalSeconds;
+            return (long) elapsedTime.TotalSeconds;
         }
 
         public static long GetTimestamp(DateTimeOffset dateTimeOffset)
         {
             TimeSpan elapsedTime = dateTimeOffset - Epoch;
 
-            return (long)elapsedTime.TotalSeconds;
+            return (long) elapsedTime.TotalSeconds;
         }
 
         public static DateTime TruncateTo(DateTime dateTime, TruncateToType truncateTo)
@@ -62,7 +64,8 @@ namespace Elect.Core.DateTimeUtils
                     return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, 0);
 
                 default:
-                    return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second, 0);
+                    return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute,
+                        dateTime.Second, 0);
             }
         }
 
@@ -74,19 +77,24 @@ namespace Elect.Core.DateTimeUtils
                     return new DateTimeOffset(dateTimeOffset.Year, 1, 1, 0, 0, 0, dateTimeOffset.Offset);
 
                 case TruncateToType.Month:
-                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, 1, 0, 0, 0, dateTimeOffset.Offset);
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, 1, 0, 0, 0,
+                        dateTimeOffset.Offset);
 
                 case TruncateToType.Day:
-                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, 0, 0, 0, dateTimeOffset.Offset);
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, 0, 0, 0,
+                        dateTimeOffset.Offset);
 
                 case TruncateToType.Hour:
-                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, dateTimeOffset.Hour, 0, 0, dateTimeOffset.Offset);
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day,
+                        dateTimeOffset.Hour, 0, 0, dateTimeOffset.Offset);
 
                 case TruncateToType.Minute:
-                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, dateTimeOffset.Hour, dateTimeOffset.Minute, 0, dateTimeOffset.Offset);
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day,
+                        dateTimeOffset.Hour, dateTimeOffset.Minute, 0, dateTimeOffset.Offset);
 
                 default:
-                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day, dateTimeOffset.Hour, dateTimeOffset.Minute, dateTimeOffset.Second, 0, dateTimeOffset.Offset);
+                    return new DateTimeOffset(dateTimeOffset.Year, dateTimeOffset.Month, dateTimeOffset.Day,
+                        dateTimeOffset.Hour, dateTimeOffset.Minute, dateTimeOffset.Second, 0, dateTimeOffset.Offset);
             }
         }
 
@@ -101,7 +109,8 @@ namespace Elect.Core.DateTimeUtils
 
         public static DateTimeOffset WithTimeZone(DateTime dateTime, TimeZoneInfo timeZoneInfo)
         {
-            var dateTimeWithTimeZone = new DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond, timeZoneInfo.BaseUtcOffset);
+            var dateTimeWithTimeZone = new DateTimeOffset(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour,
+                dateTime.Minute, dateTime.Second, dateTime.Millisecond, timeZoneInfo.BaseUtcOffset);
 
             return dateTimeWithTimeZone;
         }
@@ -127,6 +136,20 @@ namespace Elect.Core.DateTimeUtils
         public static bool TryGetTimeZoneInfo(string timeZoneId, out TimeZoneInfo timeZoneInfo)
         {
             return TZConvert.TryGetTimeZoneInfo(timeZoneId, out timeZoneInfo);
+        }
+
+        public static DateTime GetEndOfTheMonth(DateTime date)
+        {
+            var endOfTheMonth = new DateTime(date.Year, date.Month, 1).AddMonths(1).AddDays(-1);
+
+            return endOfTheMonth;
+        }
+
+        public static DateTimeOffset GetEndOfTheMonth(DateTimeOffset date)
+        {
+            var endOfTheMonth = new DateTimeOffset(GetEndOfTheMonth(date.DateTime), date.Offset);
+
+            return endOfTheMonth;
         }
     }
 }

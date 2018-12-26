@@ -122,6 +122,44 @@
                 Implement this interface to become one of configuration options in Elect Ecosystem 
             </summary>
         </member>
+        <member name="M:Elect.Core.LinqUtils.LinqExtensions.TakeUntil``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
+            <summary>
+                Continues processing items in a collection until the end condition is true.
+            </summary>
+        </member>
+        <member name="M:Elect.Core.LinqUtils.LinqExtensions.WherePrevious``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Boolean})">
+            <summary>
+                Compare Through a predicate every element of a list with the previous one
+            </summary>
+            <param name="collection"></param>
+            <param name="predicate"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+            <example>
+                var items = new List{int} { 1, 5, 7, 3, 10, 9, 6}; 
+                var result = items.WherePrevious((first, second) => second > first); => Result is 5, 7, 10
+            </example>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Elect.Core.LinqUtils.LinqExtensions.Randomize``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+                Random items position inside the source
+            </summary>
+            <param name="source"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Core.LinqUtils.LinqExtensions.ToList``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+                ToList() with an extra capacity argument. This can boost the speed of creating the list.
+            </summary>
+            <param name="source"></param>
+            <param name="capacity"></param>
+            <typeparam name="TSource"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
         <member name="M:Elect.Core.SecurityUtils.SecurityHelper.HashPassword(System.String,System.String,System.Int32)">
             <summary>
                 Encrypt Password by Rfc 2898 DeriveBytes - PBKDF2 
