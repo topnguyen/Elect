@@ -18,12 +18,14 @@ namespace Elect.Logger.Logging.Models
 
         public int TotalLog { get; set; }
 
-        public string Size { get; set; }
+        public string FileSize { get; set; }
         
-        public DateTimeOffset CreatedAt { get; set; }
+        public string CreatedAt { get; set; }
 
-        public DateTimeOffset LastUpdatedAt { get; set; }
+        public string LastUpdatedAt { get; set; }
 
         public string ViewDetailUrl { get; set; }
+        
+        public string DeleteUrl { get; set; }
     }
 }
