@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Elect.Core.LinqUtils;
@@ -7,6 +8,7 @@ using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
 using Elect.Web.HttpUtils;
 using Elect.Web.Models;
+using Humanizer;
 using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +56,8 @@ namespace Elect.Logger.Utils
 
             foreach (var logFilePath in logFilesPath)
             {
+                var fileInfo = new FileInfo(logFilePath);
+
                 using (var file = new DataStore(logFilePath))
                 {
                     var meta = file.GetCollection<ElectLogMetadataModel>("metadata").AsQueryable().FirstOrDefault();
@@ -70,7 +74,8 @@ namespace Elect.Logger.Utils
                     summaryModel.Files.Add(new ElectLogFileSummaryModel
                     {
                         TotalLog = data.Count,
-                        FileName = Path.GetFileName(logFilePath),
+                        FileName = fileInfo.Name,
+                        Size =  fileInfo.Length.Bytes().Humanize(),
                         CreatedAt = meta.CreatedTime,
                         LastUpdatedAt = meta.LastUpdatedTime,
                         ViewDetailUrl = Path.Combine(domain, summaryUrl, Path.GetFileName(logFilePath))
@@ -111,7 +116,7 @@ namespace Elect.Logger.Utils
 
             var logFilePath = Directory.GetFiles(storageFolder).FirstOrDefault(x => Path.GetFileName(x) == lastPath);
 
-            if (string.IsNullOrWhiteSpace(logFilePath))
+            if (string.IsNullOrWhiteSpace(logFilePath) || !File.Exists(logFilePath))
             {
                 return new ContentResult
                 {
@@ -120,6 +125,8 @@ namespace Elect.Logger.Utils
                     Content = "{}"
                 };
             }
+            
+            var fileInfo = new FileInfo(logFilePath);
 
             // Skip
             int skip = 0;
@@ -160,13 +167,13 @@ namespace Elect.Logger.Utils
                     logType = logTypeEnum;
                 }
             }
-            
+
             // Exception Exception Place Filter
             context.Request.Query.TryGetValue("exception_place", out var exceptionPlace);
 
             // Message Filter
             context.Request.Query.TryGetValue("message", out var message);
-          
+
             using (var file = new DataStore(logFilePath))
             {
                 var meta = file.GetCollection<ElectLogMetadataModel>("metadata").AsQueryable().FirstOrDefault();
@@ -181,7 +188,11 @@ namespace Elect.Logger.Utils
                     };
                 }
 
-                var logs = file.GetCollection<LogModel>("logs").AsQueryable().OrderByDescending(x => x.CreatedTime).Skip(skip).Take(take);
+                var logs = file.GetCollection<LogModel>("logs").AsQueryable();
+
+                var totalLog = logs.Count();
+
+                logs = logs.OrderByDescending(x => x.CreatedTime).Skip(skip).Take(take);
 
                 // Filter by Type
 
@@ -189,19 +200,23 @@ namespace Elect.Logger.Utils
                 {
                     logs = logs.Where(x => x.Type == logType);
                 }
-                
+
                 // Filter by Place
 
                 if (!string.IsNullOrWhiteSpace(message))
                 {
-                    logs = logs.Where(x => !string.IsNullOrWhiteSpace(x.ExceptionPlace) && (x.Message.Contains(exceptionPlace) || exceptionPlace.Contains(x.ExceptionPlace)));
+                    logs = logs.Where(x =>
+                        !string.IsNullOrWhiteSpace(x.ExceptionPlace) &&
+                        (x.Message.Contains(exceptionPlace) || exceptionPlace.Contains(x.ExceptionPlace)));
                 }
 
                 // Filter by Message
 
                 if (!string.IsNullOrWhiteSpace(message))
                 {
-                    logs = logs.Where(x => !string.IsNullOrWhiteSpace(x.Message) && (x.Message.Contains(message) || message.Contains(x.Message)));
+                    logs = logs.Where(x =>
+                        !string.IsNullOrWhiteSpace(x.Message) &&
+                        (x.Message.Contains(message) || message.Contains(x.Message)));
                 }
 
                 if (options.BeforeLogResponse != null)
@@ -221,10 +236,17 @@ namespace Elect.Logger.Utils
                         logModel.Sdk = null;
                     }
                 }
-                
+
                 var content = new
                 {
-                    meta,
+                    meta = new
+                    {
+                        fileName = fileInfo.Name,
+                        totalLog,
+                        size =  fileInfo.Length.Bytes().Humanize(),
+                        createdAt = meta.CreatedTime,
+                        lastUpdatedAt = meta.LastUpdatedTime
+                    },
                     logs = resultLogs
                 }.ToJsonString();
 

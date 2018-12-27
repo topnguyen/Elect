@@ -16,11 +16,13 @@ namespace Elect.Logger.Logging.Models
     {
         public string FileName { get; set; }
 
+        public int TotalLog { get; set; }
+
+        public string Size { get; set; }
+        
         public DateTimeOffset CreatedAt { get; set; }
 
         public DateTimeOffset LastUpdatedAt { get; set; }
-
-        public int TotalLog { get; set; }
 
         public string ViewDetailUrl { get; set; }
     }
