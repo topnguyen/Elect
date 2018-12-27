@@ -30,10 +30,22 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.DI/
 
 - `Startup.cs`: add `Scanner` - Auto register dependency injection.
 ```c#
- public void ConfigureServices(IServiceCollection services)
+public void ConfigureServices(IServiceCollection services)
 {
     // Auto Register Dependency Injection
     services.AddElectDI();
+    
+//  services.AddElectDI(_ =>
+//  {
+//      _.ListAssemblyName = new List<string> // default is 1 assembly name: application name - Elect.Sample.DI
+//      {
+//          "ExampleAssembly" // will scan ExampleAssembly.dll and ExampleAssembly.*.dll
+//      };
+//      _.ListAssemblyFolderPath = new List<string> // default is  1 folder: application base folder path
+//      {
+//          "C:\\ExampleAssemblyFolderPath" 
+//      };
+//  });
 
     // Optional - Print out Registered Service with Information
     services.PrintServiceAddedToConsole();
