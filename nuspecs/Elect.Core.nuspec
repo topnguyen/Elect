@@ -20,7 +20,7 @@
             <dependency id="System.Xml.XmlSerializer" version="4.3.0"/>
             <dependency id="System.ComponentModel.Annotations" version="4.5.0"/>
             <dependency id="Microsoft.DotNet.PlatformAbstractions" version="2.1.0"/>
-            <dependency id="Microsoft.Extensions.Configuration.Binder" version="2.1.1"/>
+            <dependency id="Microsoft.Extensions.Configuration.Binder" version="2.2.0" />
             <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0"/>
             <dependency id="Microsoft.Extensions.DependencyInjection" version="2.2.0"/>
             <dependency id="Microsoft.Extensions.DependencyModel" version="2.1.0"/>

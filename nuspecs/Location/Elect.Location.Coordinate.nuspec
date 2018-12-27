@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.2"/>
+            <dependency id="Elect.Core" version="2.3.1"/>
             <dependency id="Elect.Location.Models" version="2.2"/>
         </dependencies>
     </metadata>

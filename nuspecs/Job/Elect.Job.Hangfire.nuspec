@@ -20,7 +20,7 @@
             <dependency id="Elect.Web" version="2.2"/>
 
             <!-- 3rd Libraries -->
-            <dependency id="HangFire" version="1.6.19" />
+            <dependency id="HangFire" version="1.6.21" />
             <dependency id="Hangfire.MemoryStorage" version="1.5.3" />
         </dependencies>
     </metadata>

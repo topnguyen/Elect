@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.2"/>
+            <dependency id="Elect.Core" version="2.3.1"/>
 
             <!-- 3rd Libraries -->
             <dependency id="CoreCompat.System.Drawing.v2" version="5.2.0-preview1-r131"/>
