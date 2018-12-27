@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using Elect.Core.LinqUtils;
@@ -8,6 +7,7 @@ using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
 using Elect.Web.HttpUtils;
 using Elect.Web.Models;
+using Flurl;
 using Humanizer;
 using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Http;
@@ -75,10 +75,12 @@ namespace Elect.Logger.Utils
                     {
                         TotalLog = data.Count,
                         FileName = fileInfo.Name,
-                        Size =  fileInfo.Length.Bytes().Humanize(),
-                        CreatedAt = meta.CreatedTime,
-                        LastUpdatedAt = meta.LastUpdatedTime,
-                        ViewDetailUrl = Path.Combine(domain, summaryUrl, Path.GetFileName(logFilePath))
+                        FileSize = fileInfo.Length.Bytes().Humanize(),
+                        CreatedAt = meta.CreatedTime.ToString("yyyy-MM-dd hh:mm:ss tt zz"),
+                        LastUpdatedAt = meta.LastUpdatedTime.ToString("yyyy-MM-dd hh:mm:ss tt zz"),
+                        ViewDetailUrl = domain.AppendPathSegments(summaryUrl, fileInfo.Name),
+                        DeleteUrl = domain.AppendPathSegments(summaryUrl, fileInfo.Name)
+                            .SetQueryParam("delete_file", true)
                     });
                 }
             }
@@ -125,8 +127,37 @@ namespace Elect.Logger.Utils
                     Content = "{}"
                 };
             }
-            
+
             var fileInfo = new FileInfo(logFilePath);
+
+            // Delete file or not
+            bool isDeleteFile = false;
+            if (context.Request.Query.TryGetValue("delete_file", out var isDeleteFileStr))
+            {
+                if (bool.TryParse(isDeleteFileStr, out var isDeleteFileBool))
+                {
+                    isDeleteFile = isDeleteFileBool;
+                }
+            }
+
+            if (isDeleteFile)
+            {
+                try
+                {
+                    File.Delete(fileInfo.FullName);
+                }
+                catch
+                {
+                    // Ignore
+                }
+
+                return new ContentResult
+                {
+                    ContentType = ContentType.Json,
+                    StatusCode = StatusCodes.Status200OK,
+                    Content = "{}"
+                };
+            }
 
             // Skip
             int skip = 0;
@@ -241,11 +272,20 @@ namespace Elect.Logger.Utils
                 {
                     meta = new
                     {
+                        filter = new
+                        {
+                            skip,
+                            take,
+                            type = logType?.ToString(),
+                            full_info = isFullInfo,
+                            exception_place = exceptionPlace,
+                            message
+                        },
                         fileName = fileInfo.Name,
                         totalLog,
-                        size =  fileInfo.Length.Bytes().Humanize(),
-                        createdAt = meta.CreatedTime,
-                        lastUpdatedAt = meta.LastUpdatedTime
+                        fileSize = fileInfo.Length.Bytes().Humanize(),
+                        createdAt = meta.CreatedTime.ToString("yyyy-MM-dd hh:mm:ss tt zz"),
+                        lastUpdatedAt = meta.LastUpdatedTime.ToString("yyyy-MM-dd hh:mm:ss tt zz")
                     },
                     logs = resultLogs
                 }.ToJsonString();
