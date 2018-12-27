@@ -41,11 +41,11 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
     + [Elect.Notification.Esms](src/Notification/Elect.Notification.Esms/README.md): Client for [eSMS.vn](http://eSMS.vn).
 - Logger
     + [Elect.Logger](src/Logger/Elect.Logger/README.md): Event logger for ASP NET Core project, storage into a Json Files - easy to query and statistic.
-    + ***[On Plan]** Elect.Logger.Dashboard: Visual `Elect.Logger` in Dashboard with securiry check support.*
+    + [Elect.Logger.Dashboard](src/Logger/Elect.Logger/README.md) (use `app.UseElectLog()`): Visual `Elect.Logger` in Dashboard with security check support.
 
 - Localization
     + ***[On Plan]** Elect.Localization.Json: Localization with resource in separate Json files.*
-    + ***[On Plan]** Elect.Localization.Dashboard: Support manage Elect.Localization.Json via a Dashboard with securiry check support.*
+    + ***[On Plan]** Elect.Localization.Dashboard: Support manage Elect.Localization.Json via a Dashboard with security check support.*
 
 ## Samples
 
