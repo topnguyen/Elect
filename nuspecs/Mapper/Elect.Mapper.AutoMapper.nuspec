@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.2"/>
+            <dependency id="Elect.Core" version="2.3.1"/>
 
             <!-- 3rd Libraries -->
             <dependency id="AutoMapper" version="8.0.0"/>
