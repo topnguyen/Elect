@@ -51,7 +51,8 @@ services.AddElectLog();
 ``` 
 
 - **Access Log Dashboard**
-    + By default, API Document URL is "/developers/logs".
+    + Use Middleware: `app.UseElectLog()`.
+    + By default, Log Dashboard URL is "/developers/logs".
     + Support filter log detail by query strings 
         + "skip" (int): default 0
         + "take" (int): default 1000
