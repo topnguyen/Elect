@@ -101,16 +101,18 @@ namespace Elect.Web.HttpDetection
 
             string osVersion = null;
 
-            if (info != null && info.Length > 0)
+            if (info?.Any() != true || info.Length <= 1)
             {
-                int i = 1;
+                return null;
+            }
 
-                while (i <= info.Length && (osVersion == null || osVersion.ToLowerInvariant() == "u"))
-                {
-                    osVersion = info[i];
+            var i = 1;
 
-                    i++;
-                }
+            while (i <= info.Length && (osVersion == null || osVersion.ToLowerInvariant() == "u"))
+            {
+                osVersion = info[i];
+
+                i++;
             }
 
             return osVersion;
@@ -243,12 +245,7 @@ namespace Elect.Web.HttpDetection
                 return false;
             }
 
-            if (Regex.IsMatch(agent, ElectHttpDetectionConstants.CrawlerAgentsRegex, RegexOptions.IgnoreCase))
-            {
-                return true;
-            }
-
-            return false;
+            return Regex.IsMatch(agent, ElectHttpDetectionConstants.CrawlerAgentsRegex, RegexOptions.IgnoreCase);
         }
         
         public static string GetUserAgent(HttpRequest request)

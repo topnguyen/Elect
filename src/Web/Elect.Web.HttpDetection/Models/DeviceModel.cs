@@ -176,6 +176,8 @@ namespace Elect.Web.HttpDetection.Models
 
         private void UpdateLocation(HttpRequest request)
         {
+            IpAddress = request.GetIpAddress();
+
             var geoDbAbsolutePath = Path.Combine(Bootstrapper.Instance.WorkingFolder, ElectHttpDetectionConstants.DbName);
 
             if (!File.Exists(geoDbAbsolutePath))
@@ -187,8 +189,6 @@ namespace Elect.Web.HttpDetection.Models
             {
                 using (var reader = new DatabaseReader(geoDbAbsolutePath))
                 {
-                    IpAddress = request.GetIpAddress();
-
                     if (!reader.TryCity(IpAddress, out var city))
                     {
                         return;
