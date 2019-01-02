@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Elect.Logger.Logging;
-using Elect.Logger.Logging.Models;
+﻿using Elect.Logger.Logging;
 using Elect.Logger.Models.Logging;
+using Elect.Web.HttpDetection;
 using Elect.Web.SiteMap.Attributes;
 using Elect.Web.SiteMap.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +19,8 @@ namespace Elect.Sample.Web.Controllers
         [SiteMapItem(SiteMapItemFrequency.Hourly, 0.9)]
         public IActionResult Index()
         {
+            var deviceInfo = HttpContext.Request.GetDeviceInformation();
+            
             _electLog.Capture("Message Sample", LogType.Info);
 
             return View();
