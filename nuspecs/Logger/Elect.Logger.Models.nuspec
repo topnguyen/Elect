@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="2.2"/>
+            <dependency id="Elect.Web" version="2.2.1"/>
         </dependencies>
     </metadata>
     <files>
