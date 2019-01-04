@@ -24,11 +24,6 @@
                 Default is "GET, POST, PUT", "DELETE". If contains "*"  then allow all. 
             </summary>
         </member>
-        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.IsAllowOriginsSubDomains">
-            <summary>
-                Enable auto add same domain origins
-            </summary>
-        </member>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.ExtendPolicyBuilder">
             <summary>
                 Additional Config Builder for Policy if you want to add your customize after Elect add Config Policy Builder.

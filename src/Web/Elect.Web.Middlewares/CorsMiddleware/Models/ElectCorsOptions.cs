@@ -59,11 +59,6 @@ namespace Elect.Web.Middlewares.CorsMiddleware.Models
         public bool IsAllowCredentials { get; set; } = true;
         
         /// <summary>
-        ///     Enable auto add same domain origins
-        /// </summary>
-        public bool IsAllowOriginsSubDomains { get; set; } = true;
-        
-        /// <summary>
         ///     Additional Config Builder for Policy if you want to add your customize after Elect add Config Policy Builder.
         /// </summary>
         public Action<CorsPolicyBuilder> ExtendPolicyBuilder { get; set; }
