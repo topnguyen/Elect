@@ -2,6 +2,7 @@
 using Elect.Web.Swagger.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.AspNetCore.Cors;
 
 namespace Elect.Sample.Web.Swagger.Controllers
 {
@@ -9,6 +10,17 @@ namespace Elect.Sample.Web.Swagger.Controllers
     [ApiDocGroup("User API")]
     public class UserController : Controller
     {
+        /// <summary>
+        ///     Test Response 
+        /// </summary>
+        [HttpGet]
+        [ApiDocGroup("Test")]
+        [Route("test")]
+        public IActionResult TestResponse()
+        {
+            return Ok();
+        }
+        
         /// <summary>
         ///     Get User 
         /// </summary>

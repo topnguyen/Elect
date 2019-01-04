@@ -6,22 +6,37 @@
     <members>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.PolicyName">
             <summary>
-                Default is "Default". 
+                Default is "Elect". 
             </summary>
         </member>
-        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AccessControlAllowOrigins">
+        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AllowOrigins">
             <summary>
-                Default is "*". 
+                Default is "*". If contains "*" then allow all. 
             </summary>
         </member>
-        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AccessControlAllowHeaders">
+        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AllowHeaders">
             <summary>
-                Default is "Authorization, Content-Type". 
+                Default is "*". If contains "*" then allow all. 
             </summary>
         </member>
-        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AccessControlAllowMethods">
+        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AllowMethods">
             <summary>
-                Default is "GET, POST, PUT, DELETE, OPTIONS, HEAD". 
+                Default is "GET, POST, PUT", "DELETE". If contains "*"  then allow all. 
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.IsAllowOriginsSubDomains">
+            <summary>
+                Enable auto add same domain origins
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.ExtendPolicyBuilder">
+            <summary>
+                Additional Config Builder for Policy if you want to add your customize after Elect add Config Policy Builder.
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.ExtendPolicyOptions">
+            <summary>
+                Additional Config Options for Policy if you want to add your customize after Elect add Config Policy Options.
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.HttpContextMiddleware.HttpContext.Current">

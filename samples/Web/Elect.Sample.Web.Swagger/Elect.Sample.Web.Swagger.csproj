@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Web\Elect.Web.Middlewares\Elect.Web.Middlewares.csproj" />
     <ProjectReference Include="..\..\..\src\Web\Elect.Web.Swagger\Elect.Web.Swagger.csproj" />
   </ItemGroup>
 </Project>

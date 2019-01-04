@@ -17,14 +17,10 @@
 //--------------------------------------------------
 #endregion License
 
-using Elect.Core.DictionaryUtils;
 using Elect.Web.Middlewares.CorsMiddleware.Models;
-using Elect.Web.Models;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System.Threading.Tasks;
 
 namespace Elect.Web.Middlewares.CorsMiddleware
 {
@@ -36,40 +32,7 @@ namespace Elect.Web.Middlewares.CorsMiddleware
 
             app.UseCors(options.PolicyName);
 
-            app.UseMiddleware<ElectCorsMiddleware>();
-
             return app;
-        }
-
-        public class ElectCorsMiddleware
-        {
-            private readonly RequestDelegate _next;
-
-            private readonly ElectCorsOptions _options;
-
-            public ElectCorsMiddleware(RequestDelegate next, IOptions<ElectCorsOptions> configuration)
-            {
-                _next = next;
-                _options = configuration.Value;
-            }
-
-            public Task Invoke(HttpContext context)
-            {
-                context.Response.OnStarting(state =>
-                {
-                    var httpContext = (HttpContext)state;
-
-                    httpContext.Response.Headers.AddOrUpdate(HeaderKey.AccessControlAllowOrigin, string.Join(", ", _options.AccessControlAllowOrigins));
-
-                    httpContext.Response.Headers.AddOrUpdate(HeaderKey.AccessControlAllowHeaders, string.Join(", ", _options.AccessControlAllowHeaders));
-
-                    httpContext.Response.Headers.AddOrUpdate(HeaderKey.AccessControlAllowMethods, string.Join(", ", _options.AccessControlAllowMethods));
-
-                    return Task.CompletedTask;
-                }, context);
-
-                return _next(context);
-            }
         }
     }
 }

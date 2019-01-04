@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,33 +16,61 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
+using System;
 using Elect.Core.Interfaces;
 using System.Collections.Generic;
+using Elect.Web.Models;
+using EnumsNET;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace Elect.Web.Middlewares.CorsMiddleware.Models
 {
     public class ElectCorsOptions : IElectOptions
     {
         /// <summary>
-        ///     Default is "Default". 
+        ///     Default is "Elect". 
         /// </summary>
-        public string PolicyName { get; set; } = "Default";
+        public string PolicyName { get; set; } = nameof(Elect);
 
         /// <summary>
-        ///     Default is "*". 
+        ///     Default is "*". If contains "*" then allow all. 
         /// </summary>
-        public List<string> AccessControlAllowOrigins { get; set; } = new List<string> { "*" };
+        public List<string> AllowOrigins { get; set; } = new List<string> {"*"};
 
         /// <summary>
-        ///     Default is "Authorization, Content-Type". 
+        ///     Default is "*". If contains "*" then allow all. 
         /// </summary>
-        public List<string> AccessControlAllowHeaders { get; set; } = new List<string> { "Authorization", "Content-Type" };
+        public List<string> AllowHeaders { get; set; } = new List<string> {"*"};
 
         /// <summary>
-        ///     Default is "GET, POST, PUT, DELETE, OPTIONS, HEAD". 
+        ///     Default is "GET, POST, PUT", "DELETE". If contains "*"  then allow all. 
         /// </summary>
-        public List<string> AccessControlAllowMethods { get; set; } = new List<string> { "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD" };
+        public List<string> AllowMethods { get; set; } = new List<string>
+        {
+            HttpMethod.GET.AsString(EnumFormat.DisplayName),
+            HttpMethod.POST.AsString(EnumFormat.DisplayName),
+            HttpMethod.PUT.AsString(EnumFormat.DisplayName),
+            HttpMethod.DELETE.AsString(EnumFormat.DisplayName)
+        };
+
+        public bool IsAllowCredentials { get; set; } = true;
+        
+        /// <summary>
+        ///     Enable auto add same domain origins
+        /// </summary>
+        public bool IsAllowOriginsSubDomains { get; set; } = true;
+        
+        /// <summary>
+        ///     Additional Config Builder for Policy if you want to add your customize after Elect add Config Policy Builder.
+        /// </summary>
+        public Action<CorsPolicyBuilder> ExtendPolicyBuilder { get; set; }
+
+        /// <summary>
+        ///     Additional Config Options for Policy if you want to add your customize after Elect add Config Policy Options.
+        /// </summary>
+        public Action<CorsOptions> ExtendPolicyOptions { get; set; }
     }
 }
