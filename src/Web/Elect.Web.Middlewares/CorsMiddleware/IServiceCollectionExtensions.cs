@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.ActionUtils;
@@ -25,6 +27,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
 
 namespace Elect.Web.Middlewares.CorsMiddleware
 {
@@ -35,18 +38,21 @@ namespace Elect.Web.Middlewares.CorsMiddleware
             return services.AddElectCors(_ => { });
         }
 
-        public static IServiceCollection AddElectCors(this IServiceCollection services, [NotNull] ElectCorsOptions configuration)
+        public static IServiceCollection AddElectCors(this IServiceCollection services,
+            [NotNull] ElectCorsOptions configuration)
         {
             return services.AddElectCors(_ =>
             {
                 _.PolicyName = configuration.PolicyName;
-                _.AccessControlAllowOrigins = configuration.AccessControlAllowOrigins;
-                _.AccessControlAllowHeaders = configuration.AccessControlAllowHeaders;
-                _.AccessControlAllowMethods = configuration.AccessControlAllowMethods;
+                _.AllowOrigins = configuration.AllowOrigins;
+                _.AllowHeaders = configuration.AllowHeaders;
+                _.AllowMethods = configuration.AllowMethods;
+                _.IsAllowCredentials = configuration.IsAllowCredentials;
             });
         }
 
-        public static IServiceCollection AddElectCors(this IServiceCollection services, [NotNull]Action<ElectCorsOptions> configuration)
+        public static IServiceCollection AddElectCors(this IServiceCollection services,
+            [NotNull] Action<ElectCorsOptions> configuration)
         {
             services.Configure(configuration);
 
@@ -54,17 +60,65 @@ namespace Elect.Web.Middlewares.CorsMiddleware
 
             var corsBuilder = new CorsPolicyBuilder();
 
-            corsBuilder.WithOrigins(options.AccessControlAllowOrigins.ToArray());
+            if (options.AllowOrigins?.Any() == true)
+            {
+                if (options.AllowOrigins.Contains("*"))
+                {
+                    corsBuilder.AllowAnyOrigin();
+                }
+                else
+                {
+                    corsBuilder.WithOrigins(options.AllowOrigins.ToArray());
 
-            corsBuilder.WithHeaders(options.AccessControlAllowHeaders.ToArray());
+                    if (options.IsAllowOriginsSubDomains)
+                    {
+                        corsBuilder.SetIsOriginAllowedToAllowWildcardSubdomains();
+                    }
+                }
+            }
 
-            corsBuilder.WithMethods(options.AccessControlAllowMethods.ToArray());
+            if (options.AllowHeaders?.Any() == true)
+            {
+                if (options.AllowHeaders.Contains("*"))
+                {
+                    corsBuilder.AllowAnyHeader();
+                }
+                else
+                {
+                    corsBuilder.WithHeaders(options.AllowHeaders.ToArray());
+                }
+            }
 
-            corsBuilder.AllowCredentials();
+            if (options.AllowMethods?.Any() == true)
+            {
+                if (options.AllowMethods.Contains("*"))
+                {
+                    corsBuilder.AllowAnyMethod();
+                }
+                else
+                {
+                    corsBuilder.WithMethods(options.AllowMethods.ToArray());
+                }
+            }
+
+            if (options.IsAllowCredentials)
+            {
+                corsBuilder.AllowCredentials();
+            }
+            else
+            {
+                corsBuilder.DisallowCredentials();
+            }
+
+            options.ExtendPolicyBuilder?.Invoke(corsBuilder);
 
             services.AddCors(config =>
             {
-                config.AddPolicy(options.PolicyName, corsBuilder.Build());
+                config.DefaultPolicyName = options.PolicyName;
+
+                config.AddDefaultPolicy(corsBuilder.Build());
+
+                options.ExtendPolicyOptions?.Invoke(config);
             });
 
             services.Configure<MvcOptions>(config =>

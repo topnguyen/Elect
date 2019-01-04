@@ -4,6 +4,11 @@
         <name>Elect.Sample.Web.Swagger</name>
     </assembly>
     <members>
+        <member name="M:Elect.Sample.Web.Swagger.Controllers.UserController.TestResponse">
+            <summary>
+                Test Response 
+            </summary>
+        </member>
         <member name="M:Elect.Sample.Web.Swagger.Controllers.UserController.GetUser(System.String)">
             <summary>
                 Get User 
