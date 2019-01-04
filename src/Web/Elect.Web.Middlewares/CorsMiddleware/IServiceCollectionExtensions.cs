@@ -69,11 +69,6 @@ namespace Elect.Web.Middlewares.CorsMiddleware
                 else
                 {
                     corsBuilder.WithOrigins(options.AllowOrigins.ToArray());
-
-                    if (options.IsAllowOriginsSubDomains)
-                    {
-                        corsBuilder.SetIsOriginAllowedToAllowWildcardSubdomains();
-                    }
                 }
             }
 
