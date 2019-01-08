@@ -186,7 +186,7 @@ namespace Elect.Web.HttpUtils
             }
             catch (Exception)
             {
-                return default(T);
+                return default;
             }
         }
 

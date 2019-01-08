@@ -19,6 +19,7 @@
 
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,25 +36,27 @@ namespace Elect.Web.HttpUtils
 
         private static readonly ActionDescriptor EmptyActionDescriptor = new ActionDescriptor();
 
-        public static Task WriteResultAsync<TResult>(this HttpContext context, TResult result) where TResult : IActionResult
+        public static Task WriteAsync<T>(this HttpContext context, T actionResult, CancellationToken cancellationToken = default) where T : IActionResult
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var executor = context.RequestServices.GetService<IActionResultExecutor<TResult>>();
+            var executor = context.RequestServices.GetService<IActionResultExecutor<T>>();
 
             if (executor == null)
             {
-                throw new InvalidOperationException($"No result executor for '{typeof(TResult).FullName}' has been registered.");
+                throw new InvalidOperationException($"No result executor for '{typeof(T).FullName}' has been registered.");
             }
 
             var routeData = context.GetRouteData() ?? EmptyRouteData;
 
             var actionContext = new ActionContext(context, routeData, EmptyActionDescriptor);
 
-            return executor.ExecuteAsync(actionContext, result);
+            return cancellationToken.IsCancellationRequested
+                ? Task.CompletedTask
+                : executor.ExecuteAsync(actionContext, actionResult);
         }
     }
 }
