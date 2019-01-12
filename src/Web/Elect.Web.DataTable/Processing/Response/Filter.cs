@@ -146,7 +146,7 @@ namespace Elect.Web.DataTable.Processing.Response
 
             parametersForLinqQuery.Add(dateTime);
             parametersForLinqQuery.Add(dateTime);
-            filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
+            filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} <= @{parametersForLinqQuery.Count - 1}";
 
             return filterString;
 
@@ -209,13 +209,16 @@ namespace Elect.Web.DataTable.Processing.Response
             }
 
             // DateTime have Date and Time value => search value in same Date and Time.
-            parametersForLinqQuery.Add(dateTime);
-
+            
             // If you store DateTime in database include milliseconds => no result match. Ex: in
             // Database "2017-10-16 10:51:09.9761005 +00:00" so user search "2017-10-16 10:51" will
             // return 0 result, because not exactly same (even user give full datetime with
             // milliseconds exactly - this is Linq2SQL issue).
-            filterString = $"{columnName} == @{parametersForLinqQuery.Count - 1}";
+            // Solution: filter in range of second
+
+            parametersForLinqQuery.Add(dateTime);
+            parametersForLinqQuery.Add(dateTime);
+            filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} <= @{parametersForLinqQuery.Count - 1}";
 
             return filterString;
         }
