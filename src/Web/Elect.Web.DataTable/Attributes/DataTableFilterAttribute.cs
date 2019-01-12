@@ -57,14 +57,21 @@ namespace Elect.Web.DataTable.Attributes
         {
             columnModel.ColumnFilter = new ColumnFilterModel(propertyInfo.PropertyType);
 
-            if (Selector != null) columnModel.ColumnFilter[PropertyConstants.Selector] = Selector;
+            if (Selector != null)
+            {
+                columnModel.ColumnFilter[PropertyConstants.Selector] = Selector;
+            }
+            
             if (_filterType == FilterConstants.None)
             {
                 columnModel.ColumnFilter = null;
             }
             else
             {
-                if (_filterType != null) columnModel.ColumnFilter.FilterType = _filterType;
+                if (_filterType != null)
+                {
+                    columnModel.ColumnFilter.FilterType = _filterType;
+                }
             }
         }
     }
