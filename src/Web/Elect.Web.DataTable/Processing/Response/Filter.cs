@@ -61,7 +61,9 @@ namespace Elect.Web.DataTable.Processing.Response
                 {
                     parametersForLinqQuery.Add(ChangeType(parts[1], propertyInfo));
                     if (clause != null) clause += " and ";
-                    clause += $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
+                    {
+                        clause += $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
+                    }
                 }
                 catch (FormatException)
                 {
@@ -82,8 +84,7 @@ namespace Elect.Web.DataTable.Processing.Response
             return null;
         }
 
-        public static string DateTimeOffsetFilter(string terms, string columnName,
-            DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
+        public static string DateTimeOffsetFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo, List<object> parametersForLinqQuery)
         {
             if (terms == "~") return string.Empty;
 
@@ -100,7 +101,6 @@ namespace Elect.Web.DataTable.Processing.Response
                 if (fromDateTime != null)
                 {
                     parametersForLinqQuery.Add(fromDateTime.Value);
-
                     filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 1}";
                 }
 
@@ -110,9 +110,7 @@ namespace Elect.Web.DataTable.Processing.Response
                 if (toDateTime == null) return filterString ?? string.Empty;
 
                 parametersForLinqQuery.Add(toDateTime.Value);
-
-                filterString = (filterString == null ? null : $"{filterString} and ") +
-                               $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
+                filterString = (filterString == null ? null : $"{filterString} and ") + $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
             }
@@ -123,29 +121,30 @@ namespace Elect.Web.DataTable.Processing.Response
             if (dateTime == null) return null;
 
             // DateTime only have Date value => search value in same Date
-            if (dateTime.Value.Date == dateTime.Value)
+            if (dateTime.Value.Date == dateTime.Value.DateTime)
             {
                 parametersForLinqQuery.Add(dateTime.Value);
-
                 parametersForLinqQuery.Add(dateTime.Value.AddDays(1));
-
-                filterString =
-                    $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
+                filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
             }
 
             // DateTime have Date and Time value => search value in same Date and Time.
-
-            parametersForLinqQuery.Add(dateTime);
-
+            
             // If you store DateTime in database include milliseconds => no result match. Ex: in
             // Database "2017-10-16 10:51:09.9761005 +00:00" so user search "2017-10-16 10:51" will
             // return 0 result, because not exactly same (even user give full datetime with
             // milliseconds exactly - this is Linq2SQL issue).
-            filterString = $"{columnName} == @{parametersForLinqQuery.Count - 1}";
+            // Solution: filter in range of second
+
+            parametersForLinqQuery.Add(dateTime.Value);
+            parametersForLinqQuery.Add(dateTime.Value);
+            filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
             return filterString;
+
+          
         }
 
         public static string DateTimeFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo,
@@ -177,8 +176,7 @@ namespace Elect.Web.DataTable.Processing.Response
 
                 parametersForLinqQuery.Add(toDateTime.Value);
 
-                filterString = (filterString == null ? null : $"{filterString} and ") +
-                               $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
+                filterString = (filterString == null ? null : $"{filterString} and ") + $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
             }
@@ -192,11 +190,8 @@ namespace Elect.Web.DataTable.Processing.Response
             if (dateTime.Value.Date == dateTime.Value)
             {
                 parametersForLinqQuery.Add(dateTime.Value);
-
                 parametersForLinqQuery.Add(dateTime.Value.AddDays(1));
-
-                filterString =
-                    $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
+                filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
             }
@@ -375,11 +370,11 @@ namespace Elect.Web.DataTable.Processing.Response
                 return result;
             }
 
-            if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
+            if (DateTimeOffset.TryParseExact(value, ElectDataTableOptions.Instance.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var dateTime))
             {
                 result = dateTime;
             }
-            else if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+            else if (DateTimeOffset.TryParseExact(value, ElectDataTableOptions.Instance.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var date))
             {
                 result = date;
             }
