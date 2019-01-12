@@ -368,22 +368,25 @@ namespace Elect.Web.DataTable.Processing.Response
         {
             value = string.IsNullOrWhiteSpace(value) ? string.Empty : value;
 
-            if (ElectDataTableOptions.Instance.RequestDateTimeFormatType == DateTimeFormatType.Auto &&
-                DateTimeOffset.TryParse(value, out var result))
+            if (ElectDataTableOptions.Instance.RequestDateTimeFormatType == DateTimeFormatType.Auto && DateTimeOffset.TryParse(value, out var result))
             {
                 result = result.DateTime.WithTimeZone(ElectDataTableOptions.Instance.DateTimeTimeZone);
 
                 return result;
             }
 
-            if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateTimeFormat,
-                CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
+            if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
+            {
                 result = dateTime;
-            else if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateFormat,
-                CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+            }
+            else if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+            {
                 result = date;
+            }
             else
+            {
                 return null;
+            }
 
             result = result.DateTime.WithTimeZone(ElectDataTableOptions.Instance.DateTimeTimeZone);
 

@@ -22,8 +22,8 @@
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
 using Elect.Web.DataTable.Models.Response;
-using Elect.Web.DataTable.Utils.DataTableParamModelUtils;
 using System.Linq;
+using Elect.Web.DataTable.Utils.DataTableRequestModelUtils;
 
 namespace Elect.Web.DataTable.Processing.Response
 {
@@ -36,7 +36,7 @@ namespace Elect.Web.DataTable.Processing.Response
 
             var totalRecords = data.Count();
 
-            var filters = new DataTableParamModelHelper();
+            var filters = new DataTableRequestHelper();
 
             var outputProperties = new DataTableTypeInfoModel<T>().Properties;
 

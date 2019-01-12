@@ -16,6 +16,7 @@
             </summary>
         </member>
         <member name="T:Elect.Web.DataTable.Attributes.DataTableIgnoreAttribute">
+            <inheritdoc />
             <summary>
                 Prevent a public property from being included as a column in a DataTable row model 
             </summary>
@@ -206,6 +207,35 @@
                 CreatedDate = row.CreatedDate.ToString("dd MM yy") }
             </param>
             <returns></returns>
+        </member>
+        <member name="M:Elect.Web.DataTable.Utils.DataTableRequestModelUtils.DataTableRequestExtensions.GetFilterValue``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,System.String)">
+            <summary>
+                Get Filter Value from DataTableRequest by property name of T object.
+            </summary>
+            <param name="model"></param>
+            <param name="propertyName"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.DataTable.Utils.DataTableRequestModelUtils.DataTableRequestExtensions.GetDateTimeOffsetFilter``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,System.String,System.Nullable{System.DateTimeOffset}@,System.Nullable{System.DateTimeOffset}@)">
+            <summary>
+                Get DateTimeOffsets Filter Value from DataTableRequest by property name of T object.
+            </summary>
+            <param name="model"></param>
+            <param name="propertyName"></param>
+            <param name="dateTimeOffsetFrom"></param>
+            <param name="dateTimeOffsetTo"></param>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Elect.Web.DataTable.Utils.DataTableRequestModelUtils.DataTableRequestExtensions.GetFilterValues``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,System.String,System.String@,System.String@)">
+            <summary>
+                Get String Filter Value from DataTableRequest by property name of T object.
+            </summary>
+            <param name="model"></param>
+            <param name="propertyName"></param>
+            <param name="filterValue1"></param>
+            <param name="filterValue2"></param>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="M:Elect.Web.DataTable.Utils.EnumUtils.EnumHelper.GetLabel(System.Enum)">
             <summary>
