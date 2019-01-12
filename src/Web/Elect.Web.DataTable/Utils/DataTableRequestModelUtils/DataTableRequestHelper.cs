@@ -58,6 +58,19 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
 
             return sFilterValue;
         }
+        
+        public static void SetFilterValue<T>(DataTableRequestModel model, string propertyName, string value) where T : class, new()
+        {
+            var properties = new DataTableTypeInfoModel<T>().Properties;
+
+            for (int i = 0; i < properties.Length; i++)
+            {
+                if (properties[i].PropertyInfo.Name == propertyName)
+                {
+                    model.SearchValues[i] = value;
+                }
+            }
+        }
 
         public static void GetFilterValue(string filter, out string filterValue1, out string filterValue2)
         {
