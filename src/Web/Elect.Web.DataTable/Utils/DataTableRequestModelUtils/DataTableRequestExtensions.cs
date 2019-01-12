@@ -36,6 +36,18 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
         public static string GetFilterValue<T>(this DataTableRequestModel model, string propertyName) where T : class, new()
         {
             return DataTableRequestHelper.GetFilterValue<T>(model, propertyName);
+        }  
+        
+        /// <summary>
+        ///     Set Filter Value to DataTableRequest by property name of T object.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="value"></param>
+        /// <typeparam name="T"></typeparam>
+        public static void SetFilterValue<T>(this DataTableRequestModel model, string propertyName, string value) where T : class, new()
+        {
+            DataTableRequestHelper.SetFilterValue<T>(model, propertyName, value);
         }
 
         /// <summary>

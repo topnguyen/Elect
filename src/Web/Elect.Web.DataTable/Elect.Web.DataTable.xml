@@ -217,6 +217,15 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:Elect.Web.DataTable.Utils.DataTableRequestModelUtils.DataTableRequestExtensions.SetFilterValue``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,System.String,System.String)">
+            <summary>
+                Set Filter Value to DataTableRequest by property name of T object.
+            </summary>
+            <param name="model"></param>
+            <param name="propertyName"></param>
+            <param name="value"></param>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="M:Elect.Web.DataTable.Utils.DataTableRequestModelUtils.DataTableRequestExtensions.GetDateTimeOffsetFilter``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,System.String,System.Nullable{System.DateTimeOffset}@,System.Nullable{System.DateTimeOffset}@)">
             <summary>
                 Get DateTimeOffsets Filter Value from DataTableRequest by property name of T object.
