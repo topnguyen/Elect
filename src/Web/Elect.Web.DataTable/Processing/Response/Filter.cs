@@ -145,8 +145,8 @@ namespace Elect.Web.DataTable.Processing.Response
             // Solution: filter in range of second
 
             parametersForLinqQuery.Add(dateTime);
-            parametersForLinqQuery.Add(dateTime);
-            filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} <= @{parametersForLinqQuery.Count - 1}";
+            parametersForLinqQuery.Add(dateTime.AddSeconds(1));
+            filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
             return filterString;
 
@@ -217,8 +217,8 @@ namespace Elect.Web.DataTable.Processing.Response
             // Solution: filter in range of second
 
             parametersForLinqQuery.Add(dateTime);
-            parametersForLinqQuery.Add(dateTime);
-            filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} <= @{parametersForLinqQuery.Count - 1}";
+            parametersForLinqQuery.Add(dateTime.AddSeconds(1));
+            filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
             return filterString;
         }
