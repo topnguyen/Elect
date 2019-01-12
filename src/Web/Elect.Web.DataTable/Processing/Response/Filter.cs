@@ -98,18 +98,21 @@ namespace Elect.Web.DataTable.Processing.Response
                 // FROM DATE TIME
                 var fromDateTime = ToDateTime(parts[0]);
 
-                if (fromDateTime != null)
+                if (fromDateTime != default)
                 {
-                    parametersForLinqQuery.Add(fromDateTime.Value);
+                    parametersForLinqQuery.Add(fromDateTime);
                     filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 1}";
                 }
 
                 // TO DATE TIME
                 var toDateTime = ToDateTime(parts[1]);
 
-                if (toDateTime == null) return filterString ?? string.Empty;
+                if (toDateTime == default)
+                {
+                    return filterString ?? string.Empty;
+                }
 
-                parametersForLinqQuery.Add(toDateTime.Value);
+                parametersForLinqQuery.Add(toDateTime);
                 filterString = (filterString == null ? null : $"{filterString} and ") + $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
@@ -118,13 +121,16 @@ namespace Elect.Web.DataTable.Processing.Response
             // Single Case
             var dateTime = ToDateTime(terms);
 
-            if (dateTime == null) return null;
+            if (dateTime == default)
+            {
+                return null;
+            }
 
             // DateTime only have Date value => search value in same Date
-            if (dateTime.Value.Date == dateTime.Value.DateTime)
+            if (dateTime.Date == dateTime.DateTime)
             {
-                parametersForLinqQuery.Add(dateTime.Value);
-                parametersForLinqQuery.Add(dateTime.Value.AddDays(1));
+                parametersForLinqQuery.Add(dateTime);
+                parametersForLinqQuery.Add(dateTime.AddDays(1));
                 filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
@@ -138,8 +144,8 @@ namespace Elect.Web.DataTable.Processing.Response
             // milliseconds exactly - this is Linq2SQL issue).
             // Solution: filter in range of second
 
-            parametersForLinqQuery.Add(dateTime.Value);
-            parametersForLinqQuery.Add(dateTime.Value);
+            parametersForLinqQuery.Add(dateTime);
+            parametersForLinqQuery.Add(dateTime);
             filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
             return filterString;
@@ -160,21 +166,24 @@ namespace Elect.Web.DataTable.Processing.Response
                 var parts = terms.Split('~');
 
                 // FROM DATE TIME
-                var fromDateTime = ToDateTime(parts[0])?.DateTime;
+                var fromDateTime = ToDateTime(parts[0]);
 
-                if (fromDateTime != null)
+                if (fromDateTime != default)
                 {
-                    parametersForLinqQuery.Add(fromDateTime.Value);
+                    parametersForLinqQuery.Add(fromDateTime);
 
                     filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 1}";
                 }
 
                 // TO DATE TIME
-                var toDateTime = ToDateTime(parts[1])?.DateTime;
+                var toDateTime = ToDateTime(parts[1]);
 
-                if (toDateTime == null) return filterString ?? string.Empty;
+                if (toDateTime == default)
+                {
+                    return filterString ?? string.Empty;
+                }
 
-                parametersForLinqQuery.Add(toDateTime.Value);
+                parametersForLinqQuery.Add(toDateTime);
 
                 filterString = (filterString == null ? null : $"{filterString} and ") + $"{columnName} <= @{parametersForLinqQuery.Count - 1}";
 
@@ -182,15 +191,18 @@ namespace Elect.Web.DataTable.Processing.Response
             }
 
             // Single Case
-            var dateTime = ToDateTime(terms)?.DateTime;
+            var dateTime = ToDateTime(terms);
 
-            if (dateTime == null) return null;
+            if (dateTime == default)
+            {
+                return null;
+            }
 
             // DateTime only have Date value => search value in same Date
-            if (dateTime.Value.Date == dateTime.Value)
+            if (dateTime.Date == dateTime)
             {
-                parametersForLinqQuery.Add(dateTime.Value);
-                parametersForLinqQuery.Add(dateTime.Value.AddDays(1));
+                parametersForLinqQuery.Add(dateTime);
+                parametersForLinqQuery.Add(dateTime.AddDays(1));
                 filterString = $"{columnName} >= @{parametersForLinqQuery.Count - 2} and {columnName} < @{parametersForLinqQuery.Count - 1}";
 
                 return filterString;
@@ -359,7 +371,7 @@ namespace Elect.Web.DataTable.Processing.Response
             return Convert.ChangeType(terms, propertyInfo.Type);
         }
 
-        internal static DateTimeOffset? ToDateTime(string value)
+        internal static DateTimeOffset ToDateTime(string value)
         {
             value = string.IsNullOrWhiteSpace(value) ? string.Empty : value;
 
@@ -380,7 +392,7 @@ namespace Elect.Web.DataTable.Processing.Response
             }
             else
             {
-                return null;
+                return default;
             }
 
             result = result.DateTime.WithTimeZone(ElectDataTableOptions.Instance.DateTimeTimeZone);
