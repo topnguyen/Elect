@@ -51,7 +51,7 @@ namespace Elect.Data.EF.Interfaces.Repository
 
         TEntity Add(TEntity entity);
 
-        List<TEntity> AddRange(params TEntity[] listEntity);
+        List<TEntity> AddRange(params TEntity[] list);
 
         #endregion
 

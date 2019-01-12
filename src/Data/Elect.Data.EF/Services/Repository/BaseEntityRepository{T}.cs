@@ -80,13 +80,13 @@ namespace Elect.Data.EF.Services.Repository
             return entity;
         }
 
-        public virtual List<T> AddRange(params T[] lisT)
+        public virtual List<T> AddRange(params T[] list)
         {
             var dateTimeUtcNow = DateTimeOffset.UtcNow;
 
             List<T> listAddedEntity = new List<T>();
 
-            foreach (var entity in lisT)
+            foreach (var entity in list)
             {
                 entity.CreatedTime = dateTimeUtcNow;
 
