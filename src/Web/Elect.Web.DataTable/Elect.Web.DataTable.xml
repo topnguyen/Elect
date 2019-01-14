@@ -4,11 +4,29 @@
         <name>Elect.Web.DataTable</name>
     </assembly>
     <members>
+        <member name="P:Elect.Web.DataTable.Attributes.DataTableAttribute.DisplayName">
+            <summary>
+                Column Header Name.
+            </summary>
+            <remarks>Support Multi Language Translation by setup <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>.</remarks>
+        </member>
+        <member name="P:Elect.Web.DataTable.Attributes.DataTableAttribute.FilterColHint">
+            <summary>
+                Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
+            </summary>
+            <remarks>The filter col in this context is below main column. This one different with <see cref="T:Elect.Web.DataTable.Attributes.DataTableFilterAttribute"/> (custom filter col).</remarks>
+            <remarks>Support Multi Language Translation by setup <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>.</remarks>
+        </member>
         <member name="P:Elect.Web.DataTable.Attributes.DataTableAttribute.AdditionalAttributeHeader">
             <summary>
                 Additional HTML Element attributes for header column 
             </summary>
             <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
+        </member>
+        <member name="T:Elect.Web.DataTable.Attributes.DataTableFilterAttribute">
+            <summary>
+                Setup Custom Position filter for the DataTable Column
+            </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Attributes.DataTableFilterAttribute.Selector">
             <summary>
@@ -29,6 +47,11 @@
                 Function follow params: function &lt;your function name&gt;(data, type, row). Param
                 row: is a array column data
             </remarks>
+        </member>
+        <member name="P:Elect.Web.DataTable.Models.Column.ColumnModel.FilterColHint">
+            <summary>
+                Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
+            </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Column.ColumnModel.AdditionalAttributeHeader">
             <summary>
@@ -261,6 +284,21 @@
             <param name="type"></param>
             <returns></returns>
             <remarks> The method support both: Enum and Nullable Enum Type. </remarks>
+        </member>
+        <member name="M:Elect.Web.DataTable.Utils.TranslateHelper.GetTranslate(System.String)">
+            <summary>
+                Get Translate string for the <see cref="!:key"/> by lookup on <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.DataTable.Utils.TranslateHelper.GetTranslate(System.String,System.Type)">
+            <summary>
+                Get Translate string for the <see cref="!:key"/> by lookup on <paramref name="resourceType"/>
+            </summary>
+            <param name="key"></param>
+            <param name="resourceType"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
