@@ -74,12 +74,12 @@ namespace Elect.Web.DataTable.Models.Column
                     new
                     {
                         value = DataConstants.True,
-                        label = TranslateHelper.GetTranslate(ElectDataTableOptions.Instance.DefaultDisplayText.Yes)
+                        label = ElectDataTableTranslator.Get(ElectDataTableOptions.Instance.DefaultDisplayText.Yes)
                     },
                     new
                     {
                         value = DataConstants.False,
-                        label = TranslateHelper.GetTranslate(ElectDataTableOptions.Instance.DefaultDisplayText.No)
+                        label = ElectDataTableTranslator.Get(ElectDataTableOptions.Instance.DefaultDisplayText.No)
                     }
                 };
             }

@@ -38,12 +38,12 @@ namespace Elect.Web.DataTable.Utils.DataTableAttributeUtils
 
             if (attribute.DisplayNameResourceType != null)
             {
-                return TranslateHelper.GetTranslate(attribute.DisplayName, attribute.DisplayNameResourceType);
+                return ElectDataTableTranslator.Get(attribute.DisplayName, attribute.DisplayNameResourceType);
             }
 
             // Translate by Shared Resource Type
             
-            return TranslateHelper.GetTranslate(attribute.DisplayName);
+            return ElectDataTableTranslator.Get(attribute.DisplayName);
         }
     }
 }
