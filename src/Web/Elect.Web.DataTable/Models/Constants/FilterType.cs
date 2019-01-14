@@ -21,6 +21,7 @@
 
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Elect.Web.DataTable.Models.Constants
 {
@@ -29,32 +30,35 @@ namespace Elect.Web.DataTable.Models.Constants
         /// <summary>
         ///     Not show any input in Column Filter 
         /// </summary>
-        [Description(FilterConstants.None)] None,
+        [Display(Name = FilterConstants.None)] 
+        None,
 
         /// <summary>
         ///     Display as Drop-down list in Column Filter 
         /// </summary>
-        [Description(FilterConstants.Select)] Select,
+        [Display(Name = FilterConstants.Select)]
+        Select,
 
         /// <summary>
         ///     Display as Free Text input in Column Filter 
         /// </summary>
-        [Description(FilterConstants.Text)] Text,
+        [Display(Name = FilterConstants.Text)] 
+        Text,
 
         [Obsolete("You need self implement UI for checkbox type in the jquery.dataTables.columnFilter.js")]
-        [Description(FilterConstants.Checkbox)]
+        [Display(Name = FilterConstants.Checkbox)]
         Checkbox,
 
         [Obsolete("You need self implement UI for number-range type in the jquery.dataTables.columnFilter.js")]
-        [Description(FilterConstants.NumberRange)]
+        [Display(Name = FilterConstants.NumberRange)]
         NumberRange,
 
         [Obsolete("You need self implement UI for date-range type in the jquery.dataTables.columnFilter.js")]
-        [Description(FilterConstants.DateRange)]
+        [Display(Name = FilterConstants.DateRange)]
         DateRange,
 
         [Obsolete("You need self implement UI for datetime-range type in the jquery.dataTables.columnFilter.js")]
-        [Description(FilterConstants.DateTimeRange)]
+        [Display(Name = FilterConstants.DateTimeRange)]
         DateTimeRange
     }
 }
