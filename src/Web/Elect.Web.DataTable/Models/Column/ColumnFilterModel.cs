@@ -26,6 +26,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Web.DataTable.Models.Options;
 using Elect.Web.DataTable.Utils;
 
 namespace Elect.Web.DataTable.Models.Column
@@ -73,12 +74,12 @@ namespace Elect.Web.DataTable.Models.Column
                     new
                     {
                         value = DataConstants.True,
-                        label = TranslateHelper.GetTranslate("Yes")
+                        label = TranslateHelper.GetTranslate(ElectDataTableOptions.Instance.DefaultDisplayText.Yes)
                     },
                     new
                     {
                         value = DataConstants.False,
-                        label = TranslateHelper.GetTranslate("No")
+                        label = TranslateHelper.GetTranslate(ElectDataTableOptions.Instance.DefaultDisplayText.No)
                     }
                 };
             }

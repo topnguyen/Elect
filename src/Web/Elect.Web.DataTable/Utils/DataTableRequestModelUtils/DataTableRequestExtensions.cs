@@ -20,12 +20,25 @@
 #endregion License
 
 using System;
+using System.Collections.Generic;
 using Elect.Web.DataTable.Models.Request;
 
 namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
 {
     public static class DataTableRequestExtensions
     {
+        /// <summary>
+        ///     Get Filter Values to Dictionary, key is property name and value is filter value of the property.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <remarks>If the filter value not found, then not have the property name (key) in Dictionary</remarks>
+        public static Dictionary<string, string> GetFilterValues<T>(this DataTableRequestModel model) where T : class, new()
+        {
+            return DataTableRequestHelper.GetFilterValues<T>(model);
+        }
+        
         /// <summary>
         ///     Get Filter Value from DataTableRequest by property name of T object.
         /// </summary>

@@ -1,4 +1,5 @@
-﻿@model Elect.Web.DataTable.Models.DataTableModel
+﻿@using Elect.Web.DataTable.Models.Options
+@model Elect.Web.DataTable.Models.DataTableModel
 
 @{
     // Handle Default Values for Options
@@ -30,6 +31,12 @@
                         
                         // Render default filter col hint
                         
+                        var booleanTypes = new List<Type>
+                        {
+                            typeof(bool),
+                            typeof(bool?)
+                        };
+                        
                         var dateTimeTypes = new List<Type>
                         {
                             typeof(DateTime),
@@ -40,15 +47,19 @@
                         
                         if (column.Type.IsEnum)
                         {
-                            <th id="filter-@column.Name">All @column.DisplayName</th>
+                            <th id="filter-@column.Name">@ElectDataTableOptions.Instance.DefaultDisplayText.All @column.DisplayName</th>
+                        }
+                        else if (booleanTypes.Contains(column.Type))
+                        {
+                            <th id="filter-@column.Name">@ElectDataTableOptions.Instance.DefaultDisplayText.All</th>
                         }
                         else if (dateTimeTypes.Contains(column.Type))
                         {
-                            <th id="filter-@column.Name">Filter by dd/MM/yyyy</th>
+                            <th id="filter-@column.Name">@ElectDataTableOptions.Instance.DefaultDisplayText.FilterBy dd/MM/yyyy</th>
                         }
                         else
                         {
-                            <th id="filter-@column.Name">Filter @column.DisplayName</th>
+                            <th id="filter-@column.Name">@ElectDataTableOptions.Instance.DefaultDisplayText.Filter @column.DisplayName</th>
                         }
                     }
                 }

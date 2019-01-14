@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
+using Elect.Core.ActionUtils;
 using Elect.Core.TypeUtils;
 using Elect.Web.DataTable.Models;
 using Elect.Web.DataTable.Models.Request;
@@ -41,34 +42,55 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
             Guard(IsEnumType, Filter.EnumFilter),
             Guard(arg => arg.Type == typeof(string), Filter.StringFilter)
         };
-
-        public static string GetFilterValue<T>(DataTableRequestModel model, string propertyName) where T : class, new()
+        
+        /// <summary>
+        ///     Get Filter Values to Dictionary, key is property name and value is filter value of the property.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <remarks>If the filter value not found, then not have the property name (key) in Dictionary</remarks>
+        public static Dictionary<string, string> GetFilterValues<T>(DataTableRequestModel model) where T : class, new()
         {
             var properties = new DataTableTypeInfoModel<T>().Properties;
 
-            string sFilterValue = null;
+            var filterValues = new Dictionary<string, string>();
 
-            for (int i = 0; i < properties.Length; i++)
+            for (var i = 0; i < properties.Length; i++)
             {
-                if (properties[i].PropertyInfo.Name == propertyName)
+                var index = i;
+                
+                ActionHelper.IgnoreError(() =>
                 {
-                    sFilterValue = model.SearchValues[i];
-                }
+                    var filterValue = model.SearchValues[index];
+                    filterValues.Add(properties[index].PropertyInfo.Name, filterValue);   
+                });
             }
 
-            return sFilterValue;
+            return filterValues;
+        }
+
+        public static string GetFilterValue<T>(DataTableRequestModel model, string propertyName) where T : class, new()
+        {
+            var filerValues = GetFilterValues<T>(model);
+
+            return filerValues.TryGetValue(propertyName, out var filterValue) ? filterValue : null;
         }
         
         public static void SetFilterValue<T>(DataTableRequestModel model, string propertyName, string value) where T : class, new()
         {
             var properties = new DataTableTypeInfoModel<T>().Properties;
 
-            for (int i = 0; i < properties.Length; i++)
+            for (var i = 0; i < properties.Length; i++)
             {
-                if (properties[i].PropertyInfo.Name == propertyName)
+                if (properties[i].PropertyInfo.Name != propertyName)
                 {
-                    model.SearchValues[i] = value;
+                    continue;
                 }
+                
+                model.SearchValues[i] = value;
+                    
+                break;
             }
         }
 
