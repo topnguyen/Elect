@@ -28,6 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Net.WebSockets;
 using System.Reflection;
 
 namespace Elect.Web.DataTable.Processing.Response
@@ -242,38 +243,47 @@ namespace Elect.Web.DataTable.Processing.Response
                 : null;
         }
 
-        public static string StringFilter(string terms, string columnName, DataTablePropertyInfoModel propertyInfo,
+        public static string StringFilter(string term, string columnName, DataTablePropertyInfoModel propertyInfo,
             List<object> parametersForLinqQuery)
         {
-            if (terms == ".*") return string.Empty;
+            if (term == ".*")
+            {
+                return string.Empty;
+            }
+
+            var termsNorm = term.ToLowerInvariant();
 
             string parameterArg;
 
-            if (terms.StartsWith("^"))
+            string clause;
+            
+            if (termsNorm.StartsWith("^"))
             {
-                if (terms.EndsWith("$"))
+                if (termsNorm.EndsWith("$"))
                 {
-                    parametersForLinqQuery.Add(terms.Substring(1, terms.Length - 2));
+                    parametersForLinqQuery.Add(termsNorm.Substring(1, termsNorm.Length - 2));
 
                     parameterArg = $"@{parametersForLinqQuery.Count - 1}";
 
                     return $"{columnName} == {parameterArg}";
                 }
 
-                parametersForLinqQuery.Add(terms.Substring(1));
+                parametersForLinqQuery.Add(termsNorm.Substring(1));
 
                 parameterArg = "@" + (parametersForLinqQuery.Count - 1);
 
-                return
-                    $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.{ConditionalConstants.StartsWith}({parameterArg})))";
+                clause = $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.{ConditionalConstants.StartsWith}({parameterArg})))";
             }
+            else
+            {
+                parametersForLinqQuery.Add(termsNorm);
 
-            parametersForLinqQuery.Add(terms);
+                parameterArg = "@" + (parametersForLinqQuery.Count - 1);
 
-            parameterArg = "@" + (parametersForLinqQuery.Count - 1);
-
-            return
-                $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.{ConditionalConstants.StartsWith}({parameterArg}) || {columnName}.{ConditionalConstants.Contain}({parameterArg})))";
+                clause = $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.ToLowerInvariant().{ConditionalConstants.Contain}({parameterArg})))";
+            }
+           
+            return clause;
         }
 
         /// <summary>
@@ -298,8 +308,10 @@ namespace Elect.Web.DataTable.Processing.Response
             if (propertyInfo.Type.IsNullableType() && propertyInfo.Type.IsEnum)
             {
                 // Enum Nullable type, handle for "null" case ("null" string as null obj)
-                if (DataConstants.Null.Equals(terms, StringComparison.OrdinalIgnoreCase) ||
-                    string.IsNullOrWhiteSpace(terms)) return $"{columnName} == {DataConstants.Null}";
+                if (DataConstants.Null.Equals(terms, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(terms))
+                {
+                    return $"{columnName} == {DataConstants.Null}";
+                }
             }
             else
             {
@@ -319,8 +331,7 @@ namespace Elect.Web.DataTable.Processing.Response
 
                 var valueLowerCase = enumName.ToLowerInvariant();
 
-                if (valueLowerCase.Equals(termsLowerCase, StringComparison.OrdinalIgnoreCase) ||
-                    valueLowerCase.StartsWith(termsLowerCase) || valueLowerCase.Contains(termsLowerCase))
+                if (valueLowerCase.Equals(termsLowerCase, StringComparison.OrdinalIgnoreCase) || valueLowerCase.StartsWith(termsLowerCase) || valueLowerCase.Contains(termsLowerCase))
                 {
                     enumObject = enumValue;
 
@@ -333,6 +344,7 @@ namespace Elect.Web.DataTable.Processing.Response
             if (enumObject == null) return null;
 
             parametersForLinqQuery.Add(enumObject);
+            
             return $"{columnName} == @{parametersForLinqQuery.Count - 1}";
         }
 
@@ -351,9 +363,11 @@ namespace Elect.Web.DataTable.Processing.Response
             {
                 if (!terms.EndsWith("$")) return Clause(ConditionalConstants.StartsWith, terms.Substring(1));
 
-                parametersForLinqQuery.Add(TypeDescriptor.GetConverter(type)
-                    .ConvertFrom(terms.Substring(1, terms.Length - 2)));
+                parametersForLinqQuery
+                    .Add(TypeDescriptor.GetConverter(type).ConvertFrom(terms.Substring(1, terms.Length - 2)));
+                
                 var indexOfParameter = parametersForLinqQuery.Count - 1;
+                
                 return $"{ConditionalConstants.Equal}((object)@{indexOfParameter})";
             }
 
@@ -364,8 +378,7 @@ namespace Elect.Web.DataTable.Processing.Response
 
         internal static object ChangeType(string terms, DataTablePropertyInfoModel propertyInfo)
         {
-            if (propertyInfo.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType &&
-                propertyInfo.Type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            if (propertyInfo.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType && propertyInfo.Type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 var u = Nullable.GetUnderlyingType(propertyInfo.Type);
                 return Convert.ChangeType(terms, u);

@@ -74,6 +74,12 @@ namespace Elect.Web.DataTable.Models.Column
         ///     Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
         /// </summary>
         public string FilterColHint { get; set; }
+        
+        /// <summary>
+        ///     Additional HTML Element attributes for filter column 
+        /// </summary>
+        /// <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
+        public string FilterColAdditionalAttribute { get; set; }
 
         /// <summary>
         ///     Additional HTML Element attributes for header column 

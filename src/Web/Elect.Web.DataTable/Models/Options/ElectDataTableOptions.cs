@@ -110,5 +110,10 @@ namespace Elect.Web.DataTable.Models.Options
         ///     Default is "All"
         /// </summary>
         public string All { get; set; } = "All";
+        
+        /// <summary>
+        ///     Default is "Loading..."
+        /// </summary>
+        public string Loading { get; set; } = "Loading...";
     }
 }

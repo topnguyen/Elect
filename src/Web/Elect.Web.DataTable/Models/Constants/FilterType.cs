@@ -20,7 +20,6 @@
 #endregion License
 
 using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Elect.Web.DataTable.Models.Constants
