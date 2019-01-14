@@ -27,6 +27,7 @@ using System.Linq;
 using System.Reflection;
 using Elect.Web.DataTable.Models.Options;
 using Elect.Web.DataTable.Utils;
+using EnumsNET;
 
 namespace Elect.Web.DataTable.Attributes
 {
@@ -66,6 +67,12 @@ namespace Elect.Web.DataTable.Attributes
         public string FilterColHint { get; set; }
 
         /// <summary>
+        ///     Additional HTML Element attributes for filter column 
+        /// </summary>
+        /// <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
+        public string FilterColAdditionalAttribute { get; set; }
+        
+        /// <summary>
         ///     Additional HTML Element attributes for header column 
         /// </summary>
         /// <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
@@ -84,6 +91,7 @@ namespace Elect.Web.DataTable.Attributes
             columnModel.CustomAttributes = propertyInfo.GetCustomAttributes().ToArray();
             columnModel.Width = Width;
             columnModel.FilterColHint = TranslateHelper.GetTranslate(FilterColHint);
+            columnModel.FilterColAdditionalAttribute = FilterColAdditionalAttribute;
             columnModel.AdditionalAttributeHeader = AdditionalAttributeHeader;
         }
     }

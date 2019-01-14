@@ -14,24 +14,20 @@
             <summary>
                 Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
             </summary>
-            <remarks>The filter col in this context is below main column. This one different with <see cref="T:Elect.Web.DataTable.Attributes.DataTableFilterAttribute"/> (custom filter col).</remarks>
+            <remarks>The filter col in this context is below main column. This one different with <see cref="!:DataTableFilterAttribute"/> (custom filter col).</remarks>
             <remarks>Support Multi Language Translation by setup <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>.</remarks>
+        </member>
+        <member name="P:Elect.Web.DataTable.Attributes.DataTableAttribute.FilterColAdditionalAttribute">
+            <summary>
+                Additional HTML Element attributes for filter column 
+            </summary>
+            <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Attributes.DataTableAttribute.AdditionalAttributeHeader">
             <summary>
                 Additional HTML Element attributes for header column 
             </summary>
             <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
-        </member>
-        <member name="T:Elect.Web.DataTable.Attributes.DataTableFilterAttribute">
-            <summary>
-                Setup Custom Position filter for the DataTable Column
-            </summary>
-        </member>
-        <member name="P:Elect.Web.DataTable.Attributes.DataTableFilterAttribute.Selector">
-            <summary>
-                Sets sSelector on the column (i.e. selector for custom positioning) 
-            </summary>
         </member>
         <member name="T:Elect.Web.DataTable.Attributes.DataTableIgnoreAttribute">
             <inheritdoc />
@@ -52,6 +48,12 @@
             <summary>
                 Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
             </summary>
+        </member>
+        <member name="P:Elect.Web.DataTable.Models.Column.ColumnModel.FilterColAdditionalAttribute">
+            <summary>
+                Additional HTML Element attributes for filter column 
+            </summary>
+            <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Column.ColumnModel.AdditionalAttributeHeader">
             <summary>
@@ -229,6 +231,11 @@
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.All">
             <summary>
                 Default is "All"
+            </summary>
+        </member>
+        <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.Loading">
+            <summary>
+                Default is "Loading..."
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Request.DataTableRequestModel.Data">

@@ -1,7 +1,5 @@
 ﻿using Elect.Web.DataTable.Attributes;
 using System;
-using Elect.Web.DataTable.Models.Constants;
-
 namespace Elect.Sample.Web.DataTable.Models
 {
     public class UserModel
@@ -9,7 +7,6 @@ namespace Elect.Sample.Web.DataTable.Models
         [DataTable(IsVisible = false, Order = 1)]
         public int Id { get; set; }
 
-        [DataTableFilter(FilterType.Text, Selector = "filter-col-DisplayName")]
         [DataTable(DisplayName = "Name", Order = 3)]
         public string FullName { get; set; }
 

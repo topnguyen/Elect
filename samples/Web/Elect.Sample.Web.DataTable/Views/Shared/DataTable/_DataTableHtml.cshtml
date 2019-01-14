@@ -9,7 +9,7 @@
 }
 
 <div id="example_wrapper" class="container-fluid dt-bootstrap4">
-    <table id="@Model.Id" class="table table-striped table-bordered @(Model.TableClass ?? string.Empty)" style="width:100%">
+    <table id="@Model.Id" class="table table-striped table-bordered @(Model.TableClass ?? string.Empty)" style="width: 100%">
         <thead>
         @if (Model.IsUseColumnFilter == true)
         {
@@ -22,45 +22,57 @@
                     }
                     else
                     {
-                        if (column.FilterColHint != null)
-                        {
-                            <th id="filter-@column.Name">@column.FilterColHint</th>
-                                                                              
-                            continue;
-                        }
-                        
-                        // Render default filter col hint
-                        
-                        var booleanTypes = new List<Type>
-                        {
-                            typeof(bool),
-                            typeof(bool?)
-                        };
-                        
-                        var dateTimeTypes = new List<Type>
-                        {
-                            typeof(DateTime),
-                            typeof(DateTime?),
-                            typeof(DateTimeOffset),
-                            typeof(DateTimeOffset?)
-                        };
-                        
-                        if (column.Type.IsEnum)
-                        {
-                            <th id="filter-@column.Name">@ElectDataTableOptions.Instance.DefaultDisplayText.All @column.DisplayName</th>
-                        }
-                        else if (booleanTypes.Contains(column.Type))
-                        {
-                            <th id="filter-@column.Name">@ElectDataTableOptions.Instance.DefaultDisplayText.All</th>
-                        }
-                        else if (dateTimeTypes.Contains(column.Type))
-                        {
-                            <th id="filter-@column.Name">@ElectDataTableOptions.Instance.DefaultDisplayText.FilterBy dd/MM/yyyy</th>
-                        }
-                        else
-                        {
-                            <th id="filter-@column.Name">@ElectDataTableOptions.Instance.DefaultDisplayText.Filter @column.DisplayName</th>
-                        }
+                        <th id="filter-@column.Name" @Html.Raw(string.IsNullOrWhiteSpace(column.FilterColAdditionalAttribute) ? string.Empty : column.FilterColAdditionalAttribute)>
+                            @if (column.FilterColHint != null)
+                            {
+                                <text>
+                                    @column.FilterColHint
+                                </text>
+                            }
+                            else
+                            {
+                                // Render default filter col hint
+
+                                var booleanTypes = new List<Type>
+                                {
+                                    typeof(bool),
+                                    typeof(bool?)
+                                };
+
+                                var dateTimeTypes = new List<Type>
+                                {
+                                    typeof(DateTime),
+                                    typeof(DateTime?),
+                                    typeof(DateTimeOffset),
+                                    typeof(DateTimeOffset?)
+                                };
+
+                                if (column.Type.IsEnum)
+                                {
+                                    <text>
+                                        @ElectDataTableOptions.Instance.DefaultDisplayText.All @column.DisplayName
+                                    </text>
+                                }
+                                else if (booleanTypes.Contains(column.Type))
+                                {
+                                    <text>
+                                        @ElectDataTableOptions.Instance.DefaultDisplayText.All
+                                    </text>
+                                }
+                                else if (dateTimeTypes.Contains(column.Type))
+                                {
+                                    <text>
+                                        @ElectDataTableOptions.Instance.DefaultDisplayText.FilterBy @ElectDataTableOptions.Instance.DateFormat
+                                    </text>
+                                }
+                                else
+                                {
+                                    <text>
+                                        @ElectDataTableOptions.Instance.DefaultDisplayText.Filter @column.DisplayName
+                                    </text>
+                                }
+                            }
+                        </th>
                     }
                 }
             </tr>
@@ -89,7 +101,7 @@
         <tbody>
         <tr>
             <td colspan="@Model.Columns.Count" class="dataTables_empty">
-                Loading...
+                @ElectDataTableOptions.Instance.DefaultDisplayText.Loading
             </td>
         </tr>
         </tbody>
