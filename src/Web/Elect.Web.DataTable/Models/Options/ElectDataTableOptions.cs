@@ -24,11 +24,14 @@ using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
+using Elect.Web.DataTable.Utils;
 
 namespace Elect.Web.DataTable.Models.Options
 {
     public class ElectDataTableOptions : IElectOptions
     {
+        private ElectDataTableDefaultDisplayTextModel _defaultDisplayText = new ElectDataTableDefaultDisplayTextModel();
+
         public static ElectDataTableOptions Instance { get; set; }
 
         /// <summary>
@@ -54,12 +57,11 @@ namespace Elect.Web.DataTable.Models.Options
         /// </summary>
         public string DateTimeFormat { get; set; } = "dd/MM/yyyy hh:mm:ss tt";
 
-        private ElectDataTableDefaultDisplayTextModel _defaultDisplayText = new ElectDataTableDefaultDisplayTextModel();
-
         /// <summary>
         ///     Set default display text for common text in DataTable.
         /// </summary>
         /// <remarks>Set null will use as default value.</remarks>
+        /// <remarks>Support translate by <see cref="SharedResourceType"/> when get the value of each text. </remarks>
         public ElectDataTableDefaultDisplayTextModel DefaultDisplayText
         {
             get => _defaultDisplayText;
@@ -86,34 +88,71 @@ namespace Elect.Web.DataTable.Models.Options
 
     public class ElectDataTableDefaultDisplayTextModel
     {
+        private string _yes = "Yes";
+        private string _no = "No";
+        private string _filter = "Filter";
+        private string _filterBy = "Filter by";
+        private string _all = "All";
+        private string _loading = "Loading...";
+
         /// <summary>
         ///     Default is "Yes"
         /// </summary>
-        public string Yes { get; set; } = "Yes";
-        
+        /// <remarks>Support translate by <see cref="ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
+        public string Yes
+        {
+            get => ElectDataTableTranslator.Get(_yes);
+            set => _yes = value;
+        }
+
         /// <summary>
         ///     Default is "No"
         /// </summary>
-        public string No { get; set; } = "No";
-        
+        /// <remarks>Support translate by <see cref="ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
+        public string No
+        {
+            get => ElectDataTableTranslator.Get(_no);
+            set => _no = value;
+        }
+
         /// <summary>
         ///     Default is "Filter"
         /// </summary>
-        public string Filter { get; set; } = "Filter";
-        
+        /// <remarks>Support translate by <see cref="ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
+        public string Filter
+        {
+            get => ElectDataTableTranslator.Get(_filter);
+            set => _filter = value;
+        }
+
         /// <summary>
         ///     Default is "Filter by"
         /// </summary>
-        public string FilterBy { get; set; } = "Filter by";
-        
+        /// <remarks>Support translate by <see cref="ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
+        public string FilterBy
+        {
+            get => ElectDataTableTranslator.Get(_filterBy);
+            set => _filterBy = value;
+        }
+
         /// <summary>
         ///     Default is "All"
         /// </summary>
-        public string All { get; set; } = "All";
-        
+        /// <remarks>Support translate by <see cref="ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
+        public string All
+        {
+            get => ElectDataTableTranslator.Get(_all);
+            set => _all = value;
+        }
+
         /// <summary>
         ///     Default is "Loading..."
         /// </summary>
-        public string Loading { get; set; } = "Loading...";
+        /// <remarks>Support translate by <see cref="ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
+        public string Loading
+        {
+            get => ElectDataTableTranslator.Get(_loading);
+            set => _loading = value;
+        }
     }
 }

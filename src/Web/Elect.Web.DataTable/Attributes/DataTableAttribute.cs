@@ -80,7 +80,7 @@ namespace Elect.Web.DataTable.Attributes
 
         public override void ApplyTo(ColumnModel columnModel, PropertyInfo propertyInfo)
         {
-            columnModel.DisplayName = this.GetDisplayName() ?? TranslateHelper.GetTranslate(columnModel.Name);
+            columnModel.DisplayName = this.GetDisplayName() ?? ElectDataTableTranslator.Get(columnModel.Name);
             columnModel.IsSortable = IsSortable;
             columnModel.IsVisible = IsVisible;
             columnModel.IsSearchable = IsSearchable;
@@ -90,7 +90,7 @@ namespace Elect.Web.DataTable.Attributes
             columnModel.CssClassHeader = CssClassHeader;
             columnModel.CustomAttributes = propertyInfo.GetCustomAttributes().ToArray();
             columnModel.Width = Width;
-            columnModel.FilterColHint = TranslateHelper.GetTranslate(FilterColHint);
+            columnModel.FilterColHint = ElectDataTableTranslator.Get(FilterColHint);
             columnModel.FilterColAdditionalAttribute = FilterColAdditionalAttribute;
             columnModel.AdditionalAttributeHeader = AdditionalAttributeHeader;
         }

@@ -191,6 +191,7 @@
                 Set default display text for common text in DataTable.
             </summary>
             <remarks>Set null will use as default value.</remarks>
+            <remarks>Support translate by <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.RequestDateTimeFormatType">
             <summary>
@@ -212,31 +213,37 @@
             <summary>
                 Default is "Yes"
             </summary>
+            <remarks>Support translate by <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.No">
             <summary>
                 Default is "No"
             </summary>
+            <remarks>Support translate by <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.Filter">
             <summary>
                 Default is "Filter"
             </summary>
+            <remarks>Support translate by <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.FilterBy">
             <summary>
                 Default is "Filter by"
             </summary>
+            <remarks>Support translate by <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.All">
             <summary>
                 Default is "All"
             </summary>
+            <remarks>Support translate by <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.Loading">
             <summary>
                 Default is "Loading..."
             </summary>
+            <remarks>Support translate by <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/> when get the value of each text. </remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Request.DataTableRequestModel.Data">
             <summary>
@@ -325,6 +332,21 @@
             <returns></returns>
             <remarks>If the filter value not found, then not have the property name (key) in Dictionary</remarks>
         </member>
+        <member name="M:Elect.Web.DataTable.Utils.ElectDataTableTranslator.Get(System.String)">
+            <summary>
+                Get Translate string for the <see paramref="key"/> by lookup on <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Web.DataTable.Utils.ElectDataTableTranslator.Get(System.String,System.Type)">
+            <summary>
+                Get Translate string for the <see paramref="key"/> by lookup on <paramref name="resourceType"/>
+            </summary>
+            <param name="key"></param>
+            <param name="resourceType"></param>
+            <returns></returns>
+        </member>
         <member name="M:Elect.Web.DataTable.Utils.EnumUtils.EnumHelper.GetLabel(System.Enum)">
             <summary>
                 Get Enum Label (Display Name ?? Description ?? Name) 
@@ -340,21 +362,6 @@
             <param name="type"></param>
             <returns></returns>
             <remarks> The method support both: Enum and Nullable Enum Type. </remarks>
-        </member>
-        <member name="M:Elect.Web.DataTable.Utils.TranslateHelper.GetTranslate(System.String)">
-            <summary>
-                Get Translate string for the <see paramref="key"/> by lookup on <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>
-            </summary>
-            <param name="key"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Elect.Web.DataTable.Utils.TranslateHelper.GetTranslate(System.String,System.Type)">
-            <summary>
-                Get Translate string for the <see paramref="key"/> by lookup on <paramref name="resourceType"/>
-            </summary>
-            <param name="key"></param>
-            <param name="resourceType"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>
