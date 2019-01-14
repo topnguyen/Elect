@@ -1,4 +1,5 @@
 ﻿using Elect.Web.DataTable;
+using Elect.Web.DataTable.Models.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;

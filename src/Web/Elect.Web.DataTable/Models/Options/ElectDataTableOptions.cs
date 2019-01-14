@@ -54,6 +54,18 @@ namespace Elect.Web.DataTable.Models.Options
         /// </summary>
         public string DateTimeFormat { get; set; } = "dd/MM/yyyy hh:mm:ss tt";
 
+        private ElectDataTableDefaultDisplayTextModel _defaultDisplayText = new ElectDataTableDefaultDisplayTextModel();
+
+        /// <summary>
+        ///     Set default display text for common text in DataTable.
+        /// </summary>
+        /// <remarks>Set null will use as default value.</remarks>
+        public ElectDataTableDefaultDisplayTextModel DefaultDisplayText
+        {
+            get => _defaultDisplayText;
+            set => _defaultDisplayText = value ?? new ElectDataTableDefaultDisplayTextModel();
+        }
+
         /// <summary>
         ///     Control the way to parse string to DateTime every request. If value is
         ///     <see cref="DateTimeFormatType.Specific" />, every request will use the
@@ -70,5 +82,33 @@ namespace Elect.Web.DataTable.Models.Options
         ///     <see cref="Attributes.DataTableAttribute.DisplayNameResourceType" /> if set
         /// </summary>
         public Type SharedResourceType { get; set; }
+    }
+
+    public class ElectDataTableDefaultDisplayTextModel
+    {
+        /// <summary>
+        ///     Default is "Yes"
+        /// </summary>
+        public string Yes { get; set; } = "Yes";
+        
+        /// <summary>
+        ///     Default is "No"
+        /// </summary>
+        public string No { get; set; } = "No";
+        
+        /// <summary>
+        ///     Default is "Filter"
+        /// </summary>
+        public string Filter { get; set; } = "Filter";
+        
+        /// <summary>
+        ///     Default is "Filter by"
+        /// </summary>
+        public string FilterBy { get; set; } = "Filter by";
+        
+        /// <summary>
+        ///     Default is "All"
+        /// </summary>
+        public string All { get; set; } = "All";
     }
 }

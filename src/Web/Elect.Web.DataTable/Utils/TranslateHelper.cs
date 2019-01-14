@@ -28,7 +28,7 @@ namespace Elect.Web.DataTable.Utils
     internal static class TranslateHelper
     {
         /// <summary>
-        ///     Get Translate string for the <see cref="key"/> by lookup on <see cref=" ElectDataTableOptions.SharedResourceType"/>
+        ///     Get Translate string for the <see paramref="key"/> by lookup on <see cref=" ElectDataTableOptions.SharedResourceType"/>
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Elect.Web.DataTable.Utils
         }
 
         /// <summary>
-        ///     Get Translate string for the <see cref="key"/> by lookup on <paramref name="resourceType"/>
+        ///     Get Translate string for the <see paramref="key"/> by lookup on <paramref name="resourceType"/>
         /// </summary>
         /// <param name="key"></param>
         /// <param name="resourceType"></param>

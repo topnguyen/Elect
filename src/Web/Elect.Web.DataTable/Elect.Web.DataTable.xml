@@ -184,6 +184,12 @@
                 <para> Format "dd/MM/yyyy hh:mm tt" by default </para>
             </summary>
         </member>
+        <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.DefaultDisplayText">
+            <summary>
+                Set default display text for common text in DataTable.
+            </summary>
+            <remarks>Set null will use as default value.</remarks>
+        </member>
         <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.RequestDateTimeFormatType">
             <summary>
                 Control the way to parse string to DateTime every request. If value is
@@ -198,6 +204,31 @@
                 Shared resource type to localize all
                 <see cref="P:Elect.Web.DataTable.Attributes.DataTableAttribute.DisplayName" /> and will be override by
                 <see cref="P:Elect.Web.DataTable.Attributes.DataTableAttribute.DisplayNameResourceType" /> if set
+            </summary>
+        </member>
+        <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.Yes">
+            <summary>
+                Default is "Yes"
+            </summary>
+        </member>
+        <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.No">
+            <summary>
+                Default is "No"
+            </summary>
+        </member>
+        <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.Filter">
+            <summary>
+                Default is "Filter"
+            </summary>
+        </member>
+        <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.FilterBy">
+            <summary>
+                Default is "Filter by"
+            </summary>
+        </member>
+        <member name="P:Elect.Web.DataTable.Models.Options.ElectDataTableDefaultDisplayTextModel.All">
+            <summary>
+                Default is "All"
             </summary>
         </member>
         <member name="P:Elect.Web.DataTable.Models.Request.DataTableRequestModel.Data">
@@ -230,6 +261,15 @@
                 CreatedDate = row.CreatedDate.ToString("dd MM yy") }
             </param>
             <returns></returns>
+        </member>
+        <member name="M:Elect.Web.DataTable.Utils.DataTableRequestModelUtils.DataTableRequestExtensions.GetFilterValues``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel)">
+            <summary>
+                Get Filter Values to Dictionary, key is property name and value is filter value of the property.
+            </summary>
+            <param name="model"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+            <remarks>If the filter value not found, then not have the property name (key) in Dictionary</remarks>
         </member>
         <member name="M:Elect.Web.DataTable.Utils.DataTableRequestModelUtils.DataTableRequestExtensions.GetFilterValue``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel,System.String)">
             <summary>
@@ -269,6 +309,15 @@
             <param name="filterValue2"></param>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="M:Elect.Web.DataTable.Utils.DataTableRequestModelUtils.DataTableRequestHelper.GetFilterValues``1(Elect.Web.DataTable.Models.Request.DataTableRequestModel)">
+            <summary>
+                Get Filter Values to Dictionary, key is property name and value is filter value of the property.
+            </summary>
+            <param name="model"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+            <remarks>If the filter value not found, then not have the property name (key) in Dictionary</remarks>
+        </member>
         <member name="M:Elect.Web.DataTable.Utils.EnumUtils.EnumHelper.GetLabel(System.Enum)">
             <summary>
                 Get Enum Label (Display Name ?? Description ?? Name) 
@@ -287,14 +336,14 @@
         </member>
         <member name="M:Elect.Web.DataTable.Utils.TranslateHelper.GetTranslate(System.String)">
             <summary>
-                Get Translate string for the <see cref="!:key"/> by lookup on <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>
+                Get Translate string for the <see paramref="key"/> by lookup on <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Web.DataTable.Utils.TranslateHelper.GetTranslate(System.String,System.Type)">
             <summary>
-                Get Translate string for the <see cref="!:key"/> by lookup on <paramref name="resourceType"/>
+                Get Translate string for the <see paramref="key"/> by lookup on <paramref name="resourceType"/>
             </summary>
             <param name="key"></param>
             <param name="resourceType"></param>
