@@ -26,6 +26,9 @@ using System.Reflection;
 
 namespace Elect.Web.DataTable.Attributes
 {
+    /// <summary>
+    ///     Setup Custom Position filter for the DataTable Column
+    /// </summary>
     public class DataTableFilterAttribute : DataTableBaseAttribute
     {
         private readonly string _filterType;

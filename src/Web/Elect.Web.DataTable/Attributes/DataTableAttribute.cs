@@ -25,11 +25,17 @@ using Elect.Web.DataTable.Utils.DataTableAttributeUtils;
 using System;
 using System.Linq;
 using System.Reflection;
+using Elect.Web.DataTable.Models.Options;
+using Elect.Web.DataTable.Utils;
 
 namespace Elect.Web.DataTable.Attributes
 {
     public class DataTableAttribute : DataTableBaseAttribute
     {
+        /// <summary>
+        ///     Column Header Name.
+        /// </summary>
+        /// <remarks>Support Multi Language Translation by setup <see cref="ElectDataTableOptions.SharedResourceType"/>.</remarks>
         public string DisplayName { get; set; }
 
         public bool IsVisible { get; set; } = true;
@@ -53,6 +59,13 @@ namespace Elect.Web.DataTable.Attributes
         public string Width { get; set; }
 
         /// <summary>
+        ///     Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
+        /// </summary>
+        /// <remarks>The filter col in this context is below main column. This one different with <see cref="DataTableFilterAttribute"/> (custom filter col).</remarks>
+        /// <remarks>Support Multi Language Translation by setup <see cref="ElectDataTableOptions.SharedResourceType"/>.</remarks>
+        public string FilterColHint { get; set; }
+
+        /// <summary>
         ///     Additional HTML Element attributes for header column 
         /// </summary>
         /// <remarks> Ex: "data-toggle='tooltip' data-original-title='Tooltip Title'" </remarks>
@@ -60,7 +73,7 @@ namespace Elect.Web.DataTable.Attributes
 
         public override void ApplyTo(ColumnModel columnModel, PropertyInfo propertyInfo)
         {
-            columnModel.DisplayName = this.GetDisplayName() ?? columnModel.Name;
+            columnModel.DisplayName = this.GetDisplayName() ?? TranslateHelper.GetTranslate(columnModel.Name);
             columnModel.IsSortable = IsSortable;
             columnModel.IsVisible = IsVisible;
             columnModel.IsSearchable = IsSearchable;
@@ -70,6 +83,7 @@ namespace Elect.Web.DataTable.Attributes
             columnModel.CssClassHeader = CssClassHeader;
             columnModel.CustomAttributes = propertyInfo.GetCustomAttributes().ToArray();
             columnModel.Width = Width;
+            columnModel.FilterColHint = TranslateHelper.GetTranslate(FilterColHint);
             columnModel.AdditionalAttributeHeader = AdditionalAttributeHeader;
         }
     }

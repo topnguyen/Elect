@@ -26,6 +26,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Web.DataTable.Utils;
 
 namespace Elect.Web.DataTable.Models.Column
 {
@@ -72,12 +73,12 @@ namespace Elect.Web.DataTable.Models.Column
                     new
                     {
                         value = DataConstants.True,
-                        label = "Yes" // TODO need support localize
+                        label = TranslateHelper.GetTranslate("Yes")
                     },
                     new
                     {
                         value = DataConstants.False,
-                        label = "No" // TODO need support localize
+                        label = TranslateHelper.GetTranslate("No")
                     }
                 };
             }

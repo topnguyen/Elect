@@ -69,6 +69,11 @@ namespace Elect.Web.DataTable.Models.Column
         public Attribute[] CustomAttributes { get; set; }
 
         public string Width { get; set; }
+        
+        /// <summary>
+        ///     Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
+        /// </summary>
+        public string FilterColHint { get; set; }
 
         /// <summary>
         ///     Additional HTML Element attributes for header column 

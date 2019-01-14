@@ -29,14 +29,21 @@ namespace Elect.Web.DataTable.Utils.DataTableAttributeUtils
     {
         internal static string GetDisplayName(this DataTableAttribute attribute)
         {
-            if (string.IsNullOrWhiteSpace(attribute.DisplayName) || attribute.DisplayNameResourceType == null &&
-                ElectDataTableOptions.Instance.SharedResourceType == null) return attribute.DisplayName;
+            if (string.IsNullOrWhiteSpace(attribute.DisplayName))
+            {
+                return attribute.DisplayName;
+            }
 
-            var value = TypeHelper.GetResourceLookup<string>(attribute.DisplayNameResourceType, attribute.DisplayName);
+            // Translate by Attribute Resource Type is first Priority
 
-            if (string.IsNullOrWhiteSpace(value)) return attribute.DisplayName;
+            if (attribute.DisplayNameResourceType != null)
+            {
+                return TranslateHelper.GetTranslate(attribute.DisplayName, attribute.DisplayNameResourceType);
+            }
 
-            return value;
+            // Translate by Shared Resource Type
+            
+            return TranslateHelper.GetTranslate(attribute.DisplayName);
         }
     }
 }

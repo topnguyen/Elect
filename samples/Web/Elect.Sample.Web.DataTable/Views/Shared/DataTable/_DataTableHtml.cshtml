@@ -13,9 +13,44 @@
         @if (Model.IsUseColumnFilter == true)
         {
             <tr>
-                @for (int i = 0; i < Model.Columns.Count; i++)
+                @foreach (var column in Model.Columns)
                 {
-                    <th></th>
+                    if (!column.IsSearchable)
+                    {
+                        <th id="filter-@column.Name"></th>
+                    }
+                    else
+                    {
+                        if (column.FilterColHint != null)
+                        {
+                            <th id="filter-@column.Name">@column.FilterColHint</th>
+                                                                              
+                            continue;
+                        }
+                        
+                        // Render default filter col hint
+                        
+                        var dateTimeTypes = new List<Type>
+                        {
+                            typeof(DateTime),
+                            typeof(DateTime?),
+                            typeof(DateTimeOffset),
+                            typeof(DateTimeOffset?)
+                        };
+                        
+                        if (column.Type.IsEnum)
+                        {
+                            <th id="filter-@column.Name">All @column.DisplayName</th>
+                        }
+                        else if (dateTimeTypes.Contains(column.Type))
+                        {
+                            <th id="filter-@column.Name">Filter by dd/MM/yyyy</th>
+                        }
+                        else
+                        {
+                            <th id="filter-@column.Name">Filter @column.DisplayName</th>
+                        }
+                    }
                 }
             </tr>
         }
