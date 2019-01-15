@@ -62,7 +62,7 @@ namespace Elect.Web.DataTable.Attributes
         /// <summary>
         ///     Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
         /// </summary>
-        /// <remarks>The filter col in this context is below main column. This one different with <see cref="DataTableFilterAttribute"/> (custom filter col).</remarks>
+        /// <remarks>The filter col in this context is below main column.</remarks>
         /// <remarks>Support Multi Language Translation by setup <see cref="ElectDataTableOptions.SharedResourceType"/>.</remarks>
         public string FilterColHint { get; set; }
 
