@@ -159,7 +159,9 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
                 var parameters = new List<object>();
 
                 for (var i = 0; i < dtParameters.Columns; i++)
+                {
                     if (dtParameters.ListIsSearchable[i])
+                    {
                         try
                         {
                             var column = FindColumn(dtParameters, columns, i);
@@ -170,8 +172,11 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
                             // if the clause doesn't work, skip it!
                             // ex: can't parse a string to enum or datetime type
                         }
+                    }
+                }
 
                 var values = parts.Where(p => p != null);
+                
                 data = data.Where(string.Join(" or ", values), parameters.ToArray());
             }
 
@@ -185,7 +190,9 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
                         var parameters = new List<object>();
                         var filterClause = GetFilterClause(searchColumn, column, parameters);
                         if (!string.IsNullOrWhiteSpace(filterClause))
+                        {
                             data = data.Where(filterClause, parameters.ToArray());
+                        }
                     }
                 }
 
@@ -195,27 +202,36 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
                 var columnNumber = dtParameters.SortCol[i];
 
                 if (dtParameters.ColReorderIndexs?.Any() == true)
+                {
                     columnNumber = dtParameters.ColReorderIndexs[columnNumber];
+                }
 
                 var column = FindColumn(dtParameters, columns, columnNumber);
                 var columnName = column.PropertyInfo.Name;
                 var sortDir = dtParameters.SortDir[i];
                 if (i != 0)
+                {
                     sortString += ", ";
+                }
                 sortString += columnName + " " + sortDir;
             }
 
-            if (string.IsNullOrWhiteSpace(sortString)) sortString = columns[0].PropertyInfo.Name;
+            if (string.IsNullOrWhiteSpace(sortString))
+            {
+                sortString = columns[0].PropertyInfo.Name;
+            }
+            
             data = data.OrderBy(sortString);
 
             return data;
         }
 
-        private static DataTablePropertyInfoModel FindColumn(DataTableRequestModel dtParameters,
-            DataTablePropertyInfoModel[] columns, int i)
+        private static DataTablePropertyInfoModel FindColumn(DataTableRequestModel dtParameters, DataTablePropertyInfoModel[] columns, int i)
         {
             if (dtParameters.ColumnNames.Any())
+            {
                 return columns.First(x => x.PropertyInfo.Name == dtParameters.ColumnNames[i]);
+            }
 
             return columns[i];
         }
@@ -225,14 +241,12 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
             Filters.Add(Guard(arg => arg is T, filter));
         }
 
-        private static ReturnedFilteredQueryForType Guard(Func<DataTablePropertyInfoModel, bool> guard,
-            GuardedFilter filter)
+        private static ReturnedFilteredQueryForType Guard(Func<DataTablePropertyInfoModel, bool> guard, GuardedFilter filter)
         {
             return (q, c, t, p) => !guard(t) ? null : filter(q, c, t, p);
         }
 
-        private static string GetFilterClause(string query, DataTablePropertyInfoModel column,
-            List<object> parametersForLinqQuery)
+        private static string GetFilterClause(string query, DataTablePropertyInfoModel column, List<object> parametersForLinqQuery)
         {
             string Clause(string queryPart)
             {
