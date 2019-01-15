@@ -14,7 +14,7 @@
             <summary>
                 Set place holder for the filter column as hint. If null will take default by the logic in _DataTableHTML.cshtml
             </summary>
-            <remarks>The filter col in this context is below main column. This one different with <see cref="!:DataTableFilterAttribute"/> (custom filter col).</remarks>
+            <remarks>The filter col in this context is below main column.</remarks>
             <remarks>Support Multi Language Translation by setup <see cref="P:Elect.Web.DataTable.Models.Options.ElectDataTableOptions.SharedResourceType"/>.</remarks>
         </member>
         <member name="P:Elect.Web.DataTable.Attributes.DataTableAttribute.FilterColAdditionalAttribute">
