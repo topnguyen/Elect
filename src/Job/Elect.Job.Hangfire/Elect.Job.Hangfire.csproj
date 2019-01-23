@@ -28,6 +28,6 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="HangFire" Version="1.6.21" />
-        <PackageReference Include="Hangfire.MemoryStorage" Version="1.5.3" />
+        <PackageReference Include="Hangfire.MemoryStorage" Version="1.6.0" />
     </ItemGroup>
 </Project>
