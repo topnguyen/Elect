@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using StringHelper = Elect.Core.StringUtils.StringHelper;
 
 namespace Elect.Sample.Data.EF
 {
     public class Program
     {
         private static IRepository<UserEntity> _userRepo;
+        private static IRepository<UserProfileEntity> _userProfileRepo;
         private static IUnitOfWork _unitOfWork;
 
         public static void Main(string[] args)
@@ -42,19 +44,36 @@ namespace Elect.Sample.Data.EF
                 _unitOfWork = serviceProvider.GetService<IUnitOfWork>();
 
                 _userRepo = _unitOfWork.GetRepository<UserEntity>();
+                _userProfileRepo = _unitOfWork.GetRepository<UserProfileEntity>();
 
-                var userId = AddUser("User Name 1");
+                var user1Id = AddUser("User Name 1");
 
-                var firstUserInfo = GetUser(userId);
+                AddRandomProfile(user1Id, false);
+                AddRandomProfile(user1Id, false);
+                AddRandomProfile(user1Id, false);
+                AddRandomProfile(user1Id, true);
+                AddRandomProfile(user1Id, true);
+                
+                var firstUserInfo = GetUser(user1Id);
 
-                UpdateUser(userId, "User Name 2");
+                UpdateUser(user1Id, "User Name 2");
 
-                var secondUserInfo = GetUser(userId);
+                var user2Id = AddUser("User Name 2");
 
-                RemoveUser(userId);
+                AddRandomProfile(user2Id, false);
+                AddRandomProfile(user2Id, false);
+                AddRandomProfile(user2Id, false);
+                AddRandomProfile(user2Id, false);
+                AddRandomProfile(user2Id, true);
+                
+                var secondUserInfo = GetUser(user2Id);
+
+                var user3Id = AddUser("User Name 3");
+
+                RemoveUser(user3Id);
 
                 // Should be null
-                var finalUserInfo = GetUser(userId);
+                var thirdUserInfo = GetUser(user3Id);
 
                 TransactionRollback();
 
@@ -102,6 +121,21 @@ namespace Elect.Sample.Data.EF
             UserEntity userEntity = _userRepo.Get(user => user.Id == id).FirstOrDefault();
 
             return userEntity;
+        }
+        
+        private static Guid AddRandomProfile(Guid userId, bool isDeleted)
+        {
+            var userProfileEntity = new UserProfileEntity
+            {
+                Phone = StringHelper.Generate(10),
+                DeletedTime = isDeleted ? (DateTimeOffset?) null : DateTimeOffset.UtcNow
+            };
+
+            _userProfileRepo.Add(userProfileEntity);
+
+            _unitOfWork.SaveChanges();
+
+            return userProfileEntity.Id;
         }
 
         private static void TransactionRollback()

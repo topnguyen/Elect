@@ -1,6 +1,6 @@
 ﻿{
   "ConnectionStrings": {
-    "Development": "Data Source=.;Initial Catalog=Elect.Sample;User ID=sa;Password=123456;Trusted_Connection=False;MultipleActiveResultSets=True",
+    "Development": "Data Source=localhost,1433;Initial Catalog=Elect.Sample;User ID=sa;Password=Password123;Trusted_Connection=False;MultipleActiveResultSets=True",
     "Staging": "Data Source=.;Initial Catalog=Elect.Sample;User ID=sa;Password=123456;Trusted_Connection=False;MultipleActiveResultSets=True",
     "Production": "Data Source=.;Initial Catalog=Elect.Sample;User ID=sa;Password=123456;Trusted_Connection=False;MultipleActiveResultSets=True"
   }

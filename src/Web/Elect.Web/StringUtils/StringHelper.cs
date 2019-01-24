@@ -24,7 +24,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace Elect.Web.StringUtils
 {
-    public class StringHelper
+    public class StringHelper : Core.StringUtils.StringHelper
     {
         public static string GetFriendlySlug(string value, int maxLength = 150)
         {
@@ -33,7 +33,7 @@ namespace Elect.Web.StringUtils
                 return string.Empty;
             }
 
-            value = Core.StringUtils.StringHelper.Normalize(value).ToLowerInvariant();
+            value = Normalize(value).ToLowerInvariant();
 
             var length = value.Length;
 
