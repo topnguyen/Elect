@@ -11,7 +11,7 @@ using DbContext = Elect.Sample.Data.EF.Services.DbContext;
 namespace Elect.Sample.Data.EF.Migrations
 {
     [DbContext(typeof(DbContext))]
-    [Migration("20190124045441_Initial")]
+    [Migration("20190124132936_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
