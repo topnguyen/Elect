@@ -246,11 +246,15 @@ namespace Elect.DI
 
             foreach (var assemblyName in options.ListAssemblyName)
             {
+                var rootAssemblyName = assemblyName.Split('.').FirstOrDefault();
+                
                 foreach (var assemblyFolderPath in options.ListAssemblyFolderPath)
                 {
-                    scanner.RegisterAssemblies(services, assemblyFolderPath, $"{assemblyName}.dll");
+                    // dll files
+                    scanner.RegisterAssemblies(services, assemblyFolderPath, $"{rootAssemblyName}.dll");
 
-                    scanner.RegisterAssemblies(services, assemblyFolderPath, $"{assemblyName}.*.dll");
+                    // dll prefix files
+                    scanner.RegisterAssemblies(services, assemblyFolderPath, $"{rootAssemblyName}.*.dll");
                 }
             }
 

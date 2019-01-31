@@ -91,6 +91,7 @@
             <summary>
                 List assembly name to scan, default is application name. 
             </summary>
+            <remarks>Default is root assembly name, e.g: Elect.Mapper.AutoMapper.dll => Scan Elect.dll and Elect.*.dll </remarks>
         </member>
         <member name="P:Elect.Mapper.AutoMapper.Models.ElectAutoMapperOptions.IMapperLifeTime">
             <summary>

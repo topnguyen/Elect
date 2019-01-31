@@ -84,12 +84,15 @@ namespace Elect.Mapper.AutoMapper
 
             foreach (var assemblyName in options.ListAssemblyName)
             {
+                var rootAssemblyName = assemblyName.Split('.').FirstOrDefault();
+
                 foreach (var assemblyFolderPath in options.ListAssemblyFolderPath)
                 {
-                    var listDllPath =
-                        Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.dll", SearchOption.AllDirectories)
-                        .Concat(Directory.GetFiles(assemblyFolderPath, $"{assemblyName}.*.dll", SearchOption.AllDirectories))
-                        .Distinct();
+                    var dllFiles = Directory.GetFiles(assemblyFolderPath, $"{rootAssemblyName}.dll", SearchOption.AllDirectories);
+                    
+                    var dllPrefixFiles = Directory.GetFiles(assemblyFolderPath, $"{rootAssemblyName}.*.dll", SearchOption.AllDirectories);
+                    
+                    var listDllPath = dllFiles.Concat(dllPrefixFiles).Distinct();
 
                     listAllDllPath.AddRange(listDllPath);
                 }
