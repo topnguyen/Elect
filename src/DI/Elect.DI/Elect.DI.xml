@@ -31,6 +31,7 @@
             <summary>
                 List assembly name to scan, default is application name. 
             </summary>
+            <remarks>Default is root assembly name, e.g: Elect.DI.dll => Scan Elect.dll and Elect.*.dll </remarks>
         </member>
         <member name="P:Elect.DI.Models.ElectPrintRegisteredToConsoleOptions.ListAssemblyName">
             <summary>

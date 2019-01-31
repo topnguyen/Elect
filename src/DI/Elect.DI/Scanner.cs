@@ -67,9 +67,7 @@ namespace Elect.DI
 
                     if (implementationTypeRegistered != null)
                     {
-                        throw new NotSupportedException(
-                            "Conflict implementation, " +
-                            $"${serviceDescriptor.ImplementationType} try to register for {serviceDescriptor.ServiceType.FullName} but it already register by {implementationTypeRegistered.FullName} before.");
+                        throw new NotSupportedException($"Conflict implementation, ${serviceDescriptor.ImplementationType} try to register for {serviceDescriptor.ServiceType.FullName} but it already register by {implementationTypeRegistered.FullName} before.");
                     }
 
                     // Check is service already register from same implementation => remove existing,
