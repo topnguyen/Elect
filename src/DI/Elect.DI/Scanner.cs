@@ -144,7 +144,7 @@ namespace Elect.DI
             {
                 searchPatterns = new List<string>
                 {
-                    PlatformServices.Default.Application.ApplicationBasePath
+                    PlatformServices.Default.Application.ApplicationName
                 };
             }
 
