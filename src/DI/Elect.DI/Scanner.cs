@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.AssemblyUtils;
@@ -28,12 +30,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Elect.DI
 {
     public class Scanner
     {
-        public void RegisterAssembly([NotNull]IServiceCollection services, [NotNull]Assembly assembly)
+        public void RegisterAssembly([NotNull] IServiceCollection services, [NotNull] Assembly assembly)
         {
             foreach (var typeInfo in assembly.DefinedTypes)
             {
@@ -53,7 +56,7 @@ namespace Elect.DI
                         continue;
                     }
 
-                    var dependencyAttribute = (DependencyAttribute)attribute;
+                    var dependencyAttribute = (DependencyAttribute) attribute;
 
                     var serviceDescriptor = dependencyAttribute.BuildServiceDescriptor(typeInfo);
 
@@ -67,7 +70,8 @@ namespace Elect.DI
 
                     if (implementationTypeRegistered != null)
                     {
-                        throw new NotSupportedException($"Conflict implementation, ${serviceDescriptor.ImplementationType} try to register for {serviceDescriptor.ServiceType.FullName} but it already register by {implementationTypeRegistered.FullName} before.");
+                        throw new NotSupportedException(
+                            $"Conflict implementation, ${serviceDescriptor.ImplementationType} try to register for {serviceDescriptor.ServiceType.FullName} but it already register by {implementationTypeRegistered.FullName} before.");
                     }
 
                     // Check is service already register from same implementation => remove existing,
@@ -93,7 +97,8 @@ namespace Elect.DI
         /// <param name="assemblyFolderPath"></param>
         /// <param name="fileSearchPattern">  Search Pattern by <c> Directory.GetFiles </c> </param>
         /// <returns> List of loaded assembly </returns>
-        public List<Assembly> RegisterAssemblies([NotNull]IServiceCollection services, [NotNull]string assemblyFolderPath, [NotNull]string fileSearchPattern)
+        public List<Assembly> RegisterAssemblies([NotNull] IServiceCollection services,
+            [NotNull] string assemblyFolderPath, [NotNull] string fileSearchPattern)
         {
             if (services == null)
             {
@@ -102,9 +107,10 @@ namespace Elect.DI
 
             CheckHelper.CheckNullOrWhiteSpace(assemblyFolderPath, nameof(assemblyFolderPath));
 
-            CheckHelper.CheckNullOrWhiteSpace(assemblyFolderPath, nameof(fileSearchPattern));
+            CheckHelper.CheckNullOrWhiteSpace(fileSearchPattern, nameof(fileSearchPattern));
 
-            var listDllPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern, SearchOption.AllDirectories).ToList();
+            var listDllPath = Directory.GetFiles(assemblyFolderPath, fileSearchPattern, SearchOption.AllDirectories)
+                .ToList();
 
             if (listDllPath.Any() != true)
             {
@@ -117,6 +123,52 @@ namespace Elect.DI
             {
                 RegisterAssembly(services, assembly);
             }
+
+            return assemblies;
+        }
+
+        /// <param name="folderPaths">The folder path store assemblies, default is null - mean search project base folder path</param>
+        /// <param name="searchPatterns"> Dll files search pattern. Use <c> Directory.GetFiles </c> to search files, default is null = mean "{root assembly}.dll" and "{root assembly}.*.dll"</param>
+        /// <returns> List of loaded assembly </returns>
+        public List<Assembly> GetAssemblies([NotNull] List<string> folderPaths = null, [NotNull] List<string> searchPatterns = null)
+        {
+            if (folderPaths?.Any() != true)
+            {
+                folderPaths = new List<string>
+                {
+                    PlatformServices.Default.Application.ApplicationBasePath
+                };
+            }
+            
+            if (searchPatterns?.Any() != true)
+            {
+                searchPatterns = new List<string>
+                {
+                    PlatformServices.Default.Application.ApplicationBasePath
+                };
+            }
+
+            // Scan Assemblies
+            
+            var listAllDllPath = new List<string>();
+
+            foreach (var assemblyName in searchPatterns)
+            {
+                var rootAssemblyName = assemblyName.Split('.').FirstOrDefault();
+
+                foreach (var assemblyFolderPath in folderPaths)
+                {
+                    var dllFiles = Directory.GetFiles(assemblyFolderPath, $"{rootAssemblyName}.dll", SearchOption.AllDirectories);
+                    
+                    var dllPrefixFiles = Directory.GetFiles(assemblyFolderPath, $"{rootAssemblyName}.*.dll", SearchOption.AllDirectories);
+                    
+                    var listDllPath = dllFiles.Concat(dllPrefixFiles).Distinct();
+
+                    listAllDllPath.AddRange(listDllPath);
+                }
+            }
+            
+            List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listAllDllPath.ToArray());
 
             return assemblies;
         }
