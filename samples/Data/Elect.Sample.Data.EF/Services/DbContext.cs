@@ -1,4 +1,5 @@
-﻿using Elect.Core.ConfigUtils;
+﻿using System.Linq;
+using Elect.Core.ConfigUtils;
 using Elect.Data.EF.Utils.ModelBuilderUtils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
