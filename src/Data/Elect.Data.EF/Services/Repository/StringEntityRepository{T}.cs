@@ -100,8 +100,11 @@ namespace Elect.Data.EF.Services.Repository
             foreach (var entity in entities)
             {
                 var oldEntity = entityNewData.Clone();
+                
                 oldEntity.Id = entity.Id;
+                
                 oldEntity.LastUpdatedTime = utcNow;
+                
                 Update(oldEntity, changedProperties);
             }
         }
@@ -115,8 +118,11 @@ namespace Elect.Data.EF.Services.Repository
             foreach (var entity in entities)
             {
                 var oldEntity = entityNewData.Clone();
+                
                 oldEntity.Id = entity.Id;
+                
                 oldEntity.LastUpdatedTime = utcNow;
+                
                 Update(oldEntity, changedProperties);
             }
         }
@@ -147,6 +153,7 @@ namespace Elect.Data.EF.Services.Repository
             catch (Exception)
             {
                 RefreshEntity(entity);
+                
                 throw;
             }
         }
@@ -156,25 +163,21 @@ namespace Elect.Data.EF.Services.Repository
             var utcNow = DateTimeOffset.UtcNow;
 
             // When isPhysicalDelete is true, it mean include soft delete record in query
-            var entities = Get(predicate, isPhysicalDelete)
-                .Select(x => new T
-                {
-                    Id = x.Id
-                })
-                .ToList();
+            var entities = Get(predicate, isPhysicalDelete).Select(x => new T {Id = x.Id}).ToList();
 
             foreach (var entity in entities)
             {
                 entity.DeletedTime = utcNow;
+                
                 Delete(entity, isPhysicalDelete);
             }
         }
 
-        public void DeleteWhere(List<string> listId, bool isPhysicalDelete = false)
+        public void DeleteWhere(List<string> ids, bool isPhysicalDelete = false)
         {
             var utcNow = DateTimeOffset.UtcNow;
 
-            foreach (var id in listId)
+            foreach (var id in ids)
             {
                 var entity = new T
                 {

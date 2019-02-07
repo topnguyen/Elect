@@ -61,10 +61,10 @@ namespace Elect.Data.EF.Services.Repository
                 }
             }
 
-            // NOTE: Don't use Query Filter (query.IgnoreQueryFilters()), it affect to load data
-            //       business logic. Currently not flexible, please check https://github.com/aspnet/EntityFrameworkCore/issues/8576
-            query = isIncludeDeleted ? query : query.Where(x => x.DeletedTime == null);
-
+            // NOTE: Query Filter (query.IgnoreQueryFilters()), it affect to load data business logic.
+            // Currently not flexible, please check https://github.com/aspnet/EntityFrameworkCore/issues/8576
+            query = isIncludeDeleted ? query.IgnoreQueryFilters() : query.Where(x => x.DeletedTime == null);
+            
             return query;
         }
 
@@ -75,18 +75,21 @@ namespace Elect.Data.EF.Services.Repository
         public override T Add(T entity)
         {
             entity.DeletedTime = null;
+            
             entity.LastUpdatedTime = entity.CreatedTime = ObjHelper.ReplaceNullOrDefault(entity.CreatedTime, DateTimeOffset.UtcNow);
+            
             entity = DbSet.Add(entity).Entity;
+            
             return entity;
         }
 
-        public virtual List<T> AddRange(params T[] list)
+        public virtual List<T> AddRange(params T[] entities)
         {
             var dateTimeUtcNow = DateTimeOffset.UtcNow;
 
             List<T> listAddedEntity = new List<T>();
 
-            foreach (var entity in list)
+            foreach (var entity in entities)
             {
                 entity.CreatedTime = dateTimeUtcNow;
 
@@ -181,6 +184,7 @@ namespace Elect.Data.EF.Services.Repository
             catch (Exception)
             {
                 RefreshEntity(entity);
+                
                 throw;
             }
         }

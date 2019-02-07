@@ -31,8 +31,10 @@ namespace Elect.Data.EF.Services.Map
             builder.HasKey(x => x.Id);
 
             // Index
-            builder.HasIndex(x => x.Id);
             builder.HasIndex(x => x.DeletedTime);
+            
+            // Filter
+            builder.HasQueryFilter(x => x.DeletedTime == null);
         }
     }
 }

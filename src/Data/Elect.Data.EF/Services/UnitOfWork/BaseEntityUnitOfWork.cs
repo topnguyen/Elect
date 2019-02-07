@@ -77,7 +77,8 @@ namespace Elect.Data.EF.Services.UnitOfWork
                 EntityState.Modified
             };
 
-            var listEntryAddUpdate = DbContext.ChangeTracker.Entries()
+            var listEntryAddUpdate = 
+                DbContext.ChangeTracker.Entries()
                 .Where(x => x.Entity is BaseEntity && listState.Contains(x.State))
                 .Select(x => x).ToList();
 
