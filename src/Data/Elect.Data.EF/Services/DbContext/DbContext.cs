@@ -53,7 +53,7 @@ namespace Elect.Data.EF.Services.DbContext
             {
                 foreach (var parameter in parameters)
                 {
-                    DbParameter p = cmd.CreateParameter();
+                    var p = cmd.CreateParameter();
 
                     p.DbType = parameter.DbType;
 

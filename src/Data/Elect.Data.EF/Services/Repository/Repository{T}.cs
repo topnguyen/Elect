@@ -68,8 +68,12 @@ namespace Elect.Data.EF.Services.Repository
         public virtual IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
         {
             var query = DbSet.AsNoTracking();
+            
             foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
+                
+            }
             return query;
         }
 
@@ -82,7 +86,9 @@ namespace Elect.Data.EF.Services.Repository
             if (includeProperties?.Any() == true)
             {
                 foreach (var includeProperty in includeProperties)
+                {
                     query = query.Include(includeProperty);
+                }
             }
 
             return predicate == null ? query : query.Where(predicate);
@@ -100,6 +106,7 @@ namespace Elect.Data.EF.Services.Repository
         public virtual T Add(T entity)
         {
             entity = DbSet.Add(entity).Entity;
+            
             return entity;
         }
 
@@ -121,7 +128,9 @@ namespace Elect.Data.EF.Services.Repository
                 }
             }
             else
+            {
                 DbContext.Entry(entity).State = EntityState.Modified;
+            }
         }
 
         public virtual void Update(T entity, params string[] changedProperties)
@@ -138,7 +147,9 @@ namespace Elect.Data.EF.Services.Repository
                 }
             }
             else
+            {
                 DbContext.Entry(entity).State = EntityState.Modified;
+            }
         }
 
         public virtual void Update(T entity)
@@ -163,6 +174,7 @@ namespace Elect.Data.EF.Services.Repository
             catch (Exception)
             {
                 RefreshEntity(entity);
+                
                 throw;
             }
         }
@@ -172,7 +184,9 @@ namespace Elect.Data.EF.Services.Repository
             var entities = Get(predicate).AsEnumerable();
 
             foreach (var entity in entities)
+            {
                 Delete(entity);
+            }
         }
 
         #endregion

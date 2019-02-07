@@ -105,7 +105,11 @@ namespace Elect.Sample.Data.EF
 
                 // Filter Deleted Record Sample
                 
-                var users = _userRepo.Get().Include(x => x.Profiles).ToList();
+                var users = _userRepo.Get(null, true).Include(x => x.Profiles).ToList();
+
+                var totalProfileDeleted = users.SelectMany(x => x.Profiles).Count(x => x.DeletedTime != null);
+
+                var isFilterSuccess = totalProfileDeleted == 0;
             }
         }
 
@@ -161,11 +165,15 @@ namespace Elect.Sample.Data.EF
 
             userProfileEntity = _userProfileRepo.Add(userProfileEntity);
 
-            if (isDeleted)
-            {
-                _userProfileRepo.Delete(userProfileEntity);
-            }
+            _unitOfWork.SaveChanges();
 
+            if (!isDeleted)
+            {
+                return userProfileEntity.Id;
+            }
+            
+            _userProfileRepo.Delete(userProfileEntity);
+                
             _unitOfWork.SaveChanges();
 
             return userProfileEntity.Id;
