@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using StringHelper = Elect.Core.StringUtils.StringHelper;
 
 namespace Elect.Sample.Data.EF
@@ -44,40 +45,67 @@ namespace Elect.Sample.Data.EF
                 _unitOfWork = serviceProvider.GetService<IUnitOfWork>();
 
                 _userRepo = _unitOfWork.GetRepository<UserEntity>();
+
                 _userProfileRepo = _unitOfWork.GetRepository<UserProfileEntity>();
 
-                var user1Id = AddUser("User Name 1");
+                if (!_userProfileRepo.Get().Any())
+                {
+                    // User 1
+                    
+                    var user1Id = AddUser("User Name 1");
 
-                AddRandomProfile(user1Id, false);
-                AddRandomProfile(user1Id, false);
-                AddRandomProfile(user1Id, false);
-                AddRandomProfile(user1Id, true);
-                AddRandomProfile(user1Id, true);
+                    // 3 Deleted Profile, 2 Active Profile
+                    AddRandomProfile(user1Id, false);
+                    AddRandomProfile(user1Id, false);
+                    AddRandomProfile(user1Id, false);
+                    AddRandomProfile(user1Id, true);
+                    AddRandomProfile(user1Id, true);
+
+                    var firstUserInfo = GetUser(user1Id);
+
+                    UpdateUser(user1Id, "User Name 1'");
+
+                    // User 2
+                    
+                    var user2Id = AddUser("User Name 2");
+
+                    // 4 Deleted Profile, 1 Active Profile
+                    AddRandomProfile(user2Id, false);
+                    AddRandomProfile(user2Id, false);
+                    AddRandomProfile(user2Id, false);
+                    AddRandomProfile(user2Id, false);
+                    AddRandomProfile(user2Id, true);
+
+                    var secondUserInfo = GetUser(user2Id);
+
+                    // User 3
+                    
+                    var user3Id = AddUser("User Name 3");
+                    
+                    // 3 Deleted Profile, 2 Active Profile
+                    AddRandomProfile(user3Id, false);
+                    AddRandomProfile(user3Id, false);
+                    AddRandomProfile(user3Id, true);
+                    AddRandomProfile(user3Id, true);
+                    AddRandomProfile(user3Id, true);
+
+                    RemoveUser(user3Id);
+
+                    // Should be null
+                    var thirdUserInfo = GetUser(user3Id);
+
+                    // Transaction Sample
+                    
+                    // 0 Account
+                    TransactionRollback();
+
+                    // 1 Account - 0 Profile
+                    TransactionCommit();
+                }
+
+                // Filter Deleted Record Sample
                 
-                var firstUserInfo = GetUser(user1Id);
-
-                UpdateUser(user1Id, "User Name 2");
-
-                var user2Id = AddUser("User Name 2");
-
-                AddRandomProfile(user2Id, false);
-                AddRandomProfile(user2Id, false);
-                AddRandomProfile(user2Id, false);
-                AddRandomProfile(user2Id, false);
-                AddRandomProfile(user2Id, true);
-                
-                var secondUserInfo = GetUser(user2Id);
-
-                var user3Id = AddUser("User Name 3");
-
-                RemoveUser(user3Id);
-
-                // Should be null
-                var thirdUserInfo = GetUser(user3Id);
-
-                TransactionRollback();
-
-                TransactionCommit();
+                var users = _userRepo.Get().Include(x => x.Profiles).ToList();
             }
         }
 
@@ -122,16 +150,21 @@ namespace Elect.Sample.Data.EF
 
             return userEntity;
         }
-        
+
         private static Guid AddRandomProfile(Guid userId, bool isDeleted)
         {
             var userProfileEntity = new UserProfileEntity
             {
-                Phone = StringHelper.Generate(10),
-                DeletedTime = isDeleted ? (DateTimeOffset?) null : DateTimeOffset.UtcNow
+                UserId = userId,
+                Phone = StringHelper.Generate(10)
             };
 
-            _userProfileRepo.Add(userProfileEntity);
+            userProfileEntity = _userProfileRepo.Add(userProfileEntity);
+
+            if (isDeleted)
+            {
+                _userProfileRepo.Delete(userProfileEntity);
+            }
 
             _unitOfWork.SaveChanges();
 
