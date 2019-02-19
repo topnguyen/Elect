@@ -13,6 +13,12 @@
             <summary>
                 Default is "*". If contains "*" then allow all. 
             </summary>
+            <remarks>Support subdomains wildcard, e.g http://*.topnguyen.net </remarks>
+        </member>
+        <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.IsOriginAllowed">
+            <summary>
+                Check on runtime for origin allow or not, this one will override the setting in <see cref="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AllowOrigins"/>.
+            </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AllowHeaders">
             <summary>
@@ -21,7 +27,7 @@
         </member>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.AllowMethods">
             <summary>
-                Default is "GET, POST, PUT", "DELETE". If contains "*"  then allow all. 
+                Default is "GET, POST, PUT", "DELETE", "OPTIONS". If contains "*"  then allow all. 
             </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.CorsMiddleware.Models.ElectCorsOptions.ExtendPolicyBuilder">

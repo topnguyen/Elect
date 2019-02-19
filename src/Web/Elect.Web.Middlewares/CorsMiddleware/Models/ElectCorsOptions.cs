@@ -38,7 +38,13 @@ namespace Elect.Web.Middlewares.CorsMiddleware.Models
         /// <summary>
         ///     Default is "*". If contains "*" then allow all. 
         /// </summary>
+        /// <remarks>Support subdomains wildcard, e.g http://*.topnguyen.net </remarks>
         public List<string> AllowOrigins { get; set; } = new List<string> {"*"};
+        
+        /// <summary>
+        ///     Check on runtime for origin allow or not, this one will override the setting in <see cref="AllowOrigins"/>.
+        /// </summary>
+        public Func<string, bool> IsOriginAllowed { get; set; }
 
         /// <summary>
         ///     Default is "*". If contains "*" then allow all. 
@@ -46,14 +52,15 @@ namespace Elect.Web.Middlewares.CorsMiddleware.Models
         public List<string> AllowHeaders { get; set; } = new List<string> {"*"};
 
         /// <summary>
-        ///     Default is "GET, POST, PUT", "DELETE". If contains "*"  then allow all. 
+        ///     Default is "GET, POST, PUT", "DELETE", "OPTIONS". If contains "*"  then allow all. 
         /// </summary>
         public List<string> AllowMethods { get; set; } = new List<string>
         {
             HttpMethod.GET.AsString(EnumFormat.DisplayName),
             HttpMethod.POST.AsString(EnumFormat.DisplayName),
             HttpMethod.PUT.AsString(EnumFormat.DisplayName),
-            HttpMethod.DELETE.AsString(EnumFormat.DisplayName)
+            HttpMethod.DELETE.AsString(EnumFormat.DisplayName),
+            HttpMethod.OPTIONS.AsString(EnumFormat.DisplayName)
         };
 
         public bool IsAllowCredentials { get; set; } = true;

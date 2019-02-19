@@ -60,17 +60,25 @@ namespace Elect.Web.Middlewares.CorsMiddleware
 
             var corsBuilder = new CorsPolicyBuilder();
 
-            if (options.AllowOrigins?.Any() == true)
+            if (options.IsOriginAllowed != null)
             {
+                corsBuilder.SetIsOriginAllowed(options.IsOriginAllowed);
+            }
+            else if (options.AllowOrigins?.Any() == true)
+            {
+                options.AllowOrigins = options.AllowOrigins.Distinct().OrderBy(x => x).ToList();
+                
                 if (options.AllowOrigins.Contains("*"))
                 {
-                    corsBuilder.AllowAnyOrigin();
+                    corsBuilder.SetIsOriginAllowed((origin) => true);
                 }
                 else
                 {
                     corsBuilder.WithOrigins(options.AllowOrigins.ToArray());
+                    corsBuilder.SetIsOriginAllowedToAllowWildcardSubdomains();
                 }
             }
+
 
             if (options.AllowHeaders?.Any() == true)
             {
