@@ -13,23 +13,23 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore elect topnguyen</tags>
-        <version>2.3.1</version>
+        <version>2.5.0</version>
 
         <dependencies>
-            <dependency id="System.Runtime.Loader" version="4.3.0"/>
-            <dependency id="System.Xml.XmlSerializer" version="4.3.0"/>
-            <dependency id="System.ComponentModel.Annotations" version="4.5.0"/>
-            <dependency id="Microsoft.DotNet.PlatformAbstractions" version="2.1.0"/>
+            <dependency id="System.Runtime.Loader" version="4.3.0" />
+            <dependency id="System.Xml.XmlSerializer" version="4.3.0" />
+            <dependency id="System.ComponentModel.Annotations" version="4.5.0" />
+            <dependency id="Microsoft.DotNet.PlatformAbstractions" version="2.1.0" />
             <dependency id="Microsoft.Extensions.Configuration.Binder" version="2.2.0" />
-            <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0"/>
-            <dependency id="Microsoft.Extensions.DependencyInjection" version="2.2.0"/>
-            <dependency id="Microsoft.Extensions.DependencyModel" version="2.1.0"/>
-            <dependency id="Microsoft.Extensions.Options" version="2.2.0"/>
-            <dependency id="Newtonsoft.Json" version="12.0.1"/>
-            <dependency id="Flurl.Http" version="2.4.0"/>
-            <dependency id="TimeZoneConverter" version="2.5.1"/>
-            <dependency id="Enums.NET" version="2.3.2"/>
-            <dependency id="Humanizer.Core" version="2.5.16"/>
+            <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0" />
+            <dependency id="Microsoft.Extensions.DependencyInjection" version="2.2.0" />
+            <dependency id="Microsoft.Extensions.DependencyModel" version="2.1.0" />
+            <dependency id="Microsoft.Extensions.Options" version="2.2.0" />
+            <dependency id="Newtonsoft.Json" version="12.0.1" />
+            <dependency id="Flurl.Http" version="2.4.1" />
+            <dependency id="TimeZoneConverter" version="2.5.1" />
+            <dependency id="Enums.NET" version="2.3.2" />
+            <dependency id="Humanizer.Core" version="2.5.16" />
         </dependencies>
     </metadata>
 
