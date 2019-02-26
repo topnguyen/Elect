@@ -13,14 +13,14 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore logger elect topnguyen</tags>
-        <version>2.4.1</version>
+        <version>2.5.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Logger.Models" version="2.2"/>
+            <dependency id="Elect.Logger.Models" version="2.5.0"/>
 
             <!-- 3rd Libraries -->
-            <dependency id="JsonFlatFileDataStore" version="2.0.1"/>
+            <dependency id="JsonFlatFileDataStore" version="2.1.0"/>
         </dependencies>
     </metadata>
     <files>
