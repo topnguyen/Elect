@@ -183,16 +183,21 @@ namespace Elect.Data.IO.ImageUtils
 
             // Convert to image array
 
-            var converter = new ImageConverter();
-
-            if (!(converter.ConvertTo(img, typeof(byte[])) is byte[] imageArray))
+            using (MemoryStream memoryStream = new MemoryStream())
             {
-                return null;
+                img.Save(memoryStream, img.RawFormat);
+                
+                var imageArray = memoryStream.ToArray();
+
+                if (!imageArray.Any())
+                {
+                    return null;
+                }
+                
+                var stringBase64 = Convert.ToBase64String(imageArray);
+
+                return stringBase64;
             }
-
-            var stringBase64 = Convert.ToBase64String(imageArray);
-
-            return stringBase64;
         }
 
         /// <summary>
