@@ -58,6 +58,6 @@ Elect.Core is licensed under the [MIT License](LICENSE).
 
 <img src="jetbrains-variant-4.png" width="150" alt="JetBrains Logo" />
 
-I have been using ReSharper, Rider for a good number of years and find it absolutely amazing that they assist open source source to have free license.
+I have been using ReSharper, Rider for a good number of years and find it absolutely amazing that they assist open source to have free license.
 
 So a big **thank you** to [JetBrains](https://www.jetbrains.com/?from=Elect)!
