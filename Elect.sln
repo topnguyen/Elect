@@ -129,6 +129,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Solution Items", "Soluti
 		README.md = README.md
 		LICENSE = LICENSE
 		Logo.png = Logo.png
+		jetbrains-variant-4.png = jetbrains-variant-4.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. test", "test", "{7A62CF0C-B858-4273-8121-00BC279B7005}"
