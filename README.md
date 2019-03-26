@@ -52,7 +52,7 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
 Please access "samples" folder in this repo to explore example for each library.
 
 ## License
-Elect.Core is licensed under the [MIT License](LICENSE).
+Elect is licensed under the [MIT License](LICENSE).
 
 ## Thank for Jetbrains
 
