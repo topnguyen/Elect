@@ -75,6 +75,11 @@
                 Action execute after ReserveProxy rewrited
             </summary>
         </member>
+        <member name="P:Elect.Web.Middlewares.ReverseProxyMiddleware.Models.ElectReserveProxyOptions.IsEnableTargetUrlConsoleLog">
+            <summary>
+                Enable console log for Target URL, true by default
+            </summary>
+        </member>
         <member name="P:Elect.Web.Middlewares.ServerInfoMiddleware.Models.ElectServerInfoOptions.ServerName">
             <summary>
                 Default is "cloudflare-nginx". 
