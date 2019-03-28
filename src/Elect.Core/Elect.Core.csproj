@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <!-- Information -->
     <PropertyGroup>
-        <LangVersion>7.2</LangVersion>
+        <LangVersion>latest</LangVersion>
         <TargetFramework>netstandard2.0</TargetFramework>
         <!-- Generate XML file -->
         <DocumentationFile>Elect.Core.xml</DocumentationFile>
@@ -36,8 +36,8 @@
         <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
         <PackageReference Include="Flurl.Http" Version="2.4.1" />
-        <PackageReference Include="TimeZoneConverter" Version="2.5.1" />
+        <PackageReference Include="TimeZoneConverter" Version="3.0.0" />
         <PackageReference Include="Enums.NET" Version="2.3.2" />
-        <PackageReference Include="Humanizer.Core" Version="2.5.16" />
+        <PackageReference Include="Humanizer.Core" Version="2.6.2" />
     </ItemGroup>
 </Project>

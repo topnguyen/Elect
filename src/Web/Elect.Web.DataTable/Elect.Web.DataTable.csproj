@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <!-- Information -->
     <PropertyGroup>
-        <LangVersion>7.2</LangVersion>
+        <LangVersion>latest</LangVersion>
         <TargetFramework>netstandard2.0</TargetFramework>
         <!-- Generate XML file -->
         <DocumentationFile>Elect.Web.DataTable.xml</DocumentationFile>
@@ -29,6 +29,6 @@
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.11" />
+        <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.12" />
     </ItemGroup>
 </Project>
