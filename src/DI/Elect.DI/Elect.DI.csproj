@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <!-- Information -->
     <PropertyGroup>
-        <LangVersion>7.2</LangVersion>
+        <LangVersion>latest</LangVersion>
         <TargetFramework>netstandard2.0</TargetFramework>
         <!-- Generate XML file -->
         <DocumentationFile>Elect.DI.xml</DocumentationFile>
