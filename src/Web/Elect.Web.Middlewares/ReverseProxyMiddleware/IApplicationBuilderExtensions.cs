@@ -24,9 +24,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Elect.Web.Middlewares.ReverseProxyMiddleware.Models;
+using Elect.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using HttpMethod = System.Net.Http.HttpMethod;
 
 namespace Elect.Web.Middlewares.ReverseProxyMiddleware
 {
@@ -69,22 +71,27 @@ namespace Elect.Web.Middlewares.ReverseProxyMiddleware
             
             var targetUri = BuildTargetUri(context.Request);
 
+            if (_option.IsEnableTargetUrlConsoleLog)
+            {
+                Console.WriteLine($"[Elect Reserve Proxy] Target URL: {targetUri}");
+            }
+
             if (targetUri != null)
             {
                 var targetRequestMessage = CreateTargetMessage(context, targetUri);
 
-                using (var responseMessage = await HttpClient.SendAsync(targetRequestMessage, HttpCompletionOption.ResponseHeadersRead, context.RequestAborted))
+                using (var responseMessage = await HttpClient.SendAsync(targetRequestMessage, HttpCompletionOption.ResponseHeadersRead, context.RequestAborted).ConfigureAwait(true))
                 {
                     context.Response.StatusCode = (int) responseMessage.StatusCode;
 
                     CopyFromTargetResponseHeaders(context, responseMessage);
 
-                    await responseMessage.Content.CopyToAsync(context.Response.Body);
+                    await responseMessage.Content.CopyToAsync(context.Response.Body).ConfigureAwait(true);
                 }
             }
             else
             {
-                await _nextMiddleware(context);
+                await _nextMiddleware(context).ConfigureAwait(true);
             }
             
             // Execute After Reserve Proxy if have
@@ -139,7 +146,7 @@ namespace Elect.Web.Middlewares.ReverseProxyMiddleware
                 context.Response.Headers[header.Key] = header.Value.ToArray();
             }
 
-            context.Response.Headers.Remove("transfer-encoding");
+            context.Response.Headers.Remove(HeaderKey.TransferEncoding);
         }
 
         private static HttpMethod GetMethod(string method)
@@ -174,26 +181,21 @@ namespace Elect.Web.Middlewares.ReverseProxyMiddleware
                 return HttpMethod.Put;
             }
 
-            if (HttpMethods.IsTrace(method))
-            {
-                return HttpMethod.Trace;
-            }
-
-            return new HttpMethod(method);
+            return HttpMethods.IsTrace(method) ? HttpMethod.Trace : new HttpMethod(method);
         }
 
         private Uri BuildTargetUri(HttpRequest request)
         {
-            var serviceRootEndpoint = _option.ServiceRootUrl;
+            var serviceRootEndpoint = _option.ServiceRootUrl.Trim('/');
 
-            string serviceEndpoint = $"{serviceRootEndpoint}{request.Path}";
+            var serviceEndpoint = $"{serviceRootEndpoint}/{request.Path.Value?.Trim('/')}".Trim('/');
 
             if (!string.IsNullOrWhiteSpace(request.QueryString.Value))
             {
-                serviceEndpoint += $"?{request.QueryString.Value}";
+                serviceEndpoint += $"?{request.QueryString.Value.Trim('?')}".Trim('/');
             }
 
-            Uri targetUri = new Uri(serviceEndpoint);
+            var targetUri = new Uri(serviceEndpoint);
 
             return targetUri;
         }

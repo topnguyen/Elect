@@ -39,5 +39,10 @@ namespace Elect.Web.Middlewares.ReverseProxyMiddleware.Models
         ///     Action execute after ReserveProxy rewrited
         /// </summary>
         public Action<HttpContext> AfterReserveProxy { get; set; }
+
+        /// <summary>
+        ///     Enable console log for Target URL, true by default
+        /// </summary>
+        public bool IsEnableTargetUrlConsoleLog { get; set; } = true;
     }
 }

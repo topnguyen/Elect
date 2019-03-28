@@ -33,6 +33,8 @@ namespace Elect.Web.Middlewares.ReverseProxyMiddleware
             return services.AddElectReserveProxy(_ =>
             {
                 _.ServiceRootUrl = configuration.ServiceRootUrl;
+                _.BeforeReserveProxy = configuration.BeforeReserveProxy;
+                _.AfterReserveProxy = configuration.AfterReserveProxy;
             });
         }
 
