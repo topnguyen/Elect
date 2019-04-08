@@ -9,7 +9,7 @@
 
 ## Installation
 
-```javascript
+```xml
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -51,12 +51,12 @@
 
 if you use Razor, please refer the below code block
 
-```csharp
+```razor
 @using Elect.Web.Models
 @{
-    var isGoblinAjaxify = string.Compare(Context.Request.Headers[HeaderKey.XRequestedWith], "Elect.Web.Ajaxify", StringComparison.OrdinalIgnoreCase) == 0;
+    var isAjaxify = string.Compare(Context.Request.Headers[HeaderKey.XRequestedWith], "Elect.Web.Ajaxify", StringComparison.OrdinalIgnoreCase) == 0;
 }
-@if (isGoblinAjaxify)
+@if (isAjaxify)
 {
     <html>
     <head>
