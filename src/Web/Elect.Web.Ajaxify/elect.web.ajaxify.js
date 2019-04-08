@@ -4,7 +4,7 @@ elect.ajaxify = {
     // Enable or Not
     isEnable: true, // Global enable
     preventAjaxifySelector: '.no-ajaxify', // No-Ajaxify for specific anchor tag
-    
+
     // Document / Main Content
     bodySelector: '.document-body',
     scriptSelector: '.document-script',
@@ -15,7 +15,7 @@ elect.ajaxify = {
     activeClass: 'active selected current',
     activeSelector: '.active,.selected,.current',
     menuChildrenSelector: '> li,> ul > li',
-    
+
     // Callback Functions
     fnBeforeRedirect: undefined, // trigger before state change, if return false will not execute state change
     fnAfterRedirect: undefined // trigger after finish state change 
@@ -109,11 +109,10 @@ elect.ajaxify = {
                     url = $this.attr('href'),
                     title = $this.attr('title') || null;
 
-                if(elect.ajaxify.isEnable !== true)
-                {
+                if (elect.ajaxify.isEnable !== true) {
                     return true;
                 }
-                
+
                 // before redirect check
                 var fnBeforeRedirect = elect.ajaxify.fnBeforeRedirect;
                 if (fnBeforeRedirect && typeof fnBeforeRedirect === 'function') {
@@ -164,7 +163,7 @@ elect.ajaxify = {
             $.ajax({
                 url: url,
                 method: 'GET',
-                beforeSend: function(xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader("X-Requested-With", "Elect.Web.Ajaxify");
                 },
                 success: function (data, textStatus, jqXHR) {
@@ -263,7 +262,7 @@ elect.ajaxify = {
                         }
 
                         scriptNode.appendChild(document.createTextNode(scriptHtml));
-                
+
                         contentNode.appendChild(scriptNode);
                     }
 
@@ -271,7 +270,7 @@ elect.ajaxify = {
                     window.scrollTo(0, 0);
 
                     $body.removeClass('loading');
-                    
+
                     var fnAfterRedirect = elect.ajaxify.fnAfterRedirect;
                     if (fnAfterRedirect && typeof fnAfterRedirect === 'function') {
                         fnAfterRedirect(url);
@@ -288,7 +287,8 @@ elect.ajaxify = {
                         // ^ we use the full url here as that is what reinvigorate supports
                     }
 
-                    window.onerror = function () {};
+                    window.onerror = function () {
+                    };
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
