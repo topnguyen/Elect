@@ -99,17 +99,19 @@ else
         @{
             await Html.RenderPartialAsync("_Meta").ConfigureAwait(true);
             await Html.RenderPartialAsync("_Favicon").ConfigureAwait(true);
-            
-            <!-- jQuery -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            
-            <!-- History.js -->
-            <script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/jquery.history.min.js"></script>
-            <!-- You can check the latest jquery.history.js via https://github.com/browserstate/history.js/ -->
-            
-            <!-- Elect.Web.Ajaxify -->
-            <script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/elect.web.ajaxify.js"></script>
-            
+        }
+        
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!-- History.js -->
+        <script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/jquery.history.min.js"></script>
+        <!-- You can check the latest jquery.history.js via https://github.com/browserstate/history.js/ -->
+        
+        <!-- Elect.Web.Ajaxify -->
+        <script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/elect.web.ajaxify.js"></script>
+        
+        @{
             await Html.RenderPartialAsync("Assets/_TopScript").ConfigureAwait(true);
             await Html.RenderPartialAsync("Assets/_Style").ConfigureAwait(true);
             await RenderSectionAsync("Styles", false).ConfigureAwait(true);
