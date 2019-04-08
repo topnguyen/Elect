@@ -28,20 +28,21 @@
 - The idea of Ajaxify is replace existing DOM by new HTML and keep "master layout", so you need to define your master layout as below structure
 - To Detect Ajax request by Elect.Web.Ajaxify, please check the header key "X-Requested-With" and value exactly equal to "Elect.Web.Ajaxify".
 
+### Example HTML
 ```html
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-      <!-- Meta Tags -->
-      <!-- Styles -->
-      <!-- Head Scripts -->
+      <!-- TODO Meta Tags -->
+      <!-- TODO Styles -->
+      <!-- TODO Head Scripts -->
     </head>
     <body class="document-body">
         <div id="document-content">
-            <!-- HTML Body -->
+            <!-- TODO HTML Body -->
             <div class="document-script">
                 <div class="document-main-script-start"></div>
-                <!-- Page Scripts-->
+                <!-- TODO Page Scripts-->
                 <div class="document-main-script-end"></div>
             </div>
         </div>
@@ -49,7 +50,7 @@
 </html>
 ```
 
-if you use Razor, please refer the below code block
+### Example Razor
 
 ```razor
 @using Elect.Web.Models
