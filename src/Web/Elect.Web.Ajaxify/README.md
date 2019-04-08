@@ -26,7 +26,7 @@
 - When you finish install the Elect.Web.Ajaxify, it auto enable and change all your Http Redirect by Anchor Tag to Ajaxify concept.
 - For the Anchor Tag you would like to force redirect (reload as multiple concept) add class `no-ajaxify` to the Anchor Element.
 - The idea of Ajaxify is replace existing DOM by new HTML and keep "master layout", so you need to define your master layout as below examples structure.
- + To Detect Ajax request by Elect.Web.Ajaxify, please check the header key "X-Requested-With" and value exactly equal to "Elect.Web.Ajaxify".
+    + To Detect Ajax request by Elect.Web.Ajaxify, please check the header key "X-Requested-With" and value exactly equal to "Elect.Web.Ajaxify".
 
 ### Example HTML
 ```html
