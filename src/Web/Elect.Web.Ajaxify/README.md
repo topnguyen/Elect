@@ -14,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- History.js -->
-<script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/jquery.history.js"></script>
+<script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/jquery.history.min.js"></script>
 <!-- You can check the latest jquery.history.js via https://github.com/browserstate/history.js/ -->
 
 <!-- Elect.Web.Ajaxify -->
