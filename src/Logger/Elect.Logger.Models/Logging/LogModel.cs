@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Reflection;
 using Elect.Core.ObjUtils;
 using Elect.Logger.Models.Logging.Utils;
@@ -37,6 +35,11 @@ namespace Elect.Logger.Models.Logging
         public HttpContextModel HttpContext { get; set; }
 
         public Dictionary<string, object> AdditionalData { get; set; } = new Dictionary<string, object>();
+        
+        /// <summary>
+        ///     Override file path of Config, can be absolute or relative file path.
+        /// </summary>
+        public string JsonFilePath { get; set; }
 
         public LogModel()
         {

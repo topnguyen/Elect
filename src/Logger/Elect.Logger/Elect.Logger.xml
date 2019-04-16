@@ -20,11 +20,69 @@
                 Modify log info or do some logic after Elect write log.
             </summary>
         </member>
+        <member name="M:Elect.Logger.Logging.IElectLog.Capture(System.String,Elect.Logger.Models.Logging.LogType,Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+                Capture/Log the message
+            </summary>
+            <param name="message">Message</param>
+            <param name="type">Log Type</param>
+            <param name="httpContext">Http context when capture the message</param>
+            <param name="jsonFilePath"> Override file path of Config, can be absolute or relative file path</param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Logger.Logging.IElectLog.Capture(System.Exception,Elect.Logger.Models.Logging.LogType,Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+                Capture/Log the exception
+            </summary>
+            <param name="exception">Exception</param>
+            <param name="type">Log Type</param>
+            <param name="httpContext">Http context when capture the exception</param>
+            <param name="jsonFilePath"> Override file path of Config, can be absolute or relative file path</param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Logger.Logging.IElectLog.Capture(System.Object,Elect.Logger.Models.Logging.LogType,Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+                Capture/Log the object data
+            </summary>
+            <param name="obj">Data</param>
+            <param name="type">Log Type</param>
+            <param name="httpContext">Http context when capture the data</param>
+            <param name="jsonFilePath"> Override file path of Config, can be absolute or relative file path</param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Logger.Logging.IElectLog.Capture(Elect.Logger.Models.Logging.LogModel)">
+            <summary>
+                Capture/log info by log model
+            </summary>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.JsonFilePath">
             <summary>
                 Relative Path of Json File, default is Logs/{yyyy-MM-dd}.json
             </summary>
             <remarks>Path.GetFullPath(JsonFilePath) to get full path of json files</remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.BatchSize">
+            <summary>
+                Batch size for log message queue
+            </summary>
+            <remarks>Default is 20</remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.Threshold">
+            <summary>
+                Threshold for log message queue
+            </summary>
+            <remarks>Default is 5 seconds</remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.IsLogFullInfo">
+            <summary>
+                Limit log information,
+                if false will force null for <see cref="T:Elect.Logger.Models.Logging.LogModel"/>
+                <see cref="P:Elect.Logger.Models.Logging.LogModel.Runtime"/>, <see cref="P:Elect.Logger.Models.Logging.LogModel.Sdk"/>,
+                <see cref="P:Elect.Logger.Models.Logging.LogModel.EnvironmentModel"/>, <see cref="P:Elect.Logger.Models.Logging.LogModel.HttpContext"/>.
+            </summary>
+            <remarks>Default is false</remarks>
         </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.Url">
             <summary>
@@ -34,14 +92,15 @@
         </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.AccessKey">
             <summary>
-                Access Key via uri param "key", default is "" - allow anonymous. 
+                Access Key via uri param "key" 
             </summary>
+            <remarks>Default is "" - allow anonymous</remarks>
         </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.UnAuthorizeMessage">
             <summary>
-                Un-authorize message when user access api document with not correct key. Default is
-                "You don't have permission to view API Document, please contact your administrator."
+                Un-authorize message when user access Log Dashboard with not correct key
             </summary>
+            <remarks>Default is "You don't have permission to view Log Dashboard, please contact your administrator."</remarks>
         </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.BeforeLogResponse">
             <summary>

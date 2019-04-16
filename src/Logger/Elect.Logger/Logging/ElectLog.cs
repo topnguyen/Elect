@@ -7,6 +7,7 @@ using Elect.Core.ObjUtils;
 using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
 using Elect.Logger.Utils;
+using Humanizer;
 using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
@@ -23,6 +24,11 @@ namespace Elect.Logger.Logging
 
         /// <inheritdoc />
         public Func<LogModel, LogModel> AfterLog { get; set; }
+        
+        public ElectLog(ElectLogOptions options) : base(options.BatchSize, options.Threshold)
+        {
+            _options = options;
+        }
 
         public ElectLog(IOptions<ElectLogOptions> configuration) : base(configuration.Value.BatchSize, configuration.Value.Threshold)
         {
@@ -31,28 +37,40 @@ namespace Elect.Logger.Logging
 
         #region Capture
 
-        public LogModel Capture(string message, LogType type = LogType.Error, HttpContext httpContent = null)
+        public LogModel Capture(string message, LogType type = LogType.Error, HttpContext httpContext = null, string jsonFilePath = null)
         {
-            var log = new LogModel(message, httpContent) { Type = type };
+            var log = new LogModel(message, httpContext)
+            {
+                Type = type,
+                JsonFilePath = jsonFilePath
+            };
 
             return Capture(log);
         }
 
-        public LogModel Capture(Exception exception, LogType type = LogType.Error, HttpContext httpContent = null)
+        public LogModel Capture(Exception exception, LogType type = LogType.Error, HttpContext httpContext = null, string jsonFilePath = null)
         {
-            var log = new LogModel(exception, httpContent) { Type = type };
+            var log = new LogModel(exception, httpContext)
+            {
+                Type = type,
+                JsonFilePath = jsonFilePath
+            };
 
             return Capture(log);
         }
 
-        public LogModel Capture(object obj, LogType type = LogType.Error, HttpContext httpContent = null)
+        public LogModel Capture(object obj, LogType type = LogType.Error, HttpContext httpContext = null, string jsonFilePath = null)
         {
-            var log = new LogModel(obj, httpContent) { Type = type };
+            var log = new LogModel(obj, httpContext)
+            {
+                Type = type,
+                JsonFilePath = jsonFilePath
+            };
 
             return Capture(log);
         }
 
-        private LogModel Capture(LogModel log)
+        public LogModel Capture(LogModel log)
         {
             // Convert to Json string for Filter purpose
             var logJsonStr = log.ToJsonString();
@@ -72,9 +90,20 @@ namespace Elect.Logger.Logging
 
         protected override void Write(ICollection<LogModel> events)
         {
+            string lastJsonFilePath = null;
+            
             foreach (var @event in events)
             {
                 var log = @event;
+
+                // Limit log information
+                if (!_options.IsLogFullInfo)
+                {
+                    log.HttpContext = null;
+                    log.Runtime = null;
+                    log.EnvironmentModel = null;
+                    log.Sdk = null;
+                }
 
                 // Before
                 if (BeforeLog != null)
@@ -94,9 +123,15 @@ namespace Elect.Logger.Logging
                 {
                     using (var store = new DataStore(jsonFilePath))
                     {
-                        WriteMetadata(store);
+                        // Write Metadata first then the Logs
+                        if (string.IsNullOrWhiteSpace(lastJsonFilePath) || lastJsonFilePath != jsonFilePath)
+                        {
+                            WriteMetadata(jsonFilePath, store);
+                        }
 
                         WriteLog(store, log);
+
+                        WriteMetadata(jsonFilePath, store);
                     }
                 }
 
@@ -107,7 +142,9 @@ namespace Elect.Logger.Logging
                 }
 
                 // After
-                AfterLog?.Invoke(log);
+                log = AfterLog?.Invoke(log);
+
+                lastJsonFilePath = jsonFilePath;
             }
         }
 
@@ -115,14 +152,22 @@ namespace Elect.Logger.Logging
 
         private static string GetJsonFilePath(ElectLogOptions options, LogModel log)
         {
-            var jsonFilePath = Path.GetFullPath(options.JsonFilePath);
+            var jsonFilePath = Path.GetFullPath(!string.IsNullOrWhiteSpace(log.JsonFilePath) 
+                ? log.JsonFilePath 
+                : options.JsonFilePath);
 
             // Replace {Type}
             jsonFilePath = GetFilePathByType(jsonFilePath, log);
 
-            // Repalce {<DateTimeFormat>}
-            var utcNow = DateTimeOffset.UtcNow;
-            jsonFilePath = GetFilePathByDateTime(jsonFilePath, utcNow);
+            // Replace {<DateTimeFormat>}
+            var localNow = DateTimeOffset.Now;
+            jsonFilePath = GetFilePathByDateTime(jsonFilePath, localNow);
+
+            // Adjust to Json File
+            if (Path.GetExtension(jsonFilePath)?.ToLowerInvariant() != ".json")
+            {
+                jsonFilePath = Path.ChangeExtension(jsonFilePath, ".json");
+            }
 
             // Directory Handle
             CreateNotExistDirectory(jsonFilePath);
@@ -178,28 +223,49 @@ namespace Elect.Logger.Logging
 
         #region Write helper
 
-        private static void WriteMetadata(IDataStore store)
+        private static void WriteMetadata(string jsonFilePath, IDataStore store)
         {
             var metadatas = store.GetCollection<ElectLogMetadataModel>("metadata");
             var metadata = metadatas.AsQueryable().FirstOrDefault();
+            
+            var fileInfo = new FileInfo(jsonFilePath);
+            
+            var logs = store.GetCollection<LogModel>("logs");
+            
+            var totalLog = logs.Count;
+
             if (metadata == null)
             {
                 metadata = new ElectLogMetadataModel();
-                metadata.CreatedTime = metadata.LastUpdatedTime = DateTimeOffset.UtcNow;
+                metadata.CreatedTime = metadata.LastUpdatedTime = DateTimeOffset.Now;
+                metadata.FileName = fileInfo.Name;
+                metadata.FileSize = fileInfo.Length.Bytes().Humanize();
+                metadata.TotalLog = totalLog;
                 metadatas.InsertOne(metadata);
             }
             else
             {
-                metadata.LastUpdatedTime = DateTimeOffset.UtcNow;
+                metadata.LastUpdatedTime = DateTimeOffset.Now;
+                metadata.FileName = fileInfo.Name;
+                metadata.FileSize = fileInfo.Length.Bytes().Humanize();
+                metadata.TotalLog = totalLog;
                 metadatas.UpdateOne(x => true, metadata);
             }
         }
 
-        private static void WriteLog(IDataStore store, LogModel log)
+        private static void WriteLog(IDataStore store, LogModel newLog)
         {
+            newLog.JsonFilePath = null; // Force remove this information before log
+            
             var logs = store.GetCollection<LogModel>("logs");
 
-            logs.InsertOne(log);
+            logs.InsertOne(newLog);
+            
+            var logsClone = logs.AsQueryable().OrderByDescending(x => x.CreatedTime).ToList();
+
+            logs.DeleteMany(x => true);
+
+            logs.InsertMany(logsClone);
         }
 
         private static void WriteConsole(LogModel log)
