@@ -37,14 +37,14 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Log
   + You can config `FilePath` (default is `Logs\{yyyy-MM-dd}.json`) by parameter [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
   + Limit log information (remove "runtime", "environmentModel", "sdk", "httpContext") by property `IsLogFullInfo` (bool), default is false.
 
-```csharp
+```c#
 services.AddElectLog();
 ```
 
 - Log
     + Inject `IElectLog` to your class.
     + Call Capture methods
-```csharp
+```c#
 _electLog.BeforeLog = (log) => {
     // Modify log info or do some logic before Elect write log
     return log;
