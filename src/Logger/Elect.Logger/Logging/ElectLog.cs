@@ -156,6 +156,10 @@ namespace Elect.Logger.Logging
                 ? log.JsonFilePath 
                 : options.JsonFilePath);
 
+            jsonFilePath = jsonFilePath
+                .Replace('/', Path.DirectorySeparatorChar)
+                .Replace('\\', Path.DirectorySeparatorChar);
+                
             // Replace {Type}
             jsonFilePath = GetFilePathByType(jsonFilePath, log);
 
