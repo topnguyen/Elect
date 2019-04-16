@@ -763,4 +763,4 @@ catch(Exception e)
 ```
 
 ## License
-Elect.Logger.Models is licensed under the [MIT License](../../../LICENSE).
+Elect.Logger is licensed under the [MIT License](../../../LICENSE).
