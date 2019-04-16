@@ -45,17 +45,26 @@ services.AddElectLog();
     + Inject `IElectLog` to your class.
     + Call Capture methods
 ```c#
-    _electLog.BeforeLog = (log) => {
-        // Modify log info or do some logic before Elect write log
-        return log;
-    }
+_electLog.BeforeLog = (log) => {
+    // Modify log info or do some logic before Elect write log
+    return log;
+}
+
+try
+{
+   // Your logic code
+}
+catch(Exception e)
+{
+   var log = new LogModel(e);
+   
+   // Use setting for json file path
+   _electLog.Capture(log); // You can capture LogModel, exception, string message
     
-    // Use setting for json file path
-    _electLog.Capture(log);
-    
-    // Override setting for json file path
-    // Still apply the file name rule on Overview section
-    _electLog.Capture(log, jsonFilePath: "Custom Path"); 
+   // Override setting for json file path
+   // Still apply the file name rule on Overview section
+   _electLog.Capture(log, jsonFilePath: "Custom Path"); 
+}
 ``` 
 
 - **Access Log Dashboard**
