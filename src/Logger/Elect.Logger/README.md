@@ -49,7 +49,13 @@ services.AddElectLog();
         // Modify log info or do some logic before Elect write log
         return log;
     }
+    
+    // Use setting for json file path
     _electLog.Capture(log);
+    
+    // Override setting for json file path
+    // Still apply the file name rule on Overview section
+    _electLog.Capture(log, jsonFilePath: "Custom Path"); 
 ``` 
 
 - **Access Log Dashboard**
