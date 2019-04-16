@@ -56,14 +56,12 @@ try
 }
 catch(Exception e)
 {
-   var log = new LogModel(e);
-   
    // Use setting for json file path
-   _electLog.Capture(log); // You can capture LogModel, exception, string message
+   _electLog.Capture(e); // You can capture an Exception, LogModel, String message
     
    // Override setting for json file path
    // Still apply the file name rule on Overview section
-   _electLog.Capture(log, jsonFilePath: "Custom Path"); 
+   _electLog.Capture(e, jsonFilePath: "Custom Path"); 
 }
 ``` 
 
