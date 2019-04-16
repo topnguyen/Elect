@@ -104,6 +104,11 @@
                 Clean up function names for anonymous lambda calls.
             </summary>
         </member>
+        <member name="P:Elect.Logger.Models.Logging.LogModel.JsonFilePath">
+            <summary>
+                Override file path of Config, can be absolute or relative file path.
+            </summary>
+        </member>
         <member name="M:Elect.Logger.Models.Logging.LogModel.#ctor(System.Object,Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
                 New Instance of Log Model

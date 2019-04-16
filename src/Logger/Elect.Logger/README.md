@@ -5,7 +5,7 @@
 ## Overview
 
 - Support write log to Json files with parameters
-  + {`<DateTimeFormat>`} - current UTC datetime.
+  + {`<DateTimeFormat>`} - current Local Machine datetime.
     * "Logs/{yyyy-MM-dd}.json" - 1 file / day
     * "Logs/{yyyy-MM-dd HH}.json" - 1 file / hour
     * "Logs/{yyyy-MM-dd HH_mm}.json" - 1 file / minute.
@@ -35,6 +35,8 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Log
 
 - Add Service
   + You can config `FilePath` (default is `Logs\{yyyy-MM-dd}.json`) by parameter [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
+  + Limit log information (remove "runtime", "environmentModel", "sdk", "httpContext") by property `IsLogFullInfo` (bool), default is false.
+
 ```c#
 services.AddElectLog();
 ```
@@ -59,7 +61,7 @@ services.AddElectLog();
         + "type" (string)
         + "exception_place" (string)
         + "message" (string)
-    + Limit display information by query string "full_info" (bool), default is false.
+    + Limit display information (remove "runtime", "environmentModel", "sdk", "httpContext") by query string "full_info" (bool), default is false.
     + Delete the log file by query string "delete_file" (bool), default is false.
     + You can config access key to control access permission by the [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
 

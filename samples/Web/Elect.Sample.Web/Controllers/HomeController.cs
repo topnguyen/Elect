@@ -21,7 +21,11 @@ namespace Elect.Sample.Web.Controllers
         {
             var deviceInfo = HttpContext.Request.GetDeviceInformation();
             
-            _electLog.Capture("Message Sample", LogType.Info);
+            _electLog.Capture("Message Sample");
+
+            var filePath = "Special Path";
+            _electLog.Capture("Message Sample Force File Path 1", jsonFilePath: filePath);
+            _electLog.Capture("Message Sample Force File Path 2", jsonFilePath: filePath);
 
             return View();
         }
