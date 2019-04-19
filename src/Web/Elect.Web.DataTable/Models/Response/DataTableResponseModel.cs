@@ -24,10 +24,11 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Web.DataTable.Models.Response
 {
-    public class DataTableResponseModel<T> where T : class, new()
+    public class DataTableResponseModel<T>: ElectDisposableModel where T : class, new()
     {
         [JsonProperty(PropertyName = PropertyConstants.TotalRecords)]
         public int TotalRecord { get; set; }

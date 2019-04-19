@@ -23,11 +23,12 @@ using Microsoft.AspNetCore.Http.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Web.Models
 {
     [Serializable]
-    public sealed class HttpContextModel
+    public sealed class HttpContextModel : ElectDisposableModel
     {
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
 

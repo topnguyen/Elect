@@ -17,9 +17,11 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ObjUtils;
+
 namespace Elect.Data.IO.ImageUtils.Models
 {
-    public class ImageModel
+    public class ImageModel : ElectDisposableModel
     {
         public string MimeType { get; set; }
 

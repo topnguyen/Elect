@@ -28,10 +28,11 @@ using Newtonsoft.Json.Converters;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Web.HttpDetection.Models
 {
-    public class DeviceModel
+    public class DeviceModel : ElectDisposableModel
     {
         private static readonly object Lock = new object();
         

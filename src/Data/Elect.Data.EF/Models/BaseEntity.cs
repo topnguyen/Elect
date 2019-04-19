@@ -20,10 +20,11 @@
 using Elect.Data.EF.Interfaces.Entity.Auditable;
 using Elect.Data.EF.Interfaces.Entity.SoftDelete;
 using System;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Data.EF.Models
 {
-    public abstract class BaseEntity : ISoftDeletableEntity, IAuditableEntity
+    public abstract class BaseEntity : ElectDisposableModel, ISoftDeletableEntity, IAuditableEntity
     {
         protected BaseEntity()
         {

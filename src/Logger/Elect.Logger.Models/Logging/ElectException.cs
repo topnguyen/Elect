@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Logger.Models.Logging
 {
-    public class ElectException
+    public class ElectException : ElectDisposableModel
     {
         private readonly string _message;
 
@@ -65,6 +66,11 @@ namespace Elect.Logger.Models.Logging
             }
 
             return sb.ToString().TrimEnd();
+        }
+
+        protected override void DisposeUnmanagedResources()
+        {
+            Stacktrace.Dispose();
         }
     }
 }

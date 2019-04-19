@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Elect.Core.ConcurrentUtils.Models;
+using Elect.Core.ConcurrentUtils;
 using Elect.Core.ObjUtils;
 using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
@@ -88,7 +88,7 @@ namespace Elect.Logger.Logging
 
         #endregion
 
-        protected override void Write(ICollection<LogModel> events)
+        protected override void Execute(IEnumerable<LogModel> events)
         {
             string lastJsonFilePath = null;
             

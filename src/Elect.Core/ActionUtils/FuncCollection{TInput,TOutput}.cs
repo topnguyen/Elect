@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Elect.Core.ActionUtils.Models;
 using Elect.Core.LinqUtils;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Core.ActionUtils
 {
-    public class FuncCollection<TInput, TOutput>
+    public class FuncCollection<TInput, TOutput> : ElectDisposableModel
     {
         protected List<FuncModel<TInput, TOutput>> Funcs { get; set; } = new List<FuncModel<TInput, TOutput>>();
 
@@ -37,6 +38,19 @@ namespace Elect.Core.ActionUtils
             }
 
             Funcs = Funcs.RemoveWhere(x => x.Func != null).ToList();
+        }
+        
+        protected override void DisposeUnmanagedResources()
+        {
+            if (Funcs?.Any() != true)
+            {
+                return;
+            }
+            
+            foreach (var funcModel in Funcs)
+            {
+                funcModel.Dispose();
+            }
         }
     }
 }

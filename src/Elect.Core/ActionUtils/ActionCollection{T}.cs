@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Elect.Core.ActionUtils.Models;
 using Elect.Core.LinqUtils;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Core.ActionUtils
 {
-    public class ActionCollection<T>
+    public class ActionCollection<T> : ElectDisposableModel
     {
         protected List<ActionModel<T>> Actions { get; set; } = new List<ActionModel<T>>();
 
@@ -37,6 +38,19 @@ namespace Elect.Core.ActionUtils
             }
 
             Actions = Actions.RemoveWhere(x => x.Action != null).ToList();
+        }
+        
+        protected override void DisposeUnmanagedResources()
+        {
+            if (Actions?.Any() != true)
+            {
+                return;
+            }
+            
+            foreach (var actionModel in Actions)
+            {
+                actionModel.Dispose();
+            }
         }
     }
 }

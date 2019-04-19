@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Elect.Core.ObjUtils;
 using Elect.Logger.Models.Logging.Utils;
@@ -11,7 +12,7 @@ using Newtonsoft.Json.Converters;
 namespace Elect.Logger.Models.Logging
 {
     [Serializable]
-    public class LogModel
+    public class LogModel : ElectDisposableModel
     {
         public Guid Id { get; } = Guid.NewGuid();
 
@@ -124,6 +125,25 @@ namespace Elect.Logger.Models.Logging
         public override string ToString()
         {
             return this.ToJsonString();
+        }
+        
+        protected override void DisposeUnmanagedResources()
+        {
+            if (Exceptions?.Any() != true)
+            {
+                return;
+            }
+            
+            foreach (var exception in Exceptions)
+            {
+                exception.Dispose();
+            }
+            
+            Runtime?.Dispose();
+            
+            Sdk?.Dispose();
+            
+            HttpContext?.Dispose();
         }
     }
 }

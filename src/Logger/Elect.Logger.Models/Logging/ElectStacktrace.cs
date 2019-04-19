@@ -2,10 +2,11 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Logger.Models.Logging
 {
-    public class ElectStacktrace
+    public class ElectStacktrace : ElectDisposableModel
     {
         public ElectExceptionFrame[] Frames { get; set; }
 
@@ -49,6 +50,19 @@ namespace Elect.Logger.Models.Logging
             }
 
             return sb.ToString();
+        }
+        
+        protected override void DisposeUnmanagedResources()
+        {
+            if (Frames?.Any() != true)
+            {
+                return;
+            }
+            
+            foreach (var frame in Frames)
+            {
+                frame.Dispose();
+            }
         }
     }
 }
