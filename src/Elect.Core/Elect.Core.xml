@@ -59,6 +59,13 @@
         <member name="M:Elect.Core.CheckUtils.CheckHelper.CheckNullOrWhiteSpace(System.String,System.String)">
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
+        <member name="T:Elect.Core.ConcurrentUtils.ElectMessageQueue`1">
+            <inheritdoc />
+            <summary>
+                Override <see cref="M:Elect.Core.ConcurrentUtils.Models.ElectMessageQueue`1.Execute(System.Collections.Generic.ICollection{`0})" /> to write your job
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="M:Elect.Core.ConfigUtils.IConfigurationExtensions.GetValueByEnv``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
                 Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
@@ -159,6 +166,9 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="T:Elect.Core.ObjUtils.ElectDisposableModel">
+            <inheritdoc />
         </member>
         <member name="M:Elect.Core.SecurityUtils.SecurityHelper.HashPassword(System.String,System.String,System.Int32)">
             <summary>

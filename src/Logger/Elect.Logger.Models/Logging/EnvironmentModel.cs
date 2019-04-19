@@ -1,8 +1,9 @@
 ﻿using System;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Logger.Models.Logging
 {
-    public class EnvironmentModel
+    public class EnvironmentModel : ElectDisposableModel
     {
         // Operating System
         

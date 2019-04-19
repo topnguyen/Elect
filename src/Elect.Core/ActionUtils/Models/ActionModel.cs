@@ -1,8 +1,9 @@
 using System;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Core.ActionUtils.Models
 {
-    public class ActionModel
+    public class ActionModel : ElectDisposableModel
     {
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
 

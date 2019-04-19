@@ -2,10 +2,11 @@
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Logger.Models.Logging
 {
-    public class ElectExceptionFrame
+    public class ElectExceptionFrame : ElectDisposableModel
     {
         /// <summary>
         ///     Gets or sets the absolute path.
