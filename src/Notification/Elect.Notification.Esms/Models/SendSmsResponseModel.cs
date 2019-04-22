@@ -17,11 +17,12 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ObjUtils;
 using Newtonsoft.Json;
 
 namespace Elect.Notification.Esms.Models
 {
-    public class SendSmsResponseModel
+    public class SendSmsResponseModel : ElectDisposableModel
     {
         [JsonProperty("SMSID")]
         public string Id { get; set; }

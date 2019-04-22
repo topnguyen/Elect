@@ -22,10 +22,11 @@ using Elect.Web.SiteMap.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Web.SiteMap.Models
 {
-    public class SiteMapImageItemModel : ISiteMapItem
+    public class SiteMapImageItemModel : ElectDisposableModel, ISiteMapItem
     {
         /// <summary>
         ///     Creates a new instance of <see cref="SiteMapImageItemDetailModel" /> 

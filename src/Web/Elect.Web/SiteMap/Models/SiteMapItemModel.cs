@@ -19,13 +19,14 @@
 
 using Elect.Web.SiteMap.Interfaces;
 using System;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Web.SiteMap.Models
 {
     /// <summary>
     ///     Represents a page or URL in your site map. 
     /// </summary>
-    public sealed class SiteMapItem : ISiteMapItem
+    public sealed class SiteMapItem : ElectDisposableModel, ISiteMapItem
     {
         private double? _priority;
 

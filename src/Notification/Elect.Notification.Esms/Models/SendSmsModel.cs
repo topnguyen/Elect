@@ -17,9 +17,11 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ObjUtils;
+
 namespace Elect.Notification.Esms.Models
 {
-    public class SendSmsModel
+    public class SendSmsModel: ElectDisposableModel
     {
         public string Phone { get; set; }
 

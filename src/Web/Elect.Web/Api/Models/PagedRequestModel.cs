@@ -17,9 +17,11 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ObjUtils;
+
 namespace Elect.Web.Api.Models
 {
-    public class PagedRequestModel
+    public class PagedRequestModel : ElectDisposableModel
     {
         public int Skip { get; set; } = 0;
 
