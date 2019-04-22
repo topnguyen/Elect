@@ -19,10 +19,11 @@
 
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Web.Api.Models
 {
-    public class PagedResponseModel<T> where T : class, new()
+    public class PagedResponseModel<T>: ElectDisposableModel where T : class, new()
     {
         [JsonProperty(Order = 6)]
         public int Total { get; set; }

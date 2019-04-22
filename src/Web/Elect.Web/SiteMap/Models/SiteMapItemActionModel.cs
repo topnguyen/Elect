@@ -19,10 +19,11 @@
 
 using System;
 using System.Reflection;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Web.SiteMap.Models
 {
-    public class SiteMapItemActionModel
+    public class SiteMapItemActionModel: ElectDisposableModel
     {
         public MethodInfo Action { get; set; }
 

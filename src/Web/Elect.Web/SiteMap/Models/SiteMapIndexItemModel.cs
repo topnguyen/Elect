@@ -20,13 +20,14 @@
 using Elect.Core.CheckUtils;
 using Elect.Web.SiteMap.Interfaces;
 using System;
+using Elect.Core.ObjUtils;
 
 namespace Elect.Web.SiteMap.Models
 {
     /// <summary>
     ///     Represents a site map index item. 
     /// </summary>
-    public class SiteMapIndexItemModel : ISiteMapItem
+    public class SiteMapIndexItemModel : ElectDisposableModel, ISiteMapItem
     {
         /// <summary>
         ///     Creates a new instance of <see cref="SiteMapIndexItemModel" /> 

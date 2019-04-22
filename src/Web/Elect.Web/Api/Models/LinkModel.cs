@@ -17,6 +17,7 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ObjUtils;
 using Elect.Web.Models;
 using Microsoft.AspNetCore.Routing;
 using Newtonsoft.Json;
@@ -24,7 +25,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Elect.Web.Api.Models
 {
-    public class LinkModel
+    public class LinkModel : ElectDisposableModel
     {
         public string Url { get; set; }
 

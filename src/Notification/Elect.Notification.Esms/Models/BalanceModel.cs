@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Elect.Core.ObjUtils;
+using Newtonsoft.Json;
 
 namespace Elect.Notification.Esms.Models
 {
-    public class BalanceModel
+    public class BalanceModel: ElectDisposableModel
     {
         /// <summary>
         ///     Balance in VND 

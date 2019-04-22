@@ -17,9 +17,11 @@
 //--------------------------------------------------
 #endregion License
 
+using Elect.Core.ObjUtils;
+
 namespace Elect.Web.SiteMap.Models
 {
-    public class SiteMapImageItemDetailModel
+    public class SiteMapImageItemDetailModel: ElectDisposableModel
     {
         /// <summary>
         ///     Caption/description of image. 
