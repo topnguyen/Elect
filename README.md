@@ -13,8 +13,21 @@ Number of mini libraries to make faster develop .NET Core system.
 
 ## Installation
 
-All Elect modules publish in [Nuget Package](https://www.nuget.org/packages?q=TopNguyen).
+All Elect modules publish in [nuget.org](https://www.nuget.org/packages?q=TopNguyen).
 
+You can add **My Nuget Server** to have fastest packages update 
+ - No waste time for nuget index package
+ - Full nuget.org mirror packages
+ - Add `<add key="Top Nguyen" value="http://nuget.topnguyen.com/v3/index.json"/>` to NuGet.Config
+    + If you not have NuGet.Config, just create the file named "NuGet.Config" in your root project folder with below content 
+        ```xml
+        <?xml version="1.0" encoding="utf-8"?>
+        <configuration>
+            <packageSources>
+                <add key="Top Nguyen" value="http://nuget.topnguyen.com/v3/index.json"/>
+            </packageSources>
+        </configuration>
+         ```
 ## Usage
 
 Elect have difference modules/libraries, each lib handle a 3rd library or focus utility for a field.
