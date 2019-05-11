@@ -28,6 +28,8 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Cors;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Elect.Web.Middlewares.CorsMiddleware
 {
@@ -128,6 +130,8 @@ namespace Elect.Web.Middlewares.CorsMiddleware
             {
                 config.Filters.Add(new CorsAuthorizationFilterFactory(options.PolicyName));
             });
+
+            services.TryAddTransient<CorsAuthorizationFilter, CorsAuthorizationFilter>();
 
             return services;
         }
