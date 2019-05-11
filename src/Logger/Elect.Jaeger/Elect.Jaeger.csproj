@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <!-- Information -->
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <!-- Generate XML file -->
+        <DocumentationFile>Elect.Jaeger.xml</DocumentationFile>
+        <!-- Disable warning for Controller/Action/Method not have block comment -->
+        <NoWarn>1701;1702;1705;1591</NoWarn>
+        <!-- Output -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>.\bin\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- Copy to Ouput -->
+        <Content Include="Elect.Jaeger.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <!-- Nuget -->
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>..\..\..\build\Logger</PackageOutputPath>
+        <NuspecFile>..\..\..\nuspecs\Logger\Elect.Jaeger.nuspec</NuspecFile>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <!-- Elect -->
+        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
+
+        <!-- Jaeger -->
+        <PackageReference Include="Jaeger" Version="0.3.2" />
+        <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.5.0" />
+    </ItemGroup>
+</Project>

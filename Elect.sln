@@ -3,40 +3,56 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Core", "src\Elect.Core\Elect.Core.csproj", "{ADDDF884-81A8-48BA-B405-2D451ACCB6BF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. src", "src", "{F054EE83-4A80-4553-A0CC-25C46D2A3AC1}"
 EndProject
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{DD41F232-E4E3-408F-9687-7AA6D7201F49}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DI", "DI", "{CDC81C63-39E4-44FB-80DB-7839E8D2C8C1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mapper", "Mapper", "{7A077DE1-4A8A-4D47-820A-A9BE4EB908B2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Data.EF", "src\Data\Elect.Data.EF\Elect.Data.EF.csproj", "{CBD1A22E-6626-496A-ABE5-5AF066B844B1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Data.IO", "src\Data\Elect.Data.IO\Elect.Data.IO.csproj", "{04A7B5D4-43D6-4624-8F3F-C44B06BD7C2C}"
 EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DI", "DI", "{CDC81C63-39E4-44FB-80DB-7839E8D2C8C1}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.DI", "src\DI\Elect.DI\Elect.DI.csproj", "{CB65A310-CCA3-40BB-9EBA-745184234496}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Job", "Job", "{02858C64-BEB0-46DE-8479-BB623A6CF04A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Job.Hangfire", "src\Job\Elect.Job.Hangfire\Elect.Job.Hangfire.csproj", "{6EB7A9C8-2CD6-40D0-ADC9-1F0D8EFDDEE9}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Location", "Location", "{63AB0898-B0A3-4E25-A3EE-5CCE2F20F6C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Coordinate", "src\Location\Elect.Location.Coordinate\Elect.Location.Coordinate.csproj", "{04614ED2-1441-4A46-8E12-7A14D3FB1B5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Google", "src\Location\Elect.Location.Google\Elect.Location.Google.csproj", "{63DFC9B3-07F1-4239-A1F8-17C61A2D4619}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Models", "src\Location\Elect.Location.Models\Elect.Location.Models.csproj", "{429E8BDD-F4FF-4AF1-A3F5-0E7367F9B766}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{CCD4640F-D5AF-45AF-AF46-2DC0F4218C9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Jaeger", "src\Logger\Elect.Jaeger\Elect.Jaeger.csproj", "{D8534141-918B-4942-9E8D-6E84343DFDDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Logger", "src\Logger\Elect.Logger\Elect.Logger.csproj", "{EADA32D2-A7E5-4FCD-86E1-3B233660E519}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Logger.Models", "src\Logger\Elect.Logger.Models\Elect.Logger.Models.csproj", "{33E1B71F-E467-4E95-A046-4D69E7AC41C9}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mapper", "Mapper", "{7A077DE1-4A8A-4D47-820A-A9BE4EB908B2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Mapper.AutoMapper", "src\Mapper\Elect.Mapper.AutoMapper\Elect.Mapper.AutoMapper.csproj", "{C7936AB3-C8A5-487C-B4C2-01CA2DD11E60}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. src", "src", "{F054EE83-4A80-4553-A0CC-25C46D2A3AC1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. samples", "samples", "{5E828BCD-A912-417F-9A51-708859BA56F5}"
-EndProject
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notification", "{50154748-2B4A-4BFA-BBEB-17E5DF45A1B8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Notification.Esms", "src\Notification\Elect.Notification.Esms\Elect.Notification.Esms.csproj", "{54A7CA38-82FB-4389-9E30-7341584DE24E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Notification.OneSignal", "src\Notification\Elect.Notification.OneSignal\Elect.Notification.OneSignal.csproj", "{2F238130-AD51-4939-A15D-1E2F60C23871}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Location", "Location", "{63AB0898-B0A3-4E25-A3EE-5CCE2F20F6C0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Models", "src\Location\Elect.Location.Models\Elect.Location.Models.csproj", "{429E8BDD-F4FF-4AF1-A3F5-0E7367F9B766}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Google", "src\Location\Elect.Location.Google\Elect.Location.Google.csproj", "{63DFC9B3-07F1-4239-A1F8-17C61A2D4619}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Location.Coordinate", "src\Location\Elect.Location.Coordinate\Elect.Location.Coordinate.csproj", "{04614ED2-1441-4A46-8E12-7A14D3FB1B5F}"
-EndProject
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{16FC8D0A-F964-4B45-9E78-8F9D50585B3C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web", "src\Web\Elect.Web\Elect.Web.csproj", "{2B2BC6FA-8E3A-4323-87E5-15C1E7077AB2}"
@@ -49,9 +65,24 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web.Swagger", "src\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Web.Middlewares", "src\Web\Elect.Web.Middlewares\Elect.Web.Middlewares.csproj", "{0DC598F3-8231-4514-9590-90A85F2802E0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Job", "Job", "{02858C64-BEB0-46DE-8479-BB623A6CF04A}"
+
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Core", "src\Elect.Core\Elect.Core.csproj", "{ADDDF884-81A8-48BA-B405-2D451ACCB6BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Job.Hangfire", "src\Job\Elect.Job.Hangfire\Elect.Job.Hangfire.csproj", "{6EB7A9C8-2CD6-40D0-ADC9-1F0D8EFDDEE9}"
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. test", "test", "{7A62CF0C-B858-4273-8121-00BC279B7005}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Core", "test\Elect.Test.Core\Elect.Test.Core.csproj", "{7ADD229C-B21A-4E48-8619-0A78B14CB449}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{54740C79-3FE9-47A5-BA78-267A43054D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Data.IO", "test\Data\Elect.Test.Data.IO\Elect.Test.Data.IO.csproj", "{80231B01-6453-40E7-A017-74A84C6DBC96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{F7173D8D-7456-4AAF-91A7-BBCCCD64DA55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Logger", "test\Logger\Elect.Test.Logger\Elect.Test.Logger.csproj", "{8D6E96D3-8E7A-460F-8A7F-F3A14EA26D1A}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. samples", "samples", "{5E828BCD-A912-417F-9A51-708859BA56F5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0DA7335A-4D04-4AE3-88AA-166C9FA1772F}"
 EndProject
@@ -60,6 +91,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DI", "DI", "{B7897E91-B991-4E82-8588-1097DC994C7D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Sample.DI", "samples\DI\Elect.Sample.DI\Elect.Sample.DI.csproj", "{6D8D4104-B05B-4409-8A24-69A228D1FD5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{D427B2ED-4C55-471D-A8EB-E1199C96E97B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Sample.Logger", "samples\Logger\Elect.Sample.Logger\Elect.Sample.Logger.csproj", "{37A595DA-13F8-4768-8C9D-20AF9947210E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mapper", "Mapper", "{59A9EC3F-44A0-4907-B3E6-7E7A5B166069}"
 EndProject
@@ -75,6 +110,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Sample.Web.Swagger", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elect.Sample.Web.DataTable", "samples\Web\Elect.Sample.Web.DataTable\Elect.Sample.Web.DataTable.csproj", "{529A13D8-CA49-46DB-80C9-18B8ABD390F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Web.Ajaxify", "src\Web\Elect.Web.Ajaxify\Elect.Web.Ajaxify.csproj", "{F233CF58-F101-455B-AB37-4C5733C0156A}"
+EndProject
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. nuspecs", "nuspecs", "{55DB6D46-100C-4C74-88B9-6FBB954D64CA}"
 	ProjectSection(SolutionItems) = preProject
 		nuspecs\Elect.Core.nuspec = nuspecs\Elect.Core.nuspec
@@ -123,6 +161,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{12AAB3FD-8B2
 		nuspecs\Web\Elect.Web.Swagger.nuspec = nuspecs\Web\Elect.Web.Swagger.nuspec
 	EndProjectSection
 EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{C9F23A27-613C-43B0-B236-E78FFAB41A13}"
+ProjectSection(SolutionItems) = preProject
+	nuspecs\Logger\Elect.Logger.Models.nuspec = nuspecs\Logger\Elect.Logger.Models.nuspec
+	nuspecs\Logger\Elect.Logger.nuspec = nuspecs\Logger\Elect.Logger.nuspec
+	nuspecs\Logger\Elect.Jaeger.nuspec = nuspecs\Logger\Elect.Jaeger.nuspec
+EndProjectSection
+EndProject
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Solution Items", "Solution Items", "{D3CB990F-2674-44C6-A3DE-CB288423B749}"
 	ProjectSection(SolutionItems) = preProject
 		NuGet.Config = NuGet.Config
@@ -132,36 +179,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Solution Items", "Soluti
 		jetbrains-variant-4.png = jetbrains-variant-4.png
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. test", "test", "{7A62CF0C-B858-4273-8121-00BC279B7005}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Core", "test\Elect.Test.Core\Elect.Test.Core.csproj", "{7ADD229C-B21A-4E48-8619-0A78B14CB449}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{54740C79-3FE9-47A5-BA78-267A43054D0E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Data.IO", "test\Data\Elect.Test.Data.IO\Elect.Test.Data.IO.csproj", "{80231B01-6453-40E7-A017-74A84C6DBC96}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{CCD4640F-D5AF-45AF-AF46-2DC0F4218C9B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Logger.Models", "src\Logger\Elect.Logger.Models\Elect.Logger.Models.csproj", "{33E1B71F-E467-4E95-A046-4D69E7AC41C9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{C9F23A27-613C-43B0-B236-E78FFAB41A13}"
-ProjectSection(SolutionItems) = preProject
-	nuspecs\Logger\Elect.Logger.Models.nuspec = nuspecs\Logger\Elect.Logger.Models.nuspec
-	nuspecs\Logger\Elect.Logger.nuspec = nuspecs\Logger\Elect.Logger.nuspec
-EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Logger", "test\Logger\Elect.Test.Logger\Elect.Test.Logger.csproj", "{8D6E96D3-8E7A-460F-8A7F-F3A14EA26D1A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{F7173D8D-7456-4AAF-91A7-BBCCCD64DA55}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Logger", "src\Logger\Elect.Logger\Elect.Logger.csproj", "{EADA32D2-A7E5-4FCD-86E1-3B233660E519}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{D427B2ED-4C55-471D-A8EB-E1199C96E97B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Sample.Logger", "samples\Logger\Elect.Sample.Logger\Elect.Sample.Logger.csproj", "{37A595DA-13F8-4768-8C9D-20AF9947210E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Web.Ajaxify", "src\Web\Elect.Web.Ajaxify\Elect.Web.Ajaxify.csproj", "{F233CF58-F101-455B-AB37-4C5733C0156A}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -288,6 +306,10 @@ Global
 		{F233CF58-F101-455B-AB37-4C5733C0156A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F233CF58-F101-455B-AB37-4C5733C0156A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F233CF58-F101-455B-AB37-4C5733C0156A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8534141-918B-4942-9E8D-6E84343DFDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8534141-918B-4942-9E8D-6E84343DFDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8534141-918B-4942-9E8D-6E84343DFDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8534141-918B-4942-9E8D-6E84343DFDDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -346,6 +368,7 @@ Global
 		{D427B2ED-4C55-471D-A8EB-E1199C96E97B} = {5E828BCD-A912-417F-9A51-708859BA56F5}
 		{37A595DA-13F8-4768-8C9D-20AF9947210E} = {D427B2ED-4C55-471D-A8EB-E1199C96E97B}
 		{F233CF58-F101-455B-AB37-4C5733C0156A} = {16FC8D0A-F964-4B45-9E78-8F9D50585B3C}
+		{D8534141-918B-4942-9E8D-6E84343DFDDD} = {CCD4640F-D5AF-45AF-AF46-2DC0F4218C9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B699336-21B7-4FD5-8ECC-A8390C034309}
