@@ -19,6 +19,7 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Jae
 ## Usage
 
 - Add Service
+  + You can config endpoints by [`ElectJaegerOptions`](Models/ElectJaegerOptions.cs).
 
 ```c#
 services.AddElectJaeger();
