@@ -1,5 +1,4 @@
 ﻿using Elect.Logger.Logging;
-using Elect.Logger.Models.Logging;
 using Elect.Web.HttpDetection;
 using Elect.Web.SiteMap.Attributes;
 using Elect.Web.SiteMap.Models;
@@ -24,7 +23,9 @@ namespace Elect.Sample.Web.Controllers
             _electLog.Capture("Message Sample");
 
             var filePath = "Special Path";
+            
             _electLog.Capture("Message Sample Force File Path 1", jsonFilePath: filePath);
+            
             _electLog.Capture("Message Sample Force File Path 2", jsonFilePath: filePath);
 
             return View();
