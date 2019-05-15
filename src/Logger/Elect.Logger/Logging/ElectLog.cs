@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Elect.Core.ConcurrentUtils;
 using Elect.Core.ObjUtils;
 using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
@@ -14,29 +15,31 @@ using Newtonsoft.Json;
 
 namespace Elect.Logger.Logging
 {
-    public class ElectLog : IElectLog
+    public class ElectLog : ElectMessageQueue<LogModel>, IElectLog
     {
         private readonly ElectLogOptions _options;
-        
+
         /// <inheritdoc />
         public Func<LogModel, LogModel> BeforeLog { get; set; }
 
         /// <inheritdoc />
         public Func<LogModel, LogModel> AfterLog { get; set; }
-        
-        public ElectLog(ElectLogOptions options)
+
+        public ElectLog(ElectLogOptions options) : base(options.BatchSize, options.Threshold)
         {
             _options = options;
         }
 
-        public ElectLog(IOptions<ElectLogOptions> configuration)
+        public ElectLog(IOptions<ElectLogOptions> configuration) : base(configuration.Value.BatchSize,
+            configuration.Value.Threshold)
         {
             _options = configuration.Value;
         }
 
         #region Capture
 
-        public virtual LogModel Capture(string message, LogType type = LogType.Error, HttpContext httpContext = null, string jsonFilePath = null)
+        public LogModel Capture(string message, LogType type = LogType.Error, HttpContext httpContext = null,
+            string jsonFilePath = null)
         {
             var log = new LogModel(message, httpContext)
             {
@@ -47,7 +50,8 @@ namespace Elect.Logger.Logging
             return Capture(log);
         }
 
-        public virtual LogModel Capture(Exception exception, LogType type = LogType.Error, HttpContext httpContext = null, string jsonFilePath = null)
+        public LogModel Capture(Exception exception, LogType type = LogType.Error, HttpContext httpContext = null,
+            string jsonFilePath = null)
         {
             var log = new LogModel(exception, httpContext)
             {
@@ -58,7 +62,8 @@ namespace Elect.Logger.Logging
             return Capture(log);
         }
 
-        public virtual LogModel Capture(object obj, LogType type = LogType.Error, HttpContext httpContext = null, string jsonFilePath = null)
+        public LogModel Capture(object obj, LogType type = LogType.Error, HttpContext httpContext = null,
+            string jsonFilePath = null)
         {
             var log = new LogModel(obj, httpContext)
             {
@@ -69,7 +74,7 @@ namespace Elect.Logger.Logging
             return Capture(log);
         }
 
-        public virtual LogModel Capture(LogModel log)
+        public LogModel Capture(LogModel log)
         {
             // Convert to Json string for Filter purpose
             var logJsonStr = log.ToJsonString();
@@ -80,20 +85,26 @@ namespace Elect.Logger.Logging
             // Update log by filtered info
             log = JsonConvert.DeserializeObject<LogModel>(logJsonStr);
 
-            Execute(log);
+            // To Console
+            if (_options.IsEnableLogToConsole)
+            {
+                WriteConsole(log);
+            }
+
+            Push(log);
 
             return log;
         }
 
         #endregion
 
-        protected virtual void Execute(LogModel @event)
+        protected override void Execute(IEnumerable<LogModel> events)
         {
-            Execute(new []{@event});
-        }
+            if (!_options.IsEnableLogToFile)
+            {
+                return;
+            }
 
-        protected virtual void Execute(IEnumerable<LogModel> events)
-        {
             foreach (var @event in events)
             {
                 var log = @event;
@@ -117,32 +128,23 @@ namespace Elect.Logger.Logging
                 {
                     continue;
                 }
-                
+
                 // To File
-                if (_options.IsEnableLogToFile)
+                var jsonFilePath = GetJsonFilePath(_options, log);
+
+                var isExistJsonFile = File.Exists(jsonFilePath);
+
+                using (var store = new DataStore(jsonFilePath))
                 {
-                    var jsonFilePath = GetJsonFilePath(_options, log);
-                    
                     // Write Metadata first then the Logs
-                    var isJsonFileExist = File.Exists(jsonFilePath);
-
-                    using (var store = new DataStore(jsonFilePath))
+                    if (!isExistJsonFile)
                     {
-                        if (!isJsonFileExist)
-                        {
-                            WriteMetadata(jsonFilePath, store);
-                        }
-
-                        WriteLog(store, log);
-
                         WriteMetadata(jsonFilePath, store);
                     }
-                }
 
-                // To Console
-                if (_options.IsEnableLogToConsole)
-                {
-                    WriteConsole(log);
+                    WriteLog(store, log);
+
+                    WriteMetadata(jsonFilePath, store);
                 }
 
                 // After
@@ -154,14 +156,14 @@ namespace Elect.Logger.Logging
 
         private static string GetJsonFilePath(ElectLogOptions options, LogModel log)
         {
-            var jsonFilePath = Path.GetFullPath(!string.IsNullOrWhiteSpace(log.JsonFilePath) 
-                ? log.JsonFilePath 
+            var jsonFilePath = Path.GetFullPath(!string.IsNullOrWhiteSpace(log.JsonFilePath)
+                ? log.JsonFilePath
                 : options.JsonFilePath);
 
             jsonFilePath = jsonFilePath
                 .Replace('/', Path.DirectorySeparatorChar)
                 .Replace('\\', Path.DirectorySeparatorChar);
-                
+
             // Replace {Type}
             jsonFilePath = GetFilePathByType(jsonFilePath, log);
 
@@ -233,11 +235,11 @@ namespace Elect.Logger.Logging
         {
             var metadatas = store.GetCollection<ElectLogMetadataModel>("metadata");
             var metadata = metadatas.AsQueryable().FirstOrDefault();
-            
+
             var fileInfo = new FileInfo(jsonFilePath);
-            
+
             var logs = store.GetCollection<LogModel>("logs");
-            
+
             var totalLog = logs.Count;
 
             if (metadata == null)
@@ -262,11 +264,11 @@ namespace Elect.Logger.Logging
         private static void WriteLog(IDataStore store, LogModel newLog)
         {
             newLog.JsonFilePath = null; // Force remove this information before log
-            
+
             var logs = store.GetCollection<LogModel>("logs");
-            
+
             logs.InsertOne(newLog);
-            
+
             var logsClone = logs.AsQueryable().OrderByDescending(x => x.CreatedTime).ToList();
 
             logs.DeleteMany(x => true);
@@ -284,44 +286,44 @@ namespace Elect.Logger.Logging
             switch (log.Type)
             {
                 case LogType.Debug:
-                    {
-                        color = ConsoleColor.Gray;
-                        prefixText = $"[D] [{dateTime}]";
-                        break;
-                    }
+                {
+                    color = ConsoleColor.Gray;
+                    prefixText = $"[D] [{dateTime}]";
+                    break;
+                }
                 case LogType.Info:
-                    {
-                        color = ConsoleColor.Cyan;
-                        prefixText = $"[I] [{dateTime}]";
-                        break;
-                    }
+                {
+                    color = ConsoleColor.Cyan;
+                    prefixText = $"[I] [{dateTime}]";
+                    break;
+                }
                 case LogType.Warning:
-                    {
-                        color = ConsoleColor.DarkYellow;
-                        prefixText = $"[W] [{dateTime}]";
-                        break;
-                    }
+                {
+                    color = ConsoleColor.DarkYellow;
+                    prefixText = $"[W] [{dateTime}]";
+                    break;
+                }
                 case LogType.Error:
-                    {
-                        color = ConsoleColor.Red;
-                        prefixText = $"[E] [{dateTime}]";
-                        break;
-                    }
+                {
+                    color = ConsoleColor.Red;
+                    prefixText = $"[E] [{dateTime}]";
+                    break;
+                }
                 case LogType.Fatal:
-                    {
-                        color = ConsoleColor.Magenta;
-                        prefixText = $"[F] [{dateTime}]";
-                        break;
-                    }
+                {
+                    color = ConsoleColor.Magenta;
+                    prefixText = $"[F] [{dateTime}]";
+                    break;
+                }
                 default:
-                    {
-                        var logType = log.Type.ToString();
+                {
+                    var logType = log.Type.ToString();
 
-                        logType = logType.Length > 4 ? logType.Substring(0, 4) : logType;
+                    logType = logType.Length > 4 ? logType.Substring(0, 4) : logType;
 
-                        prefixText = $"[{logType}] [{dateTime}]";
-                        break;
-                    }
+                    prefixText = $"[{logType}] [{dateTime}]";
+                    break;
+                }
             }
 
             Console.BackgroundColor = color;

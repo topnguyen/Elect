@@ -75,6 +75,16 @@
             </summary>
             <remarks>Default is 5 seconds</remarks>
         </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.IsEnableLogToConsole">
+            <summary>
+                Log will write immediately to the Console after the Capture feature executed.
+            </summary>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.IsEnableLogToFile">
+            <summary>
+                Log will push to a queue then write to the File after the Capture feature executed.
+            </summary>
+        </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.IsLogFullInfo">
             <summary>
                 Limit log information,

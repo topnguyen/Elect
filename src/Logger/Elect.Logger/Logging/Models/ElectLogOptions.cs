@@ -28,8 +28,14 @@ namespace Elect.Logger.Logging.Models
         /// <remarks>Default is 5 seconds</remarks>
         public TimeSpan Threshold { get; set; } = TimeSpan.FromSeconds(5);
 
+        /// <summary>
+        ///     Log will write immediately to the Console after the Capture feature executed.
+        /// </summary>
         public bool IsEnableLogToConsole { get; set; } = true;
 
+        /// <summary>
+        ///     Log will push to a queue then write to the File after the Capture feature executed.
+        /// </summary>
         public bool IsEnableLogToFile { get; set; } = true;
 
         /// <summary>
