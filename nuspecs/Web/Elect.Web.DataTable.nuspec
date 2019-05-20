@@ -20,7 +20,7 @@
             <dependency id="Elect.Web" version="2.7.0"/>
 
             <!-- 3rd Libraries -->
-            <dependency id="System.Linq.Dynamic.Core" version="1.0.12"/>
+            <dependency id="System.Linq.Dynamic.Core" version="1.0.14"/>
         </dependencies>
     </metadata>
 

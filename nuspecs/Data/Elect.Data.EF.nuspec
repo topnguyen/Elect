@@ -22,7 +22,7 @@
             <!-- 3rd Libraries -->
             <dependency id="Microsoft.EntityFrameworkCore" version="2.2.4"/>
             <dependency id="Microsoft.EntityFrameworkCore.Relational" version="2.2.4"/>
-            <dependency id="System.Data.SqlClient" version="4.6.0"/>
+            <dependency id="System.Data.SqlClient" version="4.6.1"/>
         </dependencies>
     </metadata>
 
