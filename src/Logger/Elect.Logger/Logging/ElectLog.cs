@@ -19,12 +19,6 @@ namespace Elect.Logger.Logging
     {
         private readonly ElectLogOptions _options;
 
-        /// <inheritdoc />
-        public Func<LogModel, LogModel> BeforeLog { get; set; }
-
-        /// <inheritdoc />
-        public Func<LogModel, LogModel> AfterLog { get; set; }
-
         public ElectLog(ElectLogOptions options) : base(options.BatchSize, options.Threshold)
         {
             _options = options;
@@ -100,11 +94,6 @@ namespace Elect.Logger.Logging
 
         protected override void Execute(IEnumerable<LogModel> events)
         {
-            if (!_options.IsEnableLogToFile)
-            {
-                return;
-            }
-
             foreach (var @event in events)
             {
                 var log = @event;
@@ -119,9 +108,9 @@ namespace Elect.Logger.Logging
                 }
 
                 // Before
-                if (BeforeLog != null)
+                if (_options.BeforeLog != null)
                 {
-                    log = BeforeLog(log);
+                    log = _options.BeforeLog(log);
                 }
 
                 if (log == null)
@@ -130,25 +119,38 @@ namespace Elect.Logger.Logging
                 }
 
                 // To File
-                var jsonFilePath = GetJsonFilePath(_options, log);
+                WriteLogToFile(log);
 
-                var isExistJsonFile = File.Exists(jsonFilePath);
-
-                using (var store = new DataStore(jsonFilePath))
+                // After
+                if (_options.AfterLog != null)
                 {
-                    // Write Metadata first then the Logs
-                    if (!isExistJsonFile)
-                    {
-                        WriteMetadata(jsonFilePath, store);
-                    }
+                    log = _options.AfterLog(log);
+                }
+            }
+        }
 
-                    WriteLog(store, log);
+        protected void WriteLogToFile(LogModel log)
+        {
+            if (!_options.IsEnableLogToFile)
+            {
+                return;
+            }
+            
+            var jsonFilePath = GetJsonFilePath(_options, log);
 
+            var isExistJsonFile = File.Exists(jsonFilePath);
+
+            using (var store = new DataStore(jsonFilePath))
+            {
+                // Write Metadata first then the Logs
+                if (!isExistJsonFile)
+                {
                     WriteMetadata(jsonFilePath, store);
                 }
 
-                // After
-                log = AfterLog?.Invoke(log);
+                WriteLog(store, log);
+
+                WriteMetadata(jsonFilePath, store);
             }
         }
 
@@ -291,30 +293,35 @@ namespace Elect.Logger.Logging
                     prefixText = $"[D] [{dateTime}]";
                     break;
                 }
+
                 case LogType.Info:
                 {
                     color = ConsoleColor.Cyan;
                     prefixText = $"[I] [{dateTime}]";
                     break;
                 }
+
                 case LogType.Warning:
                 {
                     color = ConsoleColor.DarkYellow;
                     prefixText = $"[W] [{dateTime}]";
                     break;
                 }
+
                 case LogType.Error:
                 {
                     color = ConsoleColor.Red;
                     prefixText = $"[E] [{dateTime}]";
                     break;
                 }
+
                 case LogType.Fatal:
                 {
                     color = ConsoleColor.Magenta;
                     prefixText = $"[F] [{dateTime}]";
                     break;
                 }
+
                 default:
                 {
                     var logType = log.Type.ToString();

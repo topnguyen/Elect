@@ -10,25 +10,6 @@ namespace Elect.Logger.Logging.Models
     public class ElectLogOptions : IElectOptions
     {
         /// <summary>
-        ///     Relative Path of Json File, default is Logs/{yyyy-MM-dd}.json
-        /// </summary>
-        /// <remarks>Path.GetFullPath(JsonFilePath) to get full path of json files</remarks>
-        public string JsonFilePath { get; set; } = "Logs" + Path.DirectorySeparatorChar + "{yyyy-MM-dd}.json";
-
-        
-        /// <summary>
-        ///     Batch size for log message queue
-        /// </summary>
-        /// <remarks>Default is 20</remarks>
-        public uint BatchSize { get; set; } = 20;
-
-        /// <summary>
-        ///     Threshold for log message queue
-        /// </summary>
-        /// <remarks>Default is 5 seconds</remarks>
-        public TimeSpan Threshold { get; set; } = TimeSpan.FromSeconds(5);
-
-        /// <summary>
         ///     Log will write immediately to the Console after the Capture feature executed.
         /// </summary>
         public bool IsEnableLogToConsole { get; set; } = true;
@@ -37,6 +18,24 @@ namespace Elect.Logger.Logging.Models
         ///     Log will push to a queue then write to the File after the Capture feature executed.
         /// </summary>
         public bool IsEnableLogToFile { get; set; } = true;
+        
+        /// <summary>
+        ///     Relative Path of Json File, default is Logs/{yyyy-MM-dd}.json
+        /// </summary>
+        /// <remarks>Path.GetFullPath(JsonFilePath) to get full path of json files</remarks>
+        public string JsonFilePath { get; set; } = "Logs" + Path.DirectorySeparatorChar + "{yyyy-MM-dd}.json";
+
+        /// <summary>
+        ///     Batch size for log message queue
+        /// </summary>
+        /// <remarks>Default is 100</remarks>
+        public uint BatchSize { get; set; } = 100;
+
+        /// <summary>
+        ///     Threshold for log message queue
+        /// </summary>
+        /// <remarks>Default is 5 seconds</remarks>
+        public TimeSpan Threshold { get; set; } = TimeSpan.FromSeconds(5);
 
         /// <summary>
         ///     Limit log information,
@@ -46,6 +45,17 @@ namespace Elect.Logger.Logging.Models
         /// </summary>
         /// <remarks>Default is false</remarks>
         public bool IsLogFullInfo { get; set; }
+        
+        /// <summary>
+        ///     Modify log info or do some logic before Elect write log.
+        /// </summary>
+        /// <remarks>Return null to prevent Write Log execute</remarks>
+        public Func<LogModel, LogModel> BeforeLog { get; set; }
+
+        /// <summary>
+        ///     Modify log info or do some logic after Elect write log.
+        /// </summary>
+        public Func<LogModel, LogModel> AfterLog { get; set; }
 
         /// <summary>
         ///     Api Document Endpoint, default is "/developers/logs". 

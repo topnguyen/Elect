@@ -4,22 +4,6 @@
         <name>Elect.Logger</name>
     </assembly>
     <members>
-        <member name="P:Elect.Logger.Logging.ElectLog.BeforeLog">
-            <inheritdoc />
-        </member>
-        <member name="P:Elect.Logger.Logging.ElectLog.AfterLog">
-            <inheritdoc />
-        </member>
-        <member name="P:Elect.Logger.Logging.IElectLog.BeforeLog">
-            <summary>
-                Modify log info or do some logic before Elect write log.
-            </summary>
-        </member>
-        <member name="P:Elect.Logger.Logging.IElectLog.AfterLog">
-            <summary>
-                Modify log info or do some logic after Elect write log.
-            </summary>
-        </member>
         <member name="M:Elect.Logger.Logging.IElectLog.Capture(System.String,Elect.Logger.Models.Logging.LogType,Microsoft.AspNetCore.Http.HttpContext,System.String)">
             <summary>
                 Capture/Log the message
@@ -57,24 +41,6 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.JsonFilePath">
-            <summary>
-                Relative Path of Json File, default is Logs/{yyyy-MM-dd}.json
-            </summary>
-            <remarks>Path.GetFullPath(JsonFilePath) to get full path of json files</remarks>
-        </member>
-        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.BatchSize">
-            <summary>
-                Batch size for log message queue
-            </summary>
-            <remarks>Default is 20</remarks>
-        </member>
-        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.Threshold">
-            <summary>
-                Threshold for log message queue
-            </summary>
-            <remarks>Default is 5 seconds</remarks>
-        </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.IsEnableLogToConsole">
             <summary>
                 Log will write immediately to the Console after the Capture feature executed.
@@ -85,6 +51,24 @@
                 Log will push to a queue then write to the File after the Capture feature executed.
             </summary>
         </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.JsonFilePath">
+            <summary>
+                Relative Path of Json File, default is Logs/{yyyy-MM-dd}.json
+            </summary>
+            <remarks>Path.GetFullPath(JsonFilePath) to get full path of json files</remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.BatchSize">
+            <summary>
+                Batch size for log message queue
+            </summary>
+            <remarks>Default is 100</remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.Threshold">
+            <summary>
+                Threshold for log message queue
+            </summary>
+            <remarks>Default is 5 seconds</remarks>
+        </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.IsLogFullInfo">
             <summary>
                 Limit log information,
@@ -93,6 +77,17 @@
                 <see cref="P:Elect.Logger.Models.Logging.LogModel.EnvironmentModel"/>, <see cref="P:Elect.Logger.Models.Logging.LogModel.HttpContext"/>.
             </summary>
             <remarks>Default is false</remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.BeforeLog">
+            <summary>
+                Modify log info or do some logic before Elect write log.
+            </summary>
+            <remarks>Return null to prevent Write Log execute</remarks>
+        </member>
+        <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.AfterLog">
+            <summary>
+                Modify log info or do some logic after Elect write log.
+            </summary>
         </member>
         <member name="P:Elect.Logger.Logging.Models.ElectLogOptions.Url">
             <summary>
