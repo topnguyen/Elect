@@ -7,16 +7,6 @@ namespace Elect.Logger.Logging
     public interface IElectLog
     {
         /// <summary>
-        ///     Modify log info or do some logic before Elect write log.
-        /// </summary>
-        Func<LogModel, LogModel> BeforeLog { get; set; }
-
-        /// <summary>
-        ///     Modify log info or do some logic after Elect write log.
-        /// </summary>
-        Func<LogModel, LogModel> AfterLog { get; set; }
-        
-        /// <summary>
         ///     Capture/Log the message
         /// </summary>
         /// <param name="message">Message</param>
