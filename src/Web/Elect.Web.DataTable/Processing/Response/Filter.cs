@@ -273,7 +273,7 @@ namespace Elect.Web.DataTable.Processing.Response
             var termsLowerCase = termsNorm?.ToLowerInvariant();
 
             if (termsLowerCase == DataConstants.FalseLower || termsLowerCase == DataConstants.TrueLower)
-                return termsNorm.ToLower() == DataConstants.TrueLower
+                return termsNorm == DataConstants.TrueLower
                     ? $"{columnName} == {DataConstants.TrueLower}"
                     : $"{columnName} == {DataConstants.FalseLower}";
 
@@ -325,7 +325,7 @@ namespace Elect.Web.DataTable.Processing.Response
 
                 parameterArg = "@" + (parametersForLinqQuery.Count - 1);
 
-                clause = $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.ToLowerInvariant().{ConditionalConstants.Contain}({parameterArg})))";
+                clause = $"({columnName} != {DataConstants.Null} && {columnName} != \"\" && ({columnName} ==  {parameterArg} || {columnName}.ToLower().{ConditionalConstants.Contain}({parameterArg})))";
             }
            
             return clause;
