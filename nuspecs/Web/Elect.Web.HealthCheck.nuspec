@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package>
+    <metadata>
+        <id>Elect.Web.HealthCheck</id>
+        <title>Elect Health Check Extensions</title>
+        <description>Health Check extensions.</description>
+        <summary>Health Check extensions.</summary>
+        <authors>Top Nguyen</authors>
+        <owners>topnguyen</owners>
+        <copyright>http://topnguyen.net</copyright>
+        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.HealthCheck</projectUrl>
+        <license type="expression">MIT</license>
+        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>aspnetcore swagger elect topnguyen</tags>
+        <version>2.7.0</version>
+
+        <dependencies>
+            <!-- Elect -->
+            <dependency id="Elect.Web" version="2.7.0"/>
+
+            <!-- 3rd Libraries -->
+            <dependency id="Microsoft.AspNetCore.Diagnostics.HealthChecks" version="2.2.0" />
+            <dependency id="System.Data.SqlClient" version="4.6.1" />
+        </dependencies>
+    </metadata>
+
+    <files>
+        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.dll" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.pdb" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.xml" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.HealthCheck\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+    </files>
+</package>

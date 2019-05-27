@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package>
+    <metadata>
+        <id>Elect.Web.Consul</id>
+        <title>Elect Consul Extensions</title>
+        <description>Consul extensions.</description>
+        <summary>Consul extensions.</summary>
+        <authors>Top Nguyen</authors>
+        <owners>topnguyen</owners>
+        <copyright>http://topnguyen.net</copyright>
+        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Consul</projectUrl>
+        <license type="expression">MIT</license>
+        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>aspnetcore swagger elect topnguyen</tags>
+        <version>2.7.0</version>
+
+        <dependencies>
+            <!-- Elect -->
+            <dependency id="Elect.Web.HealthCheck" version="2.7.0"/>
+
+            <!-- 3rd Libraries -->
+            <dependency id="Consul" version="0.7.2.6" />
+            <dependency id="Microsoft.Extensions.Hosting.Abstractions" version="2.2.0" />
+        </dependencies>
+    </metadata>
+
+    <files>
+        <file src="..\..\src\Web\Elect.Web.Consul\bin\Elect.Web.Consul.dll" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.Consul\bin\Elect.Web.Consul.pdb" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.Consul\bin\Elect.Web.Consul.xml" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.Consul\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+    </files>
+</package>
