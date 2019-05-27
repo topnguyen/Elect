@@ -5,8 +5,10 @@ using Elect.Core.Attributes;
 using Elect.Web.Consul.FabioClient;
 using Elect.Web.Consul.HostedServices;
 using Elect.Web.Consul.Models;
+using Elect.Web.HealthCheck.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace Elect.Web.Consul
 {
@@ -35,6 +37,13 @@ namespace Elect.Web.Consul
 
         public static IServiceCollection AddElectConsul(this IServiceCollection services, [NotNull] Action<ElectConsulOptions> configure)
         {
+            var electHealthCheckOptions = services.BuildServiceProvider().GetService<IOptions<ElectHealthCheckOptions>>();
+
+            if (electHealthCheckOptions == null)
+            {
+                throw new NotSupportedException("Consul > Please install and setup Elect.HealthCheck to use the Elect.Consul Service.");
+            }
+            
             services.Configure(configure);
 
             var consulOptions = configure.GetValue();
