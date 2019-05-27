@@ -3,7 +3,7 @@
 > Author [**Top Nguyen**](http://topnguyen.net)
 
 ## Overview
-- Support add trace to the Jaeger Service.
+- Support add trace to the Jaeger Service automatically.
 
 ## Installation
 
