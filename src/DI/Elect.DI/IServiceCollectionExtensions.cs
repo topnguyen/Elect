@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.ActionUtils;
@@ -30,7 +32,7 @@ namespace Elect.DI
 {
     public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection Removes(this IServiceCollection services, [NotNull]params Type[] serviceTypes)
+        public static IServiceCollection Removes(this IServiceCollection services, [NotNull] params Type[] serviceTypes)
         {
             foreach (var serviceType in serviceTypes)
             {
@@ -54,57 +56,72 @@ namespace Elect.DI
 
         #region Add If Any
 
-        public static IServiceCollection AddScopedIfAny<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddScopedIfAny<TService, TImplementation>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate)
+            where TService : class where TImplementation : class, TService
         {
             if (services.Any(predicate))
             {
                 services.AddScoped<TService, TImplementation>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddScopedIfAny<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddScopedIfAny<TService>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.Any(predicate))
             {
                 services.AddScoped<TService>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddTransientIfAny<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddTransientIfAny<TService, TImplementation>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate)
+            where TService : class where TImplementation : class, TService
         {
             if (services.Any(predicate))
             {
                 services.AddTransient<TService, TImplementation>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddTransientIfAny<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddTransientIfAny<TService>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.Any(predicate))
             {
                 services.AddTransient<TService>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfAny<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddSingletonIfAny<TService, TImplementation>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate)
+            where TService : class where TImplementation : class, TService
         {
             if (services.Any(predicate))
             {
                 services.AddSingleton<TService, TImplementation>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfAny<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddSingletonIfAny<TService>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.Any(predicate))
             {
                 services.AddSingleton<TService>();
             }
+
             return services;
         }
 
@@ -112,57 +129,72 @@ namespace Elect.DI
 
         #region Add If All
 
-        public static IServiceCollection AddScopedIfAll<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddScopedIfAll<TService, TImplementation>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate)
+            where TService : class where TImplementation : class, TService
         {
             if (services.All(predicate))
             {
                 services.AddScoped<TService, TImplementation>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddScopedIfAll<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddScopedIfAll<TService>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.All(predicate))
             {
                 services.AddScoped<TService>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddTransientIfAll<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddTransientIfAll<TService, TImplementation>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate)
+            where TService : class where TImplementation : class, TService
         {
             if (services.All(predicate))
             {
                 services.AddTransient<TService, TImplementation>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddTransientIfAll<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddTransientIfAll<TService>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.All(predicate))
             {
                 services.AddTransient<TService>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfAll<TService, TImplementation>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class where TImplementation : class, TService
+        public static IServiceCollection AddSingletonIfAll<TService, TImplementation>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate)
+            where TService : class where TImplementation : class, TService
         {
             if (services.All(predicate))
             {
                 services.AddSingleton<TService, TImplementation>();
             }
+
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfAll<TService>(this IServiceCollection services, [NotNull]Func<ServiceDescriptor, bool> predicate) where TService : class
+        public static IServiceCollection AddSingletonIfAll<TService>(this IServiceCollection services,
+            [NotNull] Func<ServiceDescriptor, bool> predicate) where TService : class
         {
             if (services.All(predicate))
             {
                 services.AddSingleton<TService>();
             }
+
             return services;
         }
 
@@ -170,37 +202,46 @@ namespace Elect.DI
 
         #region Add If Not Exist
 
-        public static IServiceCollection AddScopedIfNotExist<TService, TImplementation>(this IServiceCollection services) where TService : class where TImplementation : class, TService
+        public static IServiceCollection
+            AddScopedIfNotExist<TService, TImplementation>(this IServiceCollection services) where TService : class
+            where TImplementation : class, TService
         {
             services.AddScopedIfAll<TService, TImplementation>(x => x.ServiceType != typeof(TService));
             return services;
         }
 
-        public static IServiceCollection AddScopedIfNotExist<TService>(this IServiceCollection services) where TService : class
+        public static IServiceCollection AddScopedIfNotExist<TService>(this IServiceCollection services)
+            where TService : class
         {
             services.AddScopedIfAll<TService>(x => x.ServiceType != typeof(TService));
             return services;
         }
 
-        public static IServiceCollection AddTransientIfNotExist<TService, TImplementation>(this IServiceCollection services) where TService : class where TImplementation : class, TService
+        public static IServiceCollection
+            AddTransientIfNotExist<TService, TImplementation>(this IServiceCollection services) where TService : class
+            where TImplementation : class, TService
         {
             services.AddTransientIfAll<TService, TImplementation>(x => x.ServiceType != typeof(TService));
             return services;
         }
 
-        public static IServiceCollection AddTransientIfNotExist<TService>(this IServiceCollection services) where TService : class
+        public static IServiceCollection AddTransientIfNotExist<TService>(this IServiceCollection services)
+            where TService : class
         {
             services.AddTransientIfAll<TService>(x => x.ServiceType != typeof(TService));
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfNotExist<TService, TImplementation>(this IServiceCollection services) where TService : class where TImplementation : class, TService
+        public static IServiceCollection
+            AddSingletonIfNotExist<TService, TImplementation>(this IServiceCollection services) where TService : class
+            where TImplementation : class, TService
         {
             services.AddSingletonIfAll<TService, TImplementation>(x => x.ServiceType != typeof(TService));
             return services;
         }
 
-        public static IServiceCollection AddSingletonIfNotExist<TService>(this IServiceCollection services) where TService : class
+        public static IServiceCollection AddSingletonIfNotExist<TService>(this IServiceCollection services)
+            where TService : class
         {
             services.AddSingletonIfAll<TService>(x => x.ServiceType != typeof(TService));
             return services;
@@ -223,7 +264,8 @@ namespace Elect.DI
         ///     Auto scan and register implementation of service follow
         ///     <see cref="Elect.DI.Attributes" /> life time setup.
         /// </summary>
-        public static IServiceCollection AddElectDI(this IServiceCollection services, [NotNull]ElectDIOptions configure)
+        public static IServiceCollection AddElectDI(this IServiceCollection services,
+            [NotNull] ElectDIOptions configure)
         {
             return services.AddElectDI(_ =>
             {
@@ -236,7 +278,8 @@ namespace Elect.DI
         ///     Auto scan and register implementation of service follow
         ///     <see cref="Elect.DI.Attributes" /> life time setup.
         /// </summary>
-        public static IServiceCollection AddElectDI(this IServiceCollection services, [NotNull]Action<ElectDIOptions> configure)
+        public static IServiceCollection AddElectDI(this IServiceCollection services,
+            [NotNull] Action<ElectDIOptions> configure)
         {
             services.Configure(configure);
 
@@ -247,7 +290,7 @@ namespace Elect.DI
             foreach (var assemblyName in options.ListAssemblyName)
             {
                 var rootAssemblyName = assemblyName.Split('.').FirstOrDefault();
-                
+
                 foreach (var assemblyFolderPath in options.ListAssemblyFolderPath)
                 {
                     // dll files
@@ -270,7 +313,8 @@ namespace Elect.DI
             return services.PrintServiceAddedToConsole(_ => { });
         }
 
-        public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services, [NotNull]ElectPrintRegisteredToConsoleOptions configure)
+        public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services,
+            [NotNull] ElectPrintRegisteredToConsoleOptions configure)
         {
             return services.PrintServiceAddedToConsole(_ =>
             {
@@ -282,27 +326,37 @@ namespace Elect.DI
             });
         }
 
-        public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services, [NotNull]Action<ElectPrintRegisteredToConsoleOptions> configure)
+        public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services,
+            [NotNull] Action<ElectPrintRegisteredToConsoleOptions> configure)
         {
             services.Configure(configure);
 
-            ElectPrintRegisteredToConsoleOptions options = configure.GetValue();
+            var options = configure.GetValue();
 
             var listServiceDescriptors = services.ToList();
 
-            listServiceDescriptors = listServiceDescriptors.Where(x => options.ListAssemblyName.Any(y => x.ServiceType.FullName.Contains(y))).ToList();
+            listServiceDescriptors = listServiceDescriptors
+                .Where(x =>
+                    options.ListAssemblyName.Any(y => x?.ServiceType?.FullName != null &&
+                                                      x.ServiceType.FullName.Contains(y.Split('.').First())
+                    )
+                )
+                .ToList();
 
             if (options.SortAscBy == ElectDIPrintSortBy.Service)
             {
-                listServiceDescriptors = listServiceDescriptors.OrderBy(x => GetNormForServiceAdded(x.ServiceType.Name)).ToList();
+                listServiceDescriptors = listServiceDescriptors.OrderBy(x => GetNormForServiceAdded(x.ServiceType.Name))
+                    .ToList();
             }
             else if (options.SortAscBy == ElectDIPrintSortBy.Implementation)
             {
-                listServiceDescriptors = listServiceDescriptors.OrderBy(x => GetNormForServiceAdded(x.ImplementationType?.Name)).ToList();
+                listServiceDescriptors = listServiceDescriptors
+                    .OrderBy(x => GetNormForServiceAdded(x.ImplementationType?.Name)).ToList();
             }
             else
             {
-                listServiceDescriptors = listServiceDescriptors.OrderBy(x => GetNormForServiceAdded(x.Lifetime.ToString())).ToList();
+                listServiceDescriptors = listServiceDescriptors
+                    .OrderBy(x => GetNormForServiceAdded(x.Lifetime.ToString())).ToList();
             }
 
             Console.ResetColor();
@@ -318,11 +372,13 @@ namespace Elect.DI
 
             if (options.IsMinimalDisplay)
             {
-                PrintServiceAddedToConsoleMinimalDisplayFormat(listServiceDescriptors, options.SecondaryColor, options.PrimaryColor);
+                PrintServiceAddedToConsoleMinimalDisplayFormat(listServiceDescriptors, options.SecondaryColor,
+                    options.PrimaryColor);
             }
             else
             {
-                PrintServiceAddedToConsoleFullDisplayFormat(listServiceDescriptors, options.SecondaryColor, options.PrimaryColor);
+                PrintServiceAddedToConsoleFullDisplayFormat(listServiceDescriptors, options.SecondaryColor,
+                    options.PrimaryColor);
             }
 
             Console.ResetColor();
@@ -331,7 +387,8 @@ namespace Elect.DI
             return services;
         }
 
-        private static void PrintServiceAddedToConsoleMinimalDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
+        private static void PrintServiceAddedToConsoleMinimalDisplayFormat(
+            List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
         {
             var noMaxLength = listServiceDescriptors.Count.ToString().Length;
 
@@ -340,13 +397,15 @@ namespace Elect.DI
                 noMaxLength = "No.".Length;
             }
 
-            var serviceNameMaxLength = listServiceDescriptors.Select(x => GetNormForServiceAdded(x.ServiceType.Name).Length).Max();
+            var serviceNameMaxLength = listServiceDescriptors
+                .Select(x => GetNormForServiceAdded(x.ServiceType.Name).Length).Max();
             if (serviceNameMaxLength < "Service".Length)
             {
                 serviceNameMaxLength = "Service".Length;
             }
 
-            var implementationNameMaxLength = listServiceDescriptors.Select(x => GetNormForServiceAdded(x.ImplementationType?.Name).Length).Max();
+            var implementationNameMaxLength = listServiceDescriptors
+                .Select(x => GetNormForServiceAdded(x.ImplementationType?.Name).Length).Max();
             if (implementationNameMaxLength < "Implementation".Length)
             {
                 implementationNameMaxLength = "Implementation".Length;
@@ -371,7 +430,8 @@ namespace Elect.DI
             Console.Write("Lifetime");
             Console.WriteLine();
 
-            Console.WriteLine($"{new string('-', 4 + noMaxLength + serviceNameMaxLength + implementationNameMaxLength + lifeTimeMaxLength + "    |    ".Length * 3)}");
+            Console.WriteLine(
+                $"{new string('-', 4 + noMaxLength + serviceNameMaxLength + implementationNameMaxLength + lifeTimeMaxLength + "    |    ".Length * 3)}");
 
             for (var index = 0; index < listServiceDescriptors.Count; index++)
             {
@@ -399,7 +459,8 @@ namespace Elect.DI
                 // Implementation
 
                 Console.ForegroundColor = consoleDimColor;
-                Console.Write(GetNormForServiceAdded(service.ImplementationType?.Name).PadRight(implementationNameMaxLength));
+                Console.Write(GetNormForServiceAdded(service.ImplementationType?.Name)
+                    .PadRight(implementationNameMaxLength));
 
                 Console.ResetColor();
                 Console.Write("    |    ");
@@ -411,7 +472,8 @@ namespace Elect.DI
             }
         }
 
-        private static void PrintServiceAddedToConsoleFullDisplayFormat(List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
+        private static void PrintServiceAddedToConsoleFullDisplayFormat(List<ServiceDescriptor> listServiceDescriptors,
+            ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
         {
             var maximumCharacter =
                 new List<int>
@@ -462,13 +524,15 @@ namespace Elect.DI
                 Console.Write("    |    ");
 
                 Console.ForegroundColor = consoleDimColor;
-                Console.Write(GetNormForServiceAdded(service.ImplementationType?.Name).PadRight(maximumCharacter)?.PadRight(maximumCharacter));
+                Console.Write(GetNormForServiceAdded(service.ImplementationType?.Name).PadRight(maximumCharacter)
+                    ?.PadRight(maximumCharacter));
 
                 Console.ResetColor();
                 Console.Write("    |    ");
 
                 Console.ForegroundColor = consoleDimColor;
-                Console.WriteLine(GetNormForServiceAdded(service.ImplementationType?.FullName).PadRight(maximumCharacter));
+                Console.WriteLine(GetNormForServiceAdded(service.ImplementationType?.FullName)
+                    .PadRight(maximumCharacter));
 
                 // Life Time
 
