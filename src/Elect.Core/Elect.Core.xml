@@ -93,6 +93,14 @@
             <param name="dateTime">  </param>
             <param name="timeZoneId"> Time Zone ID, See more: https://msdn.microsoft.com/en-us/library/gg154758.aspx </param>
         </member>
+        <member name="M:Elect.Core.DateTimeUtils.DateTimeExtensions.DiffMonth(System.DateTime,System.DateTime)">
+            <summary>
+                Calculate different months between 2 dates following exactly number of days in month
+            </summary>
+            <param name="date1"></param>
+            <param name="date2"></param>
+            <returns></returns>
+        </member>
         <member name="M:Elect.Core.DateTimeUtils.DateTimeHelper.WithTimeZone(System.DateTime,System.String)">
             <param name="dateTime">  </param>
             <param name="timeZoneId"> Time Zone ID, See more: https://msdn.microsoft.com/en-us/library/gg154758.aspx </param>
