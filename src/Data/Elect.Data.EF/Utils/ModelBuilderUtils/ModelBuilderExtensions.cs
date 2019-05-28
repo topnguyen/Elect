@@ -27,11 +27,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Elect.Data.EF.Interfaces.Entity.SoftDelete;
 
 namespace Elect.Data.EF.Utils.ModelBuilderUtils
 {
     public static class ModelBuilderExtensions
     {
+        #region Auto Add Map Config
+        
         /// <summary>
         ///     Scan and apply Config/Mapping for Tables/Entities 
         /// </summary>
@@ -65,7 +68,7 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
 
             // Filter mapping types by TDbContext dbSetTypes
             mappingTypes = mappingTypes.Where(x =>
-                dbSetTypes.Any(y => y.FullName == x.BaseType.GetGenericArguments().First().FullName)).ToList();
+                dbSetTypes.Any(y => y.FullName == x.BaseType?.GetGenericArguments().First().FullName)).ToList();
 
             builder.AddConfigFromMappingTypes(mappingTypes);
         }
@@ -103,9 +106,14 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
 
                 // Create the mapping type and do the mapping
                 var mapper = Activator.CreateInstance(mappingType);
-                mapper.GetType().GetMethod("Map").Invoke(mapper, new[] { entityBuilder });
+                
+                mapper.GetType().GetMethod("Map")?.Invoke(mapper, new[] {entityBuilder});
             }
         }
+
+        #endregion
+
+        #region Behavior
 
         /// <summary>
         ///     Set Delete Behavior as Restrict in Relationship for disable cascading delete 
@@ -119,6 +127,10 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
             }
         }
 
+        #endregion
+
+        #region Table Naming
+        
         /// <summary>
         ///     Remove plural table name 
         /// </summary>
@@ -179,5 +191,34 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                 }
             }
         }
+        
+        #endregion
+
+        #region Soft Delete Filter
+
+        public static void SetSoftDeleteFilter(this ModelBuilder modelBuilder)
+        {
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                if (typeof(ISoftDeletableEntity).IsAssignableFrom(entityType.ClrType))
+                {
+                    SetSoftDeleteFilter(modelBuilder, entityType.ClrType);
+                }
+            }
+        }
+
+        public static void SetSoftDeleteFilter(ModelBuilder modelBuilder, Type entityType)
+        {
+            SetSoftDeleteFilterMethod.MakeGenericMethod(entityType).Invoke(null, new object[] {modelBuilder});
+        }
+
+        private static readonly MethodInfo SetSoftDeleteFilterMethod = typeof(ModelBuilderExtensions).GetMethods(BindingFlags.Public | BindingFlags.Static).Single(t => t.IsGenericMethod && t.Name == nameof(SetSoftDeleteFilter));
+
+        public static void SetSoftDeleteFilter<TEntity>(ModelBuilder modelBuilder) where TEntity : class, ISoftDeletableEntity
+        {
+            modelBuilder.Entity<TEntity>().HasQueryFilter(x => x.DeletedTime == null);
+        }
+        
+        #endregion
     }
 }
