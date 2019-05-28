@@ -71,8 +71,8 @@ namespace Elect.Core.DateTimeUtils
             diffMonth += totalMidMonth;
 
             // 2. Find last day of the first month and last month
-            var endOfFirstMonth = new DateTime(date1.Year, date1.Month + 1, 1).AddDays(-1);
-            var endOfLastMonth = new DateTime(date2.Year, date2.Month + 1, 1).AddDays(-1);
+            var endOfFirstMonth = new DateTime(date1.Year, date1.Month, 1).AddMonths(1).AddDays(-1);
+            var endOfLastMonth = new DateTime(date2.Year, date2.Month, 1).AddMonths(1).AddDays(-1);
 
             if (endOfFirstMonth == endOfLastMonth)
             {
