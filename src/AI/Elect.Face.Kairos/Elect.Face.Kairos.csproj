@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <!-- Information -->
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <!-- Generate XML file -->
+        <DocumentationFile>Elect.Face.Kairos.xml</DocumentationFile>
+        <!-- Disable warning for Controller/Action/Method not have block comment -->
+        <NoWarn>1701;1702;1705;1591</NoWarn>
+        <!-- Output -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>.\bin\</OutputPath>
+    </PropertyGroup>
+    <!-- Nuget -->
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
+        <NuspecFile>..\..\..\nuspecs\AI\Elect.Face.Kairos.nuspec</NuspecFile>
+    </PropertyGroup>
+    <!-- Elect -->
+    <ItemGroup>
+        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
+    </ItemGroup>
+</Project>

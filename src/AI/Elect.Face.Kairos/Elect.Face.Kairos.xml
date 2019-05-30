@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Elect.Face.Kairos</name>
+    </assembly>
+    <members>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.Enroll(Elect.Face.Kairos.Models.RequestModels.KairosEnrollRequestModel)">
+            <summary>
+                The image must contain only 1 face.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.Verify(Elect.Face.Kairos.Models.RequestModels.KairosVerifyRequestModel)">
+            <summary>
+                The image must contain only 1 face.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.Recognize(Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel)">
+            <summary>
+                An image can have multiple faces
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.Detect(Elect.Face.Kairos.Models.RequestModels.KairosDetectRequestModel)">
+            <summary>
+                An image can have multiple faces
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllGalleryIds">
+            <summary>
+                All Gallery Ids
+            </summary>
+            <returns>All gallery ids</returns>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllSubjectIds(System.String)">
+            <summary>
+                Gallery's Subject Ids.
+                Get all Subject ids inside a gallery
+            </summary>
+            <param name="galleryName">If not set, will use Default Gallery</param>
+            <returns>List all subject ids inside the gallery</returns>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllFaceIds(Elect.Face.Kairos.Models.RequestModels.KairosGetSubjectRequestModel)">
+            <summary>
+                Subject's Face Ids.
+                Displays all face_id's and enrollment timestamps for each template you have enrolled
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveGallery(System.String)">
+            <summary>
+                Remove gallery
+            </summary>
+            <param name="galleryName">If not set, will use Default Gallery</param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveFaceOrSubject(Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel)">
+            <summary>
+                Remove Face or Subject
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>Setup FaceId to remove face, if empty FaceId then remove Subject</remarks>
+        </member>
+        <member name="T:Elect.Face.Kairos.Models.ElectKairosOptions">
+            <summary>
+                Config for the Kairos Client
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.ElectKairosOptions.DefaultGallery">
+            <summary>
+                Default gallery if you not set when call service
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosDetectRequestModel.Image">
+            <summary>
+                Publicly accessible URL or Base64 encoded photo.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosDetectRequestModel.MinHeadScale">
+            <summary>
+                Used to set the ratio of the smallest face we should look for in the photo.
+                Accepts a value between .015 (1:64 scale) and .5 (1:2 scale).
+                By default it is set at .015 (1:64 scale) if not specified.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosDetectRequestModel.Selector">
+            <summary>
+                Used to adjust the face detector.
+                If not specified the default of FRONTAL is used.
+                Note that these optional parameters are not reliable for face recognition, but may be useful for face detection uses.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosEnrollRequestModel.Image">
+            <summary>
+                Publicly accessible URL or Base64 encoded photo.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosEnrollRequestModel.GalleryName">
+            <summary>
+                Gallery name, if not set will use the Default Gallery
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosGetSubjectRequestModel.GalleryName">
+            <summary>
+                Gallery name, if not set will use the Default Gallery
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel.Image">
+            <summary>
+                Publicly accessible URL or Base64 encoded photo.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel.GalleryName">
+            <summary>
+                Gallery name, if not set will use the Default Gallery
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel.MinHeadScale">
+            <summary>
+                Used to set the ratio of the smallest face we should look for in the photo.
+                Accepts a value between .015 (1:64 scale) and .5 (1:2 scale).
+                By default it is set at .015 (1:64 scale) if not specified.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel.Threshold">
+            <summary>
+                Used to determine a valid facial match / the score (1 mean 100% match).
+                By default it is set to 0.63.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel.MaxNumResults">
+            <summary>
+                The maximum number of potential matches that are returned.
+                By default it is set to 10 if not supplied.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel.FaceId">
+            <summary>
+                This is optional.
+                Set specific Face Id to remove a face in subject only.
+            </summary>
+            <remarks>If not set FaceId, then remove Subject</remarks>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel.GalleryName">
+            <summary>
+                Gallery name, if not set will use the Default Gallery
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosVerifyRequestModel.Image">
+            <summary>
+                Publicly accessible URL or Base64 encoded photo.
+            </summary>
+        </member>
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosVerifyRequestModel.GalleryName">
+            <summary>
+                Gallery name, if not set will use the Default Gallery
+            </summary>
+        </member>
+    </members>
+</doc>
