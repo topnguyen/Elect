@@ -4,7 +4,7 @@
         <name>Elect.Face.Kairos</name>
     </assembly>
     <members>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.Enroll(Elect.Face.Kairos.Models.RequestModels.KairosEnrollRequestModel)">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.EnrollAsync(System.Action{Elect.Face.Kairos.Models.RequestModels.KairosEnrollRequestModel})">
             <summary>
                 The image must contain only 1 face.
             </summary>
@@ -12,7 +12,7 @@
             <returns></returns>
             <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.Verify(Elect.Face.Kairos.Models.RequestModels.KairosVerifyRequestModel)">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.EnrollAsync(Elect.Face.Kairos.Models.RequestModels.KairosEnrollRequestModel)">
             <summary>
                 The image must contain only 1 face.
             </summary>
@@ -20,7 +20,23 @@
             <returns></returns>
             <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.Recognize(Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel)">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.VerifyAsync(System.Action{Elect.Face.Kairos.Models.RequestModels.KairosVerifyRequestModel})">
+            <summary>
+                The image must contain only 1 face.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.VerifyAsync(Elect.Face.Kairos.Models.RequestModels.KairosVerifyRequestModel)">
+            <summary>
+                The image must contain only 1 face.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RecognizeAsync(System.Action{Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel})">
             <summary>
                 An image can have multiple faces
             </summary>
@@ -28,7 +44,7 @@
             <returns></returns>
             <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.Detect(Elect.Face.Kairos.Models.RequestModels.KairosDetectRequestModel)">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RecognizeAsync(Elect.Face.Kairos.Models.RequestModels.KairosRecognizeRequestModel)">
             <summary>
                 An image can have multiple faces
             </summary>
@@ -36,13 +52,29 @@
             <returns></returns>
             <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllGalleryIds">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.DetectAsync(System.Action{Elect.Face.Kairos.Models.RequestModels.KairosDetectRequestModel})">
+            <summary>
+                An image can have multiple faces
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.DetectAsync(Elect.Face.Kairos.Models.RequestModels.KairosDetectRequestModel)">
+            <summary>
+                An image can have multiple faces
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>View best practise image via https://www.kairos.com/docs/api/best-practices</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllGalleryIdsAsync">
             <summary>
                 All Gallery Ids
             </summary>
             <returns>All gallery ids</returns>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllSubjectIds(System.String)">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllSubjectIdsAsync(System.String)">
             <summary>
                 Gallery's Subject Ids.
                 Get all Subject ids inside a gallery
@@ -50,7 +82,15 @@
             <param name="galleryName">If not set, will use Default Gallery</param>
             <returns>List all subject ids inside the gallery</returns>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllFaceIds(Elect.Face.Kairos.Models.RequestModels.KairosGetSubjectRequestModel)">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllFaceIdsAsync(System.Action{Elect.Face.Kairos.Models.RequestModels.KairosGetSubjectRequestModel})">
+            <summary>
+                Subject's Face Ids.
+                Displays all face_id's and enrollment timestamps for each template you have enrolled
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.GetAllFaceIdsAsync(Elect.Face.Kairos.Models.RequestModels.KairosGetSubjectRequestModel)">
             <summary>
                 Subject's Face Ids.
                 Displays all face_id's and enrollment timestamps for each template you have enrolled
@@ -65,7 +105,15 @@
             <param name="galleryName">If not set, will use Default Gallery</param>
             <returns></returns>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveFaceOrSubject(Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel)">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveFaceOrSubjectAsync(System.Action{Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel})">
+            <summary>
+                Remove Face or Subject
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+            <remarks>Setup FaceId to remove face, if empty FaceId then remove Subject</remarks>
+        </member>
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveFaceOrSubjectAsync(Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel)">
             <summary>
                 Remove Face or Subject
             </summary>

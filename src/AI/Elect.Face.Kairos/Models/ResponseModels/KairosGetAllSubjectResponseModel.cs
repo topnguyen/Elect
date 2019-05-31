@@ -3,11 +3,8 @@ using Newtonsoft.Json;
 
 namespace Elect.Face.Kairos.Models.ResponseModels
 {
-    public class KairosGetAllSubjectResponseModel
+    public class KairosGetAllSubjectResponseModel : KairosBaseResponseModel
     {
-        [JsonProperty("status")]
-        public string Status { get; set; }
-        
         [JsonProperty("subject_ids")]
         public List<string> SubjectIds { get; set; }
     }

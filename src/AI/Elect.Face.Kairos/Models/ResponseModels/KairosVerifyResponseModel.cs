@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Elect.Face.Kairos.Models.ResponseModels
 {
-    public class KairosVerifyResponseModel
+    public class KairosVerifyResponseModel : KairosBaseResponseModel
     {
         [JsonProperty("images")]
         public List<KairosImageModel> Images { get; set; }

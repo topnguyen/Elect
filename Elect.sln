@@ -203,9 +203,9 @@ EndProject
 #------------------------------
 
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI", "AI", "{3D92B37B-91BD-488A-926B-F06828872E9D}"
-    ProjectSection(SolutionItems) = preProject
+				ProjectSection(SolutionItems) = preProject
 		nuspecs\AI\Elect.Face.Kairos.nuspec = nuspecs\AI\Elect.Face.Kairos.nuspec
-	EndProjectSection
+				EndProjectSection
 EndProject
 
 #------------------------------
@@ -303,6 +303,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Solution Items", "Soluti
 		Logo.png = Logo.png
 		jetbrains-variant-4.png = jetbrains-variant-4.png
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI", "AI", "{86AA7AEE-D6A1-42BC-9C08-CE4BF2846703}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.AI.Face.Kairos", "test\AI\Elect.Test.AI.Face.Kairos\Elect.Test.AI.Face.Kairos.csproj", "{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB}"
 EndProject
 
 #------------------------------
@@ -450,6 +454,10 @@ Global
 		{9126FA36-3099-484C-A459-44FE8B1152C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9126FA36-3099-484C-A459-44FE8B1152C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9126FA36-3099-484C-A459-44FE8B1152C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -514,6 +522,8 @@ Global
 		{D8135070-9A7F-45C6-B421-90275EDBF037} = {F054EE83-4A80-4553-A0CC-25C46D2A3AC1}
 		{9126FA36-3099-484C-A459-44FE8B1152C3} = {D8135070-9A7F-45C6-B421-90275EDBF037}
 		{3D92B37B-91BD-488A-926B-F06828872E9D} = {55DB6D46-100C-4C74-88B9-6FBB954D64CA}
+		{86AA7AEE-D6A1-42BC-9C08-CE4BF2846703} = {7A62CF0C-B858-4273-8121-00BC279B7005}
+		{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB} = {86AA7AEE-D6A1-42BC-9C08-CE4BF2846703}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B699336-21B7-4FD5-8ECC-A8390C034309}
