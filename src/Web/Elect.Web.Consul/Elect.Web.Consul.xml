@@ -14,6 +14,12 @@
                 Access token to Consul Agent
             </summary>
         </member>
+        <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.ServiceEndpoint">
+            <summary>
+                Service endpoint for Consul connect to the service.
+            </summary>
+            <remarks>This endpoint must valid URI, if not set will use the running localhost with port.</remarks>
+        </member>
         <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.ServiceName">
             <summary>
                 Default is Application Name

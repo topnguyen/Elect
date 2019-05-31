@@ -32,13 +32,13 @@ namespace Elect.Web.Consul.HostedServices
             ILoggerFactory loggerFactory)
         {
             _server = server;
-            
+
             _consulConfig = consulConfig.Value;
-            
+
             _healthCheckConfig = healthCheckOptions.Value;
-            
+
             _logger = loggerFactory.CreateLogger<IHostedService>();
-            
+
             _consulClient = consulClient;
         }
 
@@ -54,11 +54,20 @@ namespace Elect.Web.Consul.HostedServices
 
             var features = _server.Features;
 
-            var addresses = features.Get<IServerAddressesFeature>();
+            var address = _consulConfig.ServiceEndpoint;
 
-            var address = addresses.Addresses.First();
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                var addresses = features.Get<IServerAddressesFeature>();
+                
+                _logger.Log(LogLevel.Information, $"Consul > Host All Address is: {string.Join(";", addresses.Addresses)}");
 
-            address = address.Replace("[::]", "127.0.0.1");
+                address = addresses.Addresses.First();
+
+                address = address.Replace("[::]", "127.0.0.1");
+            }
+            
+            _logger.Log(LogLevel.Information, $"Consul > Config Service Endpoint is: {address}");
 
             var uri = new Uri(address);
 
