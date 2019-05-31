@@ -19,6 +19,13 @@ namespace Elect.Web.Consul.Models
         /// </summary>
         public string ConsulAccessToken { get; set; }
 
+        
+        /// <summary>
+        ///     Service endpoint for Consul connect to the service.
+        /// </summary>
+        /// <remarks>This endpoint must valid URI, if not set will use the running localhost with port.</remarks>
+        public string ServiceEndpoint { get; set; }
+
         /// <summary>
         ///     Default is Application Name
         /// </summary>

@@ -19,14 +19,14 @@ namespace Elect.Web.Consul
             return services.AddElectConsul(_ => { });
         }
 
-        public static IServiceCollection AddElectConsul(this IServiceCollection services,
-            [NotNull] ElectConsulOptions configure)
+        public static IServiceCollection AddElectConsul(this IServiceCollection services, [NotNull] ElectConsulOptions configure)
         {
             return services.AddElectConsul(_ =>
             {
                 _.IsEnable = configure.IsEnable;
                 _.ConsulEndpoint = configure.ConsulEndpoint;
                 _.ConsulAccessToken = configure.ConsulAccessToken;
+                _.ServiceEndpoint = configure.ServiceEndpoint;
                 _.ServiceId = configure.ServiceId;
                 _.ServiceName = configure.ServiceName;
                 _.Tags = configure.Tags;
