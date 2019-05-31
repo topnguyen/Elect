@@ -128,7 +128,7 @@ namespace Elect.Face.Kairos.Interfaces
         /// </summary>
         /// <param name="galleryName">If not set, will use Default Gallery</param>
         /// <returns></returns>
-        Task RemoveGallery(string galleryName = null);
+        Task<KairosRemoveGalleryResponse> RemoveGallery(string galleryName = null);
         
         // ---------------------- RemoveFaceOrSubjectAsync ----------------------
         
@@ -138,7 +138,7 @@ namespace Elect.Face.Kairos.Interfaces
         /// <param name="model"></param>
         /// <returns></returns>
         /// <remarks>Setup FaceId to remove face, if empty FaceId then remove Subject</remarks>
-        Task RemoveFaceOrSubjectAsync(Action<KairosRemoveFaceRequestModel> model);
+        Task<KairosRemoveFaceOrSubjectResponseModel> RemoveFaceOrSubjectAsync(Action<KairosRemoveFaceOrSubjectRequestModel> model);
 
         /// <summary>
         ///     Remove Face or Subject
@@ -146,7 +146,7 @@ namespace Elect.Face.Kairos.Interfaces
         /// <param name="model"></param>
         /// <returns></returns>
         /// <remarks>Setup FaceId to remove face, if empty FaceId then remove Subject</remarks>
-        Task RemoveFaceOrSubjectAsync(KairosRemoveFaceRequestModel model);
+        Task<KairosRemoveFaceOrSubjectResponseModel> RemoveFaceOrSubjectAsync(KairosRemoveFaceOrSubjectRequestModel model);
 
         #endregion
     }

@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Elect.Face.Kairos.Models.RequestModels
 {
-    public class KairosRemoveFaceRequestModel
+    public class KairosRemoveFaceOrSubjectRequestModel
     {
         /// <summary>
         ///     This is optional.
