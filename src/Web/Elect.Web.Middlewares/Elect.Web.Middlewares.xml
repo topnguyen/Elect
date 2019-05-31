@@ -65,21 +65,6 @@
             <param name="app"></param>
             <returns></returns>
         </member>
-        <member name="P:Elect.Web.Middlewares.ReverseProxyMiddleware.Models.ElectReserveProxyOptions.BeforeReserveProxy">
-            <summary>
-                Func execute before ReserveProxy, return false if you want to stop ReserveProxy and response the HttpContext to client.
-            </summary>
-        </member>
-        <member name="P:Elect.Web.Middlewares.ReverseProxyMiddleware.Models.ElectReserveProxyOptions.AfterReserveProxy">
-            <summary>
-                Action execute after ReserveProxy rewrited
-            </summary>
-        </member>
-        <member name="P:Elect.Web.Middlewares.ReverseProxyMiddleware.Models.ElectReserveProxyOptions.IsEnableTargetUrlConsoleLog">
-            <summary>
-                Enable console log for Target URL, true by default
-            </summary>
-        </member>
         <member name="P:Elect.Web.Middlewares.ServerInfoMiddleware.Models.ElectServerInfoOptions.ServerName">
             <summary>
                 Default is "cloudflare-nginx". 
