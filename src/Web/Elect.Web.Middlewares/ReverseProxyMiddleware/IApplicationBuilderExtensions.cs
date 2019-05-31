@@ -88,14 +88,12 @@ namespace Elect.Web.Middlewares.ReverseProxyMiddleware
 
                     await responseMessage.Content.CopyToAsync(context.Response.Body).ConfigureAwait(true);
                 }
+                
+                // Execute After Reserve Proxy if have
+                _option.AfterReserveProxy?.Invoke(context);
             }
-            else
-            {
-                await _nextMiddleware(context).ConfigureAwait(true);
-            }
-            
-            // Execute After Reserve Proxy if have
-            _option.AfterReserveProxy?.Invoke(context);
+                        
+            await _nextMiddleware(context).ConfigureAwait(true);
         }
 
         private static HttpRequestMessage CreateTargetMessage(HttpContext context, Uri targetUri)
