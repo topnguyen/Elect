@@ -105,7 +105,7 @@
             <param name="galleryName">If not set, will use Default Gallery</param>
             <returns></returns>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveFaceOrSubjectAsync(System.Action{Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel})">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveFaceOrSubjectAsync(System.Action{Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceOrSubjectRequestModel})">
             <summary>
                 Remove Face or Subject
             </summary>
@@ -113,7 +113,7 @@
             <returns></returns>
             <remarks>Setup FaceId to remove face, if empty FaceId then remove Subject</remarks>
         </member>
-        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveFaceOrSubjectAsync(Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel)">
+        <member name="M:Elect.Face.Kairos.Interfaces.IElectKairosClient.RemoveFaceOrSubjectAsync(Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceOrSubjectRequestModel)">
             <summary>
                 Remove Face or Subject
             </summary>
@@ -194,14 +194,14 @@
                 By default it is set to 10 if not supplied.
             </summary>
         </member>
-        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel.FaceId">
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceOrSubjectRequestModel.FaceId">
             <summary>
                 This is optional.
                 Set specific Face Id to remove a face in subject only.
             </summary>
             <remarks>If not set FaceId, then remove Subject</remarks>
         </member>
-        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceRequestModel.GalleryName">
+        <member name="P:Elect.Face.Kairos.Models.RequestModels.KairosRemoveFaceOrSubjectRequestModel.GalleryName">
             <summary>
                 Gallery name, if not set will use the Default Gallery
             </summary>

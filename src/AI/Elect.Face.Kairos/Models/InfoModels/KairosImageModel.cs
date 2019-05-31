@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Elect.Face.Kairos.Models.ResponseModels;
 using Newtonsoft.Json;
 
 namespace Elect.Face.Kairos.Models.InfoModels
@@ -25,7 +24,7 @@ namespace Elect.Face.Kairos.Models.InfoModels
         public KairosAttributesModel Attributes { get; set; }
         
         [JsonProperty("candidates")]
-        public KairosCandidateModel Candidates { get; set; }
+        public List<KairosCandidateModel> Candidates { get; set; }
 
         [JsonProperty("transaction")]
         public KairosTransactionModel Transaction { get; set; }

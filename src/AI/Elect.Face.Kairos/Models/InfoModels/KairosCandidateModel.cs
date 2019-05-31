@@ -5,15 +5,15 @@ namespace Elect.Face.Kairos.Models.InfoModels
     public class KairosCandidateModel
     {
         [JsonProperty("confidence")]
-        public double confidence { get; set; }
+        public double Confidence { get; set; }
 
         [JsonProperty("enrollment_timestamp")]
-        public string enrollment_timestamp { get; set; }
+        public string EnrollmentTimestamp { get; set; }
         
         [JsonProperty("face_id")]
-        public string face_id { get; set; }
+        public string FaceId { get; set; }
 
         [JsonProperty("subject_id")]
-        public string subject_id { get; set; }
+        public string SubjectId { get; set; }
     }
 }

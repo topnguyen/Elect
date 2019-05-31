@@ -33,7 +33,6 @@ namespace Elect.Face.Kairos.Services
 
         #region Face
 
-        
         // ---------------------- EnrollAsync ----------------------
 
         public Task<KairosEnrollResponseModel> EnrollAsync(Action<KairosEnrollRequestModel> model)
@@ -47,12 +46,12 @@ namespace Elect.Face.Kairos.Services
                 ? model.GalleryName
                 : _config.DefaultGallery;
 
-            var enrollResponse =
+            var result =
                 await CreateHttpRequest("enroll")
                     .PostJsonAsync(model)
                     .ReceiveJson<KairosEnrollResponseModel>();
 
-            return enrollResponse;
+            return result;
         }
 
         // ---------------------- VerifyAsync ----------------------
@@ -64,12 +63,16 @@ namespace Elect.Face.Kairos.Services
 
         public async Task<KairosVerifyResponseModel> VerifyAsync(KairosVerifyRequestModel model)
         {
-            var verifyResponse =
+            model.GalleryName = !string.IsNullOrWhiteSpace(model.GalleryName)
+                ? model.GalleryName
+                : _config.DefaultGallery;
+            
+            var result =
                 await CreateHttpRequest("verify")
                     .PostJsonAsync(model)
                     .ReceiveJson<KairosVerifyResponseModel>();
 
-            return verifyResponse;
+            return result;
         }
 
         // ---------------------- RecognizeAsync ----------------------
@@ -85,13 +88,20 @@ namespace Elect.Face.Kairos.Services
                 ? model.GalleryName
                 : _config.DefaultGallery;
 
+            try
+            {
+                var result =
+                    await CreateHttpRequest("recognize")
+                        .PostJsonAsync(model)
+                        .ReceiveJson<KairosRecognizeResponseModel>();
 
-            var recognizeResponse =
-                await CreateHttpRequest("recognize")
-                    .PostJsonAsync(model)
-                    .ReceiveJson<KairosRecognizeResponseModel>();
-
-            return recognizeResponse;
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         // ---------------------- DetectAsync ----------------------
@@ -103,35 +113,35 @@ namespace Elect.Face.Kairos.Services
 
         public async Task<KairosDetectResponseModel> DetectAsync(KairosDetectRequestModel model)
         {
-            var detectResponse =
+            var result =
                 await CreateHttpRequest("detect")
                     .PostJsonAsync(model)
                     .ReceiveJson<KairosDetectResponseModel>();
 
-            return detectResponse;
+            return result;
         }
-        
+
         #endregion
 
         #region Gallery
-        
+
         // ---------------------- GetAllGalleryIdsAsync ----------------------
 
         public async Task<KairosGetAllGalleryResponseModel> GetAllGalleryIdsAsync()
         {
-            var allGalleryResponse =
+            var result =
                 await CreateHttpRequest("gallery/list_all")
                     .PostJsonAsync(new { })
                     .ReceiveJson<KairosGetAllGalleryResponseModel>();
 
-            return allGalleryResponse;
+            return result;
         }
-        
+
         // ---------------------- GetAllSubjectIdsAsync ----------------------
 
         public async Task<KairosGetAllSubjectResponseModel> GetAllSubjectIdsAsync(string galleryName = null)
         {
-            var allSubjectResponse =
+            var result =
                 await CreateHttpRequest("gallery/view")
                     .PostJsonAsync(new
                     {
@@ -139,9 +149,9 @@ namespace Elect.Face.Kairos.Services
                     })
                     .ReceiveJson<KairosGetAllSubjectResponseModel>();
 
-            return allSubjectResponse;
+            return result;
         }
-        
+
         // ---------------------- GetAllFaceIdsAsync ----------------------
 
         public Task<KairosGetSubjectResponseModel> GetAllFaceIdsAsync(Action<KairosGetSubjectRequestModel> model)
@@ -155,42 +165,51 @@ namespace Elect.Face.Kairos.Services
                 ? model.GalleryName
                 : _config.DefaultGallery;
 
-            var allFaceIdResponse =
+            var result =
                 await CreateHttpRequest("gallery/view_subject")
                     .PostJsonAsync(model)
                     .ReceiveJson<KairosGetSubjectResponseModel>();
 
-            return allFaceIdResponse;
+            return result;
         }
 
         // ---------------------- RemoveGallery ----------------------
 
-        public async Task RemoveGallery(string galleryName = null)
+        public async Task<KairosRemoveGalleryResponse> RemoveGallery(string galleryName = null)
         {
-            await CreateHttpRequest("gallery/view_subject")
-                .PostJsonAsync(new
-                {
-                    gallery_name = galleryName
-                });
+            var result =
+                await CreateHttpRequest("gallery/view_subject")
+                    .PostJsonAsync(new
+                    {
+                        gallery_name = galleryName
+                    })
+                    .ReceiveJson<KairosRemoveGalleryResponse>();
+
+            return result;
         }
 
         // ---------------------- RemoveFaceOrSubjectAsync ----------------------
 
-        public Task RemoveFaceOrSubjectAsync(Action<KairosRemoveFaceRequestModel> model)
+        public Task<KairosRemoveFaceOrSubjectResponseModel> RemoveFaceOrSubjectAsync(
+            Action<KairosRemoveFaceOrSubjectRequestModel> model)
         {
             return RemoveFaceOrSubjectAsync(model.GetValue());
         }
 
-        public async Task RemoveFaceOrSubjectAsync(KairosRemoveFaceRequestModel model)
+        public async Task<KairosRemoveFaceOrSubjectResponseModel> RemoveFaceOrSubjectAsync(
+            KairosRemoveFaceOrSubjectRequestModel model)
         {
             model.GalleryName = !string.IsNullOrWhiteSpace(model.GalleryName)
                 ? model.GalleryName
                 : _config.DefaultGallery;
 
-            await CreateHttpRequest("remove_subject")
-                .PostJsonAsync(model);
+            var result = await CreateHttpRequest("gallery/remove_subject")
+                .PostJsonAsync(model)
+                .ReceiveJson<KairosRemoveFaceOrSubjectResponseModel>();
+
+            return result;
         }
-        
+
         #endregion
     }
 }
