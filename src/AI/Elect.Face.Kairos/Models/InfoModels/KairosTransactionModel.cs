@@ -5,7 +5,7 @@ namespace Elect.Face.Kairos.Models.InfoModels
     public class KairosTransactionModel
     {
         [JsonProperty("confidence")]
-        public string Confidence { get; set; }
+        public double Confidence { get; set; }
 
         [JsonProperty("eyeDistance")]
         public double EyeDistance { get; set; }
