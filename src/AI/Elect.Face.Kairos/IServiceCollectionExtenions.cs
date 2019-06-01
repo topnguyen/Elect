@@ -16,6 +16,7 @@ namespace Elect.Face.Kairos
             {
                 _.AppId = configure.AppId;
                 _.AppKey = configure.AppKey;
+                _.DefaultGallery = configure.DefaultGallery;
             });
         }
 
