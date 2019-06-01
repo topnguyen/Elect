@@ -17,7 +17,7 @@ namespace Elect.Test.AI.Face.Kairos
             {
                 _.AppId = "";
                 _.AppKey = "";
-                _.DefaultGallery = "Elect Gallery";
+                _.DefaultGallery = "Elect Kairos";
             });
 
             var provider = services.BuildServiceProvider();
@@ -31,6 +31,8 @@ namespace Elect.Test.AI.Face.Kairos
         public async Task Faces()
         {
             var electKairosClient = GetElectKairosClient();
+
+            await electKairosClient.RemoveGallery("SAS");
         }
     }
 }
