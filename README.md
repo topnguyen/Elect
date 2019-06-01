@@ -34,6 +34,9 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
 
 - [Elect.Core](src/Elect.Core/README.md): Utilities and Core of Ecosystem.
 
+- AI
+    + [Elect.Face.Kairos](src/AI/Elect.Face.Kairos/README.md): Client by .NET Core for [Kairos](https://kairos.com) Face Recognition Service.
+
 - Dependency Injection
     + [Elect.DI](src/DI/Elect.DI/README.md): Register service and implementation by Attributes, support scan assemblies in difference folders to register.
 
