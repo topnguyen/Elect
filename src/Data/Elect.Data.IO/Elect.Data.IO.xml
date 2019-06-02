@@ -378,6 +378,24 @@
             <param name="imageBase64"></param>
             <returns></returns>
         </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.FixAutoRotate(System.String)">
+            <summary>
+                Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+            </summary>
+            <param name="imageBase64"></param>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.FixAutoRotate(System.Byte[])">
+            <summary>
+                Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+            </summary>
+            <param name="imageBytes"></param>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.FixAutoRotate(System.Drawing.Image)">
+            <summary>
+                Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+            </summary>
+            <param name="image"></param>
+        </member>
         <member name="T:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType">
             <summary>
                 Enumerated resize modes to apply to resized images. 
