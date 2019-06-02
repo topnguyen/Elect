@@ -27,6 +27,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Elect.Core.ByteUtils;
 
 namespace Elect.Data.IO.ImageUtils
 {
@@ -299,6 +300,121 @@ namespace Elect.Data.IO.ImageUtils
         public static string GetBase64Format(string imageBase64)
         {
             return imageBase64.Split(',').LastOrDefault();
+        }
+
+        #endregion
+
+        #region Rotate
+
+        /// <summary>
+        ///     Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+        /// </summary>
+        /// <param name="imageBase64"></param>
+        public static string FixAutoRotate(string imageBase64)
+        {
+            var fileBytes = Convert.FromBase64String(imageBase64);
+
+            var fixedAutoRotateFileBytes = FixAutoRotate(fileBytes);
+            
+            return fixedAutoRotateFileBytes.ToBase64();
+        }
+        
+        /// <summary>
+        ///     Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+        /// </summary>
+        /// <param name="imageBytes"></param>
+        public static byte[] FixAutoRotate(byte[] imageBytes)
+        {
+            using (var imageStream = new MemoryStream(imageBytes))
+            {
+                var originalImage = Image.FromStream(imageStream);
+                
+                var fixedAutoRotateImage = FixAutoRotate(originalImage);
+                
+                using (var fixedAutoRotateImageStream = new MemoryStream())
+                {
+                    fixedAutoRotateImage.Save(fixedAutoRotateImageStream, ImageFormat.Jpeg);
+                    
+                    var fixedAutoRotateFileBytes = fixedAutoRotateImageStream.ToArray();
+
+                    return fixedAutoRotateFileBytes;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+        /// </summary>
+        /// <param name="image"></param>
+        public static Image FixAutoRotate(Image image)
+        {
+            const int orientationId = 0x0112;
+
+            var fixedAutoRotateImage = (Image)image.Clone();
+            
+            if (!fixedAutoRotateImage.PropertyIdList.Contains(orientationId))
+            {
+                return fixedAutoRotateImage;
+            }
+            
+            int rotationValue = fixedAutoRotateImage.GetPropertyItem(orientationId).Value[0];
+            
+            var rotateFlipType = RotateFlipType.RotateNoneFlipNone;
+                
+            switch (rotationValue)
+            {
+                case 1: // landscape, do nothing
+                default:
+                {
+                    break;
+                }
+                case 2:
+                {
+                    rotateFlipType = RotateFlipType.RotateNoneFlipX;
+                    break;
+                }
+                case 3: // bottoms up
+                {
+                    rotateFlipType = RotateFlipType.Rotate180FlipNone;
+                    break;
+                }
+                case 4:
+                {
+                    rotateFlipType = RotateFlipType.Rotate180FlipX;
+                    break;
+                }
+                case 5:
+                {
+                    rotateFlipType = RotateFlipType.Rotate90FlipX;
+                    break;
+                }
+                case 6: // rotated 90 left
+                {
+                    rotateFlipType = RotateFlipType.Rotate90FlipNone;
+                    break;
+                }
+                case 7:
+                {
+                    rotateFlipType = RotateFlipType.Rotate270FlipX;
+                    break;
+                }
+                case 8: // rotated 90 right
+                {
+                    rotateFlipType =RotateFlipType.Rotate270FlipNone;
+                    break;
+                }
+            }
+
+            if (rotateFlipType == RotateFlipType.RotateNoneFlipNone)
+            {
+                return fixedAutoRotateImage;
+            }
+                
+            fixedAutoRotateImage.RotateFlip(rotateFlipType);
+                    
+            fixedAutoRotateImage.RemovePropertyItem(orientationId);
+            
+            return fixedAutoRotateImage;
         }
 
         #endregion
