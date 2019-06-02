@@ -178,7 +178,7 @@ namespace Elect.Face.Kairos.Services
         public async Task<KairosRemoveGalleryResponse> RemoveGallery(string galleryName = null)
         {
             var result =
-                await CreateHttpRequest("gallery/view_subject")
+                await CreateHttpRequest("gallery/remove")
                     .PostJsonAsync(new
                     {
                         gallery_name = galleryName
