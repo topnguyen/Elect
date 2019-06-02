@@ -66,7 +66,7 @@ namespace Elect.Face.Kairos.Services
             model.GalleryName = !string.IsNullOrWhiteSpace(model.GalleryName)
                 ? model.GalleryName
                 : _config.DefaultGallery;
-            
+
             var result =
                 await CreateHttpRequest("verify")
                     .PostJsonAsync(model)
@@ -141,6 +141,10 @@ namespace Elect.Face.Kairos.Services
 
         public async Task<KairosGetAllSubjectResponseModel> GetAllSubjectIdsAsync(string galleryName = null)
         {
+            galleryName = !string.IsNullOrWhiteSpace(galleryName)
+                ? galleryName
+                : _config.DefaultGallery;
+
             var result =
                 await CreateHttpRequest("gallery/view")
                     .PostJsonAsync(new
@@ -177,6 +181,10 @@ namespace Elect.Face.Kairos.Services
 
         public async Task<KairosRemoveGalleryResponse> RemoveGallery(string galleryName = null)
         {
+            galleryName = !string.IsNullOrWhiteSpace(galleryName)
+                ? galleryName
+                : _config.DefaultGallery;
+
             var result =
                 await CreateHttpRequest("gallery/remove")
                     .PostJsonAsync(new
