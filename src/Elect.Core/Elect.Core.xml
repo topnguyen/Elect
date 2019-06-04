@@ -213,6 +213,15 @@
             <param name="result"></param>
             <returns></returns>
         </member>
+        <member name="M:Elect.Core.SimilarityUtils.Euclidean.Distance(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+                Euclidean the distance
+            </summary>
+            <param name="firstArray"></param>
+            <param name="secondArray"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
         <member name="T:Elect.Core.SimilarityUtils.JaroWinkler">
             The Jaro–Winkler distance metric is designed and best suited for short
             strings such as person names, and to detect typos; it is (roughly) a

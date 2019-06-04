@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using AutoMapper.Configuration;
 
 namespace Elect.Mapper.AutoMapper
 {
@@ -60,7 +61,6 @@ namespace Elect.Mapper.AutoMapper
                 _.IMapperLifeTime = configure.IMapperLifeTime;
                 _.IsAssertConfigurationIsValid = configure.IsAssertConfigurationIsValid;
                 _.IsCompileMappings = configure.IsCompileMappings;
-                _.IsAssertConfigurationIsValid = configure.IsAssertConfigurationIsValid;
                 _.ListAssemblyFolderPath = configure.ListAssemblyFolderPath;
                 _.ListAssemblyName = configure.ListAssemblyName;
             });
@@ -77,9 +77,10 @@ namespace Elect.Mapper.AutoMapper
         {
             services.Configure(configure);
 
-            ElectAutoMapperOptions options = configure.GetValue();
+            var options = configure.GetValue();
 
             // Scan Assemblies
+            
             var listAllDllPath = new List<string>();
 
             foreach (var assemblyName in options.ListAssemblyName)
@@ -98,48 +99,45 @@ namespace Elect.Mapper.AutoMapper
                 }
             }
 
+            // Scan Mapper Profiles by Assemblies
+            
             List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listAllDllPath.ToArray());
 
             var allTypes = assemblies.Where(a => a.GetName().Name != nameof(AutoMapper)).SelectMany(a => a.DefinedTypes).ToArray();
 
-            // Initial Mapper with Profiles
             var profileTypes = allTypes.Where(t => typeof(Profile).GetTypeInfo().IsAssignableFrom(t)).Where(t => !t.IsAbstract).Select(t => t.AsType()).ToList();
 
-            global::AutoMapper.Mapper.Initialize(mapperConfigurationExpression =>
-            {
-                options.AdditionalInitial(mapperConfigurationExpression);
+            // Initial Mapper with Profiles
 
-                foreach (var profile in profileTypes)
-                {
-                    mapperConfigurationExpression.AddProfile(profile);
-                }
-            });
-
-            // Assert Config
-            if (options.IsAssertConfigurationIsValid)
+            var mapperConfigurationExpression = new MapperConfigurationExpression();
+            
+            foreach (var profile in profileTypes)
             {
-                global::AutoMapper.Mapper.AssertConfigurationIsValid();
+                mapperConfigurationExpression.AddProfile(profile);
             }
-
-            if (options.IsCompileMappings)
-            {
-                global::AutoMapper.Mapper.Configuration.CompileMappings();
-            }
+                
+            options.AdditionalInitial?.Invoke(mapperConfigurationExpression);
+            
+            global::AutoMapper.Mapper.Initialize(mapperConfigurationExpression);
+            
+            // Add Mapper Config to DI
 
             // Resolver and Converter with transient lifetime
+            
             var openTypes = new[] { typeof(IValueResolver<,,>), typeof(IMemberValueResolver<,,,>), typeof(ITypeConverter<,>) };
-
+            
             var dependencyTypes = openTypes.SelectMany(openType => allTypes.Where(t => t.IsClass && !t.IsAbstract && t.AsType().IsImplementGenericInterface(openType)));
-
+            
             foreach (var type in dependencyTypes)
             {
                 services.AddTransient(type.AsType());
             }
 
             // Config with singleton lifetime
+            
             services.AddSingleton(global::AutoMapper.Mapper.Configuration);
-
-            // Add Mapper to DI
+            
+            // Mapper
             switch (options.IMapperLifeTime)
             {
                 case ServiceLifetime.Scoped:
@@ -161,6 +159,20 @@ namespace Elect.Mapper.AutoMapper
                     {
                         throw new ArgumentOutOfRangeException(nameof(options.IMapperLifeTime), options.IMapperLifeTime, null);
                     }
+            }
+            
+            // Assert Config
+            
+            if (options.IsAssertConfigurationIsValid)
+            {
+                global::AutoMapper.Mapper.AssertConfigurationIsValid();
+            }
+
+            // Compile Mapping
+            
+            if (options.IsCompileMappings)
+            {
+                global::AutoMapper.Mapper.Configuration.CompileMappings();
             }
 
             return services;
