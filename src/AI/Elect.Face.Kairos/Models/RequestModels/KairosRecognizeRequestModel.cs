@@ -26,10 +26,10 @@ namespace Elect.Face.Kairos.Models.RequestModels
 
         /// <summary>
         ///     Used to determine a valid facial match / the score (1 mean 100% match).
-        ///     By default it is set to 0.63.
+        ///     By default it is set to 0.6.
         /// </summary>
         [JsonProperty("threshold")]
-        public double Threshold { get; set; } = 0.63;
+        public double Threshold { get; set; } = 0.6;
 
         /// <summary>
         ///     The maximum number of potential matches that are returned.

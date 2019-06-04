@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Elect.Face.Kairos.Models.InfoModels
 {
-    public class KairosTransactionModel
+    public class KairosTransactionModel : KairosErrorModel
     {
         [JsonProperty("confidence")]
         public double Confidence { get; set; }
