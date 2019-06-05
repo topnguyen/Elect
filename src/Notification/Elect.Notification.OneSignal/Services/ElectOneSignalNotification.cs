@@ -42,38 +42,31 @@ namespace Elect.Notification.OneSignal.Services
             Options = configuration;
         }
 
-        public ElectOneSignalNotification([NotNull] Action<ElectOneSignalOptions> configuration) : this(
-            configuration.GetValue())
+        public ElectOneSignalNotification([NotNull] Action<ElectOneSignalOptions> configuration) : this(configuration.GetValue())
         {
         }
 
-        public ElectOneSignalNotification([NotNull] IOptions<ElectOneSignalOptions> configuration) : this(configuration
-            .Value)
+        public ElectOneSignalNotification([NotNull] IOptions<ElectOneSignalOptions> configuration) : this(configuration.Value)
         {
         }
 
         #region Create
 
-        public async Task<NotificationCreateResultModel> CreateAsync([NotNull] NotificationCreateModel model,
-            [NotNull] string appId)
+        public async Task<NotificationCreateResultModel> CreateAsync([NotNull] NotificationCreateModel model, [NotNull] string appId)
         {
             var appInfo = Options.Apps.Single(x => x.AppId == appId);
 
             return await CreateAsync(model, appInfo);
         }
 
-        public async Task<NotificationCreateResultModel> CreateAsync([NotNull] NotificationCreateModel model,
-            [NotNull] string appId, [NotNull] string appKey)
+        public async Task<NotificationCreateResultModel> CreateAsync([NotNull] NotificationCreateModel model, [NotNull] string appId, [NotNull] string appKey)
         {
             var appInfo = new ElectOneSignalAppOption(appId, appKey);
 
             return await CreateAsync(model, appInfo);
         }
 
-        #endregion
-
-        public async Task<NotificationCreateResultModel> CreateAsync([NotNull] NotificationCreateModel model,
-            [NotNull] ElectOneSignalAppOption appInfo)
+        public async Task<NotificationCreateResultModel> CreateAsync([NotNull] NotificationCreateModel model, [NotNull] ElectOneSignalAppOption appInfo)
         {
             model.AppId = appInfo.AppId;
 
@@ -100,6 +93,8 @@ namespace Elect.Notification.OneSignal.Services
                 throw new HttpRequestException(response);
             }
         }
+
+        #endregion
 
         #region Cancel
 
