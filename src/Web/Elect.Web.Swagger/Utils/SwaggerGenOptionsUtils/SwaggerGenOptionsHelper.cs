@@ -27,6 +27,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
 using System.Reflection;
+using Elect.Core.ObjUtils;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
@@ -80,6 +81,8 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             IncludeXmlCommentsIfExists(swaggerGenOptions, Assembly.GetEntryAssembly());
 
             // Filers
+            swaggerGenOptions.OperationFilter<ApiSummaryAsDisplayNameOperationFilter>();
+            
             swaggerGenOptions.OperationFilter<ApiDocGroupOperationFilter>();
 
             swaggerGenOptions.OperationFilter<GlobalParameterOperationFilter>();
