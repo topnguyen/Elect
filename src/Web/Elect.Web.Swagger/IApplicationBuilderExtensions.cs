@@ -28,7 +28,6 @@ using Microsoft.Net.Http.Headers;
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using Elect.Web.Models;
 
 namespace Elect.Web.Swagger
 {
@@ -49,13 +48,6 @@ namespace Elect.Web.Swagger
 
                 c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
                 {
-                    var scheme =  httpReq.Scheme;
-                    
-                    if (httpReq.Headers.TryGetValue("X-Forwarded-Proto", out var forwardedScheme))
-                    {
-                        scheme = forwardedScheme;
-                    }
-                    
                     var host =  httpReq.Host.Host;
                     
                     if (httpReq.Headers.TryGetValue("X-Forwarded-Host", out var forwardedHost))
@@ -73,7 +65,7 @@ namespace Elect.Web.Swagger
                         }
                     }
                     
-                    swaggerDoc.Host = $"{scheme}://{host}" + (port.HasValue ? $":{port.Value}" : string.Empty);
+                    swaggerDoc.Host = host + (port.HasValue ? $":{port.Value}" : string.Empty);
                 });
             });
 
