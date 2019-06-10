@@ -27,7 +27,6 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
 using System.Reflection;
-using Elect.Core.ObjUtils;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
@@ -81,7 +80,7 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             IncludeXmlCommentsIfExists(swaggerGenOptions, Assembly.GetEntryAssembly());
 
             // Filers
-            swaggerGenOptions.OperationFilter<ApiSummaryAsDisplayNameOperationFilter>();
+            swaggerGenOptions.OperationFilter<ApiDescriptionPropertiesOperationFilter>();
             
             swaggerGenOptions.OperationFilter<ApiDocGroupOperationFilter>();
 
@@ -117,7 +116,18 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             }
             
             // Order
-            swaggerGenOptions.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}.{apiDesc.ActionDescriptor.DisplayName}");
+            swaggerGenOptions.OrderActionsBy((apiDesc) =>
+            {
+                
+                var actionSummary = apiDesc.ActionDescriptor.DisplayName;
+
+                if (apiDesc.ActionDescriptor.Properties.TryGetValue(nameof(Operation.Summary), out var summary))
+                {
+                    actionSummary = summary.ToString();
+                }
+                
+                return $"{apiDesc.ActionDescriptor.RouteValues["controller"]}.{actionSummary}";
+            });
 
             return swaggerGenOptions;
         }
@@ -146,12 +156,14 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
 
             var filePath = Path.ChangeExtension(assembly.Location, ".xml");
 
-            if (!IncludeXmlCommentsIfExists(options, filePath) && assembly.CodeBase != null)
+            if (IncludeXmlCommentsIfExists(options, filePath) || string.IsNullOrWhiteSpace(assembly.CodeBase))
             {
-                filePath = Path.ChangeExtension(new Uri(assembly.CodeBase).AbsolutePath, ".xml");
-
-                IncludeXmlCommentsIfExists(options, filePath);
+                return options;
             }
+            
+            filePath = Path.ChangeExtension(new Uri(assembly.CodeBase).AbsolutePath, ".xml");
+
+            IncludeXmlCommentsIfExists(options, filePath);
 
             return options;
         }
