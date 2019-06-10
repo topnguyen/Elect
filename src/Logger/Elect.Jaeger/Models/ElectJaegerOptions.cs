@@ -11,6 +11,8 @@ namespace Elect.Jaeger.Models
     /// </summary>
     public class ElectJaegerOptions : IElectOptions
     {
+        public bool IsEnable { get; set; } = true;
+        
         /// <summary>
         ///     Service Name, default is the Application Name
         /// </summary>

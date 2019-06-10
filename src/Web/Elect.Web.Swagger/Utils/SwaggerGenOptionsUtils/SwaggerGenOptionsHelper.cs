@@ -91,7 +91,7 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             swaggerGenOptions.IgnoreObsoleteProperties();
 
             swaggerGenOptions.IgnoreObsoleteActions();
-
+            
             // Type / Properties
             if (options.IsFullSchemaForType)
             {
@@ -112,9 +112,9 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
                     swaggerGenOptions.DescribeStringEnumsInCamelCase();
                 }
             }
-
+            
             // Order
-            swaggerGenOptions.OrderActionsBy(apiDesc => apiDesc.ActionDescriptor.DisplayName);
+            swaggerGenOptions.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}.{apiDesc.ActionDescriptor.DisplayName}");
 
             return swaggerGenOptions;
         }

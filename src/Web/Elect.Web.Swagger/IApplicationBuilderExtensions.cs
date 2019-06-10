@@ -28,6 +28,7 @@ using Microsoft.Net.Http.Headers;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using Elect.Web.Models;
 
 namespace Elect.Web.Swagger
 {
@@ -37,11 +38,43 @@ namespace Elect.Web.Swagger
         {
             var options = app.ApplicationServices.GetService<IOptions<ElectSwaggerOptions>>().Value;
 
+            if (!options.IsEnable)
+            {
+                return app;
+            }
+            
             app.UseSwagger(c =>
             {
                 c.RouteTemplate = options.SwaggerRoutePrefix + "/{documentName}/" + options.SwaggerName;
 
-                c.PreSerializeFilters.Add((swaggerDoc, httpReq) => swaggerDoc.Host = httpReq.Host.Value);
+                c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
+                {
+                    var scheme =  httpReq.Scheme;
+                    
+                    if (httpReq.Headers.TryGetValue("X-Forwarded-Proto", out var forwardedScheme))
+                    {
+                        scheme = forwardedScheme;
+                    }
+                    
+                    var host =  httpReq.Host.Host;
+                    
+                    if (httpReq.Headers.TryGetValue("X-Forwarded-Host", out var forwardedHost))
+                    {
+                        host = forwardedHost;
+                    }
+                    
+                    var port =  httpReq.Host.Port;
+                    
+                    if (httpReq.Headers.TryGetValue("X-Forwarded-Port", out var forwardedPort))
+                    {
+                        if (int.TryParse(forwardedPort, out var forwardedPortInt))
+                        {
+                            port = forwardedPortInt;
+                        }
+                    }
+                    
+                    swaggerDoc.Host = $"{scheme}://{host}" + (port.HasValue ? $":{port.Value}" : string.Empty);
+                });
             });
 
             app.UseSwaggerUI(c =>
