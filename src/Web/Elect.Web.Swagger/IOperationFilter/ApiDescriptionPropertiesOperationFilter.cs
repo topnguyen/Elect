@@ -19,6 +19,7 @@
 
 #endregion License
 
+using Elect.Core.DictionaryUtils;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -28,9 +29,9 @@ namespace Elect.Web.Swagger.IOperationFilter
     {
         public void Apply(Operation operation, OperationFilterContext context)
         {
-            context.ApiDescription.Properties.Add(nameof(Operation.OperationId), operation.OperationId);
-            context.ApiDescription.Properties.Add(nameof(Operation.Summary), operation.Summary);
-            context.ApiDescription.Properties.Add(nameof(Operation.Description), operation.Description);
+            context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.OperationId), operation.OperationId);
+            context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.Summary), operation.Summary);
+            context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.Description), operation.Description);
         }
     }
 }

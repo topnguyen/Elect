@@ -121,12 +121,12 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
                 
                 var actionSummary = apiDesc.ActionDescriptor.DisplayName;
 
-                if (apiDesc.ActionDescriptor.Properties.TryGetValue(nameof(Operation.Summary), out var summary))
+                if (apiDesc.Properties.TryGetValue(nameof(Operation.Summary), out var summary))
                 {
                     actionSummary = summary.ToString();
                 }
-                
-                return $"{apiDesc.ActionDescriptor.RouteValues["controller"]}.{actionSummary}";
+
+                return actionSummary;
             });
 
             return swaggerGenOptions;
