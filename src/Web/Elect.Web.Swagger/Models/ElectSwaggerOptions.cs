@@ -25,6 +25,8 @@ namespace Elect.Web.Swagger.Models
 {
     public class ElectSwaggerOptions
     {
+        public bool IsEnable { get; set; } = true;
+        
         private string _swaggerRoutePrefix = "developers/api-docs";
 
         /// <summary>

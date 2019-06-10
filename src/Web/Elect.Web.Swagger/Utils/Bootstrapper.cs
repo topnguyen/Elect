@@ -145,7 +145,7 @@ namespace Elect.Web.Swagger.Utils
             // Write the files out to the bin folder.
             foreach (KeyValuePair<string, string> resource in resources)
             {
-                using (Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource.Value))
+                using (var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource.Value))
                 {
                     if (resourceStream == null)
                     {
@@ -154,7 +154,7 @@ namespace Elect.Web.Swagger.Utils
 
                     var toolFullPath = Path.Combine(WorkingFolder, resource.Key);
 
-                    using (FileStream fileStream = File.OpenWrite(toolFullPath))
+                    using (var fileStream = File.OpenWrite(toolFullPath))
                     {
                         resourceStream.CopyTo(fileStream);
                     }

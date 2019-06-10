@@ -22,6 +22,7 @@ namespace Elect.Jaeger
         {
             return services.AddElectJaeger(_ =>
             {
+                _.IsEnable = configure.IsEnable;
                 _.ServiceName = configure.ServiceName;
                 _.Domain = configure.Domain;
                 _.SamplerPort = configure.SamplerPort;
@@ -39,6 +40,11 @@ namespace Elect.Jaeger
             services.Configure(configure);
 
             var electJaegerOptions = configure.GetValue();
+
+            if (!electJaegerOptions.IsEnable)
+            {
+                return services;
+            }
 
             services.AddSingleton(serviceProvider =>
             {

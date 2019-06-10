@@ -62,6 +62,11 @@ namespace Elect.Web.Swagger
 
             var options = configuration.GetValue();
 
+            if (!options.IsEnable)
+            {
+                return services;
+            }
+
             // Update File Content base on Configuration
 
             SwaggerHelper.UpdateApiDocFileContent(options.Title, SwaggerHelper.GetSwaggerEndpoint(options), options.AuthTokenType, options.JsonViewerUrl);
