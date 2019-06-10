@@ -119,14 +119,14 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             swaggerGenOptions.OrderActionsBy((apiDesc) =>
             {
                 
-                var actionSummary = apiDesc.ActionDescriptor.DisplayName;
+                var apiSummary = apiDesc.ActionDescriptor.DisplayName;
 
                 if (apiDesc.Properties.TryGetValue(nameof(Operation.Summary), out var summary))
                 {
-                    actionSummary = summary.ToString();
+                    apiSummary = summary.ToString();
                 }
 
-                return actionSummary;
+                return apiSummary;
             });
 
             return swaggerGenOptions;
