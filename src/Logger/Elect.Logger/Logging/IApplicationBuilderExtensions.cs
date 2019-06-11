@@ -25,6 +25,7 @@ using Elect.Logger.Logging.Models;
 using Elect.Logger.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace Elect.Logger.Logging
@@ -33,6 +34,13 @@ namespace Elect.Logger.Logging
     {
         public static IApplicationBuilder UseElectLog(this IApplicationBuilder app)
         {
+            var options = app.ApplicationServices.GetService<IOptions<ElectLogOptions>>().Value;
+
+            if (!options.IsEnableLogToFile && !options.IsEnableLogToFile)
+            {
+                return app;
+            }
+
             app.UseMiddleware<ElectLogMiddleware>();
 
             return app;
