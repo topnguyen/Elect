@@ -62,7 +62,7 @@
     fabio -registry.consul.addr="<your consul endpoint>" -registry.consul.token="<your consul token>"
     ```
 
-- Consul by default
+- Fabio by default
     + Fabio proxy run on http://localhost:9999 and the UI will run on http://localhost:9998
     + Fabio use Consul run on http://localhost:8500
 
