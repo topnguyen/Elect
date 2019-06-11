@@ -25,6 +25,8 @@ namespace Elect.Job.Hangfire.Models
 {
     public class ElectHangfireOptions : IElectOptions
     {
+        public bool IsEnable { get; set; } = true;
+        
         /// <summary>
         ///     Disable or Enable Job Dashboard, default is false. 
         /// </summary>

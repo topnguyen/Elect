@@ -38,6 +38,7 @@ namespace Elect.Web.Swagger
         {
             return services.AddElectSwagger(_ =>
             {
+                _.IsEnable = configuration.IsEnable;
                 _.SwaggerRoutePrefix = configuration.SwaggerRoutePrefix;
                 _.SwaggerName = configuration.SwaggerName;
                 _.Url = configuration.Url;

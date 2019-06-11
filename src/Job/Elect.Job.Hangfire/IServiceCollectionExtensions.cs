@@ -38,6 +38,7 @@ namespace Elect.Job.Hangfire
         {
             return services.AddElectHangfire(_ =>
             {
+                _.IsEnable = options.IsEnable;
                 _.Url = options.Url;
                 _.AccessKey = options.AccessKey;
                 _.BackToUrl = options.BackToUrl;
@@ -56,6 +57,11 @@ namespace Elect.Job.Hangfire
 
             var options = configuration.GetValue();
 
+            if (!options.IsEnable)
+            {
+                return services;
+            }
+            
             switch (options.Provider)
             {
                 case HangfireProvider.Memory:
@@ -88,6 +94,8 @@ namespace Elect.Job.Hangfire
 
                         break;
                     }
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             return services;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
 using Elect.Logger.Logging.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,27 +13,32 @@ namespace Elect.Logger.Logging
             return services.AddElectLog(_ => { });
         }
 
-        public static IServiceCollection AddElectLog(this IServiceCollection services,
-            [NotNull] ElectLogOptions configure)
+        public static IServiceCollection AddElectLog(this IServiceCollection services, [NotNull] ElectLogOptions configuration)
         {
             return services.AddElectLog(_ =>
             {
-                _.Url = configure.Url;
-                _.JsonFilePath = configure.JsonFilePath;
-                _.Threshold = configure.Threshold;
-                _.AccessKey = configure.AccessKey;
-                _.BatchSize = configure.BatchSize;
-                _.UnAuthorizeMessage = configure.UnAuthorizeMessage;
-                _.IsEnableLogToFile = configure.IsEnableLogToFile;
-                _.IsEnableLogToConsole = configure.IsEnableLogToConsole;
+                _.Url = configuration.Url;
+                _.JsonFilePath = configuration.JsonFilePath;
+                _.Threshold = configuration.Threshold;
+                _.AccessKey = configuration.AccessKey;
+                _.BatchSize = configuration.BatchSize;
+                _.UnAuthorizeMessage = configuration.UnAuthorizeMessage;
+                _.IsEnableLogToFile = configuration.IsEnableLogToFile;
+                _.IsEnableLogToConsole = configuration.IsEnableLogToConsole;
             });
         }
 
-        public static IServiceCollection AddElectLog(this IServiceCollection services,
-            [NotNull] Action<ElectLogOptions> configure)
+        public static IServiceCollection AddElectLog(this IServiceCollection services, [NotNull] Action<ElectLogOptions> configuration)
         {
-            services.Configure(configure);
+            services.Configure(configuration);
 
+            var options = configuration.GetValue();
+
+            if (!options.IsEnableLogToFile && !options.IsEnableLogToFile)
+            {
+                return services;
+            }
+            
             services.AddSingleton<IElectLog, ElectLog>();
 
             return services;

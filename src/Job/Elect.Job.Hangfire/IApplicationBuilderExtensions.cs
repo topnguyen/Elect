@@ -38,6 +38,11 @@ namespace Elect.Job.Hangfire
         {
             var options = app.ApplicationServices.GetService<IOptions<ElectHangfireOptions>>().Value;
 
+            if (!options.IsEnable)
+            {
+                return app;
+            }
+
             if (!options.IsDisableJobDashboard)
             {
                 CheckHelper.CheckNullOrWhiteSpace(options.Url, nameof(options.Url));
