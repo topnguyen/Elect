@@ -25,11 +25,15 @@
       "ports": {
         "http": 8500
       },
+      "addresses": {
+        "http": "0.0.0.0"
+      },
       "acl" : {
         "enabled": true,
         "default_policy": "deny",
         "enable_token_persistence": true,
         "tokens": {
+          "master": "<your generation unique key>",
           "default": "<your generation unique key>"
         }
       }
@@ -41,7 +45,7 @@
 
 - Run Consul Agent with config
     ```cmd
-    consul agent -config-file="<Your Path>/consul-config.json"
+    consul agent -config-file="<Your Path>/consul-config.json" -bind={{GetPrivateIP}}
     ```
 
 - Consul by default
