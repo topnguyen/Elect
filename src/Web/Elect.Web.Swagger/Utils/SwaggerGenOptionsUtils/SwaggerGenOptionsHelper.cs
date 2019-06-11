@@ -1,4 +1,5 @@
 ﻿#region	License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Core.ActionUtils;
@@ -33,29 +35,31 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
 {
     public class SwaggerGenOptionsHelper
     {
-        public static SwaggerGenOptions AddElectSwaggerGenOptions([NotNull] SwaggerGenOptions swaggerGenOptions, [NotNull] ElectSwaggerOptions configuration)
+        public static SwaggerGenOptions AddElectSwaggerGenOptions([NotNull] SwaggerGenOptions swaggerGenOptions,
+            [NotNull] ElectSwaggerOptions configuration)
         {
             return AddElectSwaggerGenOptions(swaggerGenOptions, _ =>
-             {
-                 _.SwaggerRoutePrefix = configuration.SwaggerRoutePrefix;
-                 _.SwaggerName = configuration.SwaggerName;
-                 _.Url = configuration.Url;
-                 _.JsonViewerUrl = configuration.JsonViewerUrl;
-                 _.Title = configuration.Title;
-                 _.Version = configuration.Version;
-                 _.AccessKey = configuration.AccessKey;
-                 _.UnAuthorizeMessage = configuration.UnAuthorizeMessage;
-                 _.AuthTokenType = configuration.AuthTokenType;
-                 _.IsFullSchemaForType = configuration.IsFullSchemaForType;
-                 _.IsDescribeAllEnumsAsString = configuration.IsDescribeAllEnumsAsString;
-                 _.IsDescribeAllParametersInCamelCase = configuration.IsDescribeAllParametersInCamelCase;
-                 _.AuthorName = configuration.AuthorName;
-                 _.AuthorEmail = configuration.AuthorEmail;
-                 _.AuthorWebsite = configuration.AuthorWebsite;
-             });
+            {
+                _.SwaggerRoutePrefix = configuration.SwaggerRoutePrefix;
+                _.SwaggerName = configuration.SwaggerName;
+                _.Url = configuration.Url;
+                _.JsonViewerUrl = configuration.JsonViewerUrl;
+                _.Title = configuration.Title;
+                _.Version = configuration.Version;
+                _.AccessKey = configuration.AccessKey;
+                _.UnAuthorizeMessage = configuration.UnAuthorizeMessage;
+                _.AuthTokenType = configuration.AuthTokenType;
+                _.IsFullSchemaForType = configuration.IsFullSchemaForType;
+                _.IsDescribeAllEnumsAsString = configuration.IsDescribeAllEnumsAsString;
+                _.IsDescribeAllParametersInCamelCase = configuration.IsDescribeAllParametersInCamelCase;
+                _.AuthorName = configuration.AuthorName;
+                _.AuthorEmail = configuration.AuthorEmail;
+                _.AuthorWebsite = configuration.AuthorWebsite;
+            });
         }
 
-        public static SwaggerGenOptions AddElectSwaggerGenOptions([NotNull] SwaggerGenOptions swaggerGenOptions, [NotNull] Action<ElectSwaggerOptions> configuration)
+        public static SwaggerGenOptions AddElectSwaggerGenOptions([NotNull] SwaggerGenOptions swaggerGenOptions,
+            [NotNull] Action<ElectSwaggerOptions> configuration)
         {
             var options = configuration.GetValue();
 
@@ -81,7 +85,7 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
 
             // Filers
             swaggerGenOptions.OperationFilter<ApiDescriptionPropertiesOperationFilter>();
-            
+
             swaggerGenOptions.OperationFilter<ApiDocGroupOperationFilter>();
 
             swaggerGenOptions.OperationFilter<GlobalParameterOperationFilter>();
@@ -93,7 +97,7 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             swaggerGenOptions.IgnoreObsoleteProperties();
 
             swaggerGenOptions.IgnoreObsoleteActions();
-            
+
             // Type / Properties
             if (options.IsFullSchemaForType)
             {
@@ -114,19 +118,23 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
                     swaggerGenOptions.DescribeStringEnumsInCamelCase();
                 }
             }
-            
+
             // Order
             swaggerGenOptions.OrderActionsBy((apiDesc) =>
             {
-                
-                var apiSummary = apiDesc.ActionDescriptor.DisplayName;
+                var apiDisplayName = apiDesc.ActionDescriptor.DisplayName;
 
-                if (apiDesc.Properties.TryGetValue(nameof(Operation.Summary), out var summary))
+                if (!apiDesc.Properties.TryGetValue(nameof(Operation.Summary), out var summary))
                 {
-                    apiSummary = summary.ToString();
+                    return apiDisplayName;
+                }
+                
+                if (!string.IsNullOrWhiteSpace(summary?.ToString()))
+                {
+                    apiDisplayName = summary.ToString();
                 }
 
-                return apiSummary;
+                return apiDisplayName;
             });
 
             return swaggerGenOptions;
@@ -160,7 +168,7 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             {
                 return options;
             }
-            
+
             filePath = Path.ChangeExtension(new Uri(assembly.CodeBase).AbsolutePath, ".xml");
 
             IncludeXmlCommentsIfExists(options, filePath);

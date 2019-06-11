@@ -29,9 +29,20 @@ namespace Elect.Web.Swagger.IOperationFilter
     {
         public void Apply(Operation operation, OperationFilterContext context)
         {
-            context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.OperationId), operation.OperationId);
-            context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.Summary), operation.Summary);
-            context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.Description), operation.Description);
+            if (!string.IsNullOrWhiteSpace(operation.OperationId))
+            {
+                context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.OperationId), operation.OperationId);
+            }
+            
+            if (!string.IsNullOrWhiteSpace(operation.Summary))
+            {
+                context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.Summary), operation.Summary);
+            }
+            
+            if (!string.IsNullOrWhiteSpace(operation.Description))
+            {
+                context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.Description), operation.Description);
+            }
         }
     }
 }
