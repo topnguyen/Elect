@@ -18,6 +18,8 @@ namespace Elect.Web.HealthCheck
         {
             return services.AddElectHealthCheck(_ =>
             {
+                _.IsEnable = configure.IsEnable;
+                _.Endpoint = configure.Endpoint;
                 _.DbConnectionString = configure.DbConnectionString;
                 _.Builder = configure.Builder;
                 _.Options = configure.Options;
