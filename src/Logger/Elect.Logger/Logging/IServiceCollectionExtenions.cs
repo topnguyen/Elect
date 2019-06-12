@@ -34,7 +34,7 @@ namespace Elect.Logger.Logging
 
             var options = configuration.GetValue();
 
-            if (!options.IsEnableLogToFile && !options.IsEnableLogToFile)
+            if (!options.IsEnableLogToConsole && !options.IsEnableLogToFile)
             {
                 return services;
             }

@@ -36,7 +36,7 @@ namespace Elect.Logger.Logging
         {
             var options = app.ApplicationServices.GetService<IOptions<ElectLogOptions>>().Value;
 
-            if (!options.IsEnableLogToFile && !options.IsEnableLogToFile)
+            if (!options.IsEnableLogToConsole && !options.IsEnableLogToFile)
             {
                 return app;
             }
