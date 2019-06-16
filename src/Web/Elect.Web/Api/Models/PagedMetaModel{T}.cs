@@ -38,19 +38,19 @@ namespace Elect.Web.Api.Models
         private readonly string _endpoint;
 
         [JsonProperty(Order = 1)]
-        public LinkModel Meta { get; set; }
+        public virtual LinkModel Meta { get; set; }
 
         [JsonProperty(Order = 2)]
-        public LinkModel First { get; set; }
+        public virtual LinkModel First { get; set; }
 
         [JsonProperty(Order = 3)]
-        public LinkModel Previous { get; set; }
+        public virtual LinkModel Previous { get; set; }
 
         [JsonProperty(Order = 4)]
-        public LinkModel Next { get; set; }
+        public virtual LinkModel Next { get; set; }
 
         [JsonProperty(Order = 5)]
-        public LinkModel Last { get; set; }
+        public virtual LinkModel Last { get; set; }
 
         public PagedMetaModel()
         {
@@ -88,9 +88,9 @@ namespace Elect.Web.Api.Models
             Last = GetLastLink();
         }
 
-        private LinkModel GetMetaLink()
+        protected LinkModel GetMetaLink()
         {
-            RouteValueDictionary routeValueDictionary = new RouteValueDictionary(_pagedRequestModel);
+            var routeValueDictionary = new RouteValueDictionary(_pagedRequestModel);
 
             var link = new LinkModel
             {
@@ -104,13 +104,13 @@ namespace Elect.Web.Api.Models
             return link;
         }
 
-        private LinkModel GetFirstLink()
+        protected LinkModel GetFirstLink()
         {
             var pagedRequestModel = _pagedRequestModel.Clone();
 
             pagedRequestModel.Skip = 0;
 
-            RouteValueDictionary routeValueDictionary = new RouteValueDictionary(pagedRequestModel);
+            var routeValueDictionary = new RouteValueDictionary(pagedRequestModel);
 
             var link = new LinkModel
             {
@@ -124,7 +124,7 @@ namespace Elect.Web.Api.Models
             return link;
         }
 
-        private LinkModel GetPreviousLink()
+        protected LinkModel GetPreviousLink()
         {
             if (_pagedRequestModel.Skip == 0 || _pagedResponseModel.Total <= _pagedRequestModel.Skip)
             {
@@ -142,7 +142,7 @@ namespace Elect.Web.Api.Models
 
             pagedRequestModel.Skip = skipToPrevious;
 
-            RouteValueDictionary routeValueDictionary = new RouteValueDictionary(pagedRequestModel);
+            var routeValueDictionary = new RouteValueDictionary(pagedRequestModel);
 
             var link = new LinkModel
             {
@@ -156,7 +156,7 @@ namespace Elect.Web.Api.Models
             return link;
         }
 
-        private LinkModel GetNextLink()
+        protected LinkModel GetNextLink()
         {
             var skipToNext = _pagedRequestModel.Skip + _pagedRequestModel.Take;
 
@@ -169,7 +169,7 @@ namespace Elect.Web.Api.Models
 
             pagedRequestModel.Skip = skipToNext;
 
-            RouteValueDictionary routeValueDictionary = new RouteValueDictionary(pagedRequestModel);
+            var routeValueDictionary = new RouteValueDictionary(pagedRequestModel);
 
             var link = new LinkModel
             {
@@ -183,7 +183,7 @@ namespace Elect.Web.Api.Models
             return link;
         }
 
-        private LinkModel GetLastLink()
+        protected LinkModel GetLastLink()
         {
             if (_pagedResponseModel.Total <= _pagedRequestModel.Take)
             {
@@ -203,7 +203,7 @@ namespace Elect.Web.Api.Models
 
             pagedRequestModel.Skip = skipToLast;
 
-            RouteValueDictionary routeValueDictionary = new RouteValueDictionary(pagedRequestModel);
+            var routeValueDictionary = new RouteValueDictionary(pagedRequestModel);
 
             var link = new LinkModel
             {
@@ -217,7 +217,7 @@ namespace Elect.Web.Api.Models
             return link;
         }
 
-        private static string GetUrlWithQueries(string url, RouteValueDictionary routeValueDictionary)
+        protected string GetUrlWithQueries(string url, RouteValueDictionary routeValueDictionary)
         {
             url = url.ToLowerInvariant();
 
@@ -247,7 +247,7 @@ namespace Elect.Web.Api.Models
             return url;
         }
 
-        private static string AddQueryString(string url, string query)
+        protected string AddQueryString(string url, string query)
         {
             if (!url.Contains("?"))
             {
