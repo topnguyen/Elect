@@ -98,7 +98,7 @@ namespace Elect.Web.Api.Models
 
                 Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
 
-                Data = new RouteValueDictionary(_pagedRequestModel)
+                Data = routeValueDictionary
             };
 
             return link;
@@ -118,7 +118,7 @@ namespace Elect.Web.Api.Models
 
                 Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
 
-                Data = new RouteValueDictionary(pagedRequestModel)
+                Data = routeValueDictionary
             };
 
             return link;
@@ -150,7 +150,7 @@ namespace Elect.Web.Api.Models
 
                 Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
 
-                Data = new RouteValueDictionary(pagedRequestModel)
+                Data = routeValueDictionary
             };
 
             return link;
@@ -177,7 +177,7 @@ namespace Elect.Web.Api.Models
 
                 Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
 
-                Data = new RouteValueDictionary(pagedRequestModel)
+                Data = routeValueDictionary
             };
 
             return link;
@@ -211,7 +211,7 @@ namespace Elect.Web.Api.Models
 
                 Url = GetUrlWithQueries(_endpoint, routeValueDictionary),
 
-                Data = new RouteValueDictionary(pagedRequestModel),
+                Data = routeValueDictionary
             };
 
             return link;
@@ -238,7 +238,7 @@ namespace Elect.Web.Api.Models
                         continue;
                     }
 
-                    var query = $"{routeData.Key}={hrefValue}";
+                    var query = $"{routeData.Key.ToLowerInvariant()}={hrefValue}";
 
                     url = AddQueryString(url, query);
                 }
