@@ -64,10 +64,9 @@ namespace Elect.Web.DataTable.Processing.Request
                 DisplayLength = GetValue<int>(valueProvider, "length"),
                 Search = GetValue<string>(valueProvider, "search[value]"),
                 EscapeRegex = GetValue<bool>(valueProvider, "search[regex]"),
-                Echo = GetValue<int>(valueProvider, "draw")
+                Echo = GetValue<int>(valueProvider, "draw"),
+                ColReorderIndexs = GetValueArray<int>(valueProvider, PropertyConstants.ColReorderIndexs)
             };
-
-            obj.ColReorderIndexs = GetValueArray<int>(valueProvider, PropertyConstants.ColReorderIndexs);
 
             var colIdx = 0;
 
@@ -118,10 +117,9 @@ namespace Elect.Web.DataTable.Processing.Request
                 Search = GetValue<string>(valueProvider, PropertyConstants.Search),
                 EscapeRegex = GetValue<bool>(valueProvider, PropertyConstants.EscapeRegex),
                 SortingCols = GetValue<int>(valueProvider, PropertyConstants.SortingCols),
-                Echo = GetValue<int>(valueProvider, PropertyConstants.Echo)
+                Echo = GetValue<int>(valueProvider, PropertyConstants.Echo),
+                ColReorderIndexs = GetValueArray<int>(valueProvider, PropertyConstants.ColReorderIndexs)
             };
-
-            obj.ColReorderIndexs = GetValueArray<int>(valueProvider, PropertyConstants.ColReorderIndexs);
 
             for (var i = 0; i < obj.Columns; i++)
             {
@@ -201,14 +199,7 @@ namespace Elect.Web.DataTable.Processing.Request
 
             var isSameType = context.Metadata.ModelType == typeof(DataTableRequestModel);
 
-            var isAssignableFromType = typeof(DataTableRequestModel).IsAssignableFrom(context.Metadata.ModelType);
-            
-            if (isSameType || isAssignableFromType)
-            {
-                return new DataTableModelBinder();
-            }
-
-            return null;
+            return isSameType ? new DataTableModelBinder() : null;
         }
     }
 }
