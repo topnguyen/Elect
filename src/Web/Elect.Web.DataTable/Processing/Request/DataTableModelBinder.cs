@@ -194,9 +194,21 @@ namespace Elect.Web.DataTable.Processing.Request
     {
         public IModelBinder GetBinder(ModelBinderProviderContext context)
         {
-            if (context == null) throw new ArgumentNullException(nameof(context));
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
 
-            return context.Metadata.ModelType == typeof(DataTableRequestModel) ? new DataTableModelBinder() : null;
+            var isSameType = context.Metadata.ModelType == typeof(DataTableRequestModel);
+
+            var isAssignableFromType = typeof(DataTableRequestModel).IsAssignableFrom(context.Metadata.ModelType);
+            
+            if (isSameType || isAssignableFromType)
+            {
+                return new DataTableModelBinder();
+            }
+
+            return null;
         }
     }
 }
