@@ -378,23 +378,26 @@
             <param name="imageBase64"></param>
             <returns></returns>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.FixAutoRotate(System.String)">
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.RotateByExifOrientation(System.String)">
             <summary>
-                Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+                Rotate image by Exif Orientation.
             </summary>
             <param name="imageBase64"></param>
+            <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.FixAutoRotate(System.Byte[])">
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.RotateByExifOrientation(System.Byte[])">
             <summary>
-                Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+                Rotate image by Exif Orientation.
             </summary>
             <param name="imageBytes"></param>
+            <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.FixAutoRotate(System.Drawing.Image)">
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.RotateByExifOrientation(System.Drawing.Image)">
             <summary>
-                Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+                Rotate image by Exif Orientation.
             </summary>
             <param name="image"></param>
+            <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
         </member>
         <member name="T:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType">
             <summary>

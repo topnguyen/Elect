@@ -307,29 +307,31 @@ namespace Elect.Data.IO.ImageUtils
         #region Rotate
 
         /// <summary>
-        ///     Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+        ///     Rotate image by Exif Orientation.
         /// </summary>
         /// <param name="imageBase64"></param>
-        public static string FixAutoRotate(string imageBase64)
+        /// <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
+        public static string RotateByExifOrientation(string imageBase64)
         {
             var fileBytes = Convert.FromBase64String(imageBase64);
 
-            var fixedAutoRotateFileBytes = FixAutoRotate(fileBytes);
+            var fixedAutoRotateFileBytes = RotateByExifOrientation(fileBytes);
             
             return fixedAutoRotateFileBytes.ToBase64();
         }
         
         /// <summary>
-        ///     Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+        ///     Rotate image by Exif Orientation.
         /// </summary>
         /// <param name="imageBytes"></param>
-        public static byte[] FixAutoRotate(byte[] imageBytes)
+        /// <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
+        public static byte[] RotateByExifOrientation(byte[] imageBytes)
         {
             using (var imageStream = new MemoryStream(imageBytes))
             {
                 var originalImage = Image.FromStream(imageStream);
                 
-                var fixedAutoRotateImage = FixAutoRotate(originalImage);
+                var fixedAutoRotateImage = RotateByExifOrientation(originalImage);
                 
                 using (var fixedAutoRotateImageStream = new MemoryStream())
                 {
@@ -343,10 +345,11 @@ namespace Elect.Data.IO.ImageUtils
         }
 
         /// <summary>
-        ///     Fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).
+        ///     Rotate image by Exif Orientation.
         /// </summary>
         /// <param name="image"></param>
-        public static Image FixAutoRotate(Image image)
+        /// <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
+        public static Image RotateByExifOrientation(Image image)
         {
             const int orientationId = 0x0112;
 
