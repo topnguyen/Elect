@@ -54,6 +54,8 @@ namespace Elect.Web.Swagger
                 _.AuthorName = configuration.AuthorName;
                 _.AuthorEmail = configuration.AuthorEmail;
                 _.AuthorWebsite = configuration.AuthorWebsite;
+                _.GlobalParameters = configuration.GlobalParameters;
+                _.ExtendOptions = configuration.ExtendOptions;
             });
         }
 

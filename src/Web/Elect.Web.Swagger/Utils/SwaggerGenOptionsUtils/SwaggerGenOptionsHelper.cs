@@ -64,6 +64,7 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             var options = configuration.GetValue();
 
             // Doc Info
+            
             swaggerGenOptions.SwaggerDoc(options.Version, new Info
             {
                 Title = options.Title,
@@ -81,9 +82,11 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             });
 
             // XML
+            
             IncludeXmlCommentsIfExists(swaggerGenOptions, Assembly.GetEntryAssembly());
 
-            // Filers
+            // Operation Filters
+            
             swaggerGenOptions.OperationFilter<ApiDescriptionPropertiesOperationFilter>();
 
             swaggerGenOptions.OperationFilter<ApiDocGroupOperationFilter>();
@@ -92,13 +95,18 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
 
             swaggerGenOptions.OperationFilter<ParameterOperationFilter>();
 
+            // Document Filters
+            
             swaggerGenOptions.DocumentFilter<ShowHideInApiDocDocumentFilter>();
+            
+            swaggerGenOptions.DocumentFilter<SortTagsDocumentFilter>();
 
             swaggerGenOptions.IgnoreObsoleteProperties();
 
             swaggerGenOptions.IgnoreObsoleteActions();
 
             // Type / Properties
+            
             if (options.IsFullSchemaForType)
             {
                 swaggerGenOptions.CustomSchemaIds(type => type.FullName);
@@ -120,6 +128,7 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             }
 
             // Order
+            
             swaggerGenOptions.OrderActionsBy((apiDesc) =>
             {
                 var apiDisplayName = apiDesc.ActionDescriptor.DisplayName;
