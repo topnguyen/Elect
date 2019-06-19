@@ -99,8 +99,6 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             
             swaggerGenOptions.DocumentFilter<ShowHideInApiDocDocumentFilter>();
             
-            swaggerGenOptions.DocumentFilter<SortTagsDocumentFilter>();
-
             swaggerGenOptions.IgnoreObsoleteProperties();
 
             swaggerGenOptions.IgnoreObsoleteActions();
