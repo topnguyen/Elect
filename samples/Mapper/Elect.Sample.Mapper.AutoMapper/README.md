@@ -1,6 +1,6 @@
 ﻿![Logo](../../../Logo.png)
 # Sample using [Elect.Mapper.AutoMapper](../../../src/Mapper/Elect.Mapper.AutoMapper/README.md)
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 

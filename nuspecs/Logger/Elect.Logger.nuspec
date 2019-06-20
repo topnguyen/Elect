@@ -7,7 +7,7 @@
         <summary>Logger support Event and Develop Log.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>http://topnguyen.net</copyright>
+        <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Logger/Elect.Logger</projectUrl>
         <license type="expression">MIT</license>
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>

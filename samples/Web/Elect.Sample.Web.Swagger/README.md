@@ -1,6 +1,6 @@
 ﻿![Logo](../../../Logo.png)
 # Sample using [Elect.Web.Swagger](../../../src/Web/Elect.Web.Swagger/README.md)
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 

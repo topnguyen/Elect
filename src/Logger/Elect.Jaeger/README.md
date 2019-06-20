@@ -1,6 +1,6 @@
 ﻿![Logo](../../../Logo.png)
 # Elect.Jaeger
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 - Support add trace to the Jaeger Service automatically.

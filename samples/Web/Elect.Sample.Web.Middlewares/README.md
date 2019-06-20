@@ -1,6 +1,6 @@
 ﻿![Logo](../../../Logo.png)
 # Sample using [Elect.Web.Middlewares](../../../src/Web/Elect.Web.Middlewares/README.md)
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 

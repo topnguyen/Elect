@@ -1,5 +1,5 @@
 var jsonViewerSessionStorageKey = "JsonViewer";
-var defaultData = '{"message": "Welcome to Elect JSON Viewer","author": "Top Nguyen", "website": "http://topnguyen.net"}'
+var defaultData = '{"message": "Welcome to Elect JSON Viewer","author": "Top Nguyen", "website": "http://topnguyen.com"}'
 
 var globalStyle = {
     node:

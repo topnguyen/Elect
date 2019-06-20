@@ -7,7 +7,7 @@
         <summary>OneSignal.com client service.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>http://topnguyen.net</copyright>
+        <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Notification/Elect.Notification.OneSignal
         </projectUrl>
         <license type="expression">MIT</license>
@@ -18,7 +18,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.7.1"/>
+            <dependency id="Elect.Core" version="2.7.5"/>
         </dependencies>
     </metadata>
 

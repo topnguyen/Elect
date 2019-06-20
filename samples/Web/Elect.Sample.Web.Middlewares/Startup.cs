@@ -33,7 +33,7 @@ namespace Elect.Sample.Web.Middlewares
             {
                 _.AuthorName = "Top Nguyen";
                 _.AuthorEmail = "topnguyen92@gmail.com";
-                _.AuthorWebsite = "http://topnguyen.net";
+                _.AuthorWebsite = "http://topnguyen.com";
                 _.ServerName = "cloudflare-nginx";
                 _.PoweredBy = "PHP/5.6.30";
             });

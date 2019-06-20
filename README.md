@@ -1,6 +1,6 @@
 ![Logo](Logo.png)
 # Elect
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 
