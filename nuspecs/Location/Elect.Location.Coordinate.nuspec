@@ -7,7 +7,7 @@
         <summary>Coordinate utilities.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>http://topnguyen.net</copyright>
+        <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Location/Elect.Location.Coordinate</projectUrl>
         <license type="expression">MIT</license>
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.7.1"/>
+            <dependency id="Elect.Core" version="2.7.5"/>
             <dependency id="Elect.Location.Models" version="2.7.0"/>
         </dependencies>
     </metadata>

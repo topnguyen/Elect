@@ -1,6 +1,6 @@
 ﻿![Logo](../../../Logo.png)
 # Sample using [Elect.Logger](../../../src/Logger/Elect.Logger/README.md)
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 

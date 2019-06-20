@@ -1,6 +1,6 @@
 ﻿![Logo](../../../Logo.png)
 # Sample using [Elect.Web.DataTable](../../../src/Web/Elect.Web.DataTable/README.md)
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 

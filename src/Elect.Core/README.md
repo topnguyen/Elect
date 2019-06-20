@@ -1,6 +1,6 @@
 ﻿![Logo](../../Logo.png)
 # Elect.Core
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 - .Net Core Utilities methods.

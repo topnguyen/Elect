@@ -7,7 +7,7 @@
         <summary>.Net Core Utilities methods.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>http://topnguyen.net</copyright>
+        <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Elect.Core</projectUrl>
         <license type="expression">MIT</license>
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>

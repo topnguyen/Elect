@@ -1,6 +1,6 @@
 ﻿![Logo](../../../Logo.png)
 # Elect.Web.Ajaxify
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 - Make your regular website (multiple page) to single page by ajax approach.

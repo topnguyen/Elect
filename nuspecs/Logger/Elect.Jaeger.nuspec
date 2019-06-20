@@ -2,12 +2,12 @@
 <package>
     <metadata>
         <id>Elect.Jaeger</id>
-        <title>Elect Jeager</title>
+        <title>Elect Jaeger</title>
         <description>Jaeger support jaeger and open tracing.</description>
         <summary>Jaeger support jaeger and open tracing.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>http://topnguyen.net</copyright>
+        <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Jaeger/Elect.Jaeger</projectUrl>
         <license type="expression">MIT</license>
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.7.4"/>
+            <dependency id="Elect.Core" version="2.7.5"/>
 
             <!-- Jaeger -->
             <dependency id="Jaeger" version="0.3.2" />

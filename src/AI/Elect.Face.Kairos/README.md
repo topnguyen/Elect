@@ -1,6 +1,6 @@
 ﻿![Logo](../../../Logo.png)
 # Elect.Face.Kairos
-> Author [**Top Nguyen**](http://topnguyen.net)
+> Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
 - Client by .NET Core for [Kairos](https://kairos.com) Face Recognition Service.

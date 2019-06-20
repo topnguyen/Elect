@@ -7,7 +7,7 @@
         <summary>Kairos Client (https://kairos.com).</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>http://topnguyen.net</copyright>
+        <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/AI/Elect.Face.Kairos</projectUrl>
         <license type="expression">MIT</license>
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
@@ -17,7 +17,7 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.7.3"/>
+            <dependency id="Elect.Core" version="2.7.5"/>
         </dependencies>
     </metadata>
 
