@@ -4,13 +4,6 @@
         <name>Elect.AppMetrics</name>
     </assembly>
     <members>
-        <member name="M:Elect.AppMetrics.IWebHostBuilderExtensions.UseElectAppMetrics(Microsoft.AspNetCore.Hosting.IWebHostBuilder,System.Action{Elect.AppMetrics.Models.ElectAppMetricsOptions})">
-            <summary>
-                Add App Metrics automatically by Elect
-            </summary>
-            <param name="webHostBuilder"></param>
-            <param name="configuration"></param>
-        </member>
         <member name="M:Elect.AppMetrics.IWebHostBuilderExtensions.UseElectAppMetrics(Microsoft.AspNetCore.Hosting.IWebHostBuilder,Elect.AppMetrics.Models.ElectAppMetricsOptions)">
             <summary>
                 Add App Metrics automatically by Elect
@@ -18,12 +11,12 @@
             <param name="webHostBuilder"></param>
             <param name="configuration"></param>
         </member>
-        <member name="M:Elect.AppMetrics.IWebHostBuilderExtensions.UseElectAppMetrics(Microsoft.AspNetCore.Hosting.IWebHostBuilder,System.String)">
+        <member name="M:Elect.AppMetrics.IWebHostBuilderExtensions.UseElectAppMetrics(Microsoft.AspNetCore.Hosting.IWebHostBuilder,System.Action{Elect.AppMetrics.Models.ElectAppMetricsOptions})">
             <summary>
                 Add App Metrics automatically by Elect
             </summary>
             <param name="webHostBuilder"></param>
-            <param name="configurationSectionKey">Section Name/Key in the Configuration File</param>
+            <param name="configuration"></param>
             <returns></returns>
         </member>
         <member name="T:Elect.AppMetrics.Models.ElectAppMetricsOptions">

@@ -35,14 +35,8 @@ namespace Elect.Web.Consul.Models
         ///     Default is Application Name
         /// </summary>
         public string ServiceId { get; set; } = PlatformServices.Default.Application.ApplicationName;
-
-        /// <summary>
-        ///     Default is Application Name with prefix is "urlprefix-/" to support the Fabio Load Balancing
-        /// </summary>
-        public List<string> Tags { get; set; } = new List<string>
-        {
-            $"urlprefix-/{PlatformServices.Default.Application.ApplicationName} strip=/{PlatformServices.Default.Application.ApplicationName}"
-        };
+        
+        public List<string> Tags { get; set; } = new List<string>();
 
         /// <summary>
         ///    Timeout to check healthy 
@@ -60,6 +54,12 @@ namespace Elect.Web.Consul.Models
         public TimeSpan? DeregisterDeadServiceAfter = TimeSpan.FromMinutes(5);
         
         // Fabio
+                    
+        /// <summary>
+        ///     If enable, will add Tag: $"urlprefix-/{<see cref="ServiceName"/>} strip=/{<see cref="ServiceName"/>}" to support the Fabio Load Balancing. <br />
+        ///     Default is true.
+        /// </summary>
+        public bool IsFabioEnable { get; set; } = true;
         
         /// <summary>
         ///     Domain of Fabio - Load Balancing Service. Default is "http://127.0.0.1:9999"
