@@ -30,11 +30,6 @@
                 Default is Application Name
             </summary>
         </member>
-        <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.Tags">
-            <summary>
-                Default is Application Name with prefix is "urlprefix-/" to support the Fabio Load Balancing
-            </summary>
-        </member>
         <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.CheckTimeOutInSeconds">
             <summary>
                Timeout to check healthy 
@@ -48,6 +43,12 @@
         <member name="F:Elect.Web.Consul.Models.ElectConsulOptions.DeregisterDeadServiceAfter">
             <summary>
                 Deregister dead service after a period, default is 5 mins.
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.IsFabioEnable">
+            <summary>
+                If enable, will add Tag: $"urlprefix-/{<see cref="P:Elect.Web.Consul.Models.ElectConsulOptions.ServiceName"/>} strip=/{<see cref="P:Elect.Web.Consul.Models.ElectConsulOptions.ServiceName"/>}" to support the Fabio Load Balancing. <br />
+                Default is true.
             </summary>
         </member>
         <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.FabioEndpoint">

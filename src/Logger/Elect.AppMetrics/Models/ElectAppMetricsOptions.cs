@@ -23,11 +23,11 @@ namespace Elect.AppMetrics.Models
         // Prometheus
         
         public bool IsPrometheusEnabled { get; set; }
-        
+
         /// <summary>
         ///     Support "text" or "protobuf" (gRPC). Default is "text"
         /// </summary>
-        public string PrometheusFormatter { get; set; }
+        public ElectPrometheusFormatter PrometheusFormatter { get; set; } = ElectPrometheusFormatter.Text;
         
         // Tag
         

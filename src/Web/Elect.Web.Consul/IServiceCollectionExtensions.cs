@@ -32,6 +32,9 @@ namespace Elect.Web.Consul
                 _.Tags = configure.Tags;
                 _.CheckTimeOutInSeconds = configure.CheckTimeOutInSeconds;
                 _.CheckInternalInSeconds = configure.CheckInternalInSeconds;
+                _.DeregisterDeadServiceAfter = configure.DeregisterDeadServiceAfter;
+                _.IsFabioEnable= configure.IsFabioEnable;
+                _.FabioEndpoint = configure.FabioEndpoint;
             });
         }
 
@@ -44,9 +47,21 @@ namespace Elect.Web.Consul
                 throw new NotSupportedException("Consul > Please install and setup Elect.HealthCheck to use the Elect.Consul Service.");
             }
             
-            services.Configure(configure);
-
             var consulOptions = configure.GetValue();
+
+            // Fabio
+
+            if (consulOptions.IsFabioEnable)
+            {
+                var fabioTag = $"urlprefix-/{consulOptions.ServiceName} strip=/{consulOptions.ServiceName}";
+
+                if (!consulOptions.Tags.Contains(fabioTag))
+                {
+                    consulOptions.Tags.Add(fabioTag);
+                }
+            }
+
+            services.Configure(configure);
 
             if (!consulOptions.IsEnable)
             {
