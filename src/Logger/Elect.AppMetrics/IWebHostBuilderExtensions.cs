@@ -4,13 +4,27 @@ using App.Metrics.AspNetCore;
 using App.Metrics.Formatters.Prometheus;
 using Elect.AppMetrics.Models;
 using Elect.Core.ActionUtils;
+using Elect.Core.ConfigUtils;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.AppMetrics
 {
     public static class IWebHostBuilderExtensions
     {
+        private static bool _isInitialized;
+        
+        private static ElectAppMetricsOptions _configuration;
+        
+        /// <summary>
+        ///     Add App Metrics automatically by Elect
+        /// </summary>
+        /// <param name="webHostBuilder"></param>
+        /// <param name="configuration"></param>
+        public static IWebHostBuilder UseElectAppMetrics(this IWebHostBuilder webHostBuilder, Action<ElectAppMetricsOptions> configuration)
+        {
+            return webHostBuilder.UseElectAppMetrics(configuration.GetValue());
+        }
+
         /// <summary>
         ///     Add App Metrics automatically by Elect
         /// </summary>
@@ -18,44 +32,40 @@ namespace Elect.AppMetrics
         /// <param name="configuration"></param>
         public static IWebHostBuilder UseElectAppMetrics(this IWebHostBuilder webHostBuilder, ElectAppMetricsOptions configuration)
         {
-            return webHostBuilder.UseElectAppMetrics(_ =>
-            {
-                _.IsEnable = configuration.IsEnable;
-                _.IsInfluxEnabled = configuration.IsInfluxEnabled;
-                _.InfluxEndpoint = configuration.InfluxEndpoint;
-                _.InFluxDatabase = configuration.InFluxDatabase;
-                _.InFluxInterval = configuration.InFluxInterval;
-                _.IsPrometheusEnabled = configuration.IsPrometheusEnabled;
-                _.PrometheusFormatter = configuration.PrometheusFormatter;
-                _.Tags = configuration.Tags;
-            });
+            _configuration = configuration;
+
+            return webHostBuilder.UseElectAppMetrics(string.Empty);
         }
         
         /// <summary>
         ///     Add App Metrics automatically by Elect
         /// </summary>
         /// <param name="webHostBuilder"></param>
-        /// <param name="configuration"></param>
+        /// <param name="configurationSectionKey">Section Name/Key in the Configuration File</param>
         /// <returns></returns>
-        public static IWebHostBuilder UseElectAppMetrics(this IWebHostBuilder webHostBuilder, Action<ElectAppMetricsOptions> configuration)
+        public static IWebHostBuilder UseElectAppMetrics(this IWebHostBuilder webHostBuilder, string configurationSectionKey)
         {
-            // Service Config
-            var metricsOptions = new ElectAppMetricsOptions();
-            
-            webHostBuilder.ConfigureServices((context, services) =>
+            if (_isInitialized)
             {
-                services.Configure(configuration);
-
-                metricsOptions = configuration.GetValue();
-            });
+                return webHostBuilder;
+            }
 
             return webHostBuilder.ConfigureMetricsWithDefaults((context, builder) =>
                 {
+                    var metricsOptions = _configuration;
+                    
+                    if (!string.IsNullOrWhiteSpace(configurationSectionKey))
+                    {
+                        metricsOptions = context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                    }
+
                     if (!metricsOptions.IsEnable)
                     {
                         return;
                     }
 
+                    _isInitialized = true;
+                    
                     // Config
                     
                     builder.Configuration.Configure(cfg =>
@@ -105,6 +115,13 @@ namespace Elect.AppMetrics
                 .UseMetricsWebTracking()
                 .UseMetrics((context, options) =>
                 {
+                    var metricsOptions = _configuration;
+                    
+                    if (!string.IsNullOrWhiteSpace(configurationSectionKey))
+                    {
+                        metricsOptions = context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                    }
+                    
                     // Prometheus
 
                     if (!metricsOptions.IsPrometheusEnabled)
@@ -121,7 +138,7 @@ namespace Elect.AppMetrics
                                 endpointOptions.MetricsEndpointOutputFormatter = new MetricsPrometheusProtobufOutputFormatter();
                                 break;
                             }
-                            case ElectPrometheusFormatter.Text:
+
                             default:
                             {
                                 endpointOptions.MetricsEndpointOutputFormatter = new MetricsPrometheusTextOutputFormatter();
