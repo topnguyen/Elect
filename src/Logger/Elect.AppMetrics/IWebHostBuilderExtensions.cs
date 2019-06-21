@@ -112,7 +112,6 @@ namespace Elect.AppMetrics
                         });
                     }
                 })
-                .UseMetricsWebTracking()
                 .UseMetrics((context, options) =>
                 {
                     var metricsOptions = _configuration;
