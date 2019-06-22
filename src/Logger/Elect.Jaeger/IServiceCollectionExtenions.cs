@@ -6,6 +6,7 @@ using Jaeger;
 using Jaeger.Samplers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using OpenTracing.Contrib.NetCore.CoreFx;
 using OpenTracing.Util;
 
 namespace Elect.Jaeger
@@ -46,6 +47,10 @@ namespace Elect.Jaeger
                 return services;
             }
 
+            // Add open Tracing
+            services.AddOpenTracing();
+            
+            // Add ITracer
             services.AddSingleton(serviceProvider =>
             {
                 var loggerFactory = GetLoggerFactory(serviceProvider);
@@ -81,9 +86,11 @@ namespace Elect.Jaeger
 
                 return tracer;
             });
-
-            // Add open Tracing
-            services.AddOpenTracing();
+            
+            services.Configure<HttpHandlerDiagnosticOptions>(options =>
+            {
+                options.IgnorePatterns.Add(x => !x.RequestUri.IsLoopback);
+            });
 
             return services;
         }
