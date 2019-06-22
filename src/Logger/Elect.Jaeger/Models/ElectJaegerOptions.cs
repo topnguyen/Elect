@@ -32,6 +32,17 @@ namespace Elect.Jaeger.Models
         ///     Default is 6831
         /// </summary>
         public int ReporterPort { get; set; } = 6831;
+        
+        /// <summary>
+        ///     Default is 14268
+        /// </summary>
+        public int TracesPort { get; set; } = 14268;
+        
+        public string AuthUsername { get; set; }
+        
+        public string AuthPassword { get; set; } 
+        
+        public string AuthToken { get; set; }
 
         /// <summary>
         ///     Callback after finish setup SamplerConfiguration, allow you adjust setup for SamplerConfiguration

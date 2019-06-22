@@ -29,6 +29,11 @@
                 Default is 6831
             </summary>
         </member>
+        <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.TracesPort">
+            <summary>
+                Default is 14268
+            </summary>
+        </member>
         <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.AfterSamplerConfig">
             <summary>
                 Callback after finish setup SamplerConfiguration, allow you adjust setup for SamplerConfiguration
