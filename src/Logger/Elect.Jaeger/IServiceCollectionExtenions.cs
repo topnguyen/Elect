@@ -28,6 +28,10 @@ namespace Elect.Jaeger
                 _.Domain = configure.Domain;
                 _.SamplerPort = configure.SamplerPort;
                 _.ReporterPort = configure.ReporterPort;
+                _.TracesPort = configure.TracesPort;
+                _.AuthUsername = configure.AuthUsername;
+                _.AuthPassword = configure.AuthPassword;
+                _.AuthToken = configure.AuthToken;
                 _.AfterSamplerConfig = configure.AfterSamplerConfig;
                 _.AfterReporterConfig = configure.AfterReporterConfig;
                 _.AfterGlobalConfig = configure.AfterGlobalConfig;
@@ -65,13 +69,27 @@ namespace Elect.Jaeger
                 var reporterConfig = new Configuration.ReporterConfiguration(loggerFactory);
                 reporterConfig.SenderConfig.WithAgentHost(electJaegerOptions.Domain);
                 reporterConfig.SenderConfig.WithAgentPort(electJaegerOptions.ReporterPort);
+                reporterConfig.SenderConfig.WithEndpoint($"http://{electJaegerOptions.Domain}:{electJaegerOptions.TracesPort}/api/traces");
+                if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthUsername))
+                {
+                    reporterConfig.SenderConfig.WithAuthUsername(electJaegerOptions.AuthUsername);
+                }
+                if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthPassword))
+                {
+                    reporterConfig.SenderConfig.WithAuthPassword(electJaegerOptions.AuthPassword);
+                } 
+                if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthToken))
+                {
+                    reporterConfig.SenderConfig.WithAuthToken(electJaegerOptions.AuthToken);
+                }
                 reporterConfig = electJaegerOptions.AfterReporterConfig?.Invoke(reporterConfig) ?? reporterConfig;
-
+                
                 // Global Config
                 var config =
                     new Configuration(electJaegerOptions.ServiceName, loggerFactory)
                         .WithSampler(samplerConfig)
                         .WithReporter(reporterConfig);
+                
                 config = electJaegerOptions.AfterGlobalConfig?.Invoke(config) ?? config;
 
                 // Tracer
