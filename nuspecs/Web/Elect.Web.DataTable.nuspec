@@ -17,10 +17,10 @@
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="2.7.0"/>
+            <dependency id="Elect.Web" version="2.7.2"/>
 
             <!-- 3rd Libraries -->
-            <dependency id="System.Linq.Dynamic.Core" version="1.0.15"/>
+            <dependency id="System.Linq.Dynamic.Core" version="1.0.17"/>
         </dependencies>
     </metadata>
 

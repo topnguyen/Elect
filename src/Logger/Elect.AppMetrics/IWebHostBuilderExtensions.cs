@@ -53,10 +53,11 @@ namespace Elect.AppMetrics
             return webHostBuilder.ConfigureMetricsWithDefaults((context, builder) =>
                 {
                     var metricsOptions = _configuration;
-                    
+
                     if (!string.IsNullOrWhiteSpace(configurationSectionKey))
                     {
-                        metricsOptions = context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                        metricsOptions =
+                            context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
                     }
 
                     if (!metricsOptions.IsEnable)
@@ -65,30 +66,30 @@ namespace Elect.AppMetrics
                     }
 
                     _isInitialized = true;
-                    
+
                     // Config
-                    
+
                     builder.Configuration.Configure(cfg =>
                         {
                             var tags = metricsOptions.Tags;
-                            
+
                             if (tags == null)
                             {
                                 return;
                             }
 
                             tags.TryGetValue("app", out var app);
-                            
+
                             tags.TryGetValue("env", out var env);
-                            
+
                             tags.TryGetValue("server", out var server);
-                            
+
                             cfg.AddAppTag(string.IsNullOrWhiteSpace(app) ? null : app);
-                            
+
                             cfg.AddEnvTag(string.IsNullOrWhiteSpace(env) ? null : env);
-                            
+
                             cfg.AddServerTag(string.IsNullOrWhiteSpace(server) ? null : server);
-                            
+
                             foreach (var tag in tags)
                             {
                                 if (!cfg.GlobalTags.ContainsKey(tag.Key))
@@ -100,27 +101,30 @@ namespace Elect.AppMetrics
                     );
 
                     // Influx
-                    
+
                     if (metricsOptions.IsInfluxEnabled)
                     {
                         builder.Report.ToInfluxDb(o =>
                         {
                             o.InfluxDb.Database = metricsOptions.InFluxDatabase;
                             o.InfluxDb.BaseUri = new Uri(metricsOptions.InfluxEndpoint);
-                            o.InfluxDb.CreateDataBaseIfNotExists = true;
+                            o.InfluxDb.UserName = metricsOptions.InFluxUserName;
+                            o.InfluxDb.Password = metricsOptions.InFluxPassword;
                             o.FlushInterval = TimeSpan.FromSeconds(metricsOptions.InFluxInterval);
+                            o.InfluxDb.CreateDataBaseIfNotExists = true;
                         });
                     }
                 })
                 .UseMetrics((context, options) =>
                 {
                     var metricsOptions = _configuration;
-                    
+
                     if (!string.IsNullOrWhiteSpace(configurationSectionKey))
                     {
-                        metricsOptions = context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                        metricsOptions =
+                            context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
                     }
-                    
+
                     // Prometheus
 
                     if (!metricsOptions.IsPrometheusEnabled)
@@ -130,11 +134,34 @@ namespace Elect.AppMetrics
 
                     options.EndpointOptions = endpointOptions =>
                     {
+                        // Endpoint Enable/Disable
+
+                        endpointOptions.MetricsEndpointEnabled = metricsOptions.IsEnableMetricsEndpoint;
+                        endpointOptions.MetricsTextEndpointEnabled = metricsOptions.IsEnableMetricsTextEndpoint;
+                        endpointOptions.EnvironmentInfoEndpointEnabled = metricsOptions.IsEnableEnvEndpoint;
+
+                        // Endpoint
+                        
+                        webHostBuilder.ConfigureAppMetricsHostingConfiguration(hostingOptions =>
+                        {
+                            hostingOptions.MetricsEndpoint = $"/{metricsOptions.MetricsEndpoint.Trim('/')}";
+                            hostingOptions.MetricsTextEndpoint = $"/{metricsOptions.MetricsTextEndpoint.Trim('/')}";
+                            hostingOptions.EnvironmentInfoEndpoint = $"/{metricsOptions.EnvEndpoint.Trim('/')}";
+                        });
+
+                        // Formatter
+
                         switch (metricsOptions.PrometheusFormatter)
                         {
                             case ElectPrometheusFormatter.Protobuf:
                             {
                                 endpointOptions.MetricsEndpointOutputFormatter = new MetricsPrometheusProtobufOutputFormatter();
+                                break;
+                            }
+
+                            case ElectPrometheusFormatter.Text:
+                            {
+                                endpointOptions.MetricsEndpointOutputFormatter = new MetricsPrometheusTextOutputFormatter();
                                 break;
                             }
 
