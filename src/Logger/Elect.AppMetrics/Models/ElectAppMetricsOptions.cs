@@ -16,9 +16,9 @@ namespace Elect.AppMetrics.Models
         public bool IsEnableMetricsEndpoint { get; set; } = true;
         
         /// <summary>
-        ///     App Metrics endpoint, default is "/developers/metrics"
+        ///     App Metrics endpoint, default is "/metrics"
         /// </summary>
-        public string MetricsEndpoint { get; set; } = "/developers/metrics";
+        public string MetricsEndpoint { get; set; } = "/metrics";
         
         /// <summary>
         ///     Enable or disable the <see cref="MetricsTextEndpoint"/>, default is false
@@ -26,9 +26,9 @@ namespace Elect.AppMetrics.Models
         public bool IsEnableMetricsTextEndpoint { get; set; } = false;
                 
         /// <summary>
-        ///     App Metrics Text endpoint, default is "/developers/metrics-text"
+        ///     App Metrics Text endpoint, default is "/metrics-text"
         /// </summary>
-        public string MetricsTextEndpoint { get; set; } = "/developers/metrics-text";
+        public string MetricsTextEndpoint { get; set; } = "/metrics-text";
 
         /// <summary>
         ///     Enable or disable the <see cref="EnvEndpoint"/>, default is false
@@ -36,9 +36,9 @@ namespace Elect.AppMetrics.Models
         public bool IsEnableEnvEndpoint { get; set; } = false;
 
         /// <summary>
-        ///     Environment Info endpoint, default is "/developers/env"
+        ///     Environment Info endpoint, default is "/env"
         /// </summary>
-        public string EnvEndpoint { get; set; } = "/developers/env";
+        public string EnvEndpoint { get; set; } = "/env";
 
         // Influx
         

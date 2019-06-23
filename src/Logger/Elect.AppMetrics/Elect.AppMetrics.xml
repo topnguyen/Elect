@@ -38,7 +38,7 @@
         </member>
         <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.MetricsEndpoint">
             <summary>
-                App Metrics endpoint, default is "/developers/metrics"
+                App Metrics endpoint, default is "/metrics"
             </summary>
         </member>
         <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.IsEnableMetricsTextEndpoint">
@@ -48,7 +48,7 @@
         </member>
         <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.MetricsTextEndpoint">
             <summary>
-                App Metrics Text endpoint, default is "/developers/metrics-text"
+                App Metrics Text endpoint, default is "/metrics-text"
             </summary>
         </member>
         <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.IsEnableEnvEndpoint">
@@ -58,7 +58,7 @@
         </member>
         <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.EnvEndpoint">
             <summary>
-                Environment Info endpoint, default is "/developers/env"
+                Environment Info endpoint, default is "/env"
             </summary>
         </member>
         <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InfluxEndpoint">
