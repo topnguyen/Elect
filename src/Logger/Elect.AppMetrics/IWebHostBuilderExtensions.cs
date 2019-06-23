@@ -56,9 +56,10 @@ namespace Elect.AppMetrics
 
                     if (!string.IsNullOrWhiteSpace(configurationSectionKey))
                     {
-                        metricsOptions =
-                            context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                        metricsOptions = context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
                     }
+
+                    // Check App Metric Enable/Disable
 
                     if (!metricsOptions.IsEnable)
                     {
@@ -121,17 +122,16 @@ namespace Elect.AppMetrics
 
                     if (!string.IsNullOrWhiteSpace(configurationSectionKey))
                     {
-                        metricsOptions =
-                            context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                        metricsOptions = context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
                     }
 
-                    // Prometheus
-
-                    if (!metricsOptions.IsPrometheusEnabled)
+                    // Check App Metric Enable/Disable
+                    
+                    if (!metricsOptions.IsEnable)
                     {
                         return;
                     }
-
+                    
                     options.EndpointOptions = endpointOptions =>
                     {
                         // Endpoint Enable/Disable
@@ -149,8 +149,13 @@ namespace Elect.AppMetrics
                             hostingOptions.EnvironmentInfoEndpoint = $"/{metricsOptions.EnvEndpoint.Trim('/')}";
                         });
 
-                        // Formatter
-
+                        // Prometheus Formatter
+                        
+                        if (!metricsOptions.IsPrometheusEnabled)
+                        {
+                            return;
+                        }
+                        
                         switch (metricsOptions.PrometheusFormatter)
                         {
                             case ElectPrometheusFormatter.Protobuf:
