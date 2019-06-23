@@ -31,6 +31,56 @@
                 Config for the App Metrics, see more https://www.app-metrics.io
             </summary>
         </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.IsEnableMetricsEndpoint">
+            <summary>
+                Enable or disable the <see cref="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.MetricsEndpoint"/>, default is true
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.MetricsEndpoint">
+            <summary>
+                App Metrics endpoint, default is "/developers/metrics"
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.IsEnableMetricsTextEndpoint">
+            <summary>
+                Enable or disable the <see cref="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.MetricsTextEndpoint"/>, default is false
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.MetricsTextEndpoint">
+            <summary>
+                App Metrics Text endpoint, default is "/developers/metrics-text"
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.IsEnableEnvEndpoint">
+            <summary>
+                Enable or disable the <see cref="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.EnvEndpoint"/>, default is false
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.EnvEndpoint">
+            <summary>
+                Environment Info endpoint, default is "/developers/env"
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InfluxEndpoint">
+            <summary>
+                InfluxDB Endpoint
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InFluxDatabase">
+            <summary>
+                InfluxDB Database Name
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InFluxUserName">
+            <summary>
+                InfluxDB Database access - UserName
+            </summary>
+        </member>
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InFluxPassword">
+            <summary>
+                InfluxDB Database access - Password
+            </summary>
+        </member>
         <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.PrometheusFormatter">
             <summary>
                 Support "text" or "protobuf" (gRPC). Default is "text"

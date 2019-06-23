@@ -29,6 +29,6 @@
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.15" />
+        <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.17" />
     </ItemGroup>
 </Project>
