@@ -21,12 +21,17 @@ namespace Elect.Jaeger.Models
         /// <summary>
         ///     Default is localhost
         /// </summary>
-        public string Domain { get; set; } = "localhost";
+        public string SamplerDomain { get; set; } = "localhost";
 
         /// <summary>
         ///     Default is 5778
         /// </summary>
         public int SamplerPort { get; set; } = 5778;
+        
+        /// <summary>
+        ///     Default is localhost
+        /// </summary>
+        public string ReporterDomain { get; set; } = "localhost";
 
         /// <summary>
         ///     Default is 6831
@@ -34,9 +39,9 @@ namespace Elect.Jaeger.Models
         public int ReporterPort { get; set; } = 6831;
         
         /// <summary>
-        ///     Default is 14268
+        ///     Default is http://location:14268/api/traces
         /// </summary>
-        public int TracesPort { get; set; } = 14268;
+        public string TracesEndpoint { get; set; } = "http://location:14268/api/traces";
         
         public string AuthUsername { get; set; }
         

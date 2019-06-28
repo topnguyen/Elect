@@ -25,10 +25,11 @@ namespace Elect.Jaeger
             {
                 _.IsEnable = configure.IsEnable;
                 _.ServiceName = configure.ServiceName;
-                _.Domain = configure.Domain;
+                _.SamplerDomain = configure.SamplerDomain;
                 _.SamplerPort = configure.SamplerPort;
+                _.ReporterDomain = configure.ReporterDomain;
                 _.ReporterPort = configure.ReporterPort;
-                _.TracesPort = configure.TracesPort;
+                _.TracesEndpoint = configure.TracesEndpoint;
                 _.AuthUsername = configure.AuthUsername;
                 _.AuthPassword = configure.AuthPassword;
                 _.AuthToken = configure.AuthToken;
@@ -61,15 +62,15 @@ namespace Elect.Jaeger
 
                 // Sampler
                 var samplerConfig = new Configuration.SamplerConfiguration(loggerFactory);
-                samplerConfig.WithManagerHostPort($"{electJaegerOptions.Domain}:{electJaegerOptions.SamplerPort}");
+                samplerConfig.WithManagerHostPort($"{electJaegerOptions.SamplerDomain}:{electJaegerOptions.SamplerPort}");
                 samplerConfig.WithType(ConstSampler.Type);
                 samplerConfig = electJaegerOptions.AfterSamplerConfig?.Invoke(samplerConfig) ?? samplerConfig;
 
                 // Reporter
                 var reporterConfig = new Configuration.ReporterConfiguration(loggerFactory);
-                reporterConfig.SenderConfig.WithAgentHost(electJaegerOptions.Domain);
+                reporterConfig.SenderConfig.WithAgentHost(electJaegerOptions.ReporterDomain);
                 reporterConfig.SenderConfig.WithAgentPort(electJaegerOptions.ReporterPort);
-                reporterConfig.SenderConfig.WithEndpoint($"http://{electJaegerOptions.Domain}:{electJaegerOptions.TracesPort}/api/traces");
+                reporterConfig.SenderConfig.WithEndpoint(electJaegerOptions.TracesEndpoint);
                 if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthUsername))
                 {
                     reporterConfig.SenderConfig.WithAuthUsername(electJaegerOptions.AuthUsername);
