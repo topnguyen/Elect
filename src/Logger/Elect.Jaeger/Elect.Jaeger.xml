@@ -14,7 +14,7 @@
                 Service Name, default is the Application Name
             </summary>
         </member>
-        <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.Domain">
+        <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.SamplerDomain">
             <summary>
                 Default is localhost
             </summary>
@@ -24,14 +24,19 @@
                 Default is 5778
             </summary>
         </member>
+        <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.ReporterDomain">
+            <summary>
+                Default is localhost
+            </summary>
+        </member>
         <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.ReporterPort">
             <summary>
                 Default is 6831
             </summary>
         </member>
-        <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.TracesPort">
+        <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.TracesEndpoint">
             <summary>
-                Default is 14268
+                Default is http://location:14268/api/traces
             </summary>
         </member>
         <member name="P:Elect.Jaeger.Models.ElectJaegerOptions.AfterSamplerConfig">
