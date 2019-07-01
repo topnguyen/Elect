@@ -40,7 +40,18 @@ See more information in [Nuget Package](https://www.nuget.org/packages/Elect.App
 
  - In `Program.cs` add AppMetrics
     ```c#
+    // By appsettings.json
+    // Assumption in the appsettings.json the section config for `ElectAppMetricsOptions` named 'ElectAppMetrics'
     webHostBuilder.UseElectAppMetrics("ElectAppMetrics");
+    
+    // Or by Object
+    
+    webHostBuilder.UseElectAppMetrics({object ElectAppMetricsOptions});
+    
+    // Or by Lambda
+    webHostBuilder.UseElectAppMetrics(_ => {
+        // Setting properties
+    });
     ```
     + You can config endpoints, influxdb / prometheus via [`ElectAppMetricsOptions`](Models/ElectAppMetricsOptions.cs).
 
