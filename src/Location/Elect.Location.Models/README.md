@@ -3,18 +3,17 @@
 > Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
-
-Share Contract (Models and Constants) for Coordinate Modules.
+ - Share Contract (Models and Constants) for Coordinate Modules.
 
 ## Installation
-- Package Manager
-```
-PM> Install-Package Elect.Location.Models
-```
-- .NET CLI
-```
-dotnet add package Elect.Location.Models
-```
+ - Package Manager
+    ```
+    PM> Install-Package Elect.Location.Models
+    ```
+ - .NET CLI
+    ```
+    dotnet add package Elect.Location.Models
+    ```
 
 See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Location.Models/).
 

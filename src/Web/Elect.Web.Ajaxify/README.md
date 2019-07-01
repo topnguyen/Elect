@@ -3,12 +3,11 @@
 > Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
-- Make your regular website (multiple page) to single page by ajax approach.
-- The main idea is fetch HTML by Ajax Request then replace the DOM by the content.
-- **Support SEO** by change title, push history (by History.js), server render content (by default of multiple page).
+ - Make your regular website (multiple page) to single page by ajax approach.
+ - The main idea is fetch HTML by Ajax Request then replace the DOM by the content.
+ - **Support SEO** by change title, push history (by History.js), server render content (by default of multiple page).
 
 ## Installation
-
 ```xml
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -22,11 +21,10 @@
 ```
 
 ## Usage
-
-- The idea of Ajaxify is replace existing DOM by new HTML and keep "master layout" HTML, so you need to define your master layout as below examples structure.
-- When you finish install the Elect.Web.Ajaxify, It auto enable and change all your Http Redirect by Anchor Tag to Ajaxify concept.
-- For the Anchor Tag you would like to force redirect (reload as multiple concept) add class `no-ajaxify` to the Anchor Element.
-- To Detect Ajax request by Elect.Web.Ajaxify, please check the header key "X-Requested-With" and value exactly equal to "Elect.Web.Ajaxify".
+ - The idea of Ajaxify is replace existing DOM by new HTML and keep "master layout" HTML, so you need to define your master layout as below examples structure.
+ - When you finish install the Elect.Web.Ajaxify, It auto enable and change all your Http Redirect by Anchor Tag to Ajaxify concept.
+ - For the Anchor Tag you would like to force redirect (reload as multiple concept) add class `no-ajaxify` to the Anchor Element.
+ - To Detect Ajax request by Elect.Web.Ajaxify, please check the header key "X-Requested-With" and value exactly equal to "Elect.Web.Ajaxify".
 
 ### Example HTML
 ```html
