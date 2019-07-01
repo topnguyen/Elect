@@ -3,18 +3,17 @@
 > Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
-
-Share Contract (Models and Constants) for Logger Modules.
+ - Share Contract (Models and Constants) for Logger Modules.
 
 ## Installation
-- Package Manager
-```
-PM> Install-Package Elect.Logger.Models
-```
-- .NET CLI
-```
-dotnet add package Elect.Logger.Models
-```
+ - Package Manager
+    ```
+    PM> Install-Package Elect.Logger.Models
+    ```
+ - .NET CLI
+    ```
+    dotnet add package Elect.Logger.Models
+    ```
 
 See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Logger.Models/).
 

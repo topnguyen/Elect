@@ -3,77 +3,74 @@
 > Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
+ - Support write log to Json files with parameters
+    + {`<DateTimeFormat>`} - current Local Machine datetime.
+        * "Logs/{yyyy-MM-dd}.json" - 1 file / day
+        * "Logs/{yyyy-MM-dd HH}.json" - 1 file / hour
+        * "Logs/{yyyy-MM-dd HH_mm}.json" - 1 file / minute.
+        * "Logs/{yyyy-MM}/{yyyy-MM-dd}.json" - 1 month is 1 folder, each folder content 1 json log file / day.
 
-- Support write log to Json files with parameters
-  + {`<DateTimeFormat>`} - current Local Machine datetime.
-    * "Logs/{yyyy-MM-dd}.json" - 1 file / day
-    * "Logs/{yyyy-MM-dd HH}.json" - 1 file / hour
-    * "Logs/{yyyy-MM-dd HH_mm}.json" - 1 file / minute.
-    * "Logs/{yyyy-MM}/{yyyy-MM-dd}.json" - 1 month is 1 folder, each folder content 1 json log file / day.
-
-  + {Type} - Support types: Debug, Info, Warning, Error, Fatal.
-    * "Logs/{Type}/{yyyy-MM-dd}.json" - 1 file for each type / day.
+    + {Type} - Support types: Debug, Info, Warning, Error, Fatal.
+        * "Logs/{Type}/{yyyy-MM-dd}.json" - 1 file for each type / day.
         
-- Support batch logs by message queue.
+ - Support batch logs by message queue.
 
-- Support filters
-  + Credit card number will filter and repalce to `"####-CC-CENSORED-####"`.
+ - Support filters
+    + Credit card number will filter and repalce to `"####-CC-CENSORED-####"`.
 
 ## Installation
-- Package Manager
-```
-PM> Install-Package Elect.Logger
-```
-- .NET CLI
-```
-dotnet add package Elect.Logger
-```
+ - Package Manager
+    ```
+    PM> Install-Package Elect.Logger
+    ```
+ - .NET CLI
+    ```
+    dotnet add package Elect.Logger
+    ```
 
 See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Logger/).
 
 ## Usage
+ - Add Service
+    + You can config `FilePath` (default is `Logs\{yyyy-MM-dd}.json`) by parameter [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
+    + Limit log information (remove "runtime", "environmentModel", "sdk", "httpContext") by property `IsLogFullInfo` (bool), default is false.
+    ```c#
+    services.AddElectLog();
+    ```
 
-- Add Service
-  + You can config `FilePath` (default is `Logs\{yyyy-MM-dd}.json`) by parameter [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
-  + Limit log information (remove "runtime", "environmentModel", "sdk", "httpContext") by property `IsLogFullInfo` (bool), default is false.
-
-```c#
-services.AddElectLog();
-```
-
-- Log
+ - Log
     + Inject `IElectLog` to your class.
     + Call Capture methods
-```c#
-_electLog.BeforeLog = (log) => {
-    // Modify log info or do some logic before Elect write log
-    return log;
-}
-
-try
-{
-   // Your logic code
-}
-catch(Exception e)
-{
-   // Use setting for json file path
-   _electLog.Capture(e); // You can capture an Exception, LogModel, String message
+    ```c#
+    _electLog.BeforeLog = (log) => {
+        // Modify log info or do some logic before Elect write log
+        return log;
+    }
     
-   // Override setting for json file path
-   // Still apply the file name rule on Overview section
-   _electLog.Capture(e, jsonFilePath: "Custom Path"); 
-}
-``` 
+    try
+    {
+       // Your logic code
+    }
+    catch(Exception e)
+    {
+       // Use setting for json file path
+       _electLog.Capture(e); // You can capture an Exception, LogModel, String message
+        
+       // Override setting for json file path
+       // Still apply the file name rule on Overview section
+       _electLog.Capture(e, jsonFilePath: "Custom Path"); 
+    }
+    ``` 
 
-- **Access Log Dashboard**
+ - **Access Log Dashboard**
     + Use Middleware: `app.UseElectLog()`.
     + By default, Log Dashboard URL is "/developers/logs".
     + Support filter log detail by query strings 
-        + "skip" (int): default 0
-        + "take" (int): default 1000
-        + "type" (string)
-        + "exception_place" (string)
-        + "message" (string)
+        * "skip" (int): default 0
+        * "take" (int): default 1000
+        * "type" (string)
+        * "exception_place" (string)
+        * "message" (string)
     + Limit display information (remove "runtime", "environmentModel", "sdk", "httpContext") by query string "full_info" (bool), default is false.
     + Delete the log file by query string "delete_file" (bool), default is false.
     + You can config access key to control access permission by the [`ElectLogOptions`](Logging/Models/ElectLogOptions.cs).
@@ -83,7 +80,6 @@ catch(Exception e)
 ## [View Sample Log Console App](../../../samples/Logger/Elect.Sample.Logger/README.md)
 
 ## Sample Output
-
 ```json
 {
   "metadata": [

@@ -3,15 +3,15 @@
 > Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
-- Client by .NET Core for [Kairos](https://kairos.com) Face Recognition Service.
+ - Client by .NET Core for [Kairos](https://kairos.com) Face Recognition Service.
 
 ## Installation
-- Package Manager
+ - Package Manager
     ```
     PM> Install-Package Elect.Face.Kairos
     ```
 
-- .NET CLI
+ - .NET CLI
     ```
     dotnet add package Elect.Face.Kairos
     ```
@@ -19,8 +19,7 @@
 See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Face.Kairos/).
 
 ## Usage
-
-- Add Service
+ - Add Service
     + You can config `ApiId`, `ApiKey` and `DefaultGallery` via [`ElectKairosOptions`](Models/ElectKairosOptions.cs).
     ```c#
     services.AddElectKairos(_ =>
