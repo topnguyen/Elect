@@ -37,8 +37,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         public NotificationCreateModel()
         {
-            Contents = new Dictionary<string, string>();
-            Headings = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -62,7 +60,7 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         ///     </see> . <br />
         /// </summary>
         [JsonProperty("contents")]
-        public IDictionary<string, string> Contents { get; set; }
+        public IDictionary<string, string> Contents { get; set; } = new Dictionary<string, string>();
 
         /// <summary>
         ///     <br /> The notification's title, a map of language codes to text for each language.
@@ -77,7 +75,7 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         ///     </see> . <br />
         /// </summary>
         [JsonProperty("headings")]
-        public IDictionary<string, string> Headings { get; set; }
+        public IDictionary<string, string> Headings { get; set; } = new Dictionary<string, string>();
 
         /// <summary>
         ///     <br /> A custom map of data that is passed back to your app. <br /> 
