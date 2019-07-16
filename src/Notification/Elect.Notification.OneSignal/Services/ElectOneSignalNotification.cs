@@ -105,16 +105,14 @@ namespace Elect.Notification.OneSignal.Services
             return await CancelAsync(id, appInfo);
         }
 
-        public async Task<NotificationCancelResultModel> CancelAsync([NotNull] string id, [NotNull] string appId,
-            [NotNull] string appKey)
+        public async Task<NotificationCancelResultModel> CancelAsync([NotNull] string id, [NotNull] string appId, [NotNull] string appKey)
         {
             var appInfo = new ElectOneSignalAppOption(appId, appKey);
 
             return await CancelAsync(id, appInfo);
         }
 
-        public async Task<NotificationCancelResultModel> CancelAsync([NotNull] string id,
-            [NotNull] ElectOneSignalAppOption appInfo)
+        public async Task<NotificationCancelResultModel> CancelAsync([NotNull] string id, [NotNull] ElectOneSignalAppOption appInfo)
         {
             try
             {
@@ -125,6 +123,7 @@ namespace Elect.Notification.OneSignal.Services
                             config.JsonSerializer = ElectOneSignalConstants.NewtonsoftJsonSerializer;
                         })
                         .AppendPathSegment($"notifications/{id}?app_id={appInfo.AppId}")
+                        .WithHeader("Content-Type", $"application/json; charset=utf-8")
                         .WithHeader("Authorization", $"Basic {appInfo.ApiKey}")
                         .DeleteAsync()
                         .ReceiveJson<NotificationCancelResultModel>()
