@@ -140,6 +140,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Logger", "test\L
 EndProject
 
 #------------------------------
+# 2. test.AI
+#------------------------------
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI", "AI", "{86AA7AEE-D6A1-42BC-9C08-CE4BF2846703}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.AI.Face.Kairos", "test\AI\Elect.Test.AI.Face.Kairos\Elect.Test.AI.Face.Kairos.csproj", "{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB}"
+EndProject
+
+#------------------------------
+# 2. test.Notification
+#------------------------------
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notification", "{39F3ACD9-A652-41B1-AF8B-ED7C7724233B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.Notification.Onesignal", "test\Notification\Elect.Test.Notification.Onesignal\Elect.Test.Notification.Onesignal.csproj", "{BA8CE9B4-EB46-4F32-A25E-6FCDA83771E6}"
+EndProject
+
+#------------------------------
 # 3. samples
 #------------------------------
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. samples", "samples", "{5E828BCD-A912-417F-9A51-708859BA56F5}"
@@ -307,10 +323,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Solution Items", "Soluti
 		jetbrains-variant-4.png = jetbrains-variant-4.png
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI", "AI", "{86AA7AEE-D6A1-42BC-9C08-CE4BF2846703}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elect.Test.AI.Face.Kairos", "test\AI\Elect.Test.AI.Face.Kairos\Elect.Test.AI.Face.Kairos.csproj", "{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB}"
-EndProject
 
 #------------------------------
 # preSolution
@@ -465,6 +477,10 @@ Global
 		{D9108881-B590-4244-8313-96AA57982EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9108881-B590-4244-8313-96AA57982EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9108881-B590-4244-8313-96AA57982EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA8CE9B4-EB46-4F32-A25E-6FCDA83771E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8CE9B4-EB46-4F32-A25E-6FCDA83771E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA8CE9B4-EB46-4F32-A25E-6FCDA83771E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8CE9B4-EB46-4F32-A25E-6FCDA83771E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -532,6 +548,8 @@ Global
 		{86AA7AEE-D6A1-42BC-9C08-CE4BF2846703} = {7A62CF0C-B858-4273-8121-00BC279B7005}
 		{6E78C941-D832-4DE0-9DA0-FCEB955BB7EB} = {86AA7AEE-D6A1-42BC-9C08-CE4BF2846703}
 		{D9108881-B590-4244-8313-96AA57982EC9} = {CCD4640F-D5AF-45AF-AF46-2DC0F4218C9B}
+		{39F3ACD9-A652-41B1-AF8B-ED7C7724233B} = {7A62CF0C-B858-4273-8121-00BC279B7005}
+		{BA8CE9B4-EB46-4F32-A25E-6FCDA83771E6} = {39F3ACD9-A652-41B1-AF8B-ED7C7724233B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B699336-21B7-4FD5-8ECC-A8390C034309}

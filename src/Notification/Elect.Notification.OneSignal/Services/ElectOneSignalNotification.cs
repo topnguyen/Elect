@@ -122,8 +122,8 @@ namespace Elect.Notification.OneSignal.Services
                         {
                             config.JsonSerializer = ElectOneSignalConstants.NewtonsoftJsonSerializer;
                         })
-                        .AppendPathSegment($"notifications/{id}?app_id={appInfo.AppId}")
-                        .WithHeader("Content-Type", $"application/json; charset=utf-8")
+                        .AppendPathSegment($"notifications/{id}")
+                        .SetQueryParam("app_id", appInfo.AppId)
                         .WithHeader("Authorization", $"Basic {appInfo.ApiKey}")
                         .DeleteAsync()
                         .ReceiveJson<NotificationCancelResultModel>()
