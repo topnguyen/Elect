@@ -29,7 +29,7 @@
         <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
 
         <!-- Jaeger -->
-        <PackageReference Include="Jaeger" Version="0.3.2" />
+        <PackageReference Include="Jaeger" Version="0.3.3" />
         <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.6.0" />
     </ItemGroup>
 </Project>
