@@ -18,7 +18,7 @@ All Elect modules publish in [nuget.org](https://www.nuget.org/packages?q=TopNgu
 You can add **My Nuget Server** to have fastest packages update 
  - No waste time for nuget index package
  - Full nuget.org mirror packages
- - Add `<add key="Top Nguyen" value="http://nuget.topnguyen.com/v3/index.json"/>` to NuGet.Config
+ - Add **`<add key="Top Nguyen" value="http://nuget.topnguyen.com/v3/index.json"/>`** to NuGet.Config
     + If you not have NuGet.Config, just create the file named "NuGet.Config" in your root project folder with below content 
         ```xml
         <?xml version="1.0" encoding="utf-8"?>
