@@ -77,7 +77,7 @@
     dotnet add package Elect.Consul
     ```
 
-See more information in [![Nuget](https://buildstats.info/nuget/Elect.Consul)](https://www.nuget.org/packages/Elect.Consul/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web.Consul)](https://www.nuget.org/packages/Elect.Web.Consul/).
 
 ## Usage
  - Add Service

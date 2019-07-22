@@ -74,10 +74,10 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
     + [Elect.Web.Ajaxify](src/Web/Elect.Web.Ajaxify/README.md): Make your regular website (multiple page) to single page by ajax approach.
     
     + [Elect.Web.HealthCheck](src/Web/Elect.Web.HealthCheck/README.md): Health check for the service a live or not.
-        > [![Nuget](https://buildstats.info/nuget/Elect.HealthCheck)](https://www.nuget.org/packages/Elect.HealthCheck/)
+        > [![Nuget](https://buildstats.info/nuget/Elect.Web.HealthCheck)](https://www.nuget.org/packages/Elect.Web.HealthCheck/)
 
     + [Elect.Web.Consul](src/Web/Elect.Web.Consul/README.md): Support auto Register and Deregister Service to the Consul Service with Fabio Load Balancing.
-        > [![Nuget](https://buildstats.info/nuget/Elect.Consul)](https://www.nuget.org/packages/Elect.Consul/)
+        > [![Nuget](https://buildstats.info/nuget/Elect.Web.Consul)](https://www.nuget.org/packages/Elect.Web.Consul/)
         
 - Background Job
     + [Elect.Job.Hangfire](src/Job/Elect.Job.Hangfire/README.md): Extend of [Hangfire](https://github.com/HangfireIO/Hangfire), easier to setup and secure Hangfire Dashboard.
