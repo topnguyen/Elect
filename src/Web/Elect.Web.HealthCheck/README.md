@@ -18,7 +18,7 @@
     dotnet add package Elect.HealthCheck
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.HealthCheck/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.HealthCheck)](https://www.nuget.org/packages/Elect.HealthCheck/).
 
 ## Usage
 - Add Service

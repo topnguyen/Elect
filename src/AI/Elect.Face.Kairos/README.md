@@ -16,7 +16,7 @@
     dotnet add package Elect.Face.Kairos
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Face.Kairos/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Face.Kairos)](https://www.nuget.org/packages/Elect.Face.Kairos/).
 
 ## Usage
  - Add Service

@@ -16,8 +16,8 @@
     ```
     dotnet add package Elect.Notification.Esms
     ```
-
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Notification.Esms/).
+    
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Notification.Esms)](https://www.nuget.org/packages/Elect.Notification.Esms/).
 
 ## Usage
  - Add service: `services.AddElectNotificationEsms();`.

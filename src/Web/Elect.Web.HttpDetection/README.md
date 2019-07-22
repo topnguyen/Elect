@@ -16,7 +16,7 @@
     dotnet add package Elect.Web.HttpDetection
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web.HttpDetection/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web.HttpDetection)](https://www.nuget.org/packages/Elect.Web.HttpDetection/).
 
 ## Usage
  - HttpDetection work as `HttpRequest` extensions.

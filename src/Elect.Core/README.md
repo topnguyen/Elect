@@ -16,7 +16,7 @@
     dotnet add package Elect.Core
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Core/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Core)](https://www.nuget.org/packages/Elect.Core/).
 
 ## Usage
  - Almost Utilities have "Helper" and "Extensions", "Extensions" will call method insite "Helper" so feel free to choice one of them to use.

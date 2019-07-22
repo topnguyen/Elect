@@ -15,7 +15,7 @@
     dotnet add package Elect.Job.Hangfire
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Job.Hangfire/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Job.Hangfire)](https://www.nuget.org/packages/Elect.Job.Hangfire/).
 
 ## Usage
  - Add Service

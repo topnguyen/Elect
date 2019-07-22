@@ -28,7 +28,7 @@
     dotnet add package Elect.Logger
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Logger/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Logger)](https://www.nuget.org/packages/Elect.Logger/).
 
 ## Usage
  - Add Service

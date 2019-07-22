@@ -21,7 +21,7 @@
     dotnet add package Elect.Web.DataTable
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web.DataTable/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web.DataTable)](https://www.nuget.org/packages/Elect.Web.DataTable/).
 
 ## Usage
 1. Add service: `services.AddElectDataTable()`. You can config for Localization, DateTime format for DataTable by [`ElectDataTableOptions`](Models/Options/ElectDataTableOptions.cs) options. 

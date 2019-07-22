@@ -18,7 +18,7 @@
     dotnet add package Elect.Location.Google
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Location.Google/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Location.Google)](https://www.nuget.org/packages/Elect.Location.Google/).
 
 ## Usage
  - Add service: `services.AddElectLocationGoogle();`.

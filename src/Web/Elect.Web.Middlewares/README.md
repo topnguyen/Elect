@@ -21,7 +21,7 @@ Elect.Web.Middlewares contain many utility middlewares to help you monitor your 
     dotnet add package Elect.Web.Middlewares
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web.Middlewares/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web.Middlewares)](https://www.nuget.org/packages/Elect.Web.Middlewares/).
 
 ## Usage
  - Almost Middleware have Extensions for `IApplicationBuilder` and `IServiceCollection`.

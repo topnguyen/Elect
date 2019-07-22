@@ -15,7 +15,7 @@
     dotnet add package Elect.Location.Models
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Location.Models/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Location.Models)](https://www.nuget.org/packages/Elect.Location.Models/).
 
 ## License
 Elect.Location.Models is licensed under the [MIT License](../../../LICENSE).
