@@ -14,7 +14,7 @@
     dotnet add package Elect.Web.Swagger
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web.Swagger/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web.Swagger)](https://www.nuget.org/packages/Elect.Web.Swagger/).
 
 ## Usage
  - Enable generate XML for your project: Edit your `.csproj` add the code below, feel free to change

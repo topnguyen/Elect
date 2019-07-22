@@ -20,7 +20,7 @@
     dotnet add package Elect.Mapper.AutoMapper
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Mapper.AutoMapper/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Mapper.AutoMapper)](https://www.nuget.org/packages/Elect.Mapper.AutoMapper/).
 
 ## Usage
  - `Startup.cs`: add `Scanner` - Auto register auto mapper profiles.

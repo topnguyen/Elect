@@ -19,7 +19,7 @@
     dotnet add package Elect.Web
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Web/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web)](https://www.nuget.org/packages/Elect.Web/).
 
 ## Usage
  - SiteMap

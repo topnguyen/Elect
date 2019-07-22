@@ -18,8 +18,8 @@
     ```
     dotnet add package Elect.Location.Coordinate
     ```
-
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Location.Coordinate/).
+    
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Location.Coordinate)](https://www.nuget.org/packages/Elect.Location.Coordinate/).
 
 ## License
 Elect.Location.Coordinate is licensed under the [MIT License](../../../LICENSE).

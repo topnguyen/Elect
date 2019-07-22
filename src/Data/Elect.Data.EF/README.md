@@ -26,8 +26,7 @@ Elect.Data.EF is extend and utilities for Entity Framework Core includes:
     ```
     dotnet add package Elect.Data.EF
     ```
-
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Data.EF/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Data.EF)](https://www.nuget.org/packages/Elect.Data.EF/).
 
 ## Usage
 ### 1. Entity

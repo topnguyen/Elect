@@ -21,7 +21,7 @@
     dotnet add package Elect.DI
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.DI/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.DI)](https://www.nuget.org/packages/Elect.DI/).
 
 ## Usage
  - `Startup.cs`: add `Scanner` - Auto register dependency injection.

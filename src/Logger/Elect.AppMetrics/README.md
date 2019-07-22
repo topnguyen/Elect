@@ -34,7 +34,7 @@
     dotnet add package Elect.AppMetrics
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.AppMetrics/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.AppMetrics)](https://www.nuget.org/packages/Elect.AppMetrics/).
 
 ## Usage
 

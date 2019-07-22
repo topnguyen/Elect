@@ -15,7 +15,7 @@
     dotnet add package Elect.Notification.OneSignal
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Notification.OneSignal/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Notification.OneSignal)](https://www.nuget.org/packages/Elect.Notification.OneSignal/).
 
 ## Usage
  - Add service: `services.AddElectNotificationOneSignal();`.

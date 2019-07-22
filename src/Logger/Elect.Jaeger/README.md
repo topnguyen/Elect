@@ -29,7 +29,7 @@
     dotnet add package Elect.Jaeger
     ```
 
-See more information in [Nuget Package](https://www.nuget.org/packages/Elect.Jaeger/).
+See more information in [![Nuget](https://buildstats.info/nuget/Elect.Jaeger)](https://www.nuget.org/packages/Elect.Jaeger/).
 
 ## Usage
  - Add Service
