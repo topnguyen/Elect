@@ -25,5 +25,10 @@ namespace Elect.Web.StringUtils
         {
             return StringHelper.GetFriendlySlug(value, maxLength);
         }
+        
+        public static string RemoveHtmlTag(string value)
+        {
+            return StringHelper.RemoveHtmlTag(value);
+        }
     }
 }
