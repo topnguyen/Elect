@@ -20,6 +20,7 @@
 #endregion License
 
 using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace Elect.Web.StringUtils
@@ -102,6 +103,11 @@ namespace Elect.Web.StringUtils
             string base64Decode = Encoding.UTF8.GetString(bytes);
 
             return base64Decode;
+        }
+
+        public static string RemoveHtmlTag(string value)
+        {
+            return Regex.Replace(value, "<.*?>", string.Empty);
         }
     }
 }
