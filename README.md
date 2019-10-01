@@ -2,7 +2,7 @@
 # Elect
 > Author [**Top Nguyen**](http://topnguyen.com)
 
-<a href="https://www.buymeacoffee.com/topnguyen" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+<a href="https://www.buymeacoffee.com/topnguyen" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png" alt="Buy Me A Coffee"></a>
 
 ## Overview
 
@@ -123,4 +123,4 @@ I have been using ReSharper, Rider for a good number of years and find it absolu
 
 So a big **thank you** to [JetBrains](https://www.jetbrains.com/?from=Elect)!
 
-<a href="https://www.buymeacoffee.com/topnguyen" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+<a href="https://www.buymeacoffee.com/topnguyen" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png" alt="Buy Me A Coffee"></a>
