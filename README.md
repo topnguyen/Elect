@@ -122,3 +122,5 @@ Elect is licensed under the [MIT License](LICENSE).
 I have been using ReSharper, Rider for a good number of years and find it absolutely amazing that they assist open source to have free license.
 
 So a big **thank you** to [JetBrains](https://www.jetbrains.com/?from=Elect)!
+
+<a href="https://www.buymeacoffee.com/topnguyen" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee"></a>
