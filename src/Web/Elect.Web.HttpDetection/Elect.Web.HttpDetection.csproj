@@ -24,15 +24,15 @@
         <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.HttpDetection.nuspec</NuspecFile>
     </PropertyGroup>
     <ItemGroup>
-        <EmbeddedResource Include="GeoCity.mmdb"/>
+        <EmbeddedResource Include="GeoCity.mmdb" />
     </ItemGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\Elect.Web\Elect.Web.csproj"/>
-        <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj"/>
+        <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
+        <ProjectReference Include="..\..\Data\Elect.Data.IO\Elect.Data.IO.csproj" />
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="MaxMind.GeoIP2" Version="3.0.0"/>
+        <PackageReference Include="MaxMind.GeoIP2" Version="3.1.0" />
     </ItemGroup>
 </Project>

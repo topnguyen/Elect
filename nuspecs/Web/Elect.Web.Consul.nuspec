@@ -13,11 +13,11 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore swagger elect topnguyen</tags>
-        <version>2.7.2</version>
+        <version>3.0.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web.HealthCheck" version="2.7.1"/>
+            <dependency id="Elect.Web.HealthCheck" version="3.0.0"/>
 
             <!-- 3rd Libraries -->
             <dependency id="Consul" version="0.7.2.6" />

@@ -145,7 +145,7 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                     continue;
                 }
 
-                entityType.Relational().TableName = entityType.ClrType.Name;
+                entityType.SetTableName(entityType.ClrType.Name);
             }
         }
 
@@ -165,7 +165,7 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                     continue;
                 }
 
-                entityType.Relational().TableName = entityType.Relational().TableName.Replace(oldValue, newValue);
+                entityType.SetTableName(entityType.GetTableName().Replace(oldValue, newValue));
             }
         }
 
@@ -187,7 +187,8 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
 
                 foreach (var property in entityType.GetProperties())
                 {
-                    property.Relational().ColumnName = property.Name.Replace(oldValue, newValue);
+
+                    property.SetColumnName(property.Name.Replace(oldValue, newValue));
                 }
             }
         }

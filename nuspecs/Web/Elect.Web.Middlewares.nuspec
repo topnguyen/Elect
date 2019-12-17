@@ -13,15 +13,15 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore middlewares elect topnguyen</tags>
-        <version>2.7.5</version>
+        <version>3.0.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="2.7.3"/>
+            <dependency id="Elect.Web" version="3.0.0"/>
 
             <!-- 3rd Libraries -->
-            <dependency id="WebMarkupMin.AspNetCore2" version="2.6.0"/>
-            <dependency id="WebMarkupMin.NUglify" version="2.6.0"/>
+            <dependency id="WebMarkupMin.AspNetCore2" version="2.7.0"/>
+            <dependency id="WebMarkupMin.NUglify" version="2.7.0"/>
         </dependencies>
     </metadata>
 
