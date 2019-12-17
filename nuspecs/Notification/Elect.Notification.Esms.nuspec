@@ -13,11 +13,11 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore esms elect topnguyen</tags>
-        <version>2.7.0</version>
+        <version>3.0.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.7.5"/>
+            <dependency id="Elect.Core" version="3.0.0"/>
         </dependencies>
     </metadata>
 

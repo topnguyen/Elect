@@ -72,10 +72,9 @@ namespace Elect.Data.EF.Interfaces.DbContext
 
         EntityEntry Add(object entity);
 
-        Task<EntityEntry<TEntity>> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken = default)
-            where TEntity : class;
+        ValueTask<EntityEntry<TEntity>> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken = default (CancellationToken)) where TEntity : class;
 
-        Task<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
+        ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
 
         void AddRange(params object[] entities);
 
@@ -127,15 +126,15 @@ namespace Elect.Data.EF.Interfaces.DbContext
 
         TEntity Find<TEntity>(params object[] keyValues) where TEntity : class;
 
-        Task<TEntity> FindAsync<TEntity>(params object[] keyValues) where TEntity : class;
+        ValueTask<TEntity> FindAsync<TEntity>(params object[] keyValues) where TEntity : class;
 
-        Task<TEntity> FindAsync<TEntity>(object[] keyValues, CancellationToken cancellationToken) where TEntity : class;
+        ValueTask<TEntity> FindAsync<TEntity>(object[] keyValues, CancellationToken cancellationToken) where TEntity : class;
 
         object Find(Type entityType, params object[] keyValues);
 
-        Task<object> FindAsync(Type entityType, params object[] keyValues);
+        ValueTask<object> FindAsync(Type entityType, params object[] keyValues);
 
-        Task<object> FindAsync(Type entityType, object[] keyValues, CancellationToken cancellationToken);
+        ValueTask<object> FindAsync(Type entityType, object[] keyValues, CancellationToken cancellationToken);
 
         #endregion
 

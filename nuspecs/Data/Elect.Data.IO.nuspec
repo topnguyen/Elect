@@ -13,14 +13,14 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore io elect topnguyen</tags>
-        <version>2.7.3</version>
+        <version>3.0.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="2.7.5"/>
+            <dependency id="Elect.Core" version="3.0.0"/>
 
             <!-- 3rd Libraries -->
-            <dependency id="System.Drawing.Common" version="4.5.1" />
+            <dependency id="System.Drawing.Common" version="4.7.0" />
             <dependency id="SixLabors.ImageSharp" version="1.0.0-beta0006"/>
             <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta0006"/>
         </dependencies>
