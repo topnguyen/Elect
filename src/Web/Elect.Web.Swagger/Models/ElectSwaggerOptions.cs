@@ -20,12 +20,15 @@
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
+using Microsoft.OpenApi.Models;
 
 namespace Elect.Web.Swagger.Models
 {
     public class ElectSwaggerOptions
     {
         public bool IsEnable { get; set; } = true;
+        
+        public bool SerializeAsV2 { get; set; } = true;
         
         private string _swaggerRoutePrefix = "developers/api-docs";
 
@@ -104,7 +107,7 @@ namespace Elect.Web.Swagger.Models
 
         public string AuthorWebsite { get; set; }
 
-        public List<ApiGlobalParameterModel> GlobalParameters { get; set; } = new List<ApiGlobalParameterModel>();
+        public List<OpenApiParameter> GlobalParameters { get; set; } = new List<OpenApiParameter>();
 
         /// <summary>
         ///     Additional Options if you want to add your customize (Operation Filter, Document

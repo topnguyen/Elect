@@ -18,7 +18,6 @@
 #endregion License
 
 using Elect.Core.Attributes;
-using Elect.Notification.OneSignal.Models;
 using Elect.Notification.OneSignal.Models.Device;
 using System.Threading.Tasks;
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using Elect.Logger.Logging;
-using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

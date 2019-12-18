@@ -18,6 +18,11 @@ namespace Elect.Sample.Web.DataTable.Controllers
         {
             return View();
         }
+        
+        public IActionResult Test()
+        {
+            return Ok("Test");
+        }
 
         /// <summary>
         ///     Get Users DataTable 

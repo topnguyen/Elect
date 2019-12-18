@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using Elect.Data.EF.Interfaces.DbContext;
 using Microsoft.EntityFrameworkCore;
 using StringHelper = Elect.Core.StringUtils.StringHelper;
 
@@ -42,6 +43,9 @@ namespace Elect.Sample.Data.EF
             {
                 var serviceProvider = scope.ServiceProvider;
 
+                var dbContext = serviceProvider.GetService<IDbContext>();
+                dbContext.Database.Migrate();
+                
                 _unitOfWork = serviceProvider.GetService<IUnitOfWork>();
 
                 _userRepo = _unitOfWork.GetRepository<UserEntity>();

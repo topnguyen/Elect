@@ -18,6 +18,8 @@ namespace Elect.Sample.Logger
                     "Logs" + Path.DirectorySeparatorChar +
                     "{Type}" + Path.DirectorySeparatorChar +
                     "{Type}_{yyyy-MM-dd}.json";
+
+                _.IsEnableLogToFile = true;
             });
 
             var provider = services.BuildServiceProvider();

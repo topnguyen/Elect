@@ -2,7 +2,6 @@ using Elect.Core.DateTimeUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Text;
-using Elect.Core.ObjUtils;
 
 namespace Elect.Test.Core
 {

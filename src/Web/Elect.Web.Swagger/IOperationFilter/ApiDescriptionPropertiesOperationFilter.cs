@@ -20,28 +20,28 @@
 #endregion License
 
 using Elect.Core.DictionaryUtils;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Elect.Web.Swagger.IOperationFilter
 {
     public class ApiDescriptionPropertiesOperationFilter : Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter
     {
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             if (!string.IsNullOrWhiteSpace(operation.OperationId))
             {
-                context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.OperationId), operation.OperationId);
+                context.ApiDescription.Properties.AddOrUpdate(nameof(operation.OperationId), operation.OperationId);
             }
             
             if (!string.IsNullOrWhiteSpace(operation.Summary))
             {
-                context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.Summary), operation.Summary);
+                context.ApiDescription.Properties.AddOrUpdate(nameof(operation.Summary), operation.Summary);
             }
             
             if (!string.IsNullOrWhiteSpace(operation.Description))
             {
-                context.ApiDescription.Properties.AddOrUpdate(nameof(Operation.Description), operation.Description);
+                context.ApiDescription.Properties.AddOrUpdate(nameof(operation.Description), operation.Description);
             }
         }
     }

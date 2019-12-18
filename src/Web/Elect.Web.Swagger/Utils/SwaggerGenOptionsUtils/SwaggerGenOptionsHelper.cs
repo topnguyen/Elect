@@ -24,12 +24,12 @@ using Elect.Core.Attributes;
 using Elect.Web.Swagger.IDocumentFilters;
 using Elect.Web.Swagger.IOperationFilter;
 using Elect.Web.Swagger.Models;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
 {
@@ -65,17 +65,17 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
 
             // Doc Info
             
-            swaggerGenOptions.SwaggerDoc(options.Version, new Info
+            swaggerGenOptions.SwaggerDoc(options.Version, new OpenApiInfo
             {
                 Title = options.Title,
                 Version = options.Version,
                 Contact = !string.IsNullOrWhiteSpace(options.AuthorName)
                           && !string.IsNullOrWhiteSpace(options.AuthorWebsite)
                           && !string.IsNullOrWhiteSpace(options.AuthorEmail)
-                    ? new Contact
+                    ? new OpenApiContact
                     {
                         Name = options.AuthorName,
-                        Url = options.AuthorWebsite,
+                        Url = string.IsNullOrWhiteSpace(options.AuthorWebsite) ? null : new Uri(options.AuthorWebsite),
                         Email = options.AuthorEmail
                     }
                     : null
@@ -131,7 +131,7 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             {
                 var apiDisplayName = apiDesc.ActionDescriptor.DisplayName;
 
-                if (!apiDesc.Properties.TryGetValue(nameof(Operation.Summary), out var summary))
+                if (!apiDesc.Properties.TryGetValue(nameof(OpenApiOperation.Summary), out var summary))
                 {
                     return apiDisplayName;
                 }

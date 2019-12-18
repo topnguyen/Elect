@@ -20,17 +20,17 @@
 using Elect.Web.Swagger.Attributes;
 using Humanizer;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Microsoft.OpenApi.Models;
 
 namespace Elect.Web.Swagger.IOperationFilter
 {
     public class ApiDocGroupOperationFilter : Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter
     {
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             if (!(context.ApiDescription.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor))
             {
@@ -48,7 +48,10 @@ namespace Elect.Web.Swagger.IOperationFilter
 
             if (listApiDocGroup.Any())
             {
-                operation.Tags = listApiDocGroup.Where(x => !string.IsNullOrWhiteSpace(x.GroupName)).Select(x => x.GroupName).ToArray();
+                operation.Tags = listApiDocGroup.Where(x => !string.IsNullOrWhiteSpace(x.GroupName)).Select(x => new OpenApiTag
+                {
+                    Name = x.GroupName
+                }).ToArray();
             }
             else
             {
@@ -60,12 +63,15 @@ namespace Elect.Web.Swagger.IOperationFilter
                 {
                     foreach (var operationTag in operation.Tags)
                     {
-                        var groupName = operationTag.Humanize(LetterCasing.Title);
+                        var groupName = operationTag.Name.Humanize(LetterCasing.Title);
 
                         listGroupNames.Add(groupName);
                     }
 
-                    operation.Tags = listGroupNames;
+                    operation.Tags = listGroupNames.Select(x => new OpenApiTag
+                    {
+                        Name = x
+                    }).ToArray();
                 }
             }
         }

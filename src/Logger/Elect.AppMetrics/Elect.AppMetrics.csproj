@@ -2,7 +2,7 @@
     <!-- Information -->
     <PropertyGroup>
         <LangVersion>latest</LangVersion>
-        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <!-- Generate XML file -->
         <DocumentationFile>Elect.AppMetrics.xml</DocumentationFile>
         <!-- Disable warning for Controller/Action/Method not have block comment -->

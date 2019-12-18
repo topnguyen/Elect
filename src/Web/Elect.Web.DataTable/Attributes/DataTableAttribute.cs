@@ -27,7 +27,6 @@ using System.Linq;
 using System.Reflection;
 using Elect.Web.DataTable.Models.Options;
 using Elect.Web.DataTable.Utils;
-using EnumsNET;
 
 namespace Elect.Web.DataTable.Attributes
 {
