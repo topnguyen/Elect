@@ -1,4 +1,6 @@
-﻿using Elect.Web.Middlewares.HttpContextMiddleware;
+﻿using System.Collections.Generic;
+using Elect.Web.Middlewares.CorsMiddleware;
+using Elect.Web.Middlewares.HttpContextMiddleware;
 using Elect.Web.Middlewares.MeasureProcessingTimeMiddleware;
 using Elect.Web.Middlewares.MinResponseMiddleware;
 using Elect.Web.Middlewares.ServerInfoMiddleware;
@@ -12,14 +14,14 @@ namespace Elect.Sample.Web.Middlewares
     {
         public void ConfigureServices(IServiceCollection services)
         {
-//            services.AddElectCors(_ =>
-//            {
-//                _.AllowOrigins = new List<string>
-//                {
-//                    "http://*.localhost:8000",
-//                    "http://localhost:8001",
-//                };
-//            });
+            services.AddElectCors(_ =>
+            {
+                _.AllowOrigins = new List<string>
+                {
+                    "http://*.localhost:8000",
+                    "http://localhost:8001",
+                };
+            });
 
             services.AddElectHttpContext();
 
@@ -41,7 +43,7 @@ namespace Elect.Sample.Web.Middlewares
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-//            app.UseElectCors();
+            app.UseElectCors();
 
             app.UseElectHttpContext();
 
