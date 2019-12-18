@@ -21,10 +21,10 @@ namespace Elect.Sample.Web
                 };
             });
 
-            services.AddMvc();
+            services.AddControllersWithViews();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //app.UseElectReserveProxy();
 
@@ -32,7 +32,14 @@ namespace Elect.Sample.Web
 
             app.UseElectLog();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

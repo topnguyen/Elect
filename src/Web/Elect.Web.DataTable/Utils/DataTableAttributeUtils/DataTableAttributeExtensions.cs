@@ -20,8 +20,6 @@
 #endregion License
 
 using Elect.Web.DataTable.Attributes;
-using Elect.Web.DataTable.Models.Options;
-using Elect.Web.DataTable.Utils.TypeUtils;
 
 namespace Elect.Web.DataTable.Utils.DataTableAttributeUtils
 {

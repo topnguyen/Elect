@@ -1,4 +1,3 @@
-using Elect.Face.Kairos.Models.ResponseModels;
 using Newtonsoft.Json;
 
 namespace Elect.Face.Kairos.Models.InfoModels

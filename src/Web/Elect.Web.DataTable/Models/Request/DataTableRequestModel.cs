@@ -22,7 +22,6 @@
 using Elect.Web.DataTable.Models.Constants;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Elect.Core.ObjUtils;
 
 namespace Elect.Web.DataTable.Models.Request

@@ -19,11 +19,10 @@
 
 using Elect.Core.LinqUtils;
 using Elect.Web.Swagger.Models;
-using EnumsNET;
 using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Linq;
+using Microsoft.OpenApi.Models;
 
 namespace Elect.Web.Swagger.IOperationFilter
 {
@@ -36,7 +35,7 @@ namespace Elect.Web.Swagger.IOperationFilter
             Options = configuration.Value;
         }
 
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             if (Options.GlobalParameters?.Any() != true)
             {
@@ -45,18 +44,9 @@ namespace Elect.Web.Swagger.IOperationFilter
 
             foreach (var globalParameter in Options.GlobalParameters)
             {
-                var parameterInfo = new NonBodyParameter
-                {
-                    Name = globalParameter.Name,
-                    Required = globalParameter.IsRequire,
-                    In = globalParameter.In,
-                    Type = globalParameter.Type,
-                    Description = globalParameter.Description
-                };
+                operation.Parameters = operation.Parameters.RemoveWhere(x => x.Name == globalParameter.Name).ToList();
 
-                operation.Parameters = operation.Parameters.RemoveWhere(x => x.Name == parameterInfo.Name).ToList();
-
-                operation.Parameters.Add(parameterInfo);
+                operation.Parameters.Add(globalParameter);
             }
         }
     }

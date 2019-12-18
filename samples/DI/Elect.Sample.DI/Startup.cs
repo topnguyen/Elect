@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Elect.Core.StringUtils;
+﻿using Elect.Core.StringUtils;
 using Elect.DI;
 using Elect.DI.Attributes;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +30,7 @@ namespace Elect.Sample.DI
             services.PrintServiceAddedToConsole();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
         }
 

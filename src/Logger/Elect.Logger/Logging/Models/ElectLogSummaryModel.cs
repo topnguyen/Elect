@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Elect.Logger.Logging.Models

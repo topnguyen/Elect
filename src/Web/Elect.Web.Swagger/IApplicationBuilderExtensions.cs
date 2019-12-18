@@ -26,8 +26,10 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
 
 namespace Elect.Web.Swagger
 {
@@ -46,6 +48,8 @@ namespace Elect.Web.Swagger
             {
                 c.RouteTemplate = options.SwaggerRoutePrefix + "/{documentName}/" + options.SwaggerName;
 
+                c.SerializeAsV2 = options.SerializeAsV2;
+                
                 c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
                 {
                     var host =  httpReq.Host.Host;
@@ -64,8 +68,14 @@ namespace Elect.Web.Swagger
                             port = forwardedPortInt;
                         }
                     }
-                    
-                    swaggerDoc.Host = host + (port.HasValue ? $":{port.Value}" : string.Empty);
+
+                    swaggerDoc.Servers = new List<OpenApiServer>
+                    {
+                        new OpenApiServer
+                        {
+                            Url = $"{httpReq.Scheme}://{host}{(port.HasValue ? $":{port.Value}" : string.Empty)}"
+                        }
+                    };
                 });
             });
 

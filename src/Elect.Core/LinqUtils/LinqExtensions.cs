@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Elect.Core.CheckUtils;
 
 namespace Elect.Core.LinqUtils
 {

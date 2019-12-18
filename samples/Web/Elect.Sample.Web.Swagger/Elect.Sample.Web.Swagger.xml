@@ -16,11 +16,5 @@
             <param name="userName"></param>
             <returns></returns>
         </member>
-        <member name="M:Elect.Sample.Web.Swagger.Controllers.UserController.GetProfile">
-            <summary>
-                Get Profile 
-            </summary>
-            <returns></returns>
-        </member>
     </members>
 </doc>
