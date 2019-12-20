@@ -19,7 +19,6 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using System.Threading.Tasks;
 
 namespace Elect.Web.Middlewares.RequestRewindMiddleware
@@ -49,7 +48,8 @@ namespace Elect.Web.Middlewares.RequestRewindMiddleware
             {
                 // Allows using several time the stream in ASP.Net Core. Enable Rewind help to get
                 // Request Body content.
-                context.Request.EnableRewind();
+                // https://github.com/aspnet/AspNetCore/issues/12505: Change EnableRewind to EnableBuffering
+                context.Request.EnableBuffering();
 
                 return _next(context);
             }
