@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
     <!-- Information -->
     <PropertyGroup>
         <LangVersion>latest</LangVersion>
@@ -29,9 +29,6 @@
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-<!--        <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />-->
-<!--        <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.2.0" />-->
-        
         <!-- Markup Min -->
         <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.7.0" />
         <PackageReference Include="WebMarkupMin.NUglify" Version="2.7.0" />

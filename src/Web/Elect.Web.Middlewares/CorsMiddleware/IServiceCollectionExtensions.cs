@@ -23,12 +23,10 @@ using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
 using Elect.Web.Middlewares.CorsMiddleware.Models;
 using Microsoft.AspNetCore.Cors.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Cors;
-using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Elect.Web.Middlewares.CorsMiddleware
@@ -124,11 +122,6 @@ namespace Elect.Web.Middlewares.CorsMiddleware
                 config.AddDefaultPolicy(corsBuilder.Build());
 
                 options.ExtendPolicyOptions?.Invoke(config);
-            });
-
-            services.Configure<MvcOptions>(config =>
-            {
-                config.Filters.Add(new CorsAuthorizationFilterFactory(options.PolicyName));
             });
 
             services.TryAddTransient<CorsAuthorizationFilter, CorsAuthorizationFilter>();
