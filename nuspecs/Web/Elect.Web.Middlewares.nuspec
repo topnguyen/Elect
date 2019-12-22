@@ -13,11 +13,11 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore middlewares elect topnguyen</tags>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="3.0.0"/>
+            <dependency id="Elect.Web" version="3.0.1"/>
 
             <!-- 3rd Libraries -->
             <dependency id="WebMarkupMin.AspNetCore2" version="2.7.0"/>
@@ -26,9 +26,9 @@
     </metadata>
 
     <files>
-        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.dll" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.pdb" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.xml" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.dll" target="lib\netcoreapp3.1"/>
+        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.pdb" target="lib\netcoreapp3.1"/>
+        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.xml" target="lib\netcoreapp3.1"/>
         <file src="..\..\src\Web\Elect.Web.Middlewares\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>
