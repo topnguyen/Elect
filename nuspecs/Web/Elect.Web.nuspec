@@ -13,15 +13,20 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore elect topnguyen</tags>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
 
         <dependencies>
             <!-- Elect -->
             <dependency id="Elect.Core" version="3.0.0"/>
 
             <!-- 3rd Libraries -->
-            <dependency id="Microsoft.AspNetCore.Mvc" version="2.2.0"/>
-            <dependency id="Microsoft.Extensions.FileProviders.Physical" version="3.1.0"/>
+            <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.2.5" />
+            <dependency id="Microsoft.AspNetCore.Mvc.Abstractions" version="2.2.0" />
+            <dependency id="Microsoft.AspNetCore.Mvc.ViewFeatures" version="2.2.0" />
+            <dependency id="Microsoft.AspNetCore.Routing.Abstractions" version="2.2.0" />
+            <dependency id="Microsoft.AspNetCore.Localization" version="2.2.0" />
+            <dependency id="Microsoft.AspNetCore.WebUtilities" version="2.2.0" />
+            <dependency id="Microsoft.Extensions.FileProviders.Physical" version="3.1.0" />
         </dependencies>
     </metadata>
 
