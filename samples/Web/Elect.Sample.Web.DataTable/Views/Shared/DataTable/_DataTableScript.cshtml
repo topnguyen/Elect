@@ -136,29 +136,24 @@
         // Save State Handle
         @if (Model.IsSaveState == true)
         {
-            <text>
-                dataTableOptions.stateSaveParams = function(settings, data) {
-
-                    data.search.search = "";
-
-                    for (var i = 0; i < data.columns.length; i++) {
-                        data.columns[i].search.search = "";
-                    }
-                    return true;
-                }
-                dataTableOptions.stateSaveCallback = function(settings, data) {
-                    var key = 'Elect.Web.DataTable_' + settings.sInstance;
-                    var sData = JSON.stringify(data);
-                    localStorage.setItem(key, sData);
-                }
-
-                dataTableOptions.stateLoadCallback = function(settings) {
-                    var key = 'Elect.Web.DataTable_' + settings.sInstance;
-                    var sData = localStorage.getItem(key);
-                    var data = JSON.parse(sData);
-                    return data;
-                }
-            </text>
+            @:     dataTableOptions.stateSaveParams = function(settings, data) {
+            @:         data.search.search = "";
+            @:         for (var i = 0; i < data.columns.length; i++) {
+            @:             data.columns[i].search.search = "";
+            @:         }
+            @:         return true;
+            @:     }
+            @:     dataTableOptions.stateSaveCallback = function(settings, data) {
+            @:         var key = 'Elect.Web.DataTable_' + settings.sInstance;
+            @:         var sData = JSON.stringify(data);
+            @:         localStorage.setItem(key, sData);
+            @:     }
+            @:     dataTableOptions.stateLoadCallback = function(settings) {
+            @:         var key = 'Elect.Web.DataTable_' + settings.sInstance;
+            @:         var sData = localStorage.getItem(key);
+            @:         var data = JSON.parse(sData);
+            @:         return data;
+            @:     }
         }
 
         // Draw Call back function
