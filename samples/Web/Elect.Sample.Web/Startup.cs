@@ -20,8 +20,11 @@ namespace Elect.Sample.Web
                     return models;
                 };
             });
-
-            services.AddControllersWithViews();
+            
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -32,14 +35,7 @@ namespace Elect.Sample.Web
 
             app.UseElectLog();
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

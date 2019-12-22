@@ -1,6 +1,9 @@
 ﻿using Elect.Web.DataTable;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Sample.Web.DataTable
@@ -11,21 +14,17 @@ namespace Elect.Sample.Web.DataTable
         {
             services.AddElectDataTable();
             
-            services.AddControllersWithViews();
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

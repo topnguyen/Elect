@@ -38,7 +38,10 @@ namespace Elect.Sample.Web.Middlewares
                 _.PoweredBy = "PHP/5.6.30";
             });
 
-            services.AddControllersWithViews();
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -55,14 +58,7 @@ namespace Elect.Sample.Web.Middlewares
 
             app.UseStaticFiles();
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
