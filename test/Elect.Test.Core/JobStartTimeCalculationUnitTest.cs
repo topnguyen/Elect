@@ -114,7 +114,7 @@ namespace Elect.Test.Core
 
             // Testing Time
 
-            var correctJobStartTime = new DateTime(2020, 01, 03, 07, 30, 0);
+            var correctJobStartTime = new DateTime(2020, 01, 03, 13, 00, 0);
 
             Assert.AreEqual(correctJobStartTime, jobStartTime);
         }
@@ -164,7 +164,7 @@ namespace Elect.Test.Core
 
             var shiftIndexContainJobEndTime = FindClosestIndexShift(shifts, jobEndTime);
 
-            var totalDuration = CalculateDuration(shiftIndexContainJobEndTime, shifts, jobEndTime, out var date, out var shiftIndex);
+            var totalDuration = CalculateDuration(shiftIndexContainJobEndTime, shifts, ref jobEndTime, out var date, out var shiftIndex);
 
             if (totalDuration >= jobDuration)
             {
@@ -201,13 +201,13 @@ namespace Elect.Test.Core
                     return i;
                 }
             }
-
+                
             return -1;
         }
 
         public static TimeSpan CalculateDuration(int shiftIndexContainJobEndTime,
             List<ShiftInfoModel> shifts,
-            DateTime jobEndTime,
+            ref DateTime jobEndTime,
             out DateTime date,
             out int shiftIndex)
         {
@@ -224,11 +224,13 @@ namespace Elect.Test.Core
                 // This case mean the job end time before any shift in the day
                 // So total duration will be previous shift in yesterday
 
-                date = date.AddDays(-1);
-
                 shiftIndex = shifts.Count - 1;
 
                 var lastShiftInfo = shifts.LastOrDefault();
+
+                jobEndTime = jobEndTime.Date.AddDays(-1).Add(lastShiftInfo.End);
+
+                date = jobEndTime.Date;
 
                 duration = lastShiftInfo.End - lastShiftInfo.Start;
 
