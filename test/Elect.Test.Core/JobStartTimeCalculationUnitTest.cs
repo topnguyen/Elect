@@ -100,11 +100,11 @@ namespace Elect.Test.Core
                 {
                     ShiftName = "Ca 2",
                     Start = new TimeSpan(12, 30, 0),
-                    End = new TimeSpan(16, 30, 0)
+                    End = new TimeSpan(17, 00, 0)
                 }
             };
             
-            var jobEndTime = new DateTime(2020, 01, 04, 6, 30, 0);
+            var jobEndTime = new DateTime(2020, 01, 03, 9, 30, 0);
 
             var jobDuration = new TimeSpan(2, 0, 0);
 
@@ -114,7 +114,7 @@ namespace Elect.Test.Core
 
             // Testing Time
 
-            var correctJobStartTime = new DateTime(2020, 01, 03, 14, 30, 0);
+            var correctJobStartTime = new DateTime(2020, 01, 03, 07, 30, 0);
 
             Assert.AreEqual(correctJobStartTime, jobStartTime);
         }
@@ -168,7 +168,7 @@ namespace Elect.Test.Core
 
             if (totalDuration >= jobDuration)
             {
-                date = date.Add(shifts[shiftIndex].End);
+                date = date.Add(jobEndTime.TimeOfDay);
 
                 jobStartTime = date - jobDuration;
 
