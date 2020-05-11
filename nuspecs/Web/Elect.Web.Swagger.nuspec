@@ -13,17 +13,17 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore swagger elect topnguyen</tags>
-        <version>3.0.2</version>
+        <version>3.0.3</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="3.0.1"/>
+            <dependency id="Elect.Web" version="3.0.2"/>
             <dependency id="Elect.Data.IO" version="3.0.0"/>
 
             <!-- 3rd Libraries -->
 
-            <dependency id="Swashbuckle.AspNetCore" version="5.0.0-rc5" />
-            <dependency id="Swashbuckle.AspNetCore.Annotations" version="5.0.0-rc5" />
+            <dependency id="Swashbuckle.AspNetCore" version="5.4.1" />
+            <dependency id="Swashbuckle.AspNetCore.Annotations" version="5.4.1" />
             <dependency id="Microsoft.OpenApi" version="1.1.4" />
             
         </dependencies>

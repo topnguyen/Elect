@@ -40,6 +40,14 @@
                 Additional Config Options for Policy if you want to add your customize after Elect add Config Policy Options.
             </summary>
         </member>
+        <member name="M:Elect.Web.Middlewares.GCCollectMiddleware.IApplicationBuilderExtensions.UseGCCollectMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+                Release memory if possible by GC Collection <br />
+                [NOTE] Keep this Middleware at the top of the pipeline
+            </summary>
+            <param name="app"></param>
+            <remarks>Keep this Middleware at the top of the pipeline</remarks>
+        </member>
         <member name="P:Elect.Web.Middlewares.HttpContextMiddleware.HttpContext.Current">
             <summary>
                 Get current request HttpContext 

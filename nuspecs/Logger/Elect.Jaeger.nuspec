@@ -13,14 +13,14 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore jaeger elect topnguyen</tags>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="3.0.0"/>
+            <dependency id="Elect.Core" version="3.0.1"/>
 
             <!-- Jaeger -->
-            <dependency id="Jaeger" version="0.3.6" />
+            <dependency id="Jaeger" version="0.3.7" />
             <dependency id="OpenTracing.Contrib.NetCore" version="0.6.2" />
         </dependencies>
     </metadata>
