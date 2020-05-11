@@ -13,14 +13,14 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore datatable elect topnguyen</tags>
-        <version>3.0.1</version>
+        <version>3.0.2</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="3.0.1"/>
+            <dependency id="Elect.Web" version="3.0.2"/>
 
             <!-- 3rd Libraries -->
-            <dependency id="System.Linq.Dynamic.Core" version="1.0.19"/>
+            <dependency id="System.Linq.Dynamic.Core" version="1.1.0"/>
         </dependencies>
     </metadata>
 

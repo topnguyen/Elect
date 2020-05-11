@@ -29,6 +29,6 @@
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="JsonFlatFileDataStore" Version="2.2.1" />
+        <PackageReference Include="JsonFlatFileDataStore" Version="2.2.2" />
     </ItemGroup>
 </Project>
