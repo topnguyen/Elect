@@ -24,7 +24,7 @@
             <!-- 3rd Libraries -->
             <dependency id="JsonFlatFileDataStore" version="2.2.2"/>
 
-            <dependency id="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+            <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.2.5" />
         </dependencies>
     </metadata>
     <files>
