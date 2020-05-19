@@ -27,12 +27,12 @@
     </PropertyGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\Elect.Web\Elect.Web.csproj" />
+        <ProjectReference Include="..\Elect.Web\Elect.Web.csproj"/>
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
         <!-- Markup Min -->
-        <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.1" />
-        <PackageReference Include="WebMarkupMin.NUglify" Version="2.8.1" />
+        <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.1"/>
+        <PackageReference Include="WebMarkupMin.NUglify" Version="2.8.1"/>
     </ItemGroup>
 </Project>

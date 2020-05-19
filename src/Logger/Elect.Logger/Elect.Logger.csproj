@@ -30,9 +30,5 @@
     <!-- 3rd Libraries -->
     <ItemGroup>
         <PackageReference Include="JsonFlatFileDataStore" Version="2.2.2" />
-
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5">
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
     </ItemGroup>
 </Project>
