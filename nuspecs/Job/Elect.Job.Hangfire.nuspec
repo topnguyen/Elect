@@ -13,15 +13,16 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore hangfire elect topnguyen</tags>
-        <version>3.0.2</version>
+        <version>3.0.3</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="3.0.1"/>
+            <dependency id="Elect.Web" version="3.0.3"/>
 
             <!-- 3rd Libraries -->
             <dependency id="HangFire" version="1.7.11" />
             <dependency id="Hangfire.MemoryStorage" version="1.7.0" />
+            <dependency id="Microsoft.AspNetCore.Mvc.Abstractions" version="2.2.0" />
         </dependencies>
     </metadata>
 

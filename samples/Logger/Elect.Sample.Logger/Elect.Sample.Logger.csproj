@@ -6,4 +6,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Logger\Elect.Logger\Elect.Logger.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
 </Project>

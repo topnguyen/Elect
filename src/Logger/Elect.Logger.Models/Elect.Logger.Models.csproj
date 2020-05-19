@@ -26,5 +26,9 @@
     <!-- Elect -->
     <ItemGroup>
         <ProjectReference Include="..\..\Web\Elect.Web\Elect.Web.csproj" />
+
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
     </ItemGroup>
 </Project>
