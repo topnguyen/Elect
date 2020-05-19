@@ -29,9 +29,5 @@
     <ItemGroup>
         <PackageReference Include="HangFire" Version="1.7.11" />
         <PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
-
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0">
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
     </ItemGroup>
 </Project>
