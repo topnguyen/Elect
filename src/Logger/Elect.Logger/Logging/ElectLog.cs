@@ -6,12 +6,10 @@ using Elect.Core.ConcurrentUtils;
 using Elect.Core.ObjUtils;
 using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
-using Elect.Logger.Utils;
 using Humanizer;
 using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace Elect.Logger.Logging
 {
@@ -70,22 +68,16 @@ namespace Elect.Logger.Logging
 
         public LogModel Capture(LogModel log)
         {
-            // Convert to Json string for Filter purpose
-            var logJsonStr = log.ToJsonString();
-
-            // Filter Credit Card
-            logJsonStr = CreditCardHelper.Filter(logJsonStr);
-
-            // Update log by filtered info
-            log = JsonConvert.DeserializeObject<LogModel>(logJsonStr);
-
             // To Console
             if (_options.IsEnableLogToConsole)
             {
                 WriteConsole(log);
             }
-
-            Push(log);
+            
+            if (_options.IsEnableLogToFile)
+            {
+                Push(log);
+            }
 
             return log;
         }
