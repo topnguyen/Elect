@@ -53,6 +53,7 @@ namespace Elect.Web.Middlewares.GCCollectMiddleware
                 await _next(context);
 
                 GC.Collect(2, GCCollectionMode.Forced, true);
+                
                 GC.WaitForPendingFinalizers();
             }
         }
