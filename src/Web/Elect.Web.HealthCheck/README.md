@@ -1,5 +1,5 @@
 ﻿![Logo](../../../Logo.png)
-# Elect.Jaeger
+# Elect.HealthCheck
 > Author [**Top Nguyen**](http://topnguyen.com)
 
 ## Overview
@@ -34,4 +34,4 @@ See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web.Health
     ```
 
 ## License
-Elect.Jaeger is licensed under the [MIT License](../../../LICENSE).
+Elect.HealthCheck is licensed under the [MIT License](../../../LICENSE).
