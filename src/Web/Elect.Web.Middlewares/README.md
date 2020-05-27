@@ -56,6 +56,10 @@ See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web.Middle
     + Use Middleware: `app.UseElectServerInfo()`.
     + Use: This middleware auto append Headers for `HttpResponse` about Server Info.
 
+ - GCCollectMiddleware
+    + Use Middleware: `app.UseGCCollect()`.
+    + Use: This middleware auto call GC Collect when response.
+    
 ## [View Sample](../../../samples/Web/Elect.Sample.Web.Middlewares/README.md)
 
 ## License
