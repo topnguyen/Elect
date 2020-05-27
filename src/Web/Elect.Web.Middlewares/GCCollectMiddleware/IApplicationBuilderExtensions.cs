@@ -32,7 +32,7 @@ namespace Elect.Web.Middlewares.GCCollectMiddleware
         /// </summary>
         /// <param name="app"></param>
         /// <remarks>Keep this Middleware at the top of the pipeline</remarks>
-        public static IApplicationBuilder UseGCCollectMiddleware(this IApplicationBuilder app)
+        public static IApplicationBuilder UseGCCollect(this IApplicationBuilder app)
         {
             app.UseMiddleware<GCCollectMiddleware>();
 
