@@ -106,16 +106,6 @@
                 Show full schema for each type in Document 
             </summary>
         </member>
-        <member name="P:Elect.Web.Swagger.Models.ElectSwaggerOptions.IsDescribeAllEnumsAsString">
-            <summary>
-                Default is true. 
-            </summary>
-        </member>
-        <member name="P:Elect.Web.Swagger.Models.ElectSwaggerOptions.IsDescribeAllParametersInCamelCase">
-            <summary>
-                Default is true. 
-            </summary>
-        </member>
         <member name="P:Elect.Web.Swagger.Models.ElectSwaggerOptions.ExtendOptions">
             <summary>
                 Additional Options if you want to add your customize (Operation Filter, Document

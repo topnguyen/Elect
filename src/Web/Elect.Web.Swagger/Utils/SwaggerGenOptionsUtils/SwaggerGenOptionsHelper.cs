@@ -50,8 +50,6 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
                 _.UnAuthorizeMessage = configuration.UnAuthorizeMessage;
                 _.AuthTokenType = configuration.AuthTokenType;
                 _.IsFullSchemaForType = configuration.IsFullSchemaForType;
-                _.IsDescribeAllEnumsAsString = configuration.IsDescribeAllEnumsAsString;
-                _.IsDescribeAllParametersInCamelCase = configuration.IsDescribeAllParametersInCamelCase;
                 _.AuthorName = configuration.AuthorName;
                 _.AuthorEmail = configuration.AuthorEmail;
                 _.AuthorWebsite = configuration.AuthorWebsite;
@@ -108,21 +106,6 @@ namespace Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils
             if (options.IsFullSchemaForType)
             {
                 swaggerGenOptions.CustomSchemaIds(type => type.FullName);
-            }
-
-            if (options.IsDescribeAllParametersInCamelCase)
-            {
-                swaggerGenOptions.DescribeAllParametersInCamelCase();
-            }
-
-            if (options.IsDescribeAllEnumsAsString)
-            {
-                swaggerGenOptions.DescribeAllEnumsAsStrings();
-
-                if (options.IsDescribeAllParametersInCamelCase)
-                {
-                    swaggerGenOptions.DescribeStringEnumsInCamelCase();
-                }
             }
 
             // Order

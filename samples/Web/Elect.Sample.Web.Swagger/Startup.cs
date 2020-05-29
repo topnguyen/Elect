@@ -1,4 +1,5 @@
-﻿using Elect.Web.Middlewares.CorsMiddleware;
+﻿using System.Text.Json.Serialization;
+using Elect.Web.Middlewares.CorsMiddleware;
 using Elect.Web.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,10 +15,11 @@ namespace Elect.Sample.Web.Swagger
 
             services.AddElectSwagger();
 
-            services.AddMvc(options =>
-            {
-                options.EnableEndpointRouting = false;
-            });
+            services.AddMvc(options => { options.EnableEndpointRouting = false; })
+                .AddJsonOptions(options =>
+                    {
+                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -49,8 +49,6 @@ namespace Elect.Web.Swagger
                 _.UnAuthorizeMessage = configuration.UnAuthorizeMessage;
                 _.AuthTokenType = configuration.AuthTokenType;
                 _.IsFullSchemaForType = configuration.IsFullSchemaForType;
-                _.IsDescribeAllEnumsAsString = configuration.IsDescribeAllEnumsAsString;
-                _.IsDescribeAllParametersInCamelCase = configuration.IsDescribeAllParametersInCamelCase;
                 _.AuthorName = configuration.AuthorName;
                 _.AuthorEmail = configuration.AuthorEmail;
                 _.AuthorWebsite = configuration.AuthorWebsite;

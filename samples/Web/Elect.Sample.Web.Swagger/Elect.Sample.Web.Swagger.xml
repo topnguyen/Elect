@@ -4,7 +4,7 @@
         <name>Elect.Sample.Web.Swagger</name>
     </assembly>
     <members>
-        <member name="M:Elect.Sample.Web.Swagger.Controllers.UserController.TestResponse">
+        <member name="M:Elect.Sample.Web.Swagger.Controllers.UserController.TestResponse(Elect.Sample.Web.Swagger.Controllers.UserModel)">
             <summary>
                 Test Response 
             </summary>
