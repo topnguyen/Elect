@@ -11,15 +11,12 @@ namespace Elect.Sample.Web.Swagger.Controllers
         /// <summary>
         ///     Test Response 
         /// </summary>
-        [HttpGet]
+        [HttpPost]
         [ApiDocGroup("Test")]
         [Route("test")]
-        public IActionResult TestResponse()
+        public IActionResult TestResponse([FromBody]UserModel user)
         {
-            return Ok(new
-            {
-                Message = "OK Fine"
-            });
+            return Ok(user);
         }
 
         /// <summary>
@@ -45,5 +42,18 @@ namespace Elect.Sample.Web.Swagger.Controllers
                 info1,
             });
         }
+    }
+
+    public class UserModel
+    {
+        public string Name { get; set; }
+
+        public UserType Type { get; set; }
+    }
+
+    public enum UserType
+    {
+        Admin,
+        Member
     }
 }

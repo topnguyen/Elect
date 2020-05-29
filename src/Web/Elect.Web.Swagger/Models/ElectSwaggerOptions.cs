@@ -91,16 +91,6 @@ namespace Elect.Web.Swagger.Models
         /// </summary>
         public bool IsFullSchemaForType { get; set; } = true;
 
-        /// <summary>
-        ///     Default is true. 
-        /// </summary>
-        public bool IsDescribeAllEnumsAsString { get; set; } = true;
-
-        /// <summary>
-        ///     Default is true. 
-        /// </summary>
-        public bool IsDescribeAllParametersInCamelCase { get; set; } = true;
-
         public string AuthorName { get; set; }
 
         public string AuthorEmail { get; set; }
