@@ -42,6 +42,22 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
 
                 var listPropertyInfo = t.GetProperties();
 
+                // Scan Interface
+                var listInterface = type.GetInterfaces();
+                
+                var allInterfaceListPropertyInfo = new List<PropertyInfo>();
+
+                foreach (var @interface in listInterface)
+                {
+                    var interfaceListPropertyInfo = 
+                        @interface
+                            .GetProperties()
+                            .Where(x => x.GetCustomAttribute<DataTableIgnoreAttribute>() == null && x.GetCustomAttribute<DataTableAttribute>() != null);
+                    
+                    allInterfaceListPropertyInfo.AddRange(interfaceListPropertyInfo);
+                }
+                
+
                 foreach (var propertyInfo in listPropertyInfo)
                 {
                     if (propertyInfo.GetCustomAttribute<DataTableIgnoreAttribute>() != null)
@@ -51,6 +67,16 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
                     }
 
                     var attributes = propertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
+
+                    if (!attributes.Any())
+                    {
+                        var matchPropertyInfo = allInterfaceListPropertyInfo.FirstOrDefault(x => x.Name == propertyInfo.Name);
+
+                        if (matchPropertyInfo != null)
+                        {
+                            attributes =  matchPropertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
+                        }
+                    }
 
                     // Add to List Property
                     var dataTablePropertyInfo = new DataTablePropertyInfoModel(propertyInfo, attributes)
