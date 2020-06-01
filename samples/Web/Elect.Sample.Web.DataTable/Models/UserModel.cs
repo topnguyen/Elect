@@ -4,7 +4,6 @@ namespace Elect.Sample.Web.DataTable.Models
 {
     public class UserModel: IUserData
     {
-        [DataTable(IsVisible = true, Order = 1)]
         public int Id { get; set; }
         
         public string FullName { get; set; }
@@ -22,9 +21,8 @@ namespace Elect.Sample.Web.DataTable.Models
         public int Id { get; set; }
 
         [DataTableIgnore]
-        [DataTable(DisplayName = "Name", Order = 3)]
         public string FullName { get; set; }
-        
+
         public bool IsActive { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿#region	License
+﻿#region License
 
 //--------------------------------------------------
 // <License>
@@ -44,19 +44,20 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
 
                 // Scan Interface
                 var listInterface = type.GetInterfaces();
-                
+
                 var allInterfaceListPropertyInfo = new List<PropertyInfo>();
 
                 foreach (var @interface in listInterface)
                 {
-                    var interfaceListPropertyInfo = 
+                    var interfaceListPropertyInfo =
                         @interface
                             .GetProperties()
-                            .Where(x => x.GetCustomAttribute<DataTableBaseAttribute>() != null);
-                    
+                            .Where(x => x.GetCustomAttribute<DataTableBaseAttribute>() != null
+                                        || x.GetCustomAttribute<DataTableIgnoreAttribute>() != null);
+
                     allInterfaceListPropertyInfo.AddRange(interfaceListPropertyInfo);
                 }
-                
+
 
                 foreach (var propertyInfo in listPropertyInfo)
                 {
@@ -71,7 +72,8 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
                     // If Property in Class not have any DataTable Attributes, then find it in the Interface
                     if (!attributes.Any())
                     {
-                        var matchPropertyInfo = allInterfaceListPropertyInfo.FirstOrDefault(x => x.Name == propertyInfo.Name);
+                        var matchPropertyInfo =
+                            allInterfaceListPropertyInfo.FirstOrDefault(x => x.Name == propertyInfo.Name);
 
                         if (matchPropertyInfo != null)
                         {
@@ -80,8 +82,8 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
                                 // Ignore Property have DataTableIgnoreAttribute
                                 continue;
                             }
-                            
-                            attributes =  matchPropertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
+
+                            attributes = matchPropertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
                         }
                     }
 
@@ -97,7 +99,7 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
                 // Order
 
                 listDataTablePropertyInfo = listDataTablePropertyInfo.OrderBy(x => x.Order).ToList();
-                
+
                 return listDataTablePropertyInfo.ToArray();
             });
         }
