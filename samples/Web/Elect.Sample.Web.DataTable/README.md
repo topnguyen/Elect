@@ -4,7 +4,7 @@
 
 ## Overview
 
-AspNetCore version 2 Web Application - Sample using [Elect.Web.DataTable](../../../src/Web/Elect.Web.DataTable/README.md).
+AspNetCore Web Application - Sample using [Elect.Web.DataTable](../../../src/Web/Elect.Web.DataTable/README.md).
 
 ## Instruction
 
@@ -17,4 +17,4 @@ AspNetCore version 2 Web Application - Sample using [Elect.Web.DataTable](../../
 ![Sample.png](Sample.png)
 
 ## License
-Elect.Data.EF is licensed under the [MIT License](../../../LICENSE).
+Elect.Sample.Web.DataTable is licensed under the [MIT License](../../../LICENSE).

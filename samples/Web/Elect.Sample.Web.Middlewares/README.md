@@ -4,7 +4,7 @@
 
 ## Overview
 
-AspNetCore version 2 Web Application - Sample using [Elect.Web.Middlewares](../../../src/Web/Elect.Web.Middlewares/README.md).
+AspNetCore Web Application - Sample using [Elect.Web.Middlewares](../../../src/Web/Elect.Web.Middlewares/README.md).
 
 ## Instruction
 1. Open [`Startup`](Startup.cs) to see the Configuration.
@@ -12,4 +12,4 @@ AspNetCore version 2 Web Application - Sample using [Elect.Web.Middlewares](../.
 
 
 ## License
-Elect.Data.EF is licensed under the [MIT License](../../../LICENSE).
+Elect.Sample.Web.Middlewares is licensed under the [MIT License](../../../LICENSE).
