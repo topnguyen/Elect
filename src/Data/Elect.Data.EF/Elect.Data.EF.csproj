@@ -19,7 +19,7 @@
     </ItemGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.EF.nuspec</NuspecFile>
     </PropertyGroup>
