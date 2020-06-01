@@ -21,6 +21,7 @@ namespace Elect.Sample.Web.DataTable.Models
         [DataTable(IsVisible = false, Order = 1)]
         public int Id { get; set; }
 
+        [DataTableIgnore]
         [DataTable(DisplayName = "Name", Order = 3)]
         public string FullName { get; set; }
         

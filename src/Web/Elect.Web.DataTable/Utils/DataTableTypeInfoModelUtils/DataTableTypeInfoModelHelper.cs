@@ -52,7 +52,7 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
                     var interfaceListPropertyInfo = 
                         @interface
                             .GetProperties()
-                            .Where(x => x.GetCustomAttribute<DataTableIgnoreAttribute>() == null && x.GetCustomAttribute<DataTableAttribute>() != null);
+                            .Where(x => x.GetCustomAttribute<DataTableBaseAttribute>() != null);
                     
                     allInterfaceListPropertyInfo.AddRange(interfaceListPropertyInfo);
                 }
@@ -68,12 +68,19 @@ namespace Elect.Web.DataTable.Utils.DataTableTypeInfoModelUtils
 
                     var attributes = propertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
 
+                    // If Property in Class not have any DataTable Attributes, then find it in the Interface
                     if (!attributes.Any())
                     {
                         var matchPropertyInfo = allInterfaceListPropertyInfo.FirstOrDefault(x => x.Name == propertyInfo.Name);
 
                         if (matchPropertyInfo != null)
                         {
+                            if (matchPropertyInfo.GetCustomAttribute<DataTableIgnoreAttribute>() != null)
+                            {
+                                // Ignore Property have DataTableIgnoreAttribute
+                                continue;
+                            }
+                            
                             attributes =  matchPropertyInfo.GetCustomAttributes<DataTableBaseAttribute>().ToArray();
                         }
                     }
