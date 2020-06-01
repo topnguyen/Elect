@@ -4,7 +4,7 @@
 
 ## Overview
 
-AspNetCore version 2 Web Application - Sample using [Elect.Mapper.AutoMapper](../../../src/Mapper/Elect.Mapper.AutoMapper/README.md).
+AspNetCore Web Application - Sample using [Elect.Mapper.AutoMapper](../../../src/Mapper/Elect.Mapper.AutoMapper/README.md).
 
 ## Instruction
 1. Open [`Startup`](Startup.cs) to see the Configuration.

@@ -4,7 +4,7 @@
 
 ## Overview
 
-AspNetCore version 2 Web Application - Sample using [Elect.Web.Swagger](../../../src/Web/Elect.Web.Swagger/README.md).
+AspNetCore Web Application - Sample using [Elect.Web.Swagger](../../../src/Web/Elect.Web.Swagger/README.md).
 
 ## Instruction
 - Open `.csproj` to view config enable generate XML.
@@ -12,4 +12,4 @@ AspNetCore version 2 Web Application - Sample using [Elect.Web.Swagger](../../..
 - Run the project and access "/developers" to access API Document.
 
 ## License
-Elect.Data.EF is licensed under the [MIT License](../../../LICENSE).
+Elect.Sample.Web.Swagger is licensed under the [MIT License](../../../LICENSE).

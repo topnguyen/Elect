@@ -4,7 +4,7 @@
 
 ## Overview
 
-AspNetCore version 2 Web Application - Sample using [Elect.Data.EF](../../../src/Data/Elect.Data.EF/README.md).
+AspNetCore Web Application - Sample using [Elect.Data.EF](../../../src/Data/Elect.Data.EF/README.md).
 
 ## Structure  
 

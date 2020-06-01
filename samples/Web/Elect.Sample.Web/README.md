@@ -4,7 +4,7 @@
 
 ## Overview
 
-AspNetCore version 2 Web Application - Sample using [Elect.Web](../../../src/Web/Elect.Web/README.md).
+AspNetCore Web Application - Sample using [Elect.Web](../../../src/Web/Elect.Web/README.md).
 
 ## Instruction
 1. SiteMap
@@ -17,4 +17,4 @@ AspNetCore version 2 Web Application - Sample using [Elect.Web](../../../src/Web
 - Run project and try to access `/pagedcollection` see the result.
 
 ## License
-Elect.Data.EF is licensed under the [MIT License](../../../LICENSE).
+Elect.Sample.Web is licensed under the [MIT License](../../../LICENSE).
