@@ -2,8 +2,6 @@
 # Elect
 > Author [**Top Nguyen**](http://topnguyen.com)
 
-<a href="https://www.buymeacoffee.com/topnguyen" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png" alt="Buy Me A Coffee"></a>
-
 ## Overview
 
 Number of mini libraries to make faster develop .NET Core system.
@@ -114,13 +112,3 @@ Please access "samples" folder in this repo to explore example for each library.
 
 ## License
 Elect is licensed under the [MIT License](LICENSE).
-
-## Thank for Jetbrains
-
-<img src="jetbrains-variant-4.png" width="150" alt="JetBrains Logo" />
-
-I have been using ReSharper, Rider for a good number of years and find it absolutely amazing that they assist open source to have free license.
-
-So a big **thank you** to [JetBrains](https://www.jetbrains.com/?from=Elect)!
-
-<a href="https://www.buymeacoffee.com/topnguyen" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png" alt="Buy Me A Coffee"></a>
