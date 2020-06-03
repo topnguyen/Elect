@@ -1452,7 +1452,7 @@
     });
     this["Handlebars"]["templates"]["signature"] = Handlebars.template({
         "1": function (depth0, helpers, partials, data) {
-            var stack1, helper, functionType = "function", helperMissing = helpers.helperMissing, escapeExpression = this.escapeExpression, buffer = "    <h4 class=\"schema-title collapsed\" data-control data-toggle=\"collapse\"\n        data-target=\"#schema-" + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),
+            var stack1, helper, functionType = "function", helperMissing = helpers.helperMissing, escapeExpression = this.escapeExpression, buffer = "    <h4 class=\"schema-title\" data-control data-toggle=\"collapse\"\n        data-target=\"#schema-" + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),
                 (typeof helper === functionType ? helper.call(depth0, {
                     "name": "id",
                     "hash": {},
@@ -1462,7 +1462,7 @@
                         "name": "type",
                         "hash": {},
                         "data": data
-                    }) : helper))) + " Schema</h4>\n    <div data-content class=\"collapse\" id=\"schema-" + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),
+                    }) : helper))) + " Schema</h4>\n    <div data-content class=\"collapse in\" id=\"schema-" + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),
                         (typeof helper === functionType ? helper.call(depth0, {
                             "name": "id",
                             "hash": {},
