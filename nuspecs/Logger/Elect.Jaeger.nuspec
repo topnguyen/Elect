@@ -13,11 +13,11 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore jaeger elect topnguyen</tags>
-        <version>3.0.1</version>
+        <version>3.1.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="3.0.1"/>
+            <dependency id="Elect.Core" version="3.1.0"/>
 
             <!-- Jaeger -->
             <dependency id="Jaeger" version="0.3.7" />
@@ -25,9 +25,9 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.dll" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.pdb" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.xml" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.dll" target="lib\netcoreapp3.1"/>
+        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.pdb" target="lib\netcoreapp3.1"/>
+        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.xml" target="lib\netcoreapp3.1"/>
         <file src="..\..\src\Logger\Elect.Jaeger\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>

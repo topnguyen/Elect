@@ -19,7 +19,7 @@
     </ItemGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.Swagger.nuspec</NuspecFile>
     </PropertyGroup>

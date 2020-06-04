@@ -13,7 +13,7 @@
     </PropertyGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\AI</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\AI\Elect.Face.Kairos.nuspec</NuspecFile>
     </PropertyGroup>

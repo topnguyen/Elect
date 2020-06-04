@@ -13,7 +13,7 @@
     </PropertyGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.IO.nuspec</NuspecFile>
     </PropertyGroup>

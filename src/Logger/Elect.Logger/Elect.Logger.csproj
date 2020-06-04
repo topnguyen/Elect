@@ -19,7 +19,7 @@
     </ItemGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Logger</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Logger\Elect.Logger.nuspec</NuspecFile>
     </PropertyGroup>

@@ -13,21 +13,21 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore esms elect topnguyen</tags>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="3.0.0"/>
+            <dependency id="Elect.Core" version="3.1.0"/>
         </dependencies>
     </metadata>
 
     <files>
         <file src="..\..\src\Notification\Elect.Notification.Esms\bin\Elect.Notification.Esms.dll"
-              target="lib\netstandard2.0"/>
+              target="lib\netstandard2.1"/>
         <file src="..\..\src\Notification\Elect.Notification.Esms\bin\Elect.Notification.Esms.pdb"
-              target="lib\netstandard2.0"/>
+              target="lib\netstandard2.1"/>
         <file src="..\..\src\Notification\Elect.Notification.Esms\bin\Elect.Notification.Esms.xml"
-              target="lib\netstandard2.0"/>
+              target="lib\netstandard2.1"/>
         <file src="..\..\src\Notification\Elect.Notification.Esms\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>
