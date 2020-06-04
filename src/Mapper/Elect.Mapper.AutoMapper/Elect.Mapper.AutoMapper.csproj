@@ -19,7 +19,7 @@
     </ItemGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Mapper</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Mapper\Elect.Mapper.AutoMapper.nuspec</NuspecFile>
     </PropertyGroup>

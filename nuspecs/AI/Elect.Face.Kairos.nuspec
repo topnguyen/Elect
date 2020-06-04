@@ -13,18 +13,18 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore face kairos elect topnguyen</tags>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="3.0.0"/>
+            <dependency id="Elect.Core" version="3.1.0"/>
         </dependencies>
     </metadata>
 
     <files>
-        <file src="..\..\src\AI\Elect.Face.Kairos\bin\Elect.Face.Kairos.dll" target="lib\netstandard2.0"/>
-        <file src="..\..\src\AI\Elect.Face.Kairos\bin\Elect.Face.Kairos.pdb" target="lib\netstandard2.0"/>
-        <file src="..\..\src\AI\Elect.Face.Kairos\bin\Elect.Face.Kairos.xml" target="lib\netstandard2.0"/>
+        <file src="..\..\src\AI\Elect.Face.Kairos\bin\Elect.Face.Kairos.dll" target="lib\netstandard2.1"/>
+        <file src="..\..\src\AI\Elect.Face.Kairos\bin\Elect.Face.Kairos.pdb" target="lib\netstandard2.1"/>
+        <file src="..\..\src\AI\Elect.Face.Kairos\bin\Elect.Face.Kairos.xml" target="lib\netstandard2.1"/>
         <file src="..\..\src\AI\Elect.Face.Kairos\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>

@@ -19,7 +19,7 @@
     </ItemGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Job</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Job\Elect.Job.Hangfire.nuspec</NuspecFile>
     </PropertyGroup>

@@ -13,7 +13,7 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore elect topnguyen</tags>
-        <version>3.0.2.1</version>
+        <version>3.1.0</version>
 
         <dependencies>
             <dependency id="System.Runtime.Loader" version="4.3.0"/>
@@ -29,14 +29,14 @@
             <dependency id="Flurl.Http" version="2.4.2"/>
             <dependency id="TimeZoneConverter" version="3.2.0"/>
             <dependency id="Enums.NET" version="3.0.3"/>
-            <dependency id="Humanizer.Core" version="2.8.11"/>
+            <dependency id="Humanizer.Core" version="2.8.26"/>
         </dependencies>
     </metadata>
 
     <files>
-        <file src="..\src\Elect.Core\bin\Elect.Core.dll" target="lib\netstandard2.0"/>
-        <file src="..\src\Elect.Core\bin\Elect.Core.pdb" target="lib\netstandard2.0"/>
-        <file src="..\src\Elect.Core\bin\Elect.Core.xml" target="lib\netstandard2.0"/>
+        <file src="..\src\Elect.Core\bin\Elect.Core.dll" target="lib\netstandard2.1"/>
+        <file src="..\src\Elect.Core\bin\Elect.Core.pdb" target="lib\netstandard2.1"/>
+        <file src="..\src\Elect.Core\bin\Elect.Core.xml" target="lib\netstandard2.1"/>
         <file src="..\src\Elect.Core\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>

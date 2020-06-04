@@ -62,7 +62,7 @@ namespace Elect.Jaeger
 
                 // Sampler
                 var samplerConfig = new Configuration.SamplerConfiguration(loggerFactory);
-                samplerConfig.WithManagerHostPort($"{electJaegerOptions.SamplerDomain}:{electJaegerOptions.SamplerPort}");
+                samplerConfig.WithSamplingEndpoint($"http://{electJaegerOptions.SamplerDomain}:{electJaegerOptions.SamplerPort}");
                 samplerConfig.WithType(ConstSampler.Type);
                 samplerConfig = electJaegerOptions.AfterSamplerConfig?.Invoke(samplerConfig) ?? samplerConfig;
 

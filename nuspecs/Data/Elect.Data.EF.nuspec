@@ -13,11 +13,11 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore efcore elect topnguyen</tags>
-        <version>3.0.2</version>
+        <version>3.1.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Core" version="3.0.2"/>
+            <dependency id="Elect.Core" version="3.1.0"/>
 
             <!-- 3rd Libraries -->
             <dependency id="Microsoft.EntityFrameworkCore" version="3.1.4"/>
@@ -27,9 +27,9 @@
     </metadata>
 
     <files>
-        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.dll" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.pdb" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.xml" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.dll" target="lib\netstandard2.1"/>
+        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.pdb" target="lib\netstandard2.1"/>
+        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.xml" target="lib\netstandard2.1"/>
         <file src="..\..\src\Data\Elect.Data.EF\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>

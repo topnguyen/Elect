@@ -13,11 +13,11 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore hangfire elect topnguyen</tags>
-        <version>3.0.4</version>
+        <version>3.1.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="3.0.4"/>
+            <dependency id="Elect.Web" version="3.1.0"/>
 
             <!-- 3rd Libraries -->
             <dependency id="HangFire" version="1.7.11" />
@@ -26,9 +26,9 @@
     </metadata>
 
     <files>
-        <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.dll" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.pdb" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.xml" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.dll" target="lib\netstandard2.1"/>
+        <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.pdb" target="lib\netstandard2.1"/>
+        <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.xml" target="lib\netstandard2.1"/>
         <file src="..\..\src\Job\Elect.Job.Hangfire\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>

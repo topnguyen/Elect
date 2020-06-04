@@ -13,11 +13,11 @@
         <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore swagger elect topnguyen</tags>
-        <version>3.0.4</version>
+        <version>3.1.0</version>
 
         <dependencies>
             <!-- Elect -->
-            <dependency id="Elect.Web" version="3.0.4"/>
+            <dependency id="Elect.Web" version="3.1.0"/>
 
             <!-- 3rd Libraries -->
             <dependency id="Microsoft.AspNetCore.Diagnostics.HealthChecks" version="2.2.0" />
@@ -26,9 +26,9 @@
     </metadata>
 
     <files>
-        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.dll" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.pdb" target="lib\netstandard2.0"/>
-        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.xml" target="lib\netstandard2.0"/>
+        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.dll" target="lib\netstandard2.1"/>
+        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.pdb" target="lib\netstandard2.1"/>
+        <file src="..\..\src\Web\Elect.Web.HealthCheck\bin\Elect.Web.HealthCheck.xml" target="lib\netstandard2.1"/>
         <file src="..\..\src\Web\Elect.Web.HealthCheck\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>
