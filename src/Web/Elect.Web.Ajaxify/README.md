@@ -13,11 +13,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- History.js -->
-<script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/jquery.history.min.js"></script>
-<!-- You can check the latest jquery.history.js via https://github.com/browserstate/history.js/ -->
+<script src="~/jquery.history.js"></script>
 
 <!-- Elect.Web.Ajaxify -->
-<script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/elect.web.ajaxify.js"></script>
+<script src="~/elect.web.ajaxify.min.js"></script>
 ```
 
 ## Usage
@@ -38,11 +37,10 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       
       <!-- History.js -->
-      <script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/jquery.history.min.js"></script>
-      <!-- You can check the latest jquery.history.js via https://github.com/browserstate/history.js/ -->
+      <script src="~/jquery.history.js"></script>
       
       <!-- Elect.Web.Ajaxify -->
-      <script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/elect.web.ajaxify.js"></script>
+      <script src="~/elect.web.ajaxify.min.js"></script>
       
       <!-- TODO Head Scripts -->
     </head>
@@ -103,11 +101,10 @@ else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         
         <!-- History.js -->
-        <script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/jquery.history.min.js"></script>
-        <!-- You can check the latest jquery.history.js via https://github.com/browserstate/history.js/ -->
+        <script src="~/jquery.history.js"></script>
         
         <!-- Elect.Web.Ajaxify -->
-        <script src="https://raw.githubusercontent.com/topnguyen/Elect/master/src/Web/Elect.Web.Ajaxify/elect.web.ajaxify.js"></script>
+        <script src="~/elect.web.ajaxify.min.js"></script>
         
         @{
             await Html.RenderPartialAsync("Assets/_TopScript").ConfigureAwait(true);
