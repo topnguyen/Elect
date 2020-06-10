@@ -2,6 +2,10 @@
 # Elect
 > Author [**Top Nguyen**](http://topnguyen.com)
 
+
+
+[![CircleCI](https://circleci.com/gh/topnguyen/Elect.svg?style=svg)](https://circleci.com/gh/topnguyen/Elect)
+
 ## Overview
 
 Number of mini libraries to make faster develop .NET Core system.
