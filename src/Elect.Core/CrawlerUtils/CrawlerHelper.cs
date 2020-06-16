@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AngleSharp;
+using AngleSharp.Io.Network;
 using Elect.Core.CrawlerUtils.Models;
 
 namespace Elect.Core.CrawlerUtils
@@ -40,8 +42,25 @@ namespace Elect.Core.CrawlerUtils
 
             try
             {
+                var httpClient = new HttpClient();
+                
+                httpClient
+                    .DefaultRequestHeaders
+                    .Add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36");
+                    
+                httpClient
+                    .DefaultRequestHeaders
+                    .Add("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
+                      
+                httpClient
+                    .DefaultRequestHeaders
+                    .Add("upgrade-insecure-requests", "1");
+                
+                var requester = new HttpClientRequester(httpClient);
+                
                 var browsingConfig = Configuration
                     .Default
+                    .WithRequester(requester)
                     .WithDefaultCookies()
                     .WithDefaultLoader();
 
