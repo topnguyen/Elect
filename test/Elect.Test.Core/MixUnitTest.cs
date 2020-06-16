@@ -104,10 +104,8 @@ namespace Elect.Test.Core
         public async Task CrawlMetadataTestCase()
         {
             var metadataModels = await CrawlerHelper.GetListMetadataAsync(
-                "https://topnguyen.com/", 
-                "http://notfound.xyz.notfound",
-                "invalid url",
-                "https://developers.facebook.com/docs/internationalization#locales"
+                "https://t.co/aLowoOrIQJ?amp=1"
+                // "https://factcheck.afp.com/these-photos-show-2012-passenger-plane-crash-myanmars-shan-state"
                 );
         }
     }
