@@ -89,6 +89,57 @@
                 Isolate Datetime Format 
             </summary>
         </member>
+        <member name="M:Elect.Core.CrawlerUtils.CrawlerHelper.GetListMetadataAsync(System.String[])">
+            <summary>
+                Get metadata tags of the destination websites
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Url">
+            <summary>
+                Meta Data og:url
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Title">
+            <summary>
+                Meta Data og:title
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Description">
+            <summary>
+                Meta Data og:description
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Image">
+            <summary>
+                Meta Data og:image
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Video">
+            <summary>
+                Meta Data og:video
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Type">
+            <summary>
+                Meta Data og:type
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Locale">
+            <summary>
+                Meta Data og:locale
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.SiteName">
+            <summary>
+                Meta Data og:site_name
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Author">
+            <summary>
+                Meta Data author
+            </summary>
+        </member>
         <member name="M:Elect.Core.DateTimeUtils.DateTimeExtensions.WithTimeZone(System.DateTime,System.String)">
             <param name="dateTime">  </param>
             <param name="timeZoneId"> Time Zone ID, See more: https://msdn.microsoft.com/en-us/library/gg154758.aspx </param>

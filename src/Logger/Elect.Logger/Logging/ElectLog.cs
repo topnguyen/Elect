@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Elect.Core.ConcurrentUtils;
-using Elect.Core.ObjUtils;
 using Elect.Logger.Logging.Models;
 using Elect.Logger.Models.Logging;
-using Humanizer;
 using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
@@ -241,7 +239,7 @@ namespace Elect.Logger.Logging
                 metadata = new ElectLogMetadataModel();
                 metadata.CreatedTime = metadata.LastUpdatedTime = DateTimeOffset.Now;
                 metadata.FileName = fileInfo.Name;
-                metadata.FileSize = fileInfo.Length.Bytes().Humanize();
+                metadata.FileSize = fileInfo.Length.ToString("N0") + " Bytes";
                 metadata.TotalLog = totalLog;
                 metadatas.InsertOne(metadata);
             }
@@ -249,7 +247,7 @@ namespace Elect.Logger.Logging
             {
                 metadata.LastUpdatedTime = DateTimeOffset.Now;
                 metadata.FileName = fileInfo.Name;
-                metadata.FileSize = fileInfo.Length.Bytes().Humanize();
+                metadata.FileSize = fileInfo.Length.ToString("N0") + " Bytes";
                 metadata.TotalLog = totalLog;
                 metadatas.UpdateOne(x => true, metadata);
             }

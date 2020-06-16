@@ -13,7 +13,7 @@
     </PropertyGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Logger</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Logger\Elect.AppMetrics.nuspec</NuspecFile>
     </PropertyGroup>

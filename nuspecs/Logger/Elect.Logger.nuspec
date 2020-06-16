@@ -10,20 +10,25 @@
         <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Logger/Elect.Logger</projectUrl>
         <license type="expression">MIT</license>
-        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore logger elect topnguyen</tags>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
 
         <dependencies>
-            <!-- Elect -->
-            <dependency id="Elect.Logger.Models" version="3.1.0"/>
+            <group targetFramework="netstandard2.1">
 
-            <!-- 3rd Libraries -->
-            <dependency id="JsonFlatFileDataStore" version="2.2.2"/>
+                <!-- Elect -->
+                <dependency id="Elect.Logger.Models" version="3.1.1"/>
+
+                <!-- 3rd Libraries -->
+                <dependency id="JsonFlatFileDataStore" version="2.2.2"/>
+
+            </group>
         </dependencies>
     </metadata>
     <files>
+        <file src="Logo.png" target=""/>
         <file src="..\..\src\Logger\Elect.Logger\bin\Elect.Logger.dll" target="lib\netstandard2.1"/>
         <file src="..\..\src\Logger\Elect.Logger\bin\Elect.Logger.pdb" target="lib\netstandard2.1"/>
         <file src="..\..\src\Logger\Elect.Logger\bin\Elect.Logger.xml" target="lib\netstandard2.1"/>

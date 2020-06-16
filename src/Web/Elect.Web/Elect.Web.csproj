@@ -19,7 +19,7 @@
     </ItemGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.nuspec</NuspecFile>
     </PropertyGroup>
@@ -41,6 +41,6 @@
 
         <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
 
-        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="3.1.4" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="3.1.5" />
     </ItemGroup>
 </Project>
