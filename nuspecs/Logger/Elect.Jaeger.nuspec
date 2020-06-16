@@ -10,21 +10,26 @@
         <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Jaeger/Elect.Jaeger</projectUrl>
         <license type="expression">MIT</license>
-        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore jaeger elect topnguyen</tags>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
 
         <dependencies>
-            <!-- Elect -->
-            <dependency id="Elect.Core" version="3.1.0"/>
+            <group targetFramework="netcoreapp3.1">
 
-            <!-- Jaeger -->
-            <dependency id="Jaeger" version="0.3.7" />
-            <dependency id="OpenTracing.Contrib.NetCore" version="0.6.2" />
+                <!-- Elect -->
+                <dependency id="Elect.Core" version="3.1.1"/>
+
+                <!-- Jaeger -->
+                <dependency id="Jaeger" version="0.3.7"/>
+                <dependency id="OpenTracing.Contrib.NetCore" version="0.6.2"/>
+
+            </group>
         </dependencies>
     </metadata>
     <files>
+        <file src="Logo.png" target=""/>
         <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.dll" target="lib\netcoreapp3.1"/>
         <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.pdb" target="lib\netcoreapp3.1"/>
         <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.xml" target="lib\netcoreapp3.1"/>

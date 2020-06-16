@@ -18,7 +18,6 @@
 #endregion License
 
 using Elect.Web.Swagger.Attributes;
-using Humanizer;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
@@ -63,7 +62,7 @@ namespace Elect.Web.Swagger.IOperationFilter
                 {
                     foreach (var operationTag in operation.Tags)
                     {
-                        var groupName = operationTag.Name.Humanize(LetterCasing.Title);
+                        var groupName = operationTag.Name;
 
                         listGroupNames.Add(groupName);
                     }

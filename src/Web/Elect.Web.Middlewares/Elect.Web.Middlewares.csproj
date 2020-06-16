@@ -21,7 +21,7 @@
     <PropertyGroup>
         <!-- Packable for .net core framework -->
         <IsPackable>true</IsPackable>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.Middlewares.nuspec</NuspecFile>
     </PropertyGroup>

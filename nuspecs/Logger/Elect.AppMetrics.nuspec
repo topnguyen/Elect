@@ -10,38 +10,43 @@
         <copyright>http://topnguyen.net</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/AppMetrics/Elect.AppMetrics</projectUrl>
         <license type="expression">MIT</license>
-        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore AppMetrics elect topnguyen</tags>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
 
         <dependencies>
-            <!-- Elect -->
-            <dependency id="Elect.Core" version="3.1.0"/>
+            <group targetFramework="netcoreapp3.1">
 
-            <!-- App Metrics -->
+                <!-- Elect -->
+                <dependency id="Elect.Core" version="3.1.1"/>
 
-            <!-- App Metrics - App Metrics ASP.NET Core is a an open-source web framework allowing you to record typical web metrics -->
-            <!-- and expose metrics and environment information over HTTP and more. -->
-            <dependency id="App.Metrics.AspNetCore" version="3.2.0" />
-            
-            <!-- App Metrics - App Metrics ASP.NET Core core components. -->
-            <dependency id="App.Metrics.AspNetCore.Core" version="3.2.0" />
+                <!-- App Metrics -->
 
-            <!-- App Metrics - App Metrics ASP.NET Core MVC features such as metric tracking on controller actions using attribute routes. -->
-            <dependency id="App.Metrics.AspNetCore.Mvc" version="3.2.0" />
+                <!-- App Metrics - App Metrics ASP.NET Core is a an open-source web framework allowing you to record typical web metrics -->
+                <!-- and expose metrics and environment information over HTTP and more. -->
+                <dependency id="App.Metrics.AspNetCore" version="3.2.0"/>
 
-            <!-- App Metrics - Format and Report via HTTP -->
-            <dependency id="App.Metrics.Reporting.Http" version="3.2.0" />
+                <!-- App Metrics - App Metrics ASP.NET Core core components. -->
+                <dependency id="App.Metrics.AspNetCore.Core" version="3.2.0"/>
 
-            <!-- App Metrics - Format and Report via InfluxDB -->
-            <dependency id="App.Metrics.Reporting.InfluxDB" version="3.2.0" />
+                <!-- App Metrics - App Metrics ASP.NET Core MVC features such as metric tracking on controller actions using attribute routes. -->
+                <dependency id="App.Metrics.AspNetCore.Mvc" version="3.2.0"/>
 
-            <!-- App Metrics - Format for Prometheus -->
-            <dependency id="App.Metrics.Formatters.Prometheus" version="3.2.0" />
+                <!-- App Metrics - Format and Report via HTTP -->
+                <dependency id="App.Metrics.Reporting.Http" version="3.2.0"/>
+
+                <!-- App Metrics - Format and Report via InfluxDB -->
+                <dependency id="App.Metrics.Reporting.InfluxDB" version="3.2.0"/>
+
+                <!-- App Metrics - Format for Prometheus -->
+                <dependency id="App.Metrics.Formatters.Prometheus" version="3.2.0"/>
+
+            </group>
         </dependencies>
     </metadata>
     <files>
+        <file src="Logo.png" target=""/>
         <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.dll" target="lib\netcoreapp3.1"/>
         <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.pdb" target="lib\netcoreapp3.1"/>
         <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.xml" target="lib\netcoreapp3.1"/>

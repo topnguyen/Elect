@@ -19,7 +19,7 @@
     </ItemGroup>
     <!-- Nuget -->
     <PropertyGroup>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Location</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Location\Elect.Location.Models.nuspec</NuspecFile>
     </PropertyGroup>

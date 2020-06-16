@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Elect.Core.CrawlerUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Elect.Test.Core
@@ -96,6 +98,17 @@ namespace Elect.Test.Core
             public string Id { get; set; }
 
             public List<OptionModel> OptionModels { get; set; } = new List<OptionModel>();
+        }
+
+        [TestMethod]
+        public async Task CrawlMetadataTestCase()
+        {
+            var metadataModels = await CrawlerHelper.GetListMetadataAsync(
+                "https://topnguyen.com/", 
+                "http://notfound.xyz.notfound",
+                "invalid url",
+                "https://developers.facebook.com/docs/internationalization#locales"
+                );
         }
     }
 }

@@ -10,22 +10,27 @@
         <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.HttpDetection</projectUrl>
         <license type="expression">MIT</license>
-        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore httpdetection elect topnguyen</tags>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
 
         <dependencies>
-            <!-- Elect -->
-            <dependency id="Elect.Web" version="3.1.0"/>
-            <dependency id="Elect.Data.IO" version="3.1.0"/>
+            <group targetFramework="netstandard2.1">
 
-            <!-- 3rd Libraries -->
-            <dependency id="MaxMind.GeoIP2" version="3.2.0"/>
+                <!-- Elect -->
+                <dependency id="Elect.Web" version="3.1.1"/>
+                <dependency id="Elect.Data.IO" version="3.1.1"/>
+
+                <!-- 3rd Libraries -->
+                <dependency id="MaxMind.GeoIP2" version="3.2.1"/>
+
+            </group>
         </dependencies>
     </metadata>
 
     <files>
+        <file src="Logo.png" target=""/>
         <file src="..\..\src\Web\Elect.Web.HttpDetection\bin\Elect.Web.HttpDetection.dll" target="lib\netstandard2.1"/>
         <file src="..\..\src\Web\Elect.Web.HttpDetection\bin\Elect.Web.HttpDetection.pdb" target="lib\netstandard2.1"/>
         <file src="..\..\src\Web\Elect.Web.HttpDetection\bin\Elect.Web.HttpDetection.xml" target="lib\netstandard2.1"/>

@@ -10,22 +10,27 @@
         <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Job/Elect.Job.Hangfire</projectUrl>
         <license type="expression">MIT</license>
-        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore hangfire elect topnguyen</tags>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
 
         <dependencies>
-            <!-- Elect -->
-            <dependency id="Elect.Web" version="3.1.0"/>
+            <group targetFramework="netstandard2.1">
 
-            <!-- 3rd Libraries -->
-            <dependency id="HangFire" version="1.7.11" />
-            <dependency id="Hangfire.MemoryStorage" version="1.7.0" />
+                <!-- Elect -->
+                <dependency id="Elect.Web" version="3.1.1"/>
+
+                <!-- 3rd Libraries -->
+                <dependency id="HangFire" version="1.7.11"/>
+                <dependency id="Hangfire.MemoryStorage" version="1.7.0"/>
+
+            </group>
         </dependencies>
     </metadata>
 
     <files>
+        <file src="Logo.png" target=""/>
         <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.dll" target="lib\netstandard2.1"/>
         <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.pdb" target="lib\netstandard2.1"/>
         <file src="..\..\src\Job\Elect.Job.Hangfire\bin\Elect.Job.Hangfire.xml" target="lib\netstandard2.1"/>

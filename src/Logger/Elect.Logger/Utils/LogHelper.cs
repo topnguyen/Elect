@@ -8,7 +8,6 @@ using Elect.Logger.Models.Logging;
 using Elect.Web.HttpUtils;
 using Elect.Web.Models;
 using Flurl;
-using Humanizer;
 using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -75,7 +74,7 @@ namespace Elect.Logger.Utils
                     {
                         TotalLog = data.Count,
                         FileName = fileInfo.Name,
-                        FileSize = fileInfo.Length.Bytes().Humanize(),
+                        FileSize = fileInfo.Length.ToString("N0") + " Bytes",
                         CreatedAt = meta.CreatedTime.ToString("yyyy-MM-dd hh:mm:ss tt zz"),
                         LastUpdatedAt = meta.LastUpdatedTime.ToString("yyyy-MM-dd hh:mm:ss tt zz"),
                         ViewDetailUrl = domain.AppendPathSegments(summaryUrl, fileInfo.Name),
@@ -283,7 +282,7 @@ namespace Elect.Logger.Utils
                         },
                         fileName = fileInfo.Name,
                         totalLog,
-                        fileSize = fileInfo.Length.Bytes().Humanize(),
+                        fileSize = fileInfo.Length.ToString("N0") + " Bytes",
                         createdAt = meta.CreatedTime.ToString("yyyy-MM-dd hh:mm:ss tt zz"),
                         lastUpdatedAt = meta.LastUpdatedTime.ToString("yyyy-MM-dd hh:mm:ss tt zz")
                     },

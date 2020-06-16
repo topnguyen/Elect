@@ -10,24 +10,29 @@
         <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Swagger</projectUrl>
         <license type="expression">MIT</license>
-        <iconUrl>https://raw.githubusercontent.com/topnguyen/Elect/master/Logo.png</iconUrl>
+        <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore swagger elect topnguyen</tags>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
 
         <dependencies>
-            <!-- Elect -->
-            <dependency id="Elect.Web" version="3.1.0"/>
-            <dependency id="Elect.Data.IO" version="3.1.0"/>
+            <group targetFramework="netstandard2.1">
 
-            <!-- 3rd Libraries -->
-            <dependency id="Swashbuckle.AspNetCore" version="5.4.1"/>
-            <dependency id="Swashbuckle.AspNetCore.Annotations" version="5.4.1"/>
-            <dependency id="Microsoft.OpenApi" version="1.1.4"/>
+                <!-- Elect -->
+                <dependency id="Elect.Web" version="3.1.1"/>
+                <dependency id="Elect.Data.IO" version="3.1.1"/>
+
+                <!-- 3rd Libraries -->
+                <dependency id="Swashbuckle.AspNetCore" version="5.4.1"/>
+                <dependency id="Swashbuckle.AspNetCore.Annotations" version="5.4.1"/>
+                <dependency id="Microsoft.OpenApi" version="1.1.4"/>
+
+            </group>
         </dependencies>
     </metadata>
 
     <files>
+        <file src="Logo.png" target=""/>
         <file src="..\..\src\Web\Elect.Web.Swagger\bin\Elect.Web.Swagger.dll" target="lib\netstandard2.1"/>
         <file src="..\..\src\Web\Elect.Web.Swagger\bin\Elect.Web.Swagger.pdb" target="lib\netstandard2.1"/>
         <file src="..\..\src\Web\Elect.Web.Swagger\bin\Elect.Web.Swagger.xml" target="lib\netstandard2.1"/>
