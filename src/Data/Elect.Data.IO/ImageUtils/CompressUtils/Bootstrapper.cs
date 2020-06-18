@@ -65,9 +65,12 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             // Create the folder for storing temporary images and tools.
 
-            WorkingFolder = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath, $"..{Path.DirectorySeparatorChar.ToString()}Elect_ImageCompressor{Path.DirectorySeparatorChar.ToString()}"));
+            WorkingFolder = Path.GetFullPath(Path.Combine(new Uri(assembly.Location).LocalPath,
+                $"..{Path.DirectorySeparatorChar.ToString()}Elect_ImageCompressor{Path.DirectorySeparatorChar.ToString()}"));
 
-            DirectoryInfo directoryInfo = new DirectoryInfo(Path.GetDirectoryName(WorkingFolder));
+            var workingFolder = Path.GetDirectoryName(WorkingFolder) ?? Directory.GetCurrentDirectory();
+            
+            DirectoryInfo directoryInfo = new DirectoryInfo(workingFolder);
 
             if (directoryInfo.Exists)
             {
@@ -86,10 +89,8 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 { CompressConstants.GifWorkerFileName, $"{librariesNameSpace}.{CompressConstants.GifWorkerFileName}" },
                 { CompressConstants.JpegLibFileName, $"{librariesNameSpace}.{CompressConstants.JpegLibFileName}" },
                 { CompressConstants.JpegWorkerFileName, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileName}" },
-                { CompressConstants.JpegOptimizeWorkerFileName, $"{librariesNameSpace}.{CompressConstants.JpegOptimizeWorkerFileName}" },
-                { CompressConstants.PngPrimaryWorkerFileName, $"{librariesNameSpace}.{CompressConstants.PngPrimaryWorkerFileName}" },
-                { CompressConstants.PngSecondaryWorkerFileName, $"{librariesNameSpace}.{CompressConstants.PngSecondaryWorkerFileName}" },
-                { CompressConstants.PngOptimizeWorkerFileName, $"{librariesNameSpace}.{CompressConstants.PngOptimizeWorkerFileName}" }
+                { CompressConstants.PngWorkerFileNameWindows, $"{librariesNameSpace}.{CompressConstants.PngWorkerFileNameWindows}" },
+                { CompressConstants.PngWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.PngWorkerFileNameLinux}" },
             };
 
             // Write the files out to the bin folder.

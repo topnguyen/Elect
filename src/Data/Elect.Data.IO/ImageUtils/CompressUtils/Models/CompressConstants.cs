@@ -28,19 +28,21 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
         public const int DefaultGifQualityPercent = 75;
 
         public const int TimeoutMillisecond = 600000;
+        
+        // PNG
+        
+        public const string PngWorkerFileNameWindows = "Elect_ImageCompressor_PNG.exe";
+        
+        public const string PngWorkerFileNameLinux = "Elect_ImageCompressor_PNG";
+        
+        // JPEG
+        
+        public const string JpegWorkerFileName = "Elect_ImageCompressor_JPEG.exe";
+        
+        public const string JpegLibFileName = "libjpeg-62.dll";
+        
+        // GIF
 
         public const string GifWorkerFileName = "Elect_ImageCompressor_GIF.exe";
-
-        public const string JpegLibFileName = "libjpeg-62.dll";
-
-        public const string JpegWorkerFileName = "Elect_ImageCompressor_JPEG.exe";
-
-        public const string JpegOptimizeWorkerFileName = "Elect_ImageCompressor_JPEG_Optimize.exe";
-
-        public const string PngPrimaryWorkerFileName = "Elect_ImageCompressor_PNG_Primary.exe";
-
-        public const string PngSecondaryWorkerFileName = "Elect_ImageCompressor_PNG_Secondary.exe";
-
-        public const string PngOptimizeWorkerFileName = "Elect_ImageCompressor_PNG_Optimize.exe";
     }
 }

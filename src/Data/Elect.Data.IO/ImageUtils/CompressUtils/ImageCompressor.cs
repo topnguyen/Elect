@@ -1,4 +1,5 @@
-﻿#region	License
+﻿#region License
+
 //--------------------------------------------------
 // <License>
 //     <Copyright> 2018 © Top Nguyen </Copyright>
@@ -15,6 +16,7 @@
 //     </Summary>
 // <License>
 //--------------------------------------------------
+
 #endregion License
 
 using Elect.Data.IO.FileUtils;
@@ -24,14 +26,14 @@ using EnumsNET;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace Elect.Data.IO.ImageUtils.CompressUtils
 {
     public class ImageCompressor
     {
-        #region Compress
-
         public static ImageCompressedModel Compress(string inputPath, string outputPath)
         {
             return Compress(inputPath, outputPath, 0, CompressConstants.TimeoutMillisecond);
@@ -54,25 +56,23 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             outputPath = PathHelper.GetFullPath(outputPath);
 
-            using (MemoryStream stream = new MemoryStream())
+            using var stream = new MemoryStream();
+
+            using var file = new FileStream(inputPath, FileMode.Open, FileAccess.Read)
             {
-                using (FileStream file = new FileStream(inputPath, FileMode.Open, FileAccess.Read))
-                {
-                    // Copy file to stream
+                Position = 0
+            };
 
-                    file.Position = 0;
+            // Copy file to stream
+            file.CopyTo(stream);
 
-                    file.CopyTo(stream);
+            // Do compress
+            var imageCompressedModel = Compress(stream, qualityPercent, timeout, inputPath);
 
-                    // Do compress
-                    ImageCompressedModel imageCompressedModel = Compress(stream, qualityPercent, timeout);
+            // Save to file
+            imageCompressedModel?.ResultFileStream.Save(outputPath);
 
-                    // Save to file
-                    imageCompressedModel?.ResultFileStream.Save(outputPath);
-
-                    return imageCompressedModel;
-                }
-            }
+            return imageCompressedModel;
         }
 
         public static ImageCompressedModel Compress(MemoryStream stream)
@@ -88,93 +88,59 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
         ///     Quality of image after compress, 0 is auto quality by image type
         /// </param>
         /// <param name="timeout">        timeout of process in millisecond </param>
+        /// <param name="fileName"></param>
         /// <returns> The Task containing processing information. </returns>
         /// <exception cref="ArgumentException"> stream is invalid image format </exception>
-        public static ImageCompressedModel Compress(MemoryStream stream, int qualityPercent, int timeout)
+        public static ImageCompressedModel Compress(MemoryStream stream, int qualityPercent, int timeout, string fileName = null)
         {
             // Create new stopwatch.
-            Stopwatch stopwatch = new Stopwatch();
+            var stopwatch = new Stopwatch();
 
-            bool isValidImage = Helper.TryGetCompressImageType(stream, out var imageType);
+            var isValidImage = Helper.TryGetCompressImageType(stream, out var imageType);
+            
+            // Try to get Image Type 1 more time by file name extension
+            if (!string.IsNullOrWhiteSpace(fileName) && (!isValidImage || imageType == CompressImageType.Invalid))
+            {
+                var fileExtension = Path.GetExtension(fileName);
+
+                isValidImage = Helper.TryGetCompressImageType(fileExtension, out imageType);
+            }
 
             if (!isValidImage || imageType == CompressImageType.Invalid)
             {
                 throw new ArgumentException($"{nameof(stream)} is invalid image format", nameof(stream));
             }
+            
+            // Compress Algorithm
+
+            var compressAlgorithm = Helper.GetCompressAlgorithm(imageType);
 
             // Handle default value
-            qualityPercent = Helper.GetQualityPercent(qualityPercent, imageType);
+
+            qualityPercent = Helper.GetQualityPercent(qualityPercent, compressAlgorithm);
 
             ImageCompressedModel imageCompressedModel = null;
 
-            // Begin timing.
+            // Begin timing
             stopwatch.Start();
 
             bool isCanOptimize = false;
 
-            switch (imageType)
+            // Select Compress Algorithm based on Image Type
+
+            while (qualityPercent > 0)
             {
-                case CompressImageType.Png:
-                    {
-                        while (qualityPercent > 0)
-                        {
-                            imageCompressedModel = Process(stream, CompressAlgorithm.PngPrimary, qualityPercent, timeout);
+                imageCompressedModel = Process(stream, compressAlgorithm, qualityPercent, timeout);
 
-                            if (imageCompressedModel == null || (imageCompressedModel.PercentSaving > 0 && imageCompressedModel.PercentSaving < 100))
-                            {
-                                isCanOptimize = true;
+                if (imageCompressedModel == null ||
+                    (imageCompressedModel.PercentSaving > 0 && imageCompressedModel.PercentSaving < 100))
+                {
+                    isCanOptimize = true;
 
-                                break;
-                            }
+                    break;
+                }
 
-                            qualityPercent -= 10;
-                        }
-
-                        // if quality percent < 0 then try compress by png secondary algorithm (this
-                        // algorithm not related to quality percent)
-                        if (!isCanOptimize)
-                        {
-                            imageCompressedModel = Process(stream, CompressAlgorithm.PngSecondary, qualityPercent, timeout);
-                        }
-
-                        break;
-                    }
-                case CompressImageType.Jpeg:
-                    {
-                        while (qualityPercent > 0)
-                        {
-                            imageCompressedModel = Process(stream, CompressAlgorithm.Jpeg, qualityPercent, timeout);
-
-                            if (imageCompressedModel == null || (imageCompressedModel.PercentSaving > 0 && imageCompressedModel.PercentSaving < 100))
-                            {
-                                isCanOptimize = true;
-
-                                break;
-                            }
-
-                            qualityPercent -= 10;
-                        }
-
-                        break;
-                    }
-                case CompressImageType.Gif:
-                    {
-                        while (qualityPercent > 0)
-                        {
-                            imageCompressedModel = Process(stream, CompressAlgorithm.Gif, qualityPercent, timeout);
-
-                            if (imageCompressedModel == null || (imageCompressedModel.PercentSaving > 0 && imageCompressedModel.PercentSaving < 100))
-                            {
-                                isCanOptimize = true;
-
-                                break;
-                            }
-
-                            qualityPercent -= 10;
-                        }
-
-                        break;
-                    }
+                qualityPercent -= 10;
             }
 
             // Stop timing.
@@ -213,12 +179,6 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             return imageCompressedModel;
         }
 
-        #endregion
-
-        #region Private Helper
-
-        #region Process
-
         /// <summary>
         ///     Runs the process to optimize the image. 
         /// </summary>
@@ -234,9 +194,9 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
         /// <exception cref="ArgumentException"> stream is invalid image format </exception>
         private static ImageCompressedModel Process(MemoryStream stream, CompressAlgorithm algorithm, int qualityPercent = 0, int timeout = 0)
         {
-            bool isValidImage = Helper.TryGetCompressImageType(stream, out var imageType);
+            var imageType = Helper.GetCompressImageType(algorithm);
 
-            if (!isValidImage || imageType == CompressImageType.Invalid)
+            if (imageType == CompressImageType.Invalid)
             {
                 throw new ArgumentException($"{nameof(stream)} is invalid image format", nameof(stream));
             }
@@ -284,11 +244,11 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             ImageCompressedModel imageCompressedModel = null;
 
-            var processInfo = new ProcessStartInfo("cmd")
+            var processInfo = new ProcessStartInfo
             {
+                Arguments =  GetArguments(filePath, out var fileTempPath, algorithm, qualityPercent),
+                
                 WorkingDirectory = Bootstrapper.Instance.WorkingFolder,
-
-                Arguments = GetArguments(filePath, out var fileTempPath, algorithm, qualityPercent),
 
                 UseShellExecute = false,
 
@@ -296,14 +256,34 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
                 WindowStyle = ProcessWindowStyle.Hidden,
 
-                RedirectStandardOutput = false,
+                RedirectStandardOutput = true,
 
-                RedirectStandardError = false
+                RedirectStandardError = true
             };
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                processInfo.FileName = "cmd";
+
+                // "/c" to allow " char in arguments
+                processInfo.Arguments = $"/c {processInfo.Arguments}";
+            }
+            else
+            {
+                processInfo.FileName = "/bin/bash";
+
+                var compressorFileName = processInfo.Arguments.Split(" ").FirstOrDefault();
+
+                var compressorFileAbsolutePath = Path.Combine(processInfo.WorkingDirectory, compressorFileName);
+                
+                // Change the file name in arguments to absolute path
+                processInfo.Arguments = "-c " + processInfo.Arguments.Replace(compressorFileName, compressorFileAbsolutePath);
+            }
 
             if (string.IsNullOrWhiteSpace(processInfo.Arguments))
             {
-                throw new ArgumentException($"Command {nameof(processInfo.Arguments)} is empty", $"{nameof(processInfo.Arguments)}");
+                throw new ArgumentException($"Command {nameof(processInfo.Arguments)} is empty",
+                    $"{nameof(processInfo.Arguments)}");
             }
 
             int elapsedTime = 0;
@@ -312,7 +292,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             try
             {
-                Process process = new Process
+                var process = new Process
                 {
                     StartInfo = processInfo,
                     EnableRaisingEvents = true
@@ -320,6 +300,19 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
                 process.Exited += (sender, args) =>
                 {
+#if DEBUG
+                    string standardOutput = process.StandardOutput.ReadLine();
+                    Console.WriteLine("-------------------------");
+                    Console.WriteLine("Process Standard Output: ");
+                    Console.WriteLine(standardOutput);
+                    Console.WriteLine("-------------------------");
+                    
+                    string standardError = process.StandardError.ReadLine();
+                    Console.WriteLine("------------------------");
+                    Console.WriteLine("Process Standard Error: ");
+                    Console.WriteLine(standardError);
+                    Console.WriteLine("-------------------------");
+#endif
                     // Done compress
                     imageCompressedModel = new ImageCompressedModel(filePath, fileSizeBeforeCompress);
                     process.Dispose();
@@ -347,7 +340,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 {
                     break;
                 }
-
+                
                 Thread.Sleep(sleepAmount);
             }
 
@@ -356,10 +349,9 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             {
                 FileHelper.WriteToStream(filePath, imageCompressedModel.ResultFileStream);
             }
+
             return imageCompressedModel;
         }
-
-        #endregion Process
 
         #region Command
 
@@ -384,46 +376,47 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             switch (algorithm)
             {
-                case CompressAlgorithm.Gif:
-                    {
-                        return GetGifCommand(filePath);
-                    }
+                case CompressAlgorithm.Png:
+                {
+                    return GetPngCommand(filePath, qualityPercent);
+                }
                 case CompressAlgorithm.Jpeg:
-                    {
-                        return GetJpegCommand(filePath, out fileTempPath, qualityPercent);
-                    }
-                case CompressAlgorithm.PngPrimary:
-                    {
-                        return GetPngPrimaryCommand(filePath, qualityPercent);
-                    }
+                {
+                    return GetJpegCommand(filePath, out fileTempPath, qualityPercent);
+                }
+                case CompressAlgorithm.Gif:
+                {
+                    return GetGifCommand(filePath);
+                }
+                default:
+                    throw new NotSupportedException("The Compress Algorithm not support yet");
             }
-
-            return GetPngSecondaryCommand(filePath);
         }
 
-        /// <summary>
-        ///     GIF Command 
-        /// </summary>
-        /// <param name="filePath">      </param>
-        /// <param name="qualityPercent"></param>
-        /// <returns></returns>
-        private static string GetGifCommand(string filePath, int qualityPercent = 0)
+        // Png
+        private static string GetPngCommand(string filePath, int qualityPercent = 0)
         {
             if (qualityPercent == 0)
             {
-                qualityPercent = CompressConstants.DefaultGifQualityPercent;
+                qualityPercent = CompressConstants.DefaultPngQualityPercent;
             }
 
-            int qualityLossyPercent = (100 - qualityPercent) * 2;
+            // First, use pnguqnat to compress
+            int maxQuality = qualityPercent + 15;
 
-            // https://www.lcdf.org/gifsicle/man.html https://linux.die.net/man/1/gifsicle + lossy (https://github.com/pornel/giflossy/releases)
-            // --use-col=web Adjust --lossy argument to suit quality (30 is very light compression,
-            // 200 is heavy).
-            var cmd = $"/c {CompressConstants.GifWorkerFileName} --no-warnings --no-app-extensions --no-comments --no-extensions --no-names -optimize=03 --lossy={qualityLossyPercent} \"{filePath}\" --output=\"{filePath}\"";
+            // max is 99
+            maxQuality = maxQuality > 99 ? 99 : maxQuality;
 
-            return cmd;
+            var pngCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? CompressConstants.PngWorkerFileNameWindows
+                : CompressConstants.PngWorkerFileNameLinux;
+
+            string pngCompressCommand =
+                $"{pngCompressor} --speed 1 --quality={qualityPercent}-{maxQuality} --skip-if-larger --strip --output \"{filePath}\" --force \"{filePath}\"";
+
+            return pngCompressCommand;
         }
-
+        
         // Jpeg
         private static string GetJpegCommand(string filePath, out string fileTempPath, int qualityPercent = 0)
         {
@@ -440,64 +433,36 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             FileHelper.WriteToStream(filePath, streamTemp);
 
-            fileTempPath = FileHelper.CreateTempFile(streamTemp, CompressImageType.Jpeg.AsString(EnumFormat.Description));
+            fileTempPath =
+                FileHelper.CreateTempFile(streamTemp, CompressImageType.Jpeg.AsString(EnumFormat.Description));
 
             // cjpeg after optimize => copy temp file to source file
-            string jpegCommand = $"{CompressConstants.JpegWorkerFileName} -optimize -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
+            string jpegCommand =
+                $"{CompressConstants.JpegWorkerFileName} -optimize -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
 
-            // jpegoptim lossless not lossy
-            string jpegOptimizeCommand = GetJpegOptimizeCommand(filePath);
-
-            return $"/c {jpegCommand} & {jpegOptimizeCommand}";
+            return jpegCommand;
         }
 
-        private static string GetJpegOptimizeCommand(string filePath)
-        {
-            // jpegoptim lossless not lossy
-            string jpegOptimizeCommand = $"{CompressConstants.JpegOptimizeWorkerFileName} -o -q -p --force --strip-all --strip-iptc --strip-icc --all-progressive \"{filePath}\"";
-            return jpegOptimizeCommand;
-        }
-
-        // Png
-        private static string GetPngPrimaryCommand(string filePath, int qualityPercent = 0)
+        // GIF
+        private static string GetGifCommand(string filePath, int qualityPercent = 0)
         {
             if (qualityPercent == 0)
             {
-                qualityPercent = CompressConstants.DefaultPngQualityPercent;
+                qualityPercent = CompressConstants.DefaultGifQualityPercent;
             }
 
-            // First, use pnguqnat to compress
-            int maxQuality = qualityPercent + 15;
+            int qualityLossyPercent = (100 - qualityPercent) * 2;
 
-            // max is 99
-            maxQuality = maxQuality > 99 ? 99 : maxQuality;
-            string pngPrimaryCommand = $"{CompressConstants.PngPrimaryWorkerFileName} --speed 1 --quality={qualityPercent}-{maxQuality} --skip-if-larger --strip --output \"{filePath}\" --force \"{filePath}\"";
+            // https://www.lcdf.org/gifsicle/man.html https://linux.die.net/man/1/gifsicle
+            // + lossy (https://github.com/pornel/giflossy/releases)
+            // --use-col=web Adjust --lossy argument to suit quality (30 is very light compression,
+            // 200 is heavy).
+            var cmd =
+                $"/c {CompressConstants.GifWorkerFileName} --no-warnings --no-app-extensions --no-comments --no-extensions --no-names -optimize=03 --lossy={qualityLossyPercent} \"{filePath}\" --output=\"{filePath}\"";
 
-            // Then use pngout to optimize Recompress by pngout to make maximum recompress
-            var pngOptimizeCommand = GetPngOptimizeCommand(filePath);
-            return $"/c {pngPrimaryCommand} & {pngOptimizeCommand}";
-        }
-
-        private static string GetPngSecondaryCommand(string filePath)
-        {
-            // First, use pngqn to compress view more detail http://pngnq.sourceforge.net/
-            string pngSecondaryCommand = $"{CompressConstants.PngSecondaryWorkerFileName} -f -s1 -e.png -n 256 \"{filePath}\"";
-
-            // Then use pngout to optimize Recompress by pngout to make maximum recompress
-            var pngOptimizeCommand = GetPngOptimizeCommand(filePath);
-            return $"/c {pngSecondaryCommand} & {pngOptimizeCommand}";
-        }
-
-        private static string GetPngOptimizeCommand(string filePath)
-        {
-            // view more detail http://www.advsys.net/ken/util/pngout.htm use s2 f5 to make fastest
-            // with quality (s0 and f0 take minutes)
-            string pngOptimize = $"{CompressConstants.PngOptimizeWorkerFileName} \"{filePath}\" \"{filePath}\" /s2 /f5 /y /q";
-            return pngOptimize;
+            return cmd;
         }
 
         #endregion Command
-
-        #endregion
     }
 }

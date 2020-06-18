@@ -24,10 +24,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
     internal enum CompressAlgorithm
     {
         [Description("Png lossless algorithm")]
-        PngPrimary,
-
-        [Description("Png 256 bit color algorithm")]
-        PngSecondary,
+        Png,
 
         [Description("Jpeg optmize algorithm")]
         Jpeg,
