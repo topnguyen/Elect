@@ -265,25 +265,27 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             {
                 processInfo.FileName = "cmd";
 
-                // "/c" to allow " char in arguments
+                // "/c "  to allow " char in arguments
                 processInfo.Arguments = $"/c {processInfo.Arguments}";
             }
             else
             {
                 processInfo.FileName = "/bin/bash";
-
-                var compressorFileName = processInfo.Arguments.Split(" ").FirstOrDefault();
+                
+                var compressorFileName = processInfo.Arguments.Split(" ").First();
 
                 var compressorFileAbsolutePath = Path.Combine(processInfo.WorkingDirectory, compressorFileName);
                 
                 // Change the file name in arguments to absolute path
-                processInfo.Arguments = "-c " + processInfo.Arguments.Replace(compressorFileName, compressorFileAbsolutePath);
+                processInfo.Arguments = processInfo.Arguments.Replace(compressorFileName, compressorFileAbsolutePath);
+
+                // "-c " to allow " char in arguments
+                processInfo.Arguments = $"-c \"{processInfo.Arguments}\"";
             }
 
             if (string.IsNullOrWhiteSpace(processInfo.Arguments))
             {
-                throw new ArgumentException($"Command {nameof(processInfo.Arguments)} is empty",
-                    $"{nameof(processInfo.Arguments)}");
+                throw new ArgumentException($"Command {nameof(processInfo.Arguments)} is empty", $"{nameof(processInfo.Arguments)}");
             }
 
             int elapsedTime = 0;
@@ -297,22 +299,25 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                     StartInfo = processInfo,
                     EnableRaisingEvents = true
                 };
-
+                
                 process.Exited += (sender, args) =>
                 {
-#if DEBUG
-                    string standardOutput = process.StandardOutput.ReadLine();
+                    #if DEBUG
+                    
+                    string standardOutput = process.StandardOutput.ReadToEnd();
                     Console.WriteLine("-------------------------");
                     Console.WriteLine("Process Standard Output: ");
                     Console.WriteLine(standardOutput);
                     Console.WriteLine("-------------------------");
                     
-                    string standardError = process.StandardError.ReadLine();
+                    string standardError = process.StandardError.ReadToEnd();
                     Console.WriteLine("------------------------");
                     Console.WriteLine("Process Standard Error: ");
                     Console.WriteLine(standardError);
                     Console.WriteLine("-------------------------");
-#endif
+                    
+                    #endif
+                    
                     // Done compress
                     imageCompressedModel = new ImageCompressedModel(filePath, fileSizeBeforeCompress);
                     process.Dispose();
@@ -411,8 +416,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 ? CompressConstants.PngWorkerFileNameWindows
                 : CompressConstants.PngWorkerFileNameLinux;
 
-            string pngCompressCommand =
-                $"{pngCompressor} --speed 1 --quality={qualityPercent}-{maxQuality} --skip-if-larger --strip --output \"{filePath}\" --force \"{filePath}\"";
+            string pngCompressCommand = $"{pngCompressor} --speed 1 --quality={qualityPercent}-{maxQuality} --skip-if-larger --strip --output \"{filePath}\" --force \"{filePath}\"";
 
             return pngCompressCommand;
         }
@@ -437,8 +441,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 FileHelper.CreateTempFile(streamTemp, CompressImageType.Jpeg.AsString(EnumFormat.Description));
 
             // cjpeg after optimize => copy temp file to source file
-            string jpegCommand =
-                $"{CompressConstants.JpegWorkerFileName} -optimize -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
+            string jpegCommand = $"{CompressConstants.JpegWorkerFileName} -optimize -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
 
             return jpegCommand;
         }
@@ -457,10 +460,9 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             // + lossy (https://github.com/pornel/giflossy/releases)
             // --use-col=web Adjust --lossy argument to suit quality (30 is very light compression,
             // 200 is heavy).
-            var cmd =
-                $"/c {CompressConstants.GifWorkerFileName} --no-warnings --no-app-extensions --no-comments --no-extensions --no-names -optimize=03 --lossy={qualityLossyPercent} \"{filePath}\" --output=\"{filePath}\"";
+            var gifCommand = $"{CompressConstants.GifWorkerFileName} --no-warnings --no-app-extensions --no-comments --no-extensions --no-names -optimize=03 --lossy={qualityLossyPercent} \"{filePath}\" --output=\"{filePath}\"";
 
-            return cmd;
+            return gifCommand;
         }
 
         #endregion Command
