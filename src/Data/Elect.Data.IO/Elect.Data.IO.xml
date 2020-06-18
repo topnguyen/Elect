@@ -169,20 +169,19 @@
             <param name="filePath"></param>
             <example cref="T:System.ArgumentException"></example>
         </member>
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetCompressAlgorithm(Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressImageType)">
+            <summary>
+                Min 0 - max 99 
+            </summary>
+            <param name="compressImageType"></param>
+            <returns></returns>
+        </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetQualityPercent(System.Int32,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm)">
             <summary>
                 Min 0 - max 99 
             </summary>
             <param name="qualityPercent"></param>
             <param name="algorithm">     </param>
-            <returns></returns>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetQualityPercent(System.Int32,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressImageType)">
-            <summary>
-                Min 0 - max 99 
-            </summary>
-            <param name="qualityPercent">   </param>
-            <param name="compressImageType"></param>
             <returns></returns>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.String,System.String,System.Int32,System.Int32)">
@@ -198,7 +197,7 @@
             <returns> The Task containing processing information. </returns>
             <exception cref="T:System.ArgumentException"> input path is invalid image format </exception>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.IO.MemoryStream,System.Int32,System.Int32)">
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.IO.MemoryStream,System.Int32,System.Int32,System.String)">
             <summary>
                 Runs the process to optimize the image. 
             </summary>
@@ -207,6 +206,7 @@
                 Quality of image after compress, 0 is auto quality by image type
             </param>
             <param name="timeout">        timeout of process in millisecond </param>
+            <param name="fileName"></param>
             <returns> The Task containing processing information. </returns>
             <exception cref="T:System.ArgumentException"> stream is invalid image format </exception>
         </member>
@@ -257,14 +257,6 @@
             <param name="qualityPercent"> Quality PercentSaving - Process </param>
             <returns> The <see cref="T:System.String" /> containing the correct command arguments. </returns>
             <exception cref="T:System.ArgumentException"> file path is invalid </exception>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.GetGifCommand(System.String,System.Int32)">
-            <summary>
-                GIF Command 
-            </summary>
-            <param name="filePath">      </param>
-            <param name="qualityPercent"></param>
-            <returns></returns>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.#ctor(System.String,System.Int64)">
             <inheritdoc />
