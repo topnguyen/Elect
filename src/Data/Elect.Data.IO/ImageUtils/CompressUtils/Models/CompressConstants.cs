@@ -21,7 +21,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
 {
     internal class CompressConstants
     {
-        public const int DefaultPngQualityPercent = 90;
+        public const int DefaultPngQualityPercent = 75;
 
         public const int DefaultJpegQualityPercent = 75;
 
