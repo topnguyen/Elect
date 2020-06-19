@@ -17,6 +17,13 @@
             <param name="path"></param>
             <returns></returns>
         </member>
+        <member name="M:Elect.Data.IO.FileUtils.FileHelper.CreateIfNotExist(Mono.Unix.FileAccessPermissions,System.String[])">
+            <summary>
+                Create file then set permission (only apply for Linux platform)
+            </summary>
+            <param name="permissions"></param>
+            <param name="paths"></param>
+        </member>
         <member name="M:Elect.Data.IO.FileUtils.FileHelper.CreateTempFile(System.String)">
             <summary>
                 Create an empty temp file with extension. 
@@ -245,12 +252,12 @@
                 Some security policies don't allow execution of programs in this way
             </exception>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.GetArguments(System.String,System.String@,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32)">
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.GetArguments(System.String,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Collections.Generic.List{System.String}@,System.Int32)">
             <summary>
                 Gets the correct arguments to pass to the compressor 
             </summary>
             <param name="filePath">       The source file. </param>
-            <param name="fileTempPath">  </param>
+            <param name="fileTempPaths">  </param>
             <param name="algorithm">     
                 Default is auto depend on file extension, others is force algorithm
             </param>
