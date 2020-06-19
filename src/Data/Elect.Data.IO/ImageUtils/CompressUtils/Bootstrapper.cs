@@ -75,12 +75,11 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 // JPEG
                 
                 { CompressConstants.JpegWorkerFileNameWindows, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileNameWindows}" },
-                { CompressConstants.JpegLibFileName, $"{librariesNameSpace}.{CompressConstants.JpegLibFileName}" },
-                { CompressConstants.JpegWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileNameLinux}" },
+                { CompressConstants.JpegLibFileNameWindows, $"{librariesNameSpace}.{CompressConstants.JpegLibFileNameWindows}" },
                 
                 // JPEG Lossless
                 
-                { CompressConstants.JpegLosslessWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileNameLinux}" },
+                { CompressConstants.JpegLosslessWorkerFileNameWindows, $"{librariesNameSpace}.{CompressConstants.JpegLosslessWorkerFileNameWindows}" },
                 
                 // PNG
                 
@@ -143,7 +142,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             // Write the files out to the bin folder.
             foreach (KeyValuePair<string, string> resource in resources)
             {
-                using (Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource.Value))
+                using (var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource.Value))
                 {
                     if (resourceStream == null)
                     {
@@ -152,7 +151,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
                     var toolFullPath = Path.Combine(WorkingFolder, resource.Key);
 
-                    using (FileStream fileStream = File.OpenWrite(toolFullPath))
+                    using (var fileStream = File.OpenWrite(toolFullPath))
                     {
                         resourceStream.CopyTo(fileStream);
                     }
