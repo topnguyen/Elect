@@ -13,7 +13,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore io elect topnguyen</tags>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">
@@ -22,6 +22,7 @@
                 <dependency id="Elect.Core" version="3.1.1"/>
 
                 <!-- 3rd Libraries -->
+                <dependency id="Mono.Posix.NETStandard" version="1.0.0" />
                 <dependency id="System.Drawing.Common" version="4.7.0"/>
                 <dependency id="SixLabors.ImageSharp" version="1.0.0-beta0006"/>
                 <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta0006"/>
