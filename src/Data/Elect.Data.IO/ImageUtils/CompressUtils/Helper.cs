@@ -52,17 +52,19 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 return false;
             }
 
-            if (extension == ".png")
-            {
-                compressImageType = CompressImageType.Png;
-
-                return true;
-            }
+            extension = extension.ToLowerInvariant();
             
             if (extension == ".jpg" || extension == ".jpeg")
             {
                 compressImageType = CompressImageType.Jpeg;
                 
+                return true;
+            }
+
+            if (extension == ".png")
+            {
+                compressImageType = CompressImageType.Png;
+
                 return true;
             }
             
@@ -121,13 +123,13 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
         {
             var compressImageType = CompressImageType.Invalid;
 
-            if (compressAlgorithm == CompressAlgorithm.Png)
-            {
-                compressImageType = CompressImageType.Png;
-            }
-            else if (compressAlgorithm == CompressAlgorithm.Jpeg)
+            if (compressAlgorithm == CompressAlgorithm.Jpeg)
             {
                 compressImageType = CompressImageType.Jpeg;
+            }
+            else if (compressAlgorithm == CompressAlgorithm.Png)
+            {
+                compressImageType = CompressImageType.Png;
             }
             else if (compressAlgorithm == CompressAlgorithm.Gif)
             {
@@ -144,15 +146,15 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
         /// <returns></returns>
         internal static CompressAlgorithm GetCompressAlgorithm(CompressImageType compressImageType)
         {
-            var compressAlgorithm = CompressAlgorithm.Png;
-
-            if (compressImageType == CompressImageType.Png)
-            {
-                compressAlgorithm = CompressAlgorithm.Png;
-            }
-            else if (compressImageType == CompressImageType.Jpeg)
+            var compressAlgorithm = CompressAlgorithm.Jpeg;
+            
+            if (compressImageType == CompressImageType.Jpeg)
             {
                 compressAlgorithm = CompressAlgorithm.Jpeg;
+            }
+            else if (compressImageType == CompressImageType.Png)
+            {
+                compressAlgorithm = CompressAlgorithm.Png;
             }
             else if (compressImageType == CompressImageType.Gif)
             {
@@ -176,14 +178,14 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             {
                 switch (algorithm)
                 {
-                    case CompressAlgorithm.Png:
-                        qualityPercent = CompressConstants.DefaultPngQualityPercent;
-                        break;
-
                     case CompressAlgorithm.Jpeg:
                         qualityPercent = CompressConstants.DefaultJpegQualityPercent;
                         break;
 
+                    case CompressAlgorithm.Png:
+                        qualityPercent = CompressConstants.DefaultPngQualityPercent;
+                        break;
+                  
                     case CompressAlgorithm.Gif:
                         qualityPercent = CompressConstants.DefaultGifQualityPercent;
                         break;

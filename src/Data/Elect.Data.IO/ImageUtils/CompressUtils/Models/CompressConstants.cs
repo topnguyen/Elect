@@ -37,12 +37,21 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
         
         // JPEG
         
-        public const string JpegWorkerFileName = "Elect_ImageCompressor_JPEG.exe";
-        
+        public const string JpegWorkerFileNameWindows = "Elect_ImageCompressor_JPEG.exe";
         public const string JpegLibFileName = "libjpeg-62.dll";
         
+        public const string JpegWorkerFileNameLinux = "Elect_ImageCompressor_JPEG";
+        
+        // JPEG Lossless
+        
+        public const string JpegLosslessWorkerFileNameWindows = "Elect_ImageCompressor_JPEG_Lossless.exe";
+        
+        public const string JpegLosslessWorkerFileNameLinux = "Elect_ImageCompressor_JPEG_Lossless";
+
         // GIF
 
-        public const string GifWorkerFileName = "Elect_ImageCompressor_GIF.exe";
+        public const string GifWorkerFileNameWindows = "Elect_ImageCompressor_GIF.exe";
+        
+        public const string GifWorkerFileNameLinux = "Elect_ImageCompressor_GIF";
     }
 }

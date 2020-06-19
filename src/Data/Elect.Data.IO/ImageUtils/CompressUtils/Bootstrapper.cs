@@ -21,7 +21,10 @@ using Elect.Data.IO.ImageUtils.CompressUtils.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using Elect.Data.IO.FileUtils;
+using Mono.Unix;
 
 namespace Elect.Data.IO.ImageUtils.CompressUtils
 {
@@ -62,6 +65,33 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             // normal registration channel.
 
             Assembly assembly = Assembly.GetExecutingAssembly();
+            
+            // Load tools
+            var librariesNameSpace = $"{nameof(Elect)}.{nameof(Data)}.{nameof(IO)}.{nameof(ImageUtils)}.{nameof(CompressUtils)}.Tools";
+
+            // Get the resources and copy them across.
+            Dictionary<string, string> resources = new Dictionary<string, string>
+            {
+                // JPEG
+                
+                { CompressConstants.JpegWorkerFileNameWindows, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileNameWindows}" },
+                { CompressConstants.JpegLibFileName, $"{librariesNameSpace}.{CompressConstants.JpegLibFileName}" },
+                { CompressConstants.JpegWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileNameLinux}" },
+                
+                // JPEG Lossless
+                
+                { CompressConstants.JpegLosslessWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileNameLinux}" },
+                
+                // PNG
+                
+                { CompressConstants.PngWorkerFileNameWindows, $"{librariesNameSpace}.{CompressConstants.PngWorkerFileNameWindows}" },
+                { CompressConstants.PngWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.PngWorkerFileNameLinux}" },
+
+                // GIF
+                
+                { CompressConstants.GifWorkerFileNameWindows, $"{librariesNameSpace}.{CompressConstants.GifWorkerFileNameWindows}" },
+                { CompressConstants.GifWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.GifWorkerFileNameLinux}" },
+            };
 
             // Create the folder for storing temporary images and tools.
 
@@ -70,28 +100,45 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             var workingFolder = Path.GetDirectoryName(WorkingFolder) ?? Directory.GetCurrentDirectory();
             
-            DirectoryInfo directoryInfo = new DirectoryInfo(workingFolder);
-
+            var directoryInfo = new DirectoryInfo(workingFolder);
+            
+            // Check all needed resources in directory or not
+            var isAllResourceInFolder = false;
+            
             if (directoryInfo.Exists)
             {
-                // Already have folder mean already copied tools before => return
+                var files = Directory.GetFiles(workingFolder);
+                
+                var filesName = files.Select(Path.GetFileName).ToList();
+
+                foreach (var resourceFileName in resources.Keys)
+                {
+                    if (filesName.All(x => x != resourceFileName))
+                    {
+                        isAllResourceInFolder = false;
+                        
+                        break;
+                    }
+
+                    isAllResourceInFolder = true;
+                }
+                
+                if (!isAllResourceInFolder)
+                {
+                    Directory.Delete(workingFolder, true);
+                }
+            }
+            
+            // Delete Directory if any required resources missing
+            
+            if (isAllResourceInFolder)
+            {
+                // If not missing any resource, then return (no need to copy file again)
+                
                 return;
             }
-
+            
             directoryInfo.Create();
-
-            // Load tools
-            var librariesNameSpace = $"{nameof(Elect)}.{nameof(Data)}.{nameof(IO)}.{nameof(ImageUtils)}.{nameof(CompressUtils)}.Tools";
-
-            // Get the resources and copy them across.
-            Dictionary<string, string> resources = new Dictionary<string, string>
-            {
-                { CompressConstants.GifWorkerFileName, $"{librariesNameSpace}.{CompressConstants.GifWorkerFileName}" },
-                { CompressConstants.JpegLibFileName, $"{librariesNameSpace}.{CompressConstants.JpegLibFileName}" },
-                { CompressConstants.JpegWorkerFileName, $"{librariesNameSpace}.{CompressConstants.JpegWorkerFileName}" },
-                { CompressConstants.PngWorkerFileNameWindows, $"{librariesNameSpace}.{CompressConstants.PngWorkerFileNameWindows}" },
-                { CompressConstants.PngWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.PngWorkerFileNameLinux}" },
-            };
 
             // Write the files out to the bin folder.
             foreach (KeyValuePair<string, string> resource in resources)
@@ -109,6 +156,8 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                     {
                         resourceStream.CopyTo(fileStream);
                     }
+
+                    FileHelper.SetLinuxFilePermission(FileAccessPermissions.AllPermissions, toolFullPath);
                 }
             }
         }

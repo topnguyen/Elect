@@ -22,12 +22,14 @@ namespace Elect.Test.Data.IO
         [TestMethod]
         public void Compress()
         {
-            var input1Path = "/Users/top/Downloads/Test File 1.png";
             var input2Path = "/Users/top/Downloads/Test File 2.png";
             var input3Path = "/Users/top/Downloads/Test File 3.JPG";
             var input4Path = "/Users/top/Downloads/Test File 4.JPG";
+            var input5Path = "/Users/top/Downloads/Test File 5.gif";
 
-            ImageCompressor.Compress(input1Path, "/Users/top/Downloads/Test File 1 Compress.png");
+            // ImageCompressor.Compress(input2Path, "/Users/top/Downloads/Test File 2 Compressed.png");
+            ImageCompressor.Compress(input3Path, "/Users/top/Downloads/Test File 3 Compressed.JPG");
+            // ImageCompressor.Compress(input5Path, "/Users/top/Downloads/Test File 5 Compressed.gif");
         }
     }
 }

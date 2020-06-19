@@ -22,7 +22,9 @@ using Elect.Core.StringUtils;
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using Mono.Unix;
 
 namespace Elect.Data.IO.FileUtils
 {
@@ -40,6 +42,33 @@ namespace Elect.Data.IO.FileUtils
                 {
                     File.Create(fullPath);
                 }
+            }
+        }    
+        
+        /// <summary>
+        ///     Create file then set permission (only apply for Linux platform)
+        /// </summary>
+        /// <param name="permissions"></param>
+        /// <param name="paths"></param>
+        public static void CreateIfNotExist(FileAccessPermissions permissions, params string[] paths)
+        {
+            CreateIfNotExist(paths);
+            
+            SetLinuxFilePermission(FileAccessPermissions.AllPermissions, paths);
+        }
+
+        public static void SetLinuxFilePermission(FileAccessPermissions permissions, params string[] paths)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return;
+            }
+            
+            foreach (var path in paths)
+            {
+                var unixFileInfo = new UnixFileInfo(path) {FileAccessPermissions = permissions};
+                
+                unixFileInfo.Refresh();
             }
         }
 
@@ -84,7 +113,7 @@ namespace Elect.Data.IO.FileUtils
 
             return filePath;
         }
-
+        
         /// <summary>
         ///     Delete file if exist and can delete 
         /// </summary>

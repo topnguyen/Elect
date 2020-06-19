@@ -24,9 +24,9 @@ using Elect.Data.IO.ImageUtils.CompressUtils.Models;
 using Elect.Data.IO.StreamUtils;
 using EnumsNET;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -246,7 +246,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             var processInfo = new ProcessStartInfo
             {
-                Arguments =  GetArguments(filePath, out var fileTempPath, algorithm, qualityPercent),
+                Arguments =  GetArguments(filePath, algorithm, out var fileTempPaths, qualityPercent),
                 
                 WorkingDirectory = Bootstrapper.Instance.WorkingFolder,
 
@@ -272,13 +272,6 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             {
                 processInfo.FileName = "/bin/bash";
                 
-                var compressorFileName = processInfo.Arguments.Split(" ").First();
-
-                var compressorFileAbsolutePath = Path.Combine(processInfo.WorkingDirectory, compressorFileName);
-                
-                // Change the file name in arguments to absolute path
-                processInfo.Arguments = processInfo.Arguments.Replace(compressorFileName, compressorFileAbsolutePath);
-
                 // "-c " to allow " char in arguments
                 processInfo.Arguments = $"-c \"{processInfo.Arguments}\"";
             }
@@ -321,10 +314,14 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                     // Done compress
                     imageCompressedModel = new ImageCompressedModel(filePath, fileSizeBeforeCompress);
                     process.Dispose();
-                    eventHandled = true;
 
-                    // Remove temp file if have
-                    FileHelper.SafeDelete(fileTempPath);
+                    // Remove temp files if have
+                    foreach (var fileTempPath in fileTempPaths)
+                    {
+                        FileHelper.SafeDelete(fileTempPath);
+                    }
+                    
+                    eventHandled = true;
                 };
 
                 process.Start();
@@ -364,16 +361,16 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
         ///     Gets the correct arguments to pass to the compressor 
         /// </summary>
         /// <param name="filePath">       The source file. </param>
-        /// <param name="fileTempPath">  </param>
+        /// <param name="fileTempPaths">  </param>
         /// <param name="algorithm">     
         ///     Default is auto depend on file extension, others is force algorithm
         /// </param>
         /// <param name="qualityPercent"> Quality PercentSaving - Process </param>
         /// <returns> The <see cref="string" /> containing the correct command arguments. </returns>
         /// <exception cref="ArgumentException"> file path is invalid </exception>
-        private static string GetArguments(string filePath, out string fileTempPath, CompressAlgorithm algorithm, int qualityPercent = 0)
+        private static string GetArguments(string filePath, CompressAlgorithm algorithm, out List<string> fileTempPaths, int qualityPercent = 0)
         {
-            fileTempPath = null;
+            fileTempPaths = new List<string>();
 
             Helper.CheckFilePath(filePath);
 
@@ -381,13 +378,20 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             switch (algorithm)
             {
+                case CompressAlgorithm.Jpeg:
+                {
+                    var jpegCommand = GetJpegCommand(filePath, out var fileJpegTempPath, qualityPercent);
+                    fileTempPaths.Add(fileJpegTempPath);
+                    
+                    var jpegLosslessCommand = GetJpegLosslessCommand(filePath, out var fileJpegLossessTempPath);
+                    fileTempPaths.Add(fileJpegLossessTempPath);
+                    
+                    return $"{jpegCommand} && {jpegLosslessCommand}";
+
+                }
                 case CompressAlgorithm.Png:
                 {
                     return GetPngCommand(filePath, qualityPercent);
-                }
-                case CompressAlgorithm.Jpeg:
-                {
-                    return GetJpegCommand(filePath, out fileTempPath, qualityPercent);
                 }
                 case CompressAlgorithm.Gif:
                 {
@@ -396,6 +400,59 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 default:
                     throw new NotSupportedException("The Compress Algorithm not support yet");
             }
+        }
+        
+        // Jpeg
+        private static string GetJpegCommand(string filePath, out string fileTempPath, int qualityPercent = 0)
+        {
+            if (qualityPercent == 0)
+            {
+                qualityPercent = CompressConstants.DefaultJpegQualityPercent;
+            }
+
+            // Idea: create temp file from source file then optimize temp file and copy to source
+            // file (because cjpeg not support override input file) temporary file will be delete
+            // after process exit
+
+            var streamTemp = new MemoryStream();
+            FileHelper.WriteToStream(filePath, streamTemp);
+            fileTempPath = FileHelper.CreateTempFile(streamTemp, CompressImageType.Jpeg.AsString(EnumFormat.Description));
+
+            // cjpeg - lossy, after optimize => copy temp file to source file
+            
+            var jpegCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? CompressConstants.JpegWorkerFileNameWindows
+                : CompressConstants.JpegWorkerFileNameLinux;
+            
+            jpegCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegCompressor);
+
+            string jpegCommand = $"{jpegCompressor} -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
+
+            return jpegCommand;
+        }
+        
+        // Jpeg Lossless
+        private static string GetJpegLosslessCommand(string filePath, out string fileTempPath)
+        {
+            // Idea: create temp file from source file then optimize temp file and copy to source
+            // file (because cjpeg not support override input file) temporary file will be delete
+            // after process exit
+
+            var streamTemp = new MemoryStream();
+            FileHelper.WriteToStream(filePath, streamTemp);
+            fileTempPath = FileHelper.CreateTempFile(streamTemp, CompressImageType.Jpeg.AsString(EnumFormat.Description));
+
+            // jpegtran - lossless, after optimize => copy temp file to source file
+            
+            var jpegLosslessCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? CompressConstants.JpegLosslessWorkerFileNameWindows
+                : CompressConstants.JpegLosslessWorkerFileNameLinux;
+
+            jpegLosslessCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegLosslessCompressor);
+
+            string jpegLosslessCommand = $"{jpegLosslessCompressor} -optimize -progressive -copy none \"{fileTempPath}\" > \"{filePath}\"";
+            
+            return jpegLosslessCommand;
         }
 
         // Png
@@ -416,34 +473,11 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 ? CompressConstants.PngWorkerFileNameWindows
                 : CompressConstants.PngWorkerFileNameLinux;
 
+            pngCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, pngCompressor);
+
             string pngCompressCommand = $"{pngCompressor} --speed 1 --quality={qualityPercent}-{maxQuality} --skip-if-larger --strip --output \"{filePath}\" --force \"{filePath}\"";
 
             return pngCompressCommand;
-        }
-        
-        // Jpeg
-        private static string GetJpegCommand(string filePath, out string fileTempPath, int qualityPercent = 0)
-        {
-            if (qualityPercent == 0)
-            {
-                qualityPercent = CompressConstants.DefaultJpegQualityPercent;
-            }
-
-            // Idea: create temp file from source file then optimize temp file and copy to source
-            // file (because cjpeg not support override input file) temporary file will be delete
-            // after process exit
-
-            MemoryStream streamTemp = new MemoryStream();
-
-            FileHelper.WriteToStream(filePath, streamTemp);
-
-            fileTempPath =
-                FileHelper.CreateTempFile(streamTemp, CompressImageType.Jpeg.AsString(EnumFormat.Description));
-
-            // cjpeg after optimize => copy temp file to source file
-            string jpegCommand = $"{CompressConstants.JpegWorkerFileName} -optimize -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
-
-            return jpegCommand;
         }
 
         // GIF
@@ -456,11 +490,16 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             int qualityLossyPercent = (100 - qualityPercent) * 2;
 
-            // https://www.lcdf.org/gifsicle/man.html https://linux.die.net/man/1/gifsicle
-            // + lossy (https://github.com/pornel/giflossy/releases)
-            // --use-col=web Adjust --lossy argument to suit quality (30 is very light compression,
-            // 200 is heavy).
-            var gifCommand = $"{CompressConstants.GifWorkerFileName} --no-warnings --no-app-extensions --no-comments --no-extensions --no-names -optimize=03 --lossy={qualityLossyPercent} \"{filePath}\" --output=\"{filePath}\"";
+            // https://www.lcdf.org/gifsicle/man.html + lossy (https://github.com/pornel/giflossy/releases)
+            // --use-col=web Adjust --lossy argument to suit quality (30 is very light compression, 200 is heavy).
+            
+            var gifCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? CompressConstants.GifWorkerFileNameWindows
+                : CompressConstants.GifWorkerFileNameLinux;
+            
+            gifCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, gifCompressor);
+
+            var gifCommand = $"{gifCompressor} --no-warnings --no-app-extensions --no-comments --no-extensions --no-names -optimize=03 --lossy={qualityLossyPercent} \"{filePath}\" --output=\"{filePath}\"";
 
             return gifCommand;
         }
