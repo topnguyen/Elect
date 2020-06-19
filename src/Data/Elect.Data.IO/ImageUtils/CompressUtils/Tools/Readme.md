@@ -6,8 +6,7 @@
     + Description: Lossy for JPEG
     + Website: https://github.com/mozilla/mozjpeg
         * https://imagecompressor.io/blog/mozjpeg-guide/
-    + Version: 3.3.1
-    + MacOS package: Elect_ImageCompressor_JPEG
+    + Version: 3.3.1 x64
     + Windows package: Elect_ImageCompressor_JPEG.exe
 
 - Elect_ImageCompressor_JPEG_Lossless
@@ -15,12 +14,8 @@
     + Description: Lossless for JPEG
     + Website: https://github.com/mozilla/mozjpeg
         * https://imagecompressor.io/blog/mozjpeg-guide/
-    + Version: 3.3.1
-    + MacOS package: Elect_ImageCompressor_JPEG_Lossless
+    + Version: 3.3.1 x64
     + Windows package: Elect_ImageCompressor_JPEG_Lossless.exe
-
-#### Lossy the JPEG image then Lossless
-
 ---
 
 - Elect_ImageCompressor_PNG
