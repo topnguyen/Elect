@@ -387,7 +387,6 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                     fileTempPaths.Add(fileJpegLossessTempPath);
                     
                     return $"{jpegCommand} && {jpegLosslessCommand}";
-
                 }
                 case CompressAlgorithm.Png:
                 {
@@ -420,26 +419,28 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             // cjpeg - lossy, after optimize => copy temp file to source file
             
-            // var jpegCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-            //     ? CompressConstants.JpegWorkerFileNameWindows
-            //     : CompressConstants.JpegWorkerFileNameLinux;
+            var jpegCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? CompressConstants.JpegWorkerFileNameWindows
+                : CompressConstants.JpegLosslessWorkerFileNameLinux; // MacOs / Linux use same Lossless and Lossy JPEG Tool
 
-            // Windows
+            jpegCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegCompressor);
+
+            string jpegCommand = string.Empty;
             
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                var jpegCompressor = CompressConstants.JpegWorkerFileNameWindows;
+                // Windows
 
-                jpegCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegCompressor);
-
-                string jpegCommand = $"{jpegCompressor} -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
-
-                return jpegCommand;  
+                jpegCommand = $"{jpegCompressor} -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
+            }
+            else
+            {
+                // MacOS / Linux
+            
+                jpegCommand = $"{jpegCompressor} -m{qualityPercent} \"{filePath}\"";
             }
             
-            // MacOS / Linux
-            
-            return string.Empty;
+            return jpegCommand;  
         }
         
         // Jpeg Lossless
@@ -452,8 +453,6 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             var streamTemp = new MemoryStream();
             FileHelper.WriteToStream(filePath, streamTemp);
             fileTempPath = FileHelper.CreateTempFile(streamTemp, CompressImageType.Jpeg.AsString(EnumFormat.Description));
-
-            // jpegtran - lossless, after optimize => copy temp file to source file
             
             var jpegLosslessCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
                 ? CompressConstants.JpegLosslessWorkerFileNameWindows
@@ -467,15 +466,18 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
+                // jpegtran - lossless, after optimize => copy temp file to source file
+
                 jpegLosslessCommand = $"{jpegLosslessCompressor} -optimize -progressive -copy none \"{fileTempPath}\" > \"{filePath}\"";
             
-                return jpegLosslessCommand;
             }
+            else
+            {
+                // MacOS / Linux
             
-            // MacOS / Linux
-            
-            jpegLosslessCommand = $"{jpegLosslessCompressor} \"{filePath}\"";
-            
+                jpegLosslessCommand = $"{jpegLosslessCompressor} \"{filePath}\"";   
+            }
+
             return jpegLosslessCommand;
         }
 
