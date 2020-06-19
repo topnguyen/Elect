@@ -13,20 +13,18 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore swagger elect topnguyen</tags>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">
 
                 <!-- Elect -->
                 <dependency id="Elect.Web" version="3.1.1"/>
-                <dependency id="Elect.Data.IO" version="3.1.1"/>
+                <dependency id="Elect.Data.IO" version="3.1.2"/>
 
                 <!-- 3rd Libraries -->
-                <dependency id="Swashbuckle.AspNetCore" version="5.4.1"/>
-                <dependency id="Swashbuckle.AspNetCore.Annotations" version="5.4.1"/>
-                <dependency id="Microsoft.OpenApi" version="1.1.4"/>
-
+                <dependency id="Swashbuckle.AspNetCore" version="5.5.0"/>
+                <dependency id="Swashbuckle.AspNetCore.Annotations" version="5.5.0"/>
             </group>
         </dependencies>
     </metadata>

@@ -13,7 +13,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore middlewares elect topnguyen</tags>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
 
         <dependencies>
             <group targetFramework="netcoreapp3.1">
@@ -23,7 +23,7 @@
 
                 <!-- 3rd Libraries -->
                 <dependency id="WebMarkupMin.AspNetCore2" version="2.8.3"/>
-                <dependency id="WebMarkupMin.NUglify" version="2.8.1"/>
+                <dependency id="WebMarkupMin.NUglify" version="2.8.4"/>
 
             </group>
         </dependencies>
