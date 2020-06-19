@@ -43,6 +43,8 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
         // JPEG Lossless
         
         public const string JpegLosslessWorkerFileNameWindows = "Elect_ImageCompressor_JPEG_Lossless.exe";
+        
+        public const string JpegLosslessWorkerFileNameLinux = "Elect_ImageCompressor_JPEG_Lossless";
 
         // GIF
 

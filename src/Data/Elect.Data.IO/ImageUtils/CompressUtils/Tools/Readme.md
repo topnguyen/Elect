@@ -16,6 +16,15 @@
         * https://imagecompressor.io/blog/mozjpeg-guide/
     + Version: 3.3.1 x64
     + Windows package: Elect_ImageCompressor_JPEG_Lossless.exe
+    
+- Elect_ImageCompressor_JPEG_Lossless
+    + Original Tool: jpegoptim
+    + Description: Lossless for JPEG
+    + Website: https://github.com/tjko/jpegoptim
+        * https://www.tecmint.com/optimize-and-compress-jpeg-or-png-batch-images-linux-commandline
+    + Version: 1.4.6
+    + MacOS package: Elect_ImageCompressor_JPEG_Lossless
+    
 ---
 
 - Elect_ImageCompressor_PNG
