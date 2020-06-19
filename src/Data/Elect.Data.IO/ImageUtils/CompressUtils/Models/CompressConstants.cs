@@ -21,14 +21,14 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
 {
     internal class CompressConstants
     {
-        public const int DefaultPngQualityPercent = 75;
+        public const int DefaultPngQualityPercent = 62;
 
-        public const int DefaultJpegQualityPercent = 75;
+        public const int DefaultJpegQualityPercent = 62;
 
-        public const int DefaultGifQualityPercent = 75;
+        public const int DefaultGifQualityPercent = 62;
 
         public const int TimeoutMillisecond = 600000;
-        
+
         // PNG
         
         public const string PngWorkerFileNameWindows = "Elect_ImageCompressor_PNG.exe";
