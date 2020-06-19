@@ -80,6 +80,7 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 // JPEG Lossless
                 
                 { CompressConstants.JpegLosslessWorkerFileNameWindows, $"{librariesNameSpace}.{CompressConstants.JpegLosslessWorkerFileNameWindows}" },
+                { CompressConstants.JpegLosslessWorkerFileNameLinux, $"{librariesNameSpace}.{CompressConstants.JpegLosslessWorkerFileNameLinux}" },
                 
                 // PNG
                 

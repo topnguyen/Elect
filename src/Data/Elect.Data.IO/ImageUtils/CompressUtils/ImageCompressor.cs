@@ -424,13 +424,22 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             //     ? CompressConstants.JpegWorkerFileNameWindows
             //     : CompressConstants.JpegWorkerFileNameLinux;
 
-            var jpegCompressor = CompressConstants.JpegWorkerFileNameWindows;
+            // Windows
+            
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                var jpegCompressor = CompressConstants.JpegWorkerFileNameWindows;
 
                 jpegCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegCompressor);
 
-            string jpegCommand = $"{jpegCompressor} -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
+                string jpegCommand = $"{jpegCompressor} -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
 
-            return jpegCommand;
+                return jpegCommand;  
+            }
+            
+            // MacOS / Linux
+            
+            return string.Empty;
         }
         
         // Jpeg Lossless
@@ -446,15 +455,26 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             // jpegtran - lossless, after optimize => copy temp file to source file
             
-            // var jpegLosslessCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-            //     ? CompressConstants.JpegLosslessWorkerFileNameWindows
-            //     : CompressConstants.JpegLosslessWorkerFileNameLinux;
-
-            var jpegLosslessCompressor = CompressConstants.JpegLosslessWorkerFileNameWindows;
+            var jpegLosslessCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? CompressConstants.JpegLosslessWorkerFileNameWindows
+                : CompressConstants.JpegLosslessWorkerFileNameLinux;
 
             jpegLosslessCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegLosslessCompressor);
 
-            string jpegLosslessCommand = $"{jpegLosslessCompressor} -optimize -progressive -copy none \"{fileTempPath}\" > \"{filePath}\"";
+            string jpegLosslessCommand = string.Empty;
+
+            // Windows
+            
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                jpegLosslessCommand = $"{jpegLosslessCompressor} -optimize -progressive -copy none \"{fileTempPath}\" > \"{filePath}\"";
+            
+                return jpegLosslessCommand;
+            }
+            
+            // MacOS / Linux
+            
+            jpegLosslessCommand = $"{jpegLosslessCompressor} \"{filePath}\"";
             
             return jpegLosslessCommand;
         }
@@ -479,6 +499,8 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             pngCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, pngCompressor);
 
+            // Windows and MacOS / Linux
+
             string pngCompressCommand = $"{pngCompressor} --speed 1 --quality={qualityPercent}-{maxQuality} --skip-if-larger --strip --output \"{filePath}\" --force \"{filePath}\"";
 
             return pngCompressCommand;
@@ -502,6 +524,8 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 : CompressConstants.GifWorkerFileNameLinux;
             
             gifCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, gifCompressor);
+
+            // Windows and MacOS / Linux
 
             var gifCommand = $"{gifCompressor} --no-warnings --no-app-extensions --no-comments --no-extensions --no-names -optimize=03 --lossy={qualityLossyPercent} \"{filePath}\" --output=\"{filePath}\"";
 
