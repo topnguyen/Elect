@@ -420,11 +420,13 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             // cjpeg - lossy, after optimize => copy temp file to source file
             
-            var jpegCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                ? CompressConstants.JpegWorkerFileNameWindows
-                : CompressConstants.JpegWorkerFileNameLinux;
-            
-            jpegCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegCompressor);
+            // var jpegCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            //     ? CompressConstants.JpegWorkerFileNameWindows
+            //     : CompressConstants.JpegWorkerFileNameLinux;
+
+            var jpegCompressor = CompressConstants.JpegWorkerFileNameWindows;
+
+                jpegCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegCompressor);
 
             string jpegCommand = $"{jpegCompressor} -quality {qualityPercent} \"{fileTempPath}\" > \"{filePath}\"";
 
@@ -444,9 +446,11 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
 
             // jpegtran - lossless, after optimize => copy temp file to source file
             
-            var jpegLosslessCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                ? CompressConstants.JpegLosslessWorkerFileNameWindows
-                : CompressConstants.JpegLosslessWorkerFileNameLinux;
+            // var jpegLosslessCompressor = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            //     ? CompressConstants.JpegLosslessWorkerFileNameWindows
+            //     : CompressConstants.JpegLosslessWorkerFileNameLinux;
+
+            var jpegLosslessCompressor = CompressConstants.JpegLosslessWorkerFileNameWindows;
 
             jpegLosslessCompressor =  Path.Combine(Bootstrapper.Instance.WorkingFolder, jpegLosslessCompressor);
 
