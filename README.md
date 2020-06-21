@@ -32,8 +32,8 @@ You can add **My Nuget Server** to have fastest packages update
             </packageSources>
           <packageSourceCredentials>
                   <github>
-                      <add key="Username" value="topnguyen" />
-                      <add key="ClearTextPassword" value="e862bf16840d5f818e081fcce66aff7d54f22dab" />
+                      <add key="Username" value="<your github username>" />
+                      <add key="ClearTextPassword" value="<your github token to read packages>" />
                   </github>
           </packageSourceCredentials>
         </configuration>
