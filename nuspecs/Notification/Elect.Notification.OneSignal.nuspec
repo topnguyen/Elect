@@ -10,6 +10,7 @@
         <copyright>http://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Notification/Elect.Notification.OneSignal
         </projectUrl>
+        <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
         <license type="expression">MIT</license>
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
