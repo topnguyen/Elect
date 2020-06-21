@@ -19,9 +19,8 @@ Number of mini libraries to make faster develop .NET Core system.
 
 All Elect modules publish in [nuget.org](https://www.nuget.org/packages?q=TopNguyen).
 
-You can add **My Nuget Server** to have fastest packages update 
+You can add **Github Packages** to have fastest packages update 
  - No waste time for nuget index package
- - Full nuget.org mirror packages
  - Add **`<add key="Top Nguyen" value="https://nuget.pkg.github.com/topnguyen/index.json"/>`** with **Github Authentication** ([see more](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-dotnet-cli-for-use-with-github-packages#authenticating-to-github-packages)) to NuGet.Config
     + If you not have NuGet.Config, just create the file named "NuGet.Config" in your root project folder with below content 
         ```xml
