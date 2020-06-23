@@ -14,7 +14,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore io elect topnguyen</tags>
-        <version>3.1.2</version>
+        <version>3.1.3</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">
@@ -24,6 +24,7 @@
 
                 <!-- 3rd Libraries -->
                 <dependency id="Mono.Posix.NETStandard" version="1.0.0" />
+                <dependency id="runtime.osx.10.10-x64.CoreCompat.System.Drawing" version="5.8.64" />
                 <dependency id="System.Drawing.Common" version="4.7.0"/>
                 <dependency id="SixLabors.ImageSharp" version="1.0.0-beta0006"/>
                 <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta0006"/>
