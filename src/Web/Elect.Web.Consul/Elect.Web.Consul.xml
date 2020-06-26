@@ -30,19 +30,19 @@
                 Default is Application Name
             </summary>
         </member>
-        <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.CheckTimeOutInSeconds">
+        <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.CheckTimeOut">
             <summary>
                Timeout to check healthy 
             </summary>
         </member>
-        <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.CheckInternalInSeconds">
+        <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.CheckInternal">
             <summary>
                 Interval to check healthy
             </summary>
         </member>
         <member name="F:Elect.Web.Consul.Models.ElectConsulOptions.DeregisterDeadServiceAfter">
             <summary>
-                Deregister dead service after a period, default is 5 mins.
+                Deregister dead service after a period, default is 24 hours.
             </summary>
         </member>
         <member name="P:Elect.Web.Consul.Models.ElectConsulOptions.IsFabioEnable">

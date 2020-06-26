@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using App.Metrics;
 using App.Metrics.AspNetCore;
 using App.Metrics.AspNetCore.Endpoints;
@@ -7,6 +8,7 @@ using Elect.AppMetrics.Models;
 using Elect.Core.ActionUtils;
 using Elect.Core.ConfigUtils;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.AppMetrics
@@ -45,25 +47,25 @@ namespace Elect.AppMetrics
         ///     Add App Metrics automatically by Elect
         /// </summary>
         /// <param name="webHostBuilder"></param>
-        /// <param name="configurationSectionKey">Section Name/Key in the Configuration File</param>
+        /// <param name="sectionName">Section Name/Key in the Configuration File</param>
         /// <returns></returns>
         public static IWebHostBuilder UseElectAppMetrics(this IWebHostBuilder webHostBuilder,
-            string configurationSectionKey)
+            string sectionName = "ElectAppMetrics")
         {
             if (_isInitialized)
             {
                 return webHostBuilder;
             }
-            
+
             // Config App Metric
-            
+
             webHostBuilder = webHostBuilder.ConfigureMetricsWithDefaults((context, builder) =>
             {
                 var metricsOptions = _configuration;
 
-                if (!string.IsNullOrWhiteSpace(configurationSectionKey))
+                if (!string.IsNullOrWhiteSpace(sectionName))
                 {
-                    metricsOptions = context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                    metricsOptions = GetElectAppMetricsOptions(context.Configuration, sectionName);
                 }
 
                 // Config
@@ -116,25 +118,25 @@ namespace Elect.AppMetrics
                 {
                     builder.Report.ToInfluxDb(o =>
                     {
-                        o.InfluxDb.Database = metricsOptions.InFluxDatabase;
+                        o.InfluxDb.Database = metricsOptions.InfluxDatabase;
                         o.InfluxDb.BaseUri = new Uri(metricsOptions.InfluxEndpoint);
-                        o.InfluxDb.UserName = metricsOptions.InFluxUserName;
-                        o.InfluxDb.Password = metricsOptions.InFluxPassword;
-                        o.FlushInterval = TimeSpan.FromSeconds(metricsOptions.InFluxInterval);
+                        o.InfluxDb.UserName = metricsOptions.InfluxUserName;
+                        o.InfluxDb.Password = metricsOptions.InfluxPassword;
+                        o.FlushInterval = TimeSpan.FromSeconds(metricsOptions.InfluxInterval);
                         o.InfluxDb.CreateDataBaseIfNotExists = true;
                     });
                 }
             });
-            
+
             // Config Enable Endpoint, Formatter
 
             webHostBuilder = webHostBuilder.UseMetrics((context, options) =>
             {
                 var metricsOptions = _configuration;
 
-                if (!string.IsNullOrWhiteSpace(configurationSectionKey))
+                if (!string.IsNullOrWhiteSpace(sectionName))
                 {
-                    metricsOptions = context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                    metricsOptions = GetElectAppMetricsOptions(context.Configuration, sectionName);
                 }
 
                 // Check App Metric Enable/Disable
@@ -184,17 +186,16 @@ namespace Elect.AppMetrics
                     }
                 };
             });
-            
+
             // Config Endpoint
-            
+
             webHostBuilder = webHostBuilder.ConfigureServices((context, services) =>
             {
                 var metricsOptions = _configuration;
 
-                if (!string.IsNullOrWhiteSpace(configurationSectionKey))
+                if (!string.IsNullOrWhiteSpace(sectionName))
                 {
-                    metricsOptions =
-                        context.Configuration.GetSection<ElectAppMetricsOptions>(configurationSectionKey);
+                    metricsOptions = GetElectAppMetricsOptions(context.Configuration, sectionName);
                 }
 
                 // Check App Metric Enable/Disable
@@ -217,6 +218,69 @@ namespace Elect.AppMetrics
             });
 
             return webHostBuilder;
+        }
+
+        private static ElectAppMetricsOptions GetElectAppMetricsOptions(IConfiguration configuration,
+            string sectionName = "ElectAppMetrics")
+        {
+            var electAppMetricsOptions = new ElectAppMetricsOptions();
+
+            electAppMetricsOptions.IsEnable =
+                configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electAppMetricsOptions.IsEnable)}");
+
+            electAppMetricsOptions.IsEnableMetricsEndpoint =
+                configuration.GetValueByEnv<bool>(
+                    $"{sectionName}:{nameof(electAppMetricsOptions.IsEnableMetricsEndpoint)}");
+
+            electAppMetricsOptions.MetricsEndpoint =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electAppMetricsOptions.MetricsEndpoint)}");
+
+            electAppMetricsOptions.IsEnableMetricsTextEndpoint =
+                configuration.GetValueByEnv<bool>(
+                    $"{sectionName}:{nameof(electAppMetricsOptions.IsEnableMetricsTextEndpoint)}");
+
+            electAppMetricsOptions.MetricsTextEndpoint =
+                configuration.GetValueByEnv<string>(
+                    $"{sectionName}:{nameof(electAppMetricsOptions.MetricsTextEndpoint)}");
+
+            electAppMetricsOptions.IsEnableEnvEndpoint =
+                configuration.GetValueByEnv<bool>(
+                    $"{sectionName}:{nameof(electAppMetricsOptions.IsEnableEnvEndpoint)}");
+
+            electAppMetricsOptions.EnvEndpoint =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electAppMetricsOptions.EnvEndpoint)}");
+
+            electAppMetricsOptions.IsInfluxEnabled =
+                configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electAppMetricsOptions.IsInfluxEnabled)}");
+
+            electAppMetricsOptions.InfluxEndpoint =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electAppMetricsOptions.InfluxEndpoint)}");
+            
+            electAppMetricsOptions.InfluxDatabase =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electAppMetricsOptions.InfluxDatabase)}");
+            
+            electAppMetricsOptions.InfluxUserName =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electAppMetricsOptions.InfluxUserName)}");
+            
+            electAppMetricsOptions.InfluxPassword =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electAppMetricsOptions.InfluxPassword)}");
+            
+            electAppMetricsOptions.InfluxInterval =
+                configuration.GetValueByEnv<int>($"{sectionName}:{nameof(electAppMetricsOptions.InfluxInterval)}");
+
+            electAppMetricsOptions.IsPrometheusEnabled =
+                configuration.GetValueByEnv<bool>(
+                    $"{sectionName}:{nameof(electAppMetricsOptions.IsPrometheusEnabled)}");
+
+            electAppMetricsOptions.PrometheusFormatter =
+                configuration.GetValueByEnv<ElectPrometheusFormatter>(
+                    $"{sectionName}:{nameof(electAppMetricsOptions.PrometheusFormatter)}");
+            
+            electAppMetricsOptions.Tags =
+                configuration.GetValueByEnv<Dictionary<string, string>>(
+                    $"{sectionName}:{nameof(electAppMetricsOptions.PrometheusFormatter)}");
+
+            return electAppMetricsOptions;
         }
     }
 }

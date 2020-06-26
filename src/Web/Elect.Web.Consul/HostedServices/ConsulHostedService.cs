@@ -85,8 +85,8 @@ namespace Elect.Web.Consul.HostedServices
                 Check = new AgentServiceCheck()
                 {
                     HTTP = $"{uri.Scheme}://{uri.Host}:{uri.Port}/{healthCheckPath}",
-                    Timeout = _consulConfig.CheckTimeOutInSeconds,
-                    Interval = _consulConfig.CheckInternalInSeconds,
+                    Timeout = _consulConfig.CheckTimeOut,
+                    Interval = _consulConfig.CheckInternal,
                     DeregisterCriticalServiceAfter = _consulConfig.DeregisterDeadServiceAfter,
                 },
                 EnableTagOverride = true

@@ -63,7 +63,7 @@ namespace Elect.Job.Hangfire.Models
         /// <summary>
         ///     Database Connection if <see cref="Provider " /> is <see cref="HangfireProvider.SqlServer" /> 
         /// </summary>
-        public string HangfireDatabaseConnectionString { get; set; }
+        public string DbConnectionString { get; set; }
 
         /// <summary>
         ///     The interval the /stats endpoint should be polled with (milliseconds), default is 2000.

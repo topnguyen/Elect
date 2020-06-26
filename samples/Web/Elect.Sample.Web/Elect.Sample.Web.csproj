@@ -19,4 +19,8 @@
     <ProjectReference Include="..\..\..\src\Web\Elect.Web.Middlewares\Elect.Web.Middlewares.csproj" />
     <ProjectReference Include="..\..\..\src\Web\Elect.Web\Elect.Web.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Logs\2019-12-22.json" />
+    <_ContentIncludedByDefault Remove="Logs\2020-05-27.json" />
+  </ItemGroup>
 </Project>

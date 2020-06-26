@@ -17,6 +17,8 @@
 //--------------------------------------------------
 #endregion License
 
+using System.Collections.Generic;
+using System.Linq;
 using Elect.Core.Attributes;
 using Elect.Core.CheckUtils;
 using Elect.Core.EnvUtils;
@@ -52,7 +54,7 @@ namespace Elect.Core.ConfigUtils
 
             var value = configuration.GetValue<T>($"{key}:{EnvHelper.MachineName}");
 
-            if (value != null)
+            if (!EqualityComparer<T>.Default.Equals(value, default))
             {
                 return value;
             }
@@ -61,12 +63,45 @@ namespace Elect.Core.ConfigUtils
 
             value = configuration.GetValue<T>($"{key}:{environmentName}");
 
-            if (value != null)
+            if (!EqualityComparer<T>.Default.Equals(value, default))
             {
                 return value;
             }
 
             value = configuration.GetValue<T>($"{key}");
+
+            return value;
+        }
+        
+        /// <summary>
+        ///     Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="configuration"></param>
+        /// <param name="key">          </param>
+        /// <returns></returns>
+        [CanBeNull]
+        public static List<T> GetListValueByEnv<T>(IConfiguration configuration, string key)
+        {
+            CheckHelper.CheckNullOrWhiteSpace(key, nameof(key));
+
+            var value = configuration.GetSection($"{key}:{EnvHelper.MachineName}").Get<List<T>>();
+
+            if (value != null && value.Any())
+            {
+                return value;
+            }
+
+            var environmentName = !string.IsNullOrWhiteSpace(EnvHelper.CurrentEnvironment) ? EnvHelper.CurrentEnvironment : EnvHelper.EnvDevelopmentName;
+
+            value = configuration.GetSection($"{key}:{environmentName}").Get<List<T>>();
+
+            if (value != null && value.Any())
+            {
+                return value;
+            }
+
+            value = configuration.GetSection($"{key}").Get<List<T>>();
 
             return value;
         }

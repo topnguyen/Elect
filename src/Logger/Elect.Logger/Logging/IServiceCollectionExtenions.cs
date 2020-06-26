@@ -1,13 +1,45 @@
 ﻿using System;
 using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
+using Elect.Core.ConfigUtils;
 using Elect.Logger.Logging.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Logger.Logging
 {
     public static class IServiceCollectionExtenions
     {
+         public static IServiceCollection AddElectLog(this IServiceCollection services, IConfiguration configuration, string sectionName = "ElectLog")
+         {
+             var electLogOptions = new ElectLogOptions();
+
+             electLogOptions.Url = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electLogOptions.Url)}");
+
+             electLogOptions.JsonFilePath =
+                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electLogOptions.JsonFilePath)}");
+
+             electLogOptions.Threshold =
+                 configuration.GetValueByEnv<TimeSpan>($"{sectionName}:{nameof(electLogOptions.Threshold)}");
+
+             electLogOptions.AccessKey =
+                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electLogOptions.AccessKey)}");
+
+             electLogOptions.BatchSize =
+                 configuration.GetValueByEnv<uint>($"{sectionName}:{nameof(electLogOptions.BatchSize)}");
+
+             electLogOptions.UnAuthorizeMessage =
+                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electLogOptions.UnAuthorizeMessage)}");
+
+             electLogOptions.IsEnableLogToFile =
+                 configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electLogOptions.IsEnableLogToFile)}");
+
+             electLogOptions.IsEnableLogToConsole =
+                 configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electLogOptions.IsEnableLogToConsole)}");
+
+             return services.AddElectLog(electLogOptions);
+         }
+         
         public static IServiceCollection AddElectLog(this IServiceCollection services)
         {
             return services.AddElectLog(_ => { });

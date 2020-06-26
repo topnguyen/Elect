@@ -37,7 +37,7 @@
                 Storage provider, default is Memory. 
             </summary>
         </member>
-        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.HangfireDatabaseConnectionString">
+        <member name="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.DbConnectionString">
             <summary>
                 Database Connection if <see cref="P:Elect.Job.Hangfire.Models.ElectHangfireOptions.Provider" /> is <see cref="F:Elect.Job.Hangfire.Models.HangfireProvider.SqlServer" /> 
             </summary>

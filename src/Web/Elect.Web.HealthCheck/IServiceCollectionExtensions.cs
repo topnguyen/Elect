@@ -1,14 +1,29 @@
 using System;
 using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
+using Elect.Core.ConfigUtils;
 using Elect.Web.HealthCheck.HealthChecks;
 using Elect.Web.HealthCheck.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Web.HealthCheck
 {
     public static class IServiceCollectionExtensions
     {
+        public static IServiceCollection AddElectHealthCheck(this IServiceCollection services, IConfiguration configuration, string sectionName = "ElectHealthCheck")
+        {
+            var electHealthCheckOptions = new ElectHealthCheckOptions();
+    
+            electHealthCheckOptions.IsEnable = configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electHealthCheckOptions.IsEnable)}");
+    
+            electHealthCheckOptions.Endpoint = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHealthCheckOptions.Endpoint)}");
+    
+            electHealthCheckOptions.DbConnectionString = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHealthCheckOptions.DbConnectionString)}");
+    
+            return services.AddElectHealthCheck(electHealthCheckOptions);
+        }
+        
         public static IServiceCollection AddElectHealthCheck(this IServiceCollection services)
         {
             return services.AddElectHealthCheck(_ => { });

@@ -3,6 +3,7 @@ using Elect.Data.EF.Utils.ModelBuilderUtils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using Elect.Core.EnvUtils;
 
 namespace Elect.Sample.Data.EF.Services
 {
@@ -24,15 +25,28 @@ namespace Elect.Sample.Data.EF.Services
         {
             if (!optionsBuilder.IsConfigured)
             {
-                IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile(Core.Constants.ConfigurationFileName.ConnectionConfig, false, true).Build();
+                var configBuilder =
+                    new ConfigurationBuilder()
+                        .AddJsonFile("connectionconfig.json", false, false);
 
-                var connectionString = config.GetValueByEnv<string>(Core.Constants.ConfigurationSectionName.ConnectionStrings);
+                var config = configBuilder.Build();
+
+                var commandTimeoutInSecond = config.GetValueByEnv<int>("CommandTimeoutInSecond");
+
+                var connectionString = config.GetValueByEnv<string>("ConnectionString");
 
                 optionsBuilder.UseSqlServer(connectionString, sqlServerOptionsAction =>
                 {
-                    sqlServerOptionsAction.MigrationsAssembly(typeof(DbContext).GetTypeInfo().Assembly.GetName().Name);
-
-                    sqlServerOptionsAction.MigrationsHistoryTable("Migration");
+                    optionsBuilder
+                        .UseSqlServer(connectionString, optionsBuilder =>
+                        {
+                            sqlServerOptionsAction
+                                .CommandTimeout(commandTimeoutInSecond)
+                                .MigrationsAssembly(typeof(DbContext).GetTypeInfo().Assembly.GetName().Name)
+                                .MigrationsHistoryTable("Migration");
+                        })
+                        .EnableSensitiveDataLogging(EnvHelper.IsDevelopment())
+                        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 });
             }
         }
