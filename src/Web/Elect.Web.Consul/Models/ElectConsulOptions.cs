@@ -41,17 +41,17 @@ namespace Elect.Web.Consul.Models
         /// <summary>
         ///    Timeout to check healthy 
         /// </summary>
-        public TimeSpan CheckTimeOutInSeconds { get; set; } = TimeSpan.FromSeconds(3);
+        public TimeSpan CheckTimeOut { get; set; } = TimeSpan.FromSeconds(3);
 
         /// <summary>
         ///     Interval to check healthy
         /// </summary>
-        public TimeSpan CheckInternalInSeconds { get; set; } = TimeSpan.FromSeconds(10);
+        public TimeSpan CheckInternal { get; set; } = TimeSpan.FromSeconds(10);
 
         /// <summary>
-        ///     Deregister dead service after a period, default is 5 mins.
+        ///     Deregister dead service after a period, default is 24 hours.
         /// </summary>
-        public TimeSpan? DeregisterDeadServiceAfter = TimeSpan.FromMinutes(5);
+        public TimeSpan? DeregisterDeadServiceAfter = TimeSpan.FromHours(24);
         
         // Fabio
                     

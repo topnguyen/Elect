@@ -75,7 +75,25 @@
             <param name="key">          </param>
             <returns></returns>
         </member>
+        <member name="M:Elect.Core.ConfigUtils.IConfigurationExtensions.GetListValueByEnv``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+                Get List Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration"></param>
+            <param name="key">          </param>
+            <returns></returns>
+        </member>
         <member name="M:Elect.Core.ConfigUtils.IConfigurationHelper.GetValueByEnv``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+                Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration"></param>
+            <param name="key">          </param>
+            <returns></returns>
+        </member>
+        <member name="M:Elect.Core.ConfigUtils.IConfigurationHelper.GetListValueByEnv``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
                 Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
             </summary>

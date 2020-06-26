@@ -23,7 +23,7 @@
                 Add App Metrics automatically by Elect
             </summary>
             <param name="webHostBuilder"></param>
-            <param name="configurationSectionKey">Section Name/Key in the Configuration File</param>
+            <param name="sectionName">Section Name/Key in the Configuration File</param>
             <returns></returns>
         </member>
         <member name="T:Elect.AppMetrics.Models.ElectAppMetricsOptions">
@@ -66,17 +66,17 @@
                 InfluxDB Endpoint
             </summary>
         </member>
-        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InFluxDatabase">
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InfluxDatabase">
             <summary>
                 InfluxDB Database Name
             </summary>
         </member>
-        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InFluxUserName">
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InfluxUserName">
             <summary>
                 InfluxDB Database access - UserName
             </summary>
         </member>
-        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InFluxPassword">
+        <member name="P:Elect.AppMetrics.Models.ElectAppMetricsOptions.InfluxPassword">
             <summary>
                 InfluxDB Database access - Password
             </summary>

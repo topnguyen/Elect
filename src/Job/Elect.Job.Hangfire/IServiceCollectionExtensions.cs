@@ -24,11 +24,38 @@ using Hangfire.Annotations;
 using Hangfire.MemoryStorage;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Elect.Core.ConfigUtils;
+using Microsoft.Extensions.Configuration;
 
 namespace Elect.Job.Hangfire
 {
     public static class IServiceCollectionExtensions
     {
+        public static IServiceCollection AddElectHangfire(this IServiceCollection services, IConfiguration configuration, string sectionName = "ElectHangfire")
+        {
+            var electHangfireOptions = new ElectHangfireOptions();
+            
+            electHangfireOptions.IsEnable = configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electHangfireOptions.IsEnable)}");
+            
+            electHangfireOptions.Url = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHangfireOptions.Url)}");
+            
+            electHangfireOptions.AccessKey = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHangfireOptions.AccessKey)}");
+            
+            electHangfireOptions.BackToUrl = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHangfireOptions.BackToUrl)}");
+            
+            electHangfireOptions.DbConnectionString = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHangfireOptions.DbConnectionString)}");
+            
+            electHangfireOptions.IsDisableJobDashboard = configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electHangfireOptions.IsDisableJobDashboard)}");
+            
+            electHangfireOptions.Provider = configuration.GetValueByEnv<HangfireProvider>($"{sectionName}:{nameof(electHangfireOptions.Provider)}");
+            
+            electHangfireOptions.StatsPollingInterval = configuration.GetValueByEnv<int>($"{sectionName}:{nameof(electHangfireOptions.StatsPollingInterval)}");
+
+            electHangfireOptions.UnAuthorizeMessage = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHangfireOptions.UnAuthorizeMessage)}");
+            
+            return services.AddElectHangfire(electHangfireOptions);
+        }
+        
         public static IServiceCollection AddElectHangfire(this IServiceCollection services)
         {
             return services.AddElectHangfire(_ => { });
@@ -42,7 +69,7 @@ namespace Elect.Job.Hangfire
                 _.Url = options.Url;
                 _.AccessKey = options.AccessKey;
                 _.BackToUrl = options.BackToUrl;
-                _.HangfireDatabaseConnectionString = options.HangfireDatabaseConnectionString;
+                _.DbConnectionString = options.DbConnectionString;
                 _.IsDisableJobDashboard = options.IsDisableJobDashboard;
                 _.Provider = options.Provider;
                 _.StatsPollingInterval = options.StatsPollingInterval;
@@ -83,12 +110,12 @@ namespace Elect.Job.Hangfire
                     {
                         services.AddHangfire(config =>
                         {
-                            config.UseSqlServerStorage(options.HangfireDatabaseConnectionString);
+                            config.UseSqlServerStorage(options.DbConnectionString);
                             
                             options.ExtendOptions?.Invoke(config, options);
                         });
                         
-                        GlobalConfiguration.Configuration.UseSqlServerStorage(options.HangfireDatabaseConnectionString);
+                        GlobalConfiguration.Configuration.UseSqlServerStorage(options.DbConnectionString);
                         
                         options.ExtendOptions?.Invoke(GlobalConfiguration.Configuration, options);
 

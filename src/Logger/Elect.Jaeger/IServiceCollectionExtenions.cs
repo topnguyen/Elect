@@ -1,9 +1,11 @@
 ﻿using System;
 using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
+using Elect.Core.ConfigUtils;
 using Elect.Jaeger.Models;
 using Jaeger;
 using Jaeger.Samplers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OpenTracing.Contrib.NetCore.CoreFx;
@@ -13,6 +15,29 @@ namespace Elect.Jaeger
 {
     public static class IServiceCollectionExtenions
     {
+        public static IServiceCollection AddElectJaeger(this IServiceCollection services, IConfiguration configuration,
+            string sectionName = "ElectJaeger")
+        {
+            var electJaegerOptions = new ElectJaegerOptions();
+
+            electJaegerOptions.IsEnable =
+                configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electJaegerOptions.IsEnable)}");
+
+            electJaegerOptions.ServiceName =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electJaegerOptions.ServiceName)}");
+
+            electJaegerOptions.SamplerDomain =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electJaegerOptions.SamplerDomain)}");
+
+            electJaegerOptions.ReporterDomain =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electJaegerOptions.ReporterDomain)}");
+
+            electJaegerOptions.TracesEndpoint =
+                configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electJaegerOptions.TracesEndpoint)}");
+
+            return services.AddElectJaeger(electJaegerOptions);
+        }
+
         public static IServiceCollection AddElectJaeger(this IServiceCollection services)
         {
             return services.AddElectJaeger(_ => { });
@@ -54,7 +79,7 @@ namespace Elect.Jaeger
 
             // Add open Tracing
             services.AddOpenTracing();
-            
+
             // Add ITracer
             services.AddSingleton(serviceProvider =>
             {
@@ -62,7 +87,8 @@ namespace Elect.Jaeger
 
                 // Sampler
                 var samplerConfig = new Configuration.SamplerConfiguration(loggerFactory);
-                samplerConfig.WithSamplingEndpoint($"http://{electJaegerOptions.SamplerDomain}:{electJaegerOptions.SamplerPort}");
+                samplerConfig.WithSamplingEndpoint(
+                    $"http://{electJaegerOptions.SamplerDomain}:{electJaegerOptions.SamplerPort}");
                 samplerConfig.WithType(ConstSampler.Type);
                 samplerConfig = electJaegerOptions.AfterSamplerConfig?.Invoke(samplerConfig) ?? samplerConfig;
 
@@ -75,28 +101,31 @@ namespace Elect.Jaeger
                 {
                     reporterConfig.SenderConfig.WithAuthUsername(electJaegerOptions.AuthUsername);
                 }
+
                 if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthPassword))
                 {
                     reporterConfig.SenderConfig.WithAuthPassword(electJaegerOptions.AuthPassword);
-                } 
+                }
+
                 if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthToken))
                 {
                     reporterConfig.SenderConfig.WithAuthToken(electJaegerOptions.AuthToken);
                 }
+
                 reporterConfig = electJaegerOptions.AfterReporterConfig?.Invoke(reporterConfig) ?? reporterConfig;
-                
+
                 // Global Config
                 var config =
                     new Configuration(electJaegerOptions.ServiceName, loggerFactory)
                         .WithSampler(samplerConfig)
                         .WithReporter(reporterConfig);
-                
+
                 config = electJaegerOptions.AfterGlobalConfig?.Invoke(config) ?? config;
 
                 // Tracer
                 var tracer = config.GetTracer();
                 tracer = electJaegerOptions.AfterTracer?.Invoke(tracer) ?? tracer;
-                
+
                 // Register Tracer
                 if (!GlobalTracer.IsRegistered())
                 {
@@ -105,7 +134,7 @@ namespace Elect.Jaeger
 
                 return tracer;
             });
-            
+
             services.Configure<HttpHandlerDiagnosticOptions>(options =>
             {
                 options.IgnorePatterns.Add(x => !x.RequestUri.IsLoopback);

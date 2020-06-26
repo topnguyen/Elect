@@ -52,19 +52,19 @@ namespace Elect.AppMetrics.Models
         /// <summary>
         ///     InfluxDB Database Name
         /// </summary>
-        public string InFluxDatabase{ get; set; }
+        public string InfluxDatabase{ get; set; }
         
         /// <summary>
         ///     InfluxDB Database access - UserName
         /// </summary>
-        public string InFluxUserName { get; set; }
+        public string InfluxUserName { get; set; }
         
         /// <summary>
         ///     InfluxDB Database access - Password
         /// </summary>
-        public string InFluxPassword { get; set; }
+        public string InfluxPassword { get; set; }
         
-        public int InFluxInterval { get; set; }
+        public int InfluxInterval { get; set; }
         
         // Prometheus
         
