@@ -1,4 +1,5 @@
 using Elect.Data.IO;
+using Elect.Data.IO.FileUtils;
 using Elect.Data.IO.ImageUtils.CompressUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
