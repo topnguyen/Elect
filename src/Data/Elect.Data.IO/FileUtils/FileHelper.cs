@@ -86,7 +86,7 @@ namespace Elect.Data.IO.FileUtils
             var path = Path.ChangeExtension(temp, extension);
 
             File.Move(temp, path);
-
+            
             return path;
         }
 
