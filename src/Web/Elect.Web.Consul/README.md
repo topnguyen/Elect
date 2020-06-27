@@ -92,7 +92,7 @@ See more information in [![Nuget](https://buildstats.info/nuget/Elect.Web.Consul
     app.UseElectHealthCheck();
     ```
  - Note
-    + You must add the [Elect.HealthCheck](https://www.nuget.org/packages/Elect.HealthCheck/) service before use Elect.Consul service.
+    + You must add the [Elect.Web.HealthCheck](https://www.nuget.org/packages/Elect.Web.HealthCheck/) service before use Elect.Consul service.
     + The HealCheck needed for healthy check to make Fabio Service work well.
         > Fabio only load balancing for pass health check services.
         
