@@ -92,25 +92,29 @@ namespace Elect.Jaeger
                 samplerConfig.WithType(ConstSampler.Type);
                 samplerConfig = electJaegerOptions.AfterSamplerConfig?.Invoke(samplerConfig) ?? samplerConfig;
 
-                // Reporter
-                var reporterConfig = new Configuration.ReporterConfiguration(loggerFactory);
-                reporterConfig.SenderConfig.WithAgentHost(electJaegerOptions.ReporterDomain);
-                reporterConfig.SenderConfig.WithAgentPort(electJaegerOptions.ReporterPort);
-                reporterConfig.SenderConfig.WithEndpoint(electJaegerOptions.TracesEndpoint);
+                // Sender
+                var senderConfig = new Configuration.SenderConfiguration(loggerFactory);
+                senderConfig.WithAgentHost(electJaegerOptions.ReporterDomain);
+                senderConfig.WithAgentPort(electJaegerOptions.ReporterPort);
+                senderConfig.WithEndpoint(electJaegerOptions.TracesEndpoint);
                 if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthUsername))
                 {
-                    reporterConfig.SenderConfig.WithAuthUsername(electJaegerOptions.AuthUsername);
+                    senderConfig.WithAuthUsername(electJaegerOptions.AuthUsername);
                 }
 
                 if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthPassword))
                 {
-                    reporterConfig.SenderConfig.WithAuthPassword(electJaegerOptions.AuthPassword);
+                    senderConfig.WithAuthPassword(electJaegerOptions.AuthPassword);
                 }
 
                 if (!string.IsNullOrWhiteSpace(electJaegerOptions.AuthToken))
                 {
-                    reporterConfig.SenderConfig.WithAuthToken(electJaegerOptions.AuthToken);
+                    senderConfig.WithAuthToken(electJaegerOptions.AuthToken);
                 }
+                
+                // Reporter
+                var reporterConfig = new Configuration.ReporterConfiguration(loggerFactory);
+                reporterConfig.WithSender(senderConfig);
 
                 reporterConfig = electJaegerOptions.AfterReporterConfig?.Invoke(reporterConfig) ?? reporterConfig;
 
