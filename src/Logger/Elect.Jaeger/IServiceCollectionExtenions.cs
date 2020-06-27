@@ -5,6 +5,8 @@ using Elect.Core.ConfigUtils;
 using Elect.Jaeger.Models;
 using Jaeger;
 using Jaeger.Samplers;
+using Jaeger.Senders;
+using Jaeger.Senders.Thrift;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -119,6 +121,11 @@ namespace Elect.Jaeger
                 reporterConfig = electJaegerOptions.AfterReporterConfig?.Invoke(reporterConfig) ?? reporterConfig;
 
                 // Global Config
+                
+                Configuration.SenderConfiguration.DefaultSenderResolver = 
+                    new SenderResolver(loggerFactory)
+                        .RegisterSenderFactory<ThriftSenderFactory>();
+                
                 var config =
                     new Configuration(electJaegerOptions.ServiceName, loggerFactory)
                         .WithSampler(samplerConfig)
