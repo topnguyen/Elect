@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Face.Kairos
 {
-    public static class IServiceCollectionExtenions
+    public static class IServiceCollectionExtensions
     {
         public static IServiceCollection AddElectKairos(this IServiceCollection services, [NotNull] ElectKairosOptions configure)
         {

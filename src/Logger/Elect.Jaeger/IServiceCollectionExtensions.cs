@@ -15,7 +15,7 @@ using OpenTracing.Util;
 
 namespace Elect.Jaeger
 {
-    public static class IServiceCollectionExtenions
+    public static class IServiceCollectionExtensions
     {
         public static IServiceCollection AddElectJaeger(this IServiceCollection services, IConfiguration configuration,
             string sectionName = "ElectJaeger")
