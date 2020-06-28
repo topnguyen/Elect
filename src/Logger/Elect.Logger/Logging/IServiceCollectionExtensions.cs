@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Elect.Logger.Logging
 {
-    public static class IServiceCollectionExtenions
+    public static class IServiceCollectionExtensions
     {
          public static IServiceCollection AddElectLog(this IServiceCollection services, IConfiguration configuration, string sectionName = "ElectLog")
          {
