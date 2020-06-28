@@ -26,7 +26,6 @@ using Elect.Web.Swagger.Utils;
 using Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using Elect.Core.ConfigUtils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
@@ -38,6 +37,15 @@ namespace Elect.Web.Swagger
         public static IServiceCollection AddElectSwagger(this IServiceCollection services, IConfiguration configuration,
             string sectionName = "ElectSwagger")
         {
+            var electSwaggerOptions = GetOptions(configuration, sectionName);
+            
+            return services.AddElectSwagger(electSwaggerOptions);
+        }
+
+        public static ElectSwaggerOptions GetOptions(IConfiguration configuration,
+            string sectionName = "ElectSwagger")
+        {
+            
             var electSwaggerOptions = new ElectSwaggerOptions();
 
             electSwaggerOptions.IsEnable =
@@ -86,7 +94,7 @@ namespace Elect.Web.Swagger
                 configuration.GetListValueByEnv<OpenApiParameter>(
                     $"{sectionName}:{nameof(electSwaggerOptions.GlobalParameters)}");
 
-            return services.AddElectSwagger(electSwaggerOptions);
+            return electSwaggerOptions;
         }
 
         public static IServiceCollection AddElectSwagger(this IServiceCollection services)

@@ -20,6 +20,14 @@ namespace Elect.Jaeger
         public static IServiceCollection AddElectJaeger(this IServiceCollection services, IConfiguration configuration,
             string sectionName = "ElectJaeger")
         {
+            var electJaegerOptions = GetOptions(configuration, sectionName);
+            
+            return services.AddElectJaeger(electJaegerOptions);
+        }
+
+        public static ElectJaegerOptions GetOptions(IConfiguration configuration,
+            string sectionName = "ElectJaeger")
+        {
             var electJaegerOptions = new ElectJaegerOptions();
 
             electJaegerOptions.IsEnable =
@@ -37,7 +45,7 @@ namespace Elect.Jaeger
             electJaegerOptions.TracesEndpoint =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electJaegerOptions.TracesEndpoint)}");
 
-            return services.AddElectJaeger(electJaegerOptions);
+            return electJaegerOptions;
         }
 
         public static IServiceCollection AddElectJaeger(this IServiceCollection services)

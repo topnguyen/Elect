@@ -33,6 +33,13 @@ namespace Elect.Job.Hangfire
     {
         public static IServiceCollection AddElectHangfire(this IServiceCollection services, IConfiguration configuration, string sectionName = "ElectHangfire")
         {
+            var electHangfireOptions = GetOptions(configuration, sectionName);
+            
+            return services.AddElectHangfire(electHangfireOptions);
+        }
+
+        public static ElectHangfireOptions GetOptions(IConfiguration configuration, string sectionName = "ElectHangfire")
+        {
             var electHangfireOptions = new ElectHangfireOptions();
             
             electHangfireOptions.IsEnable = configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electHangfireOptions.IsEnable)}");
@@ -52,8 +59,8 @@ namespace Elect.Job.Hangfire
             electHangfireOptions.StatsPollingInterval = configuration.GetValueByEnv<int>($"{sectionName}:{nameof(electHangfireOptions.StatsPollingInterval)}");
 
             electHangfireOptions.UnAuthorizeMessage = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHangfireOptions.UnAuthorizeMessage)}");
-            
-            return services.AddElectHangfire(electHangfireOptions);
+
+            return electHangfireOptions;
         }
         
         public static IServiceCollection AddElectHangfire(this IServiceCollection services)

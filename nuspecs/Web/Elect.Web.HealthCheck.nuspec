@@ -14,7 +14,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore swagger elect topnguyen</tags>
-        <version>3.1.2</version>
+        <version>3.1.3</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">

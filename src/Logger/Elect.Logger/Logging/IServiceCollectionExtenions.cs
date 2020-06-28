@@ -12,6 +12,14 @@ namespace Elect.Logger.Logging
     {
          public static IServiceCollection AddElectLog(this IServiceCollection services, IConfiguration configuration, string sectionName = "ElectLog")
          {
+             var electLogOptions = GetOptions(configuration, sectionName);
+
+             return services.AddElectLog(electLogOptions);
+         }
+
+         public static ElectLogOptions GetOptions(IConfiguration configuration,
+             string sectionName = "ElectLog")
+         {
              var electLogOptions = new ElectLogOptions();
 
              electLogOptions.Url = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electLogOptions.Url)}");
@@ -37,7 +45,7 @@ namespace Elect.Logger.Logging
              electLogOptions.IsEnableLogToConsole =
                  configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electLogOptions.IsEnableLogToConsole)}");
 
-             return services.AddElectLog(electLogOptions);
+             return electLogOptions;
          }
          
         public static IServiceCollection AddElectLog(this IServiceCollection services)

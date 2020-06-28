@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Consul;
 using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
@@ -12,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Elect.Web.Consul
 {
@@ -19,6 +19,13 @@ namespace Elect.Web.Consul
     {
         public static IServiceCollection AddElectConsul(this IServiceCollection services, IConfiguration configuration,
             string sectionName = "ElectConsul")
+        {
+            var electConsulOptions = GetOptions(configuration, sectionName);
+
+            return services.AddElectConsul(electConsulOptions);
+        }
+
+        public static ElectConsulOptions GetOptions(IConfiguration configuration, string sectionName = "ElectConsul")
         {
             var electConsulOptions = new ElectConsulOptions();
 
@@ -37,9 +44,19 @@ namespace Elect.Web.Consul
             electConsulOptions.ServiceId =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electConsulOptions.ServiceId)}");
 
+            if (string.IsNullOrWhiteSpace(electConsulOptions.ServiceId))
+            {
+                electConsulOptions.ServiceId = PlatformServices.Default.Application.ApplicationName;
+            }
+            
             electConsulOptions.ServiceName =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electConsulOptions.ServiceName)}");
 
+            if (string.IsNullOrWhiteSpace(electConsulOptions.ServiceName))
+            {
+                electConsulOptions.ServiceName = PlatformServices.Default.Application.ApplicationName;
+            }
+            
             electConsulOptions.Tags =
                 configuration.GetListValueByEnv<string>($"{sectionName}:{nameof(electConsulOptions.Tags)}");
 
@@ -59,8 +76,9 @@ namespace Elect.Web.Consul
             electConsulOptions.FabioEndpoint =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electConsulOptions.FabioEndpoint)}");
 
-            return services.AddElectConsul(electConsulOptions);
+            return electConsulOptions;
         }
+
         
         public static IServiceCollection AddElectConsul(this IServiceCollection services)
         {
