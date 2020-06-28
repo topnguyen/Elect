@@ -75,7 +75,7 @@ namespace Elect.Web.Consul.HostedServices
 
             var healthCheckPath = _healthCheckConfig.Endpoint.Trim().Replace("/", string.Empty);
 
-            var registration = new AgentServiceRegistration()
+            var registration = new AgentServiceRegistration
             {
                 ID = _registrationId,
                 Name = _consulConfig.ServiceName.Replace(" ", "_"),

@@ -13,6 +13,13 @@ namespace Elect.Web.HealthCheck
     {
         public static IServiceCollection AddElectHealthCheck(this IServiceCollection services, IConfiguration configuration, string sectionName = "ElectHealthCheck")
         {
+            var electHealthCheckOptions = GetOptions(configuration, sectionName);
+    
+            return services.AddElectHealthCheck(electHealthCheckOptions);
+        }
+
+        public static ElectHealthCheckOptions GetOptions(IConfiguration configuration, string sectionName = "ElectHealthCheck")
+        {
             var electHealthCheckOptions = new ElectHealthCheckOptions();
     
             electHealthCheckOptions.IsEnable = configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electHealthCheckOptions.IsEnable)}");
@@ -20,8 +27,8 @@ namespace Elect.Web.HealthCheck
             electHealthCheckOptions.Endpoint = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHealthCheckOptions.Endpoint)}");
     
             electHealthCheckOptions.DbConnectionString = configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electHealthCheckOptions.DbConnectionString)}");
-    
-            return services.AddElectHealthCheck(electHealthCheckOptions);
+
+            return electHealthCheckOptions;
         }
         
         public static IServiceCollection AddElectHealthCheck(this IServiceCollection services)

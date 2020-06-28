@@ -14,7 +14,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore jaeger elect topnguyen</tags>
-        <version>3.1.5</version>
+        <version>3.1.6</version>
 
         <dependencies>
             <group targetFramework="netcoreapp3.1">
