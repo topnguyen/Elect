@@ -24,14 +24,36 @@ namespace Elect.Core.EnvUtils
     public static class EnvHelper
     {
         public const string AspNetCoreEnvironmentVariable = "ASPNETCORE_ENVIRONMENT";
+        
+        public const string EnvDevelopmentName = "Development";
+        
+        public const string EnvStagingName = "Staging";
+        
+        public const string EnvProductionName = "Production";
 
-        public static string CurrentEnvironment => Environment.GetEnvironmentVariable(AspNetCoreEnvironmentVariable);
+        private static string _currentEnvironment;
+
+        public static string CurrentEnvironment
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(_currentEnvironment))
+                {
+                    return _currentEnvironment;
+                }
+                
+                _currentEnvironment = Environment.GetEnvironmentVariable(AspNetCoreEnvironmentVariable);
+                    
+                if (string.IsNullOrWhiteSpace(_currentEnvironment))
+                {
+                    _currentEnvironment = EnvDevelopmentName;
+                }
+
+                return _currentEnvironment;
+            }
+        }
 
         public static readonly string MachineName = Environment.MachineName;
-
-        public const string EnvDevelopmentName = "Development";
-        public const string EnvStagingName = "Staging";
-        public const string EnvProductionName = "Production";
 
         public static bool IsDevelopment()
         {
