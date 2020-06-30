@@ -94,11 +94,6 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
         > [![Nuget](https://buildstats.info/nuget/Elect.Notification.Esms)](https://www.nuget.org/packages/Elect.Notification.Esms/)
 
 - Logger
-    + [Elect.Logger](src/Logger/Elect.Logger/README.md): Event logger for ASP NET Core project, storage into a Json Files - easy to query and statistic.
-        > [![Nuget](https://buildstats.info/nuget/Elect.Logger)](https://www.nuget.org/packages/Elect.Logger/)
-
-    + [Elect.Logger.Dashboard](src/Logger/Elect.Logger/README.md) (use `app.UseElectLog()`): Visual `Elect.Logger` in Dashboard with security check support.
-                
     + [Elect.Jaeger](src/Logger/Elect.Jaeger/README.md): Support add trace to the Jaeger Service automatically.
         > [![Nuget](https://buildstats.info/nuget/Elect.Jaeger)](https://www.nuget.org/packages/Elect.Jaeger/)
         

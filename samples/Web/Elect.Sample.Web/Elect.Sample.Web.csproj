@@ -13,8 +13,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Logger\Elect.Logger.Models\Elect.Logger.Models.csproj" />
-    <ProjectReference Include="..\..\..\src\Logger\Elect.Logger\Elect.Logger.csproj" />
     <ProjectReference Include="..\..\..\src\Web\Elect.Web.HttpDetection\Elect.Web.HttpDetection.csproj" />
     <ProjectReference Include="..\..\..\src\Web\Elect.Web.Middlewares\Elect.Web.Middlewares.csproj" />
     <ProjectReference Include="..\..\..\src\Web\Elect.Web\Elect.Web.csproj" />
