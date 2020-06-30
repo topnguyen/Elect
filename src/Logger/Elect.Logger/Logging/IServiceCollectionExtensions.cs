@@ -1,5 +1,4 @@
 ﻿using System;
-using Elect.Core.ActionUtils;
 using Elect.Core.Attributes;
 using Elect.Core.ConfigUtils;
 using Elect.Logger.Logging.Models;
@@ -72,13 +71,6 @@ namespace Elect.Logger.Logging
         {
             services.Configure(configuration);
 
-            var options = configuration.GetValue();
-
-            if (!options.IsEnableLogToConsole && !options.IsEnableLogToFile)
-            {
-                return services;
-            }
-            
             services.AddSingleton<IElectLog, ElectLog>();
 
             return services;
