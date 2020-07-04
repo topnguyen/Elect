@@ -4,6 +4,8 @@ namespace Elect.Core.CrawlerUtils.Models
 {
     public class MetadataModel
     {
+        public string OriginalUrl { get; set; }
+
         /// <summary>
         ///     Meta Data og:url
         /// </summary>

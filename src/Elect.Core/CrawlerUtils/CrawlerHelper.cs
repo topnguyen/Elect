@@ -42,7 +42,7 @@ namespace Elect.Core.CrawlerUtils
                 var httpClient = new HttpClient();
 
                 // Re-procedure as Native browser
-                
+
                 httpClient
                     .DefaultRequestHeaders
                     .Add("user-agent",
@@ -74,10 +74,10 @@ namespace Elect.Core.CrawlerUtils
             catch (Exception e)
             {
                 // Ignore
-                #if DEBUG
-                   Console.WriteLine(e);
-                #endif
-                
+#if DEBUG
+                Console.WriteLine(e);
+#endif
+
                 return new MetadataModel
                 {
                     Url = url
@@ -93,7 +93,7 @@ namespace Elect.Core.CrawlerUtils
 
             return GetMetadata(htmlDocument);
         }
-        
+
         private static MetadataModel GetMetadata(IDocument htmlDocument)
         {
             var metadataModel = new MetadataModel();
@@ -102,6 +102,8 @@ namespace Elect.Core.CrawlerUtils
             {
                 return metadataModel;
             }
+
+            metadataModel.OriginalUrl = htmlDocument.Url;
 
             var metaTags = htmlDocument.GetElementsByTagName("meta");
 
