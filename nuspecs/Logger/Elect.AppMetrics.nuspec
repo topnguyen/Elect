@@ -20,7 +20,7 @@
             <group targetFramework="netcoreapp3.1">
 
                 <!-- Elect -->
-                <dependency id="Elect.Core" version="3.1.2"/>
+                <dependency id="Elect.Core" version="3.1.2.1"/>
 
                 <!-- App Metrics -->
 
