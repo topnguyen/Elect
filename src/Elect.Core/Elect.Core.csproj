@@ -39,5 +39,7 @@
         <PackageReference Include="Flurl.Http" Version="2.4.2" />
         <PackageReference Include="AngleSharp.Io" Version="0.14.0" />
         <PackageReference Include="Enums.NET" Version="3.0.3" />
+
+        <PackageReference Include="AsyncEnumerator" Version="4.0.2" />
     </ItemGroup>
 </Project>

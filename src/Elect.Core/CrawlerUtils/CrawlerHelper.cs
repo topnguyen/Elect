@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -7,6 +8,7 @@ using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using AngleSharp.Io.Network;
+using Dasync.Collections;
 using Elect.Core.CrawlerUtils.Models;
 
 namespace Elect.Core.CrawlerUtils
@@ -19,20 +21,21 @@ namespace Elect.Core.CrawlerUtils
         /// <returns></returns>
         public static async Task<List<MetadataModel>> GetListMetadataAsync(params string[] urls)
         {
-            List<Task<MetadataModel>> tasks = new List<Task<MetadataModel>>();
-
             urls = urls.Distinct().ToArray();
 
-            foreach (var url in urls)
+            var metadataConcurrentBag = new ConcurrentBag<MetadataModel>();
+
+            await urls.ParallelForEachAsync(async url =>
             {
-                Task<MetadataModel> task = GetMetadataByUrlAsync(url);
+                var metaData = await GetMetadataByUrlAsync(url);
+                
+                metadataConcurrentBag.Add(metaData);
+                
+            }, maxDegreeOfParallelism: 100);
 
-                tasks.Add(task);
-            }
+            var metadataModels = metadataConcurrentBag.ToList();
 
-            var metadataModels = await Task.WhenAll(tasks).ConfigureAwait(true);
-
-            return metadataModels.ToList();
+            return metadataModels;
         }
 
         public static async Task<MetadataModel> GetMetadataByUrlAsync(string url)

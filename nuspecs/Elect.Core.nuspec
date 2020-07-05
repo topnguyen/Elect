@@ -14,7 +14,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore elect topnguyen</tags>
-        <version>3.1.2.1</version>
+        <version>3.1.2.2</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">
@@ -33,7 +33,7 @@
                 <dependency id="AngleSharp.Io" version="0.14.0"/>
                 <dependency id="TimeZoneConverter" version="3.2.0"/>
                 <dependency id="Enums.NET" version="3.0.3"/>
-
+                <dependency id="AsyncEnumerator" version="4.0.2" />
             </group>
         </dependencies>
     </metadata>
