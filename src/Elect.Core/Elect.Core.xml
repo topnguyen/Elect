@@ -158,6 +158,16 @@
                 Meta Data author
             </summary>
         </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.PublishedTime">
+            <summary>
+                Meta Data published_time, article:published_time
+            </summary>
+        </member>
+        <member name="P:Elect.Core.CrawlerUtils.Models.MetadataModel.Tags">
+            <summary>
+                Meta Data tag, tags
+            </summary>
+        </member>
         <member name="M:Elect.Core.DateTimeUtils.DateTimeExtensions.WithTimeZone(System.DateTime,System.String)">
             <param name="dateTime">  </param>
             <param name="timeZoneId"> Time Zone ID, See more: https://msdn.microsoft.com/en-us/library/gg154758.aspx </param>

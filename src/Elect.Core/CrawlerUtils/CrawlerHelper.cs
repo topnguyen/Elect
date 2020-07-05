@@ -194,6 +194,28 @@ namespace Elect.Core.CrawlerUtils
                         break;
                     }
                 }
+
+                if (propertyValue?.Contains("published_time") == true)
+                {
+                    if (DateTimeOffset.TryParse(contentValue, out var publishedTime))
+                    {
+                        metadataModel.PublishedTime = publishedTime;
+                    }   
+                }
+
+                if (propertyValue?.Contains("tag") != true)
+                {
+                    continue;
+                }
+                
+                if (string.IsNullOrWhiteSpace(contentValue))
+                {
+                    continue;
+                }
+                    
+                metadataModel.Tags ??= new List<string>();
+
+                metadataModel.Tags.Add(contentValue);
             }
 
             metadataModel.Title = string.IsNullOrWhiteSpace(metadataModel.Title)
