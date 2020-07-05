@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Elect.Core.CrawlerUtils.Models
@@ -50,6 +51,16 @@ namespace Elect.Core.CrawlerUtils.Models
         ///     Meta Data author
         /// </summary>
         public string Author { get; set; }
+        
+        /// <summary>
+        ///     Meta Data published_time, article:published_time
+        /// </summary>
+        public DateTimeOffset PublishedTime { get; set; }
+        
+        /// <summary>
+        ///     Meta Data tag, tags
+        /// </summary>
+        public List<string> Tags { get; set; }
 
         public List<MetaTagModel> MetaTags { get; set; } = new List<MetaTagModel>();
     }
