@@ -18,14 +18,12 @@
 
         <dependencies>
             <group targetFramework="netcoreapp3.1">
-
                 <!-- Elect -->
                 <dependency id="Elect.Core" version="3.1.2.3"/>
 
                 <!-- Jaeger -->
-                <dependency id="Jaeger" version="0.4.0"/>
-                <dependency id="OpenTracing.Contrib.NetCore" version="0.6.2"/>
-
+                <dependency id="Jaeger" version="0.4.1" />
+                <dependency id="OpenTracing.Contrib.NetCore" version="0.6.2" />
             </group>
         </dependencies>
     </metadata>
