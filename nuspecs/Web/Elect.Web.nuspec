@@ -23,14 +23,13 @@
                 <dependency id="Elect.Core" version="3.1.2.3"/>
 
                 <!-- 3rd Libraries -->
-                <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.2.5"/>
-                <dependency id="Microsoft.AspNetCore.Mvc.Abstractions" version="2.2.0"/>
-                <dependency id="Microsoft.AspNetCore.Mvc.ViewFeatures" version="2.2.0"/>
-                <dependency id="Microsoft.AspNetCore.Routing.Abstractions" version="2.2.0"/>
-                <dependency id="Microsoft.AspNetCore.Localization" version="2.2.0"/>
-                <dependency id="Microsoft.AspNetCore.WebUtilities" version="2.2.0"/>
-                <dependency id="Microsoft.Extensions.FileProviders.Physical" version="3.1.5"/>
-
+                <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.2.5" />
+                <dependency id="Microsoft.AspNetCore.Mvc.Abstractions" version="2.2.0" />
+                <dependency id="Microsoft.AspNetCore.Mvc.ViewFeatures" version="2.2.0" />
+                <dependency id="Microsoft.AspNetCore.Routing.Abstractions" version="2.2.0" />
+                <dependency id="Microsoft.AspNetCore.Localization" version="2.2.0" />
+                <dependency id="Microsoft.AspNetCore.WebUtilities" version="2.2.0" />
+                <dependency id="Microsoft.Extensions.FileProviders.Physical" version="3.1.6" />
             </group>
         </dependencies>
     </metadata>

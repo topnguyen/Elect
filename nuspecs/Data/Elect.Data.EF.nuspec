@@ -18,15 +18,13 @@
 
         <dependencies>
             <group targetFramework="netstandard2.1">
-                
                 <!-- Elect -->
                 <dependency id="Elect.Core" version="3.1.2.3"/>
 
                 <!-- 3rd Libraries -->
-                <dependency id="Microsoft.EntityFrameworkCore" version="3.1.5"/>
-                <dependency id="Microsoft.EntityFrameworkCore.Relational" version="3.1.5"/>
-                <dependency id="System.Data.SqlClient" version="4.8.1"/>
-                
+                <dependency id="Microsoft.EntityFrameworkCore" version="3.1.6" />
+                <dependency id="Microsoft.EntityFrameworkCore.Relational" version="3.1.6" />
+                <dependency id="System.Data.SqlClient" version="4.8.1" />
             </group>
         </dependencies>
     </metadata>
