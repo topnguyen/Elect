@@ -260,8 +260,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{C9F23A
 ProjectSection(SolutionItems) = preProject
 	nuspecs\Logger\Elect.AppMetrics.nuspec = nuspecs\Logger\Elect.AppMetrics.nuspec
 	nuspecs\Logger\Elect.Jaeger.nuspec = nuspecs\Logger\Elect.Jaeger.nuspec
-	nuspecs\Logger\Elect.Logger.Models.nuspec = nuspecs\Logger\Elect.Logger.Models.nuspec
-	nuspecs\Logger\Elect.Logger.nuspec = nuspecs\Logger\Elect.Logger.nuspec
 EndProjectSection
 EndProject
 
