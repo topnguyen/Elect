@@ -14,7 +14,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore httpdetection elect topnguyen</tags>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">
@@ -24,7 +24,7 @@
                 <dependency id="Elect.Data.IO" version="3.1.1"/>
 
                 <!-- 3rd Libraries -->
-                <dependency id="MaxMind.GeoIP2" version="3.2.1"/>
+                <dependency id="MaxMind.GeoIP2" version="3.2.0"/>
 
             </group>
         </dependencies>
