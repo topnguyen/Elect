@@ -79,55 +79,12 @@ namespace Elect.Web.Swagger.IDocumentFilters
                     continue;
                 }
 
-//                var route = "/" + controllerActionDescriptor.AttributeRouteInfo.Template.Trim('/');
+                var route = "/" + controllerActionDescriptor.AttributeRouteInfo.Template.Trim('/');
 
-//                var pathItem = swaggerDoc.Paths[route];
-
-//                switch (apiDescription.HttpMethod.ToUpperInvariant())
-//                {
-//                    case "GET":
-//                    {
-//                        pathItem.Get = null;
-//                        break;
-//                    }
-//                    case "POST":
-//                    {
-//                        pathItem.Post = null;
-//                        break;
-//                    }
-//                    case "PUT":
-//                    {
-//                        pathItem.Put = null;
-//                        break;
-//                    }
-//                    case "PATCH":
-//                    {
-//                        pathItem.Patch = null;
-//                        break;
-//                    }
-//                    case "DELETE":
-//                    {
-//                        pathItem.Delete = null;
-//                        break;
-//                    }
-//                    case "HEAD":
-//                    {
-//                        pathItem.Head = null;
-//                        break;
-//                    }
-//                    case "OPTIONS":
-//                    {
-//                        pathItem.Options = null;
-//                        break;
-//                    }
-//                }
-//
-//                if (pathItem.Get == null && pathItem.Post == null && pathItem.Put == null &&
-//                    pathItem.Patch == null && pathItem.Delete == null && pathItem.Head == null &&
-//                    pathItem.Options == null)
-//                {
-//                    swaggerDoc.Paths.Remove(route);
-//                }
+                if (swaggerDoc.Paths.ContainsKey(route))
+                {
+                    swaggerDoc.Paths.Remove(route);
+                }
             }
         }
     }
