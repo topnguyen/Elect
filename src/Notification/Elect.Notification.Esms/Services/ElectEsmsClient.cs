@@ -56,25 +56,10 @@ namespace Elect.Notification.Esms.Services
                 .SetQueryParam("SecretKey", Options.ApiSecret)
                 .SetQueryParam("Phone", model.Phone)
                 .SetQueryParam("Content", model.Content)
-                .SetQueryParam("SmsType", (int)model.Type);
+                .SetQueryParam("SmsType", model.Type)
+                .SetQueryParam("Sandbox", model.Sandbox);
 
-            switch (model.Type)
-            {
-                case EsmsSmsType.Random:
-                case EsmsSmsType.Notify:
-                case EsmsSmsType.OTP:
-                    {
-                        url = url.SetQueryParam("IsUnicode", model.IsUnicode ? "1" : "0");
-                        break;
-                    }
-                case EsmsSmsType.Verify:
-                    {
-                        model.BrandName = "Verify";
-                        break;
-                    }
-            }
-
-            if (!string.IsNullOrWhiteSpace(model.BrandName) && (model.Type == EsmsSmsType.BrandName || model.Type == EsmsSmsType.Verify))
+            if (!string.IsNullOrWhiteSpace(model.BrandName))
             {
                 url = url.SetQueryParam("Brandname", model.BrandName);
             }

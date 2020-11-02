@@ -9,36 +9,6 @@
                 Balance in VND 
             </summary>
         </member>
-        <member name="F:Elect.Notification.Esms.Models.EsmsSmsType.BrandName">
-            <summary>
-                Display as Brand Name - 760-810 VND 
-            </summary>
-        </member>
-        <member name="F:Elect.Notification.Esms.Models.EsmsSmsType.Verify">
-            <summary>
-                Display as Verify - 530-570 VND 
-            </summary>
-        </member>
-        <member name="F:Elect.Notification.Esms.Models.EsmsSmsType.Random">
-            <summary>
-                Random phone - low speed - 750 VND 
-            </summary>
-        </member>
-        <member name="F:Elect.Notification.Esms.Models.EsmsSmsType.Notify">
-            <summary>
-                Display as Notify - 750 VND 
-            </summary>
-        </member>
-        <member name="F:Elect.Notification.Esms.Models.EsmsSmsType.Number6788">
-            <summary>
-                Display as 6788 - 750 VND 
-            </summary>
-        </member>
-        <member name="F:Elect.Notification.Esms.Models.EsmsSmsType.OTP">
-            <summary>
-                Display as Random - high speed - 300 VND 
-            </summary>
-        </member>
         <member name="P:Elect.Notification.Esms.Models.SendSmsModel.BrandName">
             <summary>
                 May need pre-register with eSMS.vn before use 
