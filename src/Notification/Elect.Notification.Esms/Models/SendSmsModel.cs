@@ -27,13 +27,13 @@ namespace Elect.Notification.Esms.Models
 
         public string Content { get; set; }
 
-        public EsmsSmsType Type { get; set; } = EsmsSmsType.OTP;
+        public int Type { get; set; } = 8;
+        
+        public int Sandbox { get; set; } = 0;
 
         /// <summary>
         ///     May need pre-register with eSMS.vn before use 
         /// </summary>
         public string BrandName { get; set; }
-
-        public bool IsUnicode { get; set; }
     }
 }
