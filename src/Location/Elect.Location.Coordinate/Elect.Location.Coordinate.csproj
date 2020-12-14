@@ -25,7 +25,7 @@
     </PropertyGroup>
     <!-- Elect -->
     <ItemGroup>
-        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj"/>
-        <ProjectReference Include="..\Elect.Location.Models\Elect.Location.Models.csproj"/>
+        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
+        <ProjectReference Include="..\Elect.Location.Models\Elect.Location.Models.csproj" />
     </ItemGroup>
 </Project>

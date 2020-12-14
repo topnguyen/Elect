@@ -14,7 +14,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore location elect topnguyen</tags>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">
