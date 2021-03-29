@@ -3,7 +3,6 @@
 > Author [**Top Nguyen**](http://topnguyen.com)
 
 
-
 [![CircleCI](https://circleci.com/gh/topnguyen/Elect.svg?style=svg)](https://circleci.com/gh/topnguyen/Elect)
 
 ## Overview
@@ -109,4 +108,4 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
 Please access "samples" folder in this repo to explore example for each library.
 
 ## License
-Elect is licensed under the [MIT License](LICENSE).
+Elect is licensed under the [MIT License](https://github.com/topnguyen/Elect/blob/master/LICENSE).
