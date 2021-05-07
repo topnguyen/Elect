@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
     <!-- Information -->
     <PropertyGroup>
         <LangVersion>latest</LangVersion>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <!-- Generate XML file -->
         <DocumentationFile>Elect.Data.EF.xml</DocumentationFile>
         <!-- Disable warning for Controller/Action/Method not have block comment -->
@@ -22,6 +22,9 @@
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
         <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.EF.nuspec</NuspecFile>
+        <ApplicationIcon />
+        <OutputType>Library</OutputType>
+        <StartupObject />
     </PropertyGroup>
     <!-- Elect -->
     <ItemGroup>
@@ -29,8 +32,8 @@
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.6" />
-        <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-preview.3.21201.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0-preview.3.21201.2" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     </ItemGroup>
 </Project>

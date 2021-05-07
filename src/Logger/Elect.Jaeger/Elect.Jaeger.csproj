@@ -2,7 +2,7 @@
     <!-- Information -->
     <PropertyGroup>
         <LangVersion>latest</LangVersion>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <!-- Generate XML file -->
         <DocumentationFile>Elect.Jaeger.xml</DocumentationFile>
         <!-- Disable warning for Controller/Action/Method not have block comment -->
@@ -29,7 +29,7 @@
         <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
 
         <!-- Jaeger -->
-        <PackageReference Include="Jaeger" Version="0.4.1" />
-        <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.6.2" />
+        <PackageReference Include="Jaeger" Version="1.0.0" />
+        <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.7.1" />
     </ItemGroup>
 </Project>

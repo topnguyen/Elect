@@ -2,7 +2,7 @@
     <!-- Information -->
     <PropertyGroup>
         <LangVersion>latest</LangVersion>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <!-- Generate XML file -->
         <DocumentationFile>Elect.Web.Middlewares.xml</DocumentationFile>
         <!-- Disable warning for Controller/Action/Method not have block comment -->
@@ -32,7 +32,7 @@
     <!-- 3rd Libraries -->
     <ItemGroup>
         <!-- Markup Min -->
-        <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.3" />
-        <PackageReference Include="WebMarkupMin.NUglify" Version="2.8.7" />
+        <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.9.3" />
+        <PackageReference Include="WebMarkupMin.NUglify" Version="2.9.3" />
     </ItemGroup>
 </Project>
