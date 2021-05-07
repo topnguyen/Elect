@@ -1,39 +1,38 @@
 <?xml version="1.0"?>
 <package>
-    <metadata>
-        <id>Elect.Web.DataTable</id>
-        <title>Elect AspNetCore Mvc jQuery DataTable</title>
-        <description>AspNetCore Mvc jquery datatable generate in backend.</description>
-        <summary>AspNetCore Mvc jquery datatable generate in backend.</summary>
-        <authors>Top Nguyen</authors>
-        <owners>topnguyen</owners>
-        <copyright>http://topnguyen.com</copyright>
-        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.DataTable</projectUrl>
-        <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
-        <license type="expression">MIT</license>
-        <icon>Logo.png</icon>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>aspnetcore datatable elect topnguyen</tags>
-        <version>3.1.1</version>
+  <metadata>
+    <id>Elect.Web.DataTable</id>
+    <title>Elect AspNetCore Mvc jQuery DataTable</title>
+    <description>AspNetCore Mvc jquery datatable generate in backend.</description>
+    <summary>AspNetCore Mvc jquery datatable generate in backend.</summary>
+    <authors>Top Nguyen</authors>
+    <owners>topnguyen</owners>
+    <copyright>https://topnguyen.com</copyright>
+    <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.DataTable</projectUrl>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <license type="expression">MIT</license>
+    <icon>Logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>aspnetcore datatable elect topnguyen</tags>
+    <version>6.0.0-preview.3</version>
 
-        <dependencies>
-            <group targetFramework="netstandard2.1">
+    <dependencies>
+      <group targetFramework="netstandard2.1">
 
-                <!-- Elect -->
-                <dependency id="Elect.Web" version="3.1.1"/>
+        <!-- Elect -->
+        <dependency id="Elect.Web" version="6.0.0-preview.3"/>
 
-                <!-- 3rd Libraries -->
-                <dependency id="System.Linq.Dynamic.Core" version="1.1.8"/>
+        <!-- 3rd Libraries -->
+        <dependency id="System.Linq.Dynamic.Core" version="1.2.9"/>
+      </group>
+    </dependencies>
+  </metadata>
 
-            </group>
-        </dependencies>
-    </metadata>
-
-    <files>
-        <file src="Logo.png" target=""/>
-        <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.dll" target="lib\netstandard2.1"/>
-        <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.pdb" target="lib\netstandard2.1"/>
-        <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.xml" target="lib\netstandard2.1"/>
-        <file src="..\..\src\Web\Elect.Web.DataTable\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
-    </files>
+  <files>
+    <file src="Logo.png" target=""/>
+    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.dll" target="lib\netstandard2.1"/>
+    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.pdb" target="lib\netstandard2.1"/>
+    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.xml" target="lib\netstandard2.1"/>
+    <file src="..\..\src\Web\Elect.Web.DataTable\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+  </files>
 </package>

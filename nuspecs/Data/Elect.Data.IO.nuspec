@@ -1,43 +1,43 @@
 <?xml version="1.0"?>
 <package>
-    <metadata>
-        <id>Elect.Data.IO</id>
-        <title>Elect IO</title>
-        <description>IO Utilities.</description>
-        <summary>IO Utilities.</summary>
-        <authors>Top Nguyen</authors>
-        <owners>topnguyen</owners>
-        <copyright>http://topnguyen.com</copyright>
-        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Data/Elect.Data.IO</projectUrl>
-        <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
-        <license type="expression">MIT</license>
-        <icon>Logo.png</icon>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>aspnetcore io elect topnguyen</tags>
-        <version>3.1.3</version>
+  <metadata>
+    <id>Elect.Data.IO</id>
+    <title>Elect IO</title>
+    <description>IO Utilities.</description>
+    <summary>IO Utilities.</summary>
+    <authors>Top Nguyen</authors>
+    <owners>topnguyen</owners>
+    <copyright>https://topnguyen.com</copyright>
+    <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Data/Elect.Data.IO</projectUrl>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <license type="expression">MIT</license>
+    <icon>Logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>aspnetcore io elect topnguyen</tags>
+    <version>6.0.0-preview.3</version>
 
-        <dependencies>
-            <group targetFramework="netstandard2.1">
+    <dependencies>
+      <group targetFramework="netstandard2.1">
 
-                <!-- Elect -->
-                <dependency id="Elect.Core" version="3.1.2.3"/>
+        <!-- Elect -->
+        <dependency id="Elect.Core" version="6.0.0-preview.3"/>
 
-                <!-- 3rd Libraries -->
-                <dependency id="Mono.Posix.NETStandard" version="1.0.0" />
-                <dependency id="runtime.osx.10.10-x64.CoreCompat.System.Drawing" version="5.8.64" />
-                <dependency id="System.Drawing.Common" version="4.7.0"/>
-                <dependency id="SixLabors.ImageSharp" version="1.0.0-beta0006"/>
-                <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta0006"/>
+        <!-- 3rd Libraries -->
+        <dependency id="Mono.Posix.NETStandard" version="5.20.1-preview" />
+        <dependency id="runtime.osx.10.10-x64.CoreCompat.System.Drawing" version="5.8.64" />
+        <dependency id="System.Drawing.Common" version="6.0.0-preview.3.21201.4" />
+        <dependency id="SixLabors.ImageSharp" version="1.0.3" />
+        <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta11" />
 
-            </group>
-        </dependencies>
-    </metadata>
+      </group>
+    </dependencies>
+  </metadata>
 
-    <files>
-        <file src="Logo.png" target=""/>
-        <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.dll" target="lib\netstandard2.1"/>
-        <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.pdb" target="lib\netstandard2.1"/>
-        <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.xml" target="lib\netstandard2.1"/>
-        <file src="..\..\src\Data\Elect.Data.IO\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
-    </files>
+  <files>
+    <file src="Logo.png" target=""/>
+    <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.dll" target="lib\netstandard2.1"/>
+    <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.pdb" target="lib\netstandard2.1"/>
+    <file src="..\..\src\Data\Elect.Data.IO\bin\Elect.Data.IO.xml" target="lib\netstandard2.1"/>
+    <file src="..\..\src\Data\Elect.Data.IO\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+  </files>
 </package>

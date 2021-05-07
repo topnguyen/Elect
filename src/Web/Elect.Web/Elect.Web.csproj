@@ -1,46 +1,46 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <!-- Information -->
-    <PropertyGroup>
-        <LangVersion>latest</LangVersion>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <!-- Generate XML file -->
-        <DocumentationFile>Elect.Web.xml</DocumentationFile>
-        <!-- Disable warning for Controller/Action/Method not have block comment -->
-        <NoWarn>1701;1702;1705;1591</NoWarn>
-        <!-- Output -->
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <OutputPath>.\bin\</OutputPath>
-    </PropertyGroup>
-    <ItemGroup>
-        <!-- Copy to Ouput -->
-        <Content Include="Elect.Web.xml">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-    <!-- Nuget -->
-    <PropertyGroup>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-        <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
-        <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.nuspec</NuspecFile>
-    </PropertyGroup>
-    <!-- Elect -->
-    <ItemGroup>
-        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
-    </ItemGroup>
-    <!-- 3rd Libraries -->
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  <!-- Information -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <!-- Generate XML file -->
+    <DocumentationFile>Elect.Web.xml</DocumentationFile>
+    <!-- Disable warning for Controller/Action/Method not have block comment -->
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <!-- Output -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>.\bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Copy to Ouput -->
+    <Content Include="Elect.Web.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <!-- Nuget -->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>..\..\..\build\Web</PackageOutputPath>
+    <NuspecFile>..\..\..\nuspecs\Web\Elect.Web.nuspec</NuspecFile>
+  </PropertyGroup>
+  <!-- Elect -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
+  </ItemGroup>
+  <!-- 3rd Libraries -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
 
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
 
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
 
-        <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.2.0" />
 
-        <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.2.0" />
 
-        <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
 
-        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="6.0.0-preview.3.21201.4" />
-    </ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="6.0.0-preview.3.21201.4" />
+  </ItemGroup>
 </Project>

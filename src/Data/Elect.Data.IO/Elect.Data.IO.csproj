@@ -1,36 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <!-- Information -->
-    <PropertyGroup>
-        <LangVersion>latest</LangVersion>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <!-- Generate XML file -->
-        <DocumentationFile>Elect.Data.IO.xml</DocumentationFile>
-        <!-- Disable warning for Controller/Action/Method not have block comment -->
-        <NoWarn>1701;1702;1705;1591</NoWarn>
-        <!-- Output -->
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <OutputPath>.\bin\</OutputPath>
-    </PropertyGroup>
-    <!-- Nuget -->
-    <PropertyGroup>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-        <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
-        <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.IO.nuspec</NuspecFile>
-    </PropertyGroup>
-    <ItemGroup>
-        <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\**\*" />
-    </ItemGroup>
-    <!-- Elect -->
-    <ItemGroup>
-        <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
-    </ItemGroup>
-    <!-- 3rd Libraries -->
-    <ItemGroup>
-        <PackageReference Include="Mono.Posix.NETStandard" Version="5.20.1-preview" />
-        <PackageReference Include="runtime.osx.10.10-x64.CoreCompat.System.Drawing" Version="5.8.64" />
+  <!-- Information -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <!-- Generate XML file -->
+    <DocumentationFile>Elect.Data.IO.xml</DocumentationFile>
+    <!-- Disable warning for Controller/Action/Method not have block comment -->
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <!-- Output -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>.\bin\</OutputPath>
+  </PropertyGroup>
+  <!-- Nuget -->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
+    <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.IO.nuspec</NuspecFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\**\*" />
+  </ItemGroup>
+  <!-- Elect -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
+  </ItemGroup>
+  <!-- 3rd Libraries -->
+  <ItemGroup>
+    <PackageReference Include="Mono.Posix.NETStandard" Version="5.20.1-preview" />
+    <PackageReference Include="runtime.osx.10.10-x64.CoreCompat.System.Drawing" Version="5.8.64" />
 
-        <PackageReference Include="System.Drawing.Common" Version="6.0.0-preview.3.21201.4" />
-        <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
-        <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta11" />
-    </ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0-preview.3.21201.4" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta11" />
+  </ItemGroup>
 </Project>

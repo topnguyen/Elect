@@ -1,37 +1,37 @@
 <?xml version="1.0"?>
 <package>
-    <metadata>
-        <id>Elect.Jaeger</id>
-        <title>Elect Jaeger</title>
-        <description>Jaeger support jaeger and open tracing.</description>
-        <summary>Jaeger support jaeger and open tracing.</summary>
-        <authors>Top Nguyen</authors>
-        <owners>topnguyen</owners>
-        <copyright>http://topnguyen.com</copyright>
-        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Jaeger/Elect.Jaeger</projectUrl>
-        <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
-        <license type="expression">MIT</license>
-        <icon>Logo.png</icon>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>aspnetcore jaeger elect topnguyen</tags>
-        <version>3.1.7</version>
+  <metadata>
+    <id>Elect.Jaeger</id>
+    <title>Elect Jaeger</title>
+    <description>Jaeger support jaeger and open tracing.</description>
+    <summary>Jaeger support jaeger and open tracing.</summary>
+    <authors>Top Nguyen</authors>
+    <owners>topnguyen</owners>
+    <copyright>https://topnguyen.com</copyright>
+    <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Jaeger/Elect.Jaeger</projectUrl>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <license type="expression">MIT</license>
+    <icon>Logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>aspnetcore jaeger elect topnguyen</tags>
+    <version>6.0.0-preview.3</version>
 
-        <dependencies>
-            <group targetFramework="netcoreapp3.1">
-                <!-- Elect -->
-                <dependency id="Elect.Core" version="3.1.2.3"/>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <!-- Elect -->
+        <dependency id="Elect.Core" version="6.0.0-preview.3"/>
 
-                <!-- Jaeger -->
-                <dependency id="Jaeger" version="0.4.1" />
-                <dependency id="OpenTracing.Contrib.NetCore" version="0.6.2" />
-            </group>
-        </dependencies>
-    </metadata>
-    <files>
-        <file src="Logo.png" target=""/>
-        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.dll" target="lib\netcoreapp3.1"/>
-        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.pdb" target="lib\netcoreapp3.1"/>
-        <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.xml" target="lib\netcoreapp3.1"/>
-        <file src="..\..\src\Logger\Elect.Jaeger\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
-    </files>
+        <!-- Jaeger -->
+        <dependency id="Jaeger" version="1.0.0" />
+        <dependency id="OpenTracing.Contrib.NetCore" version="0.7.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Logo.png" target=""/>
+    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.dll" target="lib\net6.0"/>
+    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.pdb" target="lib\net6.0"/>
+    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.xml" target="lib\net6.0"/>
+    <file src="..\..\src\Logger\Elect.Jaeger\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+  </files>
 </package>
