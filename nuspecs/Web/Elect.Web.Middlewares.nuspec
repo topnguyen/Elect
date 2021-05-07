@@ -1,39 +1,39 @@
 <?xml version="1.0"?>
 <package>
-    <metadata>
-        <id>Elect.Web.Middlewares</id>
-        <title>Elect AspNetCore Useful Middlewares</title>
-        <description>AspnetCore useful middlewares.</description>
-        <summary>AspnetCore useful middlewares.</summary>
-        <authors>Top Nguyen</authors>
-        <owners>topnguyen</owners>
-        <copyright>http://topnguyen.com</copyright>
-        <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Middlewares</projectUrl>
-        <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
-        <license type="expression">MIT</license>
-        <icon>Logo.png</icon>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>aspnetcore middlewares elect topnguyen</tags>
-        <version>3.1.2</version>
+  <metadata>
+    <id>Elect.Web.Middlewares</id>
+    <title>Elect AspNetCore Useful Middlewares</title>
+    <description>AspnetCore useful middlewares.</description>
+    <summary>AspnetCore useful middlewares.</summary>
+    <authors>Top Nguyen</authors>
+    <owners>topnguyen</owners>
+    <copyright>https://topnguyen.com</copyright>
+    <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Middlewares</projectUrl>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <license type="expression">MIT</license>
+    <icon>Logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>aspnetcore middlewares elect topnguyen</tags>
+    <version>6.0.0-preview.3</version>
 
-        <dependencies>
-            <group targetFramework="netcoreapp3.1">
+    <dependencies>
+      <group targetFramework="net6.0">
 
-                <!-- Elect -->
-                <dependency id="Elect.Web" version="3.1.1"/>
+        <!-- Elect -->
+        <dependency id="Elect.Web" version="6.0.0-preview.3"/>
 
-                <!-- 3rd Libraries -->
-                <dependency id="WebMarkupMin.AspNetCore2" version="2.8.3" />
-                <dependency id="WebMarkupMin.NUglify" version="2.8.7" />
-            </group>
-        </dependencies>
-    </metadata>
+        <!-- 3rd Libraries -->
+        <dependency id="WebMarkupMin.AspNetCore2" version="2.9.3" />
+        <dependency id="WebMarkupMin.NUglify" version="2.9.3" />
+      </group>
+    </dependencies>
+  </metadata>
 
-    <files>
-        <file src="Logo.png" target=""/>
-        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.dll" target="lib\netcoreapp3.1"/>
-        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.pdb" target="lib\netcoreapp3.1"/>
-        <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.xml" target="lib\netcoreapp3.1"/>
-        <file src="..\..\src\Web\Elect.Web.Middlewares\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
-    </files>
+  <files>
+    <file src="Logo.png" target=""/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.dll" target="lib\net6.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.pdb" target="lib\net6.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.xml" target="lib\net6.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
+  </files>
 </package>

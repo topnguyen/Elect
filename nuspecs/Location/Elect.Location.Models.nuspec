@@ -7,14 +7,14 @@
         <summary>Common Models for Location.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>http://topnguyen.com</copyright>
+        <copyright>https://topnguyen.com</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Location/Elect.Location.Models</projectUrl>
         <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
         <license type="expression">MIT</license>
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore location elect topnguyen</tags>
-        <version>3.1.1</version>
+        <version>6.0.0-preview.3</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">
