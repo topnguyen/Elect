@@ -10,7 +10,7 @@ using Jaeger.Senders.Thrift;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using OpenTracing.Contrib.NetCore.CoreFx;
+using OpenTracing.Contrib.NetCore.Configuration;
 using OpenTracing.Util;
 
 namespace Elect.Jaeger

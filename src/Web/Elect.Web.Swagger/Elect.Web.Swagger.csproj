@@ -33,7 +33,7 @@
     </ItemGroup>
     <!-- 3rd Libraries -->
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.5.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.1.4" />
     </ItemGroup>
 </Project>

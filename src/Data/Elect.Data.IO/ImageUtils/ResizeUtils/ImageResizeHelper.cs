@@ -45,7 +45,7 @@ namespace Elect.Data.IO.ImageUtils.ResizeUtils
                     {
                         image.Mutate(x => x.Resize(new ResizeOptions
                         {
-                            Size = new SixLabors.Primitives.Size(newWidthPx, newHeightPx),
+                            Size = new Size(newWidthPx, newHeightPx),
 
                             Mode = (ResizeMode)((int)resizeType)
                         }));

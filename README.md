@@ -13,6 +13,8 @@ Number of mini libraries to make faster develop .NET Core system.
 - Up to date: Elect always up to date the last .NET Core stable version. All Elect modules publish in [Nuget Package](https://www.nuget.org/packages?q=TopNguyen) so easy for you update the library.
 - Almost library work well as cross platform, you can feel free to code on Windows or Mac.
 
+![Elect Library Diagram](Elect Library Diagram.png)
+
 ## Installation
 
 All Elect modules publish in [nuget.org](https://www.nuget.org/packages?q=TopNguyen).
