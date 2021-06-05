@@ -25,6 +25,7 @@ using Hangfire.MemoryStorage;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Elect.Core.ConfigUtils;
+using Hangfire.PostgreSql;
 using Microsoft.Extensions.Configuration;
 
 namespace Elect.Job.Hangfire
@@ -127,6 +128,21 @@ namespace Elect.Job.Hangfire
                         options.ExtendOptions?.Invoke(GlobalConfiguration.Configuration, options);
 
                         break;
+                    }
+                case HangfireProvider.PostgreSql:
+                {
+                    services.AddHangfire(config =>
+                    {
+                        config.UsePostgreSqlStorage(options.DbConnectionString);
+
+                        options.ExtendOptions?.Invoke(config, options);
+                    });
+
+                    GlobalConfiguration.Configuration.UsePostgreSqlStorage(options.DbConnectionString);
+
+                    options.ExtendOptions?.Invoke(GlobalConfiguration.Configuration, options);
+
+                    break;
                     }
                 default:
                     throw new ArgumentOutOfRangeException();

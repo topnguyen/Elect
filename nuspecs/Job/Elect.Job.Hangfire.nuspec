@@ -14,7 +14,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore hangfire elect topnguyen</tags>
-        <version>3.1.3</version>
+        <version>3.2.0</version>
 
         <dependencies>
             <group targetFramework="netstandard2.1">
@@ -23,8 +23,9 @@
                 <dependency id="Elect.Web" version="3.1.1"/>
 
                 <!-- 3rd Libraries -->
-                <dependency id="HangFire" version="1.7.11"/>
+                <dependency id="HangFire" version="1.7.23"/>
                 <dependency id="Hangfire.MemoryStorage" version="1.7.0"/>
+              <dependency id="Hangfire.PostgreSql" version="1.8.4" />
 
             </group>
         </dependencies>
