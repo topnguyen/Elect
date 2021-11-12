@@ -32,7 +32,7 @@
   <!-- 3rd Libraries -->
   <ItemGroup>
     <!-- Markup Min -->
-    <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.9.3" />
-    <PackageReference Include="WebMarkupMin.NUglify" Version="2.9.3" />
+    <PackageReference Include="WebMarkupMin.AspNetCore6" Version="2.11.0" />
+    <PackageReference Include="WebMarkupMin.NUglify" Version="2.11.0" />
   </ItemGroup>
 </Project>

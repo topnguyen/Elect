@@ -58,7 +58,7 @@ namespace Elect.Sample.Data.EF
                     
                     var user1Id = AddUser("User Name 1");
 
-                    // 3 Deleted Profile, 2 Active Profile
+                    // 3 Active Profile, 2 Deleted Profile
                     AddRandomProfile(user1Id, false);
                     AddRandomProfile(user1Id, false);
                     AddRandomProfile(user1Id, false);
@@ -73,7 +73,7 @@ namespace Elect.Sample.Data.EF
                     
                     var user2Id = AddUser("User Name 2");
 
-                    // 4 Deleted Profile, 1 Active Profile
+                    // 4 Active Profile, 1 Deleted Profile
                     AddRandomProfile(user2Id, false);
                     AddRandomProfile(user2Id, false);
                     AddRandomProfile(user2Id, false);
@@ -86,7 +86,7 @@ namespace Elect.Sample.Data.EF
                     
                     var user3Id = AddUser("User Name 3");
                     
-                    // 3 Deleted Profile, 2 Active Profile
+                    // 2 Active Profile, 3 Deleted Profile
                     AddRandomProfile(user3Id, false);
                     AddRandomProfile(user3Id, false);
                     AddRandomProfile(user3Id, true);
@@ -113,7 +113,7 @@ namespace Elect.Sample.Data.EF
 
                 var totalProfileDeleted = users.SelectMany(x => x.Profiles).Count(x => x.DeletedTime != null);
 
-                var isFilterSuccess = totalProfileDeleted == 0;
+                var isFilterSuccess = totalProfileDeleted == 6;
             }
         }
 

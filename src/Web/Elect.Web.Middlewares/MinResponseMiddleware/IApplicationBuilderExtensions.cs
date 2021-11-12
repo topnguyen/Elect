@@ -18,7 +18,7 @@
 #endregion License
 
 using Microsoft.AspNetCore.Builder;
-using WebMarkupMin.AspNetCore2;
+using WebMarkupMin.AspNetCore6;
 
 namespace Elect.Web.Middlewares.MinResponseMiddleware
 {
