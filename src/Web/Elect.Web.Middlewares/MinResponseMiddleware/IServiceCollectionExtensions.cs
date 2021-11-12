@@ -21,7 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.IO.Compression;
 using WebMarkupMin.AspNet.Common.Compressors;
-using WebMarkupMin.AspNetCore2;
+using WebMarkupMin.AspNetCore6;
 using WebMarkupMin.NUglify;
 
 namespace Elect.Web.Middlewares.MinResponseMiddleware
