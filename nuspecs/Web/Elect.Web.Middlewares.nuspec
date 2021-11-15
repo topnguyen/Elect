@@ -14,7 +14,7 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore middlewares elect topnguyen</tags>
-    <version>6.0.0</version>
+    <version>6.0.1</version>
 
     <dependencies>
       <group targetFramework="net6.0">
@@ -23,7 +23,7 @@
         <dependency id="Elect.Web" version="6.0.0"/>
 
         <!-- 3rd Libraries -->
-        <dependency id="WebMarkupMin.AspNetCore2" version="2.11.0" />
+        <dependency id="WebMarkupMin.AspNetCore6" version="2.11.0" />
         <dependency id="WebMarkupMin.NUglify" version="2.11.0" />
       </group>
     </dependencies>
