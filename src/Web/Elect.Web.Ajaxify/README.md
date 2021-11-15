@@ -66,6 +66,7 @@
 }
 @if (isAjaxify)
 {
+ <text>
     <html>
     <head>
        @{
@@ -86,9 +87,11 @@
         </div>
     </body>
     </html>
+ </text>
 }
 else
 {
+ <text>
     <!DOCTYPE html>
     <html lang="en-US">
     <head>
@@ -126,6 +129,7 @@ else
         </div>
     </body>
     </html>
+ </text>
 }
 ```
 
