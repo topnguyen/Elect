@@ -14,13 +14,13 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore AppMetrics elect topnguyen</tags>
-    <version>6.0.0</version>
+    <version>5.0.0</version>
 
     <dependencies>
-      <group targetFramework="net6.0">
+      <group targetFramework="net5.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="6.0.0"/>
+        <dependency id="Elect.Core" version="5.0.0"/>
 
         <!-- App Metrics -->
 
@@ -48,9 +48,9 @@
   </metadata>
   <files>
     <file src="Logo.png" target=""/>
-    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.dll" target="lib\net6.0"/>
-    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.pdb" target="lib\net6.0"/>
-    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.xml" target="lib\net6.0"/>
+    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.dll" target="lib\net5.0"/>
+    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.pdb" target="lib\net5.0"/>
+    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.xml" target="lib\net5.0"/>
     <file src="..\..\src\Logger\Elect.AppMetrics\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
   </files>
 </package>

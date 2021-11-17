@@ -14,16 +14,16 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore middlewares elect topnguyen</tags>
-    <version>6.0.1</version>
+    <version>5.0.0</version>
 
     <dependencies>
-      <group targetFramework="net6.0">
+      <group targetFramework="net5.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="6.0.0"/>
+        <dependency id="Elect.Web" version="5.0.0"/>
 
         <!-- 3rd Libraries -->
-        <dependency id="WebMarkupMin.AspNetCore6" version="2.11.0" />
+        <dependency id="WebMarkupMin.AspNetCore5" version="2.11.0" />
         <dependency id="WebMarkupMin.NUglify" version="2.11.0" />
       </group>
     </dependencies>
@@ -31,9 +31,9 @@
 
   <files>
     <file src="Logo.png" target=""/>
-    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.dll" target="lib\net6.0"/>
-    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.pdb" target="lib\net6.0"/>
-    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.xml" target="lib\net6.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.dll" target="lib\net5.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.pdb" target="lib\net5.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.xml" target="lib\net5.0"/>
     <file src="..\..\src\Web\Elect.Web.Middlewares\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
   </files>
 </package>

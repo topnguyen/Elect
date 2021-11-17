@@ -2,7 +2,7 @@
     <!-- Information -->
     <PropertyGroup>
         <LangVersion>latest</LangVersion>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <!-- Generate XML file -->
         <DocumentationFile>Elect.Jaeger.xml</DocumentationFile>
         <!-- Disable warning for Controller/Action/Method not have block comment -->
@@ -30,6 +30,6 @@
 
         <!-- Jaeger -->
         <PackageReference Include="Jaeger" Version="1.0.3" />
-        <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.8.0" />
+        <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.7.1" />
     </ItemGroup>
 </Project>
