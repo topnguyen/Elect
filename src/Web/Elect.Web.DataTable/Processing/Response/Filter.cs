@@ -467,7 +467,7 @@ namespace Elect.Web.DataTable.Processing.Response
             return result;
         }
         
-        internal static DateTimeOffset ToDateTime(string value)
+        internal static DateTime ToDateTime(string value)
         {
             value = string.IsNullOrWhiteSpace(value) ? string.Empty : value;
 

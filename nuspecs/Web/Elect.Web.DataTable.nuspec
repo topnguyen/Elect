@@ -14,7 +14,7 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore datatable elect topnguyen</tags>
-    <version>5.0.1</version>
+    <version>5.0.2</version>
 
     <dependencies>
       <group targetFramework="netstandard2.1">
