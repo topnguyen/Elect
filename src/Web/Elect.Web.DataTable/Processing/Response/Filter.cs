@@ -121,7 +121,7 @@ namespace Elect.Web.DataTable.Processing.Response
                 var parts = termsNorm.Split('~');
 
                 // FROM DATE TIME
-                var fromDateTime = ToDateTime(parts[0]);
+                var fromDateTime = ToDateTimeOffset(parts[0]);
 
                 if (fromDateTime != default)
                 {
@@ -130,7 +130,7 @@ namespace Elect.Web.DataTable.Processing.Response
                 }
 
                 // TO DATE TIME
-                var toDateTime = ToDateTime(parts[1]);
+                var toDateTime = ToDateTimeOffset(parts[1]);
 
                 if (toDateTime == default)
                 {
@@ -144,7 +144,7 @@ namespace Elect.Web.DataTable.Processing.Response
             }
 
             // Single Case
-            var dateTime = ToDateTime(termsNorm);
+            var dateTime = ToDateTimeOffset(termsNorm);
 
             if (dateTime == default)
             {
@@ -438,7 +438,7 @@ namespace Elect.Web.DataTable.Processing.Response
             return Convert.ChangeType(terms, propertyInfo.Type);
         }
 
-        internal static DateTimeOffset ToDateTime(string value)
+        internal static DateTimeOffset ToDateTimeOffset(string value)
         {
             value = string.IsNullOrWhiteSpace(value) ? string.Empty : value;
 
@@ -463,6 +463,31 @@ namespace Elect.Web.DataTable.Processing.Response
             }
 
             result = result.DateTime.WithTimeZone(ElectDataTableOptions.Instance.DateTimeTimeZone);
+
+            return result;
+        }
+        
+        internal static DateTimeOffset ToDateTime(string value)
+        {
+            value = string.IsNullOrWhiteSpace(value) ? string.Empty : value;
+
+            if (ElectDataTableOptions.Instance.RequestDateTimeFormatType == DateTimeFormatType.Auto && DateTime.TryParse(value, out var result))
+            {
+                return result;
+            }
+
+            if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var dateTime))
+            {
+                result = dateTime;
+            }
+            else if (DateTime.TryParseExact(value, ElectDataTableOptions.Instance.DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var date))
+            {
+                result = date;
+            }
+            else
+            {
+                return default;
+            }
 
             return result;
         }

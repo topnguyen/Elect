@@ -135,16 +135,16 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
             {
                 var parts = filter.Split('~');
 
-                dateTimeOffsetFrom = Filter.ToDateTime(parts[0]);
+                dateTimeOffsetFrom = Filter.ToDateTimeOffset(parts[0]);
 
                 // TO DATE TIME
-                dateTimeOffsetTo = Filter.ToDateTime(parts[1]);
+                dateTimeOffsetTo = Filter.ToDateTimeOffset(parts[1]);
 
                 return;
             }
 
             // Single Case
-            dateTimeOffsetFrom = Filter.ToDateTime(filter);
+            dateTimeOffsetFrom = Filter.ToDateTimeOffset(filter);
         }
         
         #region Internal and Private
