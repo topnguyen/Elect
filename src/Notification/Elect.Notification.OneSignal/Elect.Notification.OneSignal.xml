@@ -1074,6 +1074,11 @@
                 <br /> Send based on OneSignal PlayerIds <br /> 
             </summary>
         </member>
+        <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.ChannelForExternalUserIds">
+            <summary>
+                "push" or "email" or "sms"
+            </summary>
+        </member>
         <member name="P:Elect.Notification.OneSignal.Models.Notifications.NotificationCreateModel.IncludedSegments">
             <summary>
                 <br /> The segment names you want to target. <br /> Users in these segments will

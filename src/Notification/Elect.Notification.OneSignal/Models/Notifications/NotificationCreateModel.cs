@@ -101,6 +101,15 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("include_player_ids")]
         public IList<string> IncludePlayerIds { get; set; }
+        
+        [JsonProperty("include_external_user_ids")]
+        public IList<string> IncludeUserIds { get; set; }
+
+        /// <summary>
+        ///     "push" or "email" or "sms"
+        /// </summary>
+        [JsonProperty("channel_for_external_user_ids")]
+        public string ChannelForExternalUserIds { get; set; } = "push";
 
         /// <summary>
         ///     <br /> The segment names you want to target. <br /> Users in these segments will

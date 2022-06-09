@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Elect.Notification.OneSignal;
 using Elect.Notification.OneSignal.Interfaces;
 using Elect.Notification.OneSignal.Models;
-using Elect.Notification.OneSignal.Models.Notifications;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,7 +10,7 @@ namespace Elect.Test.Notification.Onesignal
     [TestClass]
     public class ModelUnitTest
     {
-        public string AppId = "<your onesignal APP ID>";
+        public string AppId = "";
         
         public IElectOneSignalClient GetClient()
         {
@@ -22,14 +19,14 @@ namespace Elect.Test.Notification.Onesignal
             // One Signal
             services.AddElectOneSignal(x =>
             {
-                x.AuthKey = "<your onesignal auth key>"; // the Auth key you can setting via appsettings.json
+                x.AuthKey = ""; // the Auth key you can setting via appsettings.json
                 x.Apps =
                     new List<ElectOneSignalAppOption> // the list of application you have and want to put notification
                     {
                         new ElectOneSignalAppOption
                         {
                             AppId = AppId,
-                            ApiKey = "<your onesignal API KEY>",
+                            ApiKey = "",
                             AppName = "Sample App" // Just the identity name for easier debuging
                         }
                     };
@@ -52,7 +49,8 @@ namespace Elect.Test.Notification.Onesignal
         //         {
         //             {"Key1", "Data1"}
         //         },
-        //         IncludedSegments = new List<string> {"All"} // send to all player
+        //         IncludedSegments = new List<string> {"All"}, // send to all player
+        //         // IncludeUserIds = new List<string>{"f0f53343-c455-da9c-8e53-3a03bbd5d833"}
         //     };
         //
         //     // Title + Message
@@ -65,7 +63,7 @@ namespace Elect.Test.Notification.Onesignal
         //
         //     Assert.AreNotEqual(notificationResult.Recipients, 0);
         // }
-        //
+        
         // [TestMethod]
         // public async Task CancelNotification()
         // {
