@@ -14,10 +14,10 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore jaeger elect topnguyen</tags>
-    <version>6.0.0</version>
+    <version>7.0.0</version>
 
     <dependencies>
-      <group targetFramework="net6.0">
+      <group targetFramework="net7.0">
         <!-- Elect -->
         <dependency id="Elect.Core" version="6.0.0"/>
 
@@ -29,9 +29,9 @@
   </metadata>
   <files>
     <file src="Logo.png" target=""/>
-    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.dll" target="lib\net6.0"/>
-    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.pdb" target="lib\net6.0"/>
-    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.xml" target="lib\net6.0"/>
+    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.dll" target="lib\net7.0"/>
+    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.pdb" target="lib\net7.0"/>
+    <file src="..\..\src\Logger\Elect.Jaeger\bin\Elect.Jaeger.xml" target="lib\net7.0"/>
     <file src="..\..\src\Logger\Elect.Jaeger\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
   </files>
 </package>

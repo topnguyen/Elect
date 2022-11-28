@@ -29,6 +29,6 @@
   </ItemGroup>
   <!-- 3rd Libraries -->
   <ItemGroup>
-    <PackageReference Include="Consul" Version="1.6.10.3" />
+    <PackageReference Include="Consul" Version="1.6.10.7" />
   </ItemGroup>
 </Project>

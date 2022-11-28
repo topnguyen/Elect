@@ -5,6 +5,7 @@
     <DocumentationFile>Elect.Sample.DI.xml</DocumentationFile>
     <!-- Disable warning for Controller/Action/Method not have block comment -->
     <NoWarn>1701;1702;1705;1591</NoWarn>
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
   <ItemGroup>
     <!-- Copy to Ouput -->

@@ -41,6 +41,6 @@
 
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
 
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="7.0.0" />
   </ItemGroup>
 </Project>

@@ -14,43 +14,43 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore AppMetrics elect topnguyen</tags>
-    <version>6.0.0</version>
+    <version>7.0.0</version>
 
     <dependencies>
-      <group targetFramework="net6.0">
+      <group targetFramework="net7.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="6.0.0"/>
+        <dependency id="Elect.Core" version="7.0.0"/>
 
         <!-- App Metrics -->
 
         <!-- App Metrics - App Metrics ASP.NET Core is a an open-source web framework allowing you to record typical web metrics -->
         <!-- and expose metrics and environment information over HTTP and more. -->
-        <dependency id="App.Metrics.AspNetCore" version="4.2.0" />
+        <dependency id="App.Metrics.AspNetCore" version="4.3.0" />
 
         <!-- App Metrics - App Metrics ASP.NET Core core components. -->
-        <dependency id="App.Metrics.AspNetCore.Core" version="4.2.0" />
+        <dependency id="App.Metrics.AspNetCore.Core" version="4.3.0" />
 
         <!-- App Metrics - App Metrics ASP.NET Core MVC features such as metric tracking on controller actions using attribute routes. -->
-        <dependency id="App.Metrics.AspNetCore.Mvc" version="4.2.0" />
+        <dependency id="App.Metrics.AspNetCore.Mvc" version="4.3.0" />
 
         <!-- App Metrics - Format and Report via HTTP -->
-        <dependency id="App.Metrics.Reporting.Http" version="4.2.0" />
+        <dependency id="App.Metrics.Reporting.Http" version="4.3.0" />
 
         <!-- App Metrics - Format and Report via InfluxDB -->
-        <dependency id="App.Metrics.Reporting.InfluxDB" version="4.2.0" />
+        <dependency id="App.Metrics.Reporting.InfluxDB" version="4.3.0" />
 
         <!-- App Metrics - Format for Prometeus -->
-        <dependency id="App.Metrics.Formatters.Prometheus" version="4.2.0" />
+        <dependency id="App.Metrics.Formatters.Prometheus" version="4.3.0" />
 
       </group>
     </dependencies>
   </metadata>
   <files>
     <file src="Logo.png" target=""/>
-    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.dll" target="lib\net6.0"/>
-    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.pdb" target="lib\net6.0"/>
-    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.xml" target="lib\net6.0"/>
+    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.dll" target="lib\net7.0"/>
+    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.pdb" target="lib\net7.0"/>
+    <file src="..\..\src\Logger\Elect.AppMetrics\bin\Elect.AppMetrics.xml" target="lib\net7.0"/>
     <file src="..\..\src\Logger\Elect.AppMetrics\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
   </files>
 </package>

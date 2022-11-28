@@ -2,7 +2,7 @@
   <!-- Information -->
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <!-- Generate XML file -->
     <DocumentationFile>Elect.Data.EF.xml</DocumentationFile>
     <!-- Disable warning for Controller/Action/Method not have block comment -->
@@ -32,8 +32,8 @@
   </ItemGroup>
   <!-- 3rd Libraries -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 </Project>

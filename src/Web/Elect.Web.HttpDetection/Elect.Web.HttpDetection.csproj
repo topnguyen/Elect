@@ -33,6 +33,6 @@
   </ItemGroup>
   <!-- 3rd Libraries -->
   <ItemGroup>
-    <PackageReference Include="MaxMind.GeoIP2" Version="4.0.1" />
+    <PackageReference Include="MaxMind.GeoIP2" Version="5.1.0" />
   </ItemGroup>
 </Project>

@@ -14,26 +14,26 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore efcore elect topnguyen</tags>
-        <version>6.0.0</version>
+        <version>7.0.0</version>
 
         <dependencies>
-            <group targetFramework="net6.0">
+            <group targetFramework="net7.0">
                 <!-- Elect -->
-                <dependency id="Elect.Core" version="6.0.0"/>
+                <dependency id="Elect.Core" version="7.0.0"/>
 
                 <!-- 3rd Libraries -->
-                <dependency id="Microsoft.EntityFrameworkCore" version="6.0.0"/>
-                <dependency id="Microsoft.EntityFrameworkCore.Relational" version="6.0.0"/>
-                <dependency id="System.Data.SqlClient" version="4.8.3"/>
+                <dependency id="Microsoft.EntityFrameworkCore" version="7.0.0" />
+                <dependency id="Microsoft.EntityFrameworkCore.Relational" version="7.0.0" />
+                <dependency id="System.Data.SqlClient" version="4.8.3" />
             </group>
         </dependencies>
     </metadata>
 
     <files>
         <file src="Logo.png" target=""/>
-        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.dll" target="lib\net6.0"/>
-        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.pdb" target="lib\net6.0"/>
-        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.xml" target="lib\net6.0"/>
+        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.dll" target="lib\net7.0"/>
+        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.pdb" target="lib\net7.0"/>
+        <file src="..\..\src\Data\Elect.Data.EF\bin\Elect.Data.EF.xml" target="lib\net7.0"/>
         <file src="..\..\src\Data\Elect.Data.EF\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
     </files>
 </package>
