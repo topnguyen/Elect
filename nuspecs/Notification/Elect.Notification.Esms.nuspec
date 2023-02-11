@@ -14,13 +14,13 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore esms elect topnguyen</tags>
-    <version>7.0.0</version>
+    <version>7.0.1</version>
 
     <dependencies>
       <group targetFramework="netstandard2.1">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="7.0.0"/>
+        <dependency id="Elect.Core" version="7.0.1"/>
 
       </group>
     </dependencies>

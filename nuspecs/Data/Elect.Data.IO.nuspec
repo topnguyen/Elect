@@ -14,20 +14,20 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore io elect topnguyen</tags>
-    <version>7.0.0</version>
+    <version>7.0.1</version>
 
     <dependencies>
       <group targetFramework="netstandard2.1">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="7.0.0"/>
+        <dependency id="Elect.Core" version="7.0.1"/>
 
         <!-- 3rd Libraries -->
         <dependency id="Mono.Posix.NETStandard" version="5.20.1-preview" />
         <dependency id="runtime.osx.10.10-x64.CoreCompat.System.Drawing" version="6.0.5.128" />
         <dependency id="System.Drawing.Common" version="7.0.0" />
         <dependency id="SixLabors.ImageSharp" version="2.1.3" />
-        <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta11" />
+        <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta15" />
       </group>
     </dependencies>
   </metadata>

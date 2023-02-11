@@ -26,7 +26,7 @@
     
     <ItemGroup>
         <!-- Keep Elect Core v6.0.0 to prevent conflict dependencies with OpenTracing.Contrib.NetCore 0.8.0 -->
-<!--        <PackageReference Include="Elect.Core" Version="6.0.0" />-->
+        <!-- <PackageReference Include="Elect.Core" Version="6.0.0" />-->
         <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
         
         <!-- Jaeger -->

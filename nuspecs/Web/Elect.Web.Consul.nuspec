@@ -14,13 +14,13 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore swagger elect topnguyen</tags>
-    <version>7.0.0</version>
+    <version>7.0.1</version>
 
     <dependencies>
       <group targetFramework="netstandard2.1">
 
         <!-- Elect -->
-        <dependency id="Elect.Web.HealthCheck" version="7.0.0"/>
+        <dependency id="Elect.Web.HealthCheck" version="7.0.1"/>
 
         <!-- 3rd Libraries -->
         <dependency id="Consul" version="1.6.10.7" />

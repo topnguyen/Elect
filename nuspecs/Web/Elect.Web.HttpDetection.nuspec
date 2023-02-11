@@ -14,14 +14,14 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore httpdetection elect topnguyen</tags>
-    <version>7.0.0</version>
+    <version>7.0.1</version>
 
     <dependencies>
       <group targetFramework="netstandard2.1">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="7.0.0"/>
-        <dependency id="Elect.Data.IO" version="7.0.0"/>
+        <dependency id="Elect.Web" version="7.0.1"/>
+        <dependency id="Elect.Data.IO" version="7.0.1"/>
 
         <!-- 3rd Libraries -->
         <dependency id="MaxMind.GeoIP2" version="5.1.0"/>

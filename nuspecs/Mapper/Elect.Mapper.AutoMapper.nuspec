@@ -14,12 +14,12 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore automapper elect topnguyen</tags>
-    <version>7.0.0</version>
+    <version>7.0.1</version>
 
     <dependencies>
       <group targetFramework="netstandard2.1">
         <!-- Elect -->
-        <dependency id="Elect.Core" version="7.0.0"/>
+        <dependency id="Elect.Core" version="7.0.1"/>
 
         <!-- 3rd Libraries -->
         <dependency id="AutoMapper" version="[8.1.1, 8.1.1]" />

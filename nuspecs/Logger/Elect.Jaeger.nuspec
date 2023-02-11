@@ -14,16 +14,16 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore jaeger elect topnguyen</tags>
-    <version>7.0.0</version>
+    <version>7.0.1</version>
 
     <dependencies>
       <group targetFramework="net7.0">
         <!-- Elect -->
-        <dependency id="Elect.Core" version="6.0.0"/>
+        <dependency id="Elect.Core" version="7.0.1"/>
 
         <!-- Jaeger -->
         <dependency id="Jaeger" version="1.0.3" />
-        <dependency id="OpenTracing.Contrib.NetCore" version="0.8.0" />
+        <dependency id="OpenTracing.Contrib.NetCore" version="0.9.0" />
       </group>
     </dependencies>
   </metadata>

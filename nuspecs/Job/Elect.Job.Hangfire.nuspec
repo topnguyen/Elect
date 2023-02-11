@@ -14,16 +14,16 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore hangfire elect topnguyen</tags>
-    <version>7.0.0</version>
+    <version>7.0.1</version>
 
     <dependencies>
       <group targetFramework="netstandard2.1">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="7.0.0"/>
+        <dependency id="Elect.Web" version="7.0.1"/>
 
         <!-- 3rd Libraries -->
-        <dependency id="HangFire" version="1.8.0-beta2" />
+        <dependency id="HangFire" version="1.8.0-rc1" />
         <dependency id="Hangfire.MemoryStorage" version="1.7.0" />
 
       </group>
