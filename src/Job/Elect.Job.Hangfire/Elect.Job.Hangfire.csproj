@@ -27,7 +27,7 @@
     <ProjectReference Include="..\..\Web\Elect.Web\Elect.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="HangFire" Version="1.8.0-beta2" />
+    <PackageReference Include="HangFire" Version="1.8.0-rc1" />
     <PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
   </ItemGroup>
 </Project>
