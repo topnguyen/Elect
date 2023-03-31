@@ -22,7 +22,7 @@
       <group targetFramework="netstandard2.1">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="7.0.1"/>
+        <dependency id="Elect.Core" version="7.0.2"/>
 
       </group>
     </dependencies>

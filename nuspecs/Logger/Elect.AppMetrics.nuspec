@@ -20,7 +20,7 @@
       <group targetFramework="net7.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="7.0.1"/>
+        <dependency id="Elect.Core" version="7.0.2"/>
 
         <!-- App Metrics -->
 

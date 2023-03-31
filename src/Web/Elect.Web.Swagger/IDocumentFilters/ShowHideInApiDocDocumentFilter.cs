@@ -42,13 +42,11 @@ namespace Elect.Web.Swagger.IDocumentFilters
                 bool isHideInApiDoc = true;
 
                 // Method / Action level
-                var isHideInApiDocAttributeInMethod = controllerActionDescriptor.MethodInfo
-                    .GetCustomAttributes<HideInApiDocAttribute>(true).Any();
+                var isHideInApiDocAttributeInMethod =  controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes<HideInApiDocAttribute>(true).Any() || controllerActionDescriptor.MethodInfo.GetCustomAttributes<HideInApiDocAttribute>(true).Any();
 
                 if (!isHideInApiDocAttributeInMethod)
                 {
-                    var isShowInApiDocAttributeInMethod = controllerActionDescriptor.MethodInfo
-                        .GetCustomAttributes<ShowInApiDocAttribute>(true).Any();
+                    var isShowInApiDocAttributeInMethod = controllerActionDescriptor.MethodInfo.GetCustomAttributes<ShowInApiDocAttribute>(true).Any();
 
                     if (isShowInApiDocAttributeInMethod)
                     {
@@ -58,13 +56,11 @@ namespace Elect.Web.Swagger.IDocumentFilters
                     {
                         // Type / Controller level
 
-                        var isHideInApiDocAttributeInType = controllerActionDescriptor.ControllerTypeInfo
-                            .GetCustomAttributes<HideInApiDocAttribute>(true).Any();
+                        var isHideInApiDocAttributeInType = controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes<HideInApiDocAttribute>(true).Any();
 
                         if (!isHideInApiDocAttributeInType)
                         {
-                            var isShowInApiDocAttributeInType = controllerActionDescriptor.ControllerTypeInfo
-                                .GetCustomAttributes<ShowInApiDocAttribute>(true).Any();
+                            var isShowInApiDocAttributeInType = controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes<ShowInApiDocAttribute>(true).Any();
 
                             if (isShowInApiDocAttributeInType)
                             {
@@ -79,8 +75,13 @@ namespace Elect.Web.Swagger.IDocumentFilters
                     continue;
                 }
 
-                var route = "/" + controllerActionDescriptor.AttributeRouteInfo.Template.Trim('/');
-
+                var route = "/" + controllerActionDescriptor.AttributeRouteInfo?.Template?.Trim('/')
+                    .Replace(":guid", string.Empty)
+                    .Replace(":int", string.Empty)
+                    .Replace(":double", string.Empty)
+                    .Replace(":long", string.Empty)
+                    ;
+                    
                 if (swaggerDoc.Paths.ContainsKey(route))
                 {
                     swaggerDoc.Paths.Remove(route);

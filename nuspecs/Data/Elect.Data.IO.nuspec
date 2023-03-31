@@ -20,7 +20,7 @@
       <group targetFramework="netstandard2.1">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="7.0.1"/>
+        <dependency id="Elect.Core" version="7.0.2"/>
 
         <!-- 3rd Libraries -->
         <dependency id="Mono.Posix.NETStandard" version="5.20.1-preview" />
