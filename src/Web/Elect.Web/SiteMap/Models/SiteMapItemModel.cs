@@ -1,27 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> SiteMapItemModel.cs </Name>
-//         <Created> 21/03/2018 2:30:22 PM </Created>
-//         <Key> 9e35496a-94a8-4104-a657-ef1d4e3a1fe2 </Key>
-//     </File>
-//     <Summary>
-//         SiteMapItemModel.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Elect.Web.SiteMap.Interfaces;
-using System;
-using Elect.Core.ObjUtils;
-
-namespace Elect.Web.SiteMap.Models
+﻿namespace Elect.Web.SiteMap.Models
 {
     /// <summary>
     ///     Represents a page or URL in your site map. 
@@ -29,7 +6,6 @@ namespace Elect.Web.SiteMap.Models
     public sealed class SiteMapItem : ElectDisposableModel, ISiteMapItem
     {
         private double? _priority;
-
         /// <summary>
         ///     Creates a new instance of <see cref="SiteMapItem" /> 
         /// </summary>
@@ -46,14 +22,10 @@ namespace Elect.Web.SiteMap.Models
         public SiteMapItem(string url, DateTime? lastModified = null, SiteMapItemFrequency? frequency = null, double? priority = null)
         {
             Url = url ?? throw new ArgumentNullException(nameof(url));
-
             Frequency = frequency;
-
             Priority = priority;
-
             LastModified = lastModified;
         }
-
         /// <summary>
         ///     Gets or sets how frequently the page is likely to change. This value provides general
         ///     information to search engines and may not correlate exactly to how often they crawl
@@ -65,7 +37,6 @@ namespace Elect.Web.SiteMap.Models
         /// </summary>
         /// <value> The frequency the page is likely to change. </value>
         public SiteMapItemFrequency? Frequency { get; set; }
-
         /// <summary>
         ///     Gets or sets the date of last modification of the file. This is an optional field.
         ///     You may omit the time portion if desired. Note that this is separate from the
@@ -74,7 +45,6 @@ namespace Elect.Web.SiteMap.Models
         /// </summary>
         /// <value> The date of last modification of the file. </value>
         public DateTime? LastModified { get; set; }
-
         /// <summary>
         ///     Gets or sets the priority of this URL relative to other URLs on your site. Valid
         ///     values range from 0.0 to 1.0. This field is optional, if it is <c> null </c> the
@@ -92,7 +62,6 @@ namespace Elect.Web.SiteMap.Models
         public double? Priority
         {
             get => _priority;
-
             set
             {
                 if (value.HasValue)
@@ -100,11 +69,9 @@ namespace Elect.Web.SiteMap.Models
                         throw new ArgumentOutOfRangeException(
                             nameof(value),
                             $"Priority must be a value between 0 and 1. Value:<{value.Value}>.");
-
                 _priority = value;
             }
         }
-
         /// <summary>
         ///     Gets the URL of the page. This URL must begin with the protocol (such as http) and
         ///     end with a trailing slash, if your web server requires it. This value must be less

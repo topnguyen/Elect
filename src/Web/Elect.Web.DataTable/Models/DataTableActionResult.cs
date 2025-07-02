@@ -1,37 +1,8 @@
-﻿#region	License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> DataTableActionResult.cs </Name>
-//         <Created> 24/03/2018 2:10:36 PM </Created>
-//         <Key> a9ff8188-eba0-43fd-b4c9-c3c460a44622 </Key>
-//     </File>
-//     <Summary>
-//         DataTableActionResult.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-using Elect.Web.DataTable.Models.Request;
-using Elect.Web.DataTable.Models.Response;
-using Elect.Web.DataTable.Utils.DataTableActionResultUtils;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-
-namespace Elect.Web.DataTable.Models
+﻿namespace Elect.Web.DataTable.Models
 {
     public abstract class DataTableActionResult : IActionResult
     {
         public abstract Task ExecuteResultAsync(ActionContext context);
-
         /// <typeparam name="T"></typeparam>
         /// <param name="request">  </param>
         /// <param name="response"> 
@@ -47,7 +18,6 @@ namespace Elect.Web.DataTable.Models
         {
             return DataTableActionResultHelper.Create(request, response, transform);
         }
-
         /// <typeparam name="T"></typeparam>
         /// <param name="request"> </param>
         /// <param name="response">

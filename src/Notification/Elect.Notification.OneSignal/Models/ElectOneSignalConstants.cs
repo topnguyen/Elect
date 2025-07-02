@@ -1,27 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> ElectOneSignalConstants.cs </Name>
-//         <Created> 20/03/2018 10:03:13 AM </Created>
-//         <Key> 0bd9e578-ed39-439e-9140-98824ce59793 </Key>
-//     </File>
-//     <Summary>
-//         ElectOneSignalConstants.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Flurl.Http.Configuration;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-
-namespace Elect.Notification.OneSignal.Models
+﻿namespace Elect.Notification.OneSignal.Models
 {
     public class ElectOneSignalConstants
     {
@@ -29,9 +6,7 @@ namespace Elect.Notification.OneSignal.Models
         {
             "All"
         };
-
         public const string DefaultApiUrl = "https://onesignal.com/api/v1";
-
         internal static readonly NewtonsoftJsonSerializer NewtonsoftJsonSerializer =
             new NewtonsoftJsonSerializer(
                 new JsonSerializerSettings

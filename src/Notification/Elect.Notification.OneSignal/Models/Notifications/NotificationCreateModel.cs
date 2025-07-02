@@ -1,30 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> NotificationCreateOptions.cs </Name>
-//         <Created> 19/03/2018 9:44:00 PM </Created>
-//         <Key> 4ec83ea8-886b-4e40-a35f-32a6062831a2 </Key>
-//     </File>
-//     <Summary>
-//         NotificationCreateOptions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Elect.Notification.OneSignal.Interfaces;
-using Elect.Notification.OneSignal.JsonConverter;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-
-namespace Elect.Notification.OneSignal.Models.Notifications
+﻿namespace Elect.Notification.OneSignal.Models.Notifications
 {
     /// <summary>
     ///     API Documentation: https://documentation.onesignal.com/docs/notifications-create-notification 
@@ -38,7 +12,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         public NotificationCreateModel()
         {
         }
-
         /// <summary>
         ///     <br /> Your OneSignal application ID, which can be found on our dashboard at
         ///     onesignal.com under App Settings &gt; Keys &amp; IDs. <br /> It is a UUID and looks
@@ -46,7 +19,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("app_id")]
         internal string AppId { get; set; }
-
         /// <summary>
         ///     <br /> The notification's content (excluding the title), a map of language codes to
         ///     text for each language. <br /> Each hash must have a language code string for a key,
@@ -61,7 +33,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("contents")]
         public IDictionary<string, string> Contents { get; set; } = new Dictionary<string, string>();
-
         /// <summary>
         ///     <br /> The notification's title, a map of language codes to text for each language.
         ///     <br /> Each hash must have a language code string for a key, mapped to the localized
@@ -76,7 +47,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("headings")]
         public IDictionary<string, string> Headings { get; set; } = new Dictionary<string, string>();
-
         /// <summary>
         ///     <br /> A custom map of data that is passed back to your app. <br /> 
         ///     <code>
@@ -88,29 +58,24 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("data")]
         public IDictionary<string, string> Data { get; set; }
-
         /// <summary>
         ///     <br /> Targets notification recipients with filters. <br /> This is a array of JSON
         ///     objects containing field conditions to check. <br />
         /// </summary>
         [JsonProperty("filters")]
         public IList<INotificationFilter> Filters { get; set; }
-
         /// <summary>
         ///     <br /> Send based on OneSignal PlayerIds <br /> 
         /// </summary>
         [JsonProperty("include_player_ids")]
         public IList<string> IncludePlayerIds { get; set; }
-        
         [JsonProperty("include_external_user_ids")]
         public IList<string> IncludeUserIds { get; set; }
-
         /// <summary>
         ///     "push" or "email" or "sms"
         /// </summary>
         [JsonProperty("channel_for_external_user_ids")]
         public string ChannelForExternalUserIds { get; set; } = "push";
-
         /// <summary>
         ///     <br /> The segment names you want to target. <br /> Users in these segments will
         ///     receive a notification. <br /> This targeting parameter is only compatible with
@@ -118,7 +83,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("included_segments")]
         public IList<string> IncludedSegments { get; set; }
-
         /// <summary>
         ///     <br /> Sets the web push notification's icon. <br /> An image URL linking to a valid
         ///     image. <br /> Common image types are supported; GIF will not animate. <br /> We
@@ -127,7 +91,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("chrome_web_icon")]
         public string ChromeWebIcon { get; set; }
-
         /// <summary>
         ///     <br /> The notification's subtitle, a map of language codes to text for each
         ///     language. <br /> Each hash must have a language code string for a key, mapped to the
@@ -143,7 +106,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("subtitle")]
         public IDictionary<string, string> Subtitle { get; set; }
-
         /// <summary>
         ///     <br /> Use a template you setup on our dashboard. You can override the template
         ///     values by sending other parameters with the request. <br /> The template_id is the
@@ -152,7 +114,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("template_id")]
         public string TemplateId { get; set; }
-
         /// <summary>
         ///     <br /> Sending true wakes your app to run custom native code (Apple interprets this
         ///     as content-available=1). <br /> Omit contents field to make notification silent. <br />
@@ -160,7 +121,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("content_available")]
         public bool? ContentAvailable { get; set; }
-
         /// <summary>
         ///     <br /> Sending true allows you to change the notification content in your app before
         ///     it is displayed. <br /> Triggers didReceive(_:withContentHandler:) on your
@@ -169,7 +129,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("mutable_content")]
         public bool? MutableContent { get; set; }
-
         /// <summary>
         ///     <br /> The URL to open in the browser when a user clicks on the notification. <br /> 
         ///     <code>
@@ -182,7 +141,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("url")]
         public string Url { get; set; }
-
         /// <summary>
         ///     <br /> Adds media attachments to notifications. Set as JSON object, key as a media id
         ///     of your choice and the value as a valid local file name or URL. <br /> User must
@@ -196,7 +154,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("ios_attachments")]
         public IDictionary<string, string> IosAttachments { get; set; }
-
         /// <summary>
         ///     <br /> Picture to display in the expanded view. Can be a drawable resource name or a
         ///     URL. <br />
@@ -204,7 +161,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("big_picture")]
         public string BigPictureForAndroid { get; set; }
-
         /// <summary>
         ///     <br /> Picture to display in the expanded view. Can be a drawable resource name or a
         ///     URL. <br />
@@ -212,7 +168,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("adm_big_picture")]
         public string BigPictureForAmazon { get; set; }
-
         /// <summary>
         ///     <br /> Picture to display in the expanded view. Can be a drawable resource name or a
         ///     URL. <br />
@@ -220,7 +175,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("chrome_big_picture")]
         public string BigPictureForChrome { get; set; }
-
         /// <summary>
         ///     <br /> Buttons to add to the notification. Icon only works for Android. <br /> 
         ///     <code>
@@ -231,7 +185,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("buttons")]
         public IList<ActionButtonFieldModel> ActionButtons { get; set; }
-
         /// <summary>
         ///     <br /> Add action buttons to the notification. The id field is required. <br /> 
         ///     <code>
@@ -242,7 +195,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("web_buttons")]
         public IList<WebButtonFieldModel> WebButtons { get; set; }
-
         /// <summary>
         ///     <br /> Category APS payload, use with registerUserNotificationSettings:categories in
         ///     your Objective-C / Swift code. <br />
@@ -255,7 +207,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("ios_category")]
         public string IosCategory { get; set; }
-
         /// <summary>
         ///     <br /> Allowing setting a background image for the notification. This is a JSON
         ///     object containing the following keys. <br /> See our Background Image documentation
@@ -279,7 +230,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("android_background_layout")]
         public IList<AndroidBackgroundLayoutFieldModel> AndroidBackgroundLayout { get; set; }
-
         /// <summary>
         ///     <br /> If blank the app icon is used. Must be the drawable resource name. <br /> See
         ///     how to create small icons: <see cref="!:https://documentation.onesignal.com/docs/android-customizations#section-small-notification-icons" /><br />
@@ -287,7 +237,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("small_icon")]
         public string SmallAndroidIcon { get; set; }
-
         /// <summary>
         ///     <br /> If blank the small_icon is used. Can be a drawable resource name or a URL.
         ///     <br /> See how to
@@ -297,7 +246,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("large_icon")]
         public string LargeAndroidIcon { get; set; }
-
         /// <summary>
         ///     <br /> Specific Amazon icon to use. <br /> If blank the app icon is used. <br /> Must
         ///     be the drawable resource name. <br />
@@ -305,7 +253,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("adm_small_icon")]
         public string SmallAmazonIcon { get; set; }
-
         /// <summary>
         ///     <br /> Specific Amazon icon to display to the left of the notification. <br /> If
         ///     blank the adm_small_icon is used. <br /> Can be a drawable resource name or a URL. <br />
@@ -313,7 +260,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("adm_large_icon")]
         public string LargeAmazonIcon { get; set; }
-
         /// <summary>
         ///     <br /> This flag is not used for web push For web push, please see chrome_web_icon
         ///     instead. <br /> The local URL to an icon to use. If blank, the app icon will be used. <br />
@@ -321,7 +267,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("chrome_icon")]
         public string ChromeIcon { get; set; }
-
         /// <summary>
         ///     <br /> Sound file that is included in your app to play instead of the default device
         ///     notification sound. <br /> Pass "nil" to disable vibration and sound for the
@@ -330,7 +275,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("ios_sound")]
         public string IosSound { get; set; }
-
         /// <summary>
         ///     <br /> Sound file that is included in your app to play instead of the default device
         ///     notification sound. <br />
@@ -343,7 +287,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("android_sound")]
         public string AndroidSound { get; set; }
-
         /// <summary>
         ///     <br /> Sound file that is included in your app to play instead of the default device
         ///     notification sound. <br />
@@ -356,7 +299,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("adm_sound")]
         public string AmazonSound { get; set; }
-
         /// <summary>
         ///     <br /> Sound file that is included in your app to play instead of the default device
         ///     notification sound. <br />
@@ -368,7 +310,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("wp_sound")]
         public string WindowsPhoneSound { get; set; }
-
         /// <summary>
         ///     <br /> Sound file that is included in your app to play instead of the default device
         ///     notification sound. <br />
@@ -380,7 +321,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("wp_wns_sound")]
         public string WindowsRtPhoneSound { get; set; }
-
         /// <summary>
         ///     <br /> Sets the devices LED notification light if the device has one. ARGB Hex
         ///     format. <br />
@@ -392,7 +332,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("android_led_color")]
         public string AndroidLedColor { get; set; }
-
         /// <summary>
         ///     <br /> Sets the background color of the notification circle to the left of the
         ///     notification text. <br /> Only applies to apps targeting Android API level 21+ on
@@ -405,7 +344,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("android_accent_color")]
         public string AndroidAccentColor { get; set; }
-
         /// <summary>
         ///     <br /> Sets the lock screen visibility for apps targeting Android API level 21+
         ///     running on Android 5.0+ devices. <br /> 1 = Public (default) (Shows the full message
@@ -418,7 +356,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("android_visibility")]
         public AndroidVisibilityEnum? AndroidVisibility { get; set; }
-
         /// <summary>
         ///     <br /> Describes whether to set or increase/decrease your app's iOS badge count by
         ///     the ios_badgeCount specified count. Can specify None, SetTo, or Increase. <br /> None
@@ -430,7 +367,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         [JsonProperty("ios_badgeType")]
         [JsonConverter(typeof(StringEnumConverter))]
         public IosBadgeTypeEnum? IosBadgeType { get; set; }
-
         /// <summary>
         ///     <br /> Used with ios_badgeType, describes the value to set or amount to
         ///     increase/decrease your app's iOS badge count by. <br /> You can use a negative number
@@ -439,7 +375,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("ios_badgeCount")]
         public int? IosBadgeCount { get; set; }
-
         /// <summary>
         ///     <br /> Only one notification with the same id will be shown on the device. Use the
         ///     same id to update an existing notification instead of showing a new one. <br /> his
@@ -448,7 +383,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("collapse_id")]
         public string CollapseId { get; set; }
-
         /// <summary>
         ///     <br /> Schedule notification for future delivery. <br /> Eventhough API suggests
         ///     diffent datetime formats, we are using following format: "2015-09-24 14:00:00
@@ -458,7 +392,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         [JsonProperty("send_after")]
         [JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTime? SendAfter { get; set; }
-
         /// <summary>
         ///     <br /> Possible values are: <br /> timezone (Deliver at a specific time-of-day in
         ///     each users own timezone) <br /> last-active (Deliver at the same time of day as each
@@ -469,7 +402,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         [JsonProperty("delayed_option")]
         [JsonConverter(typeof(DelayedOptionJsonConverter))]
         public DelayedOptionEnum? DelayedOption { get; set; }
-
         /// <summary>
         ///     <br /> Use with delayed_option=timezone. <br /> 
         ///     <code>
@@ -480,7 +412,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("delivery_time_of_day")]
         public string DeliveryTimeOfDay { get; set; }
-
         /// <summary>
         ///     <br /> Time To Live - In seconds. <br /> The notification will be expired if the
         ///     device does not come back online within this time. <br /> The default is 259,200
@@ -489,7 +420,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("ttl")]
         public int? TimeToLive { get; set; }
-
         /// <summary>
         ///     <br /> Delivery priority through the push server (example GCM/FCM). 
         ///     <code>
@@ -501,7 +431,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("priority")]
         public int? Priority { get; set; }
-
         /// <summary>
         ///     <br /> All notifications with the same group will be stacked together using Android's
         ///     Notification Stacking feature. <br /> More info
@@ -511,7 +440,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("android_group")]
         public string AndroidGroup { get; set; }
-
         /// <summary>
         ///     <br /> Summary message to display when 2+ notifications are stacked together. Default
         ///     is "# new messages". <br /> Include $[notif_count] in your message and it will be
@@ -529,7 +457,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("android_group_message")]
         public string AndroidGroupMessage { get; set; }
-
         /// <summary>
         ///     <br /> All notifications with the same group will be stacked together using Android's
         ///     Notification Stacking feature. <br /> More info
@@ -539,7 +466,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("adm_group")]
         public string AmazonGroup { get; set; }
-
         /// <summary>
         ///     <br /> Summary message to display when 2+ notifications are stacked together. <br />
         ///     Default is "# new messages". Include $[notif_count] in your message and it will be
@@ -555,7 +481,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("adm_group_message")]
         public string AmazonGroupMessage { get; set; }
-
         /// <summary>
         ///     <br /> Indicates whether to send to all devices registered under your app's Apple iOS
         ///     platform. <br />
@@ -563,7 +488,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isIos")]
         public bool? DeliverToIos { get; set; }
-
         /// <summary>
         ///     <br /> Indicates whether to send to all devices registered under your app's Google
         ///     Android platform. <br />
@@ -571,7 +495,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isAndroid")]
         public bool? DeliverToAndroid { get; set; }
-
         /// <summary>
         ///     <br /> Indicates whether to send to all subscribed web browser users, including
         ///     Chrome, Firefox, and Safari. <br /> You may use this instead as a combined flag
@@ -581,7 +504,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isAnyWeb")]
         public bool? DeliverToAnyWeb { get; set; }
-
         /// <summary>
         ///     <br /> Indicates whether to send to all Google Chrome, Chrome on Android, and Mozilla
         ///     Firefox users registered under your Chrome &amp; Firefox web push platform. <br />
@@ -589,7 +511,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isChromeWeb")]
         public bool? DeliverToChromeWeb { get; set; }
-
         /// <summary>
         ///     <br /> Indicates whether to send to all Mozilla Firefox desktop users registered
         ///     under your Firefox web push platform. <br />
@@ -597,7 +518,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isFirefox")]
         public bool? DeliverToFirefox { get; set; }
-
         /// <summary>
         ///     <br /> Does not support iOS Safari Indicates whether to send to all Apple's Safari
         ///     desktop users registered under your Safari web push platform. <br /> Read more about
@@ -607,7 +527,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isSafari")]
         public bool? DeliverToSafari { get; set; }
-
         /// <summary>
         ///     <br /> Indicates whether to send to all devices registered under your app's Windows
         ///     Phone 8.0 platform. <br />
@@ -615,7 +534,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isWP")]
         public bool? DeliverToWindowsPhone { get; set; }
-
         /// <summary>
         ///     <br /> Indicates whether to send to all devices registered under your app's Windows
         ///     Phone 8.1+ platform. <br />
@@ -623,7 +541,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isWP_WNS")]
         public bool? DeliverToWindowsRtPhone { get; set; }
-
         /// <summary>
         ///     <br /> Indicates whether to send to all devices registered under your app's Amazon
         ///     Fire platform. <br />
@@ -631,7 +548,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("isAdm")]
         public bool? DeliverToAmazon { get; set; }
-
         /// <summary>
         ///     <br /> This flag is not used for web push Please see isChromeWeb for sending to web
         ///     push users. This flag only applies to Google Chrome Apps &amp; Extensions. <br />

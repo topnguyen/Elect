@@ -1,39 +1,8 @@
-﻿#region	License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> StringTransformer.cs </Name>
-//         <Created> 23/03/2018 5:01:38 PM </Created>
-//         <Key> d9fe2ca9-7d89-459b-8ca9-9961a7a6b90e </Key>
-//     </File>
-//     <Summary>
-//         StringTransformer.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-using Elect.Core.TypeUtils;
-using Elect.Web.DataTable.Models.Options;
-using Elect.Web.DataTable.Utils.EnumUtils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-
-namespace Elect.Web.DataTable.Utils
+﻿namespace Elect.Web.DataTable.Utils
 {
     internal class StringTransformer
     {
         private static readonly Dictionary<Type, Transformer> Transformers = new Dictionary<Type, Transformer>();
-
         static StringTransformer()
         {
             RegisterFilter<DateTimeOffset>(dateTimeOffset =>
@@ -49,11 +18,9 @@ namespace Elect.Web.DataTable.Utils
             RegisterFilter<bool>(s => s);
             RegisterFilter<object>(o => (o ?? string.Empty).ToString());
         }
-
         internal static object GetStringedValue(Type type, object value)
         {
             object stringedValue;
-
             if (Transformers.ContainsKey(type))
             {
                 stringedValue = Transformers[type](type, value);
@@ -71,11 +38,9 @@ namespace Elect.Web.DataTable.Utils
                     stringedValue = value?.ToString();
                 }
             }
-
             stringedValue = stringedValue ?? string.Empty;
             return stringedValue;
         }
-
         internal static void RegisterFilter<TVal>(GuardedValueTransformer<TVal> filter)
         {
             if (Transformers.ContainsKey(typeof(TVal)))
@@ -83,24 +48,18 @@ namespace Elect.Web.DataTable.Utils
             else
                 Transformers.Add(typeof(TVal), Guard(filter));
         }
-
         private static Transformer Guard<TVal>(GuardedValueTransformer<TVal> transformer)
         {
             return (t, v) => !typeof(TVal).GetTypeInfo().IsAssignableFrom(t) ? null : transformer((TVal)v);
         }
-
         internal static Dictionary<string, object> StringifyValues(Dictionary<string, object> dict)
         {
             var output = new Dictionary<string, object>();
-
             foreach (var row in dict)
                 output[row.Key] = row.Value == null ? string.Empty : GetStringedValue(row.Value.GetType(), row.Value);
-
             return output;
         }
-
         internal delegate object GuardedValueTransformer<in TVal>(TVal value);
-
         internal delegate object Transformer(Type type, object value);
     }
 }

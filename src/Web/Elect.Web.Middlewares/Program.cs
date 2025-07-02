@@ -1,4 +1,4 @@
-namespace Elect.Web.Middlewares
+﻿namespace Elect.Web.Middlewares
 {
     public class Program
     {

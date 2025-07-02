@@ -1,6 +1,4 @@
-using System;
-
-namespace Elect.Web.Consul.FabioClient
+﻿namespace Elect.Web.Consul.FabioClient
 {
     public interface IElectFabioClient
     {

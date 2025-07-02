@@ -1,32 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> FileHelper.cs </Name>
-//         <Created> 02/04/2018 8:10:45 PM </Created>
-//         <Key> 2dc1a548-d5f7-41a3-a324-fa6f8d5dc72d </Key>
-//     </File>
-//     <Summary>
-//         FileHelper.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Elect.Core.CheckUtils;
-using Elect.Core.StringUtils;
-using System;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using Mono.Unix;
-
-namespace Elect.Data.IO.FileUtils
+﻿namespace Elect.Data.IO.FileUtils
 {
     public class FileHelper
     {
@@ -35,16 +7,13 @@ namespace Elect.Data.IO.FileUtils
             foreach (var path in paths)
             {
                 CheckHelper.CheckNullOrWhiteSpace(path, nameof(paths));
-
                 var fullPath = PathHelper.GetFullPath(path);
-
                 if (!File.Exists(fullPath))
                 {
                     File.Create(fullPath);
                 }
             }
         }    
-        
         /// <summary>
         ///     Create file then set permission (only apply for Linux platform)
         /// </summary>
@@ -53,25 +22,20 @@ namespace Elect.Data.IO.FileUtils
         public static void CreateIfNotExist(FileAccessPermissions permissions, params string[] paths)
         {
             CreateIfNotExist(paths);
-            
             SetLinuxFilePermission(FileAccessPermissions.AllPermissions, paths);
         }
-
         public static void SetLinuxFilePermission(FileAccessPermissions permissions, params string[] paths)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 return;
             }
-            
             foreach (var path in paths)
             {
                 var unixFileInfo = new UnixFileInfo(path) {FileAccessPermissions = permissions};
-                
                 unixFileInfo.Refresh();
             }
         }
-
         /// <summary>
         ///     Create an empty temp file with extension. 
         /// </summary>
@@ -80,16 +44,11 @@ namespace Elect.Data.IO.FileUtils
         public static string CreateTempFile(string extension)
         {
             string temp = Path.GetTempFileName();
-
             extension = extension.StartsWith(".") ? extension : $".{extension}";
-
             var path = Path.ChangeExtension(temp, extension);
-
             File.Move(temp, path);
-            
             return path;
         }
-
         /// <summary>
         ///     Create an temp file from stream with extension 
         /// </summary>
@@ -99,21 +58,16 @@ namespace Elect.Data.IO.FileUtils
         internal static string CreateTempFile(Stream stream, string extension)
         {
             string filePath = CreateTempFile(extension);
-
             using (var fileStream = File.OpenWrite(filePath))
             {
                 // Copy file to stream
                 stream.Position = 0;
-
                 stream.CopyTo(fileStream);
-
                 // Reset position after copy
                 stream.Position = 0;
             }
-
             return filePath;
         }
-        
         /// <summary>
         ///     Delete file if exist and can delete 
         /// </summary>
@@ -124,17 +78,14 @@ namespace Elect.Data.IO.FileUtils
             try
             {
                 path = PathHelper.GetFullPath(path);
-
                 if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
                 {
                     return true;
                 }
-
                 if (File.Exists(path))
                 {
                     File.Delete(path);
                 }
-
                 return true;
             }
             catch
@@ -142,7 +93,6 @@ namespace Elect.Data.IO.FileUtils
                 return false;
             }
         }
-
         public static bool IsValidBase64(string value)
         {
             try
@@ -155,29 +105,23 @@ namespace Elect.Data.IO.FileUtils
                 return false;
             }
         }
-
         public static void WriteToStream(string filePath, MemoryStream stream)
         {
             if (!Uri.IsWellFormedUriString(filePath, UriKind.RelativeOrAbsolute) && !File.Exists(filePath))
             {
                 return;
             }
-
             using (FileStream fileStream = File.OpenRead(filePath))
             {
                 // Replace contents.
                 stream.SetLength(0);
-
                 // Copy file to stream
                 fileStream.Position = 0;
-
                 fileStream.CopyTo(stream);
-
                 // Reset position after copy
                 stream.Position = 0;
             }
         }
-
         /// <summary>
         ///     Replaces characters in <c> fileName </c> that are not allowed in file names with the
         ///     specified replacement character.
@@ -206,21 +150,15 @@ namespace Elect.Data.IO.FileUtils
             {
                 fileName = StringHelper.RemoveAccents(fileName);
             }
-
             var builder = new StringBuilder(fileName.Length);
-
             var invalids = Path.GetInvalidFileNameChars();
-
             bool changed = false;
-
             foreach (var c in fileName)
             {
                 if (invalids.Contains(c))
                 {
                     changed = true;
-
                     var replace = replacement ?? '\0';
-
                     if (isFancy)
                     {
                         if (c == '"')
@@ -236,7 +174,6 @@ namespace Elect.Data.IO.FileUtils
                             replace = '⁄'; // U+2044 fraction slash
                         }
                     }
-
                     if (replace != '\0')
                     {
                         builder.Append(replace);
@@ -247,19 +184,15 @@ namespace Elect.Data.IO.FileUtils
                     builder.Append(c);
                 }
             }
-
             if (builder.Length == 0)
             {
                 return replacement?.ToString();
             }
-
             fileName = changed ? builder.ToString() : fileName;
-
             if (fileName?.Length > 260)
             {
                 return fileName.Substring(fileName.Length - 260);
             }
-
             return fileName;
         }
     }

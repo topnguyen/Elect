@@ -1,6 +1,4 @@
-﻿using Elect.Data.EF.Models;
-
-namespace Elect.Sample.Data.EF.Interfaces
+﻿namespace Elect.Sample.Data.EF.Interfaces
 {
     public interface IUnitOfWork : Elect.Data.EF.Interfaces.UnitOfWork.IUnitOfWork
     {

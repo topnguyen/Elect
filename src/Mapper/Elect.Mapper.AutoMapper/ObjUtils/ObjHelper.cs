@@ -1,23 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> ObjHelper.cs </Name>
-//         <Created> 16/03/2018 10:48:24 PM </Created>
-//         <Key> 7fc7721b-d008-4192-aaaa-c8c99a52a9ea </Key>
-//     </File>
-//     <Summary>
-//         ObjHelper.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-namespace Elect.Mapper.AutoMapper.ObjUtils
+﻿namespace Elect.Mapper.AutoMapper.ObjUtils
 {
     public class ObjHelper
     {
@@ -32,7 +13,6 @@ namespace Elect.Mapper.AutoMapper.ObjUtils
         {
             return global::AutoMapper.Mapper.Map<TDestination>(source);
         }
-
         /// <summary>
         ///     Execute a mapping from the source object to the existing destination object There
         ///     must be a mapping between objects before calling this method.

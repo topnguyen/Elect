@@ -1,8 +1,4 @@
-﻿using Elect.Web.Swagger.Attributes;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-
-namespace Elect.Sample.Web.Swagger.Controllers
+﻿namespace Elect.Sample.Web.Swagger.Controllers
 {
     [ShowInApiDoc]
     [ApiDocGroup("User API")]
@@ -18,7 +14,6 @@ namespace Elect.Sample.Web.Swagger.Controllers
         {
             return Ok(user);
         }
-
         /// <summary>
         ///     Get User 
         /// </summary>
@@ -34,7 +29,6 @@ namespace Elect.Sample.Web.Swagger.Controllers
         {
             var id = HttpContext.Request.Query["id"].FirstOrDefault();
             var info1 = HttpContext.Request.Headers["info1"].FirstOrDefault();
-
             return Ok(new
             {
                 id,
@@ -43,14 +37,11 @@ namespace Elect.Sample.Web.Swagger.Controllers
             });
         }
     }
-
     public class UserModel
     {
         public string Name { get; set; }
-
         public UserType Type { get; set; }
     }
-
     public enum UserType
     {
         Admin,

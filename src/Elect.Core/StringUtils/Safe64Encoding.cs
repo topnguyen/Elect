@@ -1,26 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> Safe64Encoding.cs </Name>
-//         <Created> 16/03/2018 9:22:32 AM </Created>
-//         <Key> e99ce6c8-2bbe-416d-864f-03bac0b03996 </Key>
-//     </File>
-//     <Summary>
-//         Safe64Encoding.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using System;
-using System.Text;
-
-namespace Elect.Core.StringUtils
+﻿namespace Elect.Core.StringUtils
 {
     /// <summary>
     ///     This encoding produces a 'url' safe string from bytes, similar to base64 encoding yet it
@@ -32,7 +10,6 @@ namespace Elect.Core.StringUtils
         private const int Max = 'z' + 1;
         internal static readonly byte[] ChTable64;
         internal static readonly byte[] ChValue64;
-
         static Safe64Encoding()
         {
             ChTable64 = Encoding.ASCII.GetBytes("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_");
@@ -40,7 +17,6 @@ namespace Elect.Core.StringUtils
             for (byte i = 0; i < 64; i++)
                 ChValue64[ChTable64[i] - Min] = i;
         }
-
         /// <summary>
         ///     Returns a encoded string of ascii characters that are URI safe 
         /// </summary>
@@ -48,7 +24,6 @@ namespace Elect.Core.StringUtils
         {
             return EncodeBytes(input, 0, input?.Length ?? 0);
         }
-
         /// <summary>
         ///     Returns a encoded string of ascii characters that are URI safe 
         /// </summary>
@@ -58,7 +33,6 @@ namespace Elect.Core.StringUtils
             var len = EncodeBytes(input, start, length, output, 0);
             return Encoding.ASCII.GetString(output, 0, len);
         }
-
         /// <summary>
         ///     Returns a encoded string of ascii characters that are URI safe 
         /// </summary>
@@ -78,7 +52,6 @@ namespace Elect.Core.StringUtils
                 output[index + 3] = ChTable64[input[pos + 2] & 0x3f];
                 index += 4;
             }
-
             switch (leftover)
             {
                 case 1:
@@ -86,7 +59,6 @@ namespace Elect.Core.StringUtils
                     output[index + 1] = ChTable64[(input[pos] & 3) << 4];
                     index += 2;
                     break;
-
                 case 2:
                     output[index] = ChTable64[(input[pos] & 0xfc) >> 2];
                     output[index + 1] = ChTable64[((input[pos] & 3) << 4) | ((input[pos + 1] & 240) >> 4)];
@@ -96,7 +68,6 @@ namespace Elect.Core.StringUtils
             }
             return index - offset;
         }
-
         /// <summary>
         ///     Decodes the ascii text from the bytes provided into the original byte array 
         /// </summary>
@@ -104,7 +75,6 @@ namespace Elect.Core.StringUtils
         {
             return DecodeBytes(input, 0, input?.Length ?? 0);
         }
-
         /// <summary>
         ///     Decodes the ascii text from the bytes provided into the original byte array 
         /// </summary>
@@ -112,7 +82,6 @@ namespace Elect.Core.StringUtils
         {
             return DecodeBytes(Encoding.ASCII.GetBytes(input), start, length);
         }
-
         /// <summary>
         ///     Decodes the ascii text from the bytes provided into the original byte array 
         /// </summary>
@@ -120,7 +89,6 @@ namespace Elect.Core.StringUtils
         {
             return DecodeBytes(input, 0, input?.Length ?? 0);
         }
-
         /// <summary>
         ///     Decodes the ascii text from the bytes provided into the original byte array 
         /// </summary>
@@ -132,7 +100,6 @@ namespace Elect.Core.StringUtils
                 Array.Resize(ref results, used);
             return results;
         }
-
         /// <summary>
         ///     Decodes the ascii text from the bytes provided into the original byte array 
         /// </summary>
@@ -140,7 +107,6 @@ namespace Elect.Core.StringUtils
         {
             if (output.Length < offset + ((length * 6) >> 3))
                 throw new ArgumentOutOfRangeException();
-
             var leftover = length % 4;
             var stop = start + (length - leftover);
             var index = offset;
@@ -153,7 +119,6 @@ namespace Elect.Core.StringUtils
                 output[index + 2] = (byte)((ChValue64[input[pos + 2] - Min] << 6) | ChValue64[input[pos + 3] - Min]);
                 index += 3;
             }
-
             if (leftover == 2)
             {
                 output[index] = (byte)((ChValue64[input[pos] - Min] << 2) | (ChValue64[input[pos + 1] - Min] >> 4));
@@ -166,7 +131,6 @@ namespace Elect.Core.StringUtils
                     (byte)((ChValue64[input[pos + 1] - Min] << 4) | (ChValue64[input[pos + 2] - Min] >> 2));
                 index += 2;
             }
-
             return index - offset;
         }
     }

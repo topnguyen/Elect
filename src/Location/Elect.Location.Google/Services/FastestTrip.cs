@@ -1,31 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> FastestTrip.cs </Name>
-//         <Created> 20/03/2018 11:32:08 PM </Created>
-//         <Key> 426a5967-ba17-4f9f-b913-07a56cdcc437 </Key>
-//     </File>
-//     <Summary>
-//         FastestTrip.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Elect.Core.Attributes;
-using Elect.Location.Google.Interfaces;
-using Elect.Location.Google.Models;
-using Elect.Location.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Elect.Location.Google.Services
+﻿namespace Elect.Location.Google.Services
 {
     /// <summary>
     ///     Combine both A -&gt; Z and Round Trip with optimize by many algorithm and distance,
@@ -34,41 +7,23 @@ namespace Elect.Location.Google.Services
     internal class FastestTrip
     {
         #region Property
-
         public List<CoordinateModel> Coordinates { get; }
-
         public DistanceDurationMatrixResultModel DistanceDurationMatrix { get; }
-
         private List<int> BestPath { get; set; }
-
         private List<int> NextSet { get; set; }
-
         private double BestTrip { get; set; }
-
         private const double MaxTripSentry = 2000000000;
-
         private int[] _currentPath;
-
         private bool[] _visitTracks;
-
         private double[] _min;
-
         private double _minCost;
-
         private double _currentCost;
-
         private double _bestCost;
-
         private readonly TripType _tripType;
-
         private double[] _costForward;
-
         private double[] _costBackward;
-
         private bool _isImproved;
-
         #endregion Property
-
         /// <summary>
         ///     Combine both A -&gt; Z and Round Trip with optimize by many algorithm and distance,
         ///     duration by Google Matrix
@@ -89,37 +44,25 @@ namespace Elect.Location.Google.Services
             {
                 throw new NotSupportedException();
             }
-
             _tripType = type;
-
             Coordinates = new List<CoordinateModel>();
-
             Coordinates.AddRange(coordinates);
-
             // Get Distance Duration Matrix
-
             var coordinateModels = Coordinates.Select(x => new CoordinateModel(x.Longitude, x.Latitude)).ToList();
-
             IElectGoogleClient googleClient = new ElectGoogleClient(_ =>
             {
                 _.GoogleApiKey = googleApiKey;
             });
-
             var getDistanceDurationMatrixTask = googleClient.GetDistanceDurationMatrixAsync(_ =>
             {
                 _.OriginalCoordinates = coordinateModels;
                 _.DestinationCoordinates = coordinateModels;
             });
-
             getDistanceDurationMatrixTask.Wait();
-
             DistanceDurationMatrix = getDistanceDurationMatrixTask.Result;
-
             // Start Calculate Trip
-
             CalculateTrip(type);
         }
-
         public List<CoordinateModel> GetTrip()
         {
             return BestPath.Select((t, i) => new CoordinateModel
@@ -130,7 +73,6 @@ namespace Elect.Location.Google.Services
                 SequenceNo = i + 1
             }).ToList();
         }
-
         public double GetTotalDurationInSecond()
         {
             double totalDuration = 0;
@@ -138,54 +80,39 @@ namespace Elect.Location.Google.Services
             {
                 totalDuration += GetDuration(BestPath[i], BestPath[i + 1]);
             }
-
             return totalDuration;
         }
-
         public double GetTotalDistanceInMeter()
         {
             double totalDistance = 0;
-
             for (int i = 0; i < BestPath.Count - 1; i++)
             {
                 totalDistance += GetDistance(BestPath[i], BestPath[i + 1]);
             }
-
             return totalDistance;
         }
-
         #region Helper
-
         private double GetDuration(int index1, int index2)
         {
             var duration = DistanceDurationMatrix.DurationMatrix[index1, index2];
-
             return duration;
         }
-
         private double GetDistance(int index1, int index2)
         {
             var distance = DistanceDurationMatrix.DistanceMatrix[index1, index2];
-
             return distance;
         }
-
         private double GetMinDistance(int index)
         {
             List<double> distances = new List<double>();
-
             for (int i = 0; i < Coordinates.Count; i++)
             {
                 var distance = DistanceDurationMatrix.DistanceMatrix[index, i];
-
                 distances.Add(distance);
             }
-
             var min = distances.Min();
-
             return min;
         }
-
         private void CalculateTrip(TripType type)
         {
             if (Coordinates.Count <= 13)
@@ -199,15 +126,11 @@ namespace Elect.Location.Google.Services
             else
             {
                 TspAntColonyK2(type);
-
                 TspK3();
             }
         }
-
         #endregion
-
         #region TspAntColonyK2
-
         /// <summary>
         ///     Computes a near-optimal solution to the TSP problem, using Ant Colony Optimization
         ///     and local optimization in the form of k2-opting each candidate route. Run time is
@@ -218,62 +141,39 @@ namespace Elect.Location.Google.Services
         private void TspAntColonyK2(TripType type)
         {
             BestTrip = MaxTripSentry;
-
             int numActive = Coordinates.Count;
-
             _currentPath = new int[numActive];
-
             _visitTracks = new bool[numActive];
-
             var currentPath = new int[numActive];
-
             if (type == TripType.RoundTrip)
             {
                 currentPath = new int[numActive + 1];
             }
-
             var alpha = 0.1; // The importance of the previous trails
-
             var beta = 2.0; // The importance of the durations
-
             var rho = 0.1;  // The decay rate of the pheromone trails
-
             var asymptoteFactor = 0.9; // The sharpness of the reward as the solutions approach the best solution
-
             double[,] pher = new double[numActive, numActive];
-
             double[,] nextPher = new double[numActive, numActive];
-
             double[] prob = new double[numActive];
-
             var numAnts = 20;
-
             var numWaves = 20;
-
             for (var i = 0; i < numActive; ++i)
             {
                 for (var j = 0; j < numActive; ++j)
                 {
                     pher[i, j] = 1;
-
                     nextPher[i, j] = 0.0;
                 }
             }
-
             var lastNode = 0;
-
             const int startNode = 0;
-
             var numSteps = numActive - 1;
-
             var numValidDest = numActive;
-
             if (type == TripType.AZ)
             {
                 lastNode = numActive - 1;
-
                 numSteps = numActive - 2;
-
                 numValidDest = numActive - 1;
             }
             for (var wave = 0; wave < numWaves; ++wave)
@@ -281,22 +181,16 @@ namespace Elect.Location.Google.Services
                 for (var ant = 0; ant < numAnts; ++ant)
                 {
                     var currentNode = startNode;
-
                     var currentDistance = 0;
-
                     for (var i = 0; i < numActive; ++i)
                     {
                         _visitTracks[i] = false;
                     }
-
                     currentPath[0] = currentNode;
-
                     for (var step = 0; step < numSteps; ++step)
                     {
                         _visitTracks[currentNode] = true;
-
                         var cumProb = 0.0;
-
                         for (var next = 1; next < numValidDest; ++next)
                         {
                             if (!_visitTracks[next])
@@ -306,19 +200,14 @@ namespace Elect.Location.Google.Services
                                 cumProb += prob[next];
                             }
                         }
-
                         var guess = new Random().NextDouble() * cumProb;
-
                         var nextI = -1;
-
                         for (var next = 1; next < numValidDest; ++next)
                         {
                             if (!_visitTracks[next])
                             {
                                 nextI = next;
-
                                 guess -= prob[next];
-
                                 if (guess < 0)
                                 {
                                     nextI = next;
@@ -326,125 +215,88 @@ namespace Elect.Location.Google.Services
                                 }
                             }
                         }
-
                         currentDistance += (int)GetDuration(currentNode, nextI);
-
                         currentPath[step + 1] = nextI;
-
                         currentNode = nextI;
                     }
-
                     currentPath[numSteps + 1] = lastNode;
-
                     currentDistance += (int)GetDuration(currentNode, lastNode);
-
                     // k2-rewire:
-
                     var lastStep = numActive;
-
                     if (type == TripType.AZ)
                     {
                         lastStep = numActive - 1;
                     }
-
                     var changed = true;
-
                     var m = 0;
-
                     while (changed)
                     {
                         changed = false;
-
                         for (; m < lastStep - 2 && !changed; ++m)
                         {
                             var cost = GetDuration(currentPath[m + 1], currentPath[m + 2]);
-
                             var revCost = GetDuration(currentPath[m + 2], currentPath[m + 1]);
-
                             var iCost = GetDuration(currentPath[m], currentPath[m + 1]);
-
                             for (var j = m + 2; j < lastStep && !changed; ++j)
                             {
                                 var nowCost = cost + iCost + GetDuration(currentPath[j], currentPath[j + 1]);
-
                                 var newCost = revCost + GetDuration(currentPath[m], currentPath[j]) + GetDuration(currentPath[m + 1], currentPath[j + 1]);
-
                                 if (nowCost > newCost)
                                 {
                                     currentDistance += (int)(newCost - nowCost);
-
                                     // Reverse the detached road segment.
                                     for (var k = 0; k < Math.Floor((double)(j - m) / 2); ++k)
                                     {
                                         double tmp = currentPath[m + 1 + k];
-
                                         currentPath[m + 1 + k] = currentPath[j - k];
-
                                         currentPath[j - k] = (int)tmp;
                                     }
-
                                     changed = true;
-
                                     --m;
                                 }
-
                                 cost += GetDuration(currentPath[j], currentPath[j + 1]);
-
                                 revCost += GetDuration(currentPath[j + 1], currentPath[j]);
                             }
                         }
                     }
-
                     if (currentDistance < BestTrip)
                     {
                         BestPath = currentPath.ToList();
-
                         BestTrip = currentDistance;
                     }
-
                     for (var i = 0; i <= numSteps; ++i)
                     {
                         nextPher[currentPath[i], currentPath[i + 1]] += (BestTrip - asymptoteFactor * BestTrip) / (numAnts * (currentDistance - asymptoteFactor * BestTrip));
                     }
                 }
-
                 for (var i = 0; i < numActive; ++i)
                 {
                     for (var j = 0; j < numActive; ++j)
                     {
                         pher[i, j] = pher[i, j] * (1.0 - rho) + rho * nextPher[i, j];
-
                         nextPher[i, j] = 0.0;
                     }
                 }
             }
         }
-
         #endregion
-
         #region TspK3
-
         /// <summary>
         ///     Uses the 3-opt algorithm to find a good solution to the TSP. 
         /// </summary>
         private void TspK3()
         {
             _isImproved = false;
-
             _currentPath = new int[BestPath.Count];
-
             for (var i = 0; i < BestPath.Count; ++i)
             {
                 _currentPath[i] = BestPath[i];
             }
             UpdateCosts();
-
             _isImproved = true;
-
             while (_isImproved)
             {
                 _isImproved = false;
-
                 for (var i = 0; i < _currentPath.Length - 3; ++i)
                 {
                     for (var j = i + 1; j < _currentPath.Length - 2; ++j)
@@ -455,32 +307,26 @@ namespace Elect.Location.Google.Services
                             {
                                 UpdatePerm(i, i + 1, j, k, j + 1, k + 1);
                             }
-
                             if (CostPerm(i, j, i + 1, j + 1, k, k + 1) < BestTrip)
                             {
                                 UpdatePerm(i, j, i + 1, j + 1, k, k + 1);
                             }
-
                             if (CostPerm(i, j, i + 1, k, j + 1, k + 1) < BestTrip)
                             {
                                 UpdatePerm(i, j, i + 1, k, j + 1, k + 1);
                             }
-
                             if (CostPerm(i, j + 1, k, i + 1, j, k + 1) < BestTrip)
                             {
                                 UpdatePerm(i, j + 1, k, i + 1, j, k + 1);
                             }
-
                             if (CostPerm(i, j + 1, k, j, i + 1, k + 1) < BestTrip)
                             {
                                 UpdatePerm(i, j + 1, k, j, i + 1, k + 1);
                             }
-
                             if (CostPerm(i, k, j + 1, i + 1, j, k + 1) < BestTrip)
                             {
                                 UpdatePerm(i, k, j + 1, i + 1, j, k + 1);
                             }
-
                             if (CostPerm(i, k, j + 1, j, i + 1, k + 1) < BestTrip)
                             {
                                 UpdatePerm(i, k, j + 1, j, i + 1, k + 1);
@@ -491,22 +337,16 @@ namespace Elect.Location.Google.Services
             }
             for (var i = 0; i < BestPath.Count; ++i) BestPath[i] = _currentPath[i];
         }
-
         private void UpdatePerm(int a, int b, int c, int d, int e, int f)
         {
             _isImproved = true;
-
             var nextPath = new int[_currentPath.Length];
-
             for (var i = 0; i < _currentPath.Length; ++i)
             {
                 nextPath[i] = _currentPath[i];
             }
-
             var offset = a + 1;
-
             nextPath[offset++] = _currentPath[b];
-
             if (b < c)
             {
                 for (var i = b + 1; i <= c; ++i)
@@ -521,9 +361,7 @@ namespace Elect.Location.Google.Services
                     nextPath[offset++] = _currentPath[i];
                 }
             }
-
             nextPath[offset++] = _currentPath[d];
-
             if (d < e)
             {
                 for (var i = d + 1; i <= e; ++i)
@@ -538,14 +376,10 @@ namespace Elect.Location.Google.Services
                     nextPath[offset++] = _currentPath[i];
                 }
             }
-
             nextPath[offset] = _currentPath[f];
-
             _currentPath = nextPath;
-
             UpdateCosts();
         }
-
         /// <summary>
         ///     Returns the cost of the given 3-opt variation of the current solution. 
         /// </summary>
@@ -559,24 +393,15 @@ namespace Elect.Location.Google.Services
         private double CostPerm(int a, int b, int c, int d, int e, int f)
         {
             var iA = _currentPath[a];
-
             var iB = _currentPath[b];
-
             var iC = _currentPath[c];
-
             var iD = _currentPath[d];
-
             var iE = _currentPath[e];
-
             var iF = _currentPath[f];
-
             var iG = _currentPath.Length - 1;
-
             var ret = Cost(0, a) + GetDuration(iA, iB) + Cost(b, c) + GetDuration(iC, iD) + Cost(d, e) + GetDuration(iE, iF) + Cost(f, iG);
-
             return ret;
         }
-
         /// <summary>
         ///     Returns the cost of moving along the current solution path offset given by a to
         ///     b.Handles moving both forward and backward.
@@ -595,68 +420,47 @@ namespace Elect.Location.Google.Services
                 return _costBackward[b] - _costBackward[a];
             }
         }
-
         /// <summary>
         ///     Update the data structure necessary for cost(a,b) and costPerm to work efficiently. 
         /// </summary>
         private void UpdateCosts()
         {
             _costForward = new double[_currentPath.Length];
-
             _costBackward = new double[_currentPath.Length];
-
             _costForward[0] = 0.0;
-
             for (var i = 1; i < _currentPath.Length; ++i)
             {
                 _costForward[i] = _costForward[i - 1] + GetDuration(_currentPath[i - 1], _currentPath[i]);
             }
-
             BestTrip = _costForward[_currentPath.Length - 1];
-
             _costBackward[BestPath.Count - 1] = 0.0;
-
             for (var i = BestPath.Count - 2; i >= 0; --i)
             {
                 _costBackward[i] = _costBackward[i + 1] + GetDuration(_currentPath[i + 1], _currentPath[i]);
             }
         }
-
         #endregion
-
         #region TripBackTracking
-
         private void CalculateTripBackTrackingImplementation(int start, TripType type)
         {
             _currentCost = 0;
-
             _bestCost = MaxTripSentry;
-
             _currentPath = new int[Coordinates.Count];
-
             _visitTracks = new bool[Coordinates.Count];
-
             _min = new double[Coordinates.Count];
-
             for (int i = 0; i < Coordinates.Count; i++)
             {
                 _min[i] = GetMinDistance(i);
             }
-
             _minCost = _min.Sum();
-
             if (type == TripType.AZ)
             {
                 _minCost -= _min[start];
             }
-
             _currentPath[0] = start;
-
             _visitTracks[start] = true;
-
             BackTrackingVisit(1);
         }
-
         private void BackTrackingVisit(int step)
         {
             if (step == Coordinates.Count)
@@ -666,7 +470,6 @@ namespace Elect.Location.Google.Services
                     if (_currentCost + GetDistance(_currentPath[step - 1], _currentPath[0]) < _bestCost)
                     {
                         _bestCost = _currentCost;
-
                         BestPath = new List<int>(_currentPath)
                         {
                             _currentPath[0]
@@ -682,39 +485,27 @@ namespace Elect.Location.Google.Services
                     }
                 }
             }
-
             for (int i = 0; i < Coordinates.Count; i++)
             {
                 if (!_visitTracks[i])
                 {
                     var stepCost = GetDistance(_currentPath[step - 1], i);
-
                     _visitTracks[i] = true;
-
                     _currentPath[step] = i;
-
                     _currentCost += stepCost;
-
                     _minCost -= _min[_currentPath[step - 1]];
-
                     if (_currentCost + _minCost < _bestCost)
                     {
                         BackTrackingVisit(step + 1);
                     }
-
                     _minCost += _min[_currentPath[step - 1]];
-
                     _currentCost -= stepCost;
-
                     _visitTracks[i] = false;
                 }
             }
         }
-
         #endregion
-
         #region TspDynamic
-
         /// <summary>
         ///     Ant colony optimization algorithms and Solves the TSP problem to optimality. Memory
         ///     requirement is O(numActive * 2^numActive)
@@ -722,38 +513,26 @@ namespace Elect.Location.Google.Services
         private void TspDynamic(TripType type)
         {
             BestPath = new List<int>();
-
             NextSet = new List<int>();
-
             BestTrip = MaxTripSentry;
-
             int numActive = Coordinates.Count;
-
             var numCombos = 1 << Coordinates.Count;
-
             var c = new List<List<double>>();
-
             var parent = new List<List<int>>();
-
             for (var i = 0; i < numCombos; i++)
             {
                 c.Add(new List<double>());
-
                 parent.Add(new List<int>());
-
                 for (var j = 0; j < numActive; ++j)
                 {
                     c[i].Add(0.0);
                     parent[i].Add(0);
                 }
             }
-
             int index;
-
             for (var k = 1; k < numActive; ++k)
             {
                 index = 1 + (1 << k);
-
                 c[index][k] = GetDistance(0, k);
             }
             for (var s = 3; s <= numActive; ++s)
@@ -762,9 +541,7 @@ namespace Elect.Location.Google.Services
                 {
                     NextSet.Add(0);
                 }
-
                 index = NextSetOf(s);
-
                 while (index >= 0)
                 {
                     for (var k = 1; k < numActive; ++k)
@@ -772,9 +549,7 @@ namespace Elect.Location.Google.Services
                         if (NextSet[k] != 0)
                         {
                             var previousIndex = index - (1 << k);
-
                             c[index][k] = MaxTripSentry;
-
                             for (var m = 1; m < numActive; ++m)
                             {
                                 if (NextSet[m] != 0 && m != k)
@@ -796,16 +571,12 @@ namespace Elect.Location.Google.Services
                 BestPath.Add(0);
             }
             index = (1 << numActive) - 1;
-
             int currentNode;
-
             // Case RoundTrip (A -> A), A -> Z START
             if (type == TripType.RoundTrip)
             {
                 currentNode = -1;
-
                 BestPath.Add(0);
-
                 for (var i = 1; i < numActive; ++i)
                 {
                     if (c[index][i] + GetDistance(i, 0) < BestTrip)
@@ -814,7 +585,6 @@ namespace Elect.Location.Google.Services
                         currentNode = i;
                     }
                 }
-
                 BestPath[numActive - 1] = currentNode;
             }
             else
@@ -823,9 +593,7 @@ namespace Elect.Location.Google.Services
                 BestPath[numActive - 1] = numActive - 1;
                 BestTrip = c[index][numActive - 1];
             }
-
             // Case A->A, A->Z END
-
             for (var i = numActive - 1; i > 0; --i)
             {
                 currentNode = parent[index][currentNode];
@@ -833,7 +601,6 @@ namespace Elect.Location.Google.Services
                 BestPath[i - 1] = currentNode;
             }
         }
-
         private int NextSetOf(int num)
         {
             int numActive = Coordinates.Count;
@@ -899,7 +666,6 @@ namespace Elect.Location.Google.Services
             }
             return ret;
         }
-
         #endregion
     }
 }

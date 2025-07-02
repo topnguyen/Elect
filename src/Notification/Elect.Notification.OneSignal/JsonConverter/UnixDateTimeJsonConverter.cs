@@ -1,30 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> UnixDateTimeJsonConverter.cs </Name>
-//         <Created> 19/03/2018 9:40:30 PM </Created>
-//         <Key> 4ff85618-5e5a-4935-96bb-0db736062803 </Key>
-//     </File>
-//     <Summary>
-//         UnixDateTimeJsonConverter.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Globalization;
-using System.Linq;
-
-namespace Elect.Notification.OneSignal.JsonConverter
+﻿namespace Elect.Notification.OneSignal.JsonConverter
 {
     /// <summary>
     ///     Converter used to serialize UnixDateTimeEnum as string. 
@@ -35,7 +9,6 @@ namespace Elect.Notification.OneSignal.JsonConverter
         ///     Defines if converter can be used for de-serialization. 
         /// </summary>
         public override bool CanRead => true;
-
         /// <summary>
         ///     De-serializes object 
         /// </summary>
@@ -48,24 +21,20 @@ namespace Elect.Notification.OneSignal.JsonConverter
             JsonSerializer serializer)
         {
             var isNullable = Nullable.GetUnderlyingType(objectType) != null;
-
             if (reader.TokenType == JsonToken.Null)
             {
                 if (!isNullable)
                     throw new JsonSerializationException();
                 return null;
             }
-
             var token = JToken.Load(reader);
             if (token.Type == JTokenType.String)
                 token = string.Join(", ", token.ToString().Split(',').Select(s => s.Trim()).Select(s =>
                 {
                     var unixTime = double.Parse(s);
                     var dateTime = UnixTimeStampToDateTime(unixTime);
-
                     return dateTime.ToString("s");
                 }).ToArray());
-
             using (var subReader = token.CreateReader())
             {
                 while (subReader.TokenType == JsonToken.None)
@@ -73,7 +42,6 @@ namespace Elect.Notification.OneSignal.JsonConverter
                 return base.ReadJson(subReader, objectType, existingValue, serializer); // Use base class to convert
             }
         }
-
         /// <summary>
         ///     Serializes object 
         /// </summary>
@@ -88,21 +56,17 @@ namespace Elect.Notification.OneSignal.JsonConverter
                 base.WriteJson(tempWriter, value, serializer);
             }
             var token = array.Single();
-
             if (token.Type == JTokenType.String && value != null)
             {
                 token = string.Join(", ", token.ToString().Split(',').Select(s => s.Trim()).Select(s =>
                 {
                     var dateTime = DateTime.Parse(s);
                     var unixTime = DateTimeToUnixTimeStamp(dateTime);
-
                     return unixTime.ToString(CultureInfo.InvariantCulture);
                 }).ToArray());
             }
-
             token.WriteTo(writer);
         }
-
         /// <summary>
         ///     Defines if converter can be used for serialization. 
         /// </summary>
@@ -112,7 +76,6 @@ namespace Elect.Notification.OneSignal.JsonConverter
         {
             return objectType == typeof(DateTime);
         }
-
         private DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
@@ -120,13 +83,11 @@ namespace Elect.Notification.OneSignal.JsonConverter
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp);
             return dtDateTime;
         }
-
         private double DateTimeToUnixTimeStamp(DateTime dateTime)
         {
             // Unix timestamp is seconds past epoch
             var dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             var elapsed = dateTime.Subtract(dtDateTime).TotalSeconds;
-
             return elapsed;
         }
     }

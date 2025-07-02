@@ -1,27 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> MimeTypeHelper.cs </Name>
-//         <Created> 02/04/2018 8:22:44 PM </Created>
-//         <Key> e38784ef-4c85-403b-a8fd-8f5a2dbdb62f </Key>
-//     </File>
-//     <Summary>
-//         MimeTypeHelper.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Elect.Data.IO.FileUtils
+﻿namespace Elect.Data.IO.FileUtils
 {
     /// <summary>
     ///     Provides a huge two-way mapping of file extensions to mime types and mime types to file extensions
@@ -29,12 +6,10 @@ namespace Elect.Data.IO.FileUtils
     public class MimeTypeHelper
     {
         private static readonly Lazy<IDictionary<string, string>> Mappings = new Lazy<IDictionary<string, string>>(BuildMappings);
-
         private static IDictionary<string, string> BuildMappings()
         {
             var mappings = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) {
                 #region Big freaking list of mime types
-
                 // maps both ways, extension -> mime type and mime type -> extension
                 //
                 // any mime types on left side not pre-loaded on right side, are added automatically
@@ -652,7 +627,6 @@ namespace Elect.Data.IO.FileUtils
                 {".xwd", "image/x-xwindowdump"},
                 {".z", "application/x-compress"},
                 {".zip", "application/zip"},
-
                 {"application/fsharp-script", ".fsx"},
                 {"application/msaccess", ".adp"},
                 {"application/msword", ".doc"},
@@ -701,12 +675,9 @@ namespace Elect.Data.IO.FileUtils
                 {"video/x-la-asf", ".lsf"},
                 {"video/x-ms-asf", ".asf"},
                 {"x-world/x-vrml", ".xof"},
-
                 #endregion
                 };
-
             var cache = mappings.ToList(); // need ToList() to avoid modifying while still enumerating
-
             foreach (var mapping in cache)
             {
                 if (!mappings.ContainsKey(mapping.Value))
@@ -714,42 +685,34 @@ namespace Elect.Data.IO.FileUtils
                     mappings.Add(mapping.Value, mapping.Key);
                 }
             }
-
             return mappings;
         }
-
         public static string GetMimeType(string extension)
         {
             if (extension == null)
             {
                 throw new ArgumentNullException(nameof(extension));
             }
-
             if (!extension.StartsWith("."))
             {
                 extension = "." + extension;
             }
-
             return Mappings.Value.TryGetValue(extension, out var mime) ? mime : "application/octet-stream";
         }
-
         public static string GetExtension(string mimeType)
         {
             return GetExtension(mimeType, true);
         }
-
         public static string GetExtension(string mimeType, bool throwErrorIfNotFound)
         {
             if (mimeType == null)
             {
                 throw new ArgumentNullException(nameof(mimeType));
             }
-
             if (mimeType.StartsWith("."))
             {
                 throw new ArgumentException("Requested mime type is not valid: " + mimeType);
             }
-
             if (Mappings.Value.TryGetValue(mimeType, out var extension))
             {
                 return extension;

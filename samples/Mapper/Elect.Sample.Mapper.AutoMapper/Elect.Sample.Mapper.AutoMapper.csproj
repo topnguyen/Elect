@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <!-- Generate XML file -->
     <DocumentationFile>Elect.Sample.Mapper.AutoMapper.xml</DocumentationFile>
     <!-- Disable warning for Controller/Action/Method not have block comment -->

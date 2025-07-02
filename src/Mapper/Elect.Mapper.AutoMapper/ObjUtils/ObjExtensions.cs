@@ -1,23 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> ObjExtensions.cs </Name>
-//         <Created> 16/03/2018 10:42:53 PM </Created>
-//         <Key> 1e726af0-9424-4fdb-84ef-9bb321051f55 </Key>
-//     </File>
-//     <Summary>
-//         ObjExtensions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-namespace Elect.Mapper.AutoMapper.ObjUtils
+﻿namespace Elect.Mapper.AutoMapper.ObjUtils
 {
     public static class ObjExtensions
     {
@@ -32,7 +13,6 @@ namespace Elect.Mapper.AutoMapper.ObjUtils
         {
             return ObjHelper.MapTo<TDestination>(source);
         }
-
         /// <summary>
         ///     Execute a mapping from the source object to the existing destination object There
         ///     must be a mapping between objects before calling this method.

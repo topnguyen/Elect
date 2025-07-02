@@ -1,35 +1,4 @@
-﻿#region	License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> ColumnFilter.cs </Name>
-//         <Created> 23/03/2018 4:21:49 PM </Created>
-//         <Key> 0a5da6bd-ae34-48fb-b4b5-59a1e2fd95ea </Key>
-//     </File>
-//     <Summary>
-//         ColumnFilter.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-using Elect.Core.TypeUtils;
-using Elect.Web.DataTable.Models.Constants;
-using Elect.Web.DataTable.Utils.EnumUtils;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Elect.Web.DataTable.Models.Options;
-using Elect.Web.DataTable.Utils;
-
-namespace Elect.Web.DataTable.Models.Column
+﻿namespace Elect.Web.DataTable.Models.Column
 {
     public class ColumnFilterModel : Hashtable
     {
@@ -40,22 +9,18 @@ namespace Elect.Web.DataTable.Models.Column
             typeof(DateTimeOffset),
             typeof(DateTimeOffset?)
         };
-
         public ColumnFilterModel(Type t)
         {
             SetDefaultValuesAccordingToColumnType(t);
         }
-
         internal object[] FilterValues
         {
             set => this[FilterConstants.Values] = value;
         }
-
         internal string FilterType
         {
             set => this[FilterConstants.Type] = value;
         }
-
         private void SetDefaultValuesAccordingToColumnType(Type type)
         {
             if (type == null)

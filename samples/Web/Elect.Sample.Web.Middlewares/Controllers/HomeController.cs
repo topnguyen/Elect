@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Elect.Sample.Web.Middlewares.Controllers
+﻿namespace Elect.Sample.Web.Middlewares.Controllers
 {
     public class HomeController : Controller
     {

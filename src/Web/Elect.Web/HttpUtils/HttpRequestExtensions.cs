@@ -1,26 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> this HttpRequestExtensions.cs </Name>
-//         <Created> 21/03/2018 6:22:14 PM </Created>
-//         <Key> f141f553-1c38-48b6-91da-3b7e7bc89c7a </Key>
-//     </File>
-//     <Summary>
-//         this HttpRequestExtensions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Microsoft.AspNetCore.Http;
-using System.Globalization;
-
-namespace Elect.Web.HttpUtils
+﻿namespace Elect.Web.HttpUtils
 {
     public static class HttpRequestExtensions
     {
@@ -38,7 +16,6 @@ namespace Elect.Web.HttpUtils
         {
             return HttpRequestHelper.IsAjaxRequest(request);
         }
-
         /// <summary>
         ///     Determines whether the specified HTTP request is a local request where the IP address
         ///     of the request originator was 127.0.0.1.
@@ -54,12 +31,10 @@ namespace Elect.Web.HttpUtils
         {
             return HttpRequestHelper.IsLocalRequest(request);
         }
-
         public static bool IsRequestFor(this HttpRequest request, string endpoint)
         {
             return HttpRequestHelper.IsRequestFor(request, endpoint);
         }
-
         /// <summary>
         ///     Endpoint of current request combine schema://host with port/path 
         /// </summary>
@@ -69,7 +44,6 @@ namespace Elect.Web.HttpUtils
         {
             return HttpRequestHelper.GetEndpoint(request);
         }
-
         /// <summary>
         ///     Endpoint of current request domain schema://host with port 
         /// </summary>
@@ -79,22 +53,18 @@ namespace Elect.Web.HttpUtils
         {
             return HttpRequestHelper.GetDomain(request);
         }
-
         public static CultureInfo GetCultureInfo(this HttpRequest request)
         {
             return HttpRequestHelper.GetCultureInfo(request);
         }
-
         public static object GetBody(this HttpRequest request)
         {
             return HttpRequestHelper.GetBody(request);
         }
-
         public static T GetBody<T>(this HttpRequest request)
         {
             return HttpRequestHelper.GetBody<T>(request);
         }
-
         public static string GetIpAddress(this HttpRequest request)
         {
             return HttpRequestHelper.GetIpAddress(request);

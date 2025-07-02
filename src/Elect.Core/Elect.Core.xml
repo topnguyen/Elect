@@ -302,7 +302,7 @@
             <exception cref="T:System.ArgumentOutOfRangeException"></exception>
         </member>
         <member name="T:Elect.Core.SimilarityUtils.JaroWinkler">
-            The Jaro–Winkler distance metric is designed and best suited for short
+            The Jaroâ€“Winkler distance metric is designed and best suited for short
             strings such as person names, and to detect typos; it is (roughly) a
             variation of Damerau-Levenshtein, where the substitution of 2 close
             characters is considered less important then the substitution of 2 characters

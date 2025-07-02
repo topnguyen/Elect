@@ -1,28 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> SiteMapIndexItemModel.cs </Name>
-//         <Created> 21/03/2018 3:38:32 PM </Created>
-//         <Key> ab4c6d57-c0ce-4974-b63c-90a739636b47 </Key>
-//     </File>
-//     <Summary>
-//         SiteMapIndexItemModel.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Elect.Core.CheckUtils;
-using Elect.Web.SiteMap.Interfaces;
-using System;
-using Elect.Core.ObjUtils;
-
-namespace Elect.Web.SiteMap.Models
+﻿namespace Elect.Web.SiteMap.Models
 {
     /// <summary>
     ///     Represents a site map index item. 
@@ -40,17 +16,13 @@ namespace Elect.Web.SiteMap.Models
         public SiteMapIndexItemModel(string url, DateTime? lastModified = null)
         {
             CheckHelper.CheckNullOrWhiteSpace(url, nameof(url));
-
             Url = url;
-
             LastModified = lastModified;
         }
-
         /// <summary>
         ///     The date of last modification of the file. 
         /// </summary>
         public DateTime? LastModified { get; protected set; }
-
         /// <summary>
         ///     URL of the page. 
         /// </summary>

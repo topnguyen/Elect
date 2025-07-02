@@ -1,10 +1,4 @@
-﻿using Elect.Web.IUrlHelperUtils;
-using Elect.Web.SiteMap.Models;
-using Elect.Web.SiteMap.Services;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
-namespace Elect.Sample.Web.Controllers
+﻿namespace Elect.Sample.Web.Controllers
 {
     public class SiteMapController : Controller
     {
@@ -21,12 +15,9 @@ namespace Elect.Sample.Web.Controllers
             {
                 new SiteMapIndexItemModel(Url.AbsoluteAction("Main", "SiteMap"))
             }.ToArray();
-
             var contentResult = new SiteMapIndexGenerator().GenerateContentResult(listSiteMapIndex);
-
             return contentResult;
         }
-
         /// <summary>
         ///     Get all site map item by attributes 
         /// </summary>

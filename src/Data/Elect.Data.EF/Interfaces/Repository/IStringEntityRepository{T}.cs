@@ -1,28 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> IStringEntityRepository_T_.cs </Name>
-//         <Created> 24/03/2018 10:52:31 PM </Created>
-//         <Key> d6b339f4-b697-454e-b8c6-1169f268e57f </Key>
-//     </File>
-//     <Summary>
-//         IStringEntityRepository_T_.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Elect.Data.EF.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-
-namespace Elect.Data.EF.Interfaces.Repository
+﻿namespace Elect.Data.EF.Interfaces.Repository
 {
     public interface IStringEntityRepository<T> : IBaseEntityRepository<T> where T : StringEntity, new()
     {
@@ -38,7 +14,6 @@ namespace Elect.Data.EF.Interfaces.Repository
         ///     <para>You can override the LastUpdatedTime by override StandardizeEntities in UnitOfWork/BaseEntityUnitOfWork</para>
         /// </remarks>
         void UpdateWhere(Expression<Func<T, bool>> predicate, T entityNewData, params Expression<Func<T, object>>[] changedProperties);
-
         /// <summary>
         ///     Update Entities
         /// </summary>
@@ -51,7 +26,6 @@ namespace Elect.Data.EF.Interfaces.Repository
         ///     <para>You can override the LastUpdatedTime by override StandardizeEntities in UnitOfWork/BaseEntityUnitOfWork</para>
         /// </remarks>
         void UpdateWhere(Expression<Func<T, bool>> predicate, T entityNewData, params string[] changedProperties);
-
         /// <summary>
         ///     Delete Where by list id
         /// </summary>

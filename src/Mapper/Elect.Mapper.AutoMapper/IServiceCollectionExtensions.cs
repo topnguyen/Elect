@@ -1,37 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> IServiceCollectionExtensions.cs </Name>
-//         <Created> 16/03/2018 10:51:29 PM </Created>
-//         <Key> e02e6e54-ce6b-425e-af29-8b17c75ebb50 </Key>
-//     </File>
-//     <Summary>
-//         IServiceCollectionExtensions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using AutoMapper;
-using Elect.Core.ActionUtils;
-using Elect.Core.AssemblyUtils;
-using Elect.Core.Attributes;
-using Elect.Core.TypeUtils;
-using Elect.Mapper.AutoMapper.Models;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using AutoMapper.Configuration;
-
-namespace Elect.Mapper.AutoMapper
+﻿namespace Elect.Mapper.AutoMapper
 {
     public static class IServiceCollectionExtensions
     {
@@ -45,7 +12,6 @@ namespace Elect.Mapper.AutoMapper
         {
             return services.AddElectAutoMapper(_ => { });
         }
-
         /// <summary>
         ///     Add Auto Mapper auto scan and register profile to Mapper Configuration by current
         ///     application assembly,
@@ -65,7 +31,6 @@ namespace Elect.Mapper.AutoMapper
                 _.ListAssemblyName = configure.ListAssemblyName;
             });
         }
-
         /// <summary>
         ///     Add Auto Mapper auto scan and register profile to Mapper Configuration by assembly,
         ///     default is use current runtime application assembly.
@@ -76,67 +41,42 @@ namespace Elect.Mapper.AutoMapper
         public static IServiceCollection AddElectAutoMapper(this IServiceCollection services, [NotNull]Action<ElectAutoMapperOptions> configure)
         {
             services.Configure(configure);
-
             var options = configure.GetValue();
-
             // Scan Assemblies
-            
             var listAllDllPath = new List<string>();
-
             foreach (var assemblyName in options.ListAssemblyName)
             {
                 var rootAssemblyName = assemblyName.Split('.').FirstOrDefault();
-
                 foreach (var assemblyFolderPath in options.ListAssemblyFolderPath)
                 {
                     var dllFiles = Directory.GetFiles(assemblyFolderPath, $"{rootAssemblyName}.dll", SearchOption.AllDirectories);
-                    
                     var dllPrefixFiles = Directory.GetFiles(assemblyFolderPath, $"{rootAssemblyName}.*.dll", SearchOption.AllDirectories);
-                    
                     var listDllPath = dllFiles.Concat(dllPrefixFiles).Distinct();
-
                     listAllDllPath.AddRange(listDllPath);
                 }
             }
-
             // Scan Mapper Profiles by Assemblies
-            
             List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listAllDllPath.ToArray());
-
             var allTypes = assemblies.Where(a => a.GetName().Name != nameof(AutoMapper)).SelectMany(a => a.DefinedTypes).ToArray();
-
             var profileTypes = allTypes.Where(t => typeof(Profile).GetTypeInfo().IsAssignableFrom(t)).Where(t => !t.IsAbstract).Select(t => t.AsType()).ToList();
-
             // Initial Mapper with Profiles
-
             var mapperConfigurationExpression = new MapperConfigurationExpression();
-            
             foreach (var profile in profileTypes)
             {
                 mapperConfigurationExpression.AddProfile(profile);
             }
-                
             options.AdditionalInitial?.Invoke(mapperConfigurationExpression);
-            
             global::AutoMapper.Mapper.Initialize(mapperConfigurationExpression);
-            
             // Add Mapper Config to DI
-
             // Resolver and Converter with transient lifetime
-            
             var openTypes = new[] { typeof(IValueResolver<,,>), typeof(IMemberValueResolver<,,,>), typeof(ITypeConverter<,>) };
-            
             var dependencyTypes = openTypes.SelectMany(openType => allTypes.Where(t => t.IsClass && !t.IsAbstract && t.AsType().IsImplementGenericInterface(openType)));
-            
             foreach (var type in dependencyTypes)
             {
                 services.AddTransient(type.AsType());
             }
-
             // Config with singleton lifetime
-            
             services.AddSingleton(global::AutoMapper.Mapper.Configuration);
-            
             // Mapper
             switch (options.IMapperLifeTime)
             {
@@ -160,21 +100,16 @@ namespace Elect.Mapper.AutoMapper
                         throw new ArgumentOutOfRangeException(nameof(options.IMapperLifeTime), options.IMapperLifeTime, null);
                     }
             }
-            
             // Assert Config
-            
             if (options.IsAssertConfigurationIsValid)
             {
                 global::AutoMapper.Mapper.AssertConfigurationIsValid();
             }
-
             // Compile Mapping
-            
             if (options.IsCompileMappings)
             {
                 global::AutoMapper.Mapper.Configuration.CompileMappings();
             }
-
             return services;
         }
     }

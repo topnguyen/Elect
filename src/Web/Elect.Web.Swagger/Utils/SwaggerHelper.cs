@@ -1,85 +1,42 @@
-﻿#region	License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> SwaggerHelper.cs </Name>
-//         <Created> 01/04/2018 11:36:49 PM </Created>
-//         <Key> edf63670-33e9-4fa8-8b45-74610d05f4ca </Key>
-//     </File>
-//     <Summary>
-//         SwaggerHelper.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-using Elect.Web.HttpUtils;
-using Elect.Web.Models;
-using Elect.Web.Swagger.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-namespace Elect.Web.Swagger.Utils
+﻿namespace Elect.Web.Swagger.Utils
 {
     internal class SwaggerHelper
     {
         private static string IndexFileContent { get; set; }
-
         private static string JsonViewerFileContent { get; set; }
-
         #region Html Content
-
         public static ContentResult GetApiDocHtml()
         {
             if (string.IsNullOrWhiteSpace(IndexFileContent))
             {
                 string indexFilePath = Path.Combine(Bootstrapper.Instance.WorkingFolder, ElectSwaggerConstants.IndexFileName);
-
                 IndexFileContent = File.ReadAllText(indexFilePath);
             }
-
             ContentResult contentResult = new ContentResult
             {
                 ContentType = ContentType.Html,
                 StatusCode = StatusCodes.Status200OK,
                 Content = IndexFileContent
             };
-
             return contentResult;
         }
-
         public static ContentResult GetApiJsonViewerHtml()
         {
             if (string.IsNullOrWhiteSpace(JsonViewerFileContent))
             {
                 var jsonViewerFilePath = Path.Combine(Bootstrapper.Instance.WorkingFolder, ElectSwaggerConstants.JsonViewerFileName);
-
                 JsonViewerFileContent = File.ReadAllText(jsonViewerFilePath);
             }
-
             ContentResult contentResult = new ContentResult
             {
                 ContentType = ContentType.Html,
                 StatusCode = StatusCodes.Status200OK,
                 Content = JsonViewerFileContent
             };
-
             return contentResult;
         }
-
         #endregion Html Content
-
         #region File Content
-
         public static void UpdateApiDocFileContent(string title, string swaggerEndpoint, string authTokenKeyPrefix,
             string jsonViewerUrl)
         {
@@ -92,7 +49,6 @@ namespace Elect.Web.Swagger.Utils
                 {"@JsonViewerUrl", jsonViewerUrl}
             }, ElectSwaggerConstants.IndexFileName);
         }
-
         internal static void UpdateApiJsonViewerFileContent(string title)
         {
             UpdateFileContent(new Dictionary<string, string>
@@ -101,25 +57,18 @@ namespace Elect.Web.Swagger.Utils
                 {"@ApiDocumentHtmlTitle", title}
             }, ElectSwaggerConstants.JsonViewerFileName);
         }
-
         public static void UpdateFileContent(Dictionary<string, string> replaceDictionary, string filePath)
         {
             string fileFullPath = Path.Combine(Bootstrapper.Instance.WorkingFolder, filePath);
-
             var viewerFileContent = File.ReadAllText(fileFullPath);
-
             foreach (var key in replaceDictionary.Keys)
             {
                 viewerFileContent = viewerFileContent.Replace(key, replaceDictionary[key]);
             }
-
             File.WriteAllText(fileFullPath, viewerFileContent, Encoding.UTF8);
         }
-
         #endregion File Content
-
         #region Request Helper
-
         /// <summary>
         ///     Case sensitive compare for key access 
         /// </summary>
@@ -133,19 +82,14 @@ namespace Elect.Web.Swagger.Utils
             {
                 return true;
             }
-
             string requestKey = httpContext.Request.Query[ElectSwaggerConstants.AccessKeyName];
-
             requestKey = string.IsNullOrWhiteSpace(requestKey)
                 ? httpContext.Request.Cookies[ElectSwaggerConstants.CookieAccessKeyName]
                 : requestKey;
-
             // Case sensitive compare
             var isCanAccess = accessKey == requestKey;
-
             return isCanAccess;
         }
-
         /// <summary>
         ///     Check request access to UI, Json Viewer or Swagger Pure Doc 
         /// </summary>
@@ -157,44 +101,32 @@ namespace Elect.Web.Swagger.Utils
             return IsAccessUI(httpContext, options) || IsAccessJsonViewer(httpContext, options) ||
                    IsAccessSwaggerEndpoint(httpContext, options);
         }
-
         public static bool IsAccessUI(HttpContext httpContext, ElectSwaggerOptions options)
         {
             var pathQuery = httpContext.Request.Path.Value?.Trim('/').ToLower() ?? string.Empty;
-
             pathQuery = pathQuery.ToLowerInvariant();
-
             var documentApiBaseUrl = options.SwaggerRoutePrefix ?? string.Empty;
-
             documentApiBaseUrl = documentApiBaseUrl.ToLowerInvariant();
-
             var isSwaggerUi = pathQuery == documentApiBaseUrl || pathQuery == $"{documentApiBaseUrl}/index.html";
-
             return isSwaggerUi || httpContext.Request.IsRequestFor(options.Url);
         }
-
         public static bool IsAccessJsonViewer(HttpContext httpContext, ElectSwaggerOptions options)
         {
             return httpContext.Request.IsRequestFor(options.JsonViewerUrl);
         }
-
         public static bool IsAccessSwaggerEndpoint(HttpContext httpContext, ElectSwaggerOptions options)
         {
             return httpContext.Request.IsRequestFor(GetSwaggerEndpoint(options, false));
         }
-
         public static string GetSwaggerEndpoint(ElectSwaggerOptions options, bool isIncludeAccessKey = true)
         {
             string swaggerEndpoint = $"/{options.SwaggerRoutePrefix}/{options.Version}/{options.SwaggerName}";
-
             if (isIncludeAccessKey && !string.IsNullOrWhiteSpace(options.AccessKey))
             {
                 swaggerEndpoint += $"?{ElectSwaggerConstants.AccessKeyName}={options.AccessKey}";
             }
-
             return swaggerEndpoint;
         }
-
         #endregion Request Helper
     }
 }

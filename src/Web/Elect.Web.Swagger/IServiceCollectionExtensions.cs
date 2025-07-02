@@ -1,36 +1,4 @@
-﻿#region License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> IServiceCollectionExtensions.cs </Name>
-//         <Created> 01/04/2018 11:37:27 PM </Created>
-//         <Key> 222a77d7-acb5-4190-961e-4eb51d20b734 </Key>
-//     </File>
-//     <Summary>
-//         IServiceCollectionExtensions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-using Elect.Core.ActionUtils;
-using Elect.Core.Attributes;
-using Elect.Web.Swagger.Models;
-using Elect.Web.Swagger.Utils;
-using Elect.Web.Swagger.Utils.SwaggerGenOptionsUtils;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using Elect.Core.ConfigUtils;
-using Microsoft.Extensions.Configuration;
-using Microsoft.OpenApi.Models;
-
-namespace Elect.Web.Swagger
+﻿namespace Elect.Web.Swagger
 {
     public static class IServiceCollectionExtensions
     {
@@ -38,70 +6,49 @@ namespace Elect.Web.Swagger
             string sectionName = "ElectSwagger")
         {
             var electSwaggerOptions = GetOptions(configuration, sectionName);
-            
             return services.AddElectSwagger(electSwaggerOptions);
         }
-
         public static ElectSwaggerOptions GetOptions(IConfiguration configuration,
             string sectionName = "ElectSwagger")
         {
-            
             var electSwaggerOptions = new ElectSwaggerOptions();
-
             electSwaggerOptions.IsEnable =
                 configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electSwaggerOptions.IsEnable)}");
-
             electSwaggerOptions.SwaggerRoutePrefix =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.SwaggerRoutePrefix)}");
-
             electSwaggerOptions.SwaggerName =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.SwaggerName)}");
-
             electSwaggerOptions.Url =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.Url)}");
-
             electSwaggerOptions.JsonViewerUrl =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.JsonViewerUrl)}");
-
             electSwaggerOptions.Title =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.Title)}");
-
             electSwaggerOptions.Version =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.Version)}");
-
             electSwaggerOptions.AccessKey =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.AccessKey)}");
-
             electSwaggerOptions.UnAuthorizeMessage =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.UnAuthorizeMessage)}");
-
             electSwaggerOptions.AuthTokenType =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.AuthTokenType)}");
-
             electSwaggerOptions.IsFullSchemaForType =
                 configuration.GetValueByEnv<bool>($"{sectionName}:{nameof(electSwaggerOptions.IsFullSchemaForType)}");
-
             electSwaggerOptions.AuthorName =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.AuthorName)}");
-
             electSwaggerOptions.AuthorEmail =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.AuthorEmail)}");
-
             electSwaggerOptions.AuthorWebsite =
                 configuration.GetValueByEnv<string>($"{sectionName}:{nameof(electSwaggerOptions.AuthorWebsite)}");
-
             electSwaggerOptions.GlobalParameters =
                 configuration.GetListValueByEnv<OpenApiParameter>(
                     $"{sectionName}:{nameof(electSwaggerOptions.GlobalParameters)}");
-
             return electSwaggerOptions;
         }
-
         public static IServiceCollection AddElectSwagger(this IServiceCollection services)
         {
             return services.AddElectSwagger(_ => { });
         }
-
         public static IServiceCollection AddElectSwagger(this IServiceCollection services,
             [NotNull] ElectSwaggerOptions configuration)
         {
@@ -125,34 +72,25 @@ namespace Elect.Web.Swagger
                 _.ExtendOptions = configuration.ExtendOptions;
             });
         }
-
         public static IServiceCollection AddElectSwagger(this IServiceCollection services,
             [NotNull] Action<ElectSwaggerOptions> configuration)
         {
             services.Configure(configuration);
-
             var options = configuration.GetValue();
-
             if (!options.IsEnable)
             {
                 return services;
             }
-
             // Update File Content base on Configuration
-
             SwaggerHelper.UpdateApiDocFileContent(options.Title, SwaggerHelper.GetSwaggerEndpoint(options),
                 options.AuthTokenType, options.JsonViewerUrl);
-
             SwaggerHelper.UpdateApiJsonViewerFileContent(options.Title);
-
             // Config Swagger
             services.AddSwaggerGen(swaggerGenOptions =>
             {
                 swaggerGenOptions.AddElectSwaggerGenOptions(configuration);
-
                 options.ExtendOptions?.Invoke(swaggerGenOptions, options);
             });
-
             return services;
         }
     }

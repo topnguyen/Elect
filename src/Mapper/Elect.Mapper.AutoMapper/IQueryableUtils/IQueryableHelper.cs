@@ -1,30 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> IQueryableHelper.cs </Name>
-//         <Created> 16/03/2018 10:45:37 PM </Created>
-//         <Key> 6a5fb534-f11d-4116-b8ef-60fba78f75fa </Key>
-//     </File>
-//     <Summary>
-//         IQueryableHelper.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using AutoMapper.QueryableExtensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using AutoMapper;
-
-namespace Elect.Mapper.AutoMapper.IQueryableUtils
+﻿namespace Elect.Mapper.AutoMapper.IQueryableUtils
 {
     public class IQueryableHelper
     {
@@ -42,7 +16,6 @@ namespace Elect.Mapper.AutoMapper.IQueryableUtils
         {
             return QueryTo(source, global::AutoMapper.Mapper.Configuration, membersToExpand);
         }
-
         /// <summary>
         ///     Extension method to project from a queryable using the provided mapping engine 
         /// </summary>
@@ -58,7 +31,6 @@ namespace Elect.Mapper.AutoMapper.IQueryableUtils
         {
             return source.ProjectTo(configurationProvider, membersToExpand);
         }
-
         /// <summary>
         ///     Projects the source type to the destination type given the mapping configuration 
         /// </summary>
@@ -75,7 +47,6 @@ namespace Elect.Mapper.AutoMapper.IQueryableUtils
         {
             return QueryTo<TDestination>(source, global::AutoMapper.Mapper.Configuration, parameters, membersToExpand);
         }
-
         /// <summary>
         ///     Projects the source type to the destination type given the mapping configuration 
         /// </summary>

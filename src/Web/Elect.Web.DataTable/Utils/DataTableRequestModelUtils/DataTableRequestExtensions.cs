@@ -1,29 +1,4 @@
-﻿#region	License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> DataTableRequestExtensions.cs </Name>
-//         <Created> 23/03/2018 5:45:41 PM </Created>
-//         <Key> bc4d8d81-736f-490a-89b3-97a0282d6329 </Key>
-//     </File>
-//     <Summary>
-//         DataTableRequestExtensions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-using System;
-using System.Collections.Generic;
-using Elect.Web.DataTable.Models.Request;
-
-namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
+﻿namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
 {
     public static class DataTableRequestExtensions
     {
@@ -38,7 +13,6 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
         {
             return DataTableRequestHelper.GetFilterValues<T>(model);
         }
-        
         /// <summary>
         ///     Get Filter Value from DataTableRequest by property name of T object.
         /// </summary>
@@ -50,7 +24,6 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
         {
             return DataTableRequestHelper.GetFilterValue<T>(model, propertyName);
         }  
-        
         /// <summary>
         ///     Set Filter Value to DataTableRequest by property name of T object.
         /// </summary>
@@ -62,7 +35,6 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
         {
             DataTableRequestHelper.SetFilterValue<T>(model, propertyName, value);
         }
-
         /// <summary>
         ///     Get DateTimeOffsets Filter Value from DataTableRequest by property name of T object.
         /// </summary>
@@ -74,10 +46,8 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
         public static void GetDateTimeOffsetFilter<T>(this DataTableRequestModel model, string propertyName, out DateTimeOffset? dateTimeOffsetFrom, out DateTimeOffset? dateTimeOffsetTo) where T : class, new()
         {
             var filter = model.GetFilterValue<T>(propertyName);
-
             DataTableRequestHelper.GetDateTimeOffsetFilter(filter, out dateTimeOffsetFrom, out dateTimeOffsetTo);
         }      
-        
         /// <summary>
         ///     Get String Filter Value from DataTableRequest by property name of T object.
         /// </summary>
@@ -89,7 +59,6 @@ namespace Elect.Web.DataTable.Utils.DataTableRequestModelUtils
         public static void GetFilterValues<T>(this DataTableRequestModel model, string propertyName, out string filterValue1, out string filterValue2) where T : class, new()
         {
             var filter = model.GetFilterValue<T>(propertyName);
-
             DataTableRequestHelper.GetFilterValue(filter, out filterValue1, out filterValue2);
         }
     }

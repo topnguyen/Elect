@@ -1,26 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> IConfigurationExtensions.cs </Name>
-//         <Created> 15/03/2018 4:50:32 PM </Created>
-//         <Key> d89474ba-2bc3-4b8f-8943-081bc07a0b97 </Key>
-//     </File>
-//     <Summary>
-//         IConfigurationExtensions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-
-namespace Elect.Core.ConfigUtils
+﻿namespace Elect.Core.ConfigUtils
 {
     public static class IConfigurationExtensions
     {
@@ -28,7 +6,6 @@ namespace Elect.Core.ConfigUtils
         {
             return IConfigurationHelper.GetSection<T>(configuration, key);
         }
-
         /// <summary>
         ///     Get Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
         /// </summary>
@@ -40,7 +17,6 @@ namespace Elect.Core.ConfigUtils
         {
             return IConfigurationHelper.GetValueByEnv<T>(configuration, key);
         }
-        
         /// <summary>
         ///     Get List Value follow Priority: Key:[Machine Name] &gt; Key:[Environment] &gt; Key 
         /// </summary>

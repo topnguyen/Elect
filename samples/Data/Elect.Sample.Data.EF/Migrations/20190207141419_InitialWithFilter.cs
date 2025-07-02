@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Elect.Sample.Data.EF.Migrations
+﻿namespace Elect.Sample.Data.EF.Migrations
 {
     public partial class InitialWithFilter : Migration
     {
@@ -24,7 +21,6 @@ namespace Elect.Sample.Data.EF.Migrations
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
                 });
-
             migrationBuilder.CreateTable(
                 name: "UserProfile",
                 columns: table => new
@@ -49,33 +45,27 @@ namespace Elect.Sample.Data.EF.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
             migrationBuilder.CreateIndex(
                 name: "IX_User_DeletedTime",
                 table: "User",
                 column: "DeletedTime");
-
             migrationBuilder.CreateIndex(
                 name: "IX_User_Id",
                 table: "User",
                 column: "Id");
-
             migrationBuilder.CreateIndex(
                 name: "IX_User_UserName",
                 table: "User",
                 column: "UserName");
-
             migrationBuilder.CreateIndex(
                 name: "IX_UserProfile_UserId",
                 table: "UserProfile",
                 column: "UserId");
         }
-
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "UserProfile");
-
             migrationBuilder.DropTable(
                 name: "User");
         }

@@ -1,40 +1,8 @@
-﻿#region	License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> ModelBuilderExtensions.cs </Name>
-//         <Created> 27/03/2018 12:10:23 AM </Created>
-//         <Key> 99da1fbf-1fcf-4b1d-8b23-aa02583c576b </Key>
-//     </File>
-//     <Summary>
-//         ModelBuilderExtensions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-using Elect.Data.EF.Interfaces.Map;
-using Elect.Data.EF.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Elect.Data.EF.Interfaces.Entity.SoftDelete;
-
-namespace Elect.Data.EF.Utils.ModelBuilderUtils
+﻿namespace Elect.Data.EF.Utils.ModelBuilderUtils
 {
     public static class ModelBuilderExtensions
     {
         #region Auto Add Map Config
-        
         /// <summary>
         ///     Scan and apply Config/Mapping for Tables/Entities 
         /// </summary>
@@ -44,10 +12,8 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
         {
             // Types that do entity mapping
             var mappingTypes = GetMappingTypes(assembly);
-
             builder.AddConfigFromMappingTypes(mappingTypes);
         }
-
         /// <summary>
         ///     Scan and apply Config/Mapping for Tables/Entities (into <see cref="DbContext" />) 
         /// </summary>
@@ -58,21 +24,17 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
         {
             // Types that do entity mapping
             var mappingTypes = GetMappingTypes(assembly);
-
             var dbSetTypes =
                 typeof(TDbContext)
                     .GetProperties()
                     .Where(x => x.PropertyType.Name == "DbSet`1")
                     .Select(x => x.PropertyType.GetGenericArguments().First())
                     .ToList();
-
             // Filter mapping types by TDbContext dbSetTypes
             mappingTypes = mappingTypes.Where(x =>
                 dbSetTypes.Any(y => y.FullName == x.BaseType?.GetGenericArguments().First().FullName)).ToList();
-
             builder.AddConfigFromMappingTypes(mappingTypes);
         }
-
         private static List<Type> GetMappingTypes(Assembly assembly)
         {
             var mappingTypes = assembly.GetTypes()
@@ -81,10 +43,8 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                         .Any(y => y.GetTypeInfo().IsGenericType &&
                                   y.GetGenericTypeDefinition() == typeof(ITypeConfiguration<>))
                 ).ToList();
-
             return mappingTypes;
         }
-
         private static void AddConfigFromMappingTypes(this ModelBuilder builder, IEnumerable<Type> mappingTypes)
         {
             // Get the generic Entity method of the ModelBuilder type
@@ -92,29 +52,21 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                 .Single(x => x.Name == nameof(Entity) &&
                              x.IsGenericMethod &&
                              x.ReturnType.Name == $"{nameof(EntityTypeBuilder)}`1");
-
             foreach (var mappingType in mappingTypes)
             {
                 // Get the type of entity to be mapped
                 var genericTypeArg = mappingType.GetInterfaces().Single().GenericTypeArguments.Single();
-
                 // Get the method builder.Entity<TEntity>
                 var genericEntityMethod = entityMethod.MakeGenericMethod(genericTypeArg);
-
                 // Invoke builder.Entity<TEntity> to get a builder for the entity to be mapped
                 var entityBuilder = genericEntityMethod.Invoke(builder, null);
-
                 // Create the mapping type and do the mapping
                 var mapper = Activator.CreateInstance(mappingType);
-                
                 mapper.GetType().GetMethod("Map")?.Invoke(mapper, new[] {entityBuilder});
             }
         }
-
         #endregion
-
         #region Behavior
-
         /// <summary>
         ///     Set Delete Behavior as Restrict in Relationship for disable cascading delete 
         /// </summary>
@@ -126,11 +78,8 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
         }
-
         #endregion
-
         #region Table Naming
-        
         /// <summary>
         ///     Remove plural table name 
         /// </summary>
@@ -144,11 +93,9 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                 {
                     continue;
                 }
-
                 entityType.SetTableName(entityType.ClrType.Name);
             }
         }
-
         /// <summary>
         ///     Replace table name by new value 
         /// </summary>
@@ -164,11 +111,9 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                 {
                     continue;
                 }
-
                 entityType.SetTableName(entityType.GetTableName().Replace(oldValue, newValue));
             }
         }
-
         /// <summary>
         ///     Replace table name by new value 
         /// </summary>
@@ -184,19 +129,14 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                 {
                     continue;
                 }
-
                 foreach (var property in entityType.GetProperties())
                 {
-
                     property.SetColumnName(property.Name.Replace(oldValue, newValue));
                 }
             }
         }
-        
         #endregion
-
         #region Soft Delete Filter
-
         public static void SetSoftDeleteFilter(this ModelBuilder modelBuilder)
         {
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
@@ -207,19 +147,15 @@ namespace Elect.Data.EF.Utils.ModelBuilderUtils
                 }
             }
         }
-
         public static void SetSoftDeleteFilter(ModelBuilder modelBuilder, Type entityType)
         {
             SetSoftDeleteFilterMethod.MakeGenericMethod(entityType).Invoke(null, new object[] {modelBuilder});
         }
-
         private static readonly MethodInfo SetSoftDeleteFilterMethod = typeof(ModelBuilderExtensions).GetMethods(BindingFlags.Public | BindingFlags.Static).Single(t => t.IsGenericMethod && t.Name == nameof(SetSoftDeleteFilter));
-
         public static void SetSoftDeleteFilter<TEntity>(ModelBuilder modelBuilder) where TEntity : class, ISoftDeletableEntity
         {
             modelBuilder.Entity<TEntity>().HasQueryFilter(x => x.DeletedTime == null);
         }
-        
         #endregion
     }
 }

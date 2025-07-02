@@ -1,11 +1,4 @@
-﻿using Elect.Core.StringUtils;
-using Elect.DI;
-using Elect.DI.Attributes;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Elect.Sample.DI
+﻿namespace Elect.Sample.DI
 {
     public class Startup
     {
@@ -13,7 +6,6 @@ namespace Elect.Sample.DI
         {
             // Auto Register Dependency Injection
             services.AddElectDI();
-            
 //          services.AddElectDI(_ =>
 //          {
 //              _.ListAssemblyName = new List<string> // default is 1 assembly name: application name - Elect.Sample.DI
@@ -25,20 +17,16 @@ namespace Elect.Sample.DI
 //                  "C:\\ExampleAssemblyFolderPath" 
 //              };
 //          });
-
             // Optional - Print out Registered Service with Information
             services.PrintServiceAddedToConsole();
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
         }
-
         public interface ISampleService
         {
             string GetRandomString();
         }
-
         [ScopedDependency(ServiceType = typeof(ISampleService))]
         public class SampleService : ISampleService
         {

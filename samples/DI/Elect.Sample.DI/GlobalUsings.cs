@@ -1,0 +1,9 @@
+﻿global using Elect.Core.StringUtils;
+global using Elect.DI.Attributes;
+global using Elect.DI;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.AspNetCore;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Reflection;
+global using System;

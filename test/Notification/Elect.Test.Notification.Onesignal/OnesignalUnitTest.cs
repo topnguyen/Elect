@@ -1,21 +1,12 @@
-﻿using System.Collections.Generic;
-using Elect.Notification.OneSignal;
-using Elect.Notification.OneSignal.Interfaces;
-using Elect.Notification.OneSignal.Models;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Elect.Test.Notification.Onesignal
+﻿namespace Elect.Test.Notification.Onesignal
 {
     [TestClass]
     public class ModelUnitTest
     {
         public string AppId = "";
-        
         public IElectOneSignalClient GetClient()
         {
             var services = new ServiceCollection();
-
             // One Signal
             services.AddElectOneSignal(x =>
             {
@@ -31,14 +22,10 @@ namespace Elect.Test.Notification.Onesignal
                         }
                     };
             });
-
             var provider = services.BuildServiceProvider();
-
             var client = provider.GetService<IElectOneSignalClient>();
-
             return client;
         }
-
         // [TestMethod]
         // public async Task CreateNotification()
         // {
@@ -63,7 +50,6 @@ namespace Elect.Test.Notification.Onesignal
         //
         //     Assert.AreNotEqual(notificationResult.Recipients, 0);
         // }
-        
         // [TestMethod]
         // public async Task CancelNotification()
         // {

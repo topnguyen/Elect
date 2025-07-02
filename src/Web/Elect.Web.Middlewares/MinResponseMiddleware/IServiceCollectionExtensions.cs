@@ -1,30 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> IServiceCollectionExtensions.cs </Name>
-//         <Created> 21/03/2018 8:06:58 PM </Created>
-//         <Key> d6a913c0-195a-4b62-99b5-455bcf304151 </Key>
-//     </File>
-//     <Summary>
-//         IServiceCollectionExtensions.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.IO.Compression;
-using WebMarkupMin.AspNet.Common.Compressors;
-using WebMarkupMin.AspNetCore6;
-using WebMarkupMin.NUglify;
-
-namespace Elect.Web.Middlewares.MinResponseMiddleware
+﻿namespace Elect.Web.Middlewares.MinResponseMiddleware
 {
     public static class IServiceCollectionExtensions
     {
@@ -77,7 +51,6 @@ namespace Elect.Web.Middlewares.MinResponseMiddleware
                         })
                     };
                 });
-
             return services;
         }
     }

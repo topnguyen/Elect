@@ -1,27 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> NotificationViewResult.cs </Name>
-//         <Created> 19/03/2018 9:45:30 PM </Created>
-//         <Key> 3bd8c05d-0083-4c06-9d4b-bac475d067c4 </Key>
-//     </File>
-//     <Summary>
-//         NotificationViewResult.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using Elect.Notification.OneSignal.JsonConverter;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-
-namespace Elect.Notification.OneSignal.Models.Notifications
+﻿namespace Elect.Notification.OneSignal.Models.Notifications
 {
     /// <summary>
     ///     Delivery and convert report result refered to single notification. View
@@ -35,45 +12,38 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
-
         /// <summary>
         ///     The number of devices that received notification. 
         /// </summary>
         [JsonProperty("successful")]
         public int Successful { get; set; }
-
         /// <summary>
         ///     The number of devices that failed to receive notification. 
         /// </summary>
         [JsonProperty("failed")]
         public int Failed { get; set; }
-
         /// <summary>
         ///     The number of users who clicked notification. 
         /// </summary>
         [JsonProperty("converted")]
         public int Converted { get; set; }
-
         /// <summary>
         ///     The number of remaining devices where notification will be delivered 
         /// </summary>
         [JsonProperty("remaining")]
         public int Remaining { get; set; }
-
         /// <summary>
         ///     The number of remaining devices where notification will be delivered 
         /// </summary>
         [JsonProperty("queued_at")]
         [JsonConverter(typeof(UnixDateTimeJsonConverter))]
         public int QueuedAt { get; set; }
-
         /// <summary>
         ///     The number of remaining devices where notification will be delivered 
         /// </summary>
         [JsonProperty("send_after")]
         [JsonConverter(typeof(UnixDateTimeJsonConverter))]
         public int SendAfter { get; set; }
-
         /// <summary>
         ///     <br /> The URL to open in the browser when a user clicks on the notification. <br /> 
         ///     <code>
@@ -86,7 +56,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         /// </summary>
         [JsonProperty("url")]
         public string Url { get; set; }
-
         /// <summary>
         ///     <br /> The notification's content (excluding the title), a map of language codes to
         ///     text for each language. <br /> Each hash must have a language code string for a key,
@@ -102,7 +71,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         [JsonProperty("contents")]
         [JsonExtensionData]
         public Dictionary<string, string> Contents { get; set; }
-
         /// <summary>
         ///     <br /> The notification's title, a map of language codes to text for each language.
         ///     <br /> Each hash must have a language code string for a key, mapped to the localized
@@ -118,7 +86,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         [JsonProperty("headings")]
         [JsonExtensionData]
         public Dictionary<string, string> Headings { get; set; }
-
         /// <summary>
         ///     <br /> A custom map of data that is passed back to your app. <br /> 
         ///     <code>
@@ -131,7 +98,6 @@ namespace Elect.Notification.OneSignal.Models.Notifications
         [JsonProperty("data")]
         [JsonExtensionData]
         public Dictionary<string, string> Data { get; set; }
-
         /// <summary>
         ///     The number of remaining devices where notification will be delivered 
         /// </summary>

@@ -1,10 +1,4 @@
-﻿using Elect.Mapper.AutoMapper;
-using Elect.Mapper.AutoMapper.IMappingExpressionUtils;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Elect.Sample.Mapper.AutoMapper
+﻿namespace Elect.Sample.Mapper.AutoMapper
 {
     public class Startup
     {
@@ -13,37 +7,27 @@ namespace Elect.Sample.Mapper.AutoMapper
             // Add Auto Mapper Services and Auto Register Auto Mapper Profiles
             services.AddElectAutoMapper();
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
         }
     }
-
     public class UserEntity
     {
         public int Id { get; set; }
-
         public string UserName { get; set; }
-
         public string Password { get; set; }
-
         public virtual ProfileEntity Profile { get; set; }
     }
-
     public class ProfileEntity
     {
         public string FullName { get; set; }
     }
-
     public class UserModel
     {
         public int Id { get; set; }
-
         public string UserName { get; set; }
-
         public string FullName { get; set; }
     }
-
     public class UserProfile : global::AutoMapper.Profile
     {
         public UserProfile()

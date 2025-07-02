@@ -1,30 +1,8 @@
-﻿#region	License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> PropertyConstants.cs </Name>
-//         <Created> 23/03/2018 3:59:22 PM </Created>
-//         <Key> e519e773-fda6-4d8d-a4dc-af0989096893 </Key>
-//     </File>
-//     <Summary>
-//         PropertyConstants.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-namespace Elect.Web.DataTable.Models.Constants
+﻿namespace Elect.Web.DataTable.Models.Constants
 {
     public class PropertyConstants
     {
         #region Config
-
         public const string Selector = "sSelector";
         public const string Sortable = "bSortable";
         public const string Visible = "bVisible";
@@ -50,11 +28,8 @@ namespace Elect.Web.DataTable.Models.Constants
         public const string TableTools = "oTableTools";
         public const string Buttons = "buttons";
         public const string DeferRender = "deferRender";
-
         #endregion
-
         #region Request
-
         public const string DisplayStart = "iDisplayStart";
         public const string DisplayLength = "iDisplayLength";
         public const string Columns = "iColumns";
@@ -68,19 +43,13 @@ namespace Elect.Web.DataTable.Models.Constants
         public const string SortDir = "sSortDir";
         public const string ColReorderIndexs = "colReorderIndexs";
         public const string EscapeRegexColumns = "bEscapeRegexColumns";
-
         #endregion
-
         #region Response
-
         public const string TotalRecords = "iTotalRecords";
         public const string TotalDisplayRecords = "iTotalDisplayRecords";
         public const string Data = "aaData";
-
         #endregion
-
         #region Display Info
-
         public const string Language = "language";
         public const string LanguageCode = "oLanguage";
         public const string SearchSelector = "search";
@@ -95,21 +64,16 @@ namespace Elect.Web.DataTable.Models.Constants
         public const string InfoPostFix = "sInfoPostFix";
         public const string Url = "sUrl";
         public const string Paginate = "oPaginate";
-
         public const string ScrollX = "scrollX";
         public const string ScrollY = "scrollY";
         public const string StateSave = "bStateSave";
         public const string ColReorder = "colReorder";
-
         #endregion Language
-
         #region Paging
-
         public const string First = "sFirst";
         public const string Previous = "sPrevious";
         public const string Next = "sNext";
         public const string Last = "sLast";
-
         #endregion
     }
 }

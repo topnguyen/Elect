@@ -1,30 +1,8 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> FileWatcher.cs </Name>
-//         <Created> 02/04/2018 8:21:00 PM </Created>
-//         <Key> 2a7a3ef5-2d71-4bea-b032-95dbddb17c46 </Key>
-//     </File>
-//     <Summary>
-//         FileWatcher.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-using System.IO;
-
-namespace Elect.Data.IO.FileUtils
+﻿namespace Elect.Data.IO.FileUtils
 {
     public class FileWatcher
     {
         private readonly FileSystemWatcher _watcher;
-
         /// <summary>
         ///     Create new instance of file system watcher 
         /// </summary>
@@ -46,42 +24,32 @@ namespace Elect.Data.IO.FileUtils
                 Filter = Path.GetFileName(path),
                 IncludeSubdirectories = false
             };
-
             // Add Event
             _watcher.Changed += OnFileChanged;
         }
-
         public FileWatcher(string path, OnChangedEvent onChangedEvent)
         {
             _watcher = new FileSystemWatcher
             {
                 Path = Path.GetDirectoryName(path),
-
                 NotifyFilter = NotifyFilters.LastWrite,
-
                 Filter = Path.GetFileName(path),
-
                 IncludeSubdirectories = false
             };
-
             // Add Event
             OnChanged = onChangedEvent;
-
             _watcher.Changed += OnFileChanged;
         }
-
         /// <summary>
         ///     Delegate for event on change 
         /// </summary>
         /// <param name="source"></param>
         /// <param name="e">     </param>
         public delegate void OnChangedEvent(object source, FileSystemEventArgs e);
-
         /// <summary>
         ///     On file changed event 
         /// </summary>
         public OnChangedEvent OnChanged { get; set; }
-
         /// <summary>
         ///     Start watcher 
         /// </summary>
@@ -102,7 +70,6 @@ namespace Elect.Data.IO.FileUtils
         {
             _watcher.EnableRaisingEvents = true;
         }
-
         /// <summary>
         ///     Stop watcher 
         /// </summary>
@@ -123,7 +90,6 @@ namespace Elect.Data.IO.FileUtils
         {
             _watcher.EnableRaisingEvents = false;
         }
-
         /// <summary>
         ///     On file changed event 
         /// </summary>
@@ -134,7 +100,6 @@ namespace Elect.Data.IO.FileUtils
             try
             {
                 _watcher.EnableRaisingEvents = false;
-
                 // do delegate
                 OnChanged?.Invoke(source, e);
             }

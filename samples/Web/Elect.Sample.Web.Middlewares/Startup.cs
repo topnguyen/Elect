@@ -1,14 +1,4 @@
-﻿using System.Collections.Generic;
-using Elect.Web.Middlewares.CorsMiddleware;
-using Elect.Web.Middlewares.HttpContextMiddleware;
-using Elect.Web.Middlewares.MeasureProcessingTimeMiddleware;
-using Elect.Web.Middlewares.MinResponseMiddleware;
-using Elect.Web.Middlewares.ServerInfoMiddleware;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Elect.Sample.Web.Middlewares
+﻿namespace Elect.Sample.Web.Middlewares
 {
     public class Startup
     {
@@ -22,13 +12,9 @@ namespace Elect.Sample.Web.Middlewares
                     "http://localhost:8001",
                 };
             });
-
             services.AddElectHttpContext();
-
             services.AddElectServerInfo();
-
             services.AddElectMinResponse();
-
             services.AddElectServerInfo(_ =>
             {
                 _.AuthorName = "Top Nguyen";
@@ -37,27 +23,19 @@ namespace Elect.Sample.Web.Middlewares
                 _.ServerName = "cloudflare-nginx";
                 _.PoweredBy = "PHP/5.6.30";
             });
-
             services.AddMvc(options =>
             {
                 options.EnableEndpointRouting = false;
             });
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseElectCors();
-
             app.UseElectHttpContext();
-
             app.UseElectMeasureProcessingTime();
-
             app.UseElectMinResponse();
-
             app.UseElectServerInfo();
-
             app.UseStaticFiles();
-
             app.UseMvcWithDefaultRoute();
         }
     }

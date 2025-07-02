@@ -1,32 +1,4 @@
-﻿#region License
-
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> Helper.cs </Name>
-//         <Created> 02/04/2018 8:44:24 PM </Created>
-//         <Key> 91b0acdc-8753-4cee-815d-9144ee0767a0 </Key>
-//     </File>
-//     <Summary>
-//         Helper.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-
-#endregion License
-
-using Elect.Data.IO.ImageUtils.CompressUtils.Models;
-using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-
-namespace Elect.Data.IO.ImageUtils.CompressUtils
+﻿namespace Elect.Data.IO.ImageUtils.CompressUtils
 {
     internal static class Helper
     {
@@ -42,55 +14,41 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                 throw new ArgumentException($"{nameof(filePath)} is invalid: {filePath}", nameof(filePath));
             }
         }
-
         internal static bool TryGetCompressImageType(string extension, out CompressImageType compressImageType)
         {
             compressImageType = CompressImageType.Invalid;
-
             if (string.IsNullOrWhiteSpace(extension))
             {
                 return false;
             }
-
             extension = extension.ToLowerInvariant();
-            
             if (extension == ".jpg" || extension == ".jpeg")
             {
                 compressImageType = CompressImageType.Jpeg;
-                
                 return true;
             }
-
             if (extension == ".png")
             {
                 compressImageType = CompressImageType.Png;
-
                 return true;
             }
-            
             if (extension == ".gif")
             {
                 compressImageType = CompressImageType.Gif;
-                
                 return true;
             }
-
             return false;
         }
-
         internal static bool TryGetCompressImageType(MemoryStream imageStream, out CompressImageType compressImageType)
         {
             bool isValid = false;
-
             compressImageType = CompressImageType.Invalid;
-
             try
             {
                 // Raster Image
                 using (Image image = Image.FromStream(imageStream))
                 {
                     isValid = true;
-
                     if (ImageFormat.Jpeg.Equals(image.RawFormat))
                     {
                         compressImageType = CompressImageType.Jpeg;
@@ -106,7 +64,6 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                     else
                     {
                         isValid = false;
-
                         compressImageType = CompressImageType.Invalid;
                     }
                 }
@@ -115,14 +72,11 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             {
                 Debug.WriteLine(ex);
             }
-
             return isValid;
         }
-
         internal static CompressImageType GetCompressImageType(CompressAlgorithm compressAlgorithm)
         {
             var compressImageType = CompressImageType.Invalid;
-
             if (compressAlgorithm == CompressAlgorithm.Jpeg)
             {
                 compressImageType = CompressImageType.Jpeg;
@@ -135,10 +89,8 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             {
                 compressImageType = CompressImageType.Gif;
             }
-
             return compressImageType;
         }
-
         /// <summary>
         ///     Min 0 - max 99 
         /// </summary>
@@ -147,7 +99,6 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
         internal static CompressAlgorithm GetCompressAlgorithm(CompressImageType compressImageType)
         {
             var compressAlgorithm = CompressAlgorithm.Jpeg;
-            
             if (compressImageType == CompressImageType.Jpeg)
             {
                 compressAlgorithm = CompressAlgorithm.Jpeg;
@@ -160,10 +111,8 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
             {
                 compressAlgorithm = CompressAlgorithm.Gif;
             }
-
             return compressAlgorithm;
         }
-
         /// <summary>
         ///     Min 0 - max 99 
         /// </summary>
@@ -173,7 +122,6 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
         internal static int GetQualityPercent(int qualityPercent, CompressAlgorithm algorithm)
         {
             qualityPercent = qualityPercent < 0 ? 0 : (qualityPercent > 99 ? 99 : qualityPercent);
-
             if (qualityPercent <= 0)
             {
                 switch (algorithm)
@@ -181,17 +129,14 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils
                     case CompressAlgorithm.Jpeg:
                         qualityPercent = CompressConstants.DefaultJpegQualityPercent;
                         break;
-
                     case CompressAlgorithm.Png:
                         qualityPercent = CompressConstants.DefaultPngQualityPercent;
                         break;
-                  
                     case CompressAlgorithm.Gif:
                         qualityPercent = CompressConstants.DefaultGifQualityPercent;
                         break;
                 }
             }
-
             return qualityPercent;
         }
     }

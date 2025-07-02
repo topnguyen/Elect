@@ -2,7 +2,7 @@
   <!-- Information -->
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <!-- Generate XML file -->
     <DocumentationFile>Elect.Data.EF.xml</DocumentationFile>
     <!-- Disable warning for Controller/Action/Method not have block comment -->

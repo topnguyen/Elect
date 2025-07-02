@@ -1,23 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> SiteMapItemFrequency.cs </Name>
-//         <Created> 21/03/2018 2:26:51 PM </Created>
-//         <Key> 20144dff-8af7-4c6e-98cf-3a55733501e5 </Key>
-//     </File>
-//     <Summary>
-//         SiteMapItemFrequency.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-namespace Elect.Web.SiteMap.Models
+﻿namespace Elect.Web.SiteMap.Models
 {
     /// <summary>
     ///     How frequently the page is likely to change. This value provides general information to

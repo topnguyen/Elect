@@ -1,34 +1,20 @@
-﻿using Elect.Mapper.AutoMapper.IQueryableUtils;
-using Elect.Mapper.AutoMapper.ObjUtils;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Elect.Sample.Mapper.AutoMapper
+﻿namespace Elect.Sample.Mapper.AutoMapper
 {
     public class Program
     {
         public static void Main(string[] args)
         {
             IWebHost webHost = BuildWebHost(args);
-
             OnAppStart(webHost);
-
             webHost.Run();
         }
-
         public static IWebHost BuildWebHost(string[] args)
         {
             var webHostBuilder = WebHost.CreateDefaultBuilder(args);
-
             webHostBuilder.UseStartup<Startup>();
-
             var webHost = webHostBuilder.Build();
-
             return webHost;
         }
-
         private static void OnAppStart(IWebHost webHost)
         {
             // Map from UserEntity to UserModel
@@ -39,10 +25,8 @@ namespace Elect.Sample.Mapper.AutoMapper
                 Password = "Password",
                 Profile = new ProfileEntity { FullName = "User 1 Full Name" }
             };
-
             // Create new instance of UserModel with data from UserEntity.
             var userModel = userEntity.MapTo<UserModel>();
-
             var userEntity2 = new UserEntity
             {
                 Id = 2,
@@ -50,14 +34,10 @@ namespace Elect.Sample.Mapper.AutoMapper
                 Password = "Password",
                 Profile = new ProfileEntity { FullName = "User 2 Full Name" }
             };
-
             // Update userModel by userEntity data.
             userEntity2.MapTo(userModel);
-
             // IQueryable
-
             IQueryable<UserEntity> userEntities = new List<UserEntity> { userEntity, userEntity2 }.AsQueryable();
-
             List<UserModel> userModels = userEntities.QueryTo<UserModel>().ToList();
         }
     }

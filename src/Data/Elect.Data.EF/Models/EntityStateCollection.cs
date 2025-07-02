@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace Elect.Data.EF.Models
+﻿namespace Elect.Data.EF.Models
 {
     public class EntityStateCollection
     {

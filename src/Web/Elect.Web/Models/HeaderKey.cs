@@ -1,23 +1,4 @@
-﻿#region	License
-//--------------------------------------------------
-// <License>
-//     <Copyright> 2018 © Top Nguyen </Copyright>
-//     <Url> http://topnguyen.com/ </Url>
-//     <Author> Top </Author>
-//     <Project> Elect </Project>
-//     <File>
-//         <Name> HeaderKey.cs </Name>
-//         <Created> 21/03/2018 2:01:48 PM </Created>
-//         <Key> 57bf53ec-1c00-4d77-8d1e-3d9e9c8571c8 </Key>
-//     </File>
-//     <Summary>
-//         HeaderKey.cs is a part of Elect
-//     </Summary>
-// <License>
-//--------------------------------------------------
-#endregion License
-
-namespace Elect.Web.Models
+﻿namespace Elect.Web.Models
 {
     public static class HeaderKey
     {
@@ -56,36 +37,28 @@ namespace Elect.Web.Models
         public const string Upgrade = "Upgrade";
         public const string Via = "Via";
         public const string Warning = "Warning";
-
         // Non Standard
-
         public const string XRequestedWith = "X-Requested-With";
         public const string XCsrfToken = "X-Csrf-Token";
         public const string XRequestId = "XCsrfToken";
         public const string XCorrelationId = "X-Correlation-ID";
         public const string XForwardedFor = "X-Forwarded-For";
-
         /// <summary>
         ///     Rename the Anti-Forgery HTTP header from RequestVerificationToken to X-XSRF-TOKEN.
         ///     X-XSRF-TOKEN is not a standard but a common name given to this HTTP header
         ///     popularized by Angular.
         /// </summary>
         public const string XAntiforgeryToken = "X-XSRF-TOKEN";
-
         // Cloudfare
         // Seemore: https://support.cloudflare.com/hc/en-us/articles/200170986-How-does-Cloudflare-handle-HTTP-Request-headers-
-
         public const string CFIPCountry = "CF-IPCountry";
         public const string CFConnectingIP = "CF-Connecting-IP";
         public const string CFTrueClientIP = "True-Client-IP";
         public const string CFVisitor = "CF-Visitor";
         public const string CFRAY = "CF-RAY";
         public const string CFXForwardedProto = "X-Forwarded-Proto";
-
         #endregion
-
         #region Response
-
         public const string AccessControlAllowOrigin = "Access-Control-Allow-Origin";
         public const string AccessControlAllowCredentials = "Access-Control-Allow-Credentials";
         public const string AccessControlExposeHeaders = "Access-Control-Expose-Headers";
@@ -111,22 +84,17 @@ namespace Elect.Web.Models
         public const string Trailer = "Trailer";
         public const string TransferEncoding = "Transfer-Encoding";
         public const string Vary = "Vary";
-
         // Non Standard
-
         public const string XFrameOptions = "X-Frame-Options";
         public const string XPoweredBy = "X-Powered-By";
         public const string XContentDuration = "X-Content-Duration";
         public const string XProcessingTimeMilliseconds = "X-Processing-Time-Milliseconds";
         public const string XuaCompatible = "X-UA-Compatible";
         public const string XxssProtection = "X-XSS-Protection";
-
         // Author
-
         public const string XAuthorWebsite = "X-Author-Website";
         public const string XAuthorEmail = "X-Author-Email";
         public const string XAuthorName = "X-Author-Name";
-
         #endregion
     }
 }
