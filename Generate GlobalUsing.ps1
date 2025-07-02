@@ -6,10 +6,9 @@ $csprojFiles = Get-ChildItem -Path $SolutionRoot -Recurse -Filter *.csproj
 
 foreach ($csproj in $csprojFiles) {
     $ProjectPath = Split-Path $csproj.FullName
-    $globalUsingsPath = Join-Path $ProjectPath "GlobalUsings.cs"
-    $csFiles = Get-ChildItem -Path $ProjectPath -Recurse -Filter *.cs | Where-Object { $_.Name -ne "GlobalUsings.cs" }
+    $globalUsingsPath = Join-Path $ProjectPath 'GlobalUsings.cs'
+    $csFiles = Get-ChildItem -Path $ProjectPath -Recurse -Filter *.cs | Where-Object { $_.Name -ne 'GlobalUsings.cs' }
 
-    # Read existing global usings
     $existingGlobalUsings = @()
     if (Test-Path $globalUsingsPath) {
         $existingGlobalUsings = Get-Content $globalUsingsPath | Where-Object { $_ -match '^global using\s+[^\=].*;' }
@@ -55,13 +54,19 @@ foreach ($csproj in $csprojFiles) {
         Set-Content $file.FullName $filteredLines -Encoding UTF8
     }
 
-    # Merge, deduplicate, and sort
     $allUsings = $usings + $existingGlobalUsings
     $allUsings = $allUsings | Sort-Object | Get-Unique
-    $globalUsings = $allUsings | ForEach-Object { "global $_" }
-    $globalUsings = $globalUsings | Sort-Object
+    $globalUsings = $allUsings | ForEach-Object { "global $_".Trim() }
+    $globalUsings = $globalUsings | Where-Object { $_ -ne "" } | Sort-Object
 
-    Set-Content $globalUsingsPath $globalUsings -Encoding UTF8
+    if ($globalUsings.Count -gt 1) {
+        Set-Content $globalUsingsPath $globalUsings[0..($globalUsings.Count-2)] -Encoding UTF8
+        $globalUsings[-1] | Out-File $globalUsingsPath -Encoding UTF8 -Append -NoNewline
+    } elseif ($globalUsings.Count -eq 1) {
+        $globalUsings | Out-File $globalUsingsPath -Encoding UTF8 -NoNewline
+    } else {
+        Clear-Content $globalUsingsPath
+    }
 
-    Write-Host "[$($csproj.Name)] GlobalUsings.cs created/updated, redundant usings and License regions removed (UTF-8 encoding, sorted)."
+    Write-Host "[$($csproj.Name)] GlobalUsings.cs created/updated, no trailing blank line."
 }
