@@ -10,7 +10,10 @@
                 var fullPath = PathHelper.GetFullPath(path);
                 if (!File.Exists(fullPath))
                 {
-                    File.Create(fullPath);
+                    using (File.Create(fullPath))
+                    {
+                        // Create an empty file
+                    }
                 }
             }
         }    
@@ -55,7 +58,7 @@
         /// <param name="stream">   </param>
         /// <param name="extension"></param>
         /// <returns></returns>
-        internal static string CreateTempFile(Stream stream, string extension)
+        public static string CreateTempFile(Stream stream, string extension)
         {
             string filePath = CreateTempFile(extension);
             using (var fileStream = File.OpenWrite(filePath))
@@ -107,7 +110,7 @@
         }
         public static void WriteToStream(string filePath, MemoryStream stream)
         {
-            if (!Uri.IsWellFormedUriString(filePath, UriKind.RelativeOrAbsolute) && !File.Exists(filePath))
+            if (!File.Exists(filePath))
             {
                 return;
             }
@@ -163,7 +166,7 @@
                     {
                         if (c == '"')
                         {
-                            replace = '”'; // U+201D right double quotation mark
+                            replace = '"'; // U+201D right double quotation mark
                         }
                         else if (c == '\'')
                         {
