@@ -14,10 +14,10 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore middlewares elect topnguyen</tags>
-    <version>7.0.1</version>
+    <version>9.0.0</version>
 
     <dependencies>
-      <group targetFramework="net7.0">
+      <group targetFramework="net9.0">
 
         <!-- Elect -->
         <dependency id="Elect.Web" version="7.0.1"/>
@@ -31,9 +31,9 @@
 
   <files>
     <file src="Logo.png" target=""/>
-    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.dll" target="lib\net7.0"/>
-    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.pdb" target="lib\net7.0"/>
-    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.xml" target="lib\net7.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.dll" target="lib\net9.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.pdb" target="lib\net9.0"/>
+    <file src="..\..\src\Web\Elect.Web.Middlewares\bin\Elect.Web.Middlewares.xml" target="lib\net9.0"/>
     <file src="..\..\src\Web\Elect.Web.Middlewares\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
   </files>
 </package>

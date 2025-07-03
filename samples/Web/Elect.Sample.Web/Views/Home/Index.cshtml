@@ -1,14 +1,17 @@
-﻿@{
+﻿@using Elect.Core.ObjUtils
+@using Elect.Web.HttpDetection
+@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>Elect.Web</title>
 </head>
 <body>
-    Welcome to Elect.Web!
+<p>Welcome to Elect.Web!</p>
+<p>Your IP Info: @Context.Request.GetDeviceInformation().ToJsonString()</p>
 </body>
 </html>

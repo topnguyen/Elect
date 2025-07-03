@@ -7,6 +7,7 @@
         {
             return View();
         }
+
         [SiteMapItem(SiteMapItemFrequency.Weekly, 0.9)]
         public IActionResult About()
         {

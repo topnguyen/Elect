@@ -14,25 +14,25 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore datatable elect topnguyen</tags>
-    <version>7.0.2</version>
+    <version>9.0.0</version>
 
     <dependencies>
-      <group targetFramework="netstandard2.1">
+      <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="7.0.1"/>
+        <dependency id="Elect.Web" version="9.0.0"/>
 
         <!-- 3rd Libraries -->
-        <dependency id="System.Linq.Dynamic.Core" version="1.3.1"/>
+        <dependency id="System.Linq.Dynamic.Core" version="1.6.6"/>
       </group>
     </dependencies>
   </metadata>
 
   <files>
     <file src="Logo.png" target=""/>
-    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.dll" target="lib\netstandard2.1"/>
-    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.pdb" target="lib\netstandard2.1"/>
-    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.xml" target="lib\netstandard2.1"/>
+    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.dll" target="lib\net9.0"/>
+    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.pdb" target="lib\net9.0"/>
+    <file src="..\..\src\Web\Elect.Web.DataTable\bin\Elect.Web.DataTable.xml" target="lib\net9.0"/>
     <file src="..\..\src\Web\Elect.Web.DataTable\**\*.cs" target="src" exclude="**\obj*\**\*.cs"/>
   </files>
 </package>

@@ -26,11 +26,7 @@
             var origins = string.Join("|", model.OriginalCoordinates.Select(x => $"{x.Latitude},{x.Longitude}"));
             var destinations = string.Join("|", model.DestinationCoordinates.Select(x => $"{x.Latitude},{x.Longitude}"));
             var requestUrl =
-                ElectLocationGoogleConstants.DefaultGoogleMatrixApiEndpoint
-                    .ConfigureRequest(config =>
-                    {
-                        config.JsonSerializer = ElectLocationGoogleConstants.NewtonsoftJsonSerializer;
-                    })
+                    ElectLocationGoogleConstants.DefaultGoogleMatrixApiEndpoint
                     .SetQueryParam("origins", origins)
                     .SetQueryParam("destinations", destinations)
                     .SetQueryParam("key", Options.GoogleApiKey)
@@ -59,10 +55,6 @@
             string waypoints = string.Join("|", model.WaypointCoodinates.Select(x => $"{x.Latitude},{x.Longitude}"));
             var requestUrl =
                 ElectLocationGoogleConstants.DefaultGoogleDirectionApiEndpoint
-                    .ConfigureRequest(config =>
-                    {
-                        config.JsonSerializer = ElectLocationGoogleConstants.NewtonsoftJsonSerializer;
-                    })
                     .SetQueryParam("origin", origin)
                     .SetQueryParam("destination", destination)
                     .SetQueryParam("waypoints", waypoints)
