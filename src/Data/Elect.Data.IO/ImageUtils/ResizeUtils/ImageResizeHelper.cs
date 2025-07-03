@@ -12,9 +12,12 @@
         {
             using (MemoryStream inStream = new MemoryStream(imageBytes))
             {
+                // Get the image format from the byte array
+                var format = SixLabors.ImageSharp.Image.DetectFormat(imageBytes);
+
                 using (MemoryStream outStream = new MemoryStream())
                 {
-                    using (var image = SixLabors.ImageSharp.Image.Load<SixLabors.ImageSharp.PixelFormats.Rgba32>(inStream, out var format))
+                    using (var image = SixLabors.ImageSharp.Image.Load<SixLabors.ImageSharp.PixelFormats.Rgba32>(inStream))
                     {
                         image.Mutate(x => x.Resize(new ResizeOptions
                         {
@@ -22,6 +25,7 @@
                             Mode = (ResizeMode)((int)resizeType)
                         }));
                         image.Save(outStream, format);
+
                         return outStream.ToArray();
                     }
                 }

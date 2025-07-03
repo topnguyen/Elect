@@ -9,7 +9,7 @@
             var red = random.Next(max);
             var green = random.Next(max);
             var blue = random.Next(max);
-            Color color = Color.FromArgb(red, green, blue);
+            Rgb24 color = new Rgb24((byte)red, (byte)green, (byte)blue);
             return color;
         }
     }

@@ -1,8 +1,11 @@
-﻿namespace Elect.Data.IO.ImageUtils
+﻿using Font = SixLabors.Fonts.Font;
+
+namespace Elect.Data.IO.ImageUtils
 {
     public class ImageHelper
     {
         #region Image Info
+
         /// <summary>
         ///     <para> Get image info. </para>
         ///     <para> If not know mime type but valid image then return <see cref="ImageConstants.ImageMimeTypeUnknown" /> </para>
@@ -14,6 +17,7 @@
             byte[] bytes = Convert.FromBase64String(base64);
             return GetImageInfo(bytes);
         }
+
         /// <summary>
         ///     <para> Get image info. </para>
         ///     <para> If not know mime type but valid image then return <see cref="ImageConstants.ImageMimeTypeUnknown" /> </para>
@@ -27,6 +31,7 @@
                 return GetImageInfo(stream);
             }
         }
+
         /// <summary>
         ///     <para> Get image info. </para>
         ///     <para> If not know mime type but valid image then return <see cref="ImageConstants.ImageMimeTypeUnknown" /> </para>
@@ -46,35 +51,34 @@
                 else
                 {
                     // Raster check (jpg, png, etc.)
-                    using (var image = Image.FromStream(imageStream))
+                    using (var image = SixLabors.ImageSharp.Image.Load(imageStream.ToArray()))
                     {
                         // Get image mime type
                         bool isUnknownMimeType = true;
-                        foreach (var imageCodecInfo in ImageCodecInfo.GetImageDecoders())
+                        var format = image.Metadata.DecodedImageFormat;
+                        if (format != null)
                         {
-                            if (imageCodecInfo.FormatID == image.RawFormat.Guid)
-                            {
-                                imageModel.MimeType = imageCodecInfo.MimeType;
-                                isUnknownMimeType = false;
-                                break;
-                            }
+                            imageModel.MimeType = format.DefaultMimeType;
+                            isUnknownMimeType = false;
                         }
+
                         if (isUnknownMimeType)
                         {
                             imageModel.MimeType = ImageConstants.ImageMimeTypeUnknown;
                         }
+
                         // Get width and height in pixel info
                         imageModel.WidthPx = image.Width;
                         imageModel.HeightPx = image.Height;
                     }
                 }
+
                 // Get others info
                 imageModel.Extension = MimeTypeHelper.GetExtension(imageModel.MimeType);
+
                 // Get image dominant color
-                using (var bitmap = new Bitmap(imageStream))
-                {
-                    imageModel.DominantHexColor = ImageDominantColorHelper.GetHexCode(bitmap);
-                }
+                imageModel.DominantHexColor = ImageDominantColorHelper.GetHexCode(imageStream);
+
                 return imageModel;
             }
             catch
@@ -82,6 +86,7 @@
                 return null;
             }
         }
+
         public static bool IsSvgImage(MemoryStream imageStream)
         {
             try
@@ -97,51 +102,62 @@
                 return false;
             }
         }
+
         #endregion
+
         #region Text Image
+
         /// <summary>
-        ///     Generate image from text (at center of the image) 
+        ///     Generate image from text (at center of the image)
         /// </summary>
         /// <param name="text">            Will be StringHelper.Normalize(text).First().ToString() </param>
         /// <param name="width">           Default is 50 px </param>
         /// <param name="height">          Default is 50 px </param>
         /// <param name="textColor">       Default is random color </param>
         /// <param name="backgroundColor"> Default is random color </param>
-        /// <param name="font">           
+        /// <param name="font">
         ///     Default is new Font(FontFamily.GenericSansSerif, 10.0F, FontStyle.Bold)
         /// </param>
         /// <returns></returns>
-        public static string GenerateTextImageBase64(string text, int width = 50, int height = 50, Color textColor = default, Color backgroundColor = default, Font font = null)
+        public static string GenerateTextImageBase64(string text, int width = 50, int height = 50,
+            Color textColor = default, Color backgroundColor = default, Font font = null)
         {
             if (font == null)
             {
-                font = new Font(FontFamily.GenericSansSerif, 10.0F, FontStyle.Bold);
+                font = new Font(SixLabors.Fonts.SystemFonts.Families.FirstOrDefault(), 10.0F,
+                    SixLabors.Fonts.FontStyle.Bold);
             }
+
             if (textColor == default)
             {
                 textColor = ColorHelper.GetRandom();
             }
+
             if (backgroundColor == default)
             {
                 backgroundColor = ColorHelper.GetRandom();
             }
+
             // Generate Image
             var img = GenerateTextImage(text, width, height, textColor, backgroundColor, font);
             // Convert to image array
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                img.Save(memoryStream, img.RawFormat);
+                img.Save(memoryStream, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder());
+
                 var imageArray = memoryStream.ToArray();
                 if (!imageArray.Any())
                 {
                     return null;
                 }
+
                 var stringBase64 = Convert.ToBase64String(imageArray);
                 return stringBase64;
             }
         }
+
         /// <summary>
-        ///     Generate image from text (at center of the image) 
+        ///     Generate image from text (at center of the image)
         /// </summary>
         /// <param name="text">           </param>
         /// <param name="width">          </param>
@@ -150,46 +166,44 @@
         /// <param name="backgroundColor"></param>
         /// <param name="font">           </param>
         /// <returns></returns>
-        public static Image GenerateTextImage(string text, int width, int height, Color textColor, Color backgroundColor, Font font)
+        public static Image GenerateTextImage(string text, int width, int height, Color textColor,
+            Color backgroundColor, Font font)
         {
             CheckHelper.CheckNullOrWhiteSpace(text, nameof(text));
-            // Create a dummy bitmap just to get a graphics object
-            Image img = new Bitmap(1, 1);
-            Graphics drawing = Graphics.FromImage(img);
-            // Measure the string to see how big the image needs to be
-            drawing.MeasureString(text, font);
-            // Free up the dummy image and old graphics object
-            img.Dispose();
-            drawing.Dispose();
-            // Create a new image of the right size
-            img = new Bitmap(height, width);
-            drawing = Graphics.FromImage(img);
+
+            // Create a new ImageSharp image
+            var img = new Image<Rgba32>(width, height);
+
             // Paint the background
-            drawing.Clear(backgroundColor);
-            // Create a brush for the text
-            Brush brush = new SolidBrush(textColor);
-            // String alignment
-            StringFormat stringFormat = new StringFormat
+            img.Mutate(ctx => ctx.Fill(backgroundColor));
+
+            // Load font
+            var fontCollection = new FontCollection();
+            var fontFamily = fontCollection.AddSystemFonts().Get(font.Name);
+            var imageSharpFont = new Font(fontFamily, font.Size, SixLabors.Fonts.FontStyle.Bold);
+
+            // Measure the text size
+            var textOptions = new RichTextOptions(imageSharpFont)
             {
-                LineAlignment = StringAlignment.Center,
-                Alignment = StringAlignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Origin = new SixLabors.ImageSharp.PointF(width / 2f, height / 2f),
+                WrappingLength = width
             };
-            // Rectangular
-            RectangleF rectangleF = new RectangleF(0, 0, img.Width, img.Height);
-            // Draw text on image
-            drawing.DrawString(text, font, brush, rectangleF, stringFormat);
-            // Save drawing
-            drawing.Save();
-            // Dispose
-            brush.Dispose();
-            drawing.Dispose();
-            // return image
+
+            // Draw the text
+            img.Mutate(ctx => ctx.DrawText(textOptions, text, textColor));
+
+            // Return the image
             return img;
         }
+
         #endregion
+
         #region Base 64
+
         /// <summary>
-        ///     Get image base64 for "src" of "img" element in HTML. 
+        ///     Get image base64 for "src" of "img" element in HTML.
         /// </summary>
         /// <param name="base64">        </param>
         /// <param name="imageExtension"></param>
@@ -199,8 +213,9 @@
             var imageMimeType = MimeTypeHelper.GetMimeType(imageExtension);
             return $@"data:{imageMimeType};base64,{base64}";
         }
+
         /// <summary>
-        ///     Get string base64 data from "src" of "img" element in HTML. 
+        ///     Get string base64 data from "src" of "img" element in HTML.
         /// </summary>
         /// <param name="imageBase64"></param>
         /// <returns></returns>
@@ -208,8 +223,11 @@
         {
             return imageBase64.Split(',').LastOrDefault();
         }
+
         #endregion
+
         #region Rotate
+
         /// <summary>
         ///     Rotate image by Exif Orientation.
         /// </summary>
@@ -221,6 +239,7 @@
             var fixedAutoRotateFileBytes = RotateByExifOrientation(fileBytes);
             return fixedAutoRotateFileBytes.ToBase64();
         }
+
         /// <summary>
         ///     Rotate image by Exif Orientation.
         /// </summary>
@@ -230,16 +249,29 @@
         {
             using (var imageStream = new MemoryStream(imageBytes))
             {
-                var originalImage = Image.FromStream(imageStream);
-                var fixedAutoRotateImage = RotateByExifOrientation(originalImage);
-                using (var fixedAutoRotateImageStream = new MemoryStream())
+                using (var image = Image.Load(imageStream.ToArray()))
                 {
-                    fixedAutoRotateImage.Save(fixedAutoRotateImageStream, ImageFormat.Jpeg);
-                    var fixedAutoRotateFileBytes = fixedAutoRotateImageStream.ToArray();
-                    return fixedAutoRotateFileBytes;
+                    var fixedAutoRotateImage = RotateByExifOrientation(image);
+                    using (var fixedAutoRotateImageStream = new MemoryStream())
+                    {
+                        var imageFormat = fixedAutoRotateImage.Metadata.DecodedImageFormat;
+                        if (imageFormat != null)
+                        {
+                            fixedAutoRotateImage.Save(fixedAutoRotateImageStream, imageFormat);
+                        }
+                        else
+                        {
+                            fixedAutoRotateImage.Save(fixedAutoRotateImageStream,
+                                new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder());
+                        }
+
+                        var fixedAutoRotateFileBytes = fixedAutoRotateImageStream.ToArray();
+                        return fixedAutoRotateFileBytes;
+                    }
                 }
             }
         }
+
         /// <summary>
         ///     Rotate image by Exif Orientation.
         /// </summary>
@@ -247,65 +279,69 @@
         /// <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
         public static Image RotateByExifOrientation(Image image)
         {
-            const int orientationId = 0x0112;
-            var fixedAutoRotateImage = (Image)image.Clone();
-            if (!fixedAutoRotateImage.PropertyIdList.Contains(orientationId))
+            var fixedAutoRotateImage = image.Clone();
+            var exifProfile = fixedAutoRotateImage.Metadata.ExifProfile;
+            if (exifProfile == null)
             {
                 return fixedAutoRotateImage;
             }
-            int rotationValue = fixedAutoRotateImage.GetPropertyItem(orientationId).Value[0];
-            var rotateFlipType = RotateFlipType.RotateNoneFlipNone;
-            switch (rotationValue)
+
+            var orientationValue = 1;
+            var orientationTag = SixLabors.ImageSharp.Metadata.Profiles.Exif.ExifTag.Orientation;
+            var orientationEntry = exifProfile.Values.FirstOrDefault(e => e.Tag == orientationTag);
+            if (orientationEntry != null && orientationEntry.GetValue() is ushort value)
             {
-                case 1: // landscape, do nothing
+                orientationValue = value;
+            }
+
+            RotateMode rotateMode = RotateMode.None;
+            FlipMode flipMode = FlipMode.None;
+
+            switch (orientationValue)
+            {
+                case 1: // Normal
                 default:
-                {
                     break;
-                }
-                case 2:
-                {
-                    rotateFlipType = RotateFlipType.RotateNoneFlipX;
+                case 2: // Mirror horizontal
+                    flipMode = FlipMode.Horizontal;
                     break;
-                }
-                case 3: // bottoms up
-                {
-                    rotateFlipType = RotateFlipType.Rotate180FlipNone;
+                case 3: // Rotate 180
+                    rotateMode = RotateMode.Rotate180;
                     break;
-                }
-                case 4:
-                {
-                    rotateFlipType = RotateFlipType.Rotate180FlipX;
+                case 4: // Mirror vertical
+                    flipMode = FlipMode.Vertical;
                     break;
-                }
-                case 5:
-                {
-                    rotateFlipType = RotateFlipType.Rotate90FlipX;
+                case 5: // Mirror horizontal and rotate 270 CW
+                    rotateMode = RotateMode.Rotate90;
+                    flipMode = FlipMode.Horizontal;
                     break;
-                }
-                case 6: // rotated 90 left
-                {
-                    rotateFlipType = RotateFlipType.Rotate90FlipNone;
+                case 6: // Rotate 90 CW
+                    rotateMode = RotateMode.Rotate90;
                     break;
-                }
-                case 7:
-                {
-                    rotateFlipType = RotateFlipType.Rotate270FlipX;
+                case 7: // Mirror horizontal and rotate 90 CW
+                    rotateMode = RotateMode.Rotate270;
+                    flipMode = FlipMode.Horizontal;
                     break;
-                }
-                case 8: // rotated 90 right
-                {
-                    rotateFlipType =RotateFlipType.Rotate270FlipNone;
+                case 8: // Rotate 270 CW
+                    rotateMode = RotateMode.Rotate270;
                     break;
-                }
             }
-            if (rotateFlipType == RotateFlipType.RotateNoneFlipNone)
+
+            if (rotateMode != RotateMode.None || flipMode != FlipMode.None)
             {
-                return fixedAutoRotateImage;
+                fixedAutoRotateImage.Mutate(x =>
+                {
+                    if (rotateMode != RotateMode.None)
+                        x.Rotate(rotateMode);
+                    if (flipMode != FlipMode.None)
+                        x.Flip(flipMode);
+                });
             }
-            fixedAutoRotateImage.RotateFlip(rotateFlipType);
-            fixedAutoRotateImage.RemovePropertyItem(orientationId);
+
+            fixedAutoRotateImage.Metadata.ExifProfile?.RemoveValue(orientationTag);
             return fixedAutoRotateImage;
         }
+
         #endregion
     }
 }

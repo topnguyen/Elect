@@ -336,23 +336,23 @@
             </summary>
             <param name="imageStream"></param>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GenerateTextImageBase64(System.String,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Drawing.Font)">
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GenerateTextImageBase64(System.String,System.Int32,System.Int32,SixLabors.ImageSharp.Color,SixLabors.ImageSharp.Color,SixLabors.Fonts.Font)">
             <summary>
-                Generate image from text (at center of the image) 
+                Generate image from text (at center of the image)
             </summary>
             <param name="text">            Will be StringHelper.Normalize(text).First().ToString() </param>
             <param name="width">           Default is 50 px </param>
             <param name="height">          Default is 50 px </param>
             <param name="textColor">       Default is random color </param>
             <param name="backgroundColor"> Default is random color </param>
-            <param name="font">           
+            <param name="font">
                 Default is new Font(FontFamily.GenericSansSerif, 10.0F, FontStyle.Bold)
             </param>
             <returns></returns>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GenerateTextImage(System.String,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Drawing.Font)">
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GenerateTextImage(System.String,System.Int32,System.Int32,SixLabors.ImageSharp.Color,SixLabors.ImageSharp.Color,SixLabors.Fonts.Font)">
             <summary>
-                Generate image from text (at center of the image) 
+                Generate image from text (at center of the image)
             </summary>
             <param name="text">           </param>
             <param name="width">          </param>
@@ -364,7 +364,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetImageBase64Format(System.String,System.String)">
             <summary>
-                Get image base64 for "src" of "img" element in HTML. 
+                Get image base64 for "src" of "img" element in HTML.
             </summary>
             <param name="base64">        </param>
             <param name="imageExtension"></param>
@@ -372,7 +372,7 @@
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetBase64Format(System.String)">
             <summary>
-                Get string base64 data from "src" of "img" element in HTML. 
+                Get string base64 data from "src" of "img" element in HTML.
             </summary>
             <param name="imageBase64"></param>
             <returns></returns>
@@ -391,7 +391,7 @@
             <param name="imageBytes"></param>
             <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.RotateByExifOrientation(System.Drawing.Image)">
+        <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.RotateByExifOrientation(SixLabors.ImageSharp.Image)">
             <summary>
                 Rotate image by Exif Orientation.
             </summary>

@@ -46,18 +46,20 @@
             try
             {
                 // Raster Image
-                using (Image image = Image.FromStream(imageStream))
+
+                using (var image = Image.Load(imageStream))
                 {
                     isValid = true;
-                    if (ImageFormat.Jpeg.Equals(image.RawFormat))
+                    var format = image.Metadata.DecodedImageFormat;
+                    if (format == SixLabors.ImageSharp.Formats.Jpeg.JpegFormat.Instance)
                     {
                         compressImageType = CompressImageType.Jpeg;
                     }
-                    else if (ImageFormat.Png.Equals(image.RawFormat))
+                    else if (format == SixLabors.ImageSharp.Formats.Png.PngFormat.Instance)
                     {
                         compressImageType = CompressImageType.Png;
                     }
-                    else if (ImageFormat.Gif.Equals(image.RawFormat))
+                    else if (format == SixLabors.ImageSharp.Formats.Gif.GifFormat.Instance)
                     {
                         compressImageType = CompressImageType.Gif;
                     }

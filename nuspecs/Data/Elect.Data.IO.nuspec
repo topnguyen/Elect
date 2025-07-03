@@ -23,11 +23,11 @@
         <dependency id="Elect.Core" version="9.0.0"/>
 
         <!-- 3rd Libraries -->
-        <dependency id="Mono.Posix.NETStandard" version="5.20.1-preview" />
+        <dependency id="Mono.Posix.NETStandard" version="1.0.0" />
         <dependency id="runtime.osx.10.10-x64.CoreCompat.System.Drawing" version="6.0.5.128" />
-        <dependency id="System.Drawing.Common" version="7.0.0" />
-        <dependency id="SixLabors.ImageSharp" version="2.1.3" />
-        <dependency id="SixLabors.ImageSharp.Drawing" version="1.0.0-beta15" />
+        <dependency id="System.Drawing.Common" version="9.0.6" />
+        <dependency id="SixLabors.ImageSharp" version="3.1.10" />
+        <dependency id="SixLabors.ImageSharp.Drawing" version="2.1.6" />
       </group>
     </dependencies>
   </metadata>
