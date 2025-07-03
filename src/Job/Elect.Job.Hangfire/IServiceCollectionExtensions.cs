@@ -51,6 +51,8 @@
             }
             switch (options.Provider)
             {
+                // Registers and configures Hangfire services and storage (e.g., memory, SQL Server) in the DI container. It sets up how jobs are stored and managed.
+
                 case HangfireProvider.Memory:
                     {
                         services.AddHangfire(config =>
@@ -76,6 +78,11 @@
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            // Add Hangfire Server
+            // Registers the background processing server that executes jobs. Without this, jobs will not be processed, even if Hangfire is configured.
+            services.AddHangfireServer();
+
             return services;
         }
     }

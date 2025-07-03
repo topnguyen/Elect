@@ -1,4 +1,6 @@
-﻿namespace Elect.Sample.DI
+﻿using Elect.DI.Models;
+
+namespace Elect.Sample.DI
 {
     public class Startup
     {
@@ -6,6 +8,7 @@
         {
             // Auto Register Dependency Injection
             services.AddElectDI();
+
 //          services.AddElectDI(_ =>
 //          {
 //              _.ListAssemblyName = new List<string> // default is 1 assembly name: application name - Elect.Sample.DI
@@ -17,8 +20,14 @@
 //                  "C:\\ExampleAssemblyFolderPath" 
 //              };
 //          });
+
             // Optional - Print out Registered Service with Information
-            services.PrintServiceAddedToConsole();
+            services.PrintServiceAddedToConsole(new ElectPrintRegisteredToConsoleOptions
+            {
+                IsMinimalDisplay = true,
+                PrimaryColor = ConsoleColor.DarkMagenta,
+                SecondaryColor = ConsoleColor.Blue
+            });
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

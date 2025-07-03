@@ -47,12 +47,12 @@
                 }
             }
         }
+
         /// <param name="services">          </param>
         /// <param name="assemblyFolderPath"></param>
         /// <param name="fileSearchPattern">  Search Pattern by <c> Directory.GetFiles </c> </param>
         /// <returns> List of loaded assembly </returns>
-        public List<Assembly> RegisterAssemblies([NotNull] IServiceCollection services,
-            [NotNull] string assemblyFolderPath, [NotNull] string fileSearchPattern)
+        public List<Assembly> RegisterAssemblies([NotNull] IServiceCollection services, [NotNull] string assemblyFolderPath, [NotNull] string fileSearchPattern)
         {
             if (services == null)
             {
@@ -73,6 +73,7 @@
             }
             return assemblies;
         }
+
         /// <param name="folderPaths">The folder path store assemblies, default is null - mean search project base folder path</param>
         /// <param name="searchPatterns"> Dll files search pattern. Use <c> Directory.GetFiles </c> to search files, default is null = mean "{root assembly}.dll" and "{root assembly}.*.dll"</param>
         /// <returns> List of loaded assembly </returns>

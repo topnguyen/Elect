@@ -62,7 +62,7 @@
         {
             byte[] valueBytes = Encoding.UTF8.GetBytes(password);
             byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
-            using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(valueBytes, saltBytes, iterations))
+            using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(valueBytes, saltBytes, iterations, HashAlgorithmName.SHA256))
             {
                 var hashBytes = rfc2898DeriveBytes.GetBytes(32);
                 var hashString = Convert.ToBase64String(hashBytes);
@@ -88,8 +88,7 @@
             byte[] clearBytes = Encoding.ASCII.GetBytes(value);
             using (var encrypt = Aes.Create())
             {
-                var pdb = new Rfc2898DeriveBytes(key,
-                    new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                var pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }, 100000, HashAlgorithmName.SHA256);
                 encrypt.Key = pdb.GetBytes(32);
                 encrypt.IV = pdb.GetBytes(16);
                 using (var ms = new MemoryStream())
@@ -114,8 +113,7 @@
             byte[] cipherBytes = Safe64Encoding.DecodeBytes(value);
             using (var encrypt = Aes.Create())
             {
-                var pdb = new Rfc2898DeriveBytes(key,
-                    new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                var pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }, 100000, HashAlgorithmName.SHA256);
                 encrypt.Key = pdb.GetBytes(32);
                 encrypt.IV = pdb.GetBytes(16);
                 using (var ms = new MemoryStream())

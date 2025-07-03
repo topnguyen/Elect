@@ -6,6 +6,7 @@
         ///     List assembly folder to scan, default is application base path. 
         /// </summary>
         public List<string> ListAssemblyFolderPath { get; set; } = new List<string> { PlatformServices.Default.Application.ApplicationBasePath };
+        
         /// <summary>
         ///     List assembly name to scan, default is application name. 
         /// </summary>

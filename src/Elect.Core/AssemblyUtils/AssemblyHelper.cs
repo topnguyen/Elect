@@ -4,8 +4,8 @@
     {
         public static string GetDirectoryPath(Assembly assembly)
         {
-            UriBuilder uri = new UriBuilder(assembly.CodeBase);
-            string path = Uri.UnescapeDataString(uri.Path);
+            var uri = new UriBuilder(assembly.Location);
+            var path = Uri.UnescapeDataString(uri.Path);
             var directoryPath = Path.GetDirectoryName(path);
             return directoryPath;
         }
@@ -15,15 +15,20 @@
             {
                 throw new ArgumentException($"{nameof(dllFileFullPaths)} can not be empty.", nameof(dllFileFullPaths));
             }
+
             dllFileFullPaths = dllFileFullPaths.Distinct().ToArray();
-            List<Assembly> assemblies = new List<Assembly>();
+
+            var assemblies = new List<Assembly>();
+
             foreach (var dllFileFullPath in dllFileFullPaths)
             {
                 // Assembly Directory to load
                 var assemblyDirectoryPath = Path.GetDirectoryName(dllFileFullPath);
-                AssemblyLoader assemblyLoader = new AssemblyLoader(assemblyDirectoryPath);
+                var assemblyLoader = new AssemblyLoader(assemblyDirectoryPath);
+
                 // Assembly Name to load
                 var dllNameWithoutExtension = Path.GetFileNameWithoutExtension(dllFileFullPath);
+
                 var assemblyName = new AssemblyName(dllNameWithoutExtension);
                 var assembly = assemblyLoader.LoadFromAssemblyName(assemblyName);
                 assemblies.Add(assembly);

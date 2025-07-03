@@ -58,16 +58,6 @@ Elect have difference modules/libraries, each lib handle a 3rd library or focus 
 - ### Background Job
     + [Elect.Job.Hangfire](https://github.com/topnguyen/Elect/tree/master/src/Job/Elect.Job.Hangfire/README.md): Extend of [Hangfire](https://github.com/HangfireIO/Hangfire), easier to setup and secure Hangfire Dashboard.
 
-- ### Notification
-    + [Elect.Notification.OneSignal](https://github.com/topnguyen/Elect/tree/master/src/Notification/Elect.Notification.OneSignal/README.md): Client for [OneSignal.com](http://OneSignal.com).
-
-    + [Elect.Notification.Esms](https://github.com/topnguyen/Elect/tree/master/src/Notification/Elect.Notification.Esms/README.md): Client for [eSMS.vn](http://eSMS.vn).
-
-- ### Logger
-    + [Elect.Jaeger](https://github.com/topnguyen/Elect/tree/master/src/Logger/Elect.Jaeger/README.md): Support add trace to the Jaeger Service automatically.
-
-    + [Elect.AppMetrics](https://github.com/topnguyen/Elect/tree/master/src/Logger/Elect.AppMetrics/README.md): Support enable and config to the AppMetrics Service automatically.
-
 ## Samples
 Please access "samples" folder in this repo to explore example for each library.
 

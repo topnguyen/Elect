@@ -5,10 +5,12 @@
         public static IApplicationBuilder UseElectHangfire(this IApplicationBuilder app)
         {
             var options = app.ApplicationServices.GetService<IOptions<ElectHangfireOptions>>().Value;
+
             if (!options.IsEnable)
             {
                 return app;
             }
+
             if (!options.IsDisableJobDashboard)
             {
                 CheckHelper.CheckNullOrWhiteSpace(options.Url, nameof(options.Url));
@@ -20,7 +22,7 @@
                     StatsPollingInterval = options.StatsPollingInterval
                 });
             }
-            app.UseHangfireServer();
+
             return app;
         }
         public class ElectHangfireMiddleware
