@@ -105,7 +105,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{12AAB3FD-8B2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Solution Items", "5. Solution Items", "{D3CB990F-2674-44C6-A3DE-CB288423B749}"
 	ProjectSection(SolutionItems) = preProject
-		LibraryDiagram.png = LibraryDiagram.png
 		LICENSE = LICENSE
 		Logo.png = Logo.png
 		README.md = README.md
