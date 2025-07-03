@@ -14,18 +14,18 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore swagger elect topnguyen</tags>
-    <version>7.0.2</version>
+    <version>9.0.0</version>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="7.0.1"/>
-        <dependency id="Elect.Data.IO" version="7.0.1"/>
+        <dependency id="Elect.Web" version="9.0.0"/>
+        <dependency id="Elect.Data.IO" version="9.0.0"/>
 
         <!-- 3rd Libraries -->
-        <dependency id="Swashbuckle.AspNetCore" version="6.5.0"/>
-        <dependency id="Swashbuckle.AspNetCore.Annotations" version="6.5.0"/>
+        <dependency id="Swashbuckle.AspNetCore" version="9.0.1" />
+        <dependency id="Swashbuckle.AspNetCore.Annotations" version="9.0.1" />
       </group>
     </dependencies>
   </metadata>

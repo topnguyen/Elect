@@ -26,7 +26,7 @@
                     var httpContext = (HttpContext)state;
                     watch.Stop();
                     var elapsedMilliseconds = watch.ElapsedMilliseconds.ToString("N");
-                    httpContext.Response.Headers.Add(HeaderKey.XProcessingTimeMilliseconds, elapsedMilliseconds);
+                    httpContext.Response.Headers.Append(HeaderKey.XProcessingTimeMilliseconds, elapsedMilliseconds);
                     return Task.CompletedTask;
                 }, context);
                 watch.Start();

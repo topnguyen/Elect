@@ -20,11 +20,11 @@
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="7.0.1"/>
+        <dependency id="Elect.Web" version="9.0.0"/>
 
         <!-- 3rd Libraries -->
-        <dependency id="WebMarkupMin.AspNetCore6" version="2.13.8" />
-        <dependency id="WebMarkupMin.NUglify" version="2.13.6" />
+        <dependency id="WebMarkupMin.AspNetCore6" version="2.19.0" />
+        <dependency id="WebMarkupMin.NUglify" version="2.19.0" />
       </group>
     </dependencies>
   </metadata>
