@@ -3,7 +3,7 @@
     internal sealed class Bootstrapper
     {
         /// <summary>
-        ///     A new instance of the <see cref="T:.Web.Config.Config" /> class. with lazy initialization. 
+        ///     A new instance of the <see cref="Bootstrapper" /> class. with lazy initialization.
         /// </summary>
         private static readonly Lazy<Bootstrapper> Lazy = new Lazy<Bootstrapper>(() => new Bootstrapper());
         /// <summary>
