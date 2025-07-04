@@ -1,7 +1,4 @@
-﻿using System.IO;
-using Elect.Data.IO.DirectoryUtils;
-
-[TestClass]
+﻿[TestClass]
 public class DirectoryHelperUnitTest
 {
     private string _tempDir;

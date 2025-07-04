@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-[TestClass]
+﻿[TestClass]
 public class FileHelperUnitTest
 {
     [TestMethod]
