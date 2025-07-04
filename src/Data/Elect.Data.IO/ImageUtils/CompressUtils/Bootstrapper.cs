@@ -96,7 +96,7 @@
                     {
                         resourceStream.CopyTo(fileStream);
                     }
-                    FileHelper.SetLinuxFilePermission(FileAccessPermissions.AllPermissions, toolFullPath);
+                    FileHelper.SetLinuxFilePermission( UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute | UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.GroupExecute | UnixFileMode.OtherRead | UnixFileMode.OtherWrite | UnixFileMode.OtherExecute, toolFullPath);
                 }
             }
         }

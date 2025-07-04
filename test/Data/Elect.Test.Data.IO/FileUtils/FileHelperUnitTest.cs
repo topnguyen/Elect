@@ -146,7 +146,15 @@ public class FileHelperUnitTest
     public void MakeValidFileName_ReturnsReplacement_WhenEmpty()
     {
         var result = FileHelper.MakeValidFileName("<>", '_', false, false);
-        Assert.AreEqual("__", result);
+
+        if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+        {
+            Assert.AreEqual("__", result);
+        }
+        else
+        {
+            Assert.AreEqual("<>", result);
+        }
     }
 
     [TestMethod]

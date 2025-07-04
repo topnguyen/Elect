@@ -22,12 +22,12 @@
         /// </summary>
         /// <param name="permissions"></param>
         /// <param name="paths"></param>
-        public static void CreateIfNotExist(FileAccessPermissions permissions, params string[] paths)
+        public static void CreateIfNotExist(UnixFileMode permissions, params string[] paths)
         {
             CreateIfNotExist(paths);
-            SetLinuxFilePermission(FileAccessPermissions.AllPermissions, paths);
+            SetLinuxFilePermission(permissions, paths);
         }
-        public static void SetLinuxFilePermission(FileAccessPermissions permissions, params string[] paths)
+        public static void SetLinuxFilePermission(UnixFileMode permissions, params string[] paths)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -35,8 +35,9 @@
             }
             foreach (var path in paths)
             {
-                var unixFileInfo = new UnixFileInfo(path) {FileAccessPermissions = permissions};
-                unixFileInfo.Refresh();
+                var fileInfo = new FileInfo(path);
+                fileInfo.Refresh();
+                fileInfo.UnixFileMode = permissions;
             }
         }
         /// <summary>

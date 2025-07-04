@@ -17,7 +17,7 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Elect.Data.IO.FileUtils.FileHelper.CreateIfNotExist(Mono.Unix.FileAccessPermissions,System.String[])">
+        <member name="M:Elect.Data.IO.FileUtils.FileHelper.CreateIfNotExist(System.IO.UnixFileMode,System.String[])">
             <summary>
                 Create file then set permission (only apply for Linux platform)
             </summary>
