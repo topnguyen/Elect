@@ -110,8 +110,7 @@
         {
             if (font == null)
             {
-                font = new Font(SixLabors.Fonts.SystemFonts.Families.FirstOrDefault(), 10.0F,
-                    SixLabors.Fonts.FontStyle.Bold);
+                font = new Font(SixLabors.Fonts.SystemFonts.Families.FirstOrDefault(), 10.0F);
             }
             if (textColor == default)
             {
@@ -243,7 +242,7 @@
         /// <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
         public static Image RotateByExifOrientation(Image image)
         {
-            var fixedAutoRotateImage = image.Clone();
+            var fixedAutoRotateImage = image.Clone(ctx => { });
             var exifProfile = fixedAutoRotateImage.Metadata.ExifProfile;
             if (exifProfile == null)
             {
