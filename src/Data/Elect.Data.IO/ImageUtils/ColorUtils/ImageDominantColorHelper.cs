@@ -4,12 +4,12 @@
     {
         public static string GetHexCode(string imagePath)
         {
-            return GetColor(imagePath).ToHex();
+            return GetColor(imagePath).ToHexCode();
         }
 
         public static string GetHexCode(MemoryStream memoryStream)
         {
-            return GetColor(memoryStream).ToHex();
+            return GetColor(memoryStream).ToHexCode();
         }
 
         public static bool TryGetHexCode(string imagePath, out string dominantColorHexCode)
