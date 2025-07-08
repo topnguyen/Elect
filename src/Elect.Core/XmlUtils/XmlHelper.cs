@@ -15,28 +15,16 @@
         }
         public static string ToXmlString<T>(T obj, bool isRemoveNameSpace = true)
         {
-            var json = JsonConvert.SerializeObject(obj);
-            XmlDocument doc = JsonConvert.DeserializeXmlNode(json);
-            using (var stringWriter = new StringWriter())
+            var xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+            var ns = new System.Xml.Serialization.XmlSerializerNamespaces();
+            if (isRemoveNameSpace)
             {
-                XmlWriter writer;
-                if (isRemoveNameSpace)
-                {
-                    var settings = new XmlWriterSettings
-                    {
-                        Indent = false,
-                        OmitXmlDeclaration = true
-                    };
-                    writer = XmlWriter.Create(stringWriter, settings);
-                }
-                else
-                {
-                    writer = XmlWriter.Create(stringWriter);
-                }
-                doc.WriteTo(writer);
-                writer.Flush();
-                var xmlString = stringWriter.GetStringBuilder().ToString();
-                return xmlString;
+                ns.Add("", "");
+            }
+            using (var stringWriter = new System.IO.StringWriter())
+            {
+                xmlSerializer.Serialize(stringWriter, obj, ns);
+                return stringWriter.ToString();
             }
         }
     }

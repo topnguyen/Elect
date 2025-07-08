@@ -5,7 +5,7 @@
     ///     Override <see cref="M:Elect.Core.ConcurrentUtils.Models.ElectMessageQueue`1.Execute(System.Collections.Generic.ICollection{`0})" /> to write your job
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class ElectMessageQueue<T> : ElectDisposableModel where T : class, new()
+    public abstract class ElectMessageQueue<T> : ElectDisposableModel where T : class
     {
         #region Fields
         private bool _canStop;

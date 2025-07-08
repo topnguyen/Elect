@@ -4,6 +4,8 @@
     {
         public static string GenerateSalt(int byteLength = 32)
         {
+            if (byteLength <= 0)
+                throw new ArgumentException("Salt length must be greater than zero.", nameof(byteLength));
             // 32 Bytes will give 256 bits.
             using (var randomNumberGenerator = RandomNumberGenerator.Create())
             {

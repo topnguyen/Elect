@@ -20,12 +20,23 @@
             foreach (var propertyInfo in listPropertyInfo)
             {
                 var propertyData = propertyInfo.GetValue(obj);
-                var value =
-                    Convert.GetTypeCode(propertyData) != TypeCode.Object
-                        ? propertyData as string
-                        : JsonConvert
-                            .SerializeObject(propertyData, Constants.Formatting.JsonSerializerSettings)
-                            .Trim('"');
+                string value;
+                if (propertyData == null)
+                {
+                    value = null;
+                }
+                else if (propertyData is string s)
+                {
+                    value = s;
+                }
+                else if (propertyData.GetType().IsValueType)
+                {
+                    value = propertyData.ToString();
+                }
+                else
+                {
+                    value = JsonConvert.SerializeObject(propertyData, Constants.Formatting.JsonSerializerSettings).Trim('"');
+                }
                 if (!string.IsNullOrWhiteSpace(value))
                 {
                     dictionary.Add(propertyInfo.Name, value);

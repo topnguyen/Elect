@@ -19,7 +19,7 @@
             switch (truncateTo)
             {
                 case TruncateToType.Year:
-                    return new DateTime(dateTime.Year);
+                    return new DateTime(dateTime.Year, 1, 1);
                 case TruncateToType.Month:
                     return new DateTime(dateTime.Year, dateTime.Month, 1);
                 case TruncateToType.Day:

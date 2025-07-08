@@ -10,6 +10,8 @@
         /// <returns></returns>
         public static T GetValue<T>(Action<T> action) where T : class, new()
         {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
             T obj = (T) Activator.CreateInstance(typeof(T));
             action.DynamicInvoke(obj);
             return obj;

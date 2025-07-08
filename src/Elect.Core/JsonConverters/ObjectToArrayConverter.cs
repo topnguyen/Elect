@@ -4,7 +4,11 @@
     {
         public override bool CanConvert(Type objectType)
         {
-            return true;
+            // Only convert user-defined classes (not collections, primitives, or framework types)
+            return objectType.IsClass &&
+                   !typeof(System.Collections.IEnumerable).IsAssignableFrom(objectType) &&
+                   objectType != typeof(string) &&
+                   !objectType.Namespace.StartsWith("Newtonsoft.Json");
         }
         private static bool ShouldSkip(JsonProperty property)
         {

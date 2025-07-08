@@ -1,0 +1,1174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="6eebaa50-f1cb-4ff3-9047-52ef42dc0070" name="Top@TOP 2025-07-09 00:58:14" runUser="TOP\Top" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-07-09T00:58:14.0749573+07:00" queuing="2025-07-09T00:58:14.0749575+07:00" start="2025-07-09T00:58:13.6811415+07:00" finish="2025-07-09T00:58:22.7965307+07:00" />
+  <TestSettings name="default" id="71f0b29a-1228-422d-beb7-8f406e4d4984">
+    <Deployment runDeploymentRoot="Top_TOP_2025-07-09_00_58_14" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="9f92e7ff-f55f-43e3-b61a-4bf63f69d41d" testId="2e453734-94c3-a813-e9bb-d830c35fe2dc" testName="Compress_GifFile_CoversGetGifCommand" computerName="TOP" duration="00:00:00.1397009" startTime="2025-07-09T00:58:22.6132080+07:00" endTime="2025-07-09T00:58:22.7530857+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9f92e7ff-f55f-43e3-b61a-4bf63f69d41d">
+      <Output>
+        <StdOut>-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+&#xD;
+&#xD;
+&#xD;
+Debug Trace:&#xD;
+SixLabors.ImageSharp.UnknownImageFormatException: Image cannot be loaded. Available decoders:&#xD;
+ - PNG : PngDecoder&#xD;
+ - JPEG : JpegDecoder&#xD;
+ - GIF : GifDecoder&#xD;
+ - BMP : BmpDecoder&#xD;
+ - Webp : WebpDecoder&#xD;
+ - TGA : TgaDecoder&#xD;
+ - TIFF : TiffDecoder&#xD;
+ - QOI : QoiDecoder&#xD;
+ - PBM : PbmDecoder&#xD;
+&#xD;
+   at SixLabors.ImageSharp.Formats.ImageFormatManager.ThrowInvalidDecoder(ImageFormatManager manager)&#xD;
+   at SixLabors.ImageSharp.Image.InternalDetectFormat(Configuration configuration, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.DiscoverDecoder(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Decode(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.&lt;&gt;c__DisplayClass80_0.&lt;Load&gt;b__0(Stream s)&#xD;
+   at SixLabors.ImageSharp.Image.WithSeekableStream[T](DecoderOptions options, Stream stream, Func`2 action)&#xD;
+   at SixLabors.ImageSharp.Image.Load(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Load(Stream stream)&#xD;
+   at Elect.Data.IO.ImageUtils.CompressUtils.Helper.TryGetCompressImageType(MemoryStream imageStream, CompressImageType&amp; compressImageType) in D:\TOP\GIT\Elect\src\Data\Elect.Data.IO\ImageUtils\CompressUtils\Helper.cs:line 49</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="30b5d03a-556d-4396-a94f-09816189e214" testId="4e10ee00-9466-af4c-12ed-0c140e04aeee" testName="Compress_InvalidStream_Throws" computerName="TOP" duration="00:00:00.0031953" startTime="2025-07-09T00:58:14.3217434+07:00" endTime="2025-07-09T00:58:14.3250074+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="30b5d03a-556d-4396-a94f-09816189e214">
+      <Output>
+        <StdOut>Debug Trace:&#xD;
+SixLabors.ImageSharp.UnknownImageFormatException: Image cannot be loaded. Available decoders:&#xD;
+ - PNG : PngDecoder&#xD;
+ - JPEG : JpegDecoder&#xD;
+ - GIF : GifDecoder&#xD;
+ - BMP : BmpDecoder&#xD;
+ - Webp : WebpDecoder&#xD;
+ - TGA : TgaDecoder&#xD;
+ - TIFF : TiffDecoder&#xD;
+ - QOI : QoiDecoder&#xD;
+ - PBM : PbmDecoder&#xD;
+&#xD;
+   at SixLabors.ImageSharp.Formats.ImageFormatManager.ThrowInvalidDecoder(ImageFormatManager manager)&#xD;
+   at SixLabors.ImageSharp.Image.InternalDetectFormat(Configuration configuration, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.DiscoverDecoder(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Decode(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.&lt;&gt;c__DisplayClass80_0.&lt;Load&gt;b__0(Stream s)&#xD;
+   at SixLabors.ImageSharp.Image.WithSeekableStream[T](DecoderOptions options, Stream stream, Func`2 action)&#xD;
+   at SixLabors.ImageSharp.Image.Load(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Load(Stream stream)&#xD;
+   at Elect.Data.IO.ImageUtils.CompressUtils.Helper.TryGetCompressImageType(MemoryStream imageStream, CompressImageType&amp; compressImageType) in D:\TOP\GIT\Elect\src\Data\Elect.Data.IO\ImageUtils\CompressUtils\Helper.cs:line 49</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c27762b7-9bf1-40c2-88c6-2fa9db5f7a02" testId="df896f05-6b9a-e3a1-85b6-47091e3061f8" testName="TryGetHexCode_FromInvalidMemoryStream_ShouldReturnFalse" computerName="TOP" duration="00:00:00.0001002" startTime="2025-07-09T00:58:22.7564731+07:00" endTime="2025-07-09T00:58:22.7566087+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c27762b7-9bf1-40c2-88c6-2fa9db5f7a02" />
+    <UnitTestResult executionId="7b436aa7-aeab-4cfe-938e-f52c31ef9015" testId="1fb8f1c8-958f-a7b5-3291-7103e5dc8992" testName="Compress_ValidFilePath_ReturnsModel" computerName="TOP" duration="00:00:01.4484160" startTime="2025-07-09T00:58:15.7590074+07:00" endTime="2025-07-09T00:58:17.2076029+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b436aa7-aeab-4cfe-938e-f52c31ef9015">
+      <Output>
+        <StdOut>-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+&#xD;
+&#xD;
+&#xD;
+Debug Trace:&#xD;
+SixLabors.ImageSharp.UnknownImageFormatException: Image cannot be loaded. Available decoders:&#xD;
+ - PNG : PngDecoder&#xD;
+ - JPEG : JpegDecoder&#xD;
+ - GIF : GifDecoder&#xD;
+ - BMP : BmpDecoder&#xD;
+ - Webp : WebpDecoder&#xD;
+ - TGA : TgaDecoder&#xD;
+ - TIFF : TiffDecoder&#xD;
+ - QOI : QoiDecoder&#xD;
+ - PBM : PbmDecoder&#xD;
+&#xD;
+   at SixLabors.ImageSharp.Formats.ImageFormatManager.ThrowInvalidDecoder(ImageFormatManager manager)&#xD;
+   at SixLabors.ImageSharp.Image.InternalDetectFormat(Configuration configuration, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.DiscoverDecoder(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Decode(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.&lt;&gt;c__DisplayClass80_0.&lt;Load&gt;b__0(Stream s)&#xD;
+   at SixLabors.ImageSharp.Image.WithSeekableStream[T](DecoderOptions options, Stream stream, Func`2 action)&#xD;
+   at SixLabors.ImageSharp.Image.Load(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Load(Stream stream)&#xD;
+   at Elect.Data.IO.ImageUtils.CompressUtils.Helper.TryGetCompressImageType(MemoryStream imageStream, CompressImageType&amp; compressImageType) in D:\TOP\GIT\Elect\src\Data\Elect.Data.IO\ImageUtils\CompressUtils\Helper.cs:line 49</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="26e7084a-4adc-4f16-8db3-efc9dffeb902" testId="4b469241-6071-8429-cfe3-b9e43501d592" testName="GetFullPath_RelativePath_CombinesWithBasePath (&quot;folder/file.txt&quot;)" computerName="TOP" duration="00:00:00.0013843" startTime="2025-07-09T00:58:14.0651409+07:00" endTime="2025-07-09T00:58:14.0684806+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="26e7084a-4adc-4f16-8db3-efc9dffeb902" />
+    <UnitTestResult executionId="497dbebc-35f2-4665-b58b-e71b2c92d458" testId="906c90e7-36ae-b69b-84cb-52d9f7df1454" testName="IsSvgImage_InvalidSvg_ReturnsFalse" computerName="TOP" duration="00:00:00.0000563" startTime="2025-07-09T00:58:14.1331907+07:00" endTime="2025-07-09T00:58:14.1332806+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="497dbebc-35f2-4665-b58b-e71b2c92d458" />
+    <UnitTestResult executionId="9e2f2ac0-8855-4a1a-aa2c-480bf7e70960" testId="2a768ec4-0238-d61e-692d-54eec0c56411" testName="Constructor_WithInvalidFile_SetsCompressedFileSizeZero" computerName="TOP" duration="00:00:00.0001713" startTime="2025-07-09T00:58:14.3109473+07:00" endTime="2025-07-09T00:58:14.3111667+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9e2f2ac0-8855-4a1a-aa2c-480bf7e70960" />
+    <UnitTestResult executionId="65d357bf-4b86-439d-8199-ecdc0ace9b25" testId="c0b48b2c-fc3b-d3e5-7f13-18a8cc52c46f" testName="MakeValidFileName_ReturnsReplacement_WhenEmpty" computerName="TOP" duration="00:00:00.0000779" startTime="2025-07-09T00:58:14.0583351+07:00" endTime="2025-07-09T00:58:14.0584508+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="65d357bf-4b86-439d-8199-ecdc0ace9b25" />
+    <UnitTestResult executionId="d4997501-7656-4832-aa85-58c86177e0a1" testId="648cd995-3bae-c0ae-fa7c-6aad1e885a51" testName="GetExtension_ReturnsEmptyOnNotFoundAndNoThrow" computerName="TOP" duration="00:00:00.0000673" startTime="2025-07-09T00:58:22.7637008+07:00" endTime="2025-07-09T00:58:22.7641805+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d4997501-7656-4832-aa85-58c86177e0a1" />
+    <UnitTestResult executionId="b27a543c-7bad-410c-a7d9-cf4300e0803c" testId="c58dbc75-afb3-015d-f682-21a6f6af2d62" testName="TryGetColor_FromInvalidFilePath_ShouldReturnFalse" computerName="TOP" duration="00:00:00.0001045" startTime="2025-07-09T00:58:22.7611404+07:00" endTime="2025-07-09T00:58:22.7612881+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b27a543c-7bad-410c-a7d9-cf4300e0803c" />
+    <UnitTestResult executionId="5c8b770c-bbce-48d6-a12f-c650eb5be225" testId="f85f4b99-6edb-56ea-afca-38ae8af93a0c" testName="Compress_EmptyArguments_Throws" computerName="TOP" duration="00:00:00.0001460" startTime="2025-07-09T00:58:22.3773629+07:00" endTime="2025-07-09T00:58:22.3776297+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5c8b770c-bbce-48d6-a12f-c650eb5be225" />
+    <UnitTestResult executionId="94eb4a8d-6e02-4148-a558-401b3edf0549" testId="8c7b91f9-a065-3f92-79a6-624f9bc6f406" testName="CreateIfNotExist_CreatesFile_WhenNotExists" computerName="TOP" duration="00:00:00.0007257" startTime="2025-07-09T00:58:14.0350985+07:00" endTime="2025-07-09T00:58:14.0359152+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="94eb4a8d-6e02-4148-a558-401b3edf0549" />
+    <UnitTestResult executionId="819ac6b6-4acc-459e-b120-06c9aa76ae78" testId="79636e01-6d55-53e4-829a-fbe31a3d87ce" testName="RotateByExifOrientation_Image_ReturnsImage" computerName="TOP" duration="00:00:00.0010931" startTime="2025-07-09T00:58:14.2470704+07:00" endTime="2025-07-09T00:58:14.2482401+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="819ac6b6-4acc-459e-b120-06c9aa76ae78" />
+    <UnitTestResult executionId="837ea21c-87e2-47fb-9728-771acea0d232" testId="9a94b4d4-7761-94ac-4ed5-5f538fc10ba4" testName="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput (&quot;&quot;,&quot;&quot;)" computerName="TOP" duration="00:00:00.0000770" startTime="2025-07-09T00:58:14.0696191+07:00" endTime="2025-07-09T00:58:14.0697377+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="837ea21c-87e2-47fb-9728-771acea0d232" />
+    <UnitTestResult executionId="46c9ca2e-9173-46f9-9e48-c73f5f9d1bc3" testId="c749007a-b715-ff8b-3541-a1391dec1a74" testName="IsValidBase64_ReturnsTrue_ForValidBase64" computerName="TOP" duration="00:00:00.0001326" startTime="2025-07-09T00:58:14.0550933+07:00" endTime="2025-07-09T00:58:14.0552527+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="46c9ca2e-9173-46f9-9e48-c73f5f9d1bc3" />
+    <UnitTestResult executionId="7b832729-88fa-492c-81b5-22d55c01439f" testId="63b8f09b-9e1c-bcf1-7bb0-daa2fab6b7f2" testName="IsEmpty_ReturnsTrue_WhenDirectoryIsEmpty" computerName="TOP" duration="00:00:00.0007626" startTime="2025-07-09T00:58:14.0314225+07:00" endTime="2025-07-09T00:58:14.0322318+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b832729-88fa-492c-81b5-22d55c01439f" />
+    <UnitTestResult executionId="8a88e0f5-7617-4c55-9d22-6fa6f806b67f" testId="d23a2c6c-9c19-f99f-3bb9-8c3d82888720" testName="GetColor_WithRegion_ShouldReturnCorrectColor" computerName="TOP" duration="00:00:00.0002294" startTime="2025-07-09T00:58:22.7572185+07:00" endTime="2025-07-09T00:58:22.7574901+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8a88e0f5-7617-4c55-9d22-6fa6f806b67f" />
+    <UnitTestResult executionId="aa2c64ec-645a-4e78-8f35-e6f93bf6f21a" testId="8dfa934a-78c8-f613-69e1-ea8f101bc344" testName="GetExtension_ThrowsOnDotInput" computerName="TOP" duration="00:00:00.0000431" startTime="2025-07-09T00:58:22.7633556+07:00" endTime="2025-07-09T00:58:22.7634206+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aa2c64ec-645a-4e78-8f35-e6f93bf6f21a" />
+    <UnitTestResult executionId="5e777ead-c120-4b77-8822-3f9809fe0ce5" testId="1e0a84ae-3698-142d-deb0-ab7d7bdb248e" testName="GetHexCode_FromMemoryStream_ShouldReturnCorrectHex" computerName="TOP" duration="00:00:00.0005444" startTime="2025-07-09T00:58:22.7554694+07:00" endTime="2025-07-09T00:58:22.7561065+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5e777ead-c120-4b77-8822-3f9809fe0ce5" />
+    <UnitTestResult executionId="700bd820-e3bb-477b-8171-297c80d44002" testId="71480f8b-549b-906d-0152-262ccf49a5c4" testName="GetExtension_ReturnsExpected (&quot;image/jpeg&quot;,&quot;.jpg&quot;)" computerName="TOP" duration="00:00:00.0000462" startTime="2025-07-09T00:58:22.7630149+07:00" endTime="2025-07-09T00:58:22.7631057+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="700bd820-e3bb-477b-8171-297c80d44002" />
+    <UnitTestResult executionId="d0dfb784-4904-4698-b27a-b115f9ac3ec5" testId="9a91935f-c091-fe89-d99f-a06b85926529" testName="GetFullPath_InvalidPath_Throws" computerName="TOP" duration="00:00:00.0001191" startTime="2025-07-09T00:58:14.0648914+07:00" endTime="2025-07-09T00:58:14.0650393+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d0dfb784-4904-4698-b27a-b115f9ac3ec5" />
+    <UnitTestResult executionId="cac0e3f3-62bb-4d4a-a473-39abcf75de62" testId="1a7f050f-4af1-5a02-24a7-00c26bd06531" testName="IsEmpty_ReturnsFalse_WhenDirectoryHasFilesOrDirs" computerName="TOP" duration="00:00:00.0009848" startTime="2025-07-09T00:58:14.0322483+07:00" endTime="2025-07-09T00:58:14.0332747+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cac0e3f3-62bb-4d4a-a473-39abcf75de62" />
+    <UnitTestResult executionId="b7af6150-920c-4da2-b656-ba16424723a4" testId="4bfc5db0-1604-1793-30c6-507d99cc1af6" testName="SpecialFolder_GetCurrentWindowUserFolder_ReturnsValidPath" computerName="TOP" duration="00:00:00.0016494" startTime="2025-07-09T00:58:14.0332944+07:00" endTime="2025-07-09T00:58:14.0350756+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b7af6150-920c-4da2-b656-ba16424723a4" />
+    <UnitTestResult executionId="eacce1e9-dfe6-4320-a193-231c70c7339b" testId="ec895ea7-fed3-04f9-f69d-ce502ace2d84" testName="ToHexCode_WhiteColor" computerName="TOP" duration="00:00:00.0000424" startTime="2025-07-09T00:58:22.7544210+07:00" endTime="2025-07-09T00:58:22.7545235+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eacce1e9-dfe6-4320-a193-231c70c7339b" />
+    <UnitTestResult executionId="dde0773e-5601-4fd4-b5f7-8eb2b04a59bc" testId="0ff22051-48ce-4f8c-b3dc-3e94111c30bb" testName="Save_WritesStreamToFile" computerName="TOP" duration="00:00:00.0010969" startTime="2025-07-09T00:58:14.0635029+07:00" endTime="2025-07-09T00:58:14.0646446+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dde0773e-5601-4fd4-b5f7-8eb2b04a59bc" />
+    <UnitTestResult executionId="eeba5e66-a51b-4c65-84bb-e58453cd3672" testId="eae9351a-b1ea-b7a3-2d4f-5c12be62c303" testName="SetLinuxFilePermission_DoesNothing_OnWindows" computerName="TOP" duration="00:00:00.0002966" startTime="2025-07-09T00:58:14.0521844+07:00" endTime="2025-07-09T00:58:14.0525234+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eeba5e66-a51b-4c65-84bb-e58453cd3672" />
+    <UnitTestResult executionId="9cbef4e9-a517-46f7-9341-77f5c0a5d6ce" testId="58027957-609a-3571-1d0c-d06de038d632" testName="ToHexCode_ShouldReturnCorrectHex" computerName="TOP" duration="00:00:00.0007467" startTime="2025-07-09T00:58:22.7531800+07:00" endTime="2025-07-09T00:58:22.7541316+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9cbef4e9-a517-46f7-9341-77f5c0a5d6ce" />
+    <UnitTestResult executionId="2e084147-85b2-4fc2-91df-58e3b56eab56" testId="0cd46606-f372-eeaa-eea9-c7b237d25a97" testName="SafeDelete_ReturnsTrue_WhenFileDoesNotExist" computerName="TOP" duration="00:00:00.0003073" startTime="2025-07-09T00:58:14.0546290+07:00" endTime="2025-07-09T00:58:14.0549758+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2e084147-85b2-4fc2-91df-58e3b56eab56" />
+    <UnitTestResult executionId="a6805ef1-a607-4119-80b0-e16ace1eadc3" testId="95d79edd-31d7-24b1-cb28-5436e0d6a121" testName="GetHexCode_FromFilePath_ShouldReturnCorrectHex" computerName="TOP" duration="00:00:00.0007034" startTime="2025-07-09T00:58:22.7580267+07:00" endTime="2025-07-09T00:58:22.7587700+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a6805ef1-a607-4119-80b0-e16ace1eadc3" />
+    <UnitTestResult executionId="9d87c7b8-3707-491f-abb1-4b2daa5187e7" testId="b0311977-d8cc-1f82-d938-157212c5ba05" testName="RotateByExifOrientation_StringAndBytes_ReturnsValid" computerName="TOP" duration="00:00:00.0054601" startTime="2025-07-09T00:58:14.2415114+07:00" endTime="2025-07-09T00:58:14.2470249+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9d87c7b8-3707-491f-abb1-4b2daa5187e7" />
+    <UnitTestResult executionId="ab30ff27-39c5-463a-acf1-a498aa159b63" testId="f7c385c5-f38b-a6ad-3e1e-37f06ea78bd1" testName="GetFullPath_NullOrWhitespace_ReturnsInput" computerName="TOP" duration="00:00:00.0001307" startTime="2025-07-09T00:58:14.0646685+07:00" endTime="2025-07-09T00:58:14.0648771+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ab30ff27-39c5-463a-acf1-a498aa159b63" />
+    <UnitTestResult executionId="0d92c702-cf52-48eb-b638-1a37a3287d29" testId="d3ad44b9-a2e3-c48f-dc62-013a25aaa725" testName="CreateTempFile_Stream_CreatesFileWithContent" computerName="TOP" duration="00:00:00.0006024" startTime="2025-07-09T00:58:14.0534564+07:00" endTime="2025-07-09T00:58:14.0541112+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0d92c702-cf52-48eb-b638-1a37a3287d29" />
+    <UnitTestResult executionId="bf8df94d-0380-4d1a-83fd-11fe7ccf32d5" testId="26fef98f-8310-ca89-db9f-2d552213f3fb" testName="Compress_StreamWithNoOptimization_ReturnsModelWithNoSaving" computerName="TOP" duration="00:00:01.5711107" startTime="2025-07-09T00:58:20.5866891+07:00" endTime="2025-07-09T00:58:22.1579622+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bf8df94d-0380-4d1a-83fd-11fe7ccf32d5">
+      <Output>
+        <StdOut>-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="502d203f-16d5-408a-8e29-141941c99edf" testId="aea027b4-0a81-ab86-f977-46e18e936f59" testName="CorrectPathSeparatorChar_ReplacesWithDirSeparator (&quot;folder/subfolder/file.txt&quot;)" computerName="TOP" duration="00:00:00.0000610" startTime="2025-07-09T00:58:14.0699210+07:00" endTime="2025-07-09T00:58:14.0700116+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="502d203f-16d5-408a-8e29-141941c99edf" />
+    <UnitTestResult executionId="317b8b18-5f60-4e6e-9f3f-0dd208422d84" testId="5e51ac55-855c-f473-eaf2-6f3e89b01f07" testName="TryGetHexCode_FromFilePath_ShouldReturnTrueAndHex" computerName="TOP" duration="00:00:00.0007045" startTime="2025-07-09T00:58:22.7590759+07:00" endTime="2025-07-09T00:58:22.7598432+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="317b8b18-5f60-4e6e-9f3f-0dd208422d84" />
+    <UnitTestResult executionId="ba1edd51-0875-4054-a8a5-7df9c6eb1909" testId="ed55ff8c-c35d-481a-3c31-ffac09c4afeb" testName="Save_WhiteSpacePath_ThrowsException" computerName="TOP" duration="00:00:00.0000686" startTime="2025-07-09T00:58:14.0633951+07:00" endTime="2025-07-09T00:58:14.0634941+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ba1edd51-0875-4054-a8a5-7df9c6eb1909" />
+    <UnitTestResult executionId="8729cd5c-27ce-42f9-af69-2122eed2b61d" testId="cefa80e0-7424-328d-306f-6fc348079a72" testName="Resize_FromFilePath_ResizesCorrectly" computerName="TOP" duration="00:00:00.0458070" startTime="2025-07-09T00:58:14.2487898+07:00" endTime="2025-07-09T00:58:14.2947251+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8729cd5c-27ce-42f9-af69-2122eed2b61d" />
+    <UnitTestResult executionId="cd1827ec-a859-4c95-a314-c33fe41213bf" testId="d101d317-553e-c369-f7a8-d2c5f2073f22" testName="GetExtension_ThrowsOnNull" computerName="TOP" duration="00:00:00.0000657" startTime="2025-07-09T00:58:22.7632522+07:00" endTime="2025-07-09T00:58:22.7633458+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cd1827ec-a859-4c95-a314-c33fe41213bf" />
+    <UnitTestResult executionId="790cd777-9cca-4e0a-ac7a-f5d0bead5245" testId="222ad54e-2e36-1d02-a101-5e4d4778ba2b" testName="GenerateTextImageBase64_ReturnsBase64" computerName="TOP" duration="00:00:00.1058855" startTime="2025-07-09T00:58:14.1332897+07:00" endTime="2025-07-09T00:58:14.2392435+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="790cd777-9cca-4e0a-ac7a-f5d0bead5245" />
+    <UnitTestResult executionId="1f6264c5-3de8-42e7-be73-06207a539854" testId="18f07452-9e20-0f27-20d5-da30a4f4bb1a" testName="WriteToStream_WritesFileContentToStream" computerName="TOP" duration="00:00:00.0008784" startTime="2025-07-09T00:58:14.0561857+07:00" endTime="2025-07-09T00:58:14.0571053+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1f6264c5-3de8-42e7-be73-06207a539854" />
+    <UnitTestResult executionId="dbb247d8-5c92-484c-9edd-0870cfecac94" testId="ba0a7890-d847-e935-ac69-18e2528d7a10" testName="TryGetColor_FromFilePath_ShouldReturnTrueAndColor" computerName="TOP" duration="00:00:00.0005174" startTime="2025-07-09T00:58:22.7605519+07:00" endTime="2025-07-09T00:58:22.7611132+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dbb247d8-5c92-484c-9edd-0870cfecac94" />
+    <UnitTestResult executionId="714e5f55-2a79-44c5-9036-eeb83e35d35a" testId="030de7a3-605c-77d5-c10a-4769e520ae4c" testName="Resize_FromBytes_ResizesCorrectly" computerName="TOP" duration="00:00:00.0052101" startTime="2025-07-09T00:58:14.2947798+07:00" endTime="2025-07-09T00:58:14.3001017+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="714e5f55-2a79-44c5-9036-eeb83e35d35a" />
+    <UnitTestResult executionId="d0c605f7-0450-47bf-a2c4-b0bb270bbab7" testId="a6163d93-a05f-4145-bc11-e53e3d69d62d" testName="TryGetHexCode_FromInvalidFilePath_ShouldReturnFalse" computerName="TOP" duration="00:00:00.0001248" startTime="2025-07-09T00:58:22.7598648+07:00" endTime="2025-07-09T00:58:22.7600333+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d0c605f7-0450-47bf-a2c4-b0bb270bbab7" />
+    <UnitTestResult executionId="6338d731-b4f8-4182-b660-ae65857ec788" testId="ea1b79ca-66b2-3be0-6749-60d6f9070697" testName="GetImageInfo_FromBase64_ReturnsImageModel" computerName="TOP" duration="00:00:00.0614078" startTime="2025-07-09T00:58:14.0700722+07:00" endTime="2025-07-09T00:58:14.1315724+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6338d731-b4f8-4182-b660-ae65857ec788" />
+    <UnitTestResult executionId="87d12bf1-b13f-4fe5-bd10-b2a4dcaef143" testId="e00266b7-3300-0d4f-3937-fdc79a611c24" testName="GetMimeType_ReturnsExpected (&quot;jpg&quot;,&quot;image/jpeg&quot;)" computerName="TOP" duration="00:00:00.0001414" startTime="2025-07-09T00:58:22.7625387+07:00" endTime="2025-07-09T00:58:22.7627611+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="87d12bf1-b13f-4fe5-bd10-b2a4dcaef143" />
+    <UnitTestResult executionId="ac8c6b06-6824-484d-b60a-768b32da7f52" testId="c269c789-4128-f608-56e6-59db36e45323" testName="GetExtension_ThrowsOnNotFound" computerName="TOP" duration="00:00:00.0000367" startTime="2025-07-09T00:58:22.7634282+07:00" endTime="2025-07-09T00:58:22.7634828+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ac8c6b06-6824-484d-b60a-768b32da7f52" />
+    <UnitTestResult executionId="819acfce-a036-469f-9f5b-ef345259bc30" testId="ad617111-a77a-dc8f-0b15-7565c56c5775" testName="GetColor_WithInvalidRegion_ShouldThrow" computerName="TOP" duration="00:00:00.0002222" startTime="2025-07-09T00:58:22.7575066+07:00" endTime="2025-07-09T00:58:22.7577671+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="819acfce-a036-469f-9f5b-ef345259bc30" />
+    <UnitTestResult executionId="795a20d3-12c0-4ec3-968a-5a046d1de010" testId="16425e9b-6bc3-a1cf-9d4a-70512392e110" testName="CreateIfNotExist_DoesNothing_WhenDirectoryExists" computerName="TOP" duration="00:00:00.0011232" startTime="2025-07-09T00:58:14.0261089+07:00" endTime="2025-07-09T00:58:14.0276184+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="795a20d3-12c0-4ec3-968a-5a046d1de010" />
+    <UnitTestResult executionId="5d81d346-e2fb-4da4-94c0-604599700dff" testId="ce04e802-62f7-de8e-cbba-77c7eb5bd226" testName="TryGetColor_Failure_SetsDominantColorToNull" computerName="TOP" duration="00:00:00.0001713" startTime="2025-07-09T00:58:22.7617503+07:00" endTime="2025-07-09T00:58:22.7619820+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5d81d346-e2fb-4da4-94c0-604599700dff" />
+    <UnitTestResult executionId="c6a81221-05f3-4474-9eb9-854fd2ec525f" testId="2cd465d5-2b0a-4986-b662-24050e50a8e1" testName="CreateTempFile_CreatesFileWithExtension" computerName="TOP" duration="00:00:00.0008509" startTime="2025-07-09T00:58:14.0525394+07:00" endTime="2025-07-09T00:58:14.0534366+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c6a81221-05f3-4474-9eb9-854fd2ec525f" />
+    <UnitTestResult executionId="0414de76-f5f1-470a-b6af-4f3833e03c50" testId="4149c80a-7def-360e-dc75-981e98a182a6" testName="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput (&quot;   &quot;,&quot;   &quot;)" computerName="TOP" duration="00:00:00.0000050" startTime="2025-07-09T00:58:14.0697479+07:00" endTime="2025-07-09T00:58:14.0698100+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0414de76-f5f1-470a-b6af-4f3833e03c50" />
+    <UnitTestResult executionId="57c73c50-0b04-49f9-8668-61c03a4758bd" testId="e8836de0-c736-b1f5-825a-0aafc5d25d84" testName="Compress_WithQualityAndTimeout_Works" computerName="TOP" duration="00:00:01.6323578" startTime="2025-07-09T00:58:17.2077144+07:00" endTime="2025-07-09T00:58:18.8402580+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="57c73c50-0b04-49f9-8668-61c03a4758bd">
+      <Output>
+        <StdOut>-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+&#xD;
+&#xD;
+&#xD;
+Debug Trace:&#xD;
+SixLabors.ImageSharp.UnknownImageFormatException: Image cannot be loaded. Available decoders:&#xD;
+ - PNG : PngDecoder&#xD;
+ - JPEG : JpegDecoder&#xD;
+ - GIF : GifDecoder&#xD;
+ - BMP : BmpDecoder&#xD;
+ - Webp : WebpDecoder&#xD;
+ - TGA : TgaDecoder&#xD;
+ - TIFF : TiffDecoder&#xD;
+ - QOI : QoiDecoder&#xD;
+ - PBM : PbmDecoder&#xD;
+&#xD;
+   at SixLabors.ImageSharp.Formats.ImageFormatManager.ThrowInvalidDecoder(ImageFormatManager manager)&#xD;
+   at SixLabors.ImageSharp.Image.InternalDetectFormat(Configuration configuration, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.DiscoverDecoder(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Decode(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.&lt;&gt;c__DisplayClass80_0.&lt;Load&gt;b__0(Stream s)&#xD;
+   at SixLabors.ImageSharp.Image.WithSeekableStream[T](DecoderOptions options, Stream stream, Func`2 action)&#xD;
+   at SixLabors.ImageSharp.Image.Load(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Load(Stream stream)&#xD;
+   at Elect.Data.IO.ImageUtils.CompressUtils.Helper.TryGetCompressImageType(MemoryStream imageStream, CompressImageType&amp; compressImageType) in D:\TOP\GIT\Elect\src\Data\Elect.Data.IO\ImageUtils\CompressUtils\Helper.cs:line 49</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="8d5963e2-29aa-416f-b03e-8bffc75f71ee" testId="0e6634e1-8c7e-c67e-7243-f828dcc9aef0" testName="SafeDelete_ReturnsFalse_OnException" computerName="TOP" duration="00:00:00.0000424" startTime="2025-07-09T00:58:14.0550041+07:00" endTime="2025-07-09T00:58:14.0550808+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8d5963e2-29aa-416f-b03e-8bffc75f71ee" />
+    <UnitTestResult executionId="529faefc-e69e-49bd-8b0a-0d313dde96ea" testId="4bde2147-fef4-4993-1268-7e19cb6abbaf" testName="GetMimeType_ReturnsExpected (&quot;unknown&quot;,&quot;application/octet-stream&quot;)" computerName="TOP" duration="00:00:00.0000033" startTime="2025-07-09T00:58:22.7628414+07:00" endTime="2025-07-09T00:58:22.7628698+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="529faefc-e69e-49bd-8b0a-0d313dde96ea" />
+    <UnitTestResult executionId="d47f080a-d0a7-4806-a399-6d76fe71c8f6" testId="ddb5ccc2-9b33-dc28-1bfd-c32cb9e3421d" testName="GetImageInfo_FromStream_ReturnsImageModel" computerName="TOP" duration="00:00:00.0002695" startTime="2025-07-09T00:58:14.1327075+07:00" endTime="2025-07-09T00:58:14.1330379+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d47f080a-d0a7-4806-a399-6d76fe71c8f6" />
+    <UnitTestResult executionId="c2f472d6-0452-4810-a2bd-1e9ba219c609" testId="813718d4-4f77-8f30-cd34-38ebc32bcea5" testName="CreateIfNotExist_CreatesDirectory_WhenNotExists" computerName="TOP" duration="00:00:00.0074346" startTime="2025-07-09T00:58:14.0069116+07:00" endTime="2025-07-09T00:58:14.0240256+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c2f472d6-0452-4810-a2bd-1e9ba219c609" />
+    <UnitTestResult executionId="c83f6d0e-5598-4e01-a595-7a884b8af84b" testId="952a55be-c504-0e18-3f2e-c22da1e5f986" testName="GetImageInfo_FromBytes_ReturnsImageModel" computerName="TOP" duration="00:00:00.0004088" startTime="2025-07-09T00:58:14.1316156+07:00" endTime="2025-07-09T00:58:14.1321170+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c83f6d0e-5598-4e01-a595-7a884b8af84b" />
+    <UnitTestResult executionId="24e625d8-8300-4632-bec0-888380370b16" testId="eb1de912-422c-2ff7-3025-52d125a0a9e0" testName="Compress_StreamWithInvalidFileName_Throws" computerName="TOP" duration="00:00:00.0004274" startTime="2025-07-09T00:58:20.5860825+07:00" endTime="2025-07-09T00:58:20.5866360+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="24e625d8-8300-4632-bec0-888380370b16">
+      <Output>
+        <StdOut>Debug Trace:&#xD;
+SixLabors.ImageSharp.UnknownImageFormatException: Image cannot be loaded. Available decoders:&#xD;
+ - PNG : PngDecoder&#xD;
+ - JPEG : JpegDecoder&#xD;
+ - GIF : GifDecoder&#xD;
+ - BMP : BmpDecoder&#xD;
+ - Webp : WebpDecoder&#xD;
+ - TGA : TgaDecoder&#xD;
+ - TIFF : TiffDecoder&#xD;
+ - QOI : QoiDecoder&#xD;
+ - PBM : PbmDecoder&#xD;
+&#xD;
+   at SixLabors.ImageSharp.Formats.ImageFormatManager.ThrowInvalidDecoder(ImageFormatManager manager)&#xD;
+   at SixLabors.ImageSharp.Image.InternalDetectFormat(Configuration configuration, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.DiscoverDecoder(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Decode(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.&lt;&gt;c__DisplayClass80_0.&lt;Load&gt;b__0(Stream s)&#xD;
+   at SixLabors.ImageSharp.Image.WithSeekableStream[T](DecoderOptions options, Stream stream, Func`2 action)&#xD;
+   at SixLabors.ImageSharp.Image.Load(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Load(Stream stream)&#xD;
+   at Elect.Data.IO.ImageUtils.CompressUtils.Helper.TryGetCompressImageType(MemoryStream imageStream, CompressImageType&amp; compressImageType) in D:\TOP\GIT\Elect\src\Data\Elect.Data.IO\ImageUtils\CompressUtils\Helper.cs:line 49</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="8c228e25-aead-459d-b210-91f9d1925de9" testId="880f8936-72c2-5999-47cd-d49385393e4e" testName="CreateIfNotExist_WithPermissions_CallsSetLinuxFilePermission" computerName="TOP" duration="00:00:00.0007451" startTime="2025-07-09T00:58:14.0513675+07:00" endTime="2025-07-09T00:58:14.0521655+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c228e25-aead-459d-b210-91f9d1925de9" />
+    <UnitTestResult executionId="16c8cfa8-0619-42c9-ad64-287acaecd745" testId="ab70032d-8e0d-a360-ef1d-0d75c122bb1a" testName="GetRandom_ShouldReturnDifferentColors" computerName="TOP" duration="00:00:00.0001378" startTime="2025-07-09T00:58:22.7552273+07:00" endTime="2025-07-09T00:58:22.7554318+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16c8cfa8-0619-42c9-ad64-287acaecd745" />
+    <UnitTestResult executionId="67e81f12-5871-4a5b-adbb-3fd0ba70548b" testId="95ec9135-07a6-77d5-b33b-e61077fbf39b" testName="TryGetColor_FromInvalidMemoryStream_ShouldReturnFalse" computerName="TOP" duration="00:00:00.0001414" startTime="2025-07-09T00:58:22.7613023+07:00" endTime="2025-07-09T00:58:22.7614740+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="67e81f12-5871-4a5b-adbb-3fd0ba70548b" />
+    <UnitTestResult executionId="f5f2f2e1-522f-45a2-9051-376269a94908" testId="86ab2cfa-bbcf-9b87-215f-f3d1826c69d7" testName="GetMimeType_ThrowsOnNull" computerName="TOP" duration="00:00:00.0000880" startTime="2025-07-09T00:58:22.7628758+07:00" endTime="2025-07-09T00:58:22.7630006+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f5f2f2e1-522f-45a2-9051-376269a94908" />
+    <UnitTestResult executionId="e924df52-563b-4535-873a-6232d96a9aea" testId="27b4537c-89cb-a671-8d7c-929747bd6eec" testName="GetExtension_ReturnsExpected (&quot;application/xml&quot;,&quot;.xml&quot;)" computerName="TOP" duration="00:00:00.0000848" startTime="2025-07-09T00:58:22.7631164+07:00" endTime="2025-07-09T00:58:22.7632374+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e924df52-563b-4535-873a-6232d96a9aea" />
+    <UnitTestResult executionId="9d8d32df-0a23-42de-9558-f5d496afb28e" testId="c2bf88a3-b297-2cdd-06f6-7d4ada06f4de" testName="CorrectPathSeparatorChar_ReplacesWithDirSeparator (&quot;folder\subfolder\file.txt&quot;)" computerName="TOP" duration="00:00:00.0000525" startTime="2025-07-09T00:58:14.0698205+07:00" endTime="2025-07-09T00:58:14.0699127+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9d8d32df-0a23-42de-9558-f5d496afb28e" />
+    <UnitTestResult executionId="bc69eb5f-a65f-428c-a5b8-ea1c8e9196a3" testId="e215fe6e-b1dd-b377-4f64-6bb1bff6d6e4" testName="GetColor_WithEmptyRegion_ShouldThrow" computerName="TOP" duration="00:00:00.0001896" startTime="2025-07-09T00:58:22.7577840+07:00" endTime="2025-07-09T00:58:22.7580117+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bc69eb5f-a65f-428c-a5b8-ea1c8e9196a3" />
+    <UnitTestResult executionId="5b8b42c7-1cc6-4320-978e-e6badd3ff58e" testId="3895d866-0452-d48e-feb4-6c37e0ef8f17" testName="GetMimeType_ReturnsExpected (&quot;.jpg&quot;,&quot;image/jpeg&quot;)" computerName="TOP" duration="00:00:00.0000633" startTime="2025-07-09T00:58:22.7620371+07:00" endTime="2025-07-09T00:58:22.7623000+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5b8b42c7-1cc6-4320-978e-e6badd3ff58e" />
+    <UnitTestResult executionId="e42d0667-9f30-46cc-8a57-bf98f832de63" testId="13da4d3b-e58e-571b-8155-5ca569402203" testName="IsSvgImage_ValidSvg_ReturnsTrue" computerName="TOP" duration="00:00:00.0000645" startTime="2025-07-09T00:58:14.1330592+07:00" endTime="2025-07-09T00:58:14.1331733+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e42d0667-9f30-46cc-8a57-bf98f832de63" />
+    <UnitTestResult executionId="af005aeb-d9eb-45b7-ad71-feca9dce0c13" testId="cf0c9a2b-b1cc-c09f-f055-9c5fec01a1cc" testName="MakeValidFileName_UsesFancyReplacement" computerName="TOP" duration="00:00:00.0000772" startTime="2025-07-09T00:58:14.0579054+07:00" endTime="2025-07-09T00:58:14.0580109+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="af005aeb-d9eb-45b7-ad71-feca9dce0c13" />
+    <UnitTestResult executionId="fcc2c4a1-c2b4-45bc-a0ec-6f472e0aeb68" testId="b93bef96-fc8e-d044-8cf9-7c73e6b438e5" testName="GetRandom_ShouldReturnRgb24ColorWithinRange" computerName="TOP" duration="00:00:00.0002313" startTime="2025-07-09T00:58:22.7545372+07:00" endTime="2025-07-09T00:58:22.7548580+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fcc2c4a1-c2b4-45bc-a0ec-6f472e0aeb68" />
+    <UnitTestResult executionId="4598cbda-0847-464a-9725-1b3efbdd72ef" testId="5feb7ce3-17d2-377d-edb0-ab65d83f5401" testName="Compress_StreamWithMultipleQualityAttempts_Works" computerName="TOP" duration="00:00:00.2189220" startTime="2025-07-09T00:58:22.1580850+07:00" endTime="2025-07-09T00:58:22.3772646+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4598cbda-0847-464a-9725-1b3efbdd72ef">
+      <Output>
+        <StdOut>-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e3582404-65f8-4c95-b8ae-728a5790976b" testId="48826149-7887-b45c-fa1d-e4e0beca9891" testName="CreateIfNotExist_Throws_OnNull" computerName="TOP" duration="00:00:00.0009294" startTime="2025-07-09T00:58:14.0277938+07:00" endTime="2025-07-09T00:58:14.0287886+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e3582404-65f8-4c95-b8ae-728a5790976b" />
+    <UnitTestResult executionId="d10a0bff-606e-4dee-8413-cbfe8ff53f74" testId="962f8a4a-569e-3ae3-82b4-59ef2d203e2c" testName="GetFullPath_RelativePath_CombinesWithBasePath (&quot;folder\subfolder/file.txt&quot;)" computerName="TOP" duration="00:00:00.0000103" startTime="2025-07-09T00:58:14.0694139+07:00" endTime="2025-07-09T00:58:14.0695018+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d10a0bff-606e-4dee-8413-cbfe8ff53f74" />
+    <UnitTestResult executionId="c612d2b1-2666-4519-95c9-00091b967f20" testId="c98d18a3-f8a5-43cf-cb69-fde67830c1f1" testName="MakeValidFileName_TruncatesLongFileName" computerName="TOP" duration="00:00:00.0000604" startTime="2025-07-09T00:58:14.0584632+07:00" endTime="2025-07-09T00:58:14.0585547+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c612d2b1-2666-4519-95c9-00091b967f20" />
+    <UnitTestResult executionId="b439b856-62e0-4023-9ce1-5e46e0150a0c" testId="33704345-d189-1be8-70c3-94037db7a457" testName="CreateIfNotExist_Throws_OnWhiteSpace" computerName="TOP" duration="00:00:00.0004486" startTime="2025-07-09T00:58:14.0288112+07:00" endTime="2025-07-09T00:58:14.0293048+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b439b856-62e0-4023-9ce1-5e46e0150a0c" />
+    <UnitTestResult executionId="338f7cbe-a609-441f-9bd2-54440fc4755f" testId="48a35391-ffc9-2874-e9cd-e2ca4155fe83" testName="CreateIfNotExist_DoesNotThrow_WhenFileExists" computerName="TOP" duration="00:00:00.0005305" startTime="2025-07-09T00:58:14.0507269+07:00" endTime="2025-07-09T00:58:14.0513423+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="338f7cbe-a609-441f-9bd2-54440fc4755f" />
+    <UnitTestResult executionId="55ee9d81-9c59-4117-ba82-9c3ec20b0afb" testId="692a5c1b-cd7c-b253-a0b1-018afa1deded" testName="Empty_RemovesAllFilesAndDirectories" computerName="TOP" duration="00:00:00.0020293" startTime="2025-07-09T00:58:14.0293243+07:00" endTime="2025-07-09T00:58:14.0313970+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="55ee9d81-9c59-4117-ba82-9c3ec20b0afb" />
+    <UnitTestResult executionId="d16348f4-54d2-47c7-b08f-0576bbfb3e69" testId="5a053b92-4500-26e2-9df1-1575895f8391" testName="MakeValidFileName_RemovesAccents" computerName="TOP" duration="00:00:00.0002707" startTime="2025-07-09T00:58:14.0580195+07:00" endTime="2025-07-09T00:58:14.0583199+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d16348f4-54d2-47c7-b08f-0576bbfb3e69" />
+    <UnitTestResult executionId="8b76a613-79cc-4cef-b341-99ab9dff271f" testId="9a57ae78-6778-5671-f365-e180b2b481fe" testName="MakeValidFileName_RemovesInvalidChars" computerName="TOP" duration="00:00:00.0002820" startTime="2025-07-09T00:58:14.0575666+07:00" endTime="2025-07-09T00:58:14.0578918+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8b76a613-79cc-4cef-b341-99ab9dff271f" />
+    <UnitTestResult executionId="736ecb9d-5bbf-40d6-8eb1-be1e3badb6f0" testId="833445af-acb0-0e5e-6dd9-273a3c9b6fe3" testName="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput (null,null)" computerName="TOP" duration="00:00:00.0000618" startTime="2025-07-09T00:58:14.0695186+07:00" endTime="2025-07-09T00:58:14.0696040+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="736ecb9d-5bbf-40d6-8eb1-be1e3badb6f0" />
+    <UnitTestResult executionId="df5b3bb2-86b9-454f-994a-3ea6ecc3c72d" testId="36426fde-5bba-8b2c-5fe9-2a880c024146" testName="Constructor_WithValidFile_SetsProperties" computerName="TOP" duration="00:00:00.0008639" startTime="2025-07-09T00:58:14.3099592+07:00" endTime="2025-07-09T00:58:14.3109204+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="df5b3bb2-86b9-454f-994a-3ea6ecc3c72d" />
+    <UnitTestResult executionId="4278f7ad-fa36-4b3e-a39d-6db2843c765c" testId="385b32cf-37c5-26b1-e376-e9925ec31cfd" testName="SafeDelete_DeletesFile" computerName="TOP" duration="00:00:00.0004411" startTime="2025-07-09T00:58:14.0541277+07:00" endTime="2025-07-09T00:58:14.0546131+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4278f7ad-fa36-4b3e-a39d-6db2843c765c" />
+    <UnitTestResult executionId="dbaba95e-9d3d-4095-b8a9-388ca0454b00" testId="8a959175-cc26-c7e2-40f9-3a56161076fd" testName="Save_ValidStreamAndPath_FileIsCreatedWithCorrectContent" computerName="TOP" duration="00:00:00.0013382" startTime="2025-07-09T00:58:14.0616264+07:00" endTime="2025-07-09T00:58:14.0630959+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dbaba95e-9d3d-4095-b8a9-388ca0454b00" />
+    <UnitTestResult executionId="5a202eec-f5cb-4671-bb2d-554a4a1c18de" testId="24877086-71f2-af03-0f17-67f331c5b84f" testName="GenerateTextImage_ReturnsImage" computerName="TOP" duration="00:00:00.0017784" startTime="2025-07-09T00:58:14.2392833+07:00" endTime="2025-07-09T00:58:14.2411417+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5a202eec-f5cb-4671-bb2d-554a4a1c18de" />
+    <UnitTestResult executionId="8b28bf03-6b4d-4558-bb32-b3774989b662" testId="7d0dfe92-b55d-a9e6-a265-f8f099c3347e" testName="GetMimeType_ReturnsExpected (&quot;.unknown&quot;,&quot;application/octet-stream&quot;)" computerName="TOP" duration="00:00:00.0000060" startTime="2025-07-09T00:58:22.7627801+07:00" endTime="2025-07-09T00:58:22.7628324+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8b28bf03-6b4d-4558-bb32-b3774989b662" />
+    <UnitTestResult executionId="1b1691b2-c8f7-4d39-8e99-77849766fde4" testId="4b3849f6-7299-205e-9512-6bfa4393dd52" testName="CorrectPathSeparatorChar_ReplacesWithDirSeparator (&quot;folder\subfolder/file.txt&quot;)" computerName="TOP" duration="00:00:00.0000093" startTime="2025-07-09T00:58:14.0700220+07:00" endTime="2025-07-09T00:58:14.0700611+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b1691b2-c8f7-4d39-8e99-77849766fde4" />
+    <UnitTestResult executionId="093ff380-c308-4d53-866a-17bbaf880fcf" testId="8e4bd926-70b4-d1f8-b6d6-3cc90e5f2ba8" testName="GetColor_FromFilePath_ShouldReturnCorrectColor" computerName="TOP" duration="00:00:00.0004473" startTime="2025-07-09T00:58:22.7600474+07:00" endTime="2025-07-09T00:58:22.7605336+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="093ff380-c308-4d53-866a-17bbaf880fcf" />
+    <UnitTestResult executionId="0fe9d3c6-f5c7-489b-a442-2687f0d141e7" testId="fdf5746b-b86a-73b4-1fa0-28b39b8f1597" testName="PercentSaving_ZeroIfNoSaving" computerName="TOP" duration="00:00:00.0017121" startTime="2025-07-09T00:58:14.3182230+07:00" endTime="2025-07-09T00:58:14.3200309+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0fe9d3c6-f5c7-489b-a442-2687f0d141e7" />
+    <UnitTestResult executionId="70be7b6e-d16f-4423-baed-c74339c8276d" testId="fef90f3f-a0df-5e2e-4f8e-77ef04a220b8" testName="BytesSaving_And_PercentSaving_CalculatedCorrectly" computerName="TOP" duration="00:00:00.0009804" startTime="2025-07-09T00:58:14.3171572+07:00" endTime="2025-07-09T00:58:14.3181992+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="70be7b6e-d16f-4423-baed-c74339c8276d" />
+    <UnitTestResult executionId="3d462997-aa51-47e1-8954-fd59fd68a843" testId="c0ffc76c-75ed-4b3c-97ba-b32fb8110b28" testName="FileExtension_ReturnsCorrectExtension" computerName="TOP" duration="00:00:00.0058736" startTime="2025-07-09T00:58:14.3111855+07:00" endTime="2025-07-09T00:58:14.3171176+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d462997-aa51-47e1-8954-fd59fd68a843" />
+    <UnitTestResult executionId="75b09975-ddde-4c96-b92a-b8177ca23ab8" testId="4efb3fa4-fc19-2b66-6944-b3cbe37c47d2" testName="TryGetHexCode_FromMemoryStream_ShouldReturnTrueAndHex" computerName="TOP" duration="00:00:00.0002743" startTime="2025-07-09T00:58:22.7561312+07:00" endTime="2025-07-09T00:58:22.7564539+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="75b09975-ddde-4c96-b92a-b8177ca23ab8" />
+    <UnitTestResult executionId="9399c77c-82da-4c33-a3c1-6aecb1b41633" testId="aa206ce1-cf0f-f1dd-5eee-26d55c163bf3" testName="TryGetColor_Success_SetsDominantColor" computerName="TOP" duration="00:00:00.0001734" startTime="2025-07-09T00:58:22.7614986+07:00" endTime="2025-07-09T00:58:22.7617217+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9399c77c-82da-4c33-a3c1-6aecb1b41633" />
+    <UnitTestResult executionId="3a992727-eb9b-4965-a4c0-0fa75d5cf9ac" testId="ae94ee2c-1ce6-0e8a-90f9-459ba5ddbe0e" testName="Save_NullPath_ThrowsException" computerName="TOP" duration="00:00:00.0001902" startTime="2025-07-09T00:58:14.0631214+07:00" endTime="2025-07-09T00:58:14.0633797+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3a992727-eb9b-4965-a4c0-0fa75d5cf9ac" />
+    <UnitTestResult executionId="5f804045-1c99-4394-9bc7-49811f7e1b73" testId="3b1db870-8c36-dba8-65fb-0fb8a4b51b4b" testName="GetImageBase64Format_ReturnsFormattedString" computerName="TOP" duration="00:00:00.0001508" startTime="2025-07-09T00:58:14.2411675+07:00" endTime="2025-07-09T00:58:14.2413706+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5f804045-1c99-4394-9bc7-49811f7e1b73" />
+    <UnitTestResult executionId="6f61e2bb-1cab-405d-bb57-0b0b38f7b3f5" testId="e54b5f76-8192-bc2f-86ee-5b5283fe6939" testName="Compress_StreamWithFileNameExtension_Works" computerName="TOP" duration="00:00:01.7451272" startTime="2025-07-09T00:58:18.8403529+07:00" endTime="2025-07-09T00:58:20.5857399+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6f61e2bb-1cab-405d-bb57-0b0b38f7b3f5">
+      <Output>
+        <StdOut>-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ece7be9a-ad2d-432c-8f1c-6386999b3c5a" testId="a40cebf7-1990-3ba2-49c9-78e7993546c8" testName="GetBase64Format_ReturnsBase64" computerName="TOP" duration="00:00:00.0000904" startTime="2025-07-09T00:58:14.2413839+07:00" endTime="2025-07-09T00:58:14.2415022+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ece7be9a-ad2d-432c-8f1c-6386999b3c5a" />
+    <UnitTestResult executionId="3ae56e48-7c54-4dbe-9638-b8d812a604cf" testId="d0d3a8f0-ca0e-b51d-6e04-4a423598764e" testName="GetFullPath_AbsolutePath_ReturnsAsIs" computerName="TOP" duration="00:00:00.0000466" startTime="2025-07-09T00:58:14.0650505+07:00" endTime="2025-07-09T00:58:14.0651256+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3ae56e48-7c54-4dbe-9638-b8d812a604cf" />
+    <UnitTestResult executionId="87f44d94-aaf0-45c7-83ab-ca02611534f8" testId="2226e4d4-2567-1d2e-574f-b5b52a3b7051" testName="Resize_ThrowsOnInvalidBytes" computerName="TOP" duration="00:00:00.0008450" startTime="2025-07-09T00:58:14.3001521+07:00" endTime="2025-07-09T00:58:14.3010783+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="87f44d94-aaf0-45c7-83ab-ca02611534f8" />
+    <UnitTestResult executionId="659ab47b-60ff-4edc-9f76-913cdd44804d" testId="b0ab6548-3e6d-bd4a-3158-06979f4645aa" testName="GetColor_FromMemoryStream_ShouldReturnCorrectColor" computerName="TOP" duration="00:00:00.0003297" startTime="2025-07-09T00:58:22.7566211+07:00" endTime="2025-07-09T00:58:22.7571974+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="659ab47b-60ff-4edc-9f76-913cdd44804d" />
+    <UnitTestResult executionId="52e461ab-fdd0-43ff-b687-029eb967415f" testId="aac9bcbb-97c4-1808-25a7-752d9a522a12" testName="Compress_JpegFile_CoversGetJpegCommand" computerName="TOP" duration="00:00:00.2352739" startTime="2025-07-09T00:58:22.3776675+07:00" endTime="2025-07-09T00:58:22.6131241+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="52e461ab-fdd0-43ff-b687-029eb967415f">
+      <Output>
+        <StdOut>-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+&#xD;
+&#xD;
+&#xD;
+Debug Trace:&#xD;
+SixLabors.ImageSharp.UnknownImageFormatException: Image cannot be loaded. Available decoders:&#xD;
+ - PNG : PngDecoder&#xD;
+ - JPEG : JpegDecoder&#xD;
+ - GIF : GifDecoder&#xD;
+ - BMP : BmpDecoder&#xD;
+ - Webp : WebpDecoder&#xD;
+ - TGA : TgaDecoder&#xD;
+ - TIFF : TiffDecoder&#xD;
+ - QOI : QoiDecoder&#xD;
+ - PBM : PbmDecoder&#xD;
+&#xD;
+   at SixLabors.ImageSharp.Formats.ImageFormatManager.ThrowInvalidDecoder(ImageFormatManager manager)&#xD;
+   at SixLabors.ImageSharp.Image.InternalDetectFormat(Configuration configuration, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.DiscoverDecoder(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Decode(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.&lt;&gt;c__DisplayClass80_0.&lt;Load&gt;b__0(Stream s)&#xD;
+   at SixLabors.ImageSharp.Image.WithSeekableStream[T](DecoderOptions options, Stream stream, Func`2 action)&#xD;
+   at SixLabors.ImageSharp.Image.Load(DecoderOptions options, Stream stream)&#xD;
+   at SixLabors.ImageSharp.Image.Load(Stream stream)&#xD;
+   at Elect.Data.IO.ImageUtils.CompressUtils.Helper.TryGetCompressImageType(MemoryStream imageStream, CompressImageType&amp; compressImageType) in D:\TOP\GIT\Elect\src\Data\Elect.Data.IO\ImageUtils\CompressUtils\Helper.cs:line 49</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ae1fef3d-188e-499e-b48a-63cd55853b6a" testId="8fec715f-dc75-f135-db8c-9cb578cf3c07" testName="Resize_AllResizeTypes_Work" computerName="TOP" duration="00:00:00.0087348" startTime="2025-07-09T00:58:14.3011070+07:00" endTime="2025-07-09T00:58:14.3099218+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ae1fef3d-188e-499e-b48a-63cd55853b6a" />
+    <UnitTestResult executionId="987f780a-5b58-4dad-b720-0f9ce2d5e64b" testId="a5c24435-399b-0383-baea-5d421c708f54" testName="GetFullPath_RelativePath_CombinesWithBasePath (&quot;folder\file.txt&quot;)" computerName="TOP" duration="00:00:00.0000805" startTime="2025-07-09T00:58:14.0685079+07:00" endTime="2025-07-09T00:58:14.0686936+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="987f780a-5b58-4dad-b720-0f9ce2d5e64b" />
+    <UnitTestResult executionId="4f2d7f58-506c-462e-b55a-6cb5e9b9f410" testId="5fd90e35-ff56-97cf-3e18-a5df186f8bd8" testName="IsValidBase64_ReturnsFalse_ForInvalidBase64" computerName="TOP" duration="00:00:00.0000863" startTime="2025-07-09T00:58:14.0560427+07:00" endTime="2025-07-09T00:58:14.0561705+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4f2d7f58-506c-462e-b55a-6cb5e9b9f410" />
+    <UnitTestResult executionId="84d80123-9c35-46e7-822d-537305b3c6f9" testId="a3532a11-82fb-d470-88e2-c67f21dcef3c" testName="CreateTempFile_FromStream_CreatesFileWithCorrectContentAndExtension" computerName="TOP" duration="00:00:00.0024167" startTime="2025-07-09T00:58:14.0585627+07:00" endTime="2025-07-09T00:58:14.0610394+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="84d80123-9c35-46e7-822d-537305b3c6f9" />
+    <UnitTestResult executionId="c6b0e7bf-1dc5-4057-a32a-4871c836aef6" testId="68f5062b-72f8-6301-57f4-03624bc69dea" testName="ToHexCode_BlackColor" computerName="TOP" duration="00:00:00.0001497" startTime="2025-07-09T00:58:22.7541856+07:00" endTime="2025-07-09T00:58:22.7543971+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c6b0e7bf-1dc5-4057-a32a-4871c836aef6" />
+    <UnitTestResult executionId="8a670968-068e-422d-95ca-761cd29e179b" testId="71c12da7-f7d6-d2b9-5904-247f02297f22" testName="Compress_ValidStream_ReturnsModel" computerName="TOP" duration="00:00:01.4336541" startTime="2025-07-09T00:58:14.3251647+07:00" endTime="2025-07-09T00:58:15.7589344+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8a670968-068e-422d-95ca-761cd29e179b">
+      <Output>
+        <StdOut>-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------&#xD;
+-------------------------&#xD;
+Process Standard Output: &#xD;
+&#xD;
+-------------------------&#xD;
+------------------------&#xD;
+Process Standard Error: &#xD;
+&#xD;
+-------------------------</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9f160082-3254-4065-84c3-87ec9709f931" testId="e6301668-90f7-d8b0-b2e3-a6f7a3aac6d8" testName="WriteToStream_DoesNothing_WhenFileNotExists" computerName="TOP" duration="00:00:00.0003674" startTime="2025-07-09T00:58:14.0571277+07:00" endTime="2025-07-09T00:58:14.0575457+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9f160082-3254-4065-84c3-87ec9709f931" />
+    <UnitTestResult executionId="a9d55a5e-cc27-4f20-9bb1-0ead10d70f42" testId="c5a026cc-32e7-c969-5644-798f1b0af0eb" testName="Compress_InvalidFilePath_Throws" computerName="TOP" duration="00:00:00.0004390" startTime="2025-07-09T00:58:14.3211636+07:00" endTime="2025-07-09T00:58:14.3217224+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a9d55a5e-cc27-4f20-9bb1-0ead10d70f42" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="CreateIfNotExist_WithPermissions_CallsSetLinuxFilePermission" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="880f8936-72c2-5999-47cd-d49385393e4e">
+      <Execution id="8c228e25-aead-459d-b210-91f9d1925de9" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="CreateIfNotExist_WithPermissions_CallsSetLinuxFilePermission" />
+    </UnitTest>
+    <UnitTest name="GetMimeType_ReturnsExpected (&quot;unknown&quot;,&quot;application/octet-stream&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="4bde2147-fef4-4993-1268-7e19cb6abbaf">
+      <Execution id="529faefc-e69e-49bd-8b0a-0d313dde96ea" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetMimeType_ReturnsExpected" />
+    </UnitTest>
+    <UnitTest name="GetExtension_ReturnsEmptyOnNotFoundAndNoThrow" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="648cd995-3bae-c0ae-fa7c-6aad1e885a51">
+      <Execution id="d4997501-7656-4832-aa85-58c86177e0a1" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetExtension_ReturnsEmptyOnNotFoundAndNoThrow" />
+    </UnitTest>
+    <UnitTest name="GetColor_FromFilePath_ShouldReturnCorrectColor" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="8e4bd926-70b4-d1f8-b6d6-3cc90e5f2ba8">
+      <Execution id="093ff380-c308-4d53-866a-17bbaf880fcf" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="GetColor_FromFilePath_ShouldReturnCorrectColor" />
+    </UnitTest>
+    <UnitTest name="CreateIfNotExist_Throws_OnWhiteSpace" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="33704345-d189-1be8-70c3-94037db7a457">
+      <Execution id="b439b856-62e0-4023-9ce1-5e46e0150a0c" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="DirectoryHelperUnitTest" name="CreateIfNotExist_Throws_OnWhiteSpace" />
+    </UnitTest>
+    <UnitTest name="GetExtension_ReturnsExpected (&quot;image/jpeg&quot;,&quot;.jpg&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="71480f8b-549b-906d-0152-262ccf49a5c4">
+      <Execution id="700bd820-e3bb-477b-8171-297c80d44002" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetExtension_ReturnsExpected" />
+    </UnitTest>
+    <UnitTest name="CreateTempFile_FromStream_CreatesFileWithCorrectContentAndExtension" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="a3532a11-82fb-d470-88e2-c67f21dcef3c">
+      <Execution id="84d80123-9c35-46e7-822d-537305b3c6f9" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="CreateTempFile_FromStream_CreatesFileWithCorrectContentAndExtension" />
+    </UnitTest>
+    <UnitTest name="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput (null,null)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="833445af-acb0-0e5e-6dd9-273a3c9b6fe3">
+      <Execution id="736ecb9d-5bbf-40d6-8eb1-be1e3badb6f0" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput" />
+    </UnitTest>
+    <UnitTest name="Compress_JpegFile_CoversGetJpegCommand" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="aac9bcbb-97c4-1808-25a7-752d9a522a12">
+      <Execution id="52e461ab-fdd0-43ff-b687-029eb967415f" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_JpegFile_CoversGetJpegCommand" />
+    </UnitTest>
+    <UnitTest name="WriteToStream_DoesNothing_WhenFileNotExists" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="e6301668-90f7-d8b0-b2e3-a6f7a3aac6d8">
+      <Execution id="9f160082-3254-4065-84c3-87ec9709f931" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="WriteToStream_DoesNothing_WhenFileNotExists" />
+    </UnitTest>
+    <UnitTest name="CreateTempFile_Stream_CreatesFileWithContent" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="d3ad44b9-a2e3-c48f-dc62-013a25aaa725">
+      <Execution id="0d92c702-cf52-48eb-b638-1a37a3287d29" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="CreateTempFile_Stream_CreatesFileWithContent" />
+    </UnitTest>
+    <UnitTest name="ToHexCode_ShouldReturnCorrectHex" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="58027957-609a-3571-1d0c-d06de038d632">
+      <Execution id="9cbef4e9-a517-46f7-9341-77f5c0a5d6ce" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ColorExtensionsUnitTest" name="ToHexCode_ShouldReturnCorrectHex" />
+    </UnitTest>
+    <UnitTest name="GetHexCode_FromMemoryStream_ShouldReturnCorrectHex" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="1e0a84ae-3698-142d-deb0-ab7d7bdb248e">
+      <Execution id="5e777ead-c120-4b77-8822-3f9809fe0ce5" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="GetHexCode_FromMemoryStream_ShouldReturnCorrectHex" />
+    </UnitTest>
+    <UnitTest name="GetImageInfo_FromBase64_ReturnsImageModel" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ea1b79ca-66b2-3be0-6749-60d6f9070697">
+      <Execution id="6338d731-b4f8-4182-b660-ae65857ec788" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="GetImageInfo_FromBase64_ReturnsImageModel" />
+    </UnitTest>
+    <UnitTest name="GetMimeType_ReturnsExpected (&quot;.jpg&quot;,&quot;image/jpeg&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="3895d866-0452-d48e-feb4-6c37e0ef8f17">
+      <Execution id="5b8b42c7-1cc6-4320-978e-e6badd3ff58e" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetMimeType_ReturnsExpected" />
+    </UnitTest>
+    <UnitTest name="TryGetColor_Failure_SetsDominantColorToNull" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ce04e802-62f7-de8e-cbba-77c7eb5bd226">
+      <Execution id="5d81d346-e2fb-4da4-94c0-604599700dff" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetColor_Failure_SetsDominantColorToNull" />
+    </UnitTest>
+    <UnitTest name="GetFullPath_InvalidPath_Throws" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="9a91935f-c091-fe89-d99f-a06b85926529">
+      <Execution id="d0dfb784-4904-4698-b27a-b115f9ac3ec5" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="GetFullPath_InvalidPath_Throws" />
+    </UnitTest>
+    <UnitTest name="CreateTempFile_CreatesFileWithExtension" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="2cd465d5-2b0a-4986-b662-24050e50a8e1">
+      <Execution id="c6a81221-05f3-4474-9eb9-854fd2ec525f" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="CreateTempFile_CreatesFileWithExtension" />
+    </UnitTest>
+    <UnitTest name="SafeDelete_ReturnsTrue_WhenFileDoesNotExist" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="0cd46606-f372-eeaa-eea9-c7b237d25a97">
+      <Execution id="2e084147-85b2-4fc2-91df-58e3b56eab56" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="SafeDelete_ReturnsTrue_WhenFileDoesNotExist" />
+    </UnitTest>
+    <UnitTest name="IsValidBase64_ReturnsTrue_ForValidBase64" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="c749007a-b715-ff8b-3541-a1391dec1a74">
+      <Execution id="46c9ca2e-9173-46f9-9e48-c73f5f9d1bc3" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="IsValidBase64_ReturnsTrue_ForValidBase64" />
+    </UnitTest>
+    <UnitTest name="Constructor_WithValidFile_SetsProperties" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="36426fde-5bba-8b2c-5fe9-2a880c024146">
+      <Execution id="df5b3bb2-86b9-454f-994a-3ea6ecc3c72d" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressedModelUnitTest" name="Constructor_WithValidFile_SetsProperties" />
+    </UnitTest>
+    <UnitTest name="CreateIfNotExist_DoesNotThrow_WhenFileExists" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="48a35391-ffc9-2874-e9cd-e2ca4155fe83">
+      <Execution id="338f7cbe-a609-441f-9bd2-54440fc4755f" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="CreateIfNotExist_DoesNotThrow_WhenFileExists" />
+    </UnitTest>
+    <UnitTest name="ToHexCode_WhiteColor" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ec895ea7-fed3-04f9-f69d-ce502ace2d84">
+      <Execution id="eacce1e9-dfe6-4320-a193-231c70c7339b" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ColorExtensionsUnitTest" name="ToHexCode_WhiteColor" />
+    </UnitTest>
+    <UnitTest name="SafeDelete_ReturnsFalse_OnException" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="0e6634e1-8c7e-c67e-7243-f828dcc9aef0">
+      <Execution id="8d5963e2-29aa-416f-b03e-8bffc75f71ee" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="SafeDelete_ReturnsFalse_OnException" />
+    </UnitTest>
+    <UnitTest name="CorrectPathSeparatorChar_ReplacesWithDirSeparator (&quot;folder\subfolder/file.txt&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="4b3849f6-7299-205e-9512-6bfa4393dd52">
+      <Execution id="1b1691b2-c8f7-4d39-8e99-77849766fde4" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="CorrectPathSeparatorChar_ReplacesWithDirSeparator" />
+    </UnitTest>
+    <UnitTest name="Constructor_WithInvalidFile_SetsCompressedFileSizeZero" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="2a768ec4-0238-d61e-692d-54eec0c56411">
+      <Execution id="9e2f2ac0-8855-4a1a-aa2c-480bf7e70960" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressedModelUnitTest" name="Constructor_WithInvalidFile_SetsCompressedFileSizeZero" />
+    </UnitTest>
+    <UnitTest name="CreateIfNotExist_CreatesFile_WhenNotExists" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="8c7b91f9-a065-3f92-79a6-624f9bc6f406">
+      <Execution id="94eb4a8d-6e02-4148-a558-401b3edf0549" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="CreateIfNotExist_CreatesFile_WhenNotExists" />
+    </UnitTest>
+    <UnitTest name="IsEmpty_ReturnsTrue_WhenDirectoryIsEmpty" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="63b8f09b-9e1c-bcf1-7bb0-daa2fab6b7f2">
+      <Execution id="7b832729-88fa-492c-81b5-22d55c01439f" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="DirectoryHelperUnitTest" name="IsEmpty_ReturnsTrue_WhenDirectoryIsEmpty" />
+    </UnitTest>
+    <UnitTest name="GetExtension_ThrowsOnDotInput" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="8dfa934a-78c8-f613-69e1-ea8f101bc344">
+      <Execution id="aa2c64ec-645a-4e78-8f35-e6f93bf6f21a" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetExtension_ThrowsOnDotInput" />
+    </UnitTest>
+    <UnitTest name="GetRandom_ShouldReturnDifferentColors" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ab70032d-8e0d-a360-ef1d-0d75c122bb1a">
+      <Execution id="16c8cfa8-0619-42c9-ad64-287acaecd745" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ColorHelperUnitTest" name="GetRandom_ShouldReturnDifferentColors" />
+    </UnitTest>
+    <UnitTest name="Resize_ThrowsOnInvalidBytes" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="2226e4d4-2567-1d2e-574f-b5b52a3b7051">
+      <Execution id="87f44d94-aaf0-45c7-83ab-ca02611534f8" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ResizeUtils.ImageResizeHelperUnitTest" name="Resize_ThrowsOnInvalidBytes" />
+    </UnitTest>
+    <UnitTest name="GetFullPath_NullOrWhitespace_ReturnsInput" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="f7c385c5-f38b-a6ad-3e1e-37f06ea78bd1">
+      <Execution id="ab30ff27-39c5-463a-acf1-a498aa159b63" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="GetFullPath_NullOrWhitespace_ReturnsInput" />
+    </UnitTest>
+    <UnitTest name="GetExtension_ReturnsExpected (&quot;application/xml&quot;,&quot;.xml&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="27b4537c-89cb-a671-8d7c-929747bd6eec">
+      <Execution id="e924df52-563b-4535-873a-6232d96a9aea" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetExtension_ReturnsExpected" />
+    </UnitTest>
+    <UnitTest name="Save_WhiteSpacePath_ThrowsException" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ed55ff8c-c35d-481a-3c31-ffac09c4afeb">
+      <Execution id="ba1edd51-0875-4054-a8a5-7df9c6eb1909" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="MemoryStreamHelperUnitTest" name="Save_WhiteSpacePath_ThrowsException" />
+    </UnitTest>
+    <UnitTest name="TryGetHexCode_FromInvalidMemoryStream_ShouldReturnFalse" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="df896f05-6b9a-e3a1-85b6-47091e3061f8">
+      <Execution id="c27762b7-9bf1-40c2-88c6-2fa9db5f7a02" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetHexCode_FromInvalidMemoryStream_ShouldReturnFalse" />
+    </UnitTest>
+    <UnitTest name="GetFullPath_RelativePath_CombinesWithBasePath (&quot;folder\file.txt&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="a5c24435-399b-0383-baea-5d421c708f54">
+      <Execution id="987f780a-5b58-4dad-b720-0f9ce2d5e64b" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="GetFullPath_RelativePath_CombinesWithBasePath" />
+    </UnitTest>
+    <UnitTest name="Compress_StreamWithMultipleQualityAttempts_Works" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="5feb7ce3-17d2-377d-edb0-ab65d83f5401">
+      <Execution id="4598cbda-0847-464a-9725-1b3efbdd72ef" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_StreamWithMultipleQualityAttempts_Works" />
+    </UnitTest>
+    <UnitTest name="GetFullPath_RelativePath_CombinesWithBasePath (&quot;folder/file.txt&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="4b469241-6071-8429-cfe3-b9e43501d592">
+      <Execution id="26e7084a-4adc-4f16-8db3-efc9dffeb902" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="GetFullPath_RelativePath_CombinesWithBasePath" />
+    </UnitTest>
+    <UnitTest name="IsSvgImage_InvalidSvg_ReturnsFalse" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="906c90e7-36ae-b69b-84cb-52d9f7df1454">
+      <Execution id="497dbebc-35f2-4665-b58b-e71b2c92d458" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="IsSvgImage_InvalidSvg_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="GetImageInfo_FromStream_ReturnsImageModel" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ddb5ccc2-9b33-dc28-1bfd-c32cb9e3421d">
+      <Execution id="d47f080a-d0a7-4806-a399-6d76fe71c8f6" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="GetImageInfo_FromStream_ReturnsImageModel" />
+    </UnitTest>
+    <UnitTest name="BytesSaving_And_PercentSaving_CalculatedCorrectly" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="fef90f3f-a0df-5e2e-4f8e-77ef04a220b8">
+      <Execution id="70be7b6e-d16f-4423-baed-c74339c8276d" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressedModelUnitTest" name="BytesSaving_And_PercentSaving_CalculatedCorrectly" />
+    </UnitTest>
+    <UnitTest name="GetExtension_ThrowsOnNull" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="d101d317-553e-c369-f7a8-d2c5f2073f22">
+      <Execution id="cd1827ec-a859-4c95-a314-c33fe41213bf" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetExtension_ThrowsOnNull" />
+    </UnitTest>
+    <UnitTest name="MakeValidFileName_TruncatesLongFileName" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="c98d18a3-f8a5-43cf-cb69-fde67830c1f1">
+      <Execution id="c612d2b1-2666-4519-95c9-00091b967f20" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="MakeValidFileName_TruncatesLongFileName" />
+    </UnitTest>
+    <UnitTest name="ToHexCode_BlackColor" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="68f5062b-72f8-6301-57f4-03624bc69dea">
+      <Execution id="c6b0e7bf-1dc5-4057-a32a-4871c836aef6" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ColorExtensionsUnitTest" name="ToHexCode_BlackColor" />
+    </UnitTest>
+    <UnitTest name="MakeValidFileName_ReturnsReplacement_WhenEmpty" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="c0b48b2c-fc3b-d3e5-7f13-18a8cc52c46f">
+      <Execution id="65d357bf-4b86-439d-8199-ecdc0ace9b25" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="MakeValidFileName_ReturnsReplacement_WhenEmpty" />
+    </UnitTest>
+    <UnitTest name="Compress_StreamWithFileNameExtension_Works" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="e54b5f76-8192-bc2f-86ee-5b5283fe6939">
+      <Execution id="6f61e2bb-1cab-405d-bb57-0b0b38f7b3f5" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_StreamWithFileNameExtension_Works" />
+    </UnitTest>
+    <UnitTest name="PercentSaving_ZeroIfNoSaving" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="fdf5746b-b86a-73b4-1fa0-28b39b8f1597">
+      <Execution id="0fe9d3c6-f5c7-489b-a442-2687f0d141e7" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressedModelUnitTest" name="PercentSaving_ZeroIfNoSaving" />
+    </UnitTest>
+    <UnitTest name="GetColor_WithInvalidRegion_ShouldThrow" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ad617111-a77a-dc8f-0b15-7565c56c5775">
+      <Execution id="819acfce-a036-469f-9f5b-ef345259bc30" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="GetColor_WithInvalidRegion_ShouldThrow" />
+    </UnitTest>
+    <UnitTest name="GetRandom_ShouldReturnRgb24ColorWithinRange" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="b93bef96-fc8e-d044-8cf9-7c73e6b438e5">
+      <Execution id="fcc2c4a1-c2b4-45bc-a0ec-6f472e0aeb68" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ColorHelperUnitTest" name="GetRandom_ShouldReturnRgb24ColorWithinRange" />
+    </UnitTest>
+    <UnitTest name="Compress_WithQualityAndTimeout_Works" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="e8836de0-c736-b1f5-825a-0aafc5d25d84">
+      <Execution id="57c73c50-0b04-49f9-8668-61c03a4758bd" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_WithQualityAndTimeout_Works" />
+    </UnitTest>
+    <UnitTest name="GetMimeType_ReturnsExpected (&quot;.unknown&quot;,&quot;application/octet-stream&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="7d0dfe92-b55d-a9e6-a265-f8f099c3347e">
+      <Execution id="8b28bf03-6b4d-4558-bb32-b3774989b662" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetMimeType_ReturnsExpected" />
+    </UnitTest>
+    <UnitTest name="Resize_AllResizeTypes_Work" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="8fec715f-dc75-f135-db8c-9cb578cf3c07">
+      <Execution id="ae1fef3d-188e-499e-b48a-63cd55853b6a" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ResizeUtils.ImageResizeHelperUnitTest" name="Resize_AllResizeTypes_Work" />
+    </UnitTest>
+    <UnitTest name="Save_WritesStreamToFile" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="0ff22051-48ce-4f8c-b3dc-3e94111c30bb">
+      <Execution id="dde0773e-5601-4fd4-b5f7-8eb2b04a59bc" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="MemoryStreamHelperUnitTest" name="Save_WritesStreamToFile" />
+    </UnitTest>
+    <UnitTest name="MakeValidFileName_UsesFancyReplacement" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="cf0c9a2b-b1cc-c09f-f055-9c5fec01a1cc">
+      <Execution id="af005aeb-d9eb-45b7-ad71-feca9dce0c13" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="MakeValidFileName_UsesFancyReplacement" />
+    </UnitTest>
+    <UnitTest name="GetFullPath_AbsolutePath_ReturnsAsIs" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="d0d3a8f0-ca0e-b51d-6e04-4a423598764e">
+      <Execution id="3ae56e48-7c54-4dbe-9638-b8d812a604cf" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="GetFullPath_AbsolutePath_ReturnsAsIs" />
+    </UnitTest>
+    <UnitTest name="SafeDelete_DeletesFile" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="385b32cf-37c5-26b1-e376-e9925ec31cfd">
+      <Execution id="4278f7ad-fa36-4b3e-a39d-6db2843c765c" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="SafeDelete_DeletesFile" />
+    </UnitTest>
+    <UnitTest name="TryGetColor_FromInvalidMemoryStream_ShouldReturnFalse" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="95ec9135-07a6-77d5-b33b-e61077fbf39b">
+      <Execution id="67e81f12-5871-4a5b-adbb-3fd0ba70548b" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetColor_FromInvalidMemoryStream_ShouldReturnFalse" />
+    </UnitTest>
+    <UnitTest name="TryGetColor_FromInvalidFilePath_ShouldReturnFalse" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="c58dbc75-afb3-015d-f682-21a6f6af2d62">
+      <Execution id="b27a543c-7bad-410c-a7d9-cf4300e0803c" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetColor_FromInvalidFilePath_ShouldReturnFalse" />
+    </UnitTest>
+    <UnitTest name="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput (&quot;&quot;,&quot;&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="9a94b4d4-7761-94ac-4ed5-5f538fc10ba4">
+      <Execution id="837ea21c-87e2-47fb-9728-771acea0d232" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput" />
+    </UnitTest>
+    <UnitTest name="Compress_EmptyArguments_Throws" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="f85f4b99-6edb-56ea-afca-38ae8af93a0c">
+      <Execution id="5c8b770c-bbce-48d6-a12f-c650eb5be225" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_EmptyArguments_Throws" />
+    </UnitTest>
+    <UnitTest name="GetColor_WithRegion_ShouldReturnCorrectColor" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="d23a2c6c-9c19-f99f-3bb9-8c3d82888720">
+      <Execution id="8a88e0f5-7617-4c55-9d22-6fa6f806b67f" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="GetColor_WithRegion_ShouldReturnCorrectColor" />
+    </UnitTest>
+    <UnitTest name="GetColor_FromMemoryStream_ShouldReturnCorrectColor" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="b0ab6548-3e6d-bd4a-3158-06979f4645aa">
+      <Execution id="659ab47b-60ff-4edc-9f76-913cdd44804d" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="GetColor_FromMemoryStream_ShouldReturnCorrectColor" />
+    </UnitTest>
+    <UnitTest name="Compress_ValidStream_ReturnsModel" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="71c12da7-f7d6-d2b9-5904-247f02297f22">
+      <Execution id="8a670968-068e-422d-95ca-761cd29e179b" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_ValidStream_ReturnsModel" />
+    </UnitTest>
+    <UnitTest name="RotateByExifOrientation_StringAndBytes_ReturnsValid" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="b0311977-d8cc-1f82-d938-157212c5ba05">
+      <Execution id="9d87c7b8-3707-491f-abb1-4b2daa5187e7" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="RotateByExifOrientation_StringAndBytes_ReturnsValid" />
+    </UnitTest>
+    <UnitTest name="GetImageBase64Format_ReturnsFormattedString" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="3b1db870-8c36-dba8-65fb-0fb8a4b51b4b">
+      <Execution id="5f804045-1c99-4394-9bc7-49811f7e1b73" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="GetImageBase64Format_ReturnsFormattedString" />
+    </UnitTest>
+    <UnitTest name="GenerateTextImage_ReturnsImage" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="24877086-71f2-af03-0f17-67f331c5b84f">
+      <Execution id="5a202eec-f5cb-4671-bb2d-554a4a1c18de" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="GenerateTextImage_ReturnsImage" />
+    </UnitTest>
+    <UnitTest name="Compress_StreamWithNoOptimization_ReturnsModelWithNoSaving" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="26fef98f-8310-ca89-db9f-2d552213f3fb">
+      <Execution id="bf8df94d-0380-4d1a-83fd-11fe7ccf32d5" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_StreamWithNoOptimization_ReturnsModelWithNoSaving" />
+    </UnitTest>
+    <UnitTest name="SpecialFolder_GetCurrentWindowUserFolder_ReturnsValidPath" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="4bfc5db0-1604-1793-30c6-507d99cc1af6">
+      <Execution id="b7af6150-920c-4da2-b656-ba16424723a4" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="DirectoryHelperUnitTest" name="SpecialFolder_GetCurrentWindowUserFolder_ReturnsValidPath" />
+    </UnitTest>
+    <UnitTest name="CorrectPathSeparatorChar_ReplacesWithDirSeparator (&quot;folder/subfolder/file.txt&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="aea027b4-0a81-ab86-f977-46e18e936f59">
+      <Execution id="502d203f-16d5-408a-8e29-141941c99edf" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="CorrectPathSeparatorChar_ReplacesWithDirSeparator" />
+    </UnitTest>
+    <UnitTest name="Compress_InvalidStream_Throws" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="4e10ee00-9466-af4c-12ed-0c140e04aeee">
+      <Execution id="30b5d03a-556d-4396-a94f-09816189e214" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_InvalidStream_Throws" />
+    </UnitTest>
+    <UnitTest name="RotateByExifOrientation_Image_ReturnsImage" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="79636e01-6d55-53e4-829a-fbe31a3d87ce">
+      <Execution id="819ac6b6-4acc-459e-b120-06c9aa76ae78" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="RotateByExifOrientation_Image_ReturnsImage" />
+    </UnitTest>
+    <UnitTest name="CreateIfNotExist_DoesNothing_WhenDirectoryExists" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="16425e9b-6bc3-a1cf-9d4a-70512392e110">
+      <Execution id="795a20d3-12c0-4ec3-968a-5a046d1de010" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="DirectoryHelperUnitTest" name="CreateIfNotExist_DoesNothing_WhenDirectoryExists" />
+    </UnitTest>
+    <UnitTest name="Empty_RemovesAllFilesAndDirectories" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="692a5c1b-cd7c-b253-a0b1-018afa1deded">
+      <Execution id="55ee9d81-9c59-4117-ba82-9c3ec20b0afb" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="DirectoryHelperUnitTest" name="Empty_RemovesAllFilesAndDirectories" />
+    </UnitTest>
+    <UnitTest name="GenerateTextImageBase64_ReturnsBase64" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="222ad54e-2e36-1d02-a101-5e4d4778ba2b">
+      <Execution id="790cd777-9cca-4e0a-ac7a-f5d0bead5245" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="GenerateTextImageBase64_ReturnsBase64" />
+    </UnitTest>
+    <UnitTest name="Resize_FromBytes_ResizesCorrectly" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="030de7a3-605c-77d5-c10a-4769e520ae4c">
+      <Execution id="714e5f55-2a79-44c5-9036-eeb83e35d35a" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ResizeUtils.ImageResizeHelperUnitTest" name="Resize_FromBytes_ResizesCorrectly" />
+    </UnitTest>
+    <UnitTest name="GetBase64Format_ReturnsBase64" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="a40cebf7-1990-3ba2-49c9-78e7993546c8">
+      <Execution id="ece7be9a-ad2d-432c-8f1c-6386999b3c5a" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="GetBase64Format_ReturnsBase64" />
+    </UnitTest>
+    <UnitTest name="CreateIfNotExist_Throws_OnNull" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="48826149-7887-b45c-fa1d-e4e0beca9891">
+      <Execution id="e3582404-65f8-4c95-b8ae-728a5790976b" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="DirectoryHelperUnitTest" name="CreateIfNotExist_Throws_OnNull" />
+    </UnitTest>
+    <UnitTest name="IsEmpty_ReturnsFalse_WhenDirectoryHasFilesOrDirs" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="1a7f050f-4af1-5a02-24a7-00c26bd06531">
+      <Execution id="cac0e3f3-62bb-4d4a-a473-39abcf75de62" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="DirectoryHelperUnitTest" name="IsEmpty_ReturnsFalse_WhenDirectoryHasFilesOrDirs" />
+    </UnitTest>
+    <UnitTest name="IsValidBase64_ReturnsFalse_ForInvalidBase64" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="5fd90e35-ff56-97cf-3e18-a5df186f8bd8">
+      <Execution id="4f2d7f58-506c-462e-b55a-6cb5e9b9f410" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="IsValidBase64_ReturnsFalse_ForInvalidBase64" />
+    </UnitTest>
+    <UnitTest name="TryGetHexCode_FromMemoryStream_ShouldReturnTrueAndHex" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="4efb3fa4-fc19-2b66-6944-b3cbe37c47d2">
+      <Execution id="75b09975-ddde-4c96-b92a-b8177ca23ab8" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetHexCode_FromMemoryStream_ShouldReturnTrueAndHex" />
+    </UnitTest>
+    <UnitTest name="MakeValidFileName_RemovesInvalidChars" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="9a57ae78-6778-5671-f365-e180b2b481fe">
+      <Execution id="8b76a613-79cc-4cef-b341-99ab9dff271f" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="MakeValidFileName_RemovesInvalidChars" />
+    </UnitTest>
+    <UnitTest name="GetHexCode_FromFilePath_ShouldReturnCorrectHex" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="95d79edd-31d7-24b1-cb28-5436e0d6a121">
+      <Execution id="a6805ef1-a607-4119-80b0-e16ace1eadc3" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="GetHexCode_FromFilePath_ShouldReturnCorrectHex" />
+    </UnitTest>
+    <UnitTest name="CorrectPathSeparatorChar_ReplacesWithDirSeparator (&quot;folder\subfolder\file.txt&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="c2bf88a3-b297-2cdd-06f6-7d4ada06f4de">
+      <Execution id="9d8d32df-0a23-42de-9558-f5d496afb28e" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="CorrectPathSeparatorChar_ReplacesWithDirSeparator" />
+    </UnitTest>
+    <UnitTest name="Compress_GifFile_CoversGetGifCommand" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="2e453734-94c3-a813-e9bb-d830c35fe2dc">
+      <Execution id="9f92e7ff-f55f-43e3-b61a-4bf63f69d41d" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_GifFile_CoversGetGifCommand" />
+    </UnitTest>
+    <UnitTest name="TryGetColor_FromFilePath_ShouldReturnTrueAndColor" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ba0a7890-d847-e935-ac69-18e2528d7a10">
+      <Execution id="dbb247d8-5c92-484c-9edd-0870cfecac94" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetColor_FromFilePath_ShouldReturnTrueAndColor" />
+    </UnitTest>
+    <UnitTest name="GetMimeType_ThrowsOnNull" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="86ab2cfa-bbcf-9b87-215f-f3d1826c69d7">
+      <Execution id="f5f2f2e1-522f-45a2-9051-376269a94908" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetMimeType_ThrowsOnNull" />
+    </UnitTest>
+    <UnitTest name="IsSvgImage_ValidSvg_ReturnsTrue" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="13da4d3b-e58e-571b-8155-5ca569402203">
+      <Execution id="e42d0667-9f30-46cc-8a57-bf98f832de63" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="IsSvgImage_ValidSvg_ReturnsTrue" />
+    </UnitTest>
+    <UnitTest name="Compress_ValidFilePath_ReturnsModel" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="1fb8f1c8-958f-a7b5-3291-7103e5dc8992">
+      <Execution id="7b436aa7-aeab-4cfe-938e-f52c31ef9015" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_ValidFilePath_ReturnsModel" />
+    </UnitTest>
+    <UnitTest name="Compress_InvalidFilePath_Throws" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="c5a026cc-32e7-c969-5644-798f1b0af0eb">
+      <Execution id="a9d55a5e-cc27-4f20-9bb1-0ead10d70f42" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_InvalidFilePath_Throws" />
+    </UnitTest>
+    <UnitTest name="TryGetHexCode_FromInvalidFilePath_ShouldReturnFalse" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="a6163d93-a05f-4145-bc11-e53e3d69d62d">
+      <Execution id="d0c605f7-0450-47bf-a2c4-b0bb270bbab7" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetHexCode_FromInvalidFilePath_ShouldReturnFalse" />
+    </UnitTest>
+    <UnitTest name="FileExtension_ReturnsCorrectExtension" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="c0ffc76c-75ed-4b3c-97ba-b32fb8110b28">
+      <Execution id="3d462997-aa51-47e1-8954-fd59fd68a843" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressedModelUnitTest" name="FileExtension_ReturnsCorrectExtension" />
+    </UnitTest>
+    <UnitTest name="WriteToStream_WritesFileContentToStream" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="18f07452-9e20-0f27-20d5-da30a4f4bb1a">
+      <Execution id="1f6264c5-3de8-42e7-be73-06207a539854" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="WriteToStream_WritesFileContentToStream" />
+    </UnitTest>
+    <UnitTest name="GetColor_WithEmptyRegion_ShouldThrow" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="e215fe6e-b1dd-b377-4f64-6bb1bff6d6e4">
+      <Execution id="bc69eb5f-a65f-428c-a5b8-ea1c8e9196a3" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="GetColor_WithEmptyRegion_ShouldThrow" />
+    </UnitTest>
+    <UnitTest name="SetLinuxFilePermission_DoesNothing_OnWindows" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="eae9351a-b1ea-b7a3-2d4f-5c12be62c303">
+      <Execution id="eeba5e66-a51b-4c65-84bb-e58453cd3672" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="SetLinuxFilePermission_DoesNothing_OnWindows" />
+    </UnitTest>
+    <UnitTest name="GetExtension_ThrowsOnNotFound" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="c269c789-4128-f608-56e6-59db36e45323">
+      <Execution id="ac8c6b06-6824-484d-b60a-768b32da7f52" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetExtension_ThrowsOnNotFound" />
+    </UnitTest>
+    <UnitTest name="TryGetHexCode_FromFilePath_ShouldReturnTrueAndHex" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="5e51ac55-855c-f473-eaf2-6f3e89b01f07">
+      <Execution id="317b8b18-5f60-4e6e-9f3f-0dd208422d84" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetHexCode_FromFilePath_ShouldReturnTrueAndHex" />
+    </UnitTest>
+    <UnitTest name="GetImageInfo_FromBytes_ReturnsImageModel" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="952a55be-c504-0e18-3f2e-c22da1e5f986">
+      <Execution id="c83f6d0e-5598-4e01-a595-7a884b8af84b" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ImageHelperUnitTest" name="GetImageInfo_FromBytes_ReturnsImageModel" />
+    </UnitTest>
+    <UnitTest name="Compress_StreamWithInvalidFileName_Throws" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="eb1de912-422c-2ff7-3025-52d125a0a9e0">
+      <Execution id="24e625d8-8300-4632-bec0-888380370b16" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.CompressUtils.ImageCompressorUnitTest" name="Compress_StreamWithInvalidFileName_Throws" />
+    </UnitTest>
+    <UnitTest name="GetFullPath_RelativePath_CombinesWithBasePath (&quot;folder\subfolder/file.txt&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="962f8a4a-569e-3ae3-82b4-59ef2d203e2c">
+      <Execution id="d10a0bff-606e-4dee-8413-cbfe8ff53f74" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="GetFullPath_RelativePath_CombinesWithBasePath" />
+    </UnitTest>
+    <UnitTest name="Save_ValidStreamAndPath_FileIsCreatedWithCorrectContent" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="8a959175-cc26-c7e2-40f9-3a56161076fd">
+      <Execution id="dbaba95e-9d3d-4095-b8a9-388ca0454b00" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="MemoryStreamHelperUnitTest" name="Save_ValidStreamAndPath_FileIsCreatedWithCorrectContent" />
+    </UnitTest>
+    <UnitTest name="CreateIfNotExist_CreatesDirectory_WhenNotExists" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="813718d4-4f77-8f30-cd34-38ebc32bcea5">
+      <Execution id="c2f472d6-0452-4810-a2bd-1e9ba219c609" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="DirectoryHelperUnitTest" name="CreateIfNotExist_CreatesDirectory_WhenNotExists" />
+    </UnitTest>
+    <UnitTest name="MakeValidFileName_RemovesAccents" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="5a053b92-4500-26e2-9df1-1575895f8391">
+      <Execution id="d16348f4-54d2-47c7-b08f-0576bbfb3e69" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="FileHelperUnitTest" name="MakeValidFileName_RemovesAccents" />
+    </UnitTest>
+    <UnitTest name="TryGetColor_Success_SetsDominantColor" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="aa206ce1-cf0f-f1dd-5eee-26d55c163bf3">
+      <Execution id="9399c77c-82da-4c33-a3c1-6aecb1b41633" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ColorUtils.ImageDominantColorHelperUnitTest" name="TryGetColor_Success_SetsDominantColor" />
+    </UnitTest>
+    <UnitTest name="GetMimeType_ReturnsExpected (&quot;jpg&quot;,&quot;image/jpeg&quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="e00266b7-3300-0d4f-3937-fdc79a611c24">
+      <Execution id="87d12bf1-b13f-4fe5-bd10-b2a4dcaef143" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.FileUtils.MimeTypeHelperUnitTests" name="GetMimeType_ReturnsExpected" />
+    </UnitTest>
+    <UnitTest name="Save_NullPath_ThrowsException" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="ae94ee2c-1ce6-0e8a-90f9-459ba5ddbe0e">
+      <Execution id="3a992727-eb9b-4965-a4c0-0fa75d5cf9ac" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="MemoryStreamHelperUnitTest" name="Save_NullPath_ThrowsException" />
+    </UnitTest>
+    <UnitTest name="Resize_FromFilePath_ResizesCorrectly" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="cefa80e0-7424-328d-306f-6fc348079a72">
+      <Execution id="8729cd5c-27ce-42f9-af69-2122eed2b61d" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.ImageUtils.ResizeUtils.ImageResizeHelperUnitTest" name="Resize_FromFilePath_ResizesCorrectly" />
+    </UnitTest>
+    <UnitTest name="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput (&quot;   &quot;,&quot;   &quot;)" storage="d:\top\git\elect\test\data\elect.test.data.io\bin\debug\net9.0\elect.test.data.io.dll" id="4149c80a-7def-360e-dc75-981e98a182a6">
+      <Execution id="0414de76-f5f1-470a-b6af-4f3833e03c50" />
+      <TestMethod codeBase="D:\TOP\GIT\Elect\test\Data\Elect.Test.Data.IO\bin\Debug\net9.0\Elect.Test.Data.IO.dll" adapterTypeName="executor://mstestadapter/v2" className="Elect.Test.Data.IO.PathHelperUnitTest" name="CorrectPathSeparatorChar_NullOrWhitespace_ReturnsInput" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="2e453734-94c3-a813-e9bb-d830c35fe2dc" executionId="9f92e7ff-f55f-43e3-b61a-4bf63f69d41d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4e10ee00-9466-af4c-12ed-0c140e04aeee" executionId="30b5d03a-556d-4396-a94f-09816189e214" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="df896f05-6b9a-e3a1-85b6-47091e3061f8" executionId="c27762b7-9bf1-40c2-88c6-2fa9db5f7a02" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1fb8f1c8-958f-a7b5-3291-7103e5dc8992" executionId="7b436aa7-aeab-4cfe-938e-f52c31ef9015" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4b469241-6071-8429-cfe3-b9e43501d592" executionId="26e7084a-4adc-4f16-8db3-efc9dffeb902" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="906c90e7-36ae-b69b-84cb-52d9f7df1454" executionId="497dbebc-35f2-4665-b58b-e71b2c92d458" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2a768ec4-0238-d61e-692d-54eec0c56411" executionId="9e2f2ac0-8855-4a1a-aa2c-480bf7e70960" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0b48b2c-fc3b-d3e5-7f13-18a8cc52c46f" executionId="65d357bf-4b86-439d-8199-ecdc0ace9b25" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="648cd995-3bae-c0ae-fa7c-6aad1e885a51" executionId="d4997501-7656-4832-aa85-58c86177e0a1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c58dbc75-afb3-015d-f682-21a6f6af2d62" executionId="b27a543c-7bad-410c-a7d9-cf4300e0803c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f85f4b99-6edb-56ea-afca-38ae8af93a0c" executionId="5c8b770c-bbce-48d6-a12f-c650eb5be225" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8c7b91f9-a065-3f92-79a6-624f9bc6f406" executionId="94eb4a8d-6e02-4148-a558-401b3edf0549" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="79636e01-6d55-53e4-829a-fbe31a3d87ce" executionId="819ac6b6-4acc-459e-b120-06c9aa76ae78" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9a94b4d4-7761-94ac-4ed5-5f538fc10ba4" executionId="837ea21c-87e2-47fb-9728-771acea0d232" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c749007a-b715-ff8b-3541-a1391dec1a74" executionId="46c9ca2e-9173-46f9-9e48-c73f5f9d1bc3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="63b8f09b-9e1c-bcf1-7bb0-daa2fab6b7f2" executionId="7b832729-88fa-492c-81b5-22d55c01439f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d23a2c6c-9c19-f99f-3bb9-8c3d82888720" executionId="8a88e0f5-7617-4c55-9d22-6fa6f806b67f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dfa934a-78c8-f613-69e1-ea8f101bc344" executionId="aa2c64ec-645a-4e78-8f35-e6f93bf6f21a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1e0a84ae-3698-142d-deb0-ab7d7bdb248e" executionId="5e777ead-c120-4b77-8822-3f9809fe0ce5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="71480f8b-549b-906d-0152-262ccf49a5c4" executionId="700bd820-e3bb-477b-8171-297c80d44002" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9a91935f-c091-fe89-d99f-a06b85926529" executionId="d0dfb784-4904-4698-b27a-b115f9ac3ec5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1a7f050f-4af1-5a02-24a7-00c26bd06531" executionId="cac0e3f3-62bb-4d4a-a473-39abcf75de62" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4bfc5db0-1604-1793-30c6-507d99cc1af6" executionId="b7af6150-920c-4da2-b656-ba16424723a4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec895ea7-fed3-04f9-f69d-ce502ace2d84" executionId="eacce1e9-dfe6-4320-a193-231c70c7339b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0ff22051-48ce-4f8c-b3dc-3e94111c30bb" executionId="dde0773e-5601-4fd4-b5f7-8eb2b04a59bc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eae9351a-b1ea-b7a3-2d4f-5c12be62c303" executionId="eeba5e66-a51b-4c65-84bb-e58453cd3672" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="58027957-609a-3571-1d0c-d06de038d632" executionId="9cbef4e9-a517-46f7-9341-77f5c0a5d6ce" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0cd46606-f372-eeaa-eea9-c7b237d25a97" executionId="2e084147-85b2-4fc2-91df-58e3b56eab56" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="95d79edd-31d7-24b1-cb28-5436e0d6a121" executionId="a6805ef1-a607-4119-80b0-e16ace1eadc3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b0311977-d8cc-1f82-d938-157212c5ba05" executionId="9d87c7b8-3707-491f-abb1-4b2daa5187e7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f7c385c5-f38b-a6ad-3e1e-37f06ea78bd1" executionId="ab30ff27-39c5-463a-acf1-a498aa159b63" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d3ad44b9-a2e3-c48f-dc62-013a25aaa725" executionId="0d92c702-cf52-48eb-b638-1a37a3287d29" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="26fef98f-8310-ca89-db9f-2d552213f3fb" executionId="bf8df94d-0380-4d1a-83fd-11fe7ccf32d5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="aea027b4-0a81-ab86-f977-46e18e936f59" executionId="502d203f-16d5-408a-8e29-141941c99edf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5e51ac55-855c-f473-eaf2-6f3e89b01f07" executionId="317b8b18-5f60-4e6e-9f3f-0dd208422d84" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ed55ff8c-c35d-481a-3c31-ffac09c4afeb" executionId="ba1edd51-0875-4054-a8a5-7df9c6eb1909" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cefa80e0-7424-328d-306f-6fc348079a72" executionId="8729cd5c-27ce-42f9-af69-2122eed2b61d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d101d317-553e-c369-f7a8-d2c5f2073f22" executionId="cd1827ec-a859-4c95-a314-c33fe41213bf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="222ad54e-2e36-1d02-a101-5e4d4778ba2b" executionId="790cd777-9cca-4e0a-ac7a-f5d0bead5245" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="18f07452-9e20-0f27-20d5-da30a4f4bb1a" executionId="1f6264c5-3de8-42e7-be73-06207a539854" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ba0a7890-d847-e935-ac69-18e2528d7a10" executionId="dbb247d8-5c92-484c-9edd-0870cfecac94" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="030de7a3-605c-77d5-c10a-4769e520ae4c" executionId="714e5f55-2a79-44c5-9036-eeb83e35d35a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a6163d93-a05f-4145-bc11-e53e3d69d62d" executionId="d0c605f7-0450-47bf-a2c4-b0bb270bbab7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ea1b79ca-66b2-3be0-6749-60d6f9070697" executionId="6338d731-b4f8-4182-b660-ae65857ec788" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e00266b7-3300-0d4f-3937-fdc79a611c24" executionId="87d12bf1-b13f-4fe5-bd10-b2a4dcaef143" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c269c789-4128-f608-56e6-59db36e45323" executionId="ac8c6b06-6824-484d-b60a-768b32da7f52" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ad617111-a77a-dc8f-0b15-7565c56c5775" executionId="819acfce-a036-469f-9f5b-ef345259bc30" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="16425e9b-6bc3-a1cf-9d4a-70512392e110" executionId="795a20d3-12c0-4ec3-968a-5a046d1de010" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ce04e802-62f7-de8e-cbba-77c7eb5bd226" executionId="5d81d346-e2fb-4da4-94c0-604599700dff" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2cd465d5-2b0a-4986-b662-24050e50a8e1" executionId="c6a81221-05f3-4474-9eb9-854fd2ec525f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4149c80a-7def-360e-dc75-981e98a182a6" executionId="0414de76-f5f1-470a-b6af-4f3833e03c50" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e8836de0-c736-b1f5-825a-0aafc5d25d84" executionId="57c73c50-0b04-49f9-8668-61c03a4758bd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0e6634e1-8c7e-c67e-7243-f828dcc9aef0" executionId="8d5963e2-29aa-416f-b03e-8bffc75f71ee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4bde2147-fef4-4993-1268-7e19cb6abbaf" executionId="529faefc-e69e-49bd-8b0a-0d313dde96ea" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ddb5ccc2-9b33-dc28-1bfd-c32cb9e3421d" executionId="d47f080a-d0a7-4806-a399-6d76fe71c8f6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="813718d4-4f77-8f30-cd34-38ebc32bcea5" executionId="c2f472d6-0452-4810-a2bd-1e9ba219c609" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="952a55be-c504-0e18-3f2e-c22da1e5f986" executionId="c83f6d0e-5598-4e01-a595-7a884b8af84b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eb1de912-422c-2ff7-3025-52d125a0a9e0" executionId="24e625d8-8300-4632-bec0-888380370b16" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="880f8936-72c2-5999-47cd-d49385393e4e" executionId="8c228e25-aead-459d-b210-91f9d1925de9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ab70032d-8e0d-a360-ef1d-0d75c122bb1a" executionId="16c8cfa8-0619-42c9-ad64-287acaecd745" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="95ec9135-07a6-77d5-b33b-e61077fbf39b" executionId="67e81f12-5871-4a5b-adbb-3fd0ba70548b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="86ab2cfa-bbcf-9b87-215f-f3d1826c69d7" executionId="f5f2f2e1-522f-45a2-9051-376269a94908" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="27b4537c-89cb-a671-8d7c-929747bd6eec" executionId="e924df52-563b-4535-873a-6232d96a9aea" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c2bf88a3-b297-2cdd-06f6-7d4ada06f4de" executionId="9d8d32df-0a23-42de-9558-f5d496afb28e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e215fe6e-b1dd-b377-4f64-6bb1bff6d6e4" executionId="bc69eb5f-a65f-428c-a5b8-ea1c8e9196a3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3895d866-0452-d48e-feb4-6c37e0ef8f17" executionId="5b8b42c7-1cc6-4320-978e-e6badd3ff58e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="13da4d3b-e58e-571b-8155-5ca569402203" executionId="e42d0667-9f30-46cc-8a57-bf98f832de63" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cf0c9a2b-b1cc-c09f-f055-9c5fec01a1cc" executionId="af005aeb-d9eb-45b7-ad71-feca9dce0c13" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b93bef96-fc8e-d044-8cf9-7c73e6b438e5" executionId="fcc2c4a1-c2b4-45bc-a0ec-6f472e0aeb68" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5feb7ce3-17d2-377d-edb0-ab65d83f5401" executionId="4598cbda-0847-464a-9725-1b3efbdd72ef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="48826149-7887-b45c-fa1d-e4e0beca9891" executionId="e3582404-65f8-4c95-b8ae-728a5790976b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="962f8a4a-569e-3ae3-82b4-59ef2d203e2c" executionId="d10a0bff-606e-4dee-8413-cbfe8ff53f74" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c98d18a3-f8a5-43cf-cb69-fde67830c1f1" executionId="c612d2b1-2666-4519-95c9-00091b967f20" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="33704345-d189-1be8-70c3-94037db7a457" executionId="b439b856-62e0-4023-9ce1-5e46e0150a0c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="48a35391-ffc9-2874-e9cd-e2ca4155fe83" executionId="338f7cbe-a609-441f-9bd2-54440fc4755f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="692a5c1b-cd7c-b253-a0b1-018afa1deded" executionId="55ee9d81-9c59-4117-ba82-9c3ec20b0afb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5a053b92-4500-26e2-9df1-1575895f8391" executionId="d16348f4-54d2-47c7-b08f-0576bbfb3e69" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9a57ae78-6778-5671-f365-e180b2b481fe" executionId="8b76a613-79cc-4cef-b341-99ab9dff271f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="833445af-acb0-0e5e-6dd9-273a3c9b6fe3" executionId="736ecb9d-5bbf-40d6-8eb1-be1e3badb6f0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="36426fde-5bba-8b2c-5fe9-2a880c024146" executionId="df5b3bb2-86b9-454f-994a-3ea6ecc3c72d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="385b32cf-37c5-26b1-e376-e9925ec31cfd" executionId="4278f7ad-fa36-4b3e-a39d-6db2843c765c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8a959175-cc26-c7e2-40f9-3a56161076fd" executionId="dbaba95e-9d3d-4095-b8a9-388ca0454b00" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="24877086-71f2-af03-0f17-67f331c5b84f" executionId="5a202eec-f5cb-4671-bb2d-554a4a1c18de" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7d0dfe92-b55d-a9e6-a265-f8f099c3347e" executionId="8b28bf03-6b4d-4558-bb32-b3774989b662" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4b3849f6-7299-205e-9512-6bfa4393dd52" executionId="1b1691b2-c8f7-4d39-8e99-77849766fde4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8e4bd926-70b4-d1f8-b6d6-3cc90e5f2ba8" executionId="093ff380-c308-4d53-866a-17bbaf880fcf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fdf5746b-b86a-73b4-1fa0-28b39b8f1597" executionId="0fe9d3c6-f5c7-489b-a442-2687f0d141e7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fef90f3f-a0df-5e2e-4f8e-77ef04a220b8" executionId="70be7b6e-d16f-4423-baed-c74339c8276d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0ffc76c-75ed-4b3c-97ba-b32fb8110b28" executionId="3d462997-aa51-47e1-8954-fd59fd68a843" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4efb3fa4-fc19-2b66-6944-b3cbe37c47d2" executionId="75b09975-ddde-4c96-b92a-b8177ca23ab8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="aa206ce1-cf0f-f1dd-5eee-26d55c163bf3" executionId="9399c77c-82da-4c33-a3c1-6aecb1b41633" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ae94ee2c-1ce6-0e8a-90f9-459ba5ddbe0e" executionId="3a992727-eb9b-4965-a4c0-0fa75d5cf9ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3b1db870-8c36-dba8-65fb-0fb8a4b51b4b" executionId="5f804045-1c99-4394-9bc7-49811f7e1b73" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e54b5f76-8192-bc2f-86ee-5b5283fe6939" executionId="6f61e2bb-1cab-405d-bb57-0b0b38f7b3f5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a40cebf7-1990-3ba2-49c9-78e7993546c8" executionId="ece7be9a-ad2d-432c-8f1c-6386999b3c5a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d0d3a8f0-ca0e-b51d-6e04-4a423598764e" executionId="3ae56e48-7c54-4dbe-9638-b8d812a604cf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2226e4d4-2567-1d2e-574f-b5b52a3b7051" executionId="87f44d94-aaf0-45c7-83ab-ca02611534f8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b0ab6548-3e6d-bd4a-3158-06979f4645aa" executionId="659ab47b-60ff-4edc-9f76-913cdd44804d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="aac9bcbb-97c4-1808-25a7-752d9a522a12" executionId="52e461ab-fdd0-43ff-b687-029eb967415f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8fec715f-dc75-f135-db8c-9cb578cf3c07" executionId="ae1fef3d-188e-499e-b48a-63cd55853b6a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a5c24435-399b-0383-baea-5d421c708f54" executionId="987f780a-5b58-4dad-b720-0f9ce2d5e64b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5fd90e35-ff56-97cf-3e18-a5df186f8bd8" executionId="4f2d7f58-506c-462e-b55a-6cb5e9b9f410" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3532a11-82fb-d470-88e2-c67f21dcef3c" executionId="84d80123-9c35-46e7-822d-537305b3c6f9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="68f5062b-72f8-6301-57f4-03624bc69dea" executionId="c6b0e7bf-1dc5-4057-a32a-4871c836aef6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="71c12da7-f7d6-d2b9-5904-247f02297f22" executionId="8a670968-068e-422d-95ca-761cd29e179b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e6301668-90f7-d8b0-b2e3-a6f7a3aac6d8" executionId="9f160082-3254-4065-84c3-87ec9709f931" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c5a026cc-32e7-c969-5644-798f1b0af0eb" executionId="a9d55a5e-cc27-4f20-9bb1-0ead10d70f42" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="107" executed="107" passed="107" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+</TestRun>
