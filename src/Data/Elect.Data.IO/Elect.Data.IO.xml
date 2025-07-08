@@ -146,7 +146,7 @@
         </member>
         <member name="F:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Lazy">
             <summary>
-                A new instance of the <see cref="T:.Web.Config.Config" /> class. with lazy initialization. 
+                A new instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class. with lazy initialization.
             </summary>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.#ctor">
