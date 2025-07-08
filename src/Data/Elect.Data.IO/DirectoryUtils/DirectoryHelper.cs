@@ -14,7 +14,6 @@
                 }
             }
         }
-
         /// <summary>
         ///     Clear all content in the directory 
         /// </summary>
@@ -37,7 +36,6 @@
                 }
             }
         }
-
         /// <summary>
         ///     Check directory is empty or not 
         /// </summary>
@@ -47,7 +45,6 @@
         {
             return !Directory.EnumerateFileSystemEntries(path).Any();
         }
-
         public class SpecialFolder
         {
             public static string GetCurrentWindowUserFolder()

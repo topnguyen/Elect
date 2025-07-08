@@ -1,8 +1,4 @@
-﻿using Elect.Data.IO.ImageUtils.ColorUtils;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-
-namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
+﻿namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
 {
     [TestClass]
     public class ColorHelperUnitTest
@@ -17,7 +13,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.IsTrue(rgb.G >= 0 && rgb.G <= 255);
             Assert.IsTrue(rgb.B >= 0 && rgb.B <= 255);
         }
-
         [TestMethod]
         public void GetRandom_ShouldReturnDifferentColors()
         {

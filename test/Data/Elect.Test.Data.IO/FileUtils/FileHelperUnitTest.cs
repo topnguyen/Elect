@@ -10,7 +10,6 @@ public class FileHelperUnitTest
         Assert.IsTrue(File.Exists(tempFile));
         File.Delete(tempFile);
     }
-
     [TestMethod]
     public void CreateIfNotExist_DoesNotThrow_WhenFileExists()
     {
@@ -19,7 +18,6 @@ public class FileHelperUnitTest
         Assert.IsTrue(File.Exists(tempFile));
         File.Delete(tempFile);
     }
-
     [TestMethod]
     public void CreateIfNotExist_WithPermissions_CallsSetLinuxFilePermission()
     {
@@ -29,7 +27,6 @@ public class FileHelperUnitTest
         Assert.IsTrue(File.Exists(tempFile));
         File.Delete(tempFile);
     }
-
     [TestMethod]
     public void SetLinuxFilePermission_DoesNothing_OnWindows()
     {
@@ -37,7 +34,6 @@ public class FileHelperUnitTest
         FileHelper.SetLinuxFilePermission(0, tempFile);
         File.Delete(tempFile);
     }
-
     [TestMethod]
     public void CreateTempFile_CreatesFileWithExtension()
     {
@@ -46,7 +42,6 @@ public class FileHelperUnitTest
         Assert.AreEqual(".txt", Path.GetExtension(path));
         File.Delete(path);
     }
-
     [TestMethod]
     public void CreateTempFile_Stream_CreatesFileWithContent()
     {
@@ -54,7 +49,6 @@ public class FileHelperUnitTest
         Assert.IsTrue(File.Exists(path));
         File.Delete(path);
     }
-
     [TestMethod]
     public void SafeDelete_DeletesFile()
     {
@@ -64,7 +58,6 @@ public class FileHelperUnitTest
         Assert.IsTrue(result);
         Assert.IsFalse(File.Exists(tempFile));
     }
-
     [TestMethod]
     public void SafeDelete_ReturnsTrue_WhenFileDoesNotExist()
     {
@@ -73,27 +66,23 @@ public class FileHelperUnitTest
         var result = FileHelper.SafeDelete(tempFile);
         Assert.IsTrue(result);
     }
-
     [TestMethod]
     public void SafeDelete_ReturnsFalse_OnException()
     {
         var result = FileHelper.SafeDelete(null);
         Assert.IsTrue(result); // Because null or whitespace returns true
     }
-
     [TestMethod]
     public void IsValidBase64_ReturnsTrue_ForValidBase64()
     {
         var valid = Convert.ToBase64String("test"u8.ToArray());
         Assert.IsTrue(FileHelper.IsValidBase64(valid));
     }
-
     [TestMethod]
     public void IsValidBase64_ReturnsFalse_ForInvalidBase64()
     {
         Assert.IsFalse(FileHelper.IsValidBase64("notbase64"));
     }
-
     [TestMethod]
     public void WriteToStream_WritesFileContentToStream()
     {
@@ -107,7 +96,6 @@ public class FileHelperUnitTest
         Assert.AreEqual("abc", content);
         File.Delete(tempFile);
     }
-
     [TestMethod]
     public void WriteToStream_DoesNothing_WhenFileNotExists()
     {
@@ -115,7 +103,6 @@ public class FileHelperUnitTest
         FileHelper.WriteToStream("notfound.txt", ms);
         Assert.AreEqual(0, ms.Length);
     }
-
     [TestMethod]
     public void MakeValidFileName_RemovesInvalidChars()
     {
@@ -123,7 +110,6 @@ public class FileHelperUnitTest
         var valid = FileHelper.MakeValidFileName(invalid, '_', false, false);
         Assert.IsFalse(valid.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0);
     }
-
     [TestMethod]
     public void MakeValidFileName_UsesFancyReplacement()
     {
@@ -131,7 +117,6 @@ public class FileHelperUnitTest
         var result = FileHelper.MakeValidFileName(input, '_', true, false);
         Assert.IsTrue(result.Contains('"') && result.Contains('\'') && result.Contains('⁄'), "Result should contain '\"', '\\'', and '⁄'");
     }
-
     [TestMethod]
     public void MakeValidFileName_RemovesAccents()
     {
@@ -139,12 +124,10 @@ public class FileHelperUnitTest
         var result = FileHelper.MakeValidFileName(input, '_', false, true);
         Assert.IsTrue(result.Contains("cafe"));
     }
-
     [TestMethod]
     public void MakeValidFileName_ReturnsReplacement_WhenEmpty()
     {
         var result = FileHelper.MakeValidFileName("<>", '_', false, false);
-
         if (Environment.OSVersion.Platform == PlatformID.Win32NT)
         {
             Assert.AreEqual("__", result);
@@ -154,7 +137,6 @@ public class FileHelperUnitTest
             Assert.AreEqual("<>", result);
         }
     }
-
     [TestMethod]
     public void MakeValidFileName_TruncatesLongFileName()
     {
@@ -162,8 +144,6 @@ public class FileHelperUnitTest
         var result = FileHelper.MakeValidFileName(longName, '_', false, false);
         Assert.AreEqual(260, result.Length);
     }
-
-
     [TestMethod]
     public void CreateTempFile_FromStream_CreatesFileWithCorrectContentAndExtension()
     {
@@ -171,16 +151,13 @@ public class FileHelperUnitTest
         var content = new byte[] { 1, 2, 3, 4, 5 };
         using var inputStream = new MemoryStream(content);
         var extension = ".dat";
-
         // Act
         var filePath = FileHelper.CreateTempFile(inputStream, extension);
-
         // Assert
         Assert.IsTrue(File.Exists(filePath));
         Assert.AreEqual(extension, Path.GetExtension(filePath));
         var fileContent = File.ReadAllBytes(filePath);
         CollectionAssert.AreEqual(content, fileContent);
-
         // Cleanup
         File.Delete(filePath);
     }

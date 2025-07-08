@@ -1,13 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Elect.Data.IO.ImageUtils.ColorUtils;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-using System;
-using System.Drawing;
-using System.IO;
-using Color = SixLabors.ImageSharp.Color;
-
-namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
+﻿namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
 {
     [TestClass]
     public class ImageDominantColorHelperUnitTest
@@ -23,7 +14,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             ms.Position = 0;
             return ms;
         }
-
         [TestMethod]
         public void GetHexCode_FromMemoryStream_ShouldReturnCorrectHex()
         {
@@ -31,7 +21,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             var hex = ImageDominantColorHelper.GetHexCode(ms);
             Assert.AreEqual("#123456", hex, true);
         }
-
         [TestMethod]
         public void TryGetHexCode_FromMemoryStream_ShouldReturnTrueAndHex()
         {
@@ -40,7 +29,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.IsTrue(result);
             Assert.AreEqual("#FFFFFF", hex, true);
         }
-
         [TestMethod]
         public void TryGetHexCode_FromInvalidMemoryStream_ShouldReturnFalse()
         {
@@ -49,7 +37,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.IsFalse(result);
             Assert.IsNull(hex);
         }
-
         [TestMethod]
         public void GetColor_FromMemoryStream_ShouldReturnCorrectColor()
         {
@@ -60,7 +47,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.AreEqual(20, rgba.G);
             Assert.AreEqual(30, rgba.B);
         }
-
         [TestMethod]
         public void GetColor_WithRegion_ShouldReturnCorrectColor()
         {
@@ -72,7 +58,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.AreEqual(150, rgba.G);
             Assert.AreEqual(200, rgba.B);
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetColor_WithInvalidRegion_ShouldThrow()
@@ -81,7 +66,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             var region = new SixLabors.ImageSharp.Rectangle(10, 10, 2, 2);
             ImageDominantColorHelper.GetColor(ms, region);
         }
-
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetColor_WithEmptyRegion_ShouldThrow()
@@ -90,7 +74,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             var region = new SixLabors.ImageSharp.Rectangle(0, 0, 0, 0);
             ImageDominantColorHelper.GetColor(ms, region);
         }
-
         [TestMethod]
         public void GetHexCode_FromFilePath_ShouldReturnCorrectHex()
         {
@@ -103,7 +86,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             var hex = ImageDominantColorHelper.GetHexCode(filePath);
             Assert.AreEqual("#123456", hex, true);
         }
-
         [TestMethod]
         public void TryGetHexCode_FromFilePath_ShouldReturnTrueAndHex()
         {
@@ -117,7 +99,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.IsTrue(result);
             Assert.AreEqual("#FFFFFF", hex, true);
         }
-
         [TestMethod]
         public void TryGetHexCode_FromInvalidFilePath_ShouldReturnFalse()
         {
@@ -126,7 +107,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.IsFalse(result);
             Assert.IsNull(hex);
         }
-
         [TestMethod]
         public void GetColor_FromFilePath_ShouldReturnCorrectColor()
         {
@@ -142,7 +122,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.AreEqual(20, rgba.G);
             Assert.AreEqual(30, rgba.B);
         }
-
         [TestMethod]
         public void TryGetColor_FromFilePath_ShouldReturnTrueAndColor()
         {
@@ -159,7 +138,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.AreEqual(2, rgba.G);
             Assert.AreEqual(3, rgba.B);
         }
-
         [TestMethod]
         public void TryGetColor_FromInvalidFilePath_ShouldReturnFalse()
         {
@@ -168,7 +146,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.IsFalse(result);
             Assert.IsNull(color);
         }
-
         [TestMethod]
         public void TryGetColor_FromInvalidMemoryStream_ShouldReturnFalse()
         {
@@ -177,7 +154,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.IsFalse(result);
             Assert.IsNull(color);
         }
-
         [TestMethod]
         public void TryGetColor_Success_SetsDominantColor()
         {
@@ -190,7 +166,6 @@ namespace Elect.Test.Data.IO.ImageUtils.ColorUtils
             Assert.AreEqual(20, rgba.G);
             Assert.AreEqual(30, rgba.B);
         }
-
         [TestMethod]
         public void TryGetColor_Failure_SetsDominantColorToNull()
         {

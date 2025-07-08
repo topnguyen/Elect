@@ -1,11 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Elect.Data.IO.ImageUtils.CompressUtils;
-using Elect.Data.IO.ImageUtils.CompressUtils.Models;
-using System;
-using System.IO;
-using SixLabors.ImageSharp;
-
-namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
+﻿namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
 {
     [TestClass]
     public class ImageCompressedModelUnitTest
@@ -20,7 +13,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             Assert.AreEqual(100, model.CompressedFileSize);
             File.Delete(tempFile);
         }
-
         [TestMethod]
         public void Constructor_WithInvalidFile_SetsCompressedFileSizeZero()
         {
@@ -28,7 +20,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             Assert.AreEqual(123, model.OriginalFileSize);
             Assert.AreEqual(0, model.CompressedFileSize);
         }
-
         [TestMethod]
         public void FileExtension_ReturnsCorrectExtension()
         {
@@ -41,7 +32,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             Assert.AreEqual(".png", model.FileExtension);
             File.Delete(tempFile);
         }
-
         [TestMethod]
         public void BytesSaving_And_PercentSaving_CalculatedCorrectly()
         {
@@ -57,7 +47,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             Assert.AreEqual(expectedPercent, model.PercentSaving, 0.0001);
             File.Delete(tempFile);
         }
-
         [TestMethod]
         public void PercentSaving_ZeroIfNoSaving()
         {

@@ -1,6 +1,4 @@
-﻿using SixLabors.ImageSharp.PixelFormats;
-
-namespace Elect.Data.IO.ImageUtils.ColorUtils
+﻿namespace Elect.Data.IO.ImageUtils.ColorUtils
 {
     public static class ColorExtensions
     {
@@ -8,7 +6,6 @@ namespace Elect.Data.IO.ImageUtils.ColorUtils
         {
             return "#" + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
         }
-
         public static string ToHexCode(this SixLabors.ImageSharp.Color color)
         {
             var rgba = color.ToPixel<Rgba32>();

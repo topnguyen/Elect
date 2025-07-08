@@ -19,9 +19,7 @@
             bool isExist = services.All(x => x.ServiceType == typeof(TService));
             return isExist;
         }
-
         #region Add If Any
-
         public static IServiceCollection AddScopedIfAny<TService, TImplementation>(this IServiceCollection services,
             [NotNull] Func<ServiceDescriptor, bool> predicate)
             where TService : class where TImplementation : class, TService
@@ -79,11 +77,8 @@
             }
             return services;
         }
-
         #endregion
-
         #region Add If All
-
         public static IServiceCollection AddScopedIfAll<TService, TImplementation>(this IServiceCollection services,
             [NotNull] Func<ServiceDescriptor, bool> predicate)
             where TService : class where TImplementation : class, TService
@@ -141,11 +136,8 @@
             }
             return services;
         }
-
         #endregion
-
         #region Add If Not Exist
-
         public static IServiceCollection
             AddScopedIfNotExist<TService, TImplementation>(this IServiceCollection services) where TService : class
             where TImplementation : class, TService
@@ -185,11 +177,8 @@
             services.AddSingletonIfAll<TService>(x => x.ServiceType != typeof(TService));
             return services;
         }
-
         #endregion
-
         #region Scanner
-
         /// <summary>
         ///     Auto scan and register implementation of service follow
         ///     <see cref="Elect.DI.Attributes" /> life time setup.
@@ -198,7 +187,6 @@
         {
             return services.AddElectDI(_ => { });
         }
-
         /// <summary>
         ///     Auto scan and register implementation of service follow
         ///     <see cref="Elect.DI.Attributes" /> life time setup.
@@ -212,7 +200,6 @@
                 _.ListAssemblyName = configure.ListAssemblyName;
             });
         }
-
         /// <summary>
         ///     Auto scan and register implementation of service follow
         ///     <see cref="Elect.DI.Attributes" /> life time setup.
@@ -230,22 +217,18 @@
                 {
                     // dll files
                     scanner.RegisterAssemblies(services, assemblyFolderPath, $"{rootAssemblyName}.dll");
-
                     // dll prefix files
                     scanner.RegisterAssemblies(services, assemblyFolderPath, $"{rootAssemblyName}.*.dll");
                 }
             }
             return services;
         }
-
         #endregion
-
         #region Print
         public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services)
         {
             return services.PrintServiceAddedToConsole(_ => { });
         }
-
         public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services,
             [NotNull] ElectPrintRegisteredToConsoleOptions configure)
         {
@@ -258,7 +241,6 @@
                 _.SortAscBy = configure.SortAscBy;
             });
         }
-
         public static IServiceCollection PrintServiceAddedToConsole(this IServiceCollection services,
             [NotNull] Action<ElectPrintRegisteredToConsoleOptions> configure)
         {
@@ -310,7 +292,6 @@
             Console.WriteLine();
             return services;
         }
-
         private static void PrintServiceAddedToConsoleMinimalDisplayFormat(
             List<ServiceDescriptor> listServiceDescriptors, ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
         {
@@ -358,29 +339,23 @@
                 Console.Write($"{no}".PadRight(noMaxLength));
                 Console.ResetColor();
                 Console.Write("    |    ");
-
                 // Service
                 Console.ForegroundColor = consoleTextColor;
                 Console.Write(GetNormForServiceAdded(service.ServiceType?.Name).PadRight(serviceNameMaxLength));
                 Console.ResetColor();
                 Console.Write("    |    ");
-
                 // Implementation
                 var implementationName = service.ImplementationType?.Name ?? service.ServiceType.GenericTypeArguments.LastOrDefault()?.Name ?? "-";
-
                 implementationName = GetNormForServiceAdded(implementationName);
-
                 Console.ForegroundColor = consoleDimColor;
                 Console.Write(implementationName.PadRight(implementationNameMaxLength));
                 Console.ResetColor();
                 Console.Write("    |    ");
-
                 // Lifetime
                 Console.ForegroundColor = consoleTextColor;
                 Console.WriteLine(service.Lifetime.ToString().PadRight(lifeTimeMaxLength));
             }
         }
-
         private static void PrintServiceAddedToConsoleFullDisplayFormat(List<ServiceDescriptor> listServiceDescriptors,
             ConsoleColor consoleDimColor, ConsoleColor consoleTextColor)
         {
@@ -391,7 +366,6 @@
                     listServiceDescriptors.Select(x => GetNormForServiceAdded(x.ImplementationType?.Name ?? x.ServiceType.GenericTypeArguments.LastOrDefault()?.Name ?? "-").Length).Max(),
                     listServiceDescriptors.Select(x => x.Lifetime.ToString().Length).Max()
                 }.Max();
-
             for (var index = 0; index < listServiceDescriptors.Count; index++)
             {
                 var service = listServiceDescriptors[index];
@@ -403,7 +377,6 @@
                 Console.Write("".PadRight(maximumCharacter));
                 Console.Write("    |    ");
                 Console.WriteLine();
-
                 // Service
                 Console.ForegroundColor = consoleDimColor;
                 Console.Write("    Service       ");
@@ -415,7 +388,6 @@
                 Console.Write("    |    ");
                 Console.ForegroundColor = consoleDimColor;
                 Console.WriteLine(GetNormForServiceAdded(service.ServiceType?.FullName).PadRight(maximumCharacter));
-
                 // Implementation
                 Console.ForegroundColor = consoleDimColor;
                 Console.Write("    Implementation");
@@ -427,7 +399,6 @@
                 Console.Write("    |    ");
                 Console.ForegroundColor = consoleDimColor;
                 Console.WriteLine(GetNormForServiceAdded(service.ImplementationType?.FullName ?? service.ServiceType.GenericTypeArguments.LastOrDefault()?.FullName ?? "-").PadRight(maximumCharacter));
-
                 // Life Time
                 Console.ForegroundColor = consoleDimColor;
                 Console.Write("    Lifetime      ");
@@ -439,7 +410,6 @@
                 Console.WriteLine("    |    ");
             }
         }
-
         [NotNull]
         private static string GetNormForServiceAdded(string value)
         {
@@ -450,7 +420,6 @@
             // Replace To Readable Generic if can
             return Regex.Replace(value, @"`\d", "<T>");
         }
-
         #endregion
     }
 }

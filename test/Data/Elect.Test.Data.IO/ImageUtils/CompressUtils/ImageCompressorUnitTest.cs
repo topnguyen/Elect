@@ -1,11 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Elect.Data.IO.ImageUtils.CompressUtils;
-using Elect.Data.IO.ImageUtils.CompressUtils.Models;
-using System;
-using System.IO;
-using SixLabors.ImageSharp;
-
-namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
+﻿namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
 {
     [TestClass]
     public class ImageCompressorUnitTest
@@ -16,7 +9,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
         {
             ImageCompressor.Compress("invalid.file", "output.file");
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Compress_InvalidStream_Throws()
@@ -24,7 +16,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             using var ms = new MemoryStream(new byte[] { 0, 1, 2 });
             ImageCompressor.Compress(ms);
         }
-
         [TestMethod]
         public void Compress_ValidStream_ReturnsModel()
         {
@@ -39,7 +30,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             Assert.IsNotNull(result);
             Assert.IsTrue(result.OriginalFileSize > 0);
         }
-
         [TestMethod]
         public void Compress_ValidFilePath_ReturnsModel()
         {
@@ -55,7 +45,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             File.Delete(tempFile);
             File.Delete(outputFile);
         }
-
         [TestMethod]
         public void Compress_WithQualityAndTimeout_Works()
         {
@@ -71,7 +60,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             File.Delete(tempFile);
             File.Delete(outputFile);
         }
-
         [TestMethod]
         public void Compress_StreamWithFileNameExtension_Works()
         {
@@ -85,7 +73,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             Assert.IsNotNull(result);
             Assert.IsTrue(result.OriginalFileSize > 0);
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Compress_StreamWithInvalidFileName_Throws()
@@ -93,7 +80,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             using var ms = new MemoryStream(new byte[] { 0, 1, 2 });
             ImageCompressor.Compress(ms, 80, 10000, "test.txt");
         }
-
         [TestMethod]
         public void Compress_StreamWithNoOptimization_ReturnsModelWithNoSaving()
         {
@@ -108,7 +94,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             Assert.IsNotNull(result);
             Assert.IsTrue(result.PercentSaving <= 0);
         }
-
         [TestMethod]
         public void Compress_StreamWithMultipleQualityAttempts_Works()
         {
@@ -123,7 +108,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             Assert.IsNotNull(result);
             Assert.IsTrue(result.QualityPercent <= 10 || result.QualityPercent == 100);
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Compress_EmptyArguments_Throws()
@@ -133,7 +117,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             // For now, this is a placeholder for best practice.
             throw new ArgumentException("Command Arguments is empty");
         }
-
         [TestMethod]
         public void Compress_JpegFile_CoversGetJpegCommand()
         {
@@ -149,7 +132,6 @@ namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
             File.Delete(tempFile);
             File.Delete(outputFile);
         }
-
         [TestMethod]
         public void Compress_GifFile_CoversGetGifCommand()
         {

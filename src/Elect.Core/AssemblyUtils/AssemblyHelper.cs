@@ -15,20 +15,15 @@
             {
                 throw new ArgumentException($"{nameof(dllFileFullPaths)} can not be empty.", nameof(dllFileFullPaths));
             }
-
             dllFileFullPaths = dllFileFullPaths.Distinct().ToArray();
-
             var assemblies = new List<Assembly>();
-
             foreach (var dllFileFullPath in dllFileFullPaths)
             {
                 // Assembly Directory to load
                 var assemblyDirectoryPath = Path.GetDirectoryName(dllFileFullPath);
                 var assemblyLoader = new AssemblyLoader(assemblyDirectoryPath);
-
                 // Assembly Name to load
                 var dllNameWithoutExtension = Path.GetFileNameWithoutExtension(dllFileFullPath);
-
                 var assemblyName = new AssemblyName(dllNameWithoutExtension);
                 var assembly = assemblyLoader.LoadFromAssemblyName(assemblyName);
                 assemblies.Add(assembly);

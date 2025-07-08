@@ -1,6 +1,4 @@
-﻿using Elect.DI.Models;
-
-namespace Elect.Sample.DI
+﻿namespace Elect.Sample.DI
 {
     public class Startup
     {
@@ -8,7 +6,6 @@ namespace Elect.Sample.DI
         {
             // Auto Register Dependency Injection
             services.AddElectDI();
-
 //          services.AddElectDI(_ =>
 //          {
 //              _.ListAssemblyName = new List<string> // default is 1 assembly name: application name - Elect.Sample.DI
@@ -20,7 +17,6 @@ namespace Elect.Sample.DI
 //                  "C:\\ExampleAssemblyFolderPath" 
 //              };
 //          });
-
             // Optional - Print out Registered Service with Information
             services.PrintServiceAddedToConsole(new ElectPrintRegisteredToConsoleOptions
             {

@@ -46,7 +46,6 @@
             try
             {
                 // Raster Image
-
                 using (var image = Image.Load(imageStream))
                 {
                     isValid = true;

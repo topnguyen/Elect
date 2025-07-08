@@ -2,21 +2,18 @@
 public class DirectoryHelperUnitTest
 {
     private string _tempDir;
-
     [TestInitialize]
     public void SetUp()
     {
         _tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(_tempDir);
     }
-
     [TestCleanup]
     public void TearDown()
     {
         if (Directory.Exists(_tempDir))
             Directory.Delete(_tempDir, true);
     }
-
     [TestMethod]
     public void CreateIfNotExist_CreatesDirectory_WhenNotExists()
     {
@@ -24,7 +21,6 @@ public class DirectoryHelperUnitTest
         DirectoryHelper.CreateIfNotExist(newDir);
         Assert.IsTrue(Directory.Exists(newDir));
     }
-
     [TestMethod]
     public void CreateIfNotExist_DoesNothing_WhenDirectoryExists()
     {
@@ -33,21 +29,18 @@ public class DirectoryHelperUnitTest
         DirectoryHelper.CreateIfNotExist(existingDir);
         Assert.IsTrue(Directory.Exists(existingDir));
     }
-
     [TestMethod]
     [ExpectedException(typeof(NullReferenceException))]
     public void CreateIfNotExist_Throws_OnNull()
     {
         DirectoryHelper.CreateIfNotExist(null);
     }
-
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void CreateIfNotExist_Throws_OnWhiteSpace()
     {
         DirectoryHelper.CreateIfNotExist("  ");
     }
-
     [TestMethod]
     public void Empty_RemovesAllFilesAndDirectories()
     {
@@ -56,13 +49,10 @@ public class DirectoryHelperUnitTest
         File.WriteAllText(Path.Combine(dir, "file.txt"), "test");
         var subDir = Path.Combine(dir, "sub");
         Directory.CreateDirectory(subDir);
-
         DirectoryHelper.Empty(dir);
-
         Assert.AreEqual(0, Directory.GetFiles(dir).Length);
         Assert.AreEqual(0, Directory.GetDirectories(dir).Length);
     }
-
     [TestMethod]
     public void IsEmpty_ReturnsTrue_WhenDirectoryIsEmpty()
     {
@@ -70,7 +60,6 @@ public class DirectoryHelperUnitTest
         Directory.CreateDirectory(dir);
         Assert.IsTrue(DirectoryHelper.IsEmpty(dir));
     }
-
     [TestMethod]
     public void IsEmpty_ReturnsFalse_WhenDirectoryHasFilesOrDirs()
     {
@@ -79,7 +68,6 @@ public class DirectoryHelperUnitTest
         File.WriteAllText(Path.Combine(dir, "file.txt"), "test");
         Assert.IsFalse(DirectoryHelper.IsEmpty(dir));
     }
-
     [TestMethod]
     public void SpecialFolder_GetCurrentWindowUserFolder_ReturnsValidPath()
     {

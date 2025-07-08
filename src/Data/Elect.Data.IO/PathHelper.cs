@@ -14,12 +14,10 @@
             {
                 return path;
             }
-
             if(!IsValidPath(path))
             {
                 throw new ArgumentException($"Invalid path: {path}");
             }
-
             if (!Uri.TryCreate(path, UriKind.RelativeOrAbsolute, out var pathUri))
             {
                 throw new ArgumentException($"Invalid path: {path}");
@@ -31,7 +29,6 @@
             path = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, path);
             return path;
         }
-
         /// <summary>
         ///     Correct path separator char fit with runtime OS.
         /// </summary>
@@ -47,14 +44,12 @@
             path = path.Replace('/', Path.DirectorySeparatorChar);
             return path;
         }
-
         public static bool IsValidPath(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
             {
                 return false;
             }
-
             char[] invalidChars = Path.GetInvalidPathChars();
             return path.IndexOfAny(invalidChars) == -1;
         }

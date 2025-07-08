@@ -1,4 +1,4 @@
-namespace Elect.Test.Data.IO.FileUtils
+﻿namespace Elect.Test.Data.IO.FileUtils
 {
     [TestClass]
     public class MimeTypeHelperUnitTests
@@ -12,14 +12,12 @@ namespace Elect.Test.Data.IO.FileUtils
         {
             Assert.AreEqual(expected, MimeTypeHelper.GetMimeType(ext));
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetMimeType_ThrowsOnNull()
         {
             MimeTypeHelper.GetMimeType(null);
         }
-
         [DataTestMethod]
         [DataRow("image/jpeg", ".jpg")]
         [DataRow("application/xml", ".xml")]
@@ -27,28 +25,24 @@ namespace Elect.Test.Data.IO.FileUtils
         {
             Assert.AreEqual(expected, MimeTypeHelper.GetExtension(mime));
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetExtension_ThrowsOnNull()
         {
             MimeTypeHelper.GetExtension(null);
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void GetExtension_ThrowsOnDotInput()
         {
             MimeTypeHelper.GetExtension(".jpg");
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void GetExtension_ThrowsOnNotFound()
         {
             MimeTypeHelper.GetExtension("not/registered");
         }
-
         [TestMethod]
         public void GetExtension_ReturnsEmptyOnNotFoundAndNoThrow()
         {

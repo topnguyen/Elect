@@ -1,5 +1,6 @@
 ﻿global using Elect.Core.StringUtils;
 global using Elect.DI.Attributes;
+global using Elect.DI.Models;
 global using Elect.DI;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Hosting;

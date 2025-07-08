@@ -1,11 +1,8 @@
-﻿using Font = SixLabors.Fonts.Font;
-
-namespace Elect.Data.IO.ImageUtils
+﻿namespace Elect.Data.IO.ImageUtils
 {
     public class ImageHelper
     {
         #region Image Info
-
         /// <summary>
         ///     <para> Get image info. </para>
         ///     <para> If not know mime type but valid image then return <see cref="ImageConstants.ImageMimeTypeUnknown" /> </para>
@@ -17,7 +14,6 @@ namespace Elect.Data.IO.ImageUtils
             byte[] bytes = Convert.FromBase64String(base64);
             return GetImageInfo(bytes);
         }
-
         /// <summary>
         ///     <para> Get image info. </para>
         ///     <para> If not know mime type but valid image then return <see cref="ImageConstants.ImageMimeTypeUnknown" /> </para>
@@ -31,7 +27,6 @@ namespace Elect.Data.IO.ImageUtils
                 return GetImageInfo(stream);
             }
         }
-
         /// <summary>
         ///     <para> Get image info. </para>
         ///     <para> If not know mime type but valid image then return <see cref="ImageConstants.ImageMimeTypeUnknown" /> </para>
@@ -61,24 +56,19 @@ namespace Elect.Data.IO.ImageUtils
                             imageModel.MimeType = format.DefaultMimeType;
                             isUnknownMimeType = false;
                         }
-
                         if (isUnknownMimeType)
                         {
                             imageModel.MimeType = ImageConstants.ImageMimeTypeUnknown;
                         }
-
                         // Get width and height in pixel info
                         imageModel.WidthPx = image.Width;
                         imageModel.HeightPx = image.Height;
                     }
                 }
-
                 // Get others info
                 imageModel.Extension = MimeTypeHelper.GetExtension(imageModel.MimeType);
-
                 // Get image dominant color
                 imageModel.DominantHexColor = ImageDominantColorHelper.GetHexCode(imageStream);
-
                 return imageModel;
             }
             catch
@@ -86,7 +76,6 @@ namespace Elect.Data.IO.ImageUtils
                 return null;
             }
         }
-
         public static bool IsSvgImage(MemoryStream imageStream)
         {
             try
@@ -102,11 +91,8 @@ namespace Elect.Data.IO.ImageUtils
                 return false;
             }
         }
-
         #endregion
-
         #region Text Image
-
         /// <summary>
         ///     Generate image from text (at center of the image)
         /// </summary>
@@ -127,35 +113,29 @@ namespace Elect.Data.IO.ImageUtils
                 font = new Font(SixLabors.Fonts.SystemFonts.Families.FirstOrDefault(), 10.0F,
                     SixLabors.Fonts.FontStyle.Bold);
             }
-
             if (textColor == default)
             {
                 textColor = ColorHelper.GetRandom();
             }
-
             if (backgroundColor == default)
             {
                 backgroundColor = ColorHelper.GetRandom();
             }
-
             // Generate Image
             var img = GenerateTextImage(text, width, height, textColor, backgroundColor, font);
             // Convert to image array
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 img.Save(memoryStream, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder());
-
                 var imageArray = memoryStream.ToArray();
                 if (!imageArray.Any())
                 {
                     return null;
                 }
-
                 var stringBase64 = Convert.ToBase64String(imageArray);
                 return stringBase64;
             }
         }
-
         /// <summary>
         ///     Generate image from text (at center of the image)
         /// </summary>
@@ -170,18 +150,14 @@ namespace Elect.Data.IO.ImageUtils
             Color backgroundColor, Font font)
         {
             CheckHelper.CheckNullOrWhiteSpace(text, nameof(text));
-
             // Create a new ImageSharp image
             var img = new Image<Rgba32>(width, height);
-
             // Paint the background
             img.Mutate(ctx => ctx.Fill(backgroundColor));
-
             // Load font
             var fontCollection = new FontCollection();
             var fontFamily = fontCollection.AddSystemFonts().Get(font.Name);
             var imageSharpFont = new Font(fontFamily, font.Size, SixLabors.Fonts.FontStyle.Bold);
-
             // Measure the text size
             var textOptions = new RichTextOptions(imageSharpFont)
             {
@@ -190,18 +166,13 @@ namespace Elect.Data.IO.ImageUtils
                 Origin = new SixLabors.ImageSharp.PointF(width / 2f, height / 2f),
                 WrappingLength = width
             };
-
             // Draw the text
             img.Mutate(ctx => ctx.DrawText(textOptions, text, textColor));
-
             // Return the image
             return img;
         }
-
         #endregion
-
         #region Base 64
-
         /// <summary>
         ///     Get image base64 for "src" of "img" element in HTML.
         /// </summary>
@@ -213,7 +184,6 @@ namespace Elect.Data.IO.ImageUtils
             var imageMimeType = MimeTypeHelper.GetMimeType(imageExtension);
             return $@"data:{imageMimeType};base64,{base64}";
         }
-
         /// <summary>
         ///     Get string base64 data from "src" of "img" element in HTML.
         /// </summary>
@@ -223,11 +193,8 @@ namespace Elect.Data.IO.ImageUtils
         {
             return imageBase64.Split(',').LastOrDefault();
         }
-
         #endregion
-
         #region Rotate
-
         /// <summary>
         ///     Rotate image by Exif Orientation.
         /// </summary>
@@ -239,7 +206,6 @@ namespace Elect.Data.IO.ImageUtils
             var fixedAutoRotateFileBytes = RotateByExifOrientation(fileBytes);
             return fixedAutoRotateFileBytes.ToBase64();
         }
-
         /// <summary>
         ///     Rotate image by Exif Orientation.
         /// </summary>
@@ -264,14 +230,12 @@ namespace Elect.Data.IO.ImageUtils
                             fixedAutoRotateImage.Save(fixedAutoRotateImageStream,
                                 new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder());
                         }
-
                         var fixedAutoRotateFileBytes = fixedAutoRotateImageStream.ToArray();
                         return fixedAutoRotateFileBytes;
                     }
                 }
             }
         }
-
         /// <summary>
         ///     Rotate image by Exif Orientation.
         /// </summary>
@@ -285,7 +249,6 @@ namespace Elect.Data.IO.ImageUtils
             {
                 return fixedAutoRotateImage;
             }
-
             var orientationValue = 1;
             var orientationTag = SixLabors.ImageSharp.Metadata.Profiles.Exif.ExifTag.Orientation;
             var orientationEntry = exifProfile.Values.FirstOrDefault(e => e.Tag == orientationTag);
@@ -293,10 +256,8 @@ namespace Elect.Data.IO.ImageUtils
             {
                 orientationValue = value;
             }
-
             RotateMode rotateMode = RotateMode.None;
             FlipMode flipMode = FlipMode.None;
-
             switch (orientationValue)
             {
                 case 1: // Normal
@@ -326,7 +287,6 @@ namespace Elect.Data.IO.ImageUtils
                     rotateMode = RotateMode.Rotate270;
                     break;
             }
-
             if (rotateMode != RotateMode.None || flipMode != FlipMode.None)
             {
                 fixedAutoRotateImage.Mutate(x =>
@@ -337,11 +297,9 @@ namespace Elect.Data.IO.ImageUtils
                         x.Flip(flipMode);
                 });
             }
-
             fixedAutoRotateImage.Metadata.ExifProfile?.RemoveValue(orientationTag);
             return fixedAutoRotateImage;
         }
-
         #endregion
     }
 }

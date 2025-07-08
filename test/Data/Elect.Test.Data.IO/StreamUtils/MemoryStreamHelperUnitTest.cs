@@ -1,4 +1,4 @@
-[TestClass]
+﻿[TestClass]
 public class MemoryStreamHelperUnitTest
 {
     [TestMethod]
@@ -8,12 +8,10 @@ public class MemoryStreamHelperUnitTest
         var content = new byte[] { 1, 2, 3, 4, 5 };
         using var stream = new MemoryStream(content);
         var tempPath = Path.GetTempFileName();
-
         try
         {
             // Act
             MemoryStreamHelper.Save(stream, tempPath);
-
             // Assert
             var fileContent = File.ReadAllBytes(tempPath);
             CollectionAssert.AreEqual(content, fileContent);
@@ -23,7 +21,6 @@ public class MemoryStreamHelperUnitTest
             File.Delete(tempPath);
         }
     }
-
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void Save_NullPath_ThrowsException()
@@ -31,7 +28,6 @@ public class MemoryStreamHelperUnitTest
         using var stream = new MemoryStream();
         MemoryStreamHelper.Save(stream, null);
     }
-
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void Save_WhiteSpacePath_ThrowsException()
@@ -39,7 +35,6 @@ public class MemoryStreamHelperUnitTest
         using var stream = new MemoryStream();
         MemoryStreamHelper.Save(stream, "   ");
     }
-
     [TestMethod]
     public void Save_WritesStreamToFile()
     {
@@ -47,12 +42,10 @@ public class MemoryStreamHelperUnitTest
         var data = new byte[] { 1, 2, 3, 4, 5 };
         using var stream = new MemoryStream(data);
         var path = Path.GetTempFileName();
-
         try
         {
             // Act
             stream.Save(path);
-
             // Assert
             var fileData = File.ReadAllBytes(path);
             CollectionAssert.AreEqual(data, fileData);

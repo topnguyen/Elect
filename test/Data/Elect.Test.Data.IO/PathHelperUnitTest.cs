@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.PlatformAbstractions;
-
-namespace Elect.Test.Data.IO
+﻿namespace Elect.Test.Data.IO
 {
     [TestClass]
     public class PathHelperUnitTest
@@ -12,21 +10,18 @@ namespace Elect.Test.Data.IO
             Assert.AreEqual("", PathHelper.GetFullPath(""));
             Assert.AreEqual("   ", PathHelper.GetFullPath("   "));
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void GetFullPath_InvalidPath_Throws()
         {
             PathHelper.GetFullPath("@@invalid|path");
         }
-
         [TestMethod]
         public void GetFullPath_AbsolutePath_ReturnsAsIs()
         {
             var absPath = Path.GetFullPath("test.txt");
             Assert.AreEqual(absPath, PathHelper.GetFullPath(absPath));
         }
-
         [TestMethod]
         [DataRow("folder/file.txt")]
         [DataRow("folder\\file.txt")]
@@ -39,7 +34,6 @@ namespace Elect.Test.Data.IO
             );
             Assert.AreEqual(expected, PathHelper.GetFullPath(relPath));
         }
-
         [TestMethod]
         [DataRow(null, null)]
         [DataRow("", "")]
@@ -48,7 +42,6 @@ namespace Elect.Test.Data.IO
         {
             Assert.AreEqual(expected, PathHelper.CorrectPathSeparatorChar(input));
         }
-
         [TestMethod]
         [DataRow("folder\\subfolder\\file.txt")]
         [DataRow("folder/subfolder/file.txt")]
