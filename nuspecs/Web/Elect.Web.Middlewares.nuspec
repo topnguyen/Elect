@@ -14,13 +14,13 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore middlewares elect topnguyen</tags>
-    <version>9.0.0</version>
+    <version>9.0.1</version>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="9.0.0"/>
+        <dependency id="Elect.Web" version="9.0.1"/>
 
         <!-- 3rd Libraries -->
         <dependency id="WebMarkupMin.AspNetCore6" version="2.19.0" />
