@@ -45,5 +45,51 @@
             var list = new List<int> { 1, 2 };
             list.WherePrevious(null).ToList();
         }
+        [TestMethod]
+        public void Randomize_ReturnsAllElementsInRandomOrder()
+        {
+            var list = Enumerable.Range(1, 100).ToList();
+            var randomized = list.Randomize().ToList();
+            // Should contain all elements
+            CollectionAssert.AreEquivalent(list, randomized);
+            // Should not always be in the same order
+            bool isSameOrder = list.SequenceEqual(randomized);
+            // This could rarely fail if random returns the same order, but is unlikely
+            Assert.IsFalse(isSameOrder, "Randomize did not change the order (very unlikely)");
+        }
+
+        [TestMethod]
+        public void Randomize_EmptyAndSingleElementCollections()
+        {
+            var empty = new int[0];
+            var single = new[] { 42 };
+            CollectionAssert.AreEqual(empty, empty.Randomize().ToArray());
+            CollectionAssert.AreEqual(single, single.Randomize().ToArray());
+        }
+
+        [TestMethod]
+        public void ToListWithCapacity_ReturnsListWithElements()
+        {
+            var source = new[] { 1, 2, 3 };
+            var result = source.ToList(10);
+            CollectionAssert.AreEqual(source, result);
+            Assert.IsTrue(result.Capacity >= 3);
+        }
+
+        [TestMethod]
+        public void ToListWithCapacity_NullSource_ReturnsNull()
+        {
+            int[] source = null;
+            var result = source.ToList(5);
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToListWithCapacity_NegativeCapacity_Throws()
+        {
+            var source = new[] { 1, 2 };
+            source.ToList(-1);
+        }
     }
 }

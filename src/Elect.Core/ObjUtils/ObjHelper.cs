@@ -33,38 +33,46 @@
             {
                 return variable;
             }
-            Type t = typeof(T);
-            Type u = Nullable.GetUnderlyingType(t);
-            if (u != null)
+            try
             {
-                if (u == typeof(string))
+                Type t = typeof(T);
+                Type u = Nullable.GetUnderlyingType(t);
+                if (u != null)
                 {
-                    return (T)(object)obj.ToString();
+                    if (u == typeof(string))
+                    {
+                        return (T)(object)obj.ToString();
+                    }
+                    return (T)Convert.ChangeType(obj, u);
                 }
-                return (T)Convert.ChangeType(obj, u);
+                if (t == typeof(string))
+                {
+                    return (T)((object)obj.ToString());
+                }
+                if (t.IsPrimitive)
+                {
+                    return (T)Convert.ChangeType(obj, t);
+                }
+                return (T)Convert.ChangeType(obj, t);
             }
-            if (t == typeof(string))
+            catch
             {
-                return (T)((object)obj.ToString());
+                return default;
             }
-            if (t.IsPrimitive)
-            {
-                return (T)Convert.ChangeType(obj.ToString(), t);
-            }
-            return (T)Convert.ChangeType(obj, t);
         }
         public static bool TryConvertTo<T>(object obj, T defaultValue, out T value)
         {
-            try
-            {
-                value = ConvertTo<T>(obj);
+            value = ConvertTo<T>(obj);
+            // If obj is null, treat as success (consistent with ConvertTo)
+            if (obj == null)
                 return true;
-            }
-            catch
+            // If conversion failed, value will be default
+            if (EqualityComparer<T>.Default.Equals(value, default(T)))
             {
                 value = defaultValue == null ? default : defaultValue;
                 return false;
             }
+            return true;
         }
         public static T WithoutRefLoop<T>(T obj)
         {

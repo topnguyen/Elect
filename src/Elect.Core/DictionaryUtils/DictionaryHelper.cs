@@ -15,6 +15,7 @@
         }
         public static Dictionary<string, string> ToDictionary<T>(T obj)
         {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             var listPropertyInfo = typeof(T).GetProperties().ToList();
             foreach (var propertyInfo in listPropertyInfo)

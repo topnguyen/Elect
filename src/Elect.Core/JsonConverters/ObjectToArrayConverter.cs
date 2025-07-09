@@ -17,7 +17,16 @@
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var type = value.GetType();
-            if (!(serializer.ContractResolver.ResolveContract(type) is JsonObjectContract contract))
+            JsonObjectContract contract = null;
+            try
+            {
+                contract = serializer.ContractResolver.ResolveContract(type) as JsonObjectContract;
+            }
+            catch (Exception ex)
+            {
+                throw new JsonSerializationException("Invalid type " + type.FullName, ex);
+            }
+            if (contract == null)
             {
                 throw new JsonSerializationException("Invalid type " + type.FullName);
             }
@@ -35,7 +44,16 @@
             {
                 throw new JsonSerializationException("Token was not an array");
             }
-            if (!(serializer.ContractResolver.ResolveContract(objectType) is JsonObjectContract contract))
+            JsonObjectContract contract = null;
+            try
+            {
+                contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
+            }
+            catch (Exception ex)
+            {
+                throw new JsonSerializationException("Invalid type " + objectType.FullName, ex);
+            }
+            if (contract == null)
             {
                 throw new JsonSerializationException("Invalid type " + objectType.FullName);
             }
