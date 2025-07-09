@@ -141,13 +141,21 @@
                         Flush();
                     }
                 }
+                // Always flush any remaining events, even if batch is not full
                 Flush();
                 // Flush events batch
                 while (_batchCollection.TryTake(out var @events))
                 {
                     Execute(@events);
                 }
+                // Wait for all background tasks to finish
                 Task.WaitAll(new[] {_pumpTask, _batchTask, _timerTask}, TimeSpan.FromSeconds(30));
+                // Ensure all worker tasks are completed after final flush
+                if (_workerTasks.Count > 0)
+                {
+                    Task.WaitAll(_workerTasks.ToArray());
+                    _workerTasks.Clear();
+                }
                 Console.WriteLine("Flush and Shutdown Message Queue successfully!");
             }
             catch (Exception ex)
