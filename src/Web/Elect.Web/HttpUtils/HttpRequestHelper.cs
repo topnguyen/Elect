@@ -135,12 +135,12 @@
             // Priority to Proxy Server
             if (request.Headers.TryGetValue(HeaderKey.CFConnectingIP, out var cloudFareConnectingIp))
             {
-                ipAddress = cloudFareConnectingIp;
+                ipAddress = RemovePort(cloudFareConnectingIp);
                 return ipAddress;
             }
             if (request.Headers.TryGetValue(HeaderKey.CFTrueClientIP, out var cloudFareTrueClientIp))
             {
-                ipAddress = cloudFareTrueClientIp;
+                ipAddress = RemovePort(cloudFareTrueClientIp);
                 return ipAddress;
             }
             // Look for the X-Forwarded-For (XFF) HTTP header field it's used for identifying the
@@ -153,7 +153,7 @@
             if (!string.IsNullOrWhiteSpace(xff))
             {
                 var lastIp = xff.Split(',').FirstOrDefault();
-                ipAddress = lastIp;
+                ipAddress = RemovePort(lastIp);
             }
             if (string.IsNullOrWhiteSpace(ipAddress) || ipAddress == "::1" || ipAddress == "127.0.0.1")
             {
@@ -174,7 +174,19 @@
             {
                 ipAddress = ipAddress.Substring(0, index);
             }
-            return ipAddress;
+
+            return RemovePort(ipAddress);
+        }
+
+        internal static string RemovePort(string ip)
+        {
+            if (string.IsNullOrWhiteSpace(ip)) return ip;
+            int index = ip.IndexOf(":", StringComparison.OrdinalIgnoreCase);
+            if (index > 0)
+            {
+                return ip.Substring(0, index);
+            }
+            return ip;
         }
     }
 }

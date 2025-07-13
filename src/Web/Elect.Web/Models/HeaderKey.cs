@@ -53,7 +53,7 @@
         // Seemore: https://support.cloudflare.com/hc/en-us/articles/200170986-How-does-Cloudflare-handle-HTTP-Request-headers-
         public const string CFIPCountry = "CF-IPCountry";
         public const string CFConnectingIP = "CF-Connecting-IP";
-        public const string CFTrueClientIP = "True-Client-IP";
+        public const string CFTrueClientIP = "CF-True-Client-IP";
         public const string CFVisitor = "CF-Visitor";
         public const string CFRAY = "CF-RAY";
         public const string CFXForwardedProto = "X-Forwarded-Proto";

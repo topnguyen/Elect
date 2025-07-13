@@ -261,6 +261,117 @@
             _services.AddSingletonIfAll<ITestService>(_ => false);
             Assert.IsFalse(_services.Any(x => x.ServiceType == typeof(ITestService) && x.Lifetime == ServiceLifetime.Singleton && x.ImplementationType == null));
         }
+
+        [TestMethod]
+        public void AddScopedIfNotExist_SingleType_AddsIfNotExist()
+        {
+            _services.AddScopedIfNotExist<ITestService>();
+            Assert.IsTrue(_services.Any(x => x.ServiceType == typeof(ITestService)));
+        }
+
+        [TestMethod]
+        public void AddScopedIfNotExist_SingleType_DoesNotAddIfExist()
+        {
+            _services.AddSingleton<ITestService, TestService>();
+            _services.AddScopedIfNotExist<ITestService>();
+            Assert.AreEqual(1, _services.Count(x => x.ServiceType == typeof(ITestService)));
+        }
+
+        [TestMethod]
+        public void AddTransientIfNotExist_SingleType_AddsIfNotExist()
+        {
+            _services.AddTransientIfNotExist<ITestService>();
+            Assert.IsTrue(_services.Any(x => x.ServiceType == typeof(ITestService)));
+        }
+
+        [TestMethod]
+        public void AddTransientIfNotExist_SingleType_DoesNotAddIfExist()
+        {
+            _services.AddSingleton<ITestService, TestService>();
+            _services.AddTransientIfNotExist<ITestService>();
+            Assert.AreEqual(1, _services.Count(x => x.ServiceType == typeof(ITestService)));
+        }
+
+        [TestMethod]
+        public void AddSingletonIfNotExist_SingleType_AddsIfNotExist()
+        {
+            _services.AddSingletonIfNotExist<ITestService>();
+            Assert.IsTrue(_services.Any(x => x.ServiceType == typeof(ITestService)));
+        }
+
+        [TestMethod]
+        public void AddSingletonIfNotExist_SingleType_DoesNotAddIfExist()
+        {
+            _services.AddSingleton<ITestService, TestService>();
+            _services.AddSingletonIfNotExist<ITestService>();
+            Assert.AreEqual(1, _services.Count(x => x.ServiceType == typeof(ITestService)));
+        }
+
+        [TestMethod]
+        public void AddElectDI_Default_DoesNotThrow()
+        {
+            // Should not throw
+            _services.AddElectDI();
+        }
+
+        [TestMethod]
+        public void AddElectDI_WithOptions_DoesNotThrow()
+        {
+            var absolutePath = System.IO.Path.GetFullPath(".");
+            var options = new ElectDIOptions
+            {
+                ListAssemblyFolderPath = new List<string> { absolutePath },
+                ListAssemblyName = new List<string> { "Elect" }
+            };
+            _services.AddElectDI(options);
+        }
+
+        [TestMethod]
+        public void AddElectDI_WithAction_DoesNotThrow()
+        {
+            var absolutePath = System.IO.Path.GetFullPath(".");
+            _services.AddElectDI(opt =>
+            {
+                opt.ListAssemblyFolderPath = new List<string> { absolutePath };
+                opt.ListAssemblyName = new List<string> { "Elect" };
+            });
+        }
+
+        [TestMethod]
+        public void PrintServiceAddedToConsole_Default_DoesNotThrow()
+        {
+            _services.AddSingleton<ITestService, TestService>();
+            _services.PrintServiceAddedToConsole();
+        }
+
+        [TestMethod]
+        public void PrintServiceAddedToConsole_WithOptions_DoesNotThrow()
+        {
+            var options = new ElectPrintRegisteredToConsoleOptions
+            {
+                ListAssemblyName = new List<string> { "Elect" },
+                IsMinimalDisplay = true,
+                PrimaryColor = ConsoleColor.White,
+                SecondaryColor = ConsoleColor.Gray,
+                SortAscBy = ElectDIPrintSortBy.Service
+            };
+            _services.AddSingleton<ITestService, TestService>();
+            _services.PrintServiceAddedToConsole(options);
+        }
+
+        [TestMethod]
+        public void PrintServiceAddedToConsole_WithAction_DoesNotThrow()
+        {
+            _services.AddSingleton<ITestService, TestService>();
+            _services.PrintServiceAddedToConsole(opt =>
+            {
+                opt.ListAssemblyName = new List<string> { "Elect" };
+                opt.IsMinimalDisplay = false;
+                opt.PrimaryColor = ConsoleColor.White;
+                opt.SecondaryColor = ConsoleColor.Gray;
+                opt.SortAscBy = ElectDIPrintSortBy.Implementation;
+            });
+        }
     }
 
     public interface ITestService { }
