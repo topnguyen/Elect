@@ -14,13 +14,13 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore datatable elect topnguyen</tags>
-    <version>9.0.1</version>
+    <version>9.0.2</version>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="9.0.1"/>
+        <dependency id="Elect.Web" version="9.0.2"/>
 
         <!-- 3rd Libraries -->
         <dependency id="System.Linq.Dynamic.Core" version="1.6.6"/>

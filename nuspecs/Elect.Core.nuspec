@@ -14,7 +14,7 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore elect topnguyen</tags>
-    <version>9.0.1</version>
+    <version>9.0.2</version>
 
     <dependencies>
       <group targetFramework="net9.0">
@@ -22,11 +22,11 @@
         <dependency id="System.Xml.XmlSerializer" version="4.3.0" />
         <dependency id="System.ComponentModel.Annotations" version="5.0.0" />
         <dependency id="Microsoft.DotNet.PlatformAbstractions" version="3.1.6" />
-        <dependency id="Microsoft.Extensions.Configuration.Binder" version="9.0.6" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="9.0.7" />
         <dependency id="Microsoft.Extensions.PlatformAbstractions" version="1.1.0" />
-        <dependency id="Microsoft.Extensions.DependencyInjection" version="9.0.6" />
-        <dependency id="Microsoft.Extensions.DependencyModel" version="9.0.6" />
-        <dependency id="Microsoft.Extensions.Options" version="9.0.6" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="9.0.7" />
+        <dependency id="Microsoft.Extensions.DependencyModel" version="9.0.7" />
+        <dependency id="Microsoft.Extensions.Options" version="9.0.7" />
         <dependency id="Newtonsoft.Json" version="13.0.3" />
         <dependency id="TimeZoneConverter" version="7.0.0" />
         <dependency id="Flurl.Http" version="4.0.2" />

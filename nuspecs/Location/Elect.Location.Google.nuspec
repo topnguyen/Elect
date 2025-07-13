@@ -14,14 +14,14 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore googleapi elect topnguyen</tags>
-    <version>9.0.1</version>
+    <version>9.0.2</version>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="9.0.1"/>
-        <dependency id="Elect.Location.Models" version="9.0.1"/>
+        <dependency id="Elect.Core" version="9.0.2"/>
+        <dependency id="Elect.Location.Models" version="9.0.2"/>
 
       </group>
     </dependencies>
