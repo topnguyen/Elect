@@ -16,8 +16,7 @@
         }
         public static bool IsRegistered<TService>(this IServiceCollection services) where TService : class
         {
-            bool isExist = services.All(x => x.ServiceType == typeof(TService));
-            return isExist;
+            return services.Any(x => x.ServiceType == typeof(TService));
         }
         #region Add If Any
         public static IServiceCollection AddScopedIfAny<TService, TImplementation>(this IServiceCollection services,

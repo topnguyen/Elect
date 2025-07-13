@@ -104,6 +104,10 @@
                     listAllDllPath.AddRange(listDllPath);
                 }
             }
+            if (!listAllDllPath.Any())
+            {
+                return null;
+            }
             List<Assembly> assemblies = AssemblyHelper.LoadAssemblies(listAllDllPath.ToArray());
             return assemblies;
         }
