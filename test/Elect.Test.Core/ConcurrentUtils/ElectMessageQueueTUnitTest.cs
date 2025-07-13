@@ -34,6 +34,8 @@
             var queue = new TestQueue(batchSize: 10);
             queue.PushPublic("x");
             queue.PushPublic("y");
+            queue.ResetBatchEvent(); // Reset before Dispose to avoid missing the signal
+            Thread.Sleep(100); // Allow a moment for the queue to process
             queue.DisposePublic();
             // Wait for all batches to be executed, up to 3 seconds
             var sw = System.Diagnostics.Stopwatch.StartNew();
