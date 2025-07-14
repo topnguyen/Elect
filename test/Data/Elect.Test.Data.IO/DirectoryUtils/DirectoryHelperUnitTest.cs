@@ -1,5 +1,7 @@
-﻿[TestClass]
-public class DirectoryHelperUnitTest
+﻿namespace Elect.Test.Data.IO.DirectoryUtils
+{
+    [TestClass]
+    public class DirectoryHelperUnitTest
 {
     private string _tempDir;
     [TestInitialize]
@@ -75,4 +77,5 @@ public class DirectoryHelperUnitTest
         Assert.IsFalse(string.IsNullOrWhiteSpace(path));
         Assert.IsTrue(Directory.Exists(path));
     }
+}
 }

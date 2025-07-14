@@ -154,9 +154,9 @@
         protected void GetEntities(out List<T> listEntityAdded, out List<T> listEntityModified, out List<T> listEntityDeleted)
         {
             GetEntityEntries(out var listEntryAdded, out var listEntryModified, out var listEntryDeleted);
-            listEntityAdded = listEntryAdded.Cast<T>().ToList();
-            listEntityModified = listEntryModified.Cast<T>().ToList();
-            listEntityDeleted = listEntryDeleted.Cast<T>().ToList();
+            listEntityAdded = listEntryAdded.Select(x => (T)x.Entity).ToList();
+            listEntityModified = listEntryModified.Select(x => (T)x.Entity).ToList();
+            listEntityDeleted = listEntryDeleted.Select(x => (T)x.Entity).ToList();
         }
         #endregion
     }

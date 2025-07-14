@@ -1,5 +1,7 @@
-﻿[TestClass]
-public class FileHelperUnitTest
+﻿namespace Elect.Test.Data.IO.FileUtils
+{
+    [TestClass]
+    public class FileHelperUnitTest
 {
     [TestMethod]
     public void CreateIfNotExist_CreatesFile_WhenNotExists()
@@ -161,4 +163,5 @@ public class FileHelperUnitTest
         // Cleanup
         File.Delete(filePath);
     }
+}
 }

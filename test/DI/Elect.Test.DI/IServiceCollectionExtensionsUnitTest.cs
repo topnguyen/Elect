@@ -378,4 +378,26 @@
     public class TestService : ITestService { }
     public interface ITestService2 { }
     public class TestService2 : ITestService2 { }
+
+    public interface IScopedTestService
+    {
+        string GetMessage();
+    }
+
+    [ScopedDependency]
+    public class ScopedTestService : IScopedTestService
+    {
+        public string GetMessage() => "Scoped Service";
+    }
+
+    public interface ITransientTestService
+    {
+        string GetMessage();
+    }
+
+    [TransientDependency]
+    public class TransientTestService : ITransientTestService
+    {
+        public string GetMessage() => "Transient Service";
+    }
 }

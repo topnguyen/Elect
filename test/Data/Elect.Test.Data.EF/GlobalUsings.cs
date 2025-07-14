@@ -1,0 +1,14 @@
+﻿global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Reflection;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.ChangeTracking;
+global using Elect.Data.EF.Interfaces.DbContext;
+global using Elect.Data.EF.Interfaces.Entity;
+global using Elect.Data.EF.Models;
+global using Elect.Data.EF.Services.Repository;
+global using ElectDbContext = Elect.Data.EF.Services.DbContext.DbContext;
+global using EFDbContext = Microsoft.EntityFrameworkCore.DbContext;
+global using Elect.Test.Data.EF.TestInfrastructure;
