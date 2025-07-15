@@ -7,6 +7,13 @@
             foreach (var path in paths)
             {
                 CheckHelper.CheckNullOrWhiteSpace(path, nameof(paths));
+                
+                // Validate path to prevent directory traversal attacks
+                if (path.Contains(".."))
+                {
+                    throw new ArgumentException("Path contains directory traversal characters", nameof(path));
+                }
+                
                 var fullPath = PathHelper.GetFullPath(path);
                 if (!File.Exists(fullPath))
                 {

@@ -164,5 +164,44 @@
             Assert.AreEqual(8, hash.Length); // CRC32 is 4 bytes, 8 hex chars
             Assert.IsTrue(System.Text.RegularExpressions.Regex.IsMatch(hash, "^[A-F0-9]{8}$"));
         }
+
+        [TestMethod]
+        public void Encrypt_UsesRandomSalt_DifferentOutputsForSameInput()
+        {
+            var key = "testkey";
+            var data = "testdata";
+            var encrypted1 = SecurityHelper.Encrypt(data, key);
+            var encrypted2 = SecurityHelper.Encrypt(data, key);
+            
+            // Different salts should produce different encrypted outputs
+            Assert.AreNotEqual(encrypted1, encrypted2);
+            
+            // But both should decrypt to the same original data
+            var decrypted1 = SecurityHelper.Decrypt(encrypted1, key);
+            var decrypted2 = SecurityHelper.Decrypt(encrypted2, key);
+            Assert.AreEqual(data, decrypted1);
+            Assert.AreEqual(data, decrypted2);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Decrypt_ThrowsOnInvalidData_TooShort()
+        {
+            SecurityHelper.Decrypt("invaliddata", "key");
+        }
+
+        [TestMethod]
+        public void TryDecrypt_HandlesSpecificExceptions()
+        {
+            // Test with invalid data length - use valid base64 but too short
+            var result1 = SecurityHelper.TryDecrypt("c2hvcnQ=", "key", out string output1); // "short" in base64
+            Assert.IsFalse(result1);
+            Assert.IsNull(output1);
+            
+            // Test with completely invalid input
+            var result2 = SecurityHelper.TryDecrypt("", "key", out string output2);
+            Assert.IsFalse(result2);
+            Assert.IsNull(output2);
+        }
     }
 }

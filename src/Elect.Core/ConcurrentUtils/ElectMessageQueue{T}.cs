@@ -101,20 +101,34 @@
         }
         private void Flush()
         {
-            if (!_batch.Any())
+            var collection = new List<T>();
+            
+            // Use a snapshot of the count to avoid race conditions
+            var currentCount = _batch.Count;
+            if (currentCount == 0)
             {
                 return;
             }
-            var batchSize = _batch.Count >= BatchSize ? (int) BatchSize : _batch.Count;
-            var collection = new List<T>();
+            
+            var batchSize = currentCount >= BatchSize ? (int) BatchSize : currentCount;
+            
             for (var i = 0; i < batchSize; i++)
             {
                 if (_batch.TryDequeue(out var @event))
                 {
                     collection.Add(@event);
                 }
+                else
+                {
+                    // If we can't dequeue, break to prevent infinite loop
+                    break;
+                }
             }
-            _batchCollection.Add(collection);
+            
+            if (collection.Count > 0)
+            {
+                _batchCollection.Add(collection);
+            }
         }
         #endregion
         #region IDisposable
@@ -149,7 +163,7 @@
                     Execute(@events);
                 }
                 // Wait for all background tasks to finish
-                Task.WaitAll(new[] {_pumpTask, _batchTask, _timerTask}, TimeSpan.FromSeconds(30));
+                Task.WhenAll(_pumpTask, _batchTask, _timerTask).Wait(TimeSpan.FromSeconds(30));
                 // Ensure all worker tasks are completed after final flush
                 if (_workerTasks.Count > 0)
                 {

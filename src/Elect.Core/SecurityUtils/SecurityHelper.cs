@@ -87,14 +87,21 @@
         /// <returns></returns>
         public static string Encrypt(string value, string key)
         {
-            byte[] clearBytes = Encoding.ASCII.GetBytes(value);
+            byte[] clearBytes = Encoding.UTF8.GetBytes(value);
+            byte[] salt = new byte[16];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+            
             using (var encrypt = Aes.Create())
             {
-                var pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }, 100000, HashAlgorithmName.SHA256);
+                var pdb = new Rfc2898DeriveBytes(key, salt, 100000, HashAlgorithmName.SHA256);
                 encrypt.Key = pdb.GetBytes(32);
                 encrypt.IV = pdb.GetBytes(16);
                 using (var ms = new MemoryStream())
                 {
+                    ms.Write(salt, 0, salt.Length);
                     using (var cs = new CryptoStream(ms, encrypt.CreateEncryptor(), CryptoStreamMode.Write))
                     {
                         cs.Write(clearBytes, 0, clearBytes.Length);
@@ -113,18 +120,27 @@
         public static string Decrypt(string value, string key)
         {
             byte[] cipherBytes = Safe64Encoding.DecodeBytes(value);
+            if (cipherBytes.Length < 16)
+                throw new ArgumentException("Invalid encrypted data - missing salt");
+            
+            byte[] salt = new byte[16];
+            Array.Copy(cipherBytes, 0, salt, 0, 16);
+            
+            byte[] actualCipherBytes = new byte[cipherBytes.Length - 16];
+            Array.Copy(cipherBytes, 16, actualCipherBytes, 0, actualCipherBytes.Length);
+            
             using (var encrypt = Aes.Create())
             {
-                var pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 }, 100000, HashAlgorithmName.SHA256);
+                var pdb = new Rfc2898DeriveBytes(key, salt, 100000, HashAlgorithmName.SHA256);
                 encrypt.Key = pdb.GetBytes(32);
                 encrypt.IV = pdb.GetBytes(16);
                 using (var ms = new MemoryStream())
                 {
                     using (var cs = new CryptoStream(ms, encrypt.CreateDecryptor(), CryptoStreamMode.Write))
                     {
-                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Write(actualCipherBytes, 0, actualCipherBytes.Length);
                     }
-                    value = Encoding.ASCII.GetString(ms.ToArray());
+                    value = Encoding.UTF8.GetString(ms.ToArray());
                 }
             }
             return value;
@@ -143,7 +159,22 @@
                 result = Decrypt(value, key);
                 return true;
             }
-            catch
+            catch (ArgumentException)
+            {
+                result = null;
+                return false;
+            }
+            catch (FormatException)
+            {
+                result = null;
+                return false;
+            }
+            catch (CryptographicException)
+            {
+                result = null;
+                return false;
+            }
+            catch (IndexOutOfRangeException)
             {
                 result = null;
                 return false;

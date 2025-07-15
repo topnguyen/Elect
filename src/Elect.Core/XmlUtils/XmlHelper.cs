@@ -7,10 +7,17 @@
         /// </summary>
         public static T FromXmlString<T>(string xmlString)
         {
+            var settings = new XmlReaderSettings
+            {
+                DtdProcessing = DtdProcessing.Prohibit,
+                XmlResolver = null
+            };
+            
             using (var sr = new StringReader(xmlString))
+            using (var reader = XmlReader.Create(sr, settings))
             {
                 var xmlSerializer = new XmlSerializer(typeof(T));
-                return (T)xmlSerializer.Deserialize(sr);
+                return (T)xmlSerializer.Deserialize(reader);
             }
         }
         public static string ToXmlString<T>(T obj, bool isRemoveNameSpace = true)

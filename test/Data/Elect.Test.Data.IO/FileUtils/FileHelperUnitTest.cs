@@ -163,5 +163,19 @@
         // Cleanup
         File.Delete(filePath);
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void CreateIfNotExist_ThrowsOnDirectoryTraversal()
+    {
+        FileHelper.CreateIfNotExist("../../../etc/passwd");
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void CreateIfNotExist_ThrowsOnRelativePathTraversal()
+    {
+        FileHelper.CreateIfNotExist("folder/../../../sensitive.txt");
+    }
 }
 }
