@@ -21,3 +21,5 @@ global using Microsoft.AspNetCore.Mvc.Routing;
 global using Microsoft.AspNetCore.Mvc.Infrastructure;
 global using Elect.Core.ObjUtils;
 global using Elect.Web.SiteMap.Interfaces;
+global using Elect.Web.Models;
+global using Microsoft.AspNetCore.Routing;

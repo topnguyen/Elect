@@ -1,0 +1,12 @@
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using Moq;
+global using Microsoft.Extensions.Options;
+global using Microsoft.Extensions.DependencyInjection;
+global using Elect.Location.Google;
+global using Elect.Location.Google.Models;
+global using Elect.Location.Google.Services;
+global using Elect.Location.Google.Interfaces;
+global using Elect.Location.Models;
+global using System.Net;
+global using Flurl.Http.Testing;
+global using Flurl.Http;
