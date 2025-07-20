@@ -1,0 +1,55 @@
+name: Publish NuGet Packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 9.0.4)'
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    
+    - name: Test
+      run: dotnet test --no-build --configuration Release --verbosity normal
+    
+    - name: Pack NuGet packages
+      run: |
+        dotnet pack src/Elect.Core/Elect.Core.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/DI/Elect.DI/Elect.DI.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Data/Elect.Data.EF/Elect.Data.EF.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Data/Elect.Data.IO/Elect.Data.IO.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Job/Elect.Job.Hangfire/Elect.Job.Hangfire.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Location/Elect.Location.Models/Elect.Location.Models.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Location/Elect.Location.Coordinate/Elect.Location.Coordinate.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Location/Elect.Location.Google/Elect.Location.Google.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Web/Elect.Web/Elect.Web.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Web/Elect.Web.DataTable/Elect.Web.DataTable.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Web/Elect.Web.HttpDetection/Elect.Web.HttpDetection.csproj --no-build --configuration Release --output ./nupkgs
+        dotnet pack src/Web/Elect.Web.Middlewares/Elect.Web.Middlewares.csproj --no-build --configuration Release --output ./nupkgs
+    
+    - name: Publish to NuGet
+      run: |
+        for package in ./nupkgs/*.nupkg; do
+          dotnet nuget push "$package" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        done
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
