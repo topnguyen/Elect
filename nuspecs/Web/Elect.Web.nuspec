@@ -14,21 +14,15 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore elect topnguyen</tags>
-    <version>9.0.2</version>
+    <version>9.0.3</version>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="9.0.2"/>
+        <dependency id="Elect.Core" version="9.0.3"/>
 
         <!-- 3rd Libraries -->
-        <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.3.0" />
-        <dependency id="Microsoft.AspNetCore.Mvc.Abstractions" version="2.3.0" />
-        <dependency id="Microsoft.AspNetCore.Mvc.ViewFeatures" version="2.3.0" />
-        <dependency id="Microsoft.AspNetCore.Routing.Abstractions" version="2.3.0" />
-        <dependency id="Microsoft.AspNetCore.Localization" version="2.3.0" />
-        <dependency id="Microsoft.AspNetCore.WebUtilities" version="9.0.7" />
         <dependency id="Microsoft.Extensions.FileProviders.Physical" version="9.0.7" />
       </group>
     </dependencies>

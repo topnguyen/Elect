@@ -29,7 +29,7 @@
         public void GetFullPath_RelativePath_CombinesWithBasePath(string relPath)
         {
             var expected = Path.Combine(
-                PlatformServices.Default.Application.ApplicationBasePath,
+                AppContext.BaseDirectory,
                 relPath.Replace('\\', Path.DirectorySeparatorChar).Replace('/', Path.DirectorySeparatorChar)
             );
             Assert.AreEqual(expected, PathHelper.GetFullPath(relPath));

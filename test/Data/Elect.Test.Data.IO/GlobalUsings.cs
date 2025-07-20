@@ -11,7 +11,6 @@ global using Elect.Data.IO.StreamUtils;
 global using Elect.Data.IO;
 global using Font = SixLabors.Fonts.Font;
 global using FontStyle = SixLabors.Fonts.FontStyle;
-global using Microsoft.Extensions.PlatformAbstractions;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using SixLabors.ImageSharp.Formats;
 global using SixLabors.ImageSharp.PixelFormats;

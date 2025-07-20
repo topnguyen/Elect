@@ -5,7 +5,7 @@
         /// <summary>
         ///     List assembly name to scan, default is application name. 
         /// </summary>
-        public List<string> ListAssemblyName { get; set; } = new List<string> { PlatformServices.Default.Application.ApplicationName };
+        public List<string> ListAssemblyName { get; set; } = new List<string> { Assembly.GetEntryAssembly()?.GetName().Name ?? string.Empty };
         /// <summary>
         ///     Print with minimal display format, default is true. 
         /// </summary>

@@ -26,7 +26,7 @@
             {
                 return path;
             }
-            path = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, path);
+            path = Path.Combine(AppContext.BaseDirectory, path);
             return path;
         }
         /// <summary>

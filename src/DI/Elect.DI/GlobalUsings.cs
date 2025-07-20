@@ -7,7 +7,6 @@ global using Elect.DI.Attributes;
 global using Elect.DI.Models;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using Microsoft.Extensions.DependencyInjection;
-global using Microsoft.Extensions.PlatformAbstractions;
 global using System.Collections.Generic;
 global using System.IO;
 global using System.Linq;

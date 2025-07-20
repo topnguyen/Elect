@@ -8,7 +8,7 @@
         {
             AssemblyDirectoryPath = assemblyDirectoryPath;
             // Update List Loaded Assembly
-            var runtimeId = RuntimeEnvironment.GetRuntimeIdentifier();
+            var runtimeId = RuntimeInformation.RuntimeIdentifier;
             var listLoadedAssemblyName = DependencyContext.Default.GetRuntimeAssemblyNames(runtimeId).ToList();
             foreach (var assemblyName in listLoadedAssemblyName)
             {

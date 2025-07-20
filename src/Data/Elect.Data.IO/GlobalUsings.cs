@@ -12,7 +12,6 @@ global using Elect.Data.IO.StreamUtils;
 global using EnumsNET;
 global using Font = SixLabors.Fonts.Font;
 global using Image = SixLabors.ImageSharp.Image;
-global using Microsoft.Extensions.PlatformAbstractions;
 global using SixLabors.Fonts;
 global using SixLabors.ImageSharp.Drawing.Processing;
 global using SixLabors.ImageSharp.PixelFormats;

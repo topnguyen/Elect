@@ -81,14 +81,14 @@
             {
                 folderPaths = new List<string>
                 {
-                    PlatformServices.Default.Application.ApplicationBasePath
+                    AppContext.BaseDirectory
                 };
             }
             if (searchPatterns?.Any() != true)
             {
                 searchPatterns = new List<string>
                 {
-                    PlatformServices.Default.Application.ApplicationName
+                    Assembly.GetEntryAssembly()?.GetName().Name ?? string.Empty
                 };
             }
             // Scan Assemblies
