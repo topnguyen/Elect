@@ -6,7 +6,6 @@
 [![Downloads](https://img.shields.io/nuget/dt/Elect.Core.svg)](https://www.nuget.org/packages?q=TopNguyen)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![.NET](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/9.0)
-[![Build Status](https://github.com/topnguyen/Elect/workflows/CI/badge.svg)](https://github.com/topnguyen/Elect/actions)
 
 > **Created by [Top Nguyen](http://topnguyen.com)** - A comprehensive collection of .NET Core utilities designed to accelerate development and focus on business logic.
 
@@ -45,6 +44,9 @@ dotnet add package Elect.Location.Google
 
 # Web utilities
 dotnet add package Elect.Web
+dotnet add package Elect.Web.DataTable
+dotnet add package Elect.Web.Middlewares
+dotnet add package Elect.Web.HttpDetection
 ```
 
 ## 🔧 Quick Start
@@ -98,7 +100,6 @@ Elect provides a comprehensive set of specialized modules, each designed to hand
 | **[Elect.Web.Middlewares](https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Middlewares/README.md)** | Performance & optimization middlewares | [![NuGet](https://img.shields.io/nuget/v/Elect.Web.Middlewares.svg)](https://www.nuget.org/packages/Elect.Web.Middlewares) |
 | **[Elect.Web.DataTable](https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.DataTable/README.md)** | Server-side [jQuery DataTable](https://datatables.net/) with advanced features | [![NuGet](https://img.shields.io/nuget/v/Elect.Web.DataTable.svg)](https://www.nuget.org/packages/Elect.Web.DataTable) |
 | **[Elect.Web.HttpDetection](https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.HttpDetection/README.md)** | Device & location detection via HTTP requests | [![NuGet](https://img.shields.io/nuget/v/Elect.Web.HttpDetection.svg)](https://www.nuget.org/packages/Elect.Web.HttpDetection) |
-| **[Elect.Web.Ajaxify](https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Ajaxify/README.md)** | Convert multi-page websites to single-page applications | [![NuGet](https://img.shields.io/nuget/v/Elect.Web.Ajaxify.svg)](https://www.nuget.org/packages/Elect.Web.Ajaxify) |
 
 ### ⚙️ Background Processing
 | Package | Description | NuGet |
