@@ -1,0 +1,20 @@
+# .mailmap file to consolidate all contributors to Top Nguyen
+# Format: Proper Name <proper@email.com> <commit@email.com>
+
+# Consolidate all Top Nguyen variations
+Top Nguyen <admin@topnguyen.com> <topnguyen92@gmail.com>
+Top Nguyen <admin@topnguyen.com> <top.nguyen@coles.com.au>
+Top Nguyen <admin@topnguyen.com> Top <admin@topnguyen.com>
+Top Nguyen <admin@topnguyen.com> Top <topnguyen92@gmail.com>
+Top Nguyen <admin@topnguyen.com> Top Nguyen <>
+Top Nguyen <admin@topnguyen.com> Top Nguyễn <admin@topnguyen.com>
+Top Nguyen <admin@topnguyen.com> Top Nguyễn <topnguyen92@gmail.com>
+
+# Redirect other contributors to Top Nguyen
+Top Nguyen <admin@topnguyen.com> <dinh.nguyen@saigontechnology.com>
+Top Nguyen <admin@topnguyen.com> dinh.nguyen@saigontechnology.com <dinh.nguyen@saigontechnology.com>
+
+# Bot commits - you can keep these as-is or redirect to Top Nguyen
+# ImgBotApp <ImgBotHelp@gmail.com> - keeping bot attribution
+# To redirect bot to Top Nguyen, uncomment the line below:
+Top Nguyen <admin@topnguyen.com> ImgBotApp <ImgBotHelp@gmail.com>
