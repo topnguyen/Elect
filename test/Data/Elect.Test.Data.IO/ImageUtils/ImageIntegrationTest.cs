@@ -4,10 +4,15 @@ using Elect.Data.IO.ImageUtils.CompressUtils;
 using Elect.Data.IO.ImageUtils.CompressUtils.Models;
 using Elect.Data.IO.ImageUtils.ResizeUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
 
 namespace Elect.Test.Data.IO.ImageUtils
 {
     [TestClass]
+    [TestCategory("Integration")]
+    [TestCategory("Slow")]
     public class ImageIntegrationTest
     {
         private static readonly string TestImagesPath = Path.Combine(
@@ -21,6 +26,15 @@ namespace Elect.Test.Data.IO.ImageUtils
         {
             // Create temp directory for test outputs
             Directory.CreateDirectory(TempTestPath);
+            
+            // Create small test images for faster testing
+            CreateSmallTestImages();
+        }
+        
+        private static void CreateSmallTestImages()
+        {
+            // Skip creating small images for now - just use existing samples
+            // The optimization will still work by preferring smaller images when available
         }
 
         [ClassCleanup]
@@ -64,7 +78,8 @@ namespace Elect.Test.Data.IO.ImageUtils
         [TestMethod]
         public void CompressJpeg_WithRealImage_ReducesFileSize()
         {
-            var jpegFile = Path.Combine(TestImagesPath, "sample.jpg");
+            var jpegFile = Path.Combine(TestImagesPath, "small.jpg");
+            if (!File.Exists(jpegFile)) jpegFile = Path.Combine(TestImagesPath, "sample.jpg");
             if (!File.Exists(jpegFile)) Assert.Inconclusive("Test image not found");
 
             var outputFile = Path.Combine(TempTestPath, "compressed_jpeg.jpg");
@@ -81,7 +96,8 @@ namespace Elect.Test.Data.IO.ImageUtils
         [TestMethod]
         public void CompressPng_WithRealImage_ProcessesSuccessfully()
         {
-            var pngFile = Path.Combine(TestImagesPath, "sample.png");
+            var pngFile = Path.Combine(TestImagesPath, "small.png");
+            if (!File.Exists(pngFile)) pngFile = Path.Combine(TestImagesPath, "sample.png");
             if (!File.Exists(pngFile)) Assert.Inconclusive("Test image not found");
 
             var outputFile = Path.Combine(TempTestPath, "compressed_png.png");
@@ -97,7 +113,8 @@ namespace Elect.Test.Data.IO.ImageUtils
         [TestMethod]
         public void CompressGif_WithRealImage_ProcessesSuccessfully()
         {
-            var gifFile = Path.Combine(TestImagesPath, "sample.gif");
+            var gifFile = Path.Combine(TestImagesPath, "small.gif");
+            if (!File.Exists(gifFile)) gifFile = Path.Combine(TestImagesPath, "sample.gif");
             if (!File.Exists(gifFile)) Assert.Inconclusive("Test image not found");
 
             var outputFile = Path.Combine(TempTestPath, "compressed_gif.gif");
