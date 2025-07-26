@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-
 namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
 {
     public class ImageCompressedModel : EventArgs

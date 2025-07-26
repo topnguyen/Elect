@@ -1,14 +1,8 @@
-using System;
-using System.IO;
 using System.Threading.Tasks;
-using Elect.Data.IO;
-using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Formats.Webp;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
 
 namespace Elect.Data.IO.ImageUtils.ResizeUtils
 {

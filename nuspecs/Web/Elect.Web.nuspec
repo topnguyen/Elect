@@ -14,7 +14,7 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore mvc api web utilities routing modelbinding caching versioning pagination elect topnguyen</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>
 - Updated to .NET 9.0 with latest ASP.NET Core packages
 - Enhanced paged collection API with improved performance
@@ -26,7 +26,7 @@
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="9.0.3"/>
+        <dependency id="Elect.Core" version="9.0.4"/>
 
         <!-- 3rd Libraries -->
         <dependency id="Microsoft.Extensions.FileProviders.Physical" version="9.0.7" />

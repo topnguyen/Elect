@@ -14,7 +14,7 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore netcore io file filesystem directory folder image processing resize compress watermark color detection imageprocessing utilities elect topnguyen cross-platform</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>
 - Updated to .NET 9.0 with enhanced file system operations
 - Upgraded SixLabors.ImageSharp to 3.1.10 for improved performance
@@ -30,7 +30,7 @@
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="9.0.3"/>
+        <dependency id="Elect.Core" version="9.0.4"/>
 
         <!-- 3rd Libraries -->
         <dependency id="Mono.Posix.NETStandard" version="1.0.0" />

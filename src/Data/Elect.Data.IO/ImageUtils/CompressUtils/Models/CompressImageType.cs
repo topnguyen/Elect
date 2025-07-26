@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
 {
     public enum CompressImageType

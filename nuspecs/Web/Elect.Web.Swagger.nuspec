@@ -14,15 +14,15 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore netcore swagger openapi swashbuckle api documentation rest webapi jwt authentication versioning elect topnguyen</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>Updated to latest Swashbuckle with .NET 9 support. Enhanced security configuration options and improved API versioning integration. Added custom theme support for Swagger UI.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="9.0.3"/>
-        <dependency id="Elect.Data.IO" version="9.0.3"/>
+        <dependency id="Elect.Web" version="9.0.4"/>
+        <dependency id="Elect.Data.IO" version="9.0.4"/>
 
         <!-- 3rd Libraries -->
         <dependency id="Swashbuckle.AspNetCore" version="9.0.1" />

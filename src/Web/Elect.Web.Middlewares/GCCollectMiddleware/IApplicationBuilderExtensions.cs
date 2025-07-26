@@ -1,9 +1,3 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
-
 namespace Elect.Web.Middlewares.GCCollectMiddleware
 {
     public static class IApplicationBuilderExtensions

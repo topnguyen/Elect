@@ -1,16 +1,9 @@
-using System;
-using System.IO;
 using System.Threading.Tasks;
-using Elect.Data.IO.FileUtils;
-using Elect.Data.IO.ImageUtils.CompressUtils.Models;
-using Elect.Data.IO;
-using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Formats.Gif;
 using SixLabors.ImageSharp.Formats.Webp;
-using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.Processing.Processors.Quantization;
 
 namespace Elect.Data.IO.ImageUtils.CompressUtils

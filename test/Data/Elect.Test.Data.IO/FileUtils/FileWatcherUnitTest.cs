@@ -1,5 +1,4 @@
-﻿using Elect.Data.IO.FileUtils;
-using System.Threading;
+﻿using System.Threading;
 
 namespace Elect.Test.Data.IO.FileUtils
 {

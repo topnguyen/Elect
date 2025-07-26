@@ -14,7 +14,7 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore dotnetcore utilities extensions helpers configuration di serialization http elect topnguyen</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>
 - Updated to .NET 9.0 with latest Microsoft.Extensions packages
 - Enhanced performance and reduced allocations

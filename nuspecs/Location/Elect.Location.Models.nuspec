@@ -14,7 +14,7 @@
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>aspnetcore netcore location models coordinate address place geography gps latitude longitude boundary polygon data-models elect topnguyen</tags>
-        <version>9.0.3</version>
+        <version>9.0.4</version>
         <releaseNotes>Added new models for advanced geographic features including elevation data and timezone information. Enhanced address models with support for international formats and validation attributes.</releaseNotes>
 
         <dependencies>

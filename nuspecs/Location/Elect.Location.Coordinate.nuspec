@@ -14,15 +14,15 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore netcore location coordinate geography gps latitude longitude distance haversine vincenty clustering geofence bounding-box spatial elect topnguyen</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>Improved clustering algorithms with better performance for large datasets. Enhanced coordinate validation and added support for additional coordinate formats and projections.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="9.0.3"/>
-        <dependency id="Elect.Location.Models" version="9.0.3"/>
+        <dependency id="Elect.Core" version="9.0.4"/>
+        <dependency id="Elect.Location.Models" version="9.0.4"/>
 
       </group>
     </dependencies>

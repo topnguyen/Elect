@@ -14,14 +14,14 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore netcore hangfire background jobs job processing scheduler queue dashboard security authorization recurring scheduled tasks elect topnguyen</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>Enhanced security features for Hangfire dashboard with improved authorization filters. Added memory storage support for development environments and better integration with .NET Core dependency injection.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="9.0.3"/>
+        <dependency id="Elect.Web" version="9.0.4"/>
 
         <!-- 3rd Libraries -->
         <dependency id="HangFire" version="1.8.20" />

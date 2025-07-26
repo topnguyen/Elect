@@ -14,14 +14,14 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore netcore middleware middlewares minification html css javascript compression performance security headers cors logging processing-time elect topnguyen</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>Improved minification performance with updated WebMarkupMin integration. Added configurable options for selective middleware activation and enhanced security header presets.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="9.0.3"/>
+        <dependency id="Elect.Web" version="9.0.4"/>
 
         <!-- 3rd Libraries -->
         <dependency id="WebMarkupMin.AspNetCore6" version="2.19.0" />

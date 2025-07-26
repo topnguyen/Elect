@@ -1,10 +1,3 @@
-using System;
-using System.IO;
-using Elect.Data.IO.ImageUtils.CompressUtils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
-
 namespace Elect.Test.Data.IO.ImageUtils.CompressUtils
 {
     [TestClass]

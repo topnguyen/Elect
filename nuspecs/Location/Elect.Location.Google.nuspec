@@ -14,15 +14,15 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore netcore google maps api geocoding reverse-geocoding places directions distance-matrix timezone location geography elect topnguyen</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>Enhanced API error handling with automatic retry logic. Added support for new Google Maps API features including place photos and reviews. Improved response caching for better performance.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Core" version="9.0.3"/>
-        <dependency id="Elect.Location.Models" version="9.0.3"/>
+        <dependency id="Elect.Core" version="9.0.4"/>
+        <dependency id="Elect.Location.Models" version="9.0.4"/>
 
       </group>
     </dependencies>

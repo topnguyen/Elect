@@ -14,15 +14,15 @@
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>aspnetcore netcore http detection device mobile tablet desktop browser useragent user-agent geolocation geoip maxmind ip location crawler bot detection elect topnguyen</tags>
-    <version>9.0.3</version>
+    <version>9.0.4</version>
     <releaseNotes>Updated MaxMind GeoIP2 integration with improved accuracy. Enhanced device detection algorithms for modern browsers and mobile devices. Added support for new user agent patterns.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">
 
         <!-- Elect -->
-        <dependency id="Elect.Web" version="9.0.3"/>
-        <dependency id="Elect.Data.IO" version="9.0.3"/>
+        <dependency id="Elect.Web" version="9.0.4"/>
+        <dependency id="Elect.Data.IO" version="9.0.4"/>
 
         <!-- 3rd Libraries -->
         <dependency id="MaxMind.GeoIP2" version="5.3.0"/>

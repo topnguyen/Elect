@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json.Converters;
 
 namespace Elect.Test.Core.JsonConverters
 {
