@@ -36,32 +36,18 @@
             var entity = new TestEntity();
             var testGuid = Guid.NewGuid();
             
-            // Use reflection to test GlobalId if present
-            var globalIdProp = entity.GetType().GetProperty("GlobalId");
-            if (globalIdProp != null)
-            {
-                globalIdProp.SetValue(entity, testGuid);
-                Assert.AreEqual(testGuid, globalIdProp.GetValue(entity));
-            }
-            else
-            {
-                Assert.Inconclusive("GlobalId property not found on Entity");
-            }
+            // Entity class should have GlobalId property as it implements IGlobalIdentityEntity
+            entity.GlobalId = testGuid;
+            Assert.AreEqual(testGuid, entity.GlobalId);
         }
 
         [TestMethod]
         public void GlobalId_DefaultValue()
         {
             var entity = new TestEntity();
-            var globalIdProp = entity.GetType().GetProperty("GlobalId");
-            if (globalIdProp != null)
-            {
-                Assert.AreEqual(Guid.Empty, globalIdProp.GetValue(entity));
-            }
-            else
-            {
-                Assert.Inconclusive("GlobalId property not found on Entity");
-            }
+            
+            // Entity class should have GlobalId property with default value
+            Assert.AreEqual(Guid.Empty, entity.GlobalId);
         }
 
         [TestMethod]

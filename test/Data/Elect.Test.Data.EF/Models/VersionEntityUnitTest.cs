@@ -80,19 +80,13 @@
         }
 
         [TestMethod]
-        public void ImplementsIGlobalIdentityEntity()
+        public void DoesNotImplementIGlobalIdentityEntity()
         {
             var entity = new TestVersionEntity();
-            // Interface test - checking for GlobalId property existence through inheritance chain
+            // VersionEntity inherits from Entity<TKey>, not Entity, so it doesn't have GlobalId
+            Assert.IsFalse(entity is IGlobalIdentityEntity);
             var hasGlobalId = HasPropertyInHierarchy(entity.GetType(), "GlobalId");
-            if (!hasGlobalId)
-            {
-                Assert.Inconclusive("GlobalId property not found in VersionEntity hierarchy");
-            }
-            else
-            {
-                Assert.IsTrue(hasGlobalId);
-            }
+            Assert.IsFalse(hasGlobalId, "VersionEntity should not have GlobalId property as it inherits from Entity<TKey>, not Entity");
         }
 
         private bool HasPropertyInHierarchy(Type type, string propertyName)
@@ -107,22 +101,13 @@
         }
 
         [TestMethod]
-        public void GlobalId_InheritsFromEntity()
+        public void DoesNotHaveGlobalId()
         {
             var entity = new TestVersionEntity();
-            var testGuid = Guid.NewGuid();
             
-            // Use reflection to test GlobalId if present
+            // VersionEntity inherits from Entity<TKey>, not Entity, so it should not have GlobalId
             var globalIdProp = entity.GetType().GetProperty("GlobalId") ?? entity.GetType().BaseType?.GetProperty("GlobalId");
-            if (globalIdProp != null)
-            {
-                globalIdProp.SetValue(entity, testGuid);
-                Assert.AreEqual(testGuid, globalIdProp.GetValue(entity));
-            }
-            else
-            {
-                Assert.Inconclusive("GlobalId property not found on VersionEntity");
-            }
+            Assert.IsNull(globalIdProp, "VersionEntity should not have GlobalId property as it inherits from Entity<TKey>, not Entity");
         }
     }
 }

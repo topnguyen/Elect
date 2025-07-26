@@ -4,16 +4,36 @@
     public class AssemblyLoaderUnitTest
     {
         [TestMethod]
-        [Ignore("Direct reflection-based construction of AssemblyLoader (inherits AssemblyLoadContext) is not supported on this runtime. Covered via AssemblyHelper public API.")]
-        public void AssemblyLoader_LoadsAssemblySuccessfully()
+        public void AssemblyLoader_LoadsAssemblySuccessfully_ViaAssemblyHelper()
         {
-            // Skipped: See reason above.
+            // Test the functionality through the public AssemblyHelper API
+            var currentAssembly = typeof(AssemblyLoaderUnitTest).Assembly;
+            var assemblyPath = currentAssembly.Location;
+            
+            var loadedAssemblies = AssemblyHelper.LoadAssemblies(assemblyPath);
+            
+            Assert.IsNotNull(loadedAssemblies);
+            Assert.IsTrue(loadedAssemblies.Count > 0);
+            Assert.IsTrue(loadedAssemblies.Any(a => a.FullName == currentAssembly.FullName));
         }
         [TestMethod]
-        [Ignore("Direct reflection-based construction of AssemblyLoader (inherits AssemblyLoadContext) is not supported on this runtime. Covered via AssemblyHelper public API.")]
-        public void AssemblyLoader_ReturnsNullIfAlreadyLoaded()
+        public void AssemblyLoader_HandlesMultipleLoadsCorrectly_ViaAssemblyHelper()
         {
-            // Skipped: See reason above.
+            // Test loading the same assembly multiple times through AssemblyHelper
+            var currentAssembly = typeof(AssemblyLoaderUnitTest).Assembly;
+            var assemblyPath = currentAssembly.Location;
+            
+            // Load the assembly multiple times
+            var firstLoad = AssemblyHelper.LoadAssemblies(assemblyPath);
+            var secondLoad = AssemblyHelper.LoadAssemblies(assemblyPath);
+            
+            Assert.IsNotNull(firstLoad);
+            Assert.IsNotNull(secondLoad);
+            Assert.IsTrue(firstLoad.Count > 0);
+            Assert.IsTrue(secondLoad.Count > 0);
+            
+            // Both loads should succeed and reference assemblies with the same name
+            Assert.AreEqual(firstLoad.First().FullName, secondLoad.First().FullName);
         }
     }
 }
