@@ -9,7 +9,7 @@ global using Elect.Data.IO.ImageUtils.CompressUtils.Models;
 global using Elect.Data.IO.ImageUtils.Models;
 global using Elect.Data.IO.ImageUtils.ResizeUtils.Models;
 global using Elect.Data.IO.StreamUtils;
-global using EnumsNET;
+// global using Enums.NET;
 global using Font = SixLabors.Fonts.Font;
 global using Image = SixLabors.ImageSharp.Image;
 global using SixLabors.Fonts;

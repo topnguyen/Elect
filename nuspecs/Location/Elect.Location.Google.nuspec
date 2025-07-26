@@ -2,19 +2,20 @@
 <package>
   <metadata>
     <id>Elect.Location.Google</id>
-    <title>Elect Google Client Service</title>
-    <description>Google Client Service.</description>
-    <summary>Google Client Service.</summary>
+    <title>Elect.Location.Google - Google Maps API Integration</title>
+    <description>Complete Google Maps API integration for .NET Core applications with support for geocoding, reverse geocoding, places search, distance matrix, directions, and timezone services. Provides strongly-typed models, automatic retry logic, API key management, and comprehensive error handling. Features include address validation, place details retrieval, route optimization, travel time calculations, and location-based search with filtering options.</description>
+    <summary>Google Maps API client library with geocoding, places, directions, distance matrix, and timezone services for location-based .NET Core applications.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Location/Elect.Location.Google</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore googleapi elect topnguyen</tags>
+    <tags>aspnetcore netcore google maps api geocoding reverse-geocoding places directions distance-matrix timezone location geography elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>Enhanced API error handling with automatic retry logic. Added support for new Google Maps API features including place photos and reviews. Improved response caching for better performance.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

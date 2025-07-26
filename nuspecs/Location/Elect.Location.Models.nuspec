@@ -2,19 +2,20 @@
 <package>
     <metadata>
         <id>Elect.Location.Models</id>
-        <title>Elect Location Models</title>
-        <description>Common Models for Location.</description>
-        <summary>Common Models for Location.</summary>
+        <title>Elect.Location.Models - Shared Location Data Models</title>
+        <description>Common location-related data models and structures for .NET Core applications. Provides standardized models for coordinates, addresses, places, geographic boundaries, and location metadata. Includes models for representing points, polygons, bounding boxes, distance units, address components, place types, and geographic regions. Designed for seamless integration with location services and geographic calculations across the Elect ecosystem.</description>
+        <summary>Shared location data models including coordinates, addresses, places, boundaries, and geographic structures for consistent location handling in .NET Core applications.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>https://topnguyen.com</copyright>
+        <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Location/Elect.Location.Models</projectUrl>
-        <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+        <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
         <license type="expression">MIT</license>
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>aspnetcore location elect topnguyen</tags>
+        <tags>aspnetcore netcore location models coordinate address place geography gps latitude longitude boundary polygon data-models elect topnguyen</tags>
         <version>9.0.3</version>
+        <releaseNotes>Added new models for advanced geographic features including elevation data and timezone information. Enhanced address models with support for international formats and validation attributes.</releaseNotes>
 
         <dependencies>
             <group targetFramework="net9.0">

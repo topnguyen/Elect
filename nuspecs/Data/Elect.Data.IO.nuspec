@@ -2,19 +2,29 @@
 <package>
   <metadata>
     <id>Elect.Data.IO</id>
-    <title>Elect IO</title>
-    <description>IO Utilities.</description>
-    <summary>IO Utilities.</summary>
+    <title>Elect.Data.IO - File System and Image Processing Utilities</title>
+    <description>Comprehensive file system utilities and image processing capabilities for .NET Core applications. Provides powerful file/folder operations, image manipulation (resize, compress, watermark), dominant color detection, and cross-platform file handling. Features include recursive directory operations, safe file copying/moving, path utilities, image format conversion, and optimized image compression algorithms.</description>
+    <summary>File system utilities and advanced image processing library with support for resizing, compression, watermarking, and dominant color extraction for .NET Core applications.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Data/Elect.Data.IO</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore io elect topnguyen</tags>
+    <tags>aspnetcore netcore io file filesystem directory folder image processing resize compress watermark color detection imageprocessing utilities elect topnguyen cross-platform</tags>
     <version>9.0.3</version>
+    <releaseNotes>
+- Updated to .NET 9.0 with enhanced file system operations
+- Upgraded SixLabors.ImageSharp to 3.1.10 for improved performance
+- Replaced external compression tools with pure managed cross-platform image compression
+- Enhanced image resize with async support and quality options
+- Added WebP format support for modern image compression
+- Improved memory usage and performance for image operations
+- Better cross-platform compatibility (Windows/Linux/macOS)
+- Removed dependency on external compression tools for better portability
+    </releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

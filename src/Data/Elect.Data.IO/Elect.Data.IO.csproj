@@ -17,9 +17,6 @@
     <PackageOutputPath>..\..\..\build\Data</PackageOutputPath>
     <NuspecFile>..\..\..\nuspecs\Data\Elect.Data.IO.nuspec</NuspecFile>
   </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ImageUtils\CompressUtils\Tools\**\*" />
-  </ItemGroup>
   <!-- Elect -->
   <ItemGroup>
     <ProjectReference Include="..\..\Elect.Core\Elect.Core.csproj" />
@@ -29,5 +26,7 @@
     <PackageReference Include="System.Drawing.Common" Version="9.0.7" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.10" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="2.1.6" />
+    <PackageReference Include="Enums.NET" Version="5.0.0" />
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
   </ItemGroup>
 </Project>

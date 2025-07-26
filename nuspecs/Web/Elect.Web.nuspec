@@ -2,19 +2,25 @@
 <package>
   <metadata>
     <id>Elect.Web</id>
-    <title>Elect AspNetCore Mvc Utilities</title>
-    <description>AspNetCore Mvc utilities.</description>
-    <summary>AspNetCore Mvc utilities.</summary>
+    <title>Elect Web - ASP.NET Core MVC Utilities</title>
+    <description>Essential utilities and helper methods for ASP.NET Core MVC applications. Provides enhanced routing, model binding, response caching, API versioning support, and beautiful paged collection APIs with built-in filtering and sorting capabilities.</description>
+    <summary>Powerful utilities to simplify ASP.NET Core MVC development with enhanced APIs and helpers.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore elect topnguyen</tags>
+    <tags>aspnetcore mvc api web utilities routing modelbinding caching versioning pagination elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>
+- Updated to .NET 9.0 with latest ASP.NET Core packages
+- Enhanced paged collection API with improved performance
+- Added support for advanced filtering and sorting
+- Improved model binding and validation helpers
+    </releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

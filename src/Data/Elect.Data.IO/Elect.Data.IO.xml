@@ -144,173 +144,72 @@
                 Provides a huge two-way mapping of file extensions to mime types and mime types to file extensions
             </summary>
         </member>
-        <member name="F:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Lazy">
+        <member name="T:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor">
             <summary>
-                A new instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class. with lazy initialization.
+            Cross-platform image compressor using ImageSharp library
+            Works consistently on Windows, Linux, and macOS without external tools
             </summary>
         </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.#ctor">
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.CompressAdvanced(System.IO.MemoryStream,Elect.Data.IO.ImageUtils.CompressUtils.CompressionOptions)">
             <summary>
-                Prevents a default instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class from being created. 
+            Compress with advanced options
             </summary>
         </member>
-        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.Instance">
+        <member name="T:Elect.Data.IO.ImageUtils.CompressUtils.CompressionOptions">
             <summary>
-                Gets the current instance of the <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper" /> class. 
+            Advanced compression options
             </summary>
         </member>
-        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.WorkingFolder">
+        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.#ctor">
             <summary>
-                Gets the working directory path. 
+            Initializes a new instance of the ImageCompressedModel class.
             </summary>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Bootstrapper.RegisterExecutable">
-            <summary>
-                Registers the embedded executable. 
-            </summary>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.CheckFilePath(System.String)">
-            <summary>
-                Throw argument exception if path not valid 
-            </summary>
-            <param name="filePath"></param>
-            <example cref="T:System.ArgumentException"></example>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetCompressAlgorithm(Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressImageType)">
-            <summary>
-                Min 0 - max 99 
-            </summary>
-            <param name="compressImageType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Helper.GetQualityPercent(System.Int32,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm)">
-            <summary>
-                Min 0 - max 99 
-            </summary>
-            <param name="qualityPercent"></param>
-            <param name="algorithm">     </param>
-            <returns></returns>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.String,System.String,System.Int32,System.Int32)">
-            <summary>
-                Runs the process to optimize the image. 
-            </summary>
-            <param name="inputPath">     </param>
-            <param name="outputPath">    </param>
-            <param name="qualityPercent">
-                Quality of image after compress, 0 is auto quality by image type
-            </param>
-            <param name="timeout">        timeout of process in millisecond </param>
-            <returns> The Task containing processing information. </returns>
-            <exception cref="T:System.ArgumentException"> input path is invalid image format </exception>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Compress(System.IO.MemoryStream,System.Int32,System.Int32,System.String)">
-            <summary>
-                Runs the process to optimize the image. 
-            </summary>
-            <param name="stream">         The source image stream. </param>
-            <param name="qualityPercent">
-                Quality of image after compress, 0 is auto quality by image type
-            </param>
-            <param name="timeout">        timeout of process in millisecond </param>
-            <param name="fileName"></param>
-            <returns> The Task containing processing information. </returns>
-            <exception cref="T:System.ArgumentException"> stream is invalid image format </exception>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Process(System.IO.MemoryStream,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32,System.Int32)">
-            <summary>
-                Runs the process to optimize the image. 
-            </summary>
-            <param name="stream">        </param>
-            <param name="algorithm">     
-                Default is auto depend on file extension, others is force algorithm
-            </param>
-            <param name="qualityPercent">
-                Quality of image after compress, 0 is default it mean auto quality by image type
-            </param>
-            <param name="timeout">        TimeoutMillisecond of process in millisecond </param>
-            <returns> The Task containing processing information. </returns>
-            <exception cref="T:System.ArgumentException"> stream is invalid image format </exception>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.Process(System.String,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Int32,System.Int32)">
-            <summary>
-                Runs the process to optimize the image. 
-            </summary>
-            <param name="filePath">       The source file. </param>
-            <param name="algorithm">     
-                Default is auto depend on file extension, others is force algorithm
-            </param>
-            <param name="qualityPercent">
-                Quality of image after compress, 0 is default it mean auto quality by image type
-            </param>
-            <param name="timeout">        TimeoutMillisecond of process in millisecond </param>
-            <returns> The Task containing processing information. </returns>
-            <exception cref="T:System.ArgumentException">
-                file path is invalid, argument of command is invalid
-            </exception>
-            <exception cref="T:System.NotSupportedException">
-                Some security policies don't allow execution of programs in this way
-            </exception>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.ImageCompressor.GetArguments(System.String,Elect.Data.IO.ImageUtils.CompressUtils.Models.CompressAlgorithm,System.Collections.Generic.List{System.String}@,System.Int32)">
-            <summary>
-                Gets the correct arguments to pass to the compressor 
-            </summary>
-            <param name="filePath">       The source file. </param>
-            <param name="fileTempPaths">  </param>
-            <param name="algorithm">     
-                Default is auto depend on file extension, others is force algorithm
-            </param>
-            <param name="qualityPercent"> Quality PercentSaving - Process </param>
-            <returns> The <see cref="T:System.String" /> containing the correct command arguments. </returns>
-            <exception cref="T:System.ArgumentException"> file path is invalid </exception>
-        </member>
-        <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.#ctor(System.String,System.Int64)">
-            <inheritdoc />
-            <summary>
-                Initializes a new instance of the
-                <see cref="T:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel" /> class.
-            </summary>
-            <param name="filePath">               The result file name. </param>
-            <param name="fileSizeBeforeCompress">
-                The original file fileSizeBeforeCompress in bytes.
-            </param>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.FileType">
             <summary>
-                Gets or sets the original file size in bytes. 
+            Gets or sets the image file type.
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.FileExtension">
+            <summary>
+            Gets the file extension based on the file type.
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.OriginalFileSize">
             <summary>
-                Gets or sets the original file size in bytes. 
+            Gets or sets the original file size in bytes.
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.CompressedFileSize">
             <summary>
-                Gets or sets the result file size in bytes. 
+            Gets or sets the compressed file size in bytes.
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.TotalMillisecondsTook">
             <summary>
-                Gets or sets the total time took. 
+            Gets or sets the total time took for compression.
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.BytesSaving">
             <summary>
-                Gets the difference in file size in bytes. 
+            Gets the difference in file size in bytes.
             </summary>
         </member>
         <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.PercentSaving">
             <summary>
-                Gets the difference in file size as a percentage. 
+            Gets the difference in file size as a percentage.
+            </summary>
+        </member>
+        <member name="P:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.QualityPercent">
+            <summary>
+            Gets or sets the quality percentage used for compression.
             </summary>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.CompressUtils.Models.ImageCompressedModel.ToString">
             <summary>
-                Returns a string that represents the current object. 
+            Returns a string that represents the current object.
             </summary>
-            <returns> A string that represents the current object. </returns>
+            <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:Elect.Data.IO.ImageUtils.ImageHelper.GetImageInfo(System.String)">
             <summary>
@@ -397,6 +296,16 @@
             </summary>
             <param name="image"></param>
             <remarks>This one will fix auto rotate in image uploaded from Mobile Device (iOS, Android and so on).</remarks>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ResizeUtils.ImageResizeHelper.ResizeKeepAspectRatio(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Resize image maintaining aspect ratio
+            </summary>
+        </member>
+        <member name="M:Elect.Data.IO.ImageUtils.ResizeUtils.ImageResizeHelper.GetOptimizedEncoder(SixLabors.ImageSharp.Formats.IImageFormat,System.Int32)">
+            <summary>
+            Get optimized encoder based on format with default quality settings
+            </summary>
         </member>
         <member name="T:Elect.Data.IO.ImageUtils.ResizeUtils.Models.ResizeType">
             <summary>

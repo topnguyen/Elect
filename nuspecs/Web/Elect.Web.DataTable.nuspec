@@ -2,19 +2,20 @@
 <package>
   <metadata>
     <id>Elect.Web.DataTable</id>
-    <title>Elect AspNetCore Mvc jQuery DataTable</title>
-    <description>AspNetCore Mvc jquery datatable generate in backend.</description>
-    <summary>AspNetCore Mvc jquery datatable generate in backend.</summary>
+    <title>Elect.Web.DataTable - Server-Side jQuery DataTables for ASP.NET Core</title>
+    <description>Server-side jQuery DataTables generation for ASP.NET Core MVC applications with advanced features. Provides automatic server-side processing, pagination, sorting, filtering, and searching capabilities. Supports complex data queries, custom column rendering, global and column-specific search, multi-column sorting, and seamless integration with Entity Framework Core. Includes model binding for DataTable requests and response generation with minimal configuration.</description>
+    <summary>Complete server-side jQuery DataTables implementation for ASP.NET Core with automatic pagination, sorting, filtering, and Entity Framework Core integration.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.DataTable</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore datatable elect topnguyen</tags>
+    <tags>aspnetcore netcore mvc jquery datatable datatables server-side pagination sorting filtering search grid table ajax elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>Improved performance for large datasets with optimized query generation. Enhanced filtering capabilities with support for complex data types and custom search predicates.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

@@ -2,19 +2,20 @@
 <package>
   <metadata>
     <id>Elect.Job.Hangfire</id>
-    <title>Elect Hangfire Extensions</title>
-    <description>Hangfire extensions.</description>
-    <summary>Hangfire extensions.</summary>
+    <title>Elect.Job.Hangfire - Enhanced Hangfire Integration</title>
+    <description>Enhanced Hangfire integration for .NET Core with simplified setup, secure dashboard configuration, and advanced job management features. Provides streamlined background job processing with built-in security, custom authorization filters, memory storage support for development, and comprehensive dashboard customization options. Includes automatic retry policies, job filtering, and monitoring capabilities.</description>
+    <summary>Simplified Hangfire setup with secure dashboard, custom authorization, memory storage support, and enhanced job management features for .NET Core background processing.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Job/Elect.Job.Hangfire</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore hangfire elect topnguyen</tags>
+    <tags>aspnetcore netcore hangfire background jobs job processing scheduler queue dashboard security authorization recurring scheduled tasks elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>Enhanced security features for Hangfire dashboard with improved authorization filters. Added memory storage support for development environments and better integration with .NET Core dependency injection.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

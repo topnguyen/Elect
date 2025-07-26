@@ -2,19 +2,20 @@
 <package>
   <metadata>
     <id>Elect.Web.HttpDetection</id>
-    <title>Elect Http Detection</title>
-    <description>Extract http request information.</description>
-    <summary>Extract http request information.</summary>
+    <title>Elect.Web.HttpDetection - Device and Location Detection</title>
+    <description>Advanced HTTP request analysis for device detection, browser identification, and geolocation services in ASP.NET Core applications. Provides comprehensive user agent parsing to detect device types (mobile, tablet, desktop), operating systems, browser versions, and bot detection. Includes IP-based geolocation with country, city, timezone detection using MaxMind GeoIP2 database. Features crawler/bot identification, proxy detection, and detailed request information extraction.</description>
+    <summary>HTTP request analyzer for device detection, browser identification, user agent parsing, and IP-based geolocation with MaxMind GeoIP2 integration for ASP.NET Core.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.HttpDetection</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore httpdetection elect topnguyen</tags>
+    <tags>aspnetcore netcore http detection device mobile tablet desktop browser useragent user-agent geolocation geoip maxmind ip location crawler bot detection elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>Updated MaxMind GeoIP2 integration with improved accuracy. Enhanced device detection algorithms for modern browsers and mobile devices. Added support for new user agent patterns.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

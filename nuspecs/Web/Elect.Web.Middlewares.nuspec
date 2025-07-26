@@ -2,19 +2,20 @@
 <package>
   <metadata>
     <id>Elect.Web.Middlewares</id>
-    <title>Elect AspNetCore Useful Middlewares</title>
-    <description>AspnetCore useful middlewares.</description>
-    <summary>AspnetCore useful middlewares.</summary>
+    <title>Elect.Web.Middlewares - Essential ASP.NET Core Middleware Collection</title>
+    <description>Collection of essential production-ready middlewares for ASP.NET Core applications. Includes request/response processing time measurement with customizable headers, HTML/CSS/JS minification for optimized bandwidth usage, response compression, security headers implementation, CORS configuration helpers, and request/response logging. Features automatic content optimization with WebMarkupMin integration for smaller payload sizes and faster page loads.</description>
+    <summary>Essential middleware collection featuring processing time measurement, HTML/CSS/JS minification, security headers, and response optimization for ASP.NET Core applications.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Middlewares</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore middlewares elect topnguyen</tags>
+    <tags>aspnetcore netcore middleware middlewares minification html css javascript compression performance security headers cors logging processing-time elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>Improved minification performance with updated WebMarkupMin integration. Added configurable options for selective middleware activation and enhanced security header presets.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

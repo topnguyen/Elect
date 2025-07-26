@@ -2,19 +2,20 @@
 <package>
   <metadata>
     <id>Elect.Web.Swagger</id>
-    <title>Elect Swagger Extensions</title>
-    <description>Swagger extensions.</description>
-    <summary>Swagger extensions.</summary>
+    <title>Elect.Web.Swagger - Enhanced Swagger/OpenAPI Integration</title>
+    <description>Enhanced Swagger/OpenAPI documentation generation for ASP.NET Core APIs with advanced customization options. Provides streamlined Swashbuckle integration with automatic XML documentation inclusion, custom operation filters, security scheme configuration, and beautiful UI themes. Features include API versioning support, JWT bearer authentication setup, request/response example generation, custom document filters, and comprehensive API metadata enrichment.</description>
+    <summary>Enhanced Swagger/OpenAPI documentation with Swashbuckle integration, custom filters, security schemes, API versioning, and beautiful UI themes for ASP.NET Core APIs.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Web/Elect.Web.Swagger</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore swagger elect topnguyen</tags>
+    <tags>aspnetcore netcore swagger openapi swashbuckle api documentation rest webapi jwt authentication versioning elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>Updated to latest Swashbuckle with .NET 9 support. Enhanced security configuration options and improved API versioning integration. Added custom theme support for Swagger UI.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

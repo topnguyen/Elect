@@ -2,19 +2,20 @@
 <package>
   <metadata>
     <id>Elect.Location.Coordinate</id>
-    <title>Elect Coordinate</title>
-    <description>Coordinate utilities.</description>
-    <summary>Coordinate utilities.</summary>
+    <title>Elect.Location.Coordinate - Geographic Coordinate Utilities</title>
+    <description>Comprehensive geographic coordinate calculation and clustering utilities for .NET Core applications. Provides distance calculations using Haversine and Vincenty formulas, coordinate validation, bounding box operations, point-in-polygon detection, and advanced clustering algorithms. Features include bearing calculations, midpoint determination, coordinate formatting (DMS, decimal degrees), geofencing capabilities, and K-means clustering for location grouping.</description>
+    <summary>Geographic coordinate utilities with distance calculations, clustering algorithms, bounding box operations, and geofencing capabilities for location-based .NET Core applications.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Location/Elect.Location.Coordinate</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore location elect topnguyen</tags>
+    <tags>aspnetcore netcore location coordinate geography gps latitude longitude distance haversine vincenty clustering geofence bounding-box spatial elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>Improved clustering algorithms with better performance for large datasets. Enhanced coordinate validation and added support for additional coordinate formats and projections.</releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

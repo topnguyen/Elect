@@ -2,19 +2,25 @@
 <package>
   <metadata>
     <id>Elect.DI</id>
-    <title>Elect Dependency Injection</title>
-    <description>Dependency Injection support registration from assemblies.</description>
-    <summary>Dependency Injection support registration from assemblies.</summary>
+    <title>Elect DI - Advanced Dependency Injection</title>
+    <description>Powerful dependency injection extensions for .NET Core with attribute-based service registration, assembly scanning, automatic interface binding, and lifetime management. Simplifies DI configuration while maintaining full control over service registration.</description>
+    <summary>Advanced dependency injection with attribute-based registration and assembly scanning.</summary>
     <authors>Top Nguyen</authors>
     <owners>topnguyen</owners>
-    <copyright>https://topnguyen.com</copyright>
+    <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
     <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/DI/Elect.DI</projectUrl>
-    <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+    <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
     <license type="expression">MIT</license>
     <icon>Logo.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>aspnetcore dependency injection elect topnguyen</tags>
+    <tags>aspnetcore di dependency injection ioc container attribute scanning registration elect topnguyen</tags>
     <version>9.0.3</version>
+    <releaseNotes>
+- Updated to .NET 9.0 with enhanced performance
+- Improved assembly scanning with better filtering options
+- Added support for keyed services and complex scenarios
+- Enhanced attribute-based registration capabilities
+    </releaseNotes>
 
     <dependencies>
       <group targetFramework="net9.0">

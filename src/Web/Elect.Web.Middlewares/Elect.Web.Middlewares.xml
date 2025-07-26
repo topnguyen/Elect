@@ -40,13 +40,44 @@
                 Additional Config Options for Policy if you want to add your customize after Elect add Config Policy Options.
             </summary>
         </member>
-        <member name="M:Elect.Web.Middlewares.GCCollectMiddleware.IApplicationBuilderExtensions.UseGCCollect(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:Elect.Web.Middlewares.GCCollectMiddleware.IApplicationBuilderExtensions.UseGCCollect(Microsoft.AspNetCore.Builder.IApplicationBuilder,Elect.Web.Middlewares.GCCollectMiddleware.GCCollectOptions)">
             <summary>
-                Release memory if possible by GC Collection <br />
+                Conditionally trigger garbage collection based on memory pressure. <br />
+                WARNING: This middleware can significantly impact performance. Use only in specific scenarios. <br />
                 [NOTE] Keep this Middleware at the top of the pipeline
             </summary>
             <param name="app"></param>
-            <remarks>Keep this Middleware at the top of the pipeline</remarks>
+            <param name="options">Options to configure GC behavior</param>
+            <remarks>
+            This middleware should only be used in very specific scenarios where memory pressure 
+            is a critical concern. In most applications, the .NET GC handles memory management 
+            efficiently without manual intervention.
+            </remarks>
+        </member>
+        <member name="T:Elect.Web.Middlewares.GCCollectMiddleware.GCCollectOptions">
+            <summary>
+            Options for configuring GC collection behavior
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Middlewares.GCCollectMiddleware.GCCollectOptions.Enabled">
+            <summary>
+            Enable or disable GC collection. Default is false.
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Middlewares.GCCollectMiddleware.GCCollectOptions.RequestInterval">
+            <summary>
+            Collect every N requests. 0 means don't use request-based collection. Default is 0.
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Middlewares.GCCollectMiddleware.GCCollectOptions.MemoryThresholdMB">
+            <summary>
+            Memory threshold in MB. Collect when memory usage exceeds this value. 0 means don't use threshold. Default is 500.
+            </summary>
+        </member>
+        <member name="P:Elect.Web.Middlewares.GCCollectMiddleware.GCCollectOptions.Generation">
+            <summary>
+            Generation to collect (0, 1, or 2). Default is 1.
+            </summary>
         </member>
         <member name="P:Elect.Web.Middlewares.HttpContextMiddleware.HttpContext.Current">
             <summary>

@@ -2,19 +2,25 @@
 <package>
     <metadata>
         <id>Elect.Data.EF</id>
-        <title>Elect Entity Framework Core</title>
-        <description>Entity Framework Core support Unit of Work</description>
-        <summary>Entity Framework Core support Unit of Work.</summary>
+        <title>Elect Data EF - Entity Framework Core Patterns</title>
+        <description>Advanced Entity Framework Core implementation with Unit of Work and Repository patterns. Features transaction management, bulk operations, query optimization, audit logging, and seamless integration with dependency injection. Simplifies data access layer development while maintaining flexibility and performance.</description>
+        <summary>Enterprise-ready Entity Framework Core patterns with Unit of Work, Repository, and transaction support.</summary>
         <authors>Top Nguyen</authors>
         <owners>topnguyen</owners>
-        <copyright>https://topnguyen.com</copyright>
+        <copyright>Copyright © 2025 Top Nguyen. All rights reserved.</copyright>
         <projectUrl>https://github.com/topnguyen/Elect/tree/master/src/Data/Elect.Data.EF</projectUrl>
-        <repository type="git" url="https://github.com/topnguyen/Elect.git"/>
+        <repository type="git" url="https://github.com/topnguyen/Elect.git" branch="master" commit="8fcc77e"/>
         <license type="expression">MIT</license>
         <icon>Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>aspnetcore efcore elect topnguyen</tags>
+        <tags>aspnetcore efcore entityframework unitofwork repository patterns data orm sql transaction audit elect topnguyen</tags>
         <version>9.0.3</version>
+        <releaseNotes>
+- Updated to Entity Framework Core 9.0 with performance improvements
+- Enhanced Unit of Work pattern with better transaction handling
+- Improved bulk operations and query optimization
+- Added support for temporal tables and JSON columns
+        </releaseNotes>
 
         <dependencies>
             <group targetFramework="net9.0">
@@ -22,7 +28,7 @@
                 <dependency id="Elect.Core" version="9.0.3"/>
 
                 <!-- 3rd Libraries -->
-                <dependency id="Microsoft.Data.SqlClient" version="6.0.2" />
+                <dependency id="Microsoft.Data.SqlClient" version="6.0.3" />
                 <dependency id="Microsoft.EntityFrameworkCore" version="9.0.7" />
                 <dependency id="Microsoft.EntityFrameworkCore.Relational" version="9.0.7" />
             </group>
