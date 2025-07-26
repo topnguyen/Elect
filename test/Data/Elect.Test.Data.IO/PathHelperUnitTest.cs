@@ -14,7 +14,8 @@
         [ExpectedException(typeof(ArgumentException))]
         public void GetFullPath_InvalidPath_Throws()
         {
-            PathHelper.GetFullPath("@@invalid|path");
+            // Use null character which is invalid on all platforms
+            PathHelper.GetFullPath("invalid\0path");
         }
         [TestMethod]
         public void GetFullPath_AbsolutePath_ReturnsAsIs()

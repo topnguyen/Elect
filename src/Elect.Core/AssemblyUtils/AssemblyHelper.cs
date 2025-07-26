@@ -4,8 +4,27 @@
     {
         public static string GetDirectoryPath(Assembly assembly)
         {
-            var uri = new UriBuilder(assembly.Location);
-            var path = Uri.UnescapeDataString(uri.Path);
+            var assemblyLocation = assembly.Location;
+            
+            // Handle cross-platform assembly location formats
+            if (string.IsNullOrWhiteSpace(assemblyLocation))
+            {
+                throw new InvalidOperationException("Assembly location is not available.");
+            }
+            
+            // Check if the location is already a file path (Unix/Linux/macOS) or a URI (Windows)
+            string path;
+            if (Uri.TryCreate(assemblyLocation, UriKind.Absolute, out var uri) && uri.IsFile)
+            {
+                // Windows format: file:///C:/path/to/assembly.dll
+                path = Uri.UnescapeDataString(uri.LocalPath);
+            }
+            else
+            {
+                // Unix/Linux/macOS format: /path/to/assembly.dll
+                path = assemblyLocation;
+            }
+            
             var directoryPath = Path.GetDirectoryName(path);
             return directoryPath;
         }

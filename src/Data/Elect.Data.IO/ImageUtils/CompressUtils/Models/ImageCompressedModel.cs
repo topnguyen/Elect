@@ -64,9 +64,10 @@ namespace Elect.Data.IO.ImageUtils.CompressUtils.Models
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            var str = $"{OriginalFileSize:N} bytes => {CompressedFileSize:N} bytes. " +
-                      $"Saved {BytesSaving} bytes ({PercentSaving:0.##}%). " +
-                      $"Took: {TotalMillisecondsTook:N} ms. " +
+            // Use invariant culture for cross-platform consistency
+            var str = $"{OriginalFileSize.ToString("N", CultureInfo.InvariantCulture)} bytes => {CompressedFileSize.ToString("N", CultureInfo.InvariantCulture)} bytes. " +
+                      $"Saved {BytesSaving} bytes ({PercentSaving.ToString("0.##", CultureInfo.InvariantCulture)}%). " +
+                      $"Took: {TotalMillisecondsTook.ToString("N", CultureInfo.InvariantCulture)} ms. " +
                       $"Compressed Image is {QualityPercent}% Quality of the Original.";
             return str;
         }
