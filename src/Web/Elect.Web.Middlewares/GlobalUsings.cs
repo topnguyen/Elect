@@ -22,5 +22,5 @@ global using System.Reflection;
 global using System.Threading.Tasks;
 global using System;
 global using WebMarkupMin.AspNet.Common.Compressors;
-global using WebMarkupMin.AspNetCore6;
+global using WebMarkupMin.AspNetCoreLatest;
 global using WebMarkupMin.NUglify;
